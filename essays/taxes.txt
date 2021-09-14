@@ -1,0 +1,100 @@
+WHAT IS A TAX?
+
+distinguish between taxes, fines, and fees
+
+a fee is a payment in exchange for something you want
+you are free to not pay fees if you don't want the thing
+
+a fine is a payment in compensation for some crime
+you are free to not pay the fine if you avoid committing the crime
+
+a tax is a payment regardless of any criminal conviction or anything wanted in exchange
+
+fee-like or fine-like rationales are often used to justify taxes:
+- saying that some tax must be levied to raise funds to provide some public good
+- saying that some tax must be levied to deter people from some harmful behavior
+
+but unless you can choose not to pay just by forgoing the good, it's not a fee, it's a tax; you normally (besides taxes) can't have a product forced upon you and be forced to pay for it.
+
+and unless you have to be convicted of a crime first, it's not a fine, it's a tax; you normally (besides taxes) can't be punished for a behavior without there being a valid law against it and a fair trial presuming innocence proving that you broke that law
+
+lastly, taxes can be levied without any promise of public goods in return or deterrence of any behavior; just because the state wants money for some purpose of its own. even when taxes are levied with the justification that it is to provide some good or deter some harm, the state does not subsequently have to demonstrate the provision of that good or the deterrence of that harm.
+
+the rest of this essay is about taxes in this narrow sense, and makes no comment about charging people for goods they ask for or crimes they're convicted of.
+
+
+WHY ARE TAXES WRONG?
+
+Taxation is ethically and morally wrong, but that is not the thesis of this essay.
+
+The thesis of this essay is that progressive taxes are the least wrong form of taxes, so that to the extent that we must tax at all, we must tax progressively to minimize the harm done by them; and furthermore, that we must give serious examination to the question of whether we must tax at all, and what alternatives there might be besides the obvious one.
+
+Let us begin with a brief summary of the moral argument against taxation. As that is not the thesis of this essay this will be a quick treatment of the subject without much originality. If you find yourself inclined to reject the conclusion ahead of time for its consequences, I ask that you give the argument a fair chance on its own, and then join me in a discussion of the consequences and how to deal with them afterward.
+
+Skipping the metaethical issues for now, let us take as a premise that the violation of rights constitutes violence; that the initiation or threat of violence against anything but more violence constitutes aggression; and that aggression is ethically and morally wrong. Let us grant that there is some such thing as property, in which people have rights such as possession, the violation of which is thus an act of violence, the initiation of which is thus aggression, which is ethically and morally wrong. Let us grant that legal obligations differ from mere suggestions or good ideas in their being backed by the threat of violence, and thus a legal obligation to do anything besides refrain from violence constitutes aggression, which is morally and ethically wrong.
+
+Taxation is a legal obligation to give up possession of property. Therefore taxation is a violation of property rights; therefore taxation is a threat of of violence; therefore taxation is aggression; therefore taxation is ethically and morally wrong.
+
+
+BUT WE NEED TAXES!
+
+But the government is funded by taxes, and government serves to prevent
+other forms of theft (and other forms of aggression more generally), so eliminating the theft of taxes will eliminate all
+government with it and ultimately allow other theft (and other aggression) to flourish... unless
+another source of funding for government is secured.
+
+PROGRESSIVE OR FLAT?
+
+Meanwhile, while we are suffering with the temporarily necessary evil of
+taxes, we should do as little evil as possible, which means taking what we
+have to take from those who it harms the least. Due to marginal utility,
+it does less harm to take an amount of money from the wealthy than
+it does to take that same amount of money from the poor, so to minimize the
+harm of taxation, we must tax progressively.
+
+Mathematically simple way to tax progressively: take the taxable incomes
+of the entire tax base, sum them, subtract N in expenses, divide the remainder among the tax base.
+
+- Implement a negative progressive tax at a rate sufficient to replace minimum wage, with no other expenses coming out of this tax yet. (This is to say, everyone 'pays' a flat percentage of their income, that money gets pooled, and then divided up evenly and 'paid back' to everyone; so you lose money in the deal the more above average you make, you get money out of it the further below average you make, and you break even if you make exactly average -- except all this happens in the mathematical calculations and you just either pay or get paid, you don't have to send it in and get something different back later). Then cancel minimum wage, because this effectively sets an elastic 'minimum' and 'maximum' wage -- as the income discrepancy grows, this automatically pulls harder center-ward from both the top and bottom, but if everyone was middle class it would be negligible to people on both ends of the income spectrum.
+
+- Cancel all other taxes and ramp up the negative progressive tax rate so that it can provide the same level of revenue (so after the tax money gets pooled, the needed revenue gets taken out of that, and then the remainder is divided up evenly and paid back as before -- except, again, all done in the math, not actually paid back and forth step by step like that -- and with a rate adjusted higher such that there's as much money left to be divided up after taking the needed revenue from it, as there was before we started taking revenue from it).
+
+WHAT TO TAX AND WHAT TO EXEMPT?
+
+To further encourage the natural distribution of wealth, and greatly
+simplify the tax code: income from selling off goods and capital is
+non-taxable, all other income (from labor and services, or gifts) is
+taxable at the same rate, for any entity (natural person or corporation);
+and expenses on anything but property (such as labor and services, or
+gifts) are tax-deductible, while purchases of goods and capital are not
+tax-deductible expenses. This incentivizes those with capital to exchange
+it for others' labor, increasing employment and distributing wealth to the
+laborers, while disincentivizing hoarding and rent-seeking which would
+naturally concentrate wealth.
+
+Ramp up taxation of income from rent or interest gradually to 100%, and use the proceeds to give tax credits against rent and interest expenses. When it reaches 100%, everyone will have switched to alternate arrangements than rent/interest by then, so we can stop enforcing contracts of it, and be done with it then.
+
+
+CAN WE GET RID OF THEM EVENTUALLY?
+
+The only non-aggressive way for the government to be able to take the
+fraction of the GDP it does would be for it to own that fraction of the
+productive economy. Government should thus focus on gradually supplementing and
+eventually supplanting tax income with investment income.
+
+- Turn all service-providing government agencies (except law enforcement and military, for now) into ordinary commercial businesses (i.e. charging for their service, needing to turn a profit to stay operational), but still owned by the government, with their profits offsetting the revenue that gets taken out of the negative progressive tax pool. Redirect all the money that would have gone into providing those services for free into the negative progressive tax pool, so that the poor can still afford those services just as they could before.
+
+- Turn all corporate welfare spending into corporate investment spending. Any money spent propping up a corporation must result in a proportional amount of government ownership of that corporation. This will both make the corporations less eager to reach for a hand-out, and make the government more wary of who it is spending its money propping up. Use these investments to gradually supplant taxes as a source of revenue.
+
+
+If I had a lot of money I wanted to put toward charity, I could, rather than giving it all directly to charity at once, buy a profitable company outright and, as its sole proprietor, donate all of its profits (after paying its suppliers, employees, etc, and some reinvestment to grow the company) to charity, yeah? I would be able to, in effect, secure with one large donation an ongoing stream of donations that would over time exceed the initial large amount and continue as long as the company remained profitable. A self-sustaining stream of charity requiring no taking of anything by force. It would require someone intentionally going and doing that, it wouldn't just happen by market forces, but neither would it violate the freedom of the market.
+
+What then is to stop many people from putting their money together (via an intermediate nonprofit organization) into buying shares of many companies and donating the ongoing dividends from those investments to charity? It's still the same kind of self-sustaining stream of charity, requiring no taking of anything by force. It just take someone to go out and do it.
+
+It would of course require a truly monumental level of investment like that to be able to provide enough funds to pay for something on the scale of a government and all of its services. It would take an investment equal in proportion to the productive economy as what the government takes in taxes from the GDP. But traditional governments are already truly monumental organizations dealing with similarly huge sums of money already. There is nothing in principle keeping one from being funded by massive investments like this, other than someone doing it.
+
+In a vacuum, founding a new government where there was none, that would require many people banding together and donating their fortunes to the creation of that government. The creation of governments ex nihilo is already a monumental investment so that is not entirely unfeasible, but since traditional governments are already extracting "donations" by force, it would be far easier to transition an existing government to this new source of funding than to create one from scratch. Simply direct a portion of tax revenue into buying such investments, raising a new tax if necessary to do so, and watch the investment income start to offset the cost of that over time, then reverse the cost of that (becoming a source of profit rather an expense), at which point the new tax can be ended as the investments can now fund their own growth, and as that growth continues other taxes can be ended, until eventually the government is funded entirely by this (now huge) investment, and taxation becomes unnecessary.
+
+
+
+- Without claiming a monopoly on them by force (in other words, figuring out how to treat police and military — the only things left — like every other service, and not a special protected job that nobody else is allowed to do on threat of we'll shoot you if you try, without everything falling apart in the process).

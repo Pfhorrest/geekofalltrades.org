@@ -1,0 +1,61 @@
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php
+ErrorDocument 500 /500.php
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+#Remove PHP suffixes in URLs
+
+# To externally redirect /dir/foo.php to /dir/foo
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+RewriteRule ^ %1 [R,L]
+
+# To internally forward /dir/foo to /dir/foo.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*?)/?$ $1.php [L]
+
+#Redirects
+
+#Redirect everything in /fanfic to /stories
+RedirectMatch 301 /fanfic(.*) /stories$1
+
+#Redirect /art pages to their respective new homes
+RedirectMatch 301 /art /#work
+RedirectMatch 301 /art/digital.html /graphics/digital
+RedirectMatch 301 /art/logos.html /graphics/logos
+RedirectMatch 301 /art/mixed.html /graphics/traditional
+RedirectMatch 301 /art/print.html /graphics/print
+RedirectMatch 301 /art/traditional.html /graphics/traditional
+RedirectMatch 301 /art/web.html /web
+
+#Redirect /work pages to their respective new homes
+RedirectMatch 301 /work/?\b /#work
+RedirectMatch 301 /work/logos(.*) /graphics/logos$1
+RedirectMatch 301 /work/emblematic(.*) /graphics/emblematic$1
+RedirectMatch 301 /work/infographics(.*) /graphics/infographics$1
+RedirectMatch 301 /work/digital(.*) /graphics/digital$1
+RedirectMatch 301 /work/print(.*) /graphics/print$1
+RedirectMatch 301 /work/traditional(.*) /graphics/logos$1
+RedirectMatch 301 /work/web(.*) /web$1
+RedirectMatch 301 /work/photos(.*) /photos$1
+RedirectMatch 301 /work/games(.*) /eternal$1
+
+#Redirect old Chronicles outlines
+RedirectMatch 301 /chronicles/ehrban(.*) /chronicles/1
+RedirectMatch 301 /chronicles/human(.*) /chronicles/2
+RedirectMatch 301 /chronicles/sphidi(.*) /chronicles/3
+
+#Redirect old Codex pages to their respective new homes
+RedirectMatch 301 /codex/meaning(.*) /codex/language
+RedirectMatch 301 /codex/fideism(.*) /codex/dogmatism
+RedirectMatch 301 /codex/nihilism(.*) /codex/relativism
+RedirectMatch 301 /codex/teleology(.*) /codex/axiology
+RedirectMatch 301 /codex/academics(.*) /codex/education
+RedirectMatch 301 /codex/politics(.*) /codex/governance
+
+
+
+</IfModule>

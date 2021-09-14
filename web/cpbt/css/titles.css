@@ -1,0 +1,408 @@
+/* Main Index */
+
+h2#mission {
+ background: url(/images/titles/mission.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#mission span {
+ visibility: hidden ;
+}
+h2#whobenefits {
+ background: url(/images/titles/whobenefits.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#whobenefits span {
+ visibility: hidden ;
+}
+h2#threeways {
+ background: url(/images/titles/threeways.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#threeways span {
+ visibility: hidden ;
+}
+h2#colleagues {
+ background: url(/images/titles/colleagues.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#colleagues span {
+ visibility: hidden ;
+}
+h2#drcastellino {
+ background: url(/images/titles/drcastellino.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#drcastellino span {
+ visibility: hidden ;
+}
+
+
+/* Contact Us */
+h2#contact {
+ background: url(/images/titles/contact.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#contact span {
+ visibility: hidden ;
+}
+
+
+/* Products */
+h2#stuffbydrcast {
+ background: url(/images/titles/stuffbydrcast.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#stuffbydrcast span {
+ visibility: hidden ;
+}
+h2#studentproducts {
+ background: url(/images/titles/studentproducts.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#studentproducts span {
+ visibility: hidden ;
+}
+h2#stuffbyothers {
+ background: url(/images/titles/stuffbyothers.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#stuffbyothers span {
+ visibility: hidden ;
+}
+h2#shipping {
+ background: url(/images/titles/shipping.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#shipping span {
+ visibility: hidden ;
+}
+
+
+/* Process Workshops */
+h2#process {
+ background: url(/images/titles/process.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#process span {
+ visibility: hidden ;
+}
+h2#testimonials {
+ background: url(/images/titles/testimonials.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#testimonials span {
+ visibility: hidden ;
+}
+h2#upcoming {
+ background: url(/images/titles/upcoming_pw.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#upcoming span {
+ visibility: hidden ;
+}
+h2#application {
+ background: url(/images/titles/application.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#application span {
+ visibility: hidden ;
+}
+h2#forms {
+ background: url(/images/titles/processforms.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#forms span {
+ visibility: hidden ;
+}
+h2#accommodations {
+ background: url(/images/titles/accommodations.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#accommodations span {
+ visibility: hidden ;
+}
+h2#certifiedworkshopfac {
+ background: url(/images/titles/certifiedworkshopfac.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#certifiedworkshopfac span {
+ visibility: hidden ;
+}
+
+
+/* Ray Private */
+h2#private {
+ background: url(/images/titles/private.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#private span {
+ visibility: hidden ;
+}
+h2#testimonials {
+ background: url(/images/titles/testimonials.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#testimonials span {
+ visibility: hidden ;
+}
+
+
+/* About Connections */
+h2#aboutconnections {
+ background: url(/images/titles/aboutconnections.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#aboutconnections span {
+ visibility: hidden ;
+}
+h2#maryandray {
+ background: url(/images/titles/maryandray.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#maryandray span {
+ visibility: hidden ;
+}
+h2#servicesoffered {
+ background: url(/images/titles/servicesoffered.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#servicesoffered span {
+ visibility: hidden ;
+}
+h2#logistics {
+ background: url(/images/titles/logistics.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#logistics span {
+ visibility: hidden ;
+}
+
+
+/* Foundation Training */
+h2#nexttraining {
+ background: url(/images/titles/nexttraining.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#nexttraining span {
+ visibility: hidden ;
+}
+h2#foundation {
+ background: url(/images/titles/foundation.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#foundation span {
+ visibility: hidden ;
+}
+h2#prevtraining {
+ background: url(/images/titles/prevtraining.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#prevtraining span {
+ visibility: hidden ;
+}
+h2#testimonials {
+ background: url(/images/titles/testimonials.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#testimonials span {
+ visibility: hidden ;
+}
+h2#application {
+ background: url(/images/titles/application.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#application span {
+ visibility: hidden ;
+}
+h2#logistics {
+ background: url(/images/titles/logistics.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#logistics span {
+ visibility: hidden ;
+}
+
+
+/* Clinical Training */
+h2#clinical {
+ background: url(/images/titles/clinical.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#clinical span {
+ visibility: hidden ;
+}
+h2#practitioner {
+ background: url(/images/titles/practitioner.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#practitioner span {
+ visibility: hidden ;
+}
+h2#advanced {
+ background: url(/images/titles/advanced.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#advanced span {
+ visibility: hidden ;
+}
+
+
+/* Craniosaral References */
+h2#cranial {
+ background: url(/images/titles/cranial.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#cranial span {
+ visibility: hidden ;
+}
+
+
+/* Graduate References */
+h2#graduates {
+ background: url(/images/titles/graduates.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#graduates span {
+ visibility: hidden ;
+}
+
+
+/* Other References */
+h2#organizations {
+ background: url(/images/titles/organizations.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#organizations span {
+ visibility: hidden ;
+}
+
+
+/* Accommodations */
+h2#accommodations {
+ background: url(/images/titles/accommodations.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#accommodations span {
+ visibility: hidden ;
+}
+
+
+/* Image Gallery */
+h2#imagegallery {
+ background: url(/images/titles/imagegallery.jpg) no-repeat ;
+ width: 500px ;
+ height: 100px ;
+ margin: 0px ;
+ padding: 0px ;
+}
+h2#imagegallery span {
+ visibility: hidden ;
+}
