@@ -831,7 +831,7 @@ main {
 			background: none;
 			box-shadow: none;
 
-			&:hover {
+			&:hover, &:active, &:focus {
 				background: none;
 				box-shadow: none;
 			}
