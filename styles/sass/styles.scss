@@ -812,7 +812,7 @@ main {
 		outline: 0;
 		border-radius: 2em;
 		background: radial-gradient(farthest-corner, transparentize(white,0.875), transparentize(white,0.5));
-		box-shadow: 2pt 2pt 2pt transparentize($shade, 1), -2pt -2pt 2pt transparentize($gloss, 1), 1pt 1pt 0pt transparentize($gloss, 1) inset, -1pt -1pt 0pt transparentize($shade, 1) inset, 0 0 0 1pt transparentize($shade, 0.1875) inset;
+		box-shadow: 2pt 2pt 2pt transparentize($shade, 1), -2pt -2pt 2pt transparentize($gloss, 1), 1pt 1pt 0pt transparentize($gloss, 1) inset, -1pt -1pt 0pt transparentize($shade, 1) inset, 0 0 0 1pt $gloss inset;
 		&:hover, &:focus, &:active {
 			box-shadow: 2pt 2pt 2pt $shade, -2pt -2pt 2pt $gloss, 1pt 1pt 0pt $gloss inset, -1pt -1pt 0pt $shade inset, 0 0 0 1pt transparentize($shade, 1) inset;
 		}
@@ -980,7 +980,7 @@ main {
 			text-align: center;
 			list-style: none;
 			vertical-align: top;
-			box-shadow: 2pt 2pt 1pt transparentize($shade, 1), -2pt -2pt 2pt transparentize($gloss, 1), 1pt 1pt 0pt transparentize($gloss, 1) inset, -1pt -1pt 0pt transparentize($shade, 1) inset, 0 0 0 1pt $shade inset;
+			box-shadow: 2pt 2pt 1pt transparentize($shade, 1), -2pt -2pt 2pt transparentize($gloss, 1), 1pt 1pt 0pt transparentize($gloss, 1) inset, -1pt -1pt 0pt transparentize($shade, 1) inset, 0 0 0 1pt $gloss inset;
 			&:hover, &:focus, &:active {
 				box-shadow: 2pt 2pt 1pt $shade, -2pt -2pt 2pt $gloss, 1pt 1pt 0pt $gloss inset, -1pt -1pt 0pt $shade inset, 0 0 0 1pt transparentize($shade, 1) inset;
 			}
