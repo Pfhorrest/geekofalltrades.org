@@ -498,7 +498,7 @@ footer {
 		background-position-y: 0%;
 		text-align: center;
 		line-height: 2.5;
-		box-shadow: 0pt -1pt 0pt transparentize($shade, 1) inset, 0pt 1pt 1pt transparentize($shade, 1), 0 -1pt 0 0 $shade inset;
+		box-shadow: 0pt -1pt 0pt transparentize($shade, 1) inset, 0pt 1pt 1pt transparentize($shade, 1), 0 -1pt 0 0 transparentize($shade, 0.1875) inset;
 		&:hover, &:focus, &:active {
 			box-shadow: 0pt -1pt 0pt $shade inset, 0pt 1pt 1pt $shade, 0 -1pt 0 0 transparentize($shade, 1) inset;
 			background-position-y: 100%;
