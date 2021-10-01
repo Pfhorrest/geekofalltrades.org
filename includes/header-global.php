@@ -18,7 +18,7 @@
 			if (file_exists($jspath)) {
 				$jsdate = filemtime ($jspath) ;
 			}
-			echo '<script src="' . $jsfilename . '?v=' . $jsdate . '" defer="true" /></script>' ;
+			echo '<script src="' . $jsfilename . '?v=' . $jsdate . '" defer="true"></script>' ;
 		?>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="description" content="Forrest Cameranesi is a &quot;Geek of all Trades&quot; &ndash; a web developer, graphic designer, philosopher, science-fantasy writer, retro game modder, and nature photographer &ndash; from Ojai, California." />
