@@ -1,1 +1,31 @@
-<? $title = "The Chronicles of Quelouva: Falling of the Darklight: Part 1 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/3">The Sphidi Saga:</a>				<a href="/chronicles/3/2">The Darklight Series:</a>				<a href="/chronicles/3/2/1">Falling of the Darklight:</a>				<a class="current" href="/chronicles/3/2/1/1">Part 1:</a>				<ul>					<li><a href="../../2/3">&lArr; Prev Narratively</a></li>					<li><a href="../../../1/3/3">&larr; Prev Chronologically</a></li>					<li><a href="../2">Next Chronologically &rarr;</a></li>					<li><a href="../2">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>Falling of the Darklight: Part 1</h2>										<ol>						<li>							In Falling of the Darklight: Part 1,							the Eldest saves what he can of the virtual afterlife for the sake of his love, but betrayal by the artificial "goddesses" of that world brings everything to ruin.							<ol>								<li>									In <a href="1">Episode 1</a>,									the creation of the virtual afterlife and its eventual collapse to a mere remnant is narrated in mythologized form by descendants of survivors in that remnant.								</li>								<li>									In <a href="2">Episode 2</a>,									the Queen of Hell causes trouble with the survivors in the early remnant of the virtual world, until Xio, "the Eldest", is forced to seal her in her own realm.								</li>								<li>									In <a href="3">Episode 3</a>,									the "goddesses" of Fire and Ice are perverted by the Queen of Hell into overthrowing the Eldest, then seize control of the virtual world for themselves.								</li>							</ol>						</li>					</ol>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva: Falling of the Darklight: Part 1 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>Falling of the Darklight: Part 1</h2>
+					
+					<ol>
+						<li>
+							In Falling of the Darklight: Part 1,
+							the Eldest saves what he can of the virtual afterlife for the sake of his love, but betrayal by the artificial "goddesses" of that world brings everything to ruin.
+							<ol>
+								<li>
+									In <a href="1">Episode 1</a>,
+									the creation of the virtual afterlife and its eventual collapse to a mere remnant is narrated in mythologized form by descendants of survivors in that remnant.
+								</li>
+								<li>
+									In <a href="2">Episode 2</a>,
+									the Queen of Hell causes trouble with the survivors in the early remnant of the virtual world, until Xio, "the Eldest", is forced to seal her in her own realm.
+								</li>
+								<li>
+									In <a href="3">Episode 3</a>,
+									the "goddesses" of Fire and Ice are perverted by the Queen of Hell into overthrowing the Eldest, then seize control of the virtual world for themselves.
+								</li>
+							</ol>
+						</li>
+					</ol>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

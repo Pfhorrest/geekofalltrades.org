@@ -1,1 +1,31 @@
-<? $title = "The Chronicles of Quelouva: Rising of the Darklight: Part 1 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/3">The Sphidi Saga:</a>				<a href="/chronicles/3/2">The Darklight Series:</a>				<a href="/chronicles/3/2/3">Rising of the Darklight:</a>				<a class="current" href="/chronicles/3/2/3/1">Part 1:</a>				<ul>					<li><a href="../../../../2/2/3/3">&lArr; Prev Narratively</a></li>					<li><a href="../../2/3">&larr; Prev Chronologically</a></li>					<li><a href="../2">Next Chronologically &rarr;</a></li>					<li><a href="../2">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>Rising of the Darklight: Part 1</h2>										<ol>						<li>							In Rising of the Darklight: Part 1,							half-elven Murdock ventures from the elf-lands in search of his human father, where he is recruited into the Church of the Eldest and discovers a sinister vampire plot.							<ol>								<li>									In <a href="1">Episode 1</a>,									Murdock ventures out to his father's homeland of Esplanadia, which he finds to be one of many feudal states only loosly affiliated under the Church of the Eldest.								</li>								<li>									In <a href="2">Episode 2</a>,									the Church of the Eldest take special interest in Murdock, and upon learning of his true heritage, some begin to think he is a reincarnation of Thomas.								</li>								<li>									In <a href="3">Episode 3</a>,									working with the Church, Murdock investigates the origins of Chalmany's Orcish army, and discovers Chalmany's plans to be a plot orchestrated by Vampires.								</li>							</ol>						</li>					</ol>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva: Rising of the Darklight: Part 1 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>Rising of the Darklight: Part 1</h2>
+					
+					<ol>
+						<li>
+							In Rising of the Darklight: Part 1,
+							half-elven Murdock ventures from the elf-lands in search of his human father, where he is recruited into the Church of the Eldest and discovers a sinister vampire plot.
+							<ol>
+								<li>
+									In <a href="1">Episode 1</a>,
+									Murdock ventures out to his father's homeland of Esplanadia, which he finds to be one of many feudal states only loosly affiliated under the Church of the Eldest.
+								</li>
+								<li>
+									In <a href="2">Episode 2</a>,
+									the Church of the Eldest take special interest in Murdock, and upon learning of his true heritage, some begin to think he is a reincarnation of Thomas.
+								</li>
+								<li>
+									In <a href="3">Episode 3</a>,
+									working with the Church, Murdock investigates the origins of Chalmany's Orcish army, and discovers Chalmany's plans to be a plot orchestrated by Vampires.
+								</li>
+							</ol>
+						</li>
+					</ol>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

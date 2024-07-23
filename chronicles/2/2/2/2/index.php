@@ -1,1 +1,31 @@
-<? $title = "The Chronicles of Quelouva: Veil of the Foundation: Part 2 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/2">The Oumen Saga:</a>				<a href="/chronicles/2/2">The Foundation series:</a>				<a href="/chronicles/2/2/2">Veil of the Foundation:</a>				<a class="current" href="/chronicles/2/2/2/2">Part 2:</a>				<ul>					<li><a href="../1">&larr; Prev Chronologically</a></li>					<li><a href="../3">Next Chronologically &rarr;</a></li>					<li><a href="../../../../1/2/2/2">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>Veil of the Foundation: Part 2</h2>										<ol>						<li>							In Veil of the Foundation: Part 2,							the Einherjar arrive at their destination, get shot down to the one inhabitable planet in that star system, and meet the unusual variety of local species there.							<ol>								<li>									In <a href="1">Episode 1</a>,									the Einherjar awaken from stasis as their ship arrives in an alien star system, and upon investigating the system's one inhabitable planet their lander is shot down to it.								</li>								<li>									In <a href="2">Episode 2</a>,									the Einherjar crash land on the alien planet, meet a variety of sapient local species, and learn that there is some past connection between these aliens and their superiors.								</li>								<li>									In <a href="3">Episode 3</a>,									the Einherjar set off across the alien planet in search of a way to escape from it, venturing through the ruins of a much more advanced alien civilization.								</li>							</ol>						</li>					</ol>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva: Veil of the Foundation: Part 2 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>Veil of the Foundation: Part 2</h2>
+					
+					<ol>
+						<li>
+							In Veil of the Foundation: Part 2,
+							the Einherjar arrive at their destination, get shot down to the one inhabitable planet in that star system, and meet the unusual variety of local species there.
+							<ol>
+								<li>
+									In <a href="1">Episode 1</a>,
+									the Einherjar awaken from stasis as their ship arrives in an alien star system, and upon investigating the system's one inhabitable planet their lander is shot down to it.
+								</li>
+								<li>
+									In <a href="2">Episode 2</a>,
+									the Einherjar crash land on the alien planet, meet a variety of sapient local species, and learn that there is some past connection between these aliens and their superiors.
+								</li>
+								<li>
+									In <a href="3">Episode 3</a>,
+									the Einherjar set off across the alien planet in search of a way to escape from it, venturing through the ruins of a much more advanced alien civilization.
+								</li>
+							</ol>
+						</li>
+					</ol>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

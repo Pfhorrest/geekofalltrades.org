@@ -11,7 +11,7 @@
 			if (file_exists($csspath)) {
 				$cssdate = filemtime ($csspath) ;
 			}
-			echo '<link rel="stylesheet" href="' . $cssfilename . '?v=' . $cssdate . '" />' ;
+			echo '<link rel="stylesheet" media="all" href="' . $cssfilename . '?v=' . $cssdate . '" />' ;
 
 			$jsfilename = "/scripts.js" ;
 			$jspath = $_SERVER['DOCUMENT_ROOT'] . $jsfilename ;
@@ -24,11 +24,18 @@
 		<meta name="description" content="Forrest Cameranesi is a &quot;Geek of all Trades&quot; &ndash; a web developer, graphic designer, philosopher, science-fantasy writer, retro game modder, and nature photographer &ndash; from Ojai, California." />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/png" href="/favicon-196.png" />
-		<title><? echo $title ; ?></title>
+		<title><?php echo $title ; ?></title>
 	</head>
 
 	<body>
 		
 			<header>
-				<a href="/"><h1>Forrest Cameranesi <span class="logo">&ndash;</span> <span>Geek of all Trades</span></h1></a>
-			</header>
+				<h1>
+					<span>Forrest Cameranesi</span>
+					<span>
+						G<span>eek</span>
+						o<span>f</span>
+						a<span>ll</span>
+						T<span>rades</span>
+					</span>
+				</h1>

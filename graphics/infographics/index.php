@@ -1,1 +1,120 @@
-<? $title = "Infographic design by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-graphics.php" ?>				<h2>Infographic Design</h2>							<? require $_SERVER['DOCUMENT_ROOT'] . "/display/basepath.php" ?>				<ul class="gallery">					<li>						<h3><? $caption = "<i>Codex</i> moods"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/moods.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/moods.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> political spectrum"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/political-spectrum.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/political-spectrum.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> reflexive functions"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/reflexive-functions.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/reflexive-functions.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> will functions"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/will-functions.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/will-functions.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> web of reality"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/web-of-reality.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/web-of-reality.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> progressive and conservative"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/progressive-conservative.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/progressive-conservative.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> boolean junctions"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/boolean-junctions.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/boolean-junctions.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> modality"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/modality.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/modality.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> mood structure"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/mood-structure.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/mood-structure.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> opinions"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/opinions.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/opinions.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> communication"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/communication.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/communication.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> relativism"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/relativism.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/relativism.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> phobosophies"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/principles-phobosophies.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/principles-phobosophies.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> commensurablism"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/commensurablism.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/commensurablism.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> fields"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/fields.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/fields.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Codex</i> history of philosophy"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../codex/images/history-of-philosophy.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/codex/images/history-of-philosophy.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2019.</p>					</li>					<li>						<h3><? $caption = "<i>Wood and Metal</i> elements"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../stories/avatar-wood-and-metal.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/stories/avatar-wood-and-metal.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2013.</p>					</li>					<li>						<h3><? $caption = "Reconstructed gender spectrum"; echo $caption ?></h3>						<? echo '<a href="/display/?image=' . $basepath . '../../essays/reconstructinggender.png&amp;title=' . rawurlencode($caption) . '" rel="external">							<img src="/essays/reconstructinggender.png" alt="' . $caption . '" /></a>' ?>						<p>Illustrator, 2013.</p>					</li>				</ul>				<? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "Infographic design by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<h2>Infographic Design</h2>
+			
+				<?php require $_SERVER['DOCUMENT_ROOT'] . "/display/basepath.php" ?>
+
+				<ul class="gallery">
+					<li>
+						<h3><?php $caption = "<i>Codex</i> moods"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/moods.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/moods.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> political spectrum"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/political-spectrum.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/political-spectrum.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> reflexive functions"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/reflexive-functions.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/reflexive-functions.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> will functions"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/will-functions.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/will-functions.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> web of reality"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/web-of-reality.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/web-of-reality.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> progressive and conservative"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/progressive-conservative.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/progressive-conservative.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> boolean junctions"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/boolean-junctions.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/boolean-junctions.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> modality"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/modality.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/modality.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> mood structure"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/mood-structure.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/mood-structure.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> opinions"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/opinions.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/opinions.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> communication"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/communication.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/communication.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> relativism"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/relativism.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/relativism.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> phobosophies"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/principles-phobosophies.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/principles-phobosophies.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> commensurablism"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/commensurablism.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/commensurablism.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> fields"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/fields.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/fields.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Codex</i> history of philosophy"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../codex/images/history-of-philosophy.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/codex/images/history-of-philosophy.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2019.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "<i>Wood and Metal</i> elements"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../stories/avatar-wood-and-metal.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/stories/avatar-wood-and-metal.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2013.</p>
+					</li>
+					<li>
+						<h3><?php $caption = "Reconstructed gender spectrum"; echo $caption ?></h3>
+						<?php echo '<a href="/display/?image=' . $basepath . '../../essays/reconstructinggender.png&amp;title=' . rawurlencode($caption) . '" rel="external">
+							<img src="/essays/reconstructinggender.png" alt="' . $caption . '" /></a>' ?>
+						<p>Illustrator, 2013.</p>
+					</li>
+
+				</ul>
+				
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

@@ -1,0 +1,22 @@
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<nav id="menu">
+					<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>
+					<a href="/photos">Photography:</a>
+					<ul>
+						<li><a href="/photos/2022">2022</a></li>
+						<li><a href="/photos/2021">2021</a></li>
+						<li><a href="/photos/2020">2020</a></li>
+						<li><a href="/photos/2019">2019</a></li>
+						<li><a href="/photos/2018">2018</a></li>
+						<li><a href="/photos/2017">2017</a></li>
+						<li><a href="/photos/2016">2016</a></li>
+						<li><a href="/photos/2015">2015</a></li>
+						<li><a href="/photos/2014">2014</a></li>
+						<li><a href="/photos/2013">2013</a></li>
+						<li><a href="/photos/2012">2012</a></li>
+					</ul>
+				</nav>
+			</header>
+			<main>
+

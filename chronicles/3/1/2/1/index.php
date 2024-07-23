@@ -1,1 +1,31 @@
-<? $title = "The Chronicles of Quelouva: Life in Another World: Part 1 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/3">The Sphidi Saga:</a>				<a href="/chronicles/3/1">The Otherworld Series:</a>				<a href="/chronicles/3/1/2">Life in Another World:</a>				<a class="current" href="/chronicles/3/1/2/1">Part 1:</a>				<ul>					<li><a href="../../1/3">&lArr; Prev Narratively</a></li>					<li><a href="../../1/3">&larr; Prev Chronologically</a></li>					<li><a href="../2">Next Chronologically &rarr;</a></li>					<li><a href="../2">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>Life in Another World: Part 1</h2>										<ol>						<li>							In Life in Another World: Part 1,							questions abound about artificial intelligence personhood and the ethics of creating, duplicating, and modifying uploaded human minds.							<ol>								<li>									In <a href="1">Episode 1</a>,									some human users of Virtuality begin to think of the AI characters as people, and questions about their moral and legal personhood arise.								</li>								<li>									In <a href="2">Episode 2</a>,									some users like Tamara want to have children in Virtuality, raising questions of what minds would go into such babies and whether it's OK to make virtual people.								</li>								<li>									In <a href="3">Episode 3</a>,									the possibility of duplicating and modifying uploading minds raises question about the moral, legal, and practical limits that should be placed on such activities.								</li>							</ol>						</li>					</ol>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva: Life in Another World: Part 1 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>Life in Another World: Part 1</h2>
+					
+					<ol>
+						<li>
+							In Life in Another World: Part 1,
+							questions abound about artificial intelligence personhood and the ethics of creating, duplicating, and modifying uploaded human minds.
+							<ol>
+								<li>
+									In <a href="1">Episode 1</a>,
+									some human users of Virtuality begin to think of the AI characters as people, and questions about their moral and legal personhood arise.
+								</li>
+								<li>
+									In <a href="2">Episode 2</a>,
+									some users like Tamara want to have children in Virtuality, raising questions of what minds would go into such babies and whether it's OK to make virtual people.
+								</li>
+								<li>
+									In <a href="3">Episode 3</a>,
+									the possibility of duplicating and modifying uploading minds raises question about the moral, legal, and practical limits that should be placed on such activities.
+								</li>
+							</ol>
+						</li>
+					</ol>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

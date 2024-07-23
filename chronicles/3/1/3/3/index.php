@@ -1,1 +1,31 @@
-<? $title = "The Chronicles of Quelouva: Death and the Other World: Part 3 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/3">The Sphidi Saga:</a>				<a href="/chronicles/3/1">The Otherworld Series:</a>				<a href="/chronicles/3/1/3">Death and the Other World:</a>				<a class="current" href="/chronicles/3/1/3/3">Part 3:</a>				<ul>					<li><a href="../2">&lArr; Prev Narratively</a></li>					<li><a href="../2">&larr; Prev Chronologically</a></li>					<li><a href="../../../2/1/1">Next Chronologically &rarr;</a></li>					<li><a href="../../../../2/1/1/1">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>Death and the Other World: Part 3</h2>										<ol>						<li>							In Death and the Other World: Part 3,							as Virtuality collapses along with the rest of civilization, Xio rushes to rescue Met from it, preserving a tiny fragment of "hell" with her and anyone else he can manage to fit in it.							<ol>								<li>									In <a href="1">Episode 1</a>,									Xio rushes into Virtuality from the base of Starbridge America to save the Queen of Hell with his special administrative acccess as the entire World Ring collapses.								</li>								<li>									In <a href="2">Episode 2</a>,									the Queen refuses Xio's rescue, so he sacrifices his physical life to save the tiny fragment of "hell" with her in it, and as many others as he can save too.								</li>								<li>									In <a href="3">Episode 3</a>,									as the rest of Virtuality blinks out of existence, Xio promises those he has saved that he will do everything he can to make this slice of "hell" as good as possible.								</li>							</ol>						</li>					</ol>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva: Death and the Other World: Part 3 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>Death and the Other World: Part 3</h2>
+					
+					<ol>
+						<li>
+							In Death and the Other World: Part 3,
+							as Virtuality collapses along with the rest of civilization, Xio rushes to rescue Met from it, preserving a tiny fragment of "hell" with her and anyone else he can manage to fit in it.
+							<ol>
+								<li>
+									In <a href="1">Episode 1</a>,
+									Xio rushes into Virtuality from the base of Starbridge America to save the Queen of Hell with his special administrative acccess as the entire World Ring collapses.
+								</li>
+								<li>
+									In <a href="2">Episode 2</a>,
+									the Queen refuses Xio's rescue, so he sacrifices his physical life to save the tiny fragment of "hell" with her in it, and as many others as he can save too.
+								</li>
+								<li>
+									In <a href="3">Episode 3</a>,
+									as the rest of Virtuality blinks out of existence, Xio promises those he has saved that he will do everything he can to make this slice of "hell" as good as possible.
+								</li>
+							</ol>
+						</li>
+					</ol>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

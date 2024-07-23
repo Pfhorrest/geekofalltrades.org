@@ -1,1 +1,29 @@
-<? $title = "The Chronicles of Quelouva (1x11): Nadir of the Darklight: Part 1, Episode 2 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/3">The Sphidi Saga:</a>				<a href="/chronicles/3/2">The Darklight Series:</a>				<a href="/chronicles/3/2/2">Nadir of the Darklight:</a>				<a href="/chronicles/3/2/2/1">Part 1:</a>				<a class="current" href="/chronicles/3/2/2/1/2">Episode 2:</a>				<ul>					<li><a href="../1">&lArr; Prev Narratively</a></li>					<li><a href="../1">&larr; Prev Chronologically</a></li>					<li><a href="../3">Next Chronologically &rarr;</a></li>					<li><a href="../3">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>(1x11) Nadir of the Darklight: Part 1, Episode 2</h2>					<p>						After bearing the gem of Fire, the Chalman prince is corrupted by his newfound power, his lust for glory bolstered by the gem's ability to enflame the passions of its bearer, and of others. With that ability he subborns the normally reticent wizards of Chalmany to his side, and with their combined power at his disposal he conquers his own land, betraying and killing his kind-hearted father in the process.					</p>					<p>						Thomas tries to oppose the prince, turning his own considerable magical prowess to the task. But he is bested by the godlike power bestowed by the gem of Fire. The prince incinerates Thomas in a magical duel using the gem's ability to summon and manipulate flame. But thanks to his nearly unique form of immortality, being in truth a being far older than the other wizards, Thomas immediately regenerates.					</p>										<p>						The prince attempts to trap Thomas in a chamber of eternal flame, so as to repeatedly burn to death forever. But Thomas is able to use his superior knowledge of that world's magic to escape that unending torment, though not without dying many times in the process, and flees from Chalmany.					</p>					<p>						<strong>Next:</strong>						<a href="../3">							Nadir of the Darklight: Part 1, Episode 3						</a>					</p>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva (1x11): Nadir of the Darklight: Part 1, Episode 2 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>(1x11) Nadir of the Darklight: Part 1, Episode 2</h2>
+
+					<p>
+						After bearing the gem of Fire, the Chalman prince is corrupted by his newfound power, his lust for glory bolstered by the gem's ability to enflame the passions of its bearer, and of others. With that ability he subborns the normally reticent wizards of Chalmany to his side, and with their combined power at his disposal he conquers his own land, betraying and killing his kind-hearted father in the process.
+					</p>
+
+					<p>
+						Thomas tries to oppose the prince, turning his own considerable magical prowess to the task. But he is bested by the godlike power bestowed by the gem of Fire. The prince incinerates Thomas in a magical duel using the gem's ability to summon and manipulate flame. But thanks to his nearly unique form of immortality, being in truth a being far older than the other wizards, Thomas immediately regenerates.
+					</p>
+					
+					<p>
+						The prince attempts to trap Thomas in a chamber of eternal flame, so as to repeatedly burn to death forever. But Thomas is able to use his superior knowledge of that world's magic to escape that unending torment, though not without dying many times in the process, and flees from Chalmany.
+					</p>
+
+					<p>
+						<strong>Next:</strong>
+						<a href="../3">
+							Nadir of the Darklight: Part 1, Episode 3
+						</a>
+					</p>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

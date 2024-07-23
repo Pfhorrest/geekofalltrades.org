@@ -1,1 +1,31 @@
-<? $title = "The Chronicles of Quelouva: Pantheon Synthesis: Part 2 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/2">The Oumen Saga:</a>				<a href="/chronicles/2/1">The Pantheon Series:</a>				<a href="/chronicles/2/1/3">Pantheon Synthesis:</a>				<a class="current" href="/chronicles/2/1/3/2">Part 2:</a>				<ul>					<li><a href="../1">&lArr; Prev Narratively</a></li>					<li><a href="../1">&larr; Prev Chronologically</a></li>					<li><a href="../3">Next Chronologically &rarr;</a></li>					<li><a href="../3">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>Pantheon Synthesis: Part 2</h2>										<ol>						<li>							In Pantheon Synthesis: Part 2,							the immortals begin to actively interfere with mortal human affairs as the world moves to a century-long state of impending nuclear armageddon.							<ol>								<li>									In <a href="1">Episode 1</a>,									as the mortal world becomes polarized between nationalism and communism, each armed with nuclear weapons, the Pantheon adopt the facade of "the Foundation" to covertly intervene.								</li>								<li>									In <a href="2">Episode 2</a>,									Foundation spaceships and pilots spur rumors of extraterrestrials, and a crash in the Columbian southwest almost exposes the entire scheme.								</li>								<li>									In <a href="3">Episode 3</a>,									mortal space technology advances to the point that the Pantheon must once again relocate before they are discovered, this time withdrawing to the Jovian system.								</li>							</ol>						</li>					</ol>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva: Pantheon Synthesis: Part 2 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>Pantheon Synthesis: Part 2</h2>
+					
+					<ol>
+						<li>
+							In Pantheon Synthesis: Part 2,
+							the immortals begin to actively interfere with mortal human affairs as the world moves to a century-long state of impending nuclear armageddon.
+							<ol>
+								<li>
+									In <a href="1">Episode 1</a>,
+									as the mortal world becomes polarized between nationalism and communism, each armed with nuclear weapons, the Pantheon adopt the facade of "the Foundation" to covertly intervene.
+								</li>
+								<li>
+									In <a href="2">Episode 2</a>,
+									Foundation spaceships and pilots spur rumors of extraterrestrials, and a crash in the Columbian southwest almost exposes the entire scheme.
+								</li>
+								<li>
+									In <a href="3">Episode 3</a>,
+									mortal space technology advances to the point that the Pantheon must once again relocate before they are discovered, this time withdrawing to the Jovian system.
+								</li>
+							</ol>
+						</li>
+					</ol>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

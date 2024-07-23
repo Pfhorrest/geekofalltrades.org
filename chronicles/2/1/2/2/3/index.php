@@ -1,1 +1,29 @@
-<? $title = "The Chronicles of Quelouva (5x15): Pantheon Exodus: Part 2, Episode 3 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/2">The Oumen Saga:</a>				<a href="/chronicles/2/1">The Pantheon Series:</a>				<a href="/chronicles/2/1/2">Pantheon Exodus:</a>				<a href="/chronicles/2/1/2/2">Part 2:</a>				<a class="current" href="/chronicles/2/1/2/2/3">Episode 3:</a>				<ul>					<li><a href="../2">&lArr; Prev Narratively</a></li>					<li><a href="../2">&larr; Prev Chronologically</a></li>					<li><a href="../../3/1">Next Chronologically &rarr;</a></li>					<li><a href="../../3/1">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>(5x15) Pantheon Exodus: Part 2, Episode 3</h2>					<p>						Growing uncomfortable with the status that the Mediterranean people give to their distorted mythologized images of them, the Pantheon gradually relocate further north in Europe, farther from the spread of literacy and record-keeping civilization, into lands where they can continue to disappear into the oral myths of the people and not draw too much attention to themselves. They are one of the few peoples of the west who remember the past division of the Pantheon, and tell stories of their eventual reconciliation and reunion.					</p>										<p>						All the while in the west, Kron has continued being none too happy about his subservient situation. While pretending to be cooperative, he is very passive-aggressively disruptive. In Rome he was happy to see that his legacy was that of the king of a bygone golden age, even if the Romans still worshipped their image of his traitorous son as the head of their current pantheon; but here in the north, his limited attempts at rebellion paint him in the eyes of the locals as a mere trickster or clown.					</p>					<p>						The Latin variant of Kron's self-given epithet of "light-bringer", "Lucifer" (with a hard c), is gradually shortened to "Luke", and then mutated in the northern speech into "Loki". The others in the Pantheon find that nickname to be silly and diminuitive, and they mock him with it, which he finds all the more difficult to bear because of its contrast to the grandure he meant to conjure with his title.					</p>										<p>						<strong>Next:</strong>						<a href="../../3/1">							Pantheon Exodus: Part 3, Episode 1						</a>					</p>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva (5x15): Pantheon Exodus: Part 2, Episode 3 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>(5x15) Pantheon Exodus: Part 2, Episode 3</h2>
+
+					<p>
+						Growing uncomfortable with the status that the Mediterranean people give to their distorted mythologized images of them, the Pantheon gradually relocate further north in Europe, farther from the spread of literacy and record-keeping civilization, into lands where they can continue to disappear into the oral myths of the people and not draw too much attention to themselves. They are one of the few peoples of the west who remember the past division of the Pantheon, and tell stories of their eventual reconciliation and reunion.
+					</p>
+					
+					<p>
+						All the while in the west, Kron has continued being none too happy about his subservient situation. While pretending to be cooperative, he is very passive-aggressively disruptive. In Rome he was happy to see that his legacy was that of the king of a bygone golden age, even if the Romans still worshipped their image of his traitorous son as the head of their current pantheon; but here in the north, his limited attempts at rebellion paint him in the eyes of the locals as a mere trickster or clown.
+					</p>
+
+					<p>
+						The Latin variant of Kron's self-given epithet of "light-bringer", "Lucifer" (with a hard c), is gradually shortened to "Luke", and then mutated in the northern speech into "Loki". The others in the Pantheon find that nickname to be silly and diminuitive, and they mock him with it, which he finds all the more difficult to bear because of its contrast to the grandure he meant to conjure with his title.
+					</p>
+					
+					<p>
+						<strong>Next:</strong>
+						<a href="../../3/1">
+							Pantheon Exodus: Part 3, Episode 1
+						</a>
+					</p>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

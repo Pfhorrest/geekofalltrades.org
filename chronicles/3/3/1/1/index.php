@@ -1,1 +1,31 @@
-<? $title = "The Chronicles of Quelouva: Virtuality Transcendent: Part 1 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/3">The Sphidi Saga:</a>				<a href="/chronicles/3/3">The Virtuality Series:</a>				<a href="/chronicles/3/3/1">Virtuality Transcendent:</a>				<a class="current" href="/chronicles/3/3/1/1">Part 1:</a>				<ul>					<li><a href="../../../../2/3/3/3">&lArr; Prev Narratively</a></li>					<li><a href="../../../2/3/3">&larr; Prev Chronologically</a></li>					<li><a href="../2">Next Chronologically &rarr;</a></li>					<li><a href="../2">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>Virtuality Transcendent: Part 1</h2>										<ol>						<li>							In Virtuality Transcendent: Part 1,							Murdock and Annabelle are awakened from the nightmarish hellscape of Sphidia, recover their memories as Tom and Xiuying, and discover that they are still not in the real world.							<ol>								<li>									In <a href="1">Episode 1</a>,									Murdock and Annabelle stuggle to survive in the hell that the Queen thereof has made of Sphidia, until they are awakened inside the World Ring above a utopian Earth.								</li>								<li>									In <a href="2">Episode 2</a>,									being told that they are suffering from side-effects of overuse of Virtuality, Murdock and Annabelle are helped to recover their memories as Tom and Xiuying.								</li>								<li>									In <a href="3">Episode 3</a>,									Tom and Xiu begin to suspect that they are still in Virtuality and their therapist Metis is actually the Queen of Hell, and they ultimately bet their lives on it.								</li>							</ol>						</li>					</ol>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva: Virtuality Transcendent: Part 1 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>Virtuality Transcendent: Part 1</h2>
+					
+					<ol>
+						<li>
+							In Virtuality Transcendent: Part 1,
+							Murdock and Annabelle are awakened from the nightmarish hellscape of Sphidia, recover their memories as Tom and Xiuying, and discover that they are still not in the real world.
+							<ol>
+								<li>
+									In <a href="1">Episode 1</a>,
+									Murdock and Annabelle stuggle to survive in the hell that the Queen thereof has made of Sphidia, until they are awakened inside the World Ring above a utopian Earth.
+								</li>
+								<li>
+									In <a href="2">Episode 2</a>,
+									being told that they are suffering from side-effects of overuse of Virtuality, Murdock and Annabelle are helped to recover their memories as Tom and Xiuying.
+								</li>
+								<li>
+									In <a href="3">Episode 3</a>,
+									Tom and Xiu begin to suspect that they are still in Virtuality and their therapist Metis is actually the Queen of Hell, and they ultimately bet their lives on it.
+								</li>
+							</ol>
+						</li>
+					</ol>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

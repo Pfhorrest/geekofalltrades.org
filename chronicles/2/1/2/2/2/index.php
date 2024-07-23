@@ -1,1 +1,29 @@
-<? $title = "The Chronicles of Quelouva (5x14): Pantheon Exodus: Part 2, Episode 2 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/2">The Oumen Saga:</a>				<a href="/chronicles/2/1">The Pantheon Series:</a>				<a href="/chronicles/2/1/2">Pantheon Exodus:</a>				<a href="/chronicles/2/1/2/2">Part 2:</a>				<a class="current" href="/chronicles/2/1/2/2/2">Episode 2:</a>				<ul>					<li><a href="../1">&lArr; Prev Narratively</a></li>					<li><a href="../1">&larr; Prev Chronologically</a></li>					<li><a href="../3">Next Chronologically &rarr;</a></li>					<li><a href="../3">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>(5x14) Pantheon Exodus: Part 2, Episode 2</h2>					<p>						Simultaneous with the Mosaic revolution in Geptia to the south, various descendents of the Steppe peoples across the northern Mediterranean slowly build their own great civilizations. The Hellenes under Alexander of Macedon build out their own great civilization, which is eventually conquered by the united Italians into the Roman Empire, which gradually conqueres Gallia and Iberia to the west, uniting all of southern Europe.					</p>										<p>						Though initially rivals with the Geptians since at least the time of Alexander and his failed conquest thereof, a missionary from Moses' people, named Jesus, visits Hellenic Rome and through discourse with their own philosophers instigates reforms in the Roman religion similar to Moses' own reforms of Geptian religion. In this way a gradual unification of the Roman and Geptian religions is made, leading to an eventual political union called the Empire of Mediterranea, with a shared capital in Judea, on the sea's eastern shores. This ushers in the start of what would be remembered for thousands of years more as the Common Era.					</p>										<p>						Throughout Mediterranea, distorted caricatures of the Pantheon, that were already worshipped by the Steppes peoples who settled souther Europe, become worshipped as state gods, though subsidiary to the one true god, of course. That gradually makes the Pantheon themselves less and less comfortable walking among those people.					</p>										<p>						<strong>Next:</strong>						<a href="../3">							Pantheon Exodus: Part 2, Episode 3						</a>					</p>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva (5x14): Pantheon Exodus: Part 2, Episode 2 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>(5x14) Pantheon Exodus: Part 2, Episode 2</h2>
+
+					<p>
+						Simultaneous with the Mosaic revolution in Geptia to the south, various descendents of the Steppe peoples across the northern Mediterranean slowly build their own great civilizations. The Hellenes under Alexander of Macedon build out their own great civilization, which is eventually conquered by the united Italians into the Roman Empire, which gradually conqueres Gallia and Iberia to the west, uniting all of southern Europe.
+					</p>
+					
+					<p>
+						Though initially rivals with the Geptians since at least the time of Alexander and his failed conquest thereof, a missionary from Moses' people, named Jesus, visits Hellenic Rome and through discourse with their own philosophers instigates reforms in the Roman religion similar to Moses' own reforms of Geptian religion. In this way a gradual unification of the Roman and Geptian religions is made, leading to an eventual political union called the Empire of Mediterranea, with a shared capital in Judea, on the sea's eastern shores. This ushers in the start of what would be remembered for thousands of years more as the Common Era.
+					</p>
+					
+					<p>
+						Throughout Mediterranea, distorted caricatures of the Pantheon, that were already worshipped by the Steppes peoples who settled souther Europe, become worshipped as state gods, though subsidiary to the one true god, of course. That gradually makes the Pantheon themselves less and less comfortable walking among those people.
+					</p>
+					
+					<p>
+						<strong>Next:</strong>
+						<a href="../3">
+							Pantheon Exodus: Part 2, Episode 3
+						</a>
+					</p>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

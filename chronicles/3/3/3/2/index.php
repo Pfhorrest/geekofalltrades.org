@@ -1,1 +1,31 @@
-<? $title = "The Chronicles of Quelouva: Virtuality Immanent: Part 2 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/3">The Sphidi Saga:</a>				<a href="/chronicles/3/3">The Virtuality Series:</a>				<a href="/chronicles/3/3/3">Virtuality Immanent:</a>				<a class="current" href="/chronicles/3/3/3/2">Part 2:</a>				<ul>					<li><a href="../1">&lArr; Prev Narratively</a></li>					<li><a href="../1">&larr; Prev Chronologically</a></li>					<li><a href="../3">&rarr; Next Chronologically</a></li>					<li><a href="../3">&rArr; Next Narratively</a></li>				</ul>			</nav>						<main>				<section>										<h2>Virtuality Immanent: Part 2</h2>										<ol>						<li>							In Virtuality Immanent: Part 2,							the magically projected Demons quickly overrun the entire galaxy despite the efforts of its so-called "gods" to stop them, prompting Metis to seek out Keius Meij for help.							<ol>								<li>									In <a href="1">Episode 1</a>,									Kron, his Horsemen, and the other "gods of the galaxy" battle futilly against the Demon assault, eventually sending their subservient Berol to die en masse for the cause.								</li>								<li>									In <a href="2">Episode 2</a>,									Kron and his Horsemen fight fire with fire against the Demons in a titanic battle that threatens to destroy the entire galaxy no matter who wins.								</li>								<li>									In <a href="3">Episode 3</a>,									Metis enlists the help of Amouch to seek out Keius Meij for desperately-needed help against the Demons, succeeding at finding him only at the cost of Amouch's life.								</li>							</ol>						</li>					</ol>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva: Virtuality Immanent: Part 2 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>Virtuality Immanent: Part 2</h2>
+					
+					<ol>
+						<li>
+							In Virtuality Immanent: Part 2,
+							the magically projected Demons quickly overrun the entire galaxy despite the efforts of its so-called "gods" to stop them, prompting Metis to seek out Keius Meij for help.
+							<ol>
+								<li>
+									In <a href="1">Episode 1</a>,
+									Kron, his Horsemen, and the other "gods of the galaxy" battle futilly against the Demon assault, eventually sending their subservient Berol to die en masse for the cause.
+								</li>
+								<li>
+									In <a href="2">Episode 2</a>,
+									Kron and his Horsemen fight fire with fire against the Demons in a titanic battle that threatens to destroy the entire galaxy no matter who wins.
+								</li>
+								<li>
+									In <a href="3">Episode 3</a>,
+									Metis enlists the help of Amouch to seek out Keius Meij for desperately-needed help against the Demons, succeeding at finding him only at the cost of Amouch's life.
+								</li>
+							</ol>
+						</li>
+					</ol>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

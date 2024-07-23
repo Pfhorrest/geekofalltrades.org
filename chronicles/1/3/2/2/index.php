@@ -1,1 +1,31 @@
-<? $title = "The Chronicles of Quelouva: Nurbal Legacy: Part 2 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/1">The Ehrban Saga:</a>				<a href="/chronicles/1/3">The Nurbal Series:</a>				<a href="/chronicles/1/3/2">Nurbal Legacy:</a>				<a class="current" href="/chronicles/1/3/2/2">Part 2:</a>				<ul>					<li><a href="../1">&lArr; Prev Narratively</a></li>					<li><a href="../1">&larr; Prev Chronologically</a></li>					<li><a href="../3">Next Chronologically &rarr;</a></li>					<li><a href="../3">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>Nurbal Legacy: Part 2</h2>										<ol>						<li>							In Nurbal Legacy: Part 2,							Amouch must walk a fine line to find the proper stance to take in his new religious role in the burgeoning Quelovan Alliance of worlds.							<ol>								<li>									In <a href="1">Episode 1</a>,									Amouch becomes an extremely popular spiritual figure in the new Quelouvan Alliance thanks to his Meij heritage, magical abilities, and access to ancestral memories.								</li>								<li>									In <a href="2">Episode 2</a>,									Amouch learns that the diaspora have retained a connection to the collective-consciousness "goddess" of Geiana on Niarba, and finds that Daria and her descendents have ascended to unity with Geiana.								</li>								<li>									In <a href="3">Episode 3</a>,									the status of Amouch as a religious figure in the Quelouvan Alliance becomes a contentious political issue, and Amouch resolves not to exploit his influence.								</li>							</ol>						</li>					</ol>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva: Nurbal Legacy: Part 2 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>Nurbal Legacy: Part 2</h2>
+					
+					<ol>
+						<li>
+							In Nurbal Legacy: Part 2,
+							Amouch must walk a fine line to find the proper stance to take in his new religious role in the burgeoning Quelovan Alliance of worlds.
+							<ol>
+								<li>
+									In <a href="1">Episode 1</a>,
+									Amouch becomes an extremely popular spiritual figure in the new Quelouvan Alliance thanks to his Meij heritage, magical abilities, and access to ancestral memories.
+								</li>
+								<li>
+									In <a href="2">Episode 2</a>,
+									Amouch learns that the diaspora have retained a connection to the collective-consciousness "goddess" of Geiana on Niarba, and finds that Daria and her descendents have ascended to unity with Geiana.
+								</li>
+								<li>
+									In <a href="3">Episode 3</a>,
+									the status of Amouch as a religious figure in the Quelouvan Alliance becomes a contentious political issue, and Amouch resolves not to exploit his influence.
+								</li>
+							</ol>
+						</li>
+					</ol>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

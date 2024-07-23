@@ -1,1 +1,31 @@
-<? $title = "The Chronicles of Quelouva: Nurbal Enemy: Part 2 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/1">The Ehrban Saga:</a>				<a href="/chronicles/1/3">The Nurbal Series:</a>				<a href="/chronicles/1/3/3">Nurbal Enemy:</a>				<a class="current" href="/chronicles/1/3/3/2">Part 2:</a>				<ul>					<li><a href="../1">&lArr; Prev Narratively</a></li>					<li><a href="../1">&larr; Prev Chronologically</a></li>					<li><a href="../3">Next Chronologically &rarr;</a></li>					<li><a href="../3">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>Nurbal Enemy: Part 2</h2>										<ol>						<li>							In Nurbal Enemy: Part 2,							the Quelouvan Alliance and the formerly Asiron-protected worlds must band together as the Berol reemerge into the galaxy and their ancient war is reignited.							<ol>								<li>									In <a href="1">Episode 1</a>,									as Amouch tries to make peace with the worlds under the Asiron's protection, both sides are blindsided by the sudden reemergence of their common ancient enemy, the Berol.								</li>								<li>									In <a href="2">Episode 2</a>,									the Quelouvan Alliance and the formerly-Asiron worlds conduct separate losing wars against the Berol onslaught until Amouch is able to coordinate a united defense between them.								</li>								<li>									In <a href="3">Episode 3</a>,									unity between the two factions of Ehrban grows further as the war effort continues, until they are finally formally united with Amouch as their provisional leader.								</li>							</ol>						</li>					</ol>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva: Nurbal Enemy: Part 2 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>Nurbal Enemy: Part 2</h2>
+					
+					<ol>
+						<li>
+							In Nurbal Enemy: Part 2,
+							the Quelouvan Alliance and the formerly Asiron-protected worlds must band together as the Berol reemerge into the galaxy and their ancient war is reignited.
+							<ol>
+								<li>
+									In <a href="1">Episode 1</a>,
+									as Amouch tries to make peace with the worlds under the Asiron's protection, both sides are blindsided by the sudden reemergence of their common ancient enemy, the Berol.
+								</li>
+								<li>
+									In <a href="2">Episode 2</a>,
+									the Quelouvan Alliance and the formerly-Asiron worlds conduct separate losing wars against the Berol onslaught until Amouch is able to coordinate a united defense between them.
+								</li>
+								<li>
+									In <a href="3">Episode 3</a>,
+									unity between the two factions of Ehrban grows further as the war effort continues, until they are finally formally united with Amouch as their provisional leader.
+								</li>
+							</ol>
+						</li>
+					</ol>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

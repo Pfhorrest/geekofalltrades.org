@@ -1,1 +1,29 @@
-<? $title = "The Chronicles of Quelouva (1x04): Nadir of the Darklight: Part 2, Episode 1 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/3">The Sphidi Saga:</a>				<a href="/chronicles/3/2">The Darklight Series:</a>				<a href="/chronicles/3/2/2">Nadir of the Darklight:</a>				<a href="/chronicles/3/2/2/2">Part 2:</a>				<a class="current" href="/chronicles/3/2/2/2/1">Episode 1:</a>				<ul>					<li><a href="../2">&lArr; Prev Narratively</a></li>					<li><a href="../../1/3">&larr; Prev Chronologically</a></li>					<li><a href="../2">Next Chronologically &rarr;</a></li>					<li><a href="../../../../../2/2/2/2/1">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>(1x04) Nadir of the Darklight: Part 2, Episode 1</h2>					<p>						In the country of Esplanadia, a vassal state of the empire of Chalmany, in the magical land called Sphidia, a humble farmer named John is conscripted into the Chalman prince's army, to fight his war against the race called orcs who live across the mountains to the west. John is told terrible tales of the orcs, how one fearsome orcish chieftain has begun conquering the western lands and uniting the warlock warlords who had previously ruled the divided orcish people, and how they will soon pour over the mountains and consume all of the east.					</p>					<p>						Knowing nothing about orcs firsthand, John comes to see them only as some fearsome Other, threatening his family and way of life, some brutish beasts who live in the dark and the wilds, whom humanity must conquer and domesticate for the good of both races. Fearing for the safety of his wife and child, he pours himself into the Chalman army's hard training, and is reckoned a good soldier by his superiors. But when he is made to fight a captured and chained orc in an arena as part of his final training, he sees in the orc just another terrified man &ndash; a man of greater physical strength and lesser intellect, but a man nevertheless, one who doesn't want to fight him, one only defending himself.					</p>										<p>						John begins to have doubts about the justice of his cause, but knows regrettably that those doubts are immaterial, as like it or not he has no choice but to fight for the Chalman prince. He begins to suffer nightmares of the horrors of war, even though he has not yet experienced it &ndash; envisioning in his sleep fantastic and nonsensical but still horrific battles, beginning with one wherein for some reason he fought the elves, drinking their blood and consuming their flesh like some vampiric monster. His training soon completed, John is assigned to a unit and sent on the long march over the mountains to the front lines of the war with the orcs.					</p>					<p>						<strong>Next:</strong>						<a href="../../../../../2/2/2/2/1">							Veil of the Foundation: Part 2, Episode 1						</a>					</p>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva (1x04): Nadir of the Darklight: Part 2, Episode 1 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>(1x04) Nadir of the Darklight: Part 2, Episode 1</h2>
+
+					<p>
+						In the country of Esplanadia, a vassal state of the empire of Chalmany, in the magical land called Sphidia, a humble farmer named John is conscripted into the Chalman prince's army, to fight his war against the race called orcs who live across the mountains to the west. John is told terrible tales of the orcs, how one fearsome orcish chieftain has begun conquering the western lands and uniting the warlock warlords who had previously ruled the divided orcish people, and how they will soon pour over the mountains and consume all of the east.
+					</p>
+
+					<p>
+						Knowing nothing about orcs firsthand, John comes to see them only as some fearsome Other, threatening his family and way of life, some brutish beasts who live in the dark and the wilds, whom humanity must conquer and domesticate for the good of both races. Fearing for the safety of his wife and child, he pours himself into the Chalman army's hard training, and is reckoned a good soldier by his superiors. But when he is made to fight a captured and chained orc in an arena as part of his final training, he sees in the orc just another terrified man &ndash; a man of greater physical strength and lesser intellect, but a man nevertheless, one who doesn't want to fight him, one only defending himself.
+					</p>
+					
+					<p>
+						John begins to have doubts about the justice of his cause, but knows regrettably that those doubts are immaterial, as like it or not he has no choice but to fight for the Chalman prince. He begins to suffer nightmares of the horrors of war, even though he has not yet experienced it &ndash; envisioning in his sleep fantastic and nonsensical but still horrific battles, beginning with one wherein for some reason he fought the elves, drinking their blood and consuming their flesh like some vampiric monster. His training soon completed, John is assigned to a unit and sent on the long march over the mountains to the front lines of the war with the orcs.
+					</p>
+
+					<p>
+						<strong>Next:</strong>
+						<a href="../../../../../2/2/2/2/1">
+							Veil of the Foundation: Part 2, Episode 1
+						</a>
+					</p>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

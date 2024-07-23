@@ -1,1 +1,31 @@
-<? $title = "The Chronicles of Quelouva: Virtuality Incarnate: Part 2 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/3">The Sphidi Saga:</a>				<a href="/chronicles/3/3">The Virtuality Series:</a>				<a href="/chronicles/3/3/2">Virtuality Incarnate:</a>				<a class="current" href="/chronicles/3/3/2/2">Part 2:</a>				<ul>					<li><a href="../1">&lArr; Prev Narratively</a></li>					<li><a href="../1">&larr; Prev Chronologically</a></li>					<li><a href="../3">Next Chronologically &rarr;</a></li>					<li><a href="../3">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>Virtuality Incarnate: Part 2</h2>										<ol>						<li>							In Virtuality Incarnate: Part 2,							Xiuying takes the lead in helping the emerging Sphidian people, called Sphidi, integrate socially and politically with the organic humans of the real world.							<ol>								<li>									In <a href="1">Episode 1</a>,									the Sphidi face discrimination from organic humans who have difficulty distinguishing them from the automata, and Xiuying takes point on addressing those issues.								</li>								<li>									In <a href="2">Episode 2</a>,									Xiuying helps to found an independent polity for the Sphidi and to win recognition for it by human polities, but also to not discriminate against humans in return.								</li>								<li>									In <a href="3">Episode 3</a>,									Xiuying campaigns for the Sphidi to control their own hardware upon which their lives depend, instead of entrusting it to humans who still mistrust them.								</li>							</ol>						</li>					</ol>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva: Virtuality Incarnate: Part 2 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>Virtuality Incarnate: Part 2</h2>
+					
+					<ol>
+						<li>
+							In Virtuality Incarnate: Part 2,
+							Xiuying takes the lead in helping the emerging Sphidian people, called Sphidi, integrate socially and politically with the organic humans of the real world.
+							<ol>
+								<li>
+									In <a href="1">Episode 1</a>,
+									the Sphidi face discrimination from organic humans who have difficulty distinguishing them from the automata, and Xiuying takes point on addressing those issues.
+								</li>
+								<li>
+									In <a href="2">Episode 2</a>,
+									Xiuying helps to found an independent polity for the Sphidi and to win recognition for it by human polities, but also to not discriminate against humans in return.
+								</li>
+								<li>
+									In <a href="3">Episode 3</a>,
+									Xiuying campaigns for the Sphidi to control their own hardware upon which their lives depend, instead of entrusting it to humans who still mistrust them.
+								</li>
+							</ol>
+						</li>
+					</ol>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

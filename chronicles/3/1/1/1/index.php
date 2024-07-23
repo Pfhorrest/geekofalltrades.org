@@ -1,1 +1,31 @@
-<? $title = "The Chronicles of Quelouva: The Birth of Another World: Part 1 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/3">The Sphidi Saga:</a>				<a href="/chronicles/3/1">The Otherworld Series:</a>				<a href="/chronicles/3/1/1">The Birth of Another World:</a>				<a class="current" href="/chronicles/3/1/1/1">Part 1:</a>				<ul>					<li><a href="../../../2/3/3">&lArr; Prev Narratively</a></li>					<li><a href="../../../../2/1/3/3">&larr; Prev Chronologically</a></li>					<li><a href="../2">Next Chronologically &rarr;</a></li>					<li><a href="../2">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>The Birth of Another World: Part 1</h2>										<ol>						<li>							In The Birth of Another World: Part 1,							ordinary people Tom and Xiuying separately beta test an immersive virtual reality being built at the behest of ancient immortals looking to build an artificial afterlife.							<ol>								<li>									In <a href="1">Episode 1</a>,									Tom and Xiuying separately weigh major life decisions, while the immersive virtuality platform Virtuality is developed, until they are accepted as beta testers.								</li>								<li>									In <a href="2">Episode 2</a>,									Tom and Xiu both begin beta testing the flagship Virtuality world, the Sphidiverse, and that world is adapted to provide balance and purpose to users like them.								</li>								<li>									In <a href="3">Episode 3</a>,									A special new team of testers begin testing, while Tom and Xiu grow dissatisfied with the lack of the promised immersion, until the brain-computer interface is finally finished.								</li>							</ol>						</li>					</ol>								</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva: The Birth of Another World: Part 1 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>The Birth of Another World: Part 1</h2>
+					
+					<ol>
+						<li>
+							In The Birth of Another World: Part 1,
+							ordinary people Tom and Xiuying separately beta test an immersive virtual reality being built at the behest of ancient immortals looking to build an artificial afterlife.
+							<ol>
+								<li>
+									In <a href="1">Episode 1</a>,
+									Tom and Xiuying separately weigh major life decisions, while the immersive virtuality platform Virtuality is developed, until they are accepted as beta testers.
+								</li>
+								<li>
+									In <a href="2">Episode 2</a>,
+									Tom and Xiu both begin beta testing the flagship Virtuality world, the Sphidiverse, and that world is adapted to provide balance and purpose to users like them.
+								</li>
+								<li>
+									In <a href="3">Episode 3</a>,
+									A special new team of testers begin testing, while Tom and Xiu grow dissatisfied with the lack of the promised immersion, until the brain-computer interface is finally finished.
+								</li>
+							</ol>
+						</li>
+					</ol>
+				
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

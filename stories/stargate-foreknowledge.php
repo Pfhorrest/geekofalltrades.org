@@ -1,5 +1,5 @@
-<? $title = "Stargate Foreknowledge &ndash; by Forrest Cameranesi" ?>
-<? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-stories.php" ?>
+<?php $title = "Stargate Foreknowledge &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 				
 				<section>
 	
@@ -34,4 +34,4 @@
 
 				</section>
 	
-<? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

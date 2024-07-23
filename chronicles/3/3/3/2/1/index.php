@@ -1,1 +1,29 @@
-<? $title = "The Chronicles of Quelouva (9x22): Virtuality Immanent: Part 2, Episode 1 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/3">The Sphidi Saga:</a>				<a href="/chronicles/3/3">The Virtuality Series:</a>				<a href="/chronicles/3/3/3">Virtuality Immanent:</a>				<a href="/chronicles/3/3/3/2">Part 2:</a>				<a class="current" href="/chronicles/3/3/3/2/1">Episode 1:</a>				<ul>					<li><a href="../../1/3">&lArr; Prev Narratively</a></li>					<li><a href="../../1/3">&larr; Prev Chronologically</a></li>					<li><a href="../2">&rarr; Next Chronologically</a></li>					<li><a href="../2">&rArr; Next Narratively</a></li>				</ul>			</nav>						<main>				<section>										<h2>(9x22) Virtuality Immanent: Part 2, Episode 1</h2>					<p>						Kron orders the Horsemen, Osan, and Amouch all to rally the Berol of which they are the respective "god-emperors" to launch their fleets toward the Asiron system to try to hold the encroaching Demons at bay. Osan objects to this strategy that clearly disregards the lives of another sapient species under their protection, and he expects Amouch to side with him as well, as one of the ones who agreed that it was right to spare the Berol's lives and not commit abject genocide against them when they had the chance.					</p>					<p>						But Amouch, though hesitant to annihilate the Berol himself those thousands of years ago, has never harbored any special concern for them, and when the fate of all Ehrban is threatened by these encroaching Demons, he is willing to allow his people's ancient enemy to redeem themselves at long last by sacrificing their lives to stop this new scourge.					</p>										<p>						So only Osan holds back his forces, which he instead rallies to stand alongside the Ehrban fleets that themselves stand ready to defend their worlds should the Demons not be stopped before they reach them. And as the other Berol fleets convege upon the encroaching Demons, they are annihilated like everything else the Demons touch, serving as little more than a distraction allowing Metis, Amouch, Kron, and the Horsemen to get in more effective magical attacks themselves.					</p>										<p>						<strong>Next:</strong>						<a href="../2">							Virtuality Immanent: Part 2, Episode 2						</a>					</p>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva (9x22): Virtuality Immanent: Part 2, Episode 1 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>(9x22) Virtuality Immanent: Part 2, Episode 1</h2>
+
+					<p>
+						Kron orders the Horsemen, Osan, and Amouch all to rally the Berol of which they are the respective "god-emperors" to launch their fleets toward the Asiron system to try to hold the encroaching Demons at bay. Osan objects to this strategy that clearly disregards the lives of another sapient species under their protection, and he expects Amouch to side with him as well, as one of the ones who agreed that it was right to spare the Berol's lives and not commit abject genocide against them when they had the chance.
+					</p>
+
+					<p>
+						But Amouch, though hesitant to annihilate the Berol himself those thousands of years ago, has never harbored any special concern for them, and when the fate of all Ehrban is threatened by these encroaching Demons, he is willing to allow his people's ancient enemy to redeem themselves at long last by sacrificing their lives to stop this new scourge.
+					</p>
+					
+					<p>
+						So only Osan holds back his forces, which he instead rallies to stand alongside the Ehrban fleets that themselves stand ready to defend their worlds should the Demons not be stopped before they reach them. And as the other Berol fleets convege upon the encroaching Demons, they are annihilated like everything else the Demons touch, serving as little more than a distraction allowing Metis, Amouch, Kron, and the Horsemen to get in more effective magical attacks themselves.
+					</p>
+					
+					<p>
+						<strong>Next:</strong>
+						<a href="../2">
+							Virtuality Immanent: Part 2, Episode 2
+						</a>
+					</p>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

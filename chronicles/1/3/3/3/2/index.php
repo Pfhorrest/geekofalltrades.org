@@ -1,1 +1,29 @@
-<? $title = "The Chronicles of Quelouva (7x26): Nurbal Enemy: Part 3, Episode 2 &ndash; by Forrest Cameranesi" ?><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>			<nav id="menu">				<a href="/">Forrest Cameranesi &ndash; Geek of All Trades:</a>				<a href="/chronicles/">The Chronicles of Quelouva:</a>				<a href="/chronicles/1">The Ehrban Saga:</a>				<a href="/chronicles/1/3">The Nurbal Series:</a>				<a href="/chronicles/1/3/3">Nurbal Enemy:</a>				<a href="/chronicles/1/3/3/3">Part 3:</a>				<a class="current" href="/chronicles/1/3/3/3/2">Episode 2:</a>				<ul>					<li><a href="../1">&lArr; Prev Narratively</a></li>					<li><a href="../1">&larr; Prev Chronologically</a></li>					<li><a href="../3">Next Chronologically &rarr;</a></li>					<li><a href="../3">Next Narratively &rArr;</a></li>				</ul>			</nav>						<main>				<section>										<h2>(7x26) Nurbal Enemy: Part 3, Episode 2</h2>					<p>						A coarse peace is made with the humans, just in time for a Berol penetrator ship to reach the Asiron homeworld, and its contents to spill over into the humans' star system. In the ensuing battle, the panicked humans seal off their portal from their end again, but that locks out the few of them who had entered the Asiron star system to fight on the front lines against the Berol there.					</p>					<p>						Those mere handful of humans, six brothers from the eldest Osan to the youngest Kron, are apparently invulnerable immortals who claim to have been made that way by Keius himself. They turn out to be the key to defeating the Berol at last, by hybridizing their nanites and those of Amouch using the combined technological knowledge of both themselves and the Ehrban. Amouch becomes as invulnerable as the humans, and the humans take to Ehrban "magic" remarkably quickly, being apparently familiar with a very similar interface within a virtual world of their own construction. Between these, the seven of them &ndash; the six human brothers and Amouch &ndash; each become comparable in power to Keius himself, able to fly through space without a ship and tear apart Berol ships with fearsome "magic spells".					</p>										<p>						With such might at their disposal, and the combined might of the rest of the Quelouvan Alliance united behind them, the Berol are finally driven back, not only back through the crossroads world through which they came, but back into their own space, where they are defeated utterly.					</p>										<p>						<strong>Next:</strong>						<a href="../3">							Nurbal Enemy: Part 3, Episode 3						</a>					</p>				</section><? require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+<?php $title = "The Chronicles of Quelouva (7x26): Nurbal Enemy: Part 3, Episode 2 &ndash; by Forrest Cameranesi" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+
+				<section>
+					
+					<h2>(7x26) Nurbal Enemy: Part 3, Episode 2</h2>
+
+					<p>
+						A coarse peace is made with the humans, just in time for a Berol penetrator ship to reach the Asiron homeworld, and its contents to spill over into the humans' star system. In the ensuing battle, the panicked humans seal off their portal from their end again, but that locks out the few of them who had entered the Asiron star system to fight on the front lines against the Berol there.
+					</p>
+
+					<p>
+						Those mere handful of humans, six brothers from the eldest Osan to the youngest Kron, are apparently invulnerable immortals who claim to have been made that way by Keius himself. They turn out to be the key to defeating the Berol at last, by hybridizing their nanites and those of Amouch using the combined technological knowledge of both themselves and the Ehrban. Amouch becomes as invulnerable as the humans, and the humans take to Ehrban "magic" remarkably quickly, being apparently familiar with a very similar interface within a virtual world of their own construction. Between these, the seven of them &ndash; the six human brothers and Amouch &ndash; each become comparable in power to Keius himself, able to fly through space without a ship and tear apart Berol ships with fearsome "magic spells".
+					</p>
+					
+					<p>
+						With such might at their disposal, and the combined might of the rest of the Quelouvan Alliance united behind them, the Berol are finally driven back, not only back through the crossroads world through which they came, but back into their own space, where they are defeated utterly.
+					</p>
+					
+					<p>
+						<strong>Next:</strong>
+						<a href="../3">
+							Nurbal Enemy: Part 3, Episode 3
+						</a>
+					</p>
+
+				</section>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
