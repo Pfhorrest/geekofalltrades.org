@@ -175,7 +175,7 @@
 							This was a project to update the web store for
 							<a href="https://www.wedgwood.com" rel="external">Wedgwood</a>'s
 							official presence in Japan to the latest version of EC Cube, the most popular 
-							ecommerce platform in Japan. This apparenly was not a simple matter of
+							ecommerce platform in Japan. This apparently was not a simple matter of
 							upgrading the underlying framework, but rather required that the newer version
 							of the framework be installed from scratch, and then modified as necessary to
 							match the various customizations that had been built atop the older version
