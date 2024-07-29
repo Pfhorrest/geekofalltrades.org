@@ -980,14 +980,14 @@ main section .duo {
   justify-content: space-around;
   align-items: flex-start;
   text-align: center;
+  gap: 1em;
 }
 main section .duo > * {
   display: inline-block;
   float: none;
-  flex: 1 1 20em;
+  flex: 1 1 20ch;
   width: 36em;
   max-width: calc(100% - 2em);
-  margin: 1em;
   padding: 0 1em;
   vertical-align: top;
 }
