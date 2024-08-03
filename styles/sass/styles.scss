@@ -2,88 +2,215 @@
 
 $text: black;
 
-/* Main colors */
-$mh: hsl(120deg, 100%, 50%); // Main hue
-$ch: adjust-hue($mh, 60deg); // Cooler hue
-$wh: adjust-hue($mh, -60deg); // Warmer hue
+:root {
+  // Color components
 
-/* Main hue ramp */
-$mg50: desaturate($mh, 75%); // Sets overall saturation
+  // Hue
+  --hm: 120; // Main hue
+  --hs: 60; // Hue separation
+  --hc: calc(var(--mh) + var(--hs)); // Cooler hue
+  --hw: calc(var(--mh) - var(--hs)); // Warmer hue
 
-/* Main hue shades */
-$mg45: darken($mg50, 05%);
-$mg40: darken($mg50, 10%);
-$mg35: darken($mg50, 15%);
-$mg30: darken($mg50, 20%);
-$mg25: darken($mg50, 25%);
-$mg20: darken($mg50, 30%);
-$mg15: darken($mg50, 35%);
-$mg10: darken($mg50, 40%);
-$mg05: darken($mg50, 45%);
+  // Saturation or chroma
+  --sm: 25%; // Main saturation, or chroma
+  --sh: 100%; // Highlight saturation, or chroma
+  --sd: 6.25%; // Disabled saturation, or chroma
 
-/* Main hue tints */
-$mg95: lighten($mg50, 45%);
-$mg90: lighten($mg50, 40%);
-$mg85: lighten($mg50, 35%);
-$mg80: lighten($mg50, 30%);
-$mg75: lighten($mg50, 25%);
-$mg70: lighten($mg50, 20%);
-$mg65: lighten($mg50, 15%);
-$mg60: lighten($mg50, 10%);
-$mg55: lighten($mg50, 5%);
+  // Lightness
+  --lm: 50%; // Main lightness
+  --lti: calc((100% - var(--lm)) / 10); // Lightness tint increment
+  --lsi: calc((0% - var(--lm)) / 10); // Lightness shade increment
 
-/* Cooler hue ramp */
-$cg50: desaturate($ch, 75%); // Sets overall saturation
+  --lt9: calc(var(--lm) + (var(--lti) * 9)); // Lightness tint 9
+  --lt8: calc(var(--lm) + (var(--lti) * 8)); // Lightness tint 8
+  --lt7: calc(var(--lm) + (var(--lti) * 7)); // Lightness tint 7
+  --lt6: calc(var(--lm) + (var(--lti) * 6)); // Lightness tint 6
+  --lt5: calc(var(--lm) + (var(--lti) * 5)); // Lightness tint 5
+  --lt4: calc(var(--lm) + (var(--lti) * 4)); // Lightness tint 4
+  --lt3: calc(var(--lm) + (var(--lti) * 3)); // Lightness tint 3
+  --lt2: calc(var(--lm) + (var(--lti) * 2)); // Lightness tint 2
+  --lt1: calc(var(--lm) + (var(--lti) * 1)); // Lightness tint 1
 
-/* Cooler hue shades */
-$cg45: darken($cg50, 05%);
-$cg40: darken($cg50, 10%);
-$cg35: darken($cg50, 15%);
-$cg30: darken($cg50, 20%);
-$cg25: darken($cg50, 25%);
-$cg20: darken($cg50, 30%);
-$cg15: darken($cg50, 35%);
-$cg10: darken($cg50, 40%);
-$cg05: darken($cg50, 45%);
+  --ls1: calc(var(--lm) + (var(--lsi) * 1)); // Lightness shade 1
+  --ls2: calc(var(--lm) + (var(--lsi) * 2)); // Lightness shade 2
+  --ls3: calc(var(--lm) + (var(--lsi) * 3)); // Lightness shade 3
+  --ls4: calc(var(--lm) + (var(--lsi) * 4)); // Lightness shade 4
+  --ls5: calc(var(--lm) + (var(--lsi) * 5)); // Lightness shade 5
+  --ls6: calc(var(--lm) + (var(--lsi) * 6)); // Lightness shade 6
+  --ls7: calc(var(--lm) + (var(--lsi) * 7)); // Lightness shade 7
+  --ls8: calc(var(--lm) + (var(--lsi) * 8)); // Lightness shade 8
+  --ls9: calc(var(--lm) + (var(--lsi) * 9)); // Lightness shade 9
 
-/* Cooler hue tints */
-$cg95: lighten($cg50, 45%);
-$cg90: lighten($cg50, 40%);
-$cg85: lighten($cg50, 35%);
-$cg80: lighten($cg50, 30%);
-$cg75: lighten($cg50, 25%);
-$cg70: lighten($cg50, 20%);
-$cg65: lighten($cg50, 15%);
-$cg60: lighten($cg50, 10%);
-$cg55: lighten($cg50, 5%);
+  // Basic colors
+  --cm: hsla(var(--hm), var(--sm), var(--lm), 100%); // Main color
+  --cc: hsla(var(--hc), var(--sm), var(--lm), 100%); // Cooler color
+  --cw: hsla(var(--hw), var(--sm), var(--lm), 100%); // Warmer color
 
-/* Warmer hue ramp */
-$wg50: desaturate($wh, 75%); // Sets overall saturation
+  // Highlight colors
+  --cmh: hsla(var(--hm), var(--sh), 100%, 100%); // Main highlight
+  --cch: hsla(var(--hc), var(--sh), 100%, 100%); // Cooler highlight
+  --cwh: hsla(var(--hw), var(--sh), 100%, 100%); // Warmer highlight
 
-/* Warmer hue shades */
-$wg45: darken($wg50, 05%);
-$wg40: darken($wg50, 10%);
-$wg35: darken($wg50, 15%);
-$wg30: darken($wg50, 20%);
-$wg25: darken($wg50, 25%);
-$wg20: darken($wg50, 30%);
-$wg15: darken($wg50, 35%);
-$wg10: darken($wg50, 40%);
-$wg05: darken($wg50, 45%);
+  // Disabled colors
+  --cmd: hsla(var(--hm), var(--sd), var(--lm), 100%); // Main disabled
+  --ccd: hsla(var(--hc), var(--sd), var(--lm), 100%); // Cooler disabled
+  --cwd: hsla(var(--hw), var(--sd), var(--lm), 100%); // Warmer disabled
 
-/* Warmer hue tints */
-$wg95: lighten($wg50, 45%);
-$wg90: lighten($wg50, 40%);
-$wg85: lighten($wg50, 35%);
-$wg80: lighten($wg50, 30%);
-$wg75: lighten($wg50, 25%);
-$wg70: lighten($wg50, 20%);
-$wg65: lighten($wg50, 15%);
-$wg60: lighten($wg50, 10%);
-$wg55: lighten($wg50, 5%);
+  // Main color ramp
+  --cm95: hsla(var(--hm), var(--sm), var(--lt9), 100%); // Main color tint 9
+  --cm90: hsla(var(--hm), var(--sm), var(--lt9), 100%); // Main color tint 8
+  --cm85: hsla(var(--hm), var(--sm), var(--lt9), 100%); // Main color tint 7
+  --cm80: hsla(var(--hm), var(--sm), var(--lt9), 100%); // Main color tint 6
+  --cm75: hsla(var(--hm), var(--sm), var(--lt9), 100%); // Main color tint 5
+  --cm70: hsla(var(--hm), var(--sm), var(--lt9), 100%); // Main color tint 4
+  --cm65: hsla(var(--hm), var(--sm), var(--lt9), 100%); // Main color tint 3
+  --cm60: hsla(var(--hm), var(--sm), var(--lt9), 100%); // Main color tint 2
+  --cm55: hsla(var(--hm), var(--sm), var(--lt9), 100%); // Main color tint 1
+  --cm50: var(--cm); // Main color
+  --cm45: hsla(var(--hm), var(--sm), var(--ls1), 100%); // Main color shade 1
+  --cm40: hsla(var(--hm), var(--sm), var(--ls2), 100%); // Main color shade 2
+  --cm35: hsla(var(--hm), var(--sm), var(--ls3), 100%); // Main color shade 3
+  --cm30: hsla(var(--hm), var(--sm), var(--ls4), 100%); // Main color shade 4
+  --cm25: hsla(var(--hm), var(--sm), var(--ls5), 100%); // Main color shade 5
+  --cm20: hsla(var(--hm), var(--sm), var(--ls6), 100%); // Main color shade 6
+  --cm15: hsla(var(--hm), var(--sm), var(--ls7), 100%); // Main color shade 7
+  --cm10: hsla(var(--hm), var(--sm), var(--ls8), 100%); // Main color shade 8
+  --cm05: hsla(var(--hm), var(--sm), var(--ls9), 100%); // Main color shade 9
 
-$shade: transparentize(black, 0.75);
-$gloss: transparentize(white, 0.25);
+  // Cooler color ramp
+  --cc95: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 9
+  --cc90: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 8
+  --cc85: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 7
+  --cc80: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 6
+  --cc75: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 5
+  --cc70: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 4
+  --cc65: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 3
+  --cc60: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 2
+  --cc55: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 1
+  --cc50: var(--cc); // Cooler color
+  --cc45: hsla(var(--hc), var(--sm), var(--ls1), 100%); // Cooler color shade 1
+  --cc40: hsla(var(--hc), var(--sm), var(--ls2), 100%); // Cooler color shade 2
+  --cc35: hsla(var(--hc), var(--sm), var(--ls3), 100%); // Cooler color shade 3
+  --cc30: hsla(var(--hc), var(--sm), var(--ls4), 100%); // Cooler color shade 4
+  --cc25: hsla(var(--hc), var(--sm), var(--ls5), 100%); // Cooler color shade 5
+  --cc20: hsla(var(--hc), var(--sm), var(--ls6), 100%); // Cooler color shade 6
+  --cc15: hsla(var(--hc), var(--sm), var(--ls7), 100%); // Cooler color shade 7
+  --cc10: hsla(var(--hc), var(--sm), var(--ls8), 100%); // Cooler color shade 8
+  --cc05: hsla(var(--hc), var(--sm), var(--ls9), 100%); // Cooler color shade 9
+
+  // Warmer color ramp
+  --cw95: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 9
+  --cw90: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 8
+  --cw85: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 7
+  --cw80: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 6
+  --cw75: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 5
+  --cw70: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 4
+  --cw65: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 3
+  --cw60: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 2
+  --cw55: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 1
+  --cw50: var(--cw); // Warmer color
+  --cw45: hsla(var(--hw), var(--sm), var(--ls1), 100%); // Warmer color shade 1
+  --cw40: hsla(var(--hw), var(--sm), var(--ls2), 100%); // Warmer color shade 2
+  --cw35: hsla(var(--hw), var(--sm), var(--ls3), 100%); // Warmer color shade 3
+  --cw30: hsla(var(--hw), var(--sm), var(--ls4), 100%); // Warmer color shade 4
+  --cw25: hsla(var(--hw), var(--sm), var(--ls5), 100%); // Warmer color shade 5
+  --cw20: hsla(var(--hw), var(--sm), var(--ls6), 100%); // Warmer color shade 6
+  --cw15: hsla(var(--hw), var(--sm), var(--ls7), 100%); // Warmer color shade 7
+  --cw10: hsla(var(--hw), var(--sm), var(--ls8), 100%); // Warmer color shade 8
+  --cw05: hsla(var(--hw), var(--sm), var(--ls9), 100%); // Warmer color shade 9
+}
+
+@supports (color: oklch(100% 100% 0)) {
+  :root {
+    --hmx: calc(var(--hm) + 30); // Adjusted main hue
+    // because lch rotates hues from hsl
+
+    // Basic colors
+    --cm: oklch(var(--lm) var(--sm) var(--hmx)); // Main color
+    --cc: oklch(from var(--cm) l c calc(h + var(--hs))); // Cooler color
+    --cw: oklch(from var(--cm) l c calc(h - var(--hs))); // Warmer color
+
+    // Highlight colors
+    --cmh: oklch(from var(--cm) 100% var(--sh) h); // Main highlight
+    --cch: oklch(from var(--cc) 100% var(--sh) h); // Cooler highlight
+    --cwh: oklch(from var(--cw) 100% var(--sh) h); // Warmer highlight
+
+    // Disabled colors
+    --cmd: oklch(from var(--cm) l var(--sd) h); // Main disabled
+    --ccd: oklch(from var(--cc) l var(--sh) h); // Cooler disabled
+    --cwd: oklch(from var(--cw) l var(--sh) h); // Warmer disabled
+
+    // Main color ramp
+    --cm95: color-mix(in oklch, var(--cm) 10%, white); // Main color tint 9
+    --cm90: color-mix(in oklch, var(--cm) 20%, white); // Main color tint 8
+    --cm85: color-mix(in oklch, var(--cm) 30%, white); // Main color tint 7
+    --cm80: color-mix(in oklch, var(--cm) 40%, white); // Main color tint 6
+    --cm75: color-mix(in oklch, var(--cm) 50%, white); // Main color tint 5
+    --cm70: color-mix(in oklch, var(--cm) 60%, white); // Main color tint 4
+    --cm65: color-mix(in oklch, var(--cm) 70%, white); // Main color tint 3
+    --cm60: color-mix(in oklch, var(--cm) 80%, white); // Main color tint 2
+    --cm55: color-mix(in oklch, var(--cm) 90%, white); // Main color tint 1
+    --cm50: var(--cm); // Main color
+    --cm45: color-mix(in oklch, var(--cm) 90%, black); // Main color shade 1
+    --cm40: color-mix(in oklch, var(--cm) 80%, black); // Main color shade 2
+    --cm35: color-mix(in oklch, var(--cm) 70%, black); // Main color shade 3
+    --cm30: color-mix(in oklch, var(--cm) 60%, black); // Main color shade 4
+    --cm25: color-mix(in oklch, var(--cm) 50%, black); // Main color shade 5
+    --cm20: color-mix(in oklch, var(--cm) 40%, black); // Main color shade 6
+    --cm15: color-mix(in oklch, var(--cm) 30%, black); // Main color shade 7
+    --cm10: color-mix(in oklch, var(--cm) 20%, black); // Main color shade 8
+    --cm05: color-mix(in oklch, var(--cm) 10%, black); // Main color shade 9
+
+    // Cooler color ramp
+    --cc95: color-mix(in oklch, var(--cc) 10%, white); // Cooler color tint 9
+    --cc90: color-mix(in oklch, var(--cc) 20%, white); // Cooler color tint 8
+    --cc85: color-mix(in oklch, var(--cc) 30%, white); // Cooler color tint 7
+    --cc80: color-mix(in oklch, var(--cc) 40%, white); // Cooler color tint 6
+    --cc75: color-mix(in oklch, var(--cc) 50%, white); // Cooler color tint 5
+    --cc70: color-mix(in oklch, var(--cc) 60%, white); // Cooler color tint 4
+    --cc65: color-mix(in oklch, var(--cc) 70%, white); // Cooler color tint 3
+    --cc60: color-mix(in oklch, var(--cc) 80%, white); // Cooler color tint 2
+    --cc55: color-mix(in oklch, var(--cc) 90%, white); // Cooler color tint 1
+    --cc50: var(--cc); // Cooler color
+    --cc45: color-mix(in oklch, var(--cc) 90%, black); // Cooler color shade 1
+    --cc40: color-mix(in oklch, var(--cc) 80%, black); // Cooler color shade 2
+    --cc35: color-mix(in oklch, var(--cc) 70%, black); // Cooler color shade 3
+    --cc30: color-mix(in oklch, var(--cc) 60%, black); // Cooler color shade 4
+    --cc25: color-mix(in oklch, var(--cc) 50%, black); // Cooler color shade 5
+    --cc20: color-mix(in oklch, var(--cc) 40%, black); // Cooler color shade 6
+    --cc15: color-mix(in oklch, var(--cc) 30%, black); // Cooler color shade 7
+    --cc10: color-mix(in oklch, var(--cc) 20%, black); // Cooler color shade 8
+    --cc05: color-mix(in oklch, var(--cc) 10%, black); // Cooler color shade 9
+
+    // Warmer color ramp
+    --cw95: color-mix(in oklch, var(--cw) 10%, white); // Warmer color tint 9
+    --cw90: color-mix(in oklch, var(--cw) 20%, white); // Warmer color tint 8
+    --cw85: color-mix(in oklch, var(--cw) 30%, white); // Warmer color tint 7
+    --cw80: color-mix(in oklch, var(--cw) 40%, white); // Warmer color tint 6
+    --cw75: color-mix(in oklch, var(--cw) 50%, white); // Warmer color tint 5
+    --cw70: color-mix(in oklch, var(--cw) 60%, white); // Warmer color tint 4
+    --cw65: color-mix(in oklch, var(--cw) 70%, white); // Warmer color tint 3
+    --cw60: color-mix(in oklch, var(--cw) 80%, white); // Warmer color tint 2
+    --cw55: color-mix(in oklch, var(--cw) 90%, white); // Warmer color tint 1
+    --cw50: var(--cw); // Warmer color
+    --cw45: color-mix(in oklch, var(--cw) 90%, black); // Warmer color shade 1
+    --cw40: color-mix(in oklch, var(--cw) 80%, black); // Warmer color shade 2
+    --cw35: color-mix(in oklch, var(--cw) 70%, black); // Warmer color shade 3
+    --cw30: color-mix(in oklch, var(--cw) 60%, black); // Warmer color shade 4
+    --cw25: color-mix(in oklch, var(--cw) 50%, black); // Warmer color shade 5
+    --cw20: color-mix(in oklch, var(--cw) 40%, black); // Warmer color shade 6
+    --cw15: color-mix(in oklch, var(--cw) 30%, black); // Warmer color shade 7
+    --cw10: color-mix(in oklch, var(--cw) 20%, black); // Warmer color shade 8
+    --cw05: color-mix(in oklch, var(--cw) 10%, black); // Warmer color shade 9
+
+    --shade: color-mix(in oklch, black 12.5%, transparent);
+    // --shadeMd: color-mix(in oklch, var(--shade), var(--shadeLt));
+    // --shadeLt: color-mix(in oklch, var(--shade), transparent);
+    --gloss: color-mix(in oklch, white 75%, transparent);
+  }
+}
+
+/* Legacy SASS variables used in transparentize() */
 
 html {
   height: 100%;
@@ -118,23 +245,23 @@ a {
   border: 0;
   color: $text;
   text-decoration: underline;
-  text-shadow: 1pt 1pt 1pt transparentize($shade, 1);
+  text-shadow: 1pt 1pt 1pt transparent;
   cursor: pointer;
   transition: color 0.5s, text-shadow 0.5s;
 
   &:link,
   &:visited {
-    color: $mg30;
+    color: var(--cm30);
   }
   &:hover {
-    color: $mg35;
+    color: var(--cm35);
   }
   &:active {
-    color: $mg40;
+    color: var(--cm40);
   }
   &:hover,
   &:active {
-    text-shadow: 1pt 1pt 1pt transparentize($shade, 0.125);
+    text-shadow: 1pt 1pt 1pt var(--shade);
   }
 
   img {
@@ -156,21 +283,21 @@ h6 {
   padding: 1rem;
   border: none;
   outline: none;
-  color: $mg30;
+  color: var(--cm30);
   font: {
     family: Handlee, "Open Sans", sans-serif;
     weight: normal;
   }
   text-align: center;
   line-height: 1.25;
-  text-shadow: 0.0625em 0.0625em 0.0625em transparentize($shade, 1);
+  text-shadow: 0.0625em 0.0625em 0.0625em transparent;
   &:hover,
   &:focus,
   &:active,
   *:hover > &,
   *:focus > &,
   *:active > & {
-    text-shadow: 0.0625em 0.0625em 0.0625em transparentize($shade, 0.125);
+    text-shadow: 0.0625em 0.0625em 0.0625em var(--shade);
   }
   transition: all 1s;
   position: relative;
@@ -241,61 +368,85 @@ header {
     display: flex;
     box-sizing: border-box;
     width: 100%;
+    --cloudColor: oklch(100% 100% calc(60 + 30) / 50%);
+    --cloudLight: oklch(from var(--cloudColor) 100% 100% h / 100%);
+    --waveColor: oklch(100% 100% calc(180 + 30) / 50%);
+    --waveLight: oklch(from var(--waveColor) 100% 100% h / 100);
     background: linear-gradient(
         to bottom,
-        rgba(255, 255, 128, 0) 0%,
-        rgba(255, 255, 128, 0.125) calc(50% - 1.25 * 50% / 2),
-        rgba(255, 255, 128, 0) calc(50% - 1 * 50% / 2),
-        rgba(255, 255, 128, 0.125) calc(50% - 1.25 * 50% / 4),
-        rgba(255, 255, 128, 0) calc(50% - 1 * 50% / 4),
-        rgba(255, 255, 128, 0.125) calc(50% - 1.25 * 50% / 8),
-        rgba(255, 255, 128, 0) calc(50% - 1 * 50% / 8),
-        rgba(255, 255, 128, 0.125) calc(50% - 1.25 * 50% / 16),
-        rgba(255, 255, 128, 0) calc(50% - 1 * 50% / 16),
-        rgba(255, 255, 128, 0.125) calc(50% - 1.25 * 50% / 32),
-        rgba(255, 255, 128, 0) calc(50% - 1 * 50% / 32),
-        rgba(255, 255, 128, 0.125) calc(50% - 1.25 * 50% / 64),
-        rgba(255, 255, 128, 0) calc(50% - 1 * 50% / 64),
-        rgba(255, 255, 128, 0.125) calc(50% - 1.25 * 50% / 128),
-        rgba(255, 255, 128, 0) calc(50% - 1 * 50% / 128),
-        rgba(255, 255, 128, 0.125) calc(50% - 1.25 * 50% / 256),
-        rgba(255, 255, 128, 0) calc(50% - 1 * 50% / 256),
-        rgba(255, 255, 128, 0.125) calc(50% - 1.25 * 50% / 512),
-        rgba(255, 255, 128, 0) calc(50% - 1 * 50% / 512),
-        rgba(255, 255, 128, 0.125) calc(50% - 1.25 * 50% / 1024),
-        rgba(255, 255, 128, 0) calc(50% - 1 * 50% / 1024),
-        rgba(128, 255, 255, 0) calc(50% + 1 * 50% / 1024),
-        rgba(128, 255, 255, 0.125) calc(50% + 1.75 * 50% / 1024),
-        rgba(128, 255, 255, 0) calc(50% + 1 * 50% / 512),
-        rgba(128, 255, 255, 0.125) calc(50% + 1.75 * 50% / 512),
-        rgba(128, 255, 255, 0) calc(50% + 1 * 50% / 256),
-        rgba(128, 255, 255, 0.125) calc(50% + 1.75 * 50% / 256),
-        rgba(128, 255, 255, 0) calc(50% + 1 * 50% / 128),
-        rgba(128, 255, 255, 0.125) calc(50% + 1.75 * 50% / 128),
-        rgba(128, 255, 255, 0) calc(50% + 1 * 50% / 64),
-        rgba(128, 255, 255, 0.125) calc(50% + 1.75 * 50% / 64),
-        rgba(128, 255, 255, 0) calc(50% + 1 * 50% / 32),
-        rgba(128, 255, 255, 0.125) calc(50% + 1.75 * 50% / 32),
-        rgba(128, 255, 255, 0) calc(50% + 1 * 50% / 16),
-        rgba(128, 255, 255, 0.125) calc(50% + 1.75 * 50% / 16),
-        rgba(128, 255, 255, 0) calc(50% + 1 * 50% / 8),
-        rgba(128, 255, 255, 0.125) calc(50% + 1.75 * 50% / 8),
-        rgba(128, 255, 255, 0) calc(50% + 1 * 50% / 4),
-        rgba(128, 255, 255, 0.125) calc(50% + 1.75 * 50% / 4),
-        rgba(128, 255, 255, 0) calc(50% + 1 * 50% / 2),
-        rgba(128, 255, 255, 0.125) calc(50% + 1.75 * 50% / 2),
-        rgba(128, 255, 255, 0) 100%
+        transparent 0%,
+        var(--cloudColor) calc(50% - 1.25 * 50% / 2),
+        var(--cloudLight) calc(50% - 1.125 * 50% / 2),
+        transparent calc(50% - 1 * 50% / 2),
+        var(--cloudColor) calc(50% - 1.25 * 50% / 4),
+        var(--cloudLight) calc(50% - 1.125 * 50% / 4),
+        transparent calc(50% - 1 * 50% / 4),
+        var(--cloudColor) calc(50% - 1.25 * 50% / 8),
+        var(--cloudLight) calc(50% - 1.125 * 50% / 8),
+        transparent calc(50% - 1 * 50% / 8),
+        var(--cloudColor) calc(50% - 1.25 * 50% / 16),
+        var(--cloudLight) calc(50% - 1.125 * 50% / 16),
+        transparent calc(50% - 1 * 50% / 16),
+        var(--cloudColor) calc(50% - 1.25 * 50% / 32),
+        var(--cloudLight) calc(50% - 1.125 * 50% / 32),
+        transparent calc(50% - 1 * 50% / 32),
+        var(--cloudColor) calc(50% - 1.25 * 50% / 64),
+        var(--cloudLight) calc(50% - 1.125 * 50% / 64),
+        transparent calc(50% - 1 * 50% / 64),
+        var(--cloudColor) calc(50% - 1.25 * 50% / 128),
+        var(--cloudLight) calc(50% - 1.125 * 50% / 128),
+        transparent calc(50% - 1 * 50% / 128),
+        var(--cloudColor) calc(50% - 1.25 * 50% / 256),
+        var(--cloudLight) calc(50% - 1.125 * 50% / 256),
+        transparent calc(50% - 1 * 50% / 256),
+        var(--cloudColor) calc(50% - 1.25 * 50% / 512),
+        var(--cloudLight) calc(50% - 1.125 * 50% / 512),
+        transparent calc(50% - 1 * 50% / 512),
+        var(--cloudColor) calc(50% - 1.25 * 50% / 1024),
+        var(--cloudLight) calc(50% - 1.125 * 50% / 1024),
+        transparent calc(50% - 1 * 50% / 1024),
+        transparent calc(50% + 1 * 50% / 1024),
+        var(--waveLight) calc(50% + 1.625 * 50% / 1024),
+        var(--waveColor) calc(50% + 1.75 * 50% / 1024),
+        transparent calc(50% + 1 * 50% / 512),
+        var(--waveLight) calc(50% + 1.625 * 50% / 512),
+        var(--waveColor) calc(50% + 1.75 * 50% / 512),
+        transparent calc(50% + 1 * 50% / 256),
+        var(--waveLight) calc(50% + 1.625 * 50% / 256),
+        var(--waveColor) calc(50% + 1.75 * 50% / 256),
+        transparent calc(50% + 1 * 50% / 128),
+        var(--waveLight) calc(50% + 1.625 * 50% / 128),
+        var(--waveColor) calc(50% + 1.75 * 50% / 128),
+        transparent calc(50% + 1 * 50% / 64),
+        var(--waveLight) calc(50% + 1.625 * 50% / 64),
+        var(--waveColor) calc(50% + 1.75 * 50% / 64),
+        transparent calc(50% + 1 * 50% / 32),
+        var(--waveLight) calc(50% + 1.625 * 50% / 32),
+        var(--waveColor) calc(50% + 1.75 * 50% / 32),
+        transparent calc(50% + 1 * 50% / 16),
+        var(--waveLight) calc(50% + 1.625 * 50% / 16),
+        var(--waveColor) calc(50% + 1.75 * 50% / 16),
+        transparent calc(50% + 1 * 50% / 8),
+        var(--waveLight) calc(50% + 1.625 * 50% / 8),
+        var(--waveColor) calc(50% + 1.75 * 50% / 8),
+        transparent calc(50% + 1 * 50% / 4),
+        var(--waveLight) calc(50% + 1.625 * 50% / 4),
+        var(--waveColor) calc(50% + 1.75 * 50% / 4),
+        transparent calc(50% + 1 * 50% / 2),
+        var(--waveLight) calc(50% + 1.625 * 50% / 2),
+        var(--waveColor) calc(50% + 1.75 * 50% / 2),
+        transparent 100%
       ),
       linear-gradient(
         to bottom,
-        #600 0%,
-        #963 25%,
-        #ff8 48%,
-        #efd 50%,
-        #dfe 50%,
-        #8ff 52%,
-        #369 75%,
-        #006 100%
+        oklch(37.5% 75% calc(0 + 30)) 0%,
+        oklch(62.5% 50% calc(30 + 30)) 25%,
+        oklch(87.5% 25% calc(60 + 30)) 48%,
+        oklch(100% 0 calc(60 + 30)) 50%,
+        oklch(100% 0 calc(180 + 30)) 50%,
+        oklch(87.5% 25% calc(180 + 30)) 52%,
+        oklch(62.5% 50% calc(210 + 30)) 75%,
+        oklch(37.5% 75% calc(240 + 30)) 100%
       );
     background-size: 100% 100%, auto;
     background-position: center, center, center;
@@ -305,6 +456,8 @@ header {
     border-radius: 0.5em;
     outline: 1px solid black;
     color: black;
+    text-shadow: 1px 1px 1px white, 1px -1px 1px white, -1px 1px 1px white,
+      -1px -1px 1px white;
     font-family: "Princess Sofia", "Open Sans", sans-serif;
     font-size: max(1.5rem, 4vw);
     display: flex;
@@ -359,13 +512,12 @@ header {
 
     @media (min-width: 40rem) {
       background-size: 100% 100%, auto;
-      text-shadow: none;
       padding: 1vw;
       border: 0.5rem solid black;
       border-radius: 6.25vw 6.25vw 0 0;
       box-shadow: inset 0 0 0.5vw 0 #0008, inset 0 0 0 0.5vw #000c;
       &:hover {
-        color: $mg30;
+        color: var(--cm30);
         text-shadow: 0.0125em 0.0125em 0.0125em #000,
           0.025em 0.025em 0.025em #0008, 0.05em 0.05em 0.05em #0004,
           0.1em 0.1em 0.1em #0002;
@@ -427,13 +579,18 @@ footer {
       rgba(255, 255, 255, 0.0625) calc(50% + 1.5 * 50% / 2),
       rgba(255, 255, 255, 0) 100%
     ),
-    linear-gradient(to bottom, $cg75 0%, $cg50 50%, $cg75 100%);
+    linear-gradient(
+      to bottom,
+      var(--cc75) 0%,
+      var(--cc50) 50%,
+      var(--cc75) 100%
+    );
   background-size: 100% 100%, auto;
   background-position: center, center;
-  border-top: 3pt ridge $wg75;
-  color: $wg50;
+  border-top: 3pt ridge var(--cw75);
+  color: var(--cw50);
   text-align: center;
-  box-shadow: 0 0.5em 0.5em $shade inset;
+  box-shadow: 0 0.5em 0.5em var(--shade) inset;
   animation-name: waves;
   animation-duration: 5s;
   animation-iteration-count: infinite;
@@ -445,19 +602,19 @@ footer {
     padding: 1em;
   }
   a {
-    text-shadow: 1px 1px 1px $shade;
+    text-shadow: 1px 1px 1px var(--shade);
     text-decoration: none;
     &:link {
-      color: $wg85;
+      color: var(--cw85);
     }
     &:hover {
-      color: $wg90;
+      color: var(--cw90);
     }
     &:active {
-      color: $wg95;
+      color: var(--cw95);
     }
     &:visited {
-      color: $wg70;
+      color: var(--cw70);
     }
   }
   @media only print {
@@ -470,21 +627,6 @@ footer {
   overflow-y: auto;
   padding: 0;
   padding-right: 0.5em;
-  // background: linear-gradient(
-  //       black 0em,
-  //       $cg05 2em,
-  //       $cg25 2em,
-  //       $cg10 4em,
-  //       $cg25 4em,
-  //       $cg15 6em,
-  //       $cg25 6em,
-  //       $cg20 8em,
-  //       $cg25 8em
-  //     )
-  //     no-repeat,
-  //   black;
-  // background-position-y: 4em;
-  // background-attachment: local;
   display: flex;
   flex-flow: column nowrap;
   flex-shrink: 1;
@@ -518,7 +660,12 @@ footer {
     outline: none;
     border-top-left-radius: 0.5em;
     border-top-right-radius: 0.5em;
-    background: linear-gradient(to bottom, $cg65 0%, $cg25 50%, $cg05 100%);
+    background: linear-gradient(
+      to bottom,
+      var(--cc65) 0%,
+      var(--cc25) 50%,
+      var(--cc05) 100%
+    );
     background-size: 100% 200%;
     background-position-y: 6.25%;
     color: white;
@@ -528,28 +675,27 @@ footer {
     }
     line-height: 2;
     flex: 1 1 auto;
-    box-shadow: 1pt 1pt 0pt transparentize($gloss, 1) inset,
-      -1pt 0pt 0pt transparentize($shade, 1) inset,
-      1pt 1pt 0 0 transparentize($shade, 0.1875) inset;
+    box-shadow: 1pt 1pt 0pt transparent inset, -1pt 0pt 0pt transparent inset,
+      1pt 1pt 0 0 var(--shade) inset;
 
     &:nth-of-type(4) {
-      color: $cg95;
-      border-top-color: $cg95;
+      color: var(--cc95);
+      border-top-color: var(--cc95);
       background-position-y: 12.5%;
     }
     &:nth-of-type(3) {
-      color: $cg90;
-      border-top-color: $cg90;
+      color: var(--cc90);
+      border-top-color: var(--cc90);
       background-position-y: 25%;
     }
     &:nth-of-type(2) {
-      color: $cg75;
-      border-top-color: $cg75;
+      color: var(--cc75);
+      border-top-color: var(--cc75);
       background-position-y: 50%;
     }
     &:nth-of-type(1) {
-      color: $cg50;
-      border-top-color: $cg50;
+      color: var(--cc50);
+      border-top-color: var(--cc50);
       background-position-y: 100%;
     }
 
@@ -557,8 +703,8 @@ footer {
     &:focus,
     &:active {
       color: black;
-      box-shadow: 1pt 1pt 0pt $gloss inset, -1pt 0pt 0pt $shade inset,
-        1pt 1pt 0 0 transparentize($shade, 1) inset;
+      box-shadow: 1pt 1pt 0pt var(--gloss) inset,
+        -1pt 0pt 0pt var(--shade) inset, 1pt 1pt 0 0 transparent inset;
       background-position-y: 0%;
     }
     transition: all 0.5s;
@@ -570,14 +716,18 @@ footer {
     &:last-of-type {
       color: black;
       position: relative;
-      border: 1pt outset $cg70;
+      border: 1pt outset var(--cc70);
       border-bottom: none;
-      background: linear-gradient(to bottom, white 0%, $cg85 50%, $cg85 100%);
+      background: linear-gradient(
+        to bottom,
+        white 0%,
+        var(--cc85) 50%,
+        var(--cc85) 100%
+      );
       background-size: 100% 200%;
       background-position-y: 100%;
       text-decoration: none;
-      box-shadow: 1pt 1pt 0pt transparentize($gloss, 1) inset,
-        -1pt 0pt 0pt transparentize($shade, 1) inset;
+      box-shadow: 1pt 1pt 0pt transparent inset, -1pt 0pt 0pt transparent inset;
 
       &:hover,
       &:focus,
@@ -587,17 +737,21 @@ footer {
 
       & + ul {
         display: flex;
-        background: linear-gradient(to bottom, $cg85 0%, $cg85 50%, $cg75 100%);
+        background: linear-gradient(
+          to bottom,
+          var(--cc85) 0%,
+          var(--cc85) 50%,
+          var(--cc75) 100%
+        );
         background-size: 100% 200%;
         background-position-y: 0%;
-        box-shadow: 0pt -1pt 0pt transparentize($shade, 1) inset,
-          0pt 1pt 1pt transparentize($shade, 1),
-          0 -1pt 0 0 transparentize($shade, 0.1875) inset;
+        box-shadow: 0pt -1pt 0pt transparent inset, 0pt 1pt 1pt transparent,
+          0 -1pt 0 0 var(--shade) inset;
         &:hover,
         &:focus,
         &:active {
-          box-shadow: 0pt -1pt 0pt $shade inset, 0pt 1pt 1pt $shade,
-            0 -1pt 0 0 transparentize($shade, 1) inset;
+          box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade),
+            0 -1pt 0 0 transparent inset;
           background-size: 100% 200%;
           background-position-y: 100%;
         }
@@ -618,18 +772,23 @@ footer {
     margin-right: -0.5em;
     padding: 0.25em;
     border: 0;
-    background: linear-gradient(to bottom, $cg65 0%, $cg25 50%, $cg20 100%);
+    background: linear-gradient(
+      to bottom,
+      var(--cc65) 0%,
+      var(--cc25) 50%,
+      var(--cc20) 100%
+    );
     background-size: 100% 200%;
     background-position-y: 50%;
     text-align: center;
     line-height: 2.5;
-    box-shadow: 0pt -1pt 0pt $shade inset, 0pt 1pt 1pt $shade,
-      0 -1pt 0 0 transparentize($shade, 1) inset;
+    box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade),
+      0 -1pt 0 0 transparent inset;
     &:hover,
     &:focus,
     &:active {
-      box-shadow: 0pt -1pt 0pt $shade inset, 0pt 1pt 1pt $shade,
-        0 -1pt 0 0 transparentize($shade, 1) inset;
+      box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade),
+        0 -1pt 0 0 transparent inset;
     }
     transition: box-shadow 0.5s, background-position-y 0.5s;
 
@@ -665,10 +824,10 @@ footer {
         border: none;
         border-radius: 0.5em;
         background: radial-gradient(
-            transparentize($ch, 1),
-            transparentize($ch, 0.9)
+            transparent,
+            oklch(from var(--cch) l c h / 0.1)
           ),
-          linear-gradient(to bottom, $cg95 0%, $cg75 100%);
+          linear-gradient(to bottom, var(--cc95) 0%, var(--cc75) 100%);
         background-size: 1000% 1000%;
         background-position-y: 50%;
         color: black;
@@ -678,33 +837,33 @@ footer {
           decoration: none;
         }
         line-height: 1;
-        box-shadow: 1pt 1pt 0pt transparentize($gloss, 1) inset,
-          -1pt -1pt 0pt transparentize($shade, 1) inset,
-          1pt 1pt 1pt transparentize($shade, 1),
-          0 0 0 1pt transparentize($shade, 0.1875) inset;
+        box-shadow: 1pt 1pt 0pt transparent inset,
+          -1pt -1pt 0pt transparent inset, 1pt 1pt 1pt transparent,
+          0 0 0 1pt var(--shade) inset;
         transition: all 1s;
 
         &:hover,
         &:focus,
         &:active {
-          box-shadow: 1pt 1pt 0pt $gloss inset, -1pt -1pt 0pt $shade inset,
-            1pt 1pt 1pt $shade, 0 0 0 1pt transparentize($shade, 1) inset;
+          box-shadow: 1pt 1pt 0pt var(--gloss) inset,
+            -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade),
+            0 0 0 1pt transparent inset;
           background-size: 100% 100%;
         }
 
         &:hover {
           background: radial-gradient(
-              transparentize($mh, 1),
-              transparentize($mh, 0.9)
+              transparent,
+              oklch(from var(--cmh) l c h / 0.1)
             ),
-            linear-gradient(to bottom, $mg95, $mg75);
+            linear-gradient(to bottom, var(--cm95), var(--cm75));
         }
         &:active {
           background: radial-gradient(
-              transparentize($wh, 1),
-              transparentize($wh, 0.9)
+              transparent,
+              oklch(from var(--cwh) l c h / 0.1)
             ),
-            linear-gradient(to bottom, $wg95, $wg75);
+            linear-gradient(to bottom, var(--cw95), var(--cw75));
         }
 
         /* For the dropdown menu arrows */
@@ -745,25 +904,25 @@ footer {
 
         a {
           background: radial-gradient(
-              transparentize($mh, 1),
-              transparentize($mh, 0.9)
+              transparent,
+              oklch(from var(--cmh) l c h / 0.1)
             ),
-            linear-gradient(to bottom, $mg95, $mg75);
+            linear-gradient(to bottom, var(--cm95), var(--cm75));
           background-size: 1000% 1000%;
           &:hover {
             background: radial-gradient(
-                transparentize($wh, 1),
-                transparentize($wh, 0.9)
+                transparent,
+                oklch(from var(--cwh) l c h / 0.1)
               ),
-              linear-gradient(to bottom, $wg95, $wg75);
+              linear-gradient(to bottom, var(--cw95), var(--cw75));
             background-size: 100% 100%;
           }
           &:active {
             background: radial-gradient(
-                transparentize($wh, 1),
-                transparentize($wh, 0.9)
+                transparent,
+                oklch(from var(--cwh) l c h / 0.1)
               ),
-              linear-gradient(to bottom, $cg95, $cg75);
+              linear-gradient(to bottom, var(--cw95), var(--cw75));
             background-size: 100% 100%;
           }
 
@@ -786,17 +945,23 @@ footer {
         width: 100%;
         padding: 0.125em 0;
         border-radius: 0.5em;
-        background: linear-gradient(to right, $mg70, $mg80, $mg70);
+        background: linear-gradient(
+          to right,
+          var(--cm70),
+          var(--cm80),
+          var(--cm70)
+        );
         background-size: 1000% 1000%;
         background-position-x: 50%;
-        box-shadow: 1pt 1pt 0pt transparentize($gloss, 1) inset,
-          -1pt -1pt 0pt transparentize($shade, 1) inset,
-          1pt 1pt 1pt transparentize($shade, 1), 0 0 0 1pt $shade inset;
+        box-shadow: 1pt 1pt 0pt transparent inset,
+          -1pt -1pt 0pt transparent inset, 1pt 1pt 1pt transparent,
+          0 0 0 1pt var(--shade) inset;
         &:hover,
         &:focus,
         &:active {
-          box-shadow: 1pt 1pt 0pt $gloss inset, -1pt -1pt 0pt $shade inset,
-            1pt 1pt 1pt $shade, 0 0 0 1pt transparentize($shade, 1) inset;
+          box-shadow: 1pt 1pt 0pt var(--gloss) inset,
+            -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade),
+            0 0 0 1pt transparent inset;
           background-size: 100% 100%;
         }
         transition: box-shadow 0.5s, background-size 0.5s,
@@ -836,7 +1001,7 @@ main {
   gap: 1em;
   border: 0;
   outline: 0;
-  background: radial-gradient(farthest-corner, $wg90, $wg95);
+  background: radial-gradient(farthest-corner, var(--cw90), var(--cw95));
   line-height: 1.5;
 
   @media (min-width: 80rem) {
@@ -875,7 +1040,7 @@ main {
       padding-top: 0;
       border-radius: 1em;
       border: none;
-      border-bottom: 1pt groove $wg75;
+      border-bottom: 1pt groove var(--cw75);
       font-style: italic;
       text: {
         align: center;
@@ -923,7 +1088,7 @@ main {
     position: relative;
     margin: 0 auto;
     padding: 1em 2em;
-    border: 1pt dashed $wg75;
+    border: 1pt dashed var(--cw75);
     border-radius: 0.5em;
 
     &:before {
@@ -958,7 +1123,7 @@ main {
     padding: 0;
     border: 0;
     outline: 0;
-    filter: drop-shadow(0 2pt 1pt $shade);
+    filter: drop-shadow(0 2pt 1pt var(--shade));
 
     &:nth-of-type(even) {
       transform: scaleX(-1);
@@ -974,7 +1139,7 @@ main {
     th {
       padding: 1em;
       border: 1pt solid black;
-      background: $mg95;
+      background: var(--cm95);
       text-align: center;
       td {
         padding: 1em;
@@ -994,7 +1159,7 @@ main {
       flex-wrap: nowrap;
     }
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     gap: 1em;
     a {
       flex: 1 1 100%;
@@ -1002,6 +1167,7 @@ main {
       font-size: 0.75pc;
       text-decoration: none;
       text-transform: uppercase;
+      text-align: center;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1046,21 +1212,25 @@ main {
         border-left-width: 0;
         border-right-width: 0;
         border-radius: 0;
-        &::before {
-          content: "↳";
-          margin-right: 1ch;
+        order: 10;
+        @media (min-width: 40rem) {
+          order: unset;
         }
+        &::before,
         &::after {
           content: "↴";
+        }
+        &::before {
+          margin-right: 1ch;
+          transform: scaleY(-1) rotate(-90deg);
+        }
+        &::after {
           margin-left: 1ch;
         }
-        &.disabled {
+        :last-of-type &.disabled {
           opacity: 0.125;
-          // pointer-events: auto;
-          // &:hover {
-          //   opacity: 0.75;
-          // }
-          &::before, &::after {
+          &::before,
+          &::after {
             display: none;
           }
         }
@@ -1068,6 +1238,22 @@ main {
       &.disabled {
         pointer-events: none;
         opacity: 0.25;
+        display: none;
+        @media (min-width: 40rem) {
+          display: block;
+        }
+      }
+    }
+    &:last-of-type .anchorTarget {
+      order: -1;
+      @media (min-width: 40rem) {
+        order: unset;
+      }
+      &::before {
+        transform: rotate(-90deg);
+      }
+      &::after {
+        transform: scaleY(-1);
       }
     }
     @media only print {
@@ -1087,19 +1273,18 @@ main {
     border-radius: 2em;
     background: radial-gradient(
       farthest-corner,
-      transparentize(white, 0.875),
-      transparentize(white, 0.5)
+      color-mix(in oklch, white, transparent 87.5%),
+      color-mix(in oklch, white, transparent 50%)
     );
-    box-shadow: 2pt 2pt 2pt transparentize($shade, 1),
-      -2pt -2pt 2pt transparentize($gloss, 1),
-      1pt 1pt 0pt transparentize($gloss, 1) inset,
-      -1pt -1pt 0pt transparentize($shade, 1) inset, 0 0 0 1pt $gloss inset;
+    box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
+      1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+      0 0 0 1pt var(--gloss) inset;
     &:hover,
     &:focus,
     &:active {
-      box-shadow: 2pt 2pt 2pt $shade, -2pt -2pt 2pt $gloss,
-        1pt 1pt 0pt $gloss inset, -1pt -1pt 0pt $shade inset,
-        0 0 0 1pt transparentize($shade, 1) inset;
+      box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss),
+        1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+        0 0 0 1pt transparent inset;
     }
     transition: box-shadow 1s;
 
@@ -1255,21 +1440,19 @@ main {
 
       &.contained {
         overflow: hidden;
-        border: 0.125em solid $wg25;
+        border: 0.125em solid var(--cw25);
         border-radius: 1em;
-        background: $wg25;
-        box-shadow: 2pt 2pt 1pt transparentize($shade, 1),
-          -2pt -2pt 2pt transparentize($gloss, 1),
-          1pt 1pt 0pt transparentize($gloss, 1) inset,
-          -1pt -1pt 0pt transparentize($shade, 1) inset,
-          0 0 0 1pt transparentize($shade, 0.125) inset;
+        background: var(--cw25);
+        box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent,
+          1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+          0 0 0 1pt var(--shade) inset;
         &:hover,
         &:focus,
         &:active {
           border-radius: 0.125em;
-          box-shadow: 2pt 2pt 1pt $shade, -2pt -2pt 2pt $gloss,
-            1pt 1pt 0pt $gloss inset, -1pt -1pt 0pt $shade inset,
-            0 0 0 1pt transparentize($shade, 1) inset;
+          box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss),
+            1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+            0 0 0 1pt transparent inset;
         }
       }
 
@@ -1344,21 +1527,20 @@ main {
     border-radius: 2em;
     background: radial-gradient(
       farthest-corner,
-      transparentize(white, 0.875),
-      transparentize(white, 0.5)
+      color-mix(in oklch, white, transparent 87.5%),
+      color-mix(in oklch, white, transparent 50%)
     );
     text-align: center;
     font-size: 1rem;
-    box-shadow: 2pt 2pt 2pt transparentize($shade, 1),
-      -2pt -2pt 2pt transparentize($gloss, 1),
-      1pt 1pt 0pt transparentize($gloss, 1) inset,
-      -1pt -1pt 0pt transparentize($shade, 1) inset, 0 0 0 1pt $shade inset;
+    box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
+      1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+      0 0 0 1pt var(--shade) inset;
     &:hover,
     &:focus,
     &:active {
-      box-shadow: 2pt 2pt 2pt $shade, -2pt -2pt 2pt $gloss,
-        1pt 1pt 0pt $gloss inset, -1pt -1pt 0pt $shade inset,
-        0 0 0 1pt transparentize($shade, 1) inset;
+      box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss),
+        1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+        0 0 0 1pt transparent inset;
     }
     transition: box-shadow 1s;
 
@@ -1379,17 +1561,15 @@ main {
       text-align: center;
       list-style: none;
       vertical-align: top;
-      box-shadow: 2pt 2pt 1pt transparentize($shade, 1),
-        -2pt -2pt 2pt transparentize($gloss, 1),
-        1pt 1pt 0pt transparentize($gloss, 1) inset,
-        -1pt -1pt 0pt transparentize($shade, 1) inset,
-        0 0 0 1pt transparentize($shade, 0.125) inset;
+      box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent,
+        1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+        0 0 0 1pt var(--shade) inset;
       &:hover,
       &:focus,
       &:active {
-        box-shadow: 2pt 2pt 1pt $shade, -2pt -2pt 2pt $gloss,
-          1pt 1pt 0pt $gloss inset, -1pt -1pt 0pt $shade inset,
-          0 0 0 1pt transparentize($shade, 1) inset;
+        box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss),
+          1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+          0 0 0 1pt transparent inset;
       }
       transition: box-shadow 1s;
 
@@ -1475,7 +1655,10 @@ main {
   margin: 0;
   padding: 0;
   opacity: 0;
-  background: radial-gradient(black, transparentize(black, 0.0625));
+  background: radial-gradient(
+    black,
+    color-mix(in oklch, black, transparent 6.25%)
+  );
   color: grey;
   font-size: calc(1rem + 1vmin);
   text-align: center;
@@ -1519,7 +1702,7 @@ main {
     color: grey;
     font-weight: bold;
     text-decoration: none;
-    text-shadow: 0 0 0.125em transparentize(black, 1);
+    text-shadow: 0 0 0.125em transparent;
     &:hover,
     &:focus,
     &:active {

@@ -46,7 +46,7 @@
 							appear in sidebars of the customer interface, such as 
 							Thought Leadership and Blog articles; and lastly, they
 							can create surveys with open-answer, select-one, or
-							select-all answer possibilites, and select the date 
+							select-all answer possibilities, and select the date 
 							span in which those surveys will appear to customers,
 							who can then answer them through their own user interface.
 							The marketing content and survey data, like the user
@@ -77,7 +77,7 @@
 							field in that join table row.
 						</p>
 						<p>
-							The lead developer on this project praised me as indispensible
+							The lead developer on this project praised me as indispensable
 							in its completion.
 						</p>
 						<p>

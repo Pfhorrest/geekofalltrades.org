@@ -103,7 +103,7 @@ const initSubnavsOnHover = () => {
 };
 document.addEventListener("DOMContentLoaded", initSubnavsOnHover);
 
-//Toggle sections by clicking their headers
+//Initialize toggling sections by clicking their headers
 const initToggleSections = () => {
   document
     .querySelectorAll(
@@ -120,65 +120,6 @@ const initToggleSections = () => {
 };
 document.addEventListener("DOMContentLoaded", initToggleSections);
 
-//Toggle all sections (except or only anchor)
-const initToggleAllSections = () => {
-  if (document.querySelector("main > section")) {
-    let toggleAllControls = document.createElement("div");
-    toggleAllControls.classList.add("toggleAllControls");
-    toggleAllControls.innerHTML = `
-    <a class="expandAll" onClick="expandAll()">Expand All</a>
-    <a class="expandAnchor" onClick="expandAnchor()">Expand Section</a>
-    <a href="${location.hash}" class="anchorTarget">${location.hash}</a>
-    <a class="collapseOthers" onClick="collapseOthers()">Collapse Others</a>
-    <a class="collapseAll" onClick="collapseAll()">Collapse All</a>
-  `.trim();
-    document.querySelector("main").prepend(toggleAllControls.cloneNode(true));
-    document.querySelector("main").append(toggleAllControls.cloneNode(true));
-  }
-};
-document.addEventListener("DOMContentLoaded", initToggleAllSections);
-
-//Enable or disable buttons only relevant when there's a hash
-const toggleAbleOfHashOnlyToggleButtons = () => {
-  if (location.hash) {
-    document.querySelectorAll(".collapseOthers").forEach((el) => {
-      el.classList.remove("disabled");
-    });
-    document.querySelectorAll(".expandAnchor").forEach((el) => {
-      el.classList.remove("disabled");
-    });
-    document.querySelectorAll(".anchorTarget").forEach((el) => {
-      el.classList.remove("disabled");
-    });
-    document.querySelectorAll(".anchorTarget").forEach((el) => {
-      el.textContent = document
-        .querySelector(location.hash)
-        .querySelector("h2, h3, h4, h5, h6").textContent;
-    });
-  } else {
-    document.querySelectorAll(".collapseOthers").forEach((el) => {
-      el.classList.add("disabled");
-    });
-    document.querySelectorAll(".expandAnchor").forEach((el) => {
-      el.classList.add("disabled");
-    });
-    document.querySelectorAll(".anchorTarget").forEach((el) => {
-      el.classList.add("disabled");
-    });
-    document.querySelectorAll(".anchorTarget").forEach((el) => {
-      el.textContent = " ";
-    });
-  }
-  document.querySelectorAll(".anchorTarget").forEach((el) => {
-    el.setAttribute("href", location.hash);
-  });
-};
-document.addEventListener(
-  "DOMContentLoaded",
-  toggleAbleOfHashOnlyToggleButtons
-);
-window.addEventListener("hashchange", toggleAbleOfHashOnlyToggleButtons);
-
 //Toggle sections by clicking their headers
 const toggleSection = (elem) => {
   let thisSection = elem.closest("section");
@@ -188,13 +129,12 @@ const toggleSection = (elem) => {
     collapseSection(elem);
   }
   location.hash = thisSection.id;
-  thisSection.scrollIntoView(true);
 };
 
-//To collapse a section from one of its elements
+//Collapse a section from one of its elements
 const collapseSection = (elem) => {
   let thisSection = elem.closest("section");
-  console.log("collapsing section", thisSection.id);
+  // console.log("collapsing section", thisSection.id);
   [...thisSection.children].forEach((child) => {
     if (
       !(
@@ -207,12 +147,13 @@ const collapseSection = (elem) => {
   });
   thisSection.classList.add("collapsed");
   elem.setAttribute("title", "Expand section");
+  toggleToggleButtons();
 };
 
-//To expand a section (and all parent sections) from one of its elements
+//Expand a section (and all parent sections) from one of its elements
 const expandSection = (elem) => {
   let thisSection = elem.closest("section");
-  console.log("expanding section", thisSection.id);
+  // console.log("expanding section", thisSection.id);
   let sections = [];
   let section = elem;
   while (section) {
@@ -237,15 +178,12 @@ const expandSection = (elem) => {
         }
       });
     });
+  toggleToggleButtons();
 };
 
-//Collapse all subsections (except anchor anchor and its parents)
-const collapseOthers = () => {
-  let anchorId = location.hash;
-  let anchor;
-  if (anchorId) {
-    anchor = document.querySelector(anchorId);
-  }
+//Collapse all subsections (except id and its parents)
+const collapseSections = (id) => {
+  let anchor = id ? document.getElementById(id) : null;
   document
     .querySelectorAll(
       "section > h2, section > h3, section > h4, section > h5, section > h6"
@@ -253,36 +191,18 @@ const collapseOthers = () => {
     .forEach((heading) => {
       let thisSection = heading.closest("section");
       if (
-        !anchorId ||
-        (!(`#${thisSection.id}` == anchorId || thisSection.contains(anchor)) &&
+        !id ||
+        (!(thisSection.id == id || thisSection.contains(anchor)) &&
           !heading.closest("section").classList.contains("collapsed"))
       ) {
         collapseSection(heading);
       }
     });
-  if (anchorId) {
-    setTimeout(() => {
-      location.hash = anchorId.substring(1);
-      anchor.scrollIntoView(true);
-    }, 500);
-  }
-};
-const collapseAll = () => {
-  let oldHash = location.hash;
-  location.hash = "";
-  collapseOthers();
-  setTimeout(() => {
-    location.hash = oldHash;
-  }, 500);
 };
 
-//Expand anchor and its parents (or else all subsections)
-const expandAnchor = () => {
-  let anchorId = location.hash;
-  let anchor;
-  if (anchorId) {
-    anchor = document.querySelector(anchorId);
-  }
+//Expand all subsections (or just id and its parents)
+const expandSections = (id) => {
+  let anchor = id ? document.getElementById(id) : null;
   document
     .querySelectorAll(
       "section > h2, section > h3, section > h4, section > h5, section > h6"
@@ -290,29 +210,111 @@ const expandAnchor = () => {
     .forEach((heading) => {
       let thisSection = heading.closest("section");
       if (
-        (!anchorId ||
-          `#${thisSection.id}` == anchorId ||
-          thisSection.contains(anchor)) &&
+        (!id || thisSection.id == id || thisSection.contains(anchor)) &&
         heading.closest("section").classList.contains("collapsed")
       ) {
         expandSection(heading);
       }
     });
-  if (anchorId) {
+  if (id) {
     setTimeout(() => {
-      location.hash = anchorId.substring(1);
+      location.hash = id;
       anchor.scrollIntoView(true);
     }, 500);
   }
 };
-const expandAll = () => {
-  let oldHash = location.hash;
-  location.hash = "";
-  expandAnchor();
-  setTimeout(() => {
-    location.hash = oldHash;
-  }, 500);
+//Collapse all subsections, except id and its parents, expand those instead
+const collapseOthersExpandAnchor = () => {
+  let anchor = location.hash.substring(1);
+  if (anchor) {
+    collapseSections(anchor);
+    expandSections(anchor);
+    document.getElementById(anchor).scrollIntoView(true);
+  }
 };
+document.addEventListener("DOMContentLoaded", collapseOthersExpandAnchor);
+
+//Initialized toggle all sections buttons
+const initToggleAllSections = () => {
+  if (document.querySelector("main > section")) {
+    let toggleAllControls = document.createElement("div");
+    toggleAllControls.classList.add("toggleAllControls");
+    toggleAllControls.innerHTML = `
+    <a class="expandAll" onClick="expandSections()">Expand All</a>
+    <a class="anchorTarget" onClick="collapseOthersExpandAnchor()">${location.hash}</a>
+    <a class="collapseAll" onClick="collapseSections()">Collapse All</a>
+  `.trim();
+    document.querySelector("main").prepend(toggleAllControls.cloneNode(true));
+    document.querySelector("main").append(toggleAllControls.cloneNode(true));
+  }
+};
+document.addEventListener("DOMContentLoaded", initToggleAllSections);
+
+//Toggle (dis)ability of toggle all sections buttons as appropriate
+const toggleToggleButtons = () => {
+  let anchorId = location.hash;
+  let anchor = anchorId ? document.querySelector(anchorId) : null;
+  let collapsedSections = document.querySelectorAll(
+    "section.toggleable.collapsed"
+  );
+  if (collapsedSections.length > 0) {
+    document.querySelectorAll(".expandAll").forEach((el) => {
+      el.classList.remove("disabled");
+    });
+  } else {
+    document.querySelectorAll(".expandAll").forEach((el) => {
+      el.classList.add("disabled");
+    });
+  }
+  let uncollapsedSections = document.querySelectorAll(
+    "section.toggleable:not(.collapsed)"
+  );
+  if (uncollapsedSections.length > 0) {
+    document.querySelectorAll(".collapseAll").forEach((el) => {
+      el.classList.remove("disabled");
+    });
+  } else {
+    document.querySelectorAll(".collapseAll").forEach((el) => {
+      el.classList.add("disabled");
+    });
+  }
+  if (anchor) {
+    document.querySelectorAll(".anchorTarget").forEach((el) => {
+      el.textContent = document
+        .querySelector(anchorId)
+        .querySelector("h2, h3, h4, h5, h6").textContent;
+      el.classList.remove("disabled");
+    });
+    if (
+      anchor.classList.contains("collapsed") ||
+      anchor.closest(".collapsed") ||
+      [...uncollapsedSections].some(
+        (section) =>
+          !(
+            section.id == anchorId.substring(1) ||
+            section.querySelector(anchorId)
+          )
+      )
+    ) {
+      document.querySelectorAll(".anchorTarget").forEach((el) => {
+        el.classList.remove("disabled");
+      });
+    } else {
+      document.querySelectorAll(".anchorTarget").forEach((el) => {
+        el.classList.add("disabled");
+      });
+    }
+  } else {
+    document.querySelectorAll(".anchorTarget").forEach((el) => {
+      el.classList.add("disabled");
+    });
+    document.querySelectorAll(".anchorTarget").forEach((el) => {
+      el.textContent = " ";
+    });
+  }
+};
+document.addEventListener("DOMContentLoaded", toggleToggleButtons);
+window.addEventListener("hashchange", toggleToggleButtons);
 
 // Make external links open in new windows or tabs
 const externalLinks = () => {
