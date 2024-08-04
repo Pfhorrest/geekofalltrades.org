@@ -12,7 +12,8 @@ $text: black;
   --hw: calc(var(--mh) - var(--hs)); // Warmer hue
 
   // Saturation or chroma
-  --sm: 25%; // Main saturation, or chroma
+  --sm: 75%; // Main saturation, or chroma
+  --ss: 25%; // Secondary saturation, or chroma
   --sh: 100%; // Highlight saturation, or chroma
   --sd: 6.25%; // Disabled saturation, or chroma
 
@@ -43,8 +44,8 @@ $text: black;
 
   // Basic colors
   --cm: hsla(var(--hm), var(--sm), var(--lm), 100%); // Main color
-  --cc: hsla(var(--hc), var(--sm), var(--lm), 100%); // Cooler color
-  --cw: hsla(var(--hw), var(--sm), var(--lm), 100%); // Warmer color
+  --cc: hsla(var(--hc), var(--ss), var(--lm), 100%); // Cooler color
+  --cw: hsla(var(--hw), var(--ss), var(--lm), 100%); // Warmer color
 
   // Highlight colors
   --cmh: hsla(var(--hm), var(--sh), 100%, 100%); // Main highlight
@@ -78,46 +79,68 @@ $text: black;
   --cm05: hsla(var(--hm), var(--sm), var(--ls9), 100%); // Main color shade 9
 
   // Cooler color ramp
-  --cc95: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 9
-  --cc90: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 8
-  --cc85: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 7
-  --cc80: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 6
-  --cc75: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 5
-  --cc70: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 4
-  --cc65: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 3
-  --cc60: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 2
-  --cc55: hsla(var(--hc), var(--sm), var(--lt9), 100%); // Cooler color tint 1
+  --cc95: hsla(var(--hc), var(--ss), var(--lt9), 100%); // Cooler color tint 9
+  --cc90: hsla(var(--hc), var(--ss), var(--lt9), 100%); // Cooler color tint 8
+  --cc85: hsla(var(--hc), var(--ss), var(--lt9), 100%); // Cooler color tint 7
+  --cc80: hsla(var(--hc), var(--ss), var(--lt9), 100%); // Cooler color tint 6
+  --cc75: hsla(var(--hc), var(--ss), var(--lt9), 100%); // Cooler color tint 5
+  --cc70: hsla(var(--hc), var(--ss), var(--lt9), 100%); // Cooler color tint 4
+  --cc65: hsla(var(--hc), var(--ss), var(--lt9), 100%); // Cooler color tint 3
+  --cc60: hsla(var(--hc), var(--ss), var(--lt9), 100%); // Cooler color tint 2
+  --cc55: hsla(var(--hc), var(--ss), var(--lt9), 100%); // Cooler color tint 1
   --cc50: var(--cc); // Cooler color
-  --cc45: hsla(var(--hc), var(--sm), var(--ls1), 100%); // Cooler color shade 1
-  --cc40: hsla(var(--hc), var(--sm), var(--ls2), 100%); // Cooler color shade 2
-  --cc35: hsla(var(--hc), var(--sm), var(--ls3), 100%); // Cooler color shade 3
-  --cc30: hsla(var(--hc), var(--sm), var(--ls4), 100%); // Cooler color shade 4
-  --cc25: hsla(var(--hc), var(--sm), var(--ls5), 100%); // Cooler color shade 5
-  --cc20: hsla(var(--hc), var(--sm), var(--ls6), 100%); // Cooler color shade 6
-  --cc15: hsla(var(--hc), var(--sm), var(--ls7), 100%); // Cooler color shade 7
-  --cc10: hsla(var(--hc), var(--sm), var(--ls8), 100%); // Cooler color shade 8
-  --cc05: hsla(var(--hc), var(--sm), var(--ls9), 100%); // Cooler color shade 9
+  --cc45: hsla(var(--hc), var(--ss), var(--ls1), 100%); // Cooler color shade 1
+  --cc40: hsla(var(--hc), var(--ss), var(--ls2), 100%); // Cooler color shade 2
+  --cc35: hsla(var(--hc), var(--ss), var(--ls3), 100%); // Cooler color shade 3
+  --cc30: hsla(var(--hc), var(--ss), var(--ls4), 100%); // Cooler color shade 4
+  --cc25: hsla(var(--hc), var(--ss), var(--ls5), 100%); // Cooler color shade 5
+  --cc20: hsla(var(--hc), var(--ss), var(--ls6), 100%); // Cooler color shade 6
+  --cc15: hsla(var(--hc), var(--ss), var(--ls7), 100%); // Cooler color shade 7
+  --cc10: hsla(var(--hc), var(--ss), var(--ls8), 100%); // Cooler color shade 8
+  --cc05: hsla(var(--hc), var(--ss), var(--ls9), 100%); // Cooler color shade 9
 
   // Warmer color ramp
-  --cw95: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 9
-  --cw90: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 8
-  --cw85: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 7
-  --cw80: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 6
-  --cw75: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 5
-  --cw70: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 4
-  --cw65: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 3
-  --cw60: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 2
-  --cw55: hsla(var(--hw), var(--sm), var(--lt9), 100%); // Warmer color tint 1
+  --cw95: hsla(var(--hw), var(--ss), var(--lt9), 100%); // Warmer color tint 9
+  --cw90: hsla(var(--hw), var(--ss), var(--lt9), 100%); // Warmer color tint 8
+  --cw85: hsla(var(--hw), var(--ss), var(--lt9), 100%); // Warmer color tint 7
+  --cw80: hsla(var(--hw), var(--ss), var(--lt9), 100%); // Warmer color tint 6
+  --cw75: hsla(var(--hw), var(--ss), var(--lt9), 100%); // Warmer color tint 5
+  --cw70: hsla(var(--hw), var(--ss), var(--lt9), 100%); // Warmer color tint 4
+  --cw65: hsla(var(--hw), var(--ss), var(--lt9), 100%); // Warmer color tint 3
+  --cw60: hsla(var(--hw), var(--ss), var(--lt9), 100%); // Warmer color tint 2
+  --cw55: hsla(var(--hw), var(--ss), var(--lt9), 100%); // Warmer color tint 1
   --cw50: var(--cw); // Warmer color
-  --cw45: hsla(var(--hw), var(--sm), var(--ls1), 100%); // Warmer color shade 1
-  --cw40: hsla(var(--hw), var(--sm), var(--ls2), 100%); // Warmer color shade 2
-  --cw35: hsla(var(--hw), var(--sm), var(--ls3), 100%); // Warmer color shade 3
-  --cw30: hsla(var(--hw), var(--sm), var(--ls4), 100%); // Warmer color shade 4
-  --cw25: hsla(var(--hw), var(--sm), var(--ls5), 100%); // Warmer color shade 5
-  --cw20: hsla(var(--hw), var(--sm), var(--ls6), 100%); // Warmer color shade 6
-  --cw15: hsla(var(--hw), var(--sm), var(--ls7), 100%); // Warmer color shade 7
-  --cw10: hsla(var(--hw), var(--sm), var(--ls8), 100%); // Warmer color shade 8
-  --cw05: hsla(var(--hw), var(--sm), var(--ls9), 100%); // Warmer color shade 9
+  --cw45: hsla(var(--hw), var(--ss), var(--ls1), 100%); // Warmer color shade 1
+  --cw40: hsla(var(--hw), var(--ss), var(--ls2), 100%); // Warmer color shade 2
+  --cw35: hsla(var(--hw), var(--ss), var(--ls3), 100%); // Warmer color shade 3
+  --cw30: hsla(var(--hw), var(--ss), var(--ls4), 100%); // Warmer color shade 4
+  --cw25: hsla(var(--hw), var(--ss), var(--ls5), 100%); // Warmer color shade 5
+  --cw20: hsla(var(--hw), var(--ss), var(--ls6), 100%); // Warmer color shade 6
+  --cw15: hsla(var(--hw), var(--ss), var(--ls7), 100%); // Warmer color shade 7
+  --cw10: hsla(var(--hw), var(--ss), var(--ls8), 100%); // Warmer color shade 8
+  --cw05: hsla(var(--hw), var(--ss), var(--ls9), 100%); // Warmer color shade 9
+
+  --shade: #0001;
+  --gloss: #fffc;
+
+  --skyHue1: 60;
+  --skyHue2: 30;
+  --skyHue3: 0;
+  --skyColor0: hsl(var(--skyHue1), 0, 100%);
+  --skyColor1: hsl(var(--skyHue1), 25%, 87.5%);
+  --skyColor2: hsl(var(--skyHue2), 50%, 62.5%);
+  --skyColor3: hsl(var(--skyHue3), 75%, 37.5%);
+  --cloudColor: hsla(var(--skyHue1), 100%, 100%, 50%);
+  --cloudLight: hsla(var(--skyHue1), 100%, 100%, 100%);
+  --seaHue1: 180;
+  --seaHue2: 210;
+  --seaHue3: 240;
+  --seaColor0: hsl(var(--seaHue1), 0, 100%);
+  --seaColor1: hsl(var(--seaHue1), 25%, 87.5%);
+  --seaColor2: hsl(var(--seaHue2), 50%, 62.5%);
+  --seaColor3: hsl(var(--seaHue3), 75%, 37.5%);
+  --swellColor: hsla(var(--seaHue1), 100%, 100%, 50%);
+  --swellLight: hsla(var(--seaHue1), 100%, 100%, 100%);
 }
 
 @supports (color: oklch(100% 100% 0)) {
@@ -127,8 +150,8 @@ $text: black;
 
     // Basic colors
     --cm: oklch(var(--lm) var(--sm) var(--hmx)); // Main color
-    --cc: oklch(from var(--cm) l c calc(h + var(--hs))); // Cooler color
-    --cw: oklch(from var(--cm) l c calc(h - var(--hs))); // Warmer color
+    --cc: oklch(from var(--cm) l var(--ss) calc(h + var(--hs))); // Cooler color
+    --cw: oklch(from var(--cm) l var(--ss) calc(h - var(--hs))); // Warmer color
 
     // Highlight colors
     --cmh: oklch(from var(--cm) 100% var(--sh) h); // Main highlight
@@ -137,8 +160,8 @@ $text: black;
 
     // Disabled colors
     --cmd: oklch(from var(--cm) l var(--sd) h); // Main disabled
-    --ccd: oklch(from var(--cc) l var(--sh) h); // Cooler disabled
-    --cwd: oklch(from var(--cw) l var(--sh) h); // Warmer disabled
+    --ccd: oklch(from var(--cc) l var(--sd) h); // Cooler disabled
+    --cwd: oklch(from var(--cw) l var(--sd) h); // Warmer disabled
 
     // Main color ramp
     --cm95: color-mix(in oklch, var(--cm) 10%, white); // Main color tint 9
@@ -204,9 +227,20 @@ $text: black;
     --cw05: color-mix(in oklch, var(--cw) 10%, black); // Warmer color shade 9
 
     --shade: color-mix(in oklch, black 12.5%, transparent);
-    // --shadeMd: color-mix(in oklch, var(--shade), var(--shadeLt));
-    // --shadeLt: color-mix(in oklch, var(--shade), transparent);
     --gloss: color-mix(in oklch, white 75%, transparent);
+
+    --cloudColor: oklch(100% 100% calc(var(--skyHue1) + 30) / 50%);
+    --cloudLight: oklch(from var(--cloudColor) 100% 100% h / 100%);
+    --skyColor0: oklch(100% 0 calc(60 + 30));
+    --skyColor1: oklch(87.5% 25% calc(60 + 30));
+    --skyColor2: oklch(62.5% 50% calc(30 + 30));
+    --skyColor3: oklch(37.5% 75% calc(0 + 30));
+    --swellColor: oklch(100% 100% calc(var(--seaHue1) + 30) / 50%);
+    --swellLight: oklch(from var(--swellColor) 100% 100% h / 100);
+    --seaColor0: oklch(100% 0 calc(180 + 30));
+    --seaColor1: oklch(87.5% 25% calc(180 + 30));
+    --seaColor2: oklch(62.5% 50% calc(210 + 30));
+    --seaColor3: oklch(37.5% 75% calc(240 + 30));
   }
 }
 
@@ -368,10 +402,6 @@ header {
     display: flex;
     box-sizing: border-box;
     width: 100%;
-    --cloudColor: oklch(100% 100% calc(60 + 30) / 50%);
-    --cloudLight: oklch(from var(--cloudColor) 100% 100% h / 100%);
-    --waveColor: oklch(100% 100% calc(180 + 30) / 50%);
-    --waveLight: oklch(from var(--waveColor) 100% 100% h / 100);
     background: linear-gradient(
         to bottom,
         transparent 0%,
@@ -406,47 +436,47 @@ header {
         var(--cloudLight) calc(50% - 1.125 * 50% / 1024),
         transparent calc(50% - 1 * 50% / 1024),
         transparent calc(50% + 1 * 50% / 1024),
-        var(--waveLight) calc(50% + 1.625 * 50% / 1024),
-        var(--waveColor) calc(50% + 1.75 * 50% / 1024),
+        var(--swellLight) calc(50% + 1.625 * 50% / 1024),
+        var(--swellColor) calc(50% + 1.75 * 50% / 1024),
         transparent calc(50% + 1 * 50% / 512),
-        var(--waveLight) calc(50% + 1.625 * 50% / 512),
-        var(--waveColor) calc(50% + 1.75 * 50% / 512),
+        var(--swellLight) calc(50% + 1.625 * 50% / 512),
+        var(--swellColor) calc(50% + 1.75 * 50% / 512),
         transparent calc(50% + 1 * 50% / 256),
-        var(--waveLight) calc(50% + 1.625 * 50% / 256),
-        var(--waveColor) calc(50% + 1.75 * 50% / 256),
+        var(--swellLight) calc(50% + 1.625 * 50% / 256),
+        var(--swellColor) calc(50% + 1.75 * 50% / 256),
         transparent calc(50% + 1 * 50% / 128),
-        var(--waveLight) calc(50% + 1.625 * 50% / 128),
-        var(--waveColor) calc(50% + 1.75 * 50% / 128),
+        var(--swellLight) calc(50% + 1.625 * 50% / 128),
+        var(--swellColor) calc(50% + 1.75 * 50% / 128),
         transparent calc(50% + 1 * 50% / 64),
-        var(--waveLight) calc(50% + 1.625 * 50% / 64),
-        var(--waveColor) calc(50% + 1.75 * 50% / 64),
+        var(--swellLight) calc(50% + 1.625 * 50% / 64),
+        var(--swellColor) calc(50% + 1.75 * 50% / 64),
         transparent calc(50% + 1 * 50% / 32),
-        var(--waveLight) calc(50% + 1.625 * 50% / 32),
-        var(--waveColor) calc(50% + 1.75 * 50% / 32),
+        var(--swellLight) calc(50% + 1.625 * 50% / 32),
+        var(--swellColor) calc(50% + 1.75 * 50% / 32),
         transparent calc(50% + 1 * 50% / 16),
-        var(--waveLight) calc(50% + 1.625 * 50% / 16),
-        var(--waveColor) calc(50% + 1.75 * 50% / 16),
+        var(--swellLight) calc(50% + 1.625 * 50% / 16),
+        var(--swellColor) calc(50% + 1.75 * 50% / 16),
         transparent calc(50% + 1 * 50% / 8),
-        var(--waveLight) calc(50% + 1.625 * 50% / 8),
-        var(--waveColor) calc(50% + 1.75 * 50% / 8),
+        var(--swellLight) calc(50% + 1.625 * 50% / 8),
+        var(--swellColor) calc(50% + 1.75 * 50% / 8),
         transparent calc(50% + 1 * 50% / 4),
-        var(--waveLight) calc(50% + 1.625 * 50% / 4),
-        var(--waveColor) calc(50% + 1.75 * 50% / 4),
+        var(--swellLight) calc(50% + 1.625 * 50% / 4),
+        var(--swellColor) calc(50% + 1.75 * 50% / 4),
         transparent calc(50% + 1 * 50% / 2),
-        var(--waveLight) calc(50% + 1.625 * 50% / 2),
-        var(--waveColor) calc(50% + 1.75 * 50% / 2),
+        var(--swellLight) calc(50% + 1.625 * 50% / 2),
+        var(--swellColor) calc(50% + 1.75 * 50% / 2),
         transparent 100%
       ),
       linear-gradient(
         to bottom,
-        oklch(37.5% 75% calc(0 + 30)) 0%,
-        oklch(62.5% 50% calc(30 + 30)) 25%,
-        oklch(87.5% 25% calc(60 + 30)) 48%,
-        oklch(100% 0 calc(60 + 30)) 50%,
-        oklch(100% 0 calc(180 + 30)) 50%,
-        oklch(87.5% 25% calc(180 + 30)) 52%,
-        oklch(62.5% 50% calc(210 + 30)) 75%,
-        oklch(37.5% 75% calc(240 + 30)) 100%
+        var(--skyColor3) 0%,
+        var(--skyColor2) 37.5%,
+        var(--skyColor1) 48%,
+        var(--skyColor0) 50%,
+        var(--seaColor0) 50%,
+        var(--seaColor1) 52%,
+        var(--seaColor2) 62.5%,
+        var(--seaColor3) 100%
       );
     background-size: 100% 100%, auto;
     background-position: center, center, center;
@@ -456,8 +486,19 @@ header {
     border-radius: 0.5em;
     outline: 1px solid black;
     color: black;
-    text-shadow: 1px 1px 1px white, 1px -1px 1px white, -1px 1px 1px white,
-      -1px -1px 1px white;
+    --sW: calc(1em / 32); // stroke width
+    --sC: #fff8; // stroke color
+    text-shadow: var(--sW) var(--sW) var(--sW) var(--sC),
+      0 var(--sW) var(--sW) var(--sC),
+      calc(-1 * var(--sW)) var(--sW) var(--sW) var(--sC),
+      calc(-1 * var(--sW)) 0 var(--sW) var(--sC),
+      calc(-1 * var(--sW)) calc(-1 * var(--sW)) var(--sW) var(--sC),
+      0 calc(-1 * var(--sW)) var(--sW) var(--sC),
+      var(--sW) calc(-1 * var(--sW)) var(--sW) var(--sC),
+      var(--sW) 0 var(--sW) var(--sC);
+    -webkit-text-stroke: var(--sW) var(--sC);
+    -webkit-text-fill-color: black;
+    paint-order: stroke fill;
     font-family: "Princess Sofia", "Open Sans", sans-serif;
     font-size: max(1.5rem, 4vw);
     display: flex;
@@ -517,7 +558,9 @@ header {
       border-radius: 6.25vw 6.25vw 0 0;
       box-shadow: inset 0 0 0.5vw 0 #0008, inset 0 0 0 0.5vw #000c;
       &:hover {
-        color: var(--cm30);
+        color: var(--cm);
+        -webkit-text-fill-color: var(--cm);
+        -webkit-text-stroke: 0.03125em black;
         text-shadow: 0.0125em 0.0125em 0.0125em #000,
           0.025em 0.025em 0.025em #0008, 0.05em 0.05em 0.05em #0004,
           0.1em 0.1em 0.1em #0002;
@@ -560,35 +603,34 @@ footer {
   outline: 0;
   background: linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.0625) calc(50% - 1.5 * 50% / 2),
-      rgba(255, 255, 255, 0) calc(50% - 1 * 50% / 2),
-      rgba(255, 255, 255, 0.0625) calc(50% - 1.5 * 50% / 4),
-      rgba(255, 255, 255, 0) calc(50% - 1 * 50% / 4),
-      rgba(255, 255, 255, 0.0625) calc(50% - 1.5 * 50% / 8),
-      rgba(255, 255, 255, 0) calc(50% - 1 * 50% / 8),
-      rgba(255, 255, 255, 0.0625) calc(50% - 1.5 * 50% / 16),
-      rgba(255, 255, 255, 0) calc(50% - 1 * 50% / 16),
-      rgba(255, 255, 255, 0) calc(50% + 1 * 50% / 16),
-      rgba(255, 255, 255, 0.0625) calc(50% + 1.5 * 50% / 16),
-      rgba(255, 255, 255, 0) calc(50% + 1 * 50% / 8),
-      rgba(255, 255, 255, 0.0625) calc(50% + 1.5 * 50% / 8),
-      rgba(255, 255, 255, 0) calc(50% + 1 * 50% / 4),
-      rgba(255, 255, 255, 0.0625) calc(50% + 1.5 * 50% / 4),
-      rgba(255, 255, 255, 0) calc(50% + 1 * 50% / 2),
-      rgba(255, 255, 255, 0.0625) calc(50% + 1.5 * 50% / 2),
-      rgba(255, 255, 255, 0) 100%
+      transparent 0%,
+      transparent calc(1 * 100% / 32),
+      var(--swellLight) calc(1.25 * 100% / 32),
+      var(--swellColor) calc(1.5 * 100% / 32),
+      transparent calc(1 * 100% / 16),
+      var(--swellLight) calc(1.25 * 100% / 16),
+      var(--swellColor) calc(1.5 * 100% / 16),
+      transparent calc(1 * 100% / 8),
+      var(--swellLight) calc(1.25 * 100% / 8),
+      var(--swellColor) calc(1.5 * 100% / 8),
+      transparent calc(1 * 100% / 4),
+      var(--swellLight) calc(1.25 * 100% / 4),
+      var(--swellColor) calc(1.5 * 100% / 4),
+      transparent calc(1 * 100% / 2),
+      var(--swellLight) calc(1.25 * 100% / 2),
+      var(--swellColor) calc(1.5 * 100% / 2),
+      transparent 100%
     ),
     linear-gradient(
       to bottom,
-      var(--cc75) 0%,
-      var(--cc50) 50%,
-      var(--cc75) 100%
+      var(--seaColor1) 0%,
+      var(--seaColor2) 75%,
+      var(--seaColor3) 100%
     );
   background-size: 100% 100%, auto;
-  background-position: center, center;
+  background-position: top, center;
   border-top: 3pt ridge var(--cw75);
-  color: var(--cw50);
+  color: var(--cw25);
   text-align: center;
   box-shadow: 0 0.5em 0.5em var(--shade) inset;
   animation-name: waves;
@@ -602,8 +644,23 @@ footer {
     padding: 1em;
   }
   a {
-    text-shadow: 1px 1px 1px var(--shade);
+    --sW: calc(1em / 32); // stroke width
+    --sC: #0008; // stroke color
+    text-shadow: var(--sW) var(--sW) var(--sW) var(--sC),
+      0 var(--sW) var(--sW) var(--sC),
+      calc(-1 * var(--sW)) var(--sW) var(--sW) var(--sC),
+      calc(-1 * var(--sW)) 0 var(--sW) var(--sC),
+      calc(-1 * var(--sW)) calc(-1 * var(--sW)) var(--sW) var(--sC),
+      0 calc(-1 * var(--sW)) var(--sW) var(--sC),
+      var(--sW) calc(-1 * var(--sW)) var(--sW) var(--sC),
+      var(--sW) 0 var(--sW) var(--sC);
+    -webkit-text-stroke: 2px var(--sC);
+    -webkit-text-fill-color: var(--cw85);
+    paint-order: stroke fill;
     text-decoration: none;
+    letter-spacing: 0.5ch;
+    font-weight: bold;
+    // text-transform: uppercase;
     &:link {
       color: var(--cw85);
     }
@@ -614,7 +671,7 @@ footer {
       color: var(--cw95);
     }
     &:visited {
-      color: var(--cw70);
+      color: var(--cw80);
     }
   }
   @media only print {
@@ -697,6 +754,9 @@ footer {
       color: var(--cc50);
       border-top-color: var(--cc50);
       background-position-y: 100%;
+    }
+    &:only-of-type {
+      display: none;
     }
 
     &:hover,

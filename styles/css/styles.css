@@ -5,7 +5,8 @@
   --hs: 60;
   --hc: calc(var(--mh) + var(--hs));
   --hw: calc(var(--mh) - var(--hs));
-  --sm: 25%;
+  --sm: 75%;
+  --ss: 25%;
   --sh: 100%;
   --sd: 6.25%;
   --lm: 50%;
@@ -30,8 +31,8 @@
   --ls8: calc(var(--lm) + (var(--lsi) * 8));
   --ls9: calc(var(--lm) + (var(--lsi) * 9));
   --cm: hsla(var(--hm), var(--sm), var(--lm), 100%);
-  --cc: hsla(var(--hc), var(--sm), var(--lm), 100%);
-  --cw: hsla(var(--hw), var(--sm), var(--lm), 100%);
+  --cc: hsla(var(--hc), var(--ss), var(--lm), 100%);
+  --cw: hsla(var(--hw), var(--ss), var(--lm), 100%);
   --cmh: hsla(var(--hm), var(--sh), 100%, 100%);
   --cch: hsla(var(--hc), var(--sh), 100%, 100%);
   --cwh: hsla(var(--hw), var(--sh), 100%, 100%);
@@ -57,58 +58,78 @@
   --cm15: hsla(var(--hm), var(--sm), var(--ls7), 100%);
   --cm10: hsla(var(--hm), var(--sm), var(--ls8), 100%);
   --cm05: hsla(var(--hm), var(--sm), var(--ls9), 100%);
-  --cc95: hsla(var(--hc), var(--sm), var(--lt9), 100%);
-  --cc90: hsla(var(--hc), var(--sm), var(--lt9), 100%);
-  --cc85: hsla(var(--hc), var(--sm), var(--lt9), 100%);
-  --cc80: hsla(var(--hc), var(--sm), var(--lt9), 100%);
-  --cc75: hsla(var(--hc), var(--sm), var(--lt9), 100%);
-  --cc70: hsla(var(--hc), var(--sm), var(--lt9), 100%);
-  --cc65: hsla(var(--hc), var(--sm), var(--lt9), 100%);
-  --cc60: hsla(var(--hc), var(--sm), var(--lt9), 100%);
-  --cc55: hsla(var(--hc), var(--sm), var(--lt9), 100%);
+  --cc95: hsla(var(--hc), var(--ss), var(--lt9), 100%);
+  --cc90: hsla(var(--hc), var(--ss), var(--lt9), 100%);
+  --cc85: hsla(var(--hc), var(--ss), var(--lt9), 100%);
+  --cc80: hsla(var(--hc), var(--ss), var(--lt9), 100%);
+  --cc75: hsla(var(--hc), var(--ss), var(--lt9), 100%);
+  --cc70: hsla(var(--hc), var(--ss), var(--lt9), 100%);
+  --cc65: hsla(var(--hc), var(--ss), var(--lt9), 100%);
+  --cc60: hsla(var(--hc), var(--ss), var(--lt9), 100%);
+  --cc55: hsla(var(--hc), var(--ss), var(--lt9), 100%);
   --cc50: var(--cc);
-  --cc45: hsla(var(--hc), var(--sm), var(--ls1), 100%);
-  --cc40: hsla(var(--hc), var(--sm), var(--ls2), 100%);
-  --cc35: hsla(var(--hc), var(--sm), var(--ls3), 100%);
-  --cc30: hsla(var(--hc), var(--sm), var(--ls4), 100%);
-  --cc25: hsla(var(--hc), var(--sm), var(--ls5), 100%);
-  --cc20: hsla(var(--hc), var(--sm), var(--ls6), 100%);
-  --cc15: hsla(var(--hc), var(--sm), var(--ls7), 100%);
-  --cc10: hsla(var(--hc), var(--sm), var(--ls8), 100%);
-  --cc05: hsla(var(--hc), var(--sm), var(--ls9), 100%);
-  --cw95: hsla(var(--hw), var(--sm), var(--lt9), 100%);
-  --cw90: hsla(var(--hw), var(--sm), var(--lt9), 100%);
-  --cw85: hsla(var(--hw), var(--sm), var(--lt9), 100%);
-  --cw80: hsla(var(--hw), var(--sm), var(--lt9), 100%);
-  --cw75: hsla(var(--hw), var(--sm), var(--lt9), 100%);
-  --cw70: hsla(var(--hw), var(--sm), var(--lt9), 100%);
-  --cw65: hsla(var(--hw), var(--sm), var(--lt9), 100%);
-  --cw60: hsla(var(--hw), var(--sm), var(--lt9), 100%);
-  --cw55: hsla(var(--hw), var(--sm), var(--lt9), 100%);
+  --cc45: hsla(var(--hc), var(--ss), var(--ls1), 100%);
+  --cc40: hsla(var(--hc), var(--ss), var(--ls2), 100%);
+  --cc35: hsla(var(--hc), var(--ss), var(--ls3), 100%);
+  --cc30: hsla(var(--hc), var(--ss), var(--ls4), 100%);
+  --cc25: hsla(var(--hc), var(--ss), var(--ls5), 100%);
+  --cc20: hsla(var(--hc), var(--ss), var(--ls6), 100%);
+  --cc15: hsla(var(--hc), var(--ss), var(--ls7), 100%);
+  --cc10: hsla(var(--hc), var(--ss), var(--ls8), 100%);
+  --cc05: hsla(var(--hc), var(--ss), var(--ls9), 100%);
+  --cw95: hsla(var(--hw), var(--ss), var(--lt9), 100%);
+  --cw90: hsla(var(--hw), var(--ss), var(--lt9), 100%);
+  --cw85: hsla(var(--hw), var(--ss), var(--lt9), 100%);
+  --cw80: hsla(var(--hw), var(--ss), var(--lt9), 100%);
+  --cw75: hsla(var(--hw), var(--ss), var(--lt9), 100%);
+  --cw70: hsla(var(--hw), var(--ss), var(--lt9), 100%);
+  --cw65: hsla(var(--hw), var(--ss), var(--lt9), 100%);
+  --cw60: hsla(var(--hw), var(--ss), var(--lt9), 100%);
+  --cw55: hsla(var(--hw), var(--ss), var(--lt9), 100%);
   --cw50: var(--cw);
-  --cw45: hsla(var(--hw), var(--sm), var(--ls1), 100%);
-  --cw40: hsla(var(--hw), var(--sm), var(--ls2), 100%);
-  --cw35: hsla(var(--hw), var(--sm), var(--ls3), 100%);
-  --cw30: hsla(var(--hw), var(--sm), var(--ls4), 100%);
-  --cw25: hsla(var(--hw), var(--sm), var(--ls5), 100%);
-  --cw20: hsla(var(--hw), var(--sm), var(--ls6), 100%);
-  --cw15: hsla(var(--hw), var(--sm), var(--ls7), 100%);
-  --cw10: hsla(var(--hw), var(--sm), var(--ls8), 100%);
-  --cw05: hsla(var(--hw), var(--sm), var(--ls9), 100%);
+  --cw45: hsla(var(--hw), var(--ss), var(--ls1), 100%);
+  --cw40: hsla(var(--hw), var(--ss), var(--ls2), 100%);
+  --cw35: hsla(var(--hw), var(--ss), var(--ls3), 100%);
+  --cw30: hsla(var(--hw), var(--ss), var(--ls4), 100%);
+  --cw25: hsla(var(--hw), var(--ss), var(--ls5), 100%);
+  --cw20: hsla(var(--hw), var(--ss), var(--ls6), 100%);
+  --cw15: hsla(var(--hw), var(--ss), var(--ls7), 100%);
+  --cw10: hsla(var(--hw), var(--ss), var(--ls8), 100%);
+  --cw05: hsla(var(--hw), var(--ss), var(--ls9), 100%);
+  --shade: #0001;
+  --gloss: #fffc;
+  --skyHue1: 60;
+  --skyHue2: 30;
+  --skyHue3: 0;
+  --skyColor0: hsl(var(--skyHue1), 0, 100%);
+  --skyColor1: hsl(var(--skyHue1), 25%, 87.5%);
+  --skyColor2: hsl(var(--skyHue2), 50%, 62.5%);
+  --skyColor3: hsl(var(--skyHue3), 75%, 37.5%);
+  --cloudColor: hsla(var(--skyHue1), 100%, 100%, 50%);
+  --cloudLight: hsla(var(--skyHue1), 100%, 100%, 100%);
+  --seaHue1: 180;
+  --seaHue2: 210;
+  --seaHue3: 240;
+  --seaColor0: hsl(var(--seaHue1), 0, 100%);
+  --seaColor1: hsl(var(--seaHue1), 25%, 87.5%);
+  --seaColor2: hsl(var(--seaHue2), 50%, 62.5%);
+  --seaColor3: hsl(var(--seaHue3), 75%, 37.5%);
+  --swellColor: hsla(var(--seaHue1), 100%, 100%, 50%);
+  --swellLight: hsla(var(--seaHue1), 100%, 100%, 100%);
 }
 
 @supports (color: oklch(100% 100% 0)) {
   :root {
     --hmx: calc(var(--hm) + 30);
     --cm: oklch(var(--lm) var(--sm) var(--hmx));
-    --cc: oklch(from var(--cm) l c calc(h + var(--hs)));
-    --cw: oklch(from var(--cm) l c calc(h - var(--hs)));
+    --cc: oklch(from var(--cm) l var(--ss) calc(h + var(--hs)));
+    --cw: oklch(from var(--cm) l var(--ss) calc(h - var(--hs)));
     --cmh: oklch(from var(--cm) 100% var(--sh) h);
     --cch: oklch(from var(--cc) 100% var(--sh) h);
     --cwh: oklch(from var(--cw) 100% var(--sh) h);
     --cmd: oklch(from var(--cm) l var(--sd) h);
-    --ccd: oklch(from var(--cc) l var(--sh) h);
-    --cwd: oklch(from var(--cw) l var(--sh) h);
+    --ccd: oklch(from var(--cc) l var(--sd) h);
+    --cwd: oklch(from var(--cw) l var(--sd) h);
     --cm95: color-mix(in oklch, var(--cm) 10%, white);
     --cm90: color-mix(in oklch, var(--cm) 20%, white);
     --cm85: color-mix(in oklch, var(--cm) 30%, white);
@@ -168,6 +189,18 @@
     --cw05: color-mix(in oklch, var(--cw) 10%, black);
     --shade: color-mix(in oklch, black 12.5%, transparent);
     --gloss: color-mix(in oklch, white 75%, transparent);
+    --cloudColor: oklch(100% 100% calc(var(--skyHue1) + 30) / 50%);
+    --cloudLight: oklch(from var(--cloudColor) 100% 100% h / 100%);
+    --skyColor0: oklch(100% 0 calc(60 + 30));
+    --skyColor1: oklch(87.5% 25% calc(60 + 30));
+    --skyColor2: oklch(62.5% 50% calc(30 + 30));
+    --skyColor3: oklch(37.5% 75% calc(0 + 30));
+    --swellColor: oklch(100% 100% calc(var(--seaHue1) + 30) / 50%);
+    --swellLight: oklch(from var(--swellColor) 100% 100% h / 100);
+    --seaColor0: oklch(100% 0 calc(180 + 30));
+    --seaColor1: oklch(87.5% 25% calc(180 + 30));
+    --seaColor2: oklch(62.5% 50% calc(210 + 30));
+    --seaColor3: oklch(37.5% 75% calc(240 + 30));
   }
 }
 /* Legacy SASS variables used in transparentize() */
@@ -349,11 +382,7 @@ header h1, header:hover h1 {
   display: flex;
   box-sizing: border-box;
   width: 100%;
-  --cloudColor: oklch(100% 100% calc(60 + 30) / 50%);
-  --cloudLight: oklch(from var(--cloudColor) 100% 100% h / 100%);
-  --waveColor: oklch(100% 100% calc(180 + 30) / 50%);
-  --waveLight: oklch(from var(--waveColor) 100% 100% h / 100);
-  background: linear-gradient(to bottom, transparent 0%, var(--cloudColor) 18.75%, var(--cloudLight) 21.875%, transparent 25%, var(--cloudColor) 34.375%, var(--cloudLight) 35.9375%, transparent 37.5%, var(--cloudColor) 42.1875%, var(--cloudLight) 42.96875%, transparent 43.75%, var(--cloudColor) 46.09375%, var(--cloudLight) 46.484375%, transparent 46.875%, var(--cloudColor) 48.046875%, var(--cloudLight) 48.2421875%, transparent 48.4375%, var(--cloudColor) 49.0234375%, var(--cloudLight) 49.12109375%, transparent 49.21875%, var(--cloudColor) 49.51171875%, var(--cloudLight) 49.560546875%, transparent 49.609375%, var(--cloudColor) 49.755859375%, var(--cloudLight) 49.7802734375%, transparent 49.8046875%, var(--cloudColor) 49.8779296875%, var(--cloudLight) 49.8901367188%, transparent 49.90234375%, var(--cloudColor) 49.9389648438%, var(--cloudLight) 49.9450683594%, transparent 49.951171875%, transparent 50.048828125%, var(--waveLight) 50.0793457031%, var(--waveColor) 50.0854492188%, transparent 50.09765625%, var(--waveLight) 50.1586914063%, var(--waveColor) 50.1708984375%, transparent 50.1953125%, var(--waveLight) 50.3173828125%, var(--waveColor) 50.341796875%, transparent 50.390625%, var(--waveLight) 50.634765625%, var(--waveColor) 50.68359375%, transparent 50.78125%, var(--waveLight) 51.26953125%, var(--waveColor) 51.3671875%, transparent 51.5625%, var(--waveLight) 52.5390625%, var(--waveColor) 52.734375%, transparent 53.125%, var(--waveLight) 55.078125%, var(--waveColor) 55.46875%, transparent 56.25%, var(--waveLight) 60.15625%, var(--waveColor) 60.9375%, transparent 62.5%, var(--waveLight) 70.3125%, var(--waveColor) 71.875%, transparent 75%, var(--waveLight) 90.625%, var(--waveColor) 93.75%, transparent 100%), linear-gradient(to bottom, oklch(37.5% 75% 30) 0%, oklch(62.5% 50% 60) 25%, oklch(87.5% 25% 90) 48%, oklch(100% 0 90) 50%, oklch(100% 0 210) 50%, oklch(87.5% 25% 210) 52%, oklch(62.5% 50% 240) 75%, oklch(37.5% 75% 270) 100%);
+  background: linear-gradient(to bottom, transparent 0%, var(--cloudColor) 18.75%, var(--cloudLight) 21.875%, transparent 25%, var(--cloudColor) 34.375%, var(--cloudLight) 35.9375%, transparent 37.5%, var(--cloudColor) 42.1875%, var(--cloudLight) 42.96875%, transparent 43.75%, var(--cloudColor) 46.09375%, var(--cloudLight) 46.484375%, transparent 46.875%, var(--cloudColor) 48.046875%, var(--cloudLight) 48.2421875%, transparent 48.4375%, var(--cloudColor) 49.0234375%, var(--cloudLight) 49.12109375%, transparent 49.21875%, var(--cloudColor) 49.51171875%, var(--cloudLight) 49.560546875%, transparent 49.609375%, var(--cloudColor) 49.755859375%, var(--cloudLight) 49.7802734375%, transparent 49.8046875%, var(--cloudColor) 49.8779296875%, var(--cloudLight) 49.8901367188%, transparent 49.90234375%, var(--cloudColor) 49.9389648438%, var(--cloudLight) 49.9450683594%, transparent 49.951171875%, transparent 50.048828125%, var(--swellLight) 50.0793457031%, var(--swellColor) 50.0854492188%, transparent 50.09765625%, var(--swellLight) 50.1586914063%, var(--swellColor) 50.1708984375%, transparent 50.1953125%, var(--swellLight) 50.3173828125%, var(--swellColor) 50.341796875%, transparent 50.390625%, var(--swellLight) 50.634765625%, var(--swellColor) 50.68359375%, transparent 50.78125%, var(--swellLight) 51.26953125%, var(--swellColor) 51.3671875%, transparent 51.5625%, var(--swellLight) 52.5390625%, var(--swellColor) 52.734375%, transparent 53.125%, var(--swellLight) 55.078125%, var(--swellColor) 55.46875%, transparent 56.25%, var(--swellLight) 60.15625%, var(--swellColor) 60.9375%, transparent 62.5%, var(--swellLight) 70.3125%, var(--swellColor) 71.875%, transparent 75%, var(--swellLight) 90.625%, var(--swellColor) 93.75%, transparent 100%), linear-gradient(to bottom, var(--skyColor3) 0%, var(--skyColor2) 37.5%, var(--skyColor1) 48%, var(--skyColor0) 50%, var(--seaColor0) 50%, var(--seaColor1) 52%, var(--seaColor2) 62.5%, var(--seaColor3) 100%);
   background-size: 100% 100%, auto;
   background-position: center, center, center;
   margin: 0 auto;
@@ -362,7 +391,12 @@ header h1, header:hover h1 {
   border-radius: 0.5em;
   outline: 1px solid black;
   color: black;
-  text-shadow: 1px 1px 1px white, 1px -1px 1px white, -1px 1px 1px white, -1px -1px 1px white;
+  --sW: calc(1em / 32);
+  --sC: #fff8;
+  text-shadow: var(--sW) var(--sW) var(--sW) var(--sC), 0 var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) 0 var(--sW) var(--sC), calc(-1 * var(--sW)) calc(-1 * var(--sW)) var(--sW) var(--sC), 0 calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) 0 var(--sW) var(--sC);
+  -webkit-text-stroke: var(--sW) var(--sC);
+  -webkit-text-fill-color: black;
+  paint-order: stroke fill;
   font-family: "Princess Sofia", "Open Sans", sans-serif;
   font-size: max(1.5rem, 4vw);
   display: flex;
@@ -419,7 +453,9 @@ header h1 > span:first-of-type, header:hover h1 > span:first-of-type {
     box-shadow: inset 0 0 0.5vw 0 #0008, inset 0 0 0 0.5vw #000c;
   }
   header h1:hover, header:hover h1:hover {
-    color: var(--cm30);
+    color: var(--cm);
+    -webkit-text-fill-color: var(--cm);
+    -webkit-text-stroke: 0.03125em black;
     text-shadow: 0.0125em 0.0125em 0.0125em #000, 0.025em 0.025em 0.025em #0008, 0.05em 0.05em 0.05em #0004, 0.1em 0.1em 0.1em #0002;
   }
   header h1::before, header:hover h1::before {
@@ -451,11 +487,11 @@ footer {
   padding: 0;
   border: 0;
   outline: 0;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.0625) 12.5%, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0.0625) 31.25%, rgba(255, 255, 255, 0) 37.5%, rgba(255, 255, 255, 0.0625) 40.625%, rgba(255, 255, 255, 0) 43.75%, rgba(255, 255, 255, 0.0625) 45.3125%, rgba(255, 255, 255, 0) 46.875%, rgba(255, 255, 255, 0) 53.125%, rgba(255, 255, 255, 0.0625) 54.6875%, rgba(255, 255, 255, 0) 56.25%, rgba(255, 255, 255, 0.0625) 59.375%, rgba(255, 255, 255, 0) 62.5%, rgba(255, 255, 255, 0.0625) 68.75%, rgba(255, 255, 255, 0) 75%, rgba(255, 255, 255, 0.0625) 87.5%, rgba(255, 255, 255, 0) 100%), linear-gradient(to bottom, var(--cc75) 0%, var(--cc50) 50%, var(--cc75) 100%);
+  background: linear-gradient(to bottom, transparent 0%, transparent 3.125%, var(--swellLight) 3.90625%, var(--swellColor) 4.6875%, transparent 6.25%, var(--swellLight) 7.8125%, var(--swellColor) 9.375%, transparent 12.5%, var(--swellLight) 15.625%, var(--swellColor) 18.75%, transparent 25%, var(--swellLight) 31.25%, var(--swellColor) 37.5%, transparent 50%, var(--swellLight) 62.5%, var(--swellColor) 75%, transparent 100%), linear-gradient(to bottom, var(--seaColor1) 0%, var(--seaColor2) 75%, var(--seaColor3) 100%);
   background-size: 100% 100%, auto;
-  background-position: center, center;
+  background-position: top, center;
   border-top: 3pt ridge var(--cw75);
-  color: var(--cw50);
+  color: var(--cw25);
   text-align: center;
   box-shadow: 0 0.5em 0.5em var(--shade) inset;
   animation-name: waves;
@@ -469,8 +505,15 @@ footer p {
   padding: 1em;
 }
 footer a {
-  text-shadow: 1px 1px 1px var(--shade);
+  --sW: calc(1em / 32);
+  --sC: #0008;
+  text-shadow: var(--sW) var(--sW) var(--sW) var(--sC), 0 var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) 0 var(--sW) var(--sC), calc(-1 * var(--sW)) calc(-1 * var(--sW)) var(--sW) var(--sC), 0 calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) 0 var(--sW) var(--sC);
+  -webkit-text-stroke: 2px var(--sC);
+  -webkit-text-fill-color: var(--cw85);
+  paint-order: stroke fill;
   text-decoration: none;
+  letter-spacing: 0.5ch;
+  font-weight: bold;
 }
 footer a:link {
   color: var(--cw85);
@@ -482,7 +525,7 @@ footer a:active {
   color: var(--cw95);
 }
 footer a:visited {
-  color: var(--cw70);
+  color: var(--cw80);
 }
 @media only print {
   footer {
@@ -560,6 +603,9 @@ footer a:visited {
   color: var(--cc50);
   border-top-color: var(--cc50);
   background-position-y: 100%;
+}
+#menu > a:only-of-type {
+  display: none;
 }
 #menu > a:hover, #menu > a:focus, #menu > a:active {
   color: black;
