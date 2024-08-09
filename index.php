@@ -83,7 +83,7 @@
 
 					<p class="description">Beyond Infinity Lies Destiny.</p>
 
-					<figure><img src="images/logo-eternal.png" alt="Eternal Logo" /></figure>
+					<figure class="invertible"><img src="images/logo-eternal.png" alt="Eternal Logo" /></figure>
 
 					<p>
 						<a href="eternal">Eternal</a> is the closest thing to a video game I've ever actually released.

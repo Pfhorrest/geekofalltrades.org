@@ -10,6 +10,7 @@
 					</p>
 					<section id="hard-skills">
 						<h3>Hard Skills</h3>
+						<p class="description"></p>
 						<section id="web">
 							<h4>Web Development</h4>
 							<p class="description">
@@ -19,6 +20,7 @@
 							</p>
 							<section id="back-end">
 								<h5>Back-End</h5>
+								<p class="description"></p>
 								<ul class="gallery">
 									<li>
 										EC Cube <sup>(since 2023)</sup>
@@ -51,6 +53,7 @@
 							</section>
 							<section id="front-end">
 								<h5>Front-End</h5>
+								<p class="description"></p>
 								<ul class="gallery">
 									<li>
 										ReactJS <sup>(since 2021)</sup>
@@ -83,6 +86,7 @@
 							</section>
 							<section id="deployment">
 								<h5>Hosting and Deployment</h5>
+								<p class="description"></p>
 								<ul class="gallery">
 									<li>
 										Supabase / PostgreSQL <sup>(since 2024)</sup>
@@ -115,6 +119,7 @@
 							</section>
 							<section id="development">
 								<h5>Development Tools</h5>
+								<p class="description"></p>
 								<ul class="gallery">
 									<li>
 										XCode <sup>(since 2022)</sup>
@@ -162,6 +167,7 @@
 					</section>
 					<section id="soft-skills">
 						<h3>Soft Skills</h3>
+						<p class="description"></p>
 						<p>
 							I am equal parts abstract and practical, big-picture and detail-oriented, striving always to embody the best of both sides of every such dichotomy. Besides my education in arts and technologies, I also have a degree in philosophy, and my own philosophical system centers entirely around pursuing such a golden mean, dialectical synthesis, nonduality, or unity of opposites, in all matters.
 						</p>
@@ -189,6 +195,7 @@
 					</section>
 					<section id="experience">
 						<h3>Work Experience</h3>
+						<p class="description"></p>
 						<section id="twisted-rope">
 							<h4>Full-Stack Developer</h4>
 							<p class="description">at Twisted Rope, 2021-present</p>
@@ -241,6 +248,7 @@
 					</section>
 					<section id="education">
 						<h3>Education</h3>
+						<p class="description"></p>
 						<section id="ucsb">
 							<h4>Bachelor of Arts in Philosophy</h4>
 							<p class="description">at the University of California at Santa Barbara, class of 2007 with a 3.9 GPA, Highest Honors, and Dean's Honor Roll</p>
@@ -260,10 +268,10 @@
 							</p>
 						</section>
 					</section>
-					<section id="recommendations">
+					<!-- <section id="recommendations">
 						<h3>Recommendations</h3>
 						<p>My former colleagues and supervisors have had nothing but high praise for me. Please see their recommendations on <a href="http://www.linkedin.com/in/forrest-cameranesi/" rel="nofollow">my LinkedIn profile</a>.</p>
-					</section>
+					</section> -->
 	
 				</section>
 

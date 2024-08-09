@@ -1,17 +1,16 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Handlee&family=Open+Sans&family=Princess+Sofia&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Itim&family=Nunito&family=Princess+Sofia&display=swap");
 :root {
+  color-scheme: light dark;
   --hm: 120;
   --hs: 60;
-  --hc: calc(var(--mh) + var(--hs));
-  --hw: calc(var(--mh) - var(--hs));
-  --sm: 75%;
+  --hc: calc(var(--hm) + var(--hs));
+  --hw: calc(var(--hm) - var(--hs));
+  --sm: 25%;
   --ss: 25%;
-  --sh: 100%;
+  --sh: 50%;
   --sd: 6.25%;
-  --lm: 50%;
-  --lti: calc((100% - var(--lm)) / 10);
-  --lsi: calc((0% - var(--lm)) / 10);
+  --lm: 25%;
   --lt9: calc(var(--lm) + (var(--lti) * 9));
   --lt8: calc(var(--lm) + (var(--lti) * 8));
   --lt7: calc(var(--lm) + (var(--lti) * 7));
@@ -30,185 +29,164 @@
   --ls7: calc(var(--lm) + (var(--lsi) * 7));
   --ls8: calc(var(--lm) + (var(--lsi) * 8));
   --ls9: calc(var(--lm) + (var(--lsi) * 9));
-  --cm: hsla(var(--hm), var(--sm), var(--lm), 100%);
-  --cc: hsla(var(--hc), var(--ss), var(--lm), 100%);
-  --cw: hsla(var(--hw), var(--ss), var(--lm), 100%);
-  --cmh: hsla(var(--hm), var(--sh), 100%, 100%);
-  --cch: hsla(var(--hc), var(--sh), 100%, 100%);
-  --cwh: hsla(var(--hw), var(--sh), 100%, 100%);
-  --cmd: hsla(var(--hm), var(--sd), var(--lm), 100%);
-  --ccd: hsla(var(--hc), var(--sd), var(--lm), 100%);
-  --cwd: hsla(var(--hw), var(--sd), var(--lm), 100%);
-  --cm95: hsla(var(--hm), var(--sm), var(--lt9), 100%);
-  --cm90: hsla(var(--hm), var(--sm), var(--lt9), 100%);
-  --cm85: hsla(var(--hm), var(--sm), var(--lt9), 100%);
-  --cm80: hsla(var(--hm), var(--sm), var(--lt9), 100%);
-  --cm75: hsla(var(--hm), var(--sm), var(--lt9), 100%);
-  --cm70: hsla(var(--hm), var(--sm), var(--lt9), 100%);
-  --cm65: hsla(var(--hm), var(--sm), var(--lt9), 100%);
-  --cm60: hsla(var(--hm), var(--sm), var(--lt9), 100%);
-  --cm55: hsla(var(--hm), var(--sm), var(--lt9), 100%);
+  --cm: hsl(var(--hm) var(--sm) var(--lm));
+  --cc: hsl(var(--hc) var(--ss) var(--lm));
+  --cw: hsl(var(--hw) var(--ss) var(--lm));
+  --cmh: hsl(var(--hm) var(--sh) calc(100% / 2));
+  --cch: hsl(var(--hc) var(--sh) calc(100% / 2));
+  --cwh: hsl(var(--hw) var(--sh) calc(100% / 2));
+  --cmg: hsl(from var(--cmh) h s l / 25%);
+  --ccg: hsl(from var(--cch) h s l / 25%);
+  --cwg: hsl(from var(--cwh) h s l / 25%);
+  --cmd: hsl(var(--hm) var(--sd) var(--lm));
+  --ccd: hsl(var(--hc) var(--sd) var(--lm));
+  --cwd: hsl(var(--hw) var(--sd) var(--lm));
+  --cm95: hsl(var(--hm) var(--sm) var(--lt9));
+  --cm90: hsl(var(--hm) var(--sm) var(--lt8));
+  --cm85: hsl(var(--hm) var(--sm) var(--lt7));
+  --cm80: hsl(var(--hm) var(--sm) var(--lt6));
+  --cm75: hsl(var(--hm) var(--sm) var(--lt5));
+  --cm70: hsl(var(--hm) var(--sm) var(--lt4));
+  --cm65: hsl(var(--hm) var(--sm) var(--lt3));
+  --cm60: hsl(var(--hm) var(--sm) var(--lt2));
+  --cm55: hsl(var(--hm) var(--sm) var(--lt1));
   --cm50: var(--cm);
-  --cm45: hsla(var(--hm), var(--sm), var(--ls1), 100%);
-  --cm40: hsla(var(--hm), var(--sm), var(--ls2), 100%);
-  --cm35: hsla(var(--hm), var(--sm), var(--ls3), 100%);
-  --cm30: hsla(var(--hm), var(--sm), var(--ls4), 100%);
-  --cm25: hsla(var(--hm), var(--sm), var(--ls5), 100%);
-  --cm20: hsla(var(--hm), var(--sm), var(--ls6), 100%);
-  --cm15: hsla(var(--hm), var(--sm), var(--ls7), 100%);
-  --cm10: hsla(var(--hm), var(--sm), var(--ls8), 100%);
-  --cm05: hsla(var(--hm), var(--sm), var(--ls9), 100%);
-  --cc95: hsla(var(--hc), var(--ss), var(--lt9), 100%);
-  --cc90: hsla(var(--hc), var(--ss), var(--lt9), 100%);
-  --cc85: hsla(var(--hc), var(--ss), var(--lt9), 100%);
-  --cc80: hsla(var(--hc), var(--ss), var(--lt9), 100%);
-  --cc75: hsla(var(--hc), var(--ss), var(--lt9), 100%);
-  --cc70: hsla(var(--hc), var(--ss), var(--lt9), 100%);
-  --cc65: hsla(var(--hc), var(--ss), var(--lt9), 100%);
-  --cc60: hsla(var(--hc), var(--ss), var(--lt9), 100%);
-  --cc55: hsla(var(--hc), var(--ss), var(--lt9), 100%);
+  --cm45: hsl(var(--hm) var(--sm) var(--ls1));
+  --cm40: hsl(var(--hm) var(--sm) var(--ls2));
+  --cm35: hsl(var(--hm) var(--sm) var(--ls3));
+  --cm30: hsl(var(--hm) var(--sm) var(--ls4));
+  --cm25: hsl(var(--hm) var(--sm) var(--ls5));
+  --cm20: hsl(var(--hm) var(--sm) var(--ls6));
+  --cm15: hsl(var(--hm) var(--sm) var(--ls7));
+  --cm10: hsl(var(--hm) var(--sm) var(--ls8));
+  --cm05: hsl(var(--hm) var(--sm) var(--ls9));
+  --cc95: hsl(var(--hc) var(--ss) var(--lt9));
+  --cc90: hsl(var(--hc) var(--ss) var(--lt8));
+  --cc85: hsl(var(--hc) var(--ss) var(--lt7));
+  --cc80: hsl(var(--hc) var(--ss) var(--lt6));
+  --cc75: hsl(var(--hc) var(--ss) var(--lt5));
+  --cc70: hsl(var(--hc) var(--ss) var(--lt4));
+  --cc65: hsl(var(--hc) var(--ss) var(--lt3));
+  --cc60: hsl(var(--hc) var(--ss) var(--lt2));
+  --cc55: hsl(var(--hc) var(--ss) var(--lt1));
   --cc50: var(--cc);
-  --cc45: hsla(var(--hc), var(--ss), var(--ls1), 100%);
-  --cc40: hsla(var(--hc), var(--ss), var(--ls2), 100%);
-  --cc35: hsla(var(--hc), var(--ss), var(--ls3), 100%);
-  --cc30: hsla(var(--hc), var(--ss), var(--ls4), 100%);
-  --cc25: hsla(var(--hc), var(--ss), var(--ls5), 100%);
-  --cc20: hsla(var(--hc), var(--ss), var(--ls6), 100%);
-  --cc15: hsla(var(--hc), var(--ss), var(--ls7), 100%);
-  --cc10: hsla(var(--hc), var(--ss), var(--ls8), 100%);
-  --cc05: hsla(var(--hc), var(--ss), var(--ls9), 100%);
-  --cw95: hsla(var(--hw), var(--ss), var(--lt9), 100%);
-  --cw90: hsla(var(--hw), var(--ss), var(--lt9), 100%);
-  --cw85: hsla(var(--hw), var(--ss), var(--lt9), 100%);
-  --cw80: hsla(var(--hw), var(--ss), var(--lt9), 100%);
-  --cw75: hsla(var(--hw), var(--ss), var(--lt9), 100%);
-  --cw70: hsla(var(--hw), var(--ss), var(--lt9), 100%);
-  --cw65: hsla(var(--hw), var(--ss), var(--lt9), 100%);
-  --cw60: hsla(var(--hw), var(--ss), var(--lt9), 100%);
-  --cw55: hsla(var(--hw), var(--ss), var(--lt9), 100%);
+  --cc45: hsl(var(--hc) var(--ss) var(--ls1));
+  --cc40: hsl(var(--hc) var(--ss) var(--ls2));
+  --cc35: hsl(var(--hc) var(--ss) var(--ls3));
+  --cc30: hsl(var(--hc) var(--ss) var(--ls4));
+  --cc25: hsl(var(--hc) var(--ss) var(--ls5));
+  --cc20: hsl(var(--hc) var(--ss) var(--ls6));
+  --cc15: hsl(var(--hc) var(--ss) var(--ls7));
+  --cc10: hsl(var(--hc) var(--ss) var(--ls8));
+  --cc05: hsl(var(--hc) var(--ss) var(--ls9));
+  --cw95: hsl(var(--hw) var(--ss) var(--lt9));
+  --cw90: hsl(var(--hw) var(--ss) var(--lt8));
+  --cw85: hsl(var(--hw) var(--ss) var(--lt7));
+  --cw80: hsl(var(--hw) var(--ss) var(--lt6));
+  --cw75: hsl(var(--hw) var(--ss) var(--lt5));
+  --cw70: hsl(var(--hw) var(--ss) var(--lt4));
+  --cw65: hsl(var(--hw) var(--ss) var(--lt3));
+  --cw60: hsl(var(--hw) var(--ss) var(--lt2));
+  --cw55: hsl(var(--hw) var(--ss) var(--lt1));
   --cw50: var(--cw);
-  --cw45: hsla(var(--hw), var(--ss), var(--ls1), 100%);
-  --cw40: hsla(var(--hw), var(--ss), var(--ls2), 100%);
-  --cw35: hsla(var(--hw), var(--ss), var(--ls3), 100%);
-  --cw30: hsla(var(--hw), var(--ss), var(--ls4), 100%);
-  --cw25: hsla(var(--hw), var(--ss), var(--ls5), 100%);
-  --cw20: hsla(var(--hw), var(--ss), var(--ls6), 100%);
-  --cw15: hsla(var(--hw), var(--ss), var(--ls7), 100%);
-  --cw10: hsla(var(--hw), var(--ss), var(--ls8), 100%);
-  --cw05: hsla(var(--hw), var(--ss), var(--ls9), 100%);
-  --shade: #0001;
-  --gloss: #fffc;
+  --cw45: hsl(var(--hw) var(--ss) var(--ls1));
+  --cw40: hsl(var(--hw) var(--ss) var(--ls2));
+  --cw35: hsl(var(--hw) var(--ss) var(--ls3));
+  --cw30: hsl(var(--hw) var(--ss) var(--ls4));
+  --cw25: hsl(var(--hw) var(--ss) var(--ls5));
+  --cw20: hsl(var(--hw) var(--ss) var(--ls6));
+  --cw15: hsl(var(--hw) var(--ss) var(--ls7));
+  --cw10: hsl(var(--hw) var(--ss) var(--ls8));
+  --cw05: hsl(var(--hw) var(--ss) var(--ls9));
   --skyHue1: 60;
   --skyHue2: 30;
   --skyHue3: 0;
-  --skyColor0: hsl(var(--skyHue1), 0, 100%);
-  --skyColor1: hsl(var(--skyHue1), 25%, 87.5%);
-  --skyColor2: hsl(var(--skyHue2), 50%, 62.5%);
-  --skyColor3: hsl(var(--skyHue3), 75%, 37.5%);
-  --cloudColor: hsla(var(--skyHue1), 100%, 100%, 50%);
-  --cloudLight: hsla(var(--skyHue1), 100%, 100%, 100%);
   --seaHue1: 180;
   --seaHue2: 210;
   --seaHue3: 240;
-  --seaColor0: hsl(var(--seaHue1), 0, 100%);
-  --seaColor1: hsl(var(--seaHue1), 25%, 87.5%);
-  --seaColor2: hsl(var(--seaHue2), 50%, 62.5%);
-  --seaColor3: hsl(var(--seaHue3), 75%, 37.5%);
-  --swellColor: hsla(var(--seaHue1), 100%, 100%, 50%);
-  --swellLight: hsla(var(--seaHue1), 100%, 100%, 100%);
+  --seaShadow: hsl(from var(--seaColor1) h 100% 0% / 100%);
+  --sbi: hsl(from var(--white) h s l / 12.5%);
+  --sbo: hsl(from var(--white) h s l / 50%);
+  --mbo: hsl(from black h s l 93.75%);
 }
-
-@supports (color: oklch(100% 100% 0)) {
+@media (prefers-color-scheme: light) {
   :root {
-    --hmx: calc(var(--hm) + 30);
-    --cm: oklch(var(--lm) var(--sm) var(--hmx));
-    --cc: oklch(from var(--cm) l var(--ss) calc(h + var(--hs)));
-    --cw: oklch(from var(--cm) l var(--ss) calc(h - var(--hs)));
-    --cmh: oklch(from var(--cm) 100% var(--sh) h);
-    --cch: oklch(from var(--cc) 100% var(--sh) h);
-    --cwh: oklch(from var(--cw) 100% var(--sh) h);
-    --cmd: oklch(from var(--cm) l var(--sd) h);
-    --ccd: oklch(from var(--cc) l var(--sd) h);
-    --cwd: oklch(from var(--cw) l var(--sd) h);
-    --cm95: color-mix(in oklch, var(--cm) 10%, white);
-    --cm90: color-mix(in oklch, var(--cm) 20%, white);
-    --cm85: color-mix(in oklch, var(--cm) 30%, white);
-    --cm80: color-mix(in oklch, var(--cm) 40%, white);
-    --cm75: color-mix(in oklch, var(--cm) 50%, white);
-    --cm70: color-mix(in oklch, var(--cm) 60%, white);
-    --cm65: color-mix(in oklch, var(--cm) 70%, white);
-    --cm60: color-mix(in oklch, var(--cm) 80%, white);
-    --cm55: color-mix(in oklch, var(--cm) 90%, white);
-    --cm50: var(--cm);
-    --cm45: color-mix(in oklch, var(--cm) 90%, black);
-    --cm40: color-mix(in oklch, var(--cm) 80%, black);
-    --cm35: color-mix(in oklch, var(--cm) 70%, black);
-    --cm30: color-mix(in oklch, var(--cm) 60%, black);
-    --cm25: color-mix(in oklch, var(--cm) 50%, black);
-    --cm20: color-mix(in oklch, var(--cm) 40%, black);
-    --cm15: color-mix(in oklch, var(--cm) 30%, black);
-    --cm10: color-mix(in oklch, var(--cm) 20%, black);
-    --cm05: color-mix(in oklch, var(--cm) 10%, black);
-    --cc95: color-mix(in oklch, var(--cc) 10%, white);
-    --cc90: color-mix(in oklch, var(--cc) 20%, white);
-    --cc85: color-mix(in oklch, var(--cc) 30%, white);
-    --cc80: color-mix(in oklch, var(--cc) 40%, white);
-    --cc75: color-mix(in oklch, var(--cc) 50%, white);
-    --cc70: color-mix(in oklch, var(--cc) 60%, white);
-    --cc65: color-mix(in oklch, var(--cc) 70%, white);
-    --cc60: color-mix(in oklch, var(--cc) 80%, white);
-    --cc55: color-mix(in oklch, var(--cc) 90%, white);
-    --cc50: var(--cc);
-    --cc45: color-mix(in oklch, var(--cc) 90%, black);
-    --cc40: color-mix(in oklch, var(--cc) 80%, black);
-    --cc35: color-mix(in oklch, var(--cc) 70%, black);
-    --cc30: color-mix(in oklch, var(--cc) 60%, black);
-    --cc25: color-mix(in oklch, var(--cc) 50%, black);
-    --cc20: color-mix(in oklch, var(--cc) 40%, black);
-    --cc15: color-mix(in oklch, var(--cc) 30%, black);
-    --cc10: color-mix(in oklch, var(--cc) 20%, black);
-    --cc05: color-mix(in oklch, var(--cc) 10%, black);
-    --cw95: color-mix(in oklch, var(--cw) 10%, white);
-    --cw90: color-mix(in oklch, var(--cw) 20%, white);
-    --cw85: color-mix(in oklch, var(--cw) 30%, white);
-    --cw80: color-mix(in oklch, var(--cw) 40%, white);
-    --cw75: color-mix(in oklch, var(--cw) 50%, white);
-    --cw70: color-mix(in oklch, var(--cw) 60%, white);
-    --cw65: color-mix(in oklch, var(--cw) 70%, white);
-    --cw60: color-mix(in oklch, var(--cw) 80%, white);
-    --cw55: color-mix(in oklch, var(--cw) 90%, white);
-    --cw50: var(--cw);
-    --cw45: color-mix(in oklch, var(--cw) 90%, black);
-    --cw40: color-mix(in oklch, var(--cw) 80%, black);
-    --cw35: color-mix(in oklch, var(--cw) 70%, black);
-    --cw30: color-mix(in oklch, var(--cw) 60%, black);
-    --cw25: color-mix(in oklch, var(--cw) 50%, black);
-    --cw20: color-mix(in oklch, var(--cw) 40%, black);
-    --cw15: color-mix(in oklch, var(--cw) 30%, black);
-    --cw10: color-mix(in oklch, var(--cw) 20%, black);
-    --cw05: color-mix(in oklch, var(--cw) 10%, black);
-    --shade: color-mix(in oklch, black 12.5%, transparent);
-    --gloss: color-mix(in oklch, white 75%, transparent);
-    --cloudColor: oklch(100% 100% calc(var(--skyHue1) + 30) / 50%);
-    --cloudLight: oklch(from var(--cloudColor) 100% 100% h / 100%);
-    --skyColor0: oklch(100% 0 calc(60 + 30));
-    --skyColor1: oklch(87.5% 25% calc(60 + 30));
-    --skyColor2: oklch(62.5% 50% calc(30 + 30));
-    --skyColor3: oklch(37.5% 75% calc(0 + 30));
-    --swellColor: oklch(100% 100% calc(var(--seaHue1) + 30) / 50%);
-    --swellLight: oklch(from var(--swellColor) 100% 100% h / 100);
-    --seaColor0: oklch(100% 0 calc(180 + 30));
-    --seaColor1: oklch(87.5% 25% calc(180 + 30));
-    --seaColor2: oklch(62.5% 50% calc(210 + 30));
-    --seaColor3: oklch(37.5% 75% calc(240 + 30));
+    --lti: calc((100% - var(--lm)) / 10);
+    --lsi: calc((0% - var(--lm)) / 10);
+    --black: black;
+    --white: white;
   }
 }
-/* Legacy SASS variables used in transparentize() */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --lti: calc((0% - var(--lm)) / 10);
+    --lsi: calc((100% - var(--lm)) / 10);
+    --black: white;
+    --white: black;
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --shade: #0001;
+    --gloss: #fffc;
+    --text: #000c;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --shade: #000c;
+    --gloss: #fff1;
+    --text: #fffc;
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --cloudLight: hsl(from var(--cloudColor) h 100% calc(100% / 2) / 50%);
+    --cloudColor: hsl(var(--skyHue1) 100% calc(100% / 2) / 25%);
+    --skyColor3: hsl(var(--skyHue3) 100% calc(50% / 2));
+    --skyColor2: hsl(var(--skyHue2) 100% calc(75% / 2));
+    --skyColor1: hsl(var(--skyHue1) 100% calc(100% / 2));
+    --skyMist: hsl(var(--skyHue1) 100% 87.5%);
+    --seaMist: hsl(var(--seaHue1) 100% 87.5%);
+    --seaColor1: hsl(var(--seaHue1) 100% calc(100% / 2));
+    --seaColor2: hsl(var(--seaHue2) 100% calc(75% / 2));
+    --seaColor3: hsl(var(--seaHue3) 100% calc(50% / 2));
+    --swellColor: hsl(var(--seaHue1) 100% calc(100% / 2) / 25%);
+    --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cloudLight: hsl(from var(--cloudColor) h 100% calc(100% / 2) / 50%);
+    --cloudColor: hsl(var(--skyHue1) 100% calc(75% / 2) / 25%);
+    --skyColor3: hsl(var(--skyHue3) 100% calc(50% / 2));
+    --skyColor2: hsl(var(--skyHue2) 100% calc(25% / 2));
+    --skyColor1: hsl(var(--skyHue1) 100% calc(12.5% / 2));
+    --skyMist: hsl(var(--skyHue1) 100% calc(6.25% / 2));
+    --seaMist: hsl(var(--seaHue1) 100% calc(6.25% / 2));
+    --seaColor1: hsl(var(--seaHue1) 100% calc(12.5% / 2));
+    --seaColor2: hsl(var(--seaHue2) 100% calc(25% / 2));
+    --seaColor3: hsl(var(--seaHue3) 100% calc(50% / 2));
+    --swellColor: hsl(var(--seaHue1) 100% calc(75% / 2) / 25%);
+    --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --curve: bottom;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --curve: top;
+  }
+}
+
 html {
   height: 100%;
   background: black;
-  color: black;
-  font-family: "Open Sans", sans-serif;
+  color: var(--text);
+  font-family: "Nunito", sans-serif;
   font-size: 1pc;
   line-height: 1;
   scroll-padding-top: 6rem;
@@ -233,7 +211,7 @@ main {
 
 a {
   border: 0;
-  color: black;
+  color: var(--text);
   text-decoration: underline;
   text-shadow: 1pt 1pt 1pt transparent;
   cursor: pointer;
@@ -269,8 +247,8 @@ h6 {
   padding: 1rem;
   border: none;
   outline: none;
-  color: var(--cm30);
-  font-family: Handlee, "Open Sans", sans-serif;
+  color: var(--cm40);
+  font-family: "Itim", "Nunito", sans-serif;
   font-weight: normal;
   text-align: center;
   line-height: 1.25;
@@ -322,27 +300,27 @@ h6 span {
 }
 
 h1 {
-  font-size: calc(1.5rem + 1.2vmin);
+  font-size: calc(1.5rem + 1.2vw);
 }
 
 h2 {
-  font-size: calc(1.4rem + 1vmin);
+  font-size: calc(1.4rem + 1vw);
 }
 
 h3 {
-  font-size: calc(1.3rem + 0.8vmin);
+  font-size: calc(1.3rem + 0.8vw);
 }
 
 h4 {
-  font-size: calc(1.2rem + 0.6vmin);
+  font-size: calc(1.2rem + 0.6vw);
 }
 
 h5 {
-  font-size: calc(1.1rem + 0.4vmin);
+  font-size: calc(1.1rem + 0.4vw);
 }
 
 h6 {
-  font-size: calc(1rem + 0.2vmin);
+  font-size: calc(1rem + 0.2vw);
 }
 
 @keyframes windAndWaves {
@@ -361,7 +339,6 @@ header {
   padding: 0;
   border: 0;
   background: black;
-  color: black;
   text-align: center;
   overflow-y: hidden;
   display: flex;
@@ -382,22 +359,20 @@ header h1, header:hover h1 {
   display: flex;
   box-sizing: border-box;
   width: 100%;
-  background: linear-gradient(transparent calc(50% - 1em), oklch(from var(--skyColor1) 100% 25% h/100%) 50%, oklch(from var(--seaColor1) 100% 25% h/100%) 50%, transparent calc(50% + 1em)), linear-gradient(to bottom, transparent 0%, var(--cloudColor) 18.75%, var(--cloudLight) 21.875%, transparent 25%, var(--cloudColor) 34.375%, var(--cloudLight) 35.9375%, transparent 37.5%, var(--cloudColor) 42.1875%, var(--cloudLight) 42.96875%, transparent 43.75%, var(--cloudColor) 46.09375%, var(--cloudLight) 46.484375%, transparent 46.875%, var(--cloudColor) 48.046875%, var(--cloudLight) 48.2421875%, transparent 48.4375%, var(--cloudColor) 49.0234375%, var(--cloudLight) 49.12109375%, transparent 49.21875%, var(--cloudColor) 49.51171875%, var(--cloudLight) 49.560546875%, transparent 49.609375%, var(--cloudColor) 49.755859375%, var(--cloudLight) 49.7802734375%, transparent 49.8046875%, var(--cloudColor) 49.8779296875%, var(--cloudLight) 49.8901367188%, transparent 49.90234375%, var(--cloudColor) 49.9389648438%, var(--cloudLight) 49.9450683594%, transparent 49.951171875%, transparent 50.048828125%, var(--swellLight) 50.0793457031%, var(--swellColor) 50.0854492188%, transparent 50.09765625%, var(--swellLight) 50.1586914063%, var(--swellColor) 50.1708984375%, transparent 50.1953125%, var(--swellLight) 50.3173828125%, var(--swellColor) 50.341796875%, transparent 50.390625%, var(--swellLight) 50.634765625%, var(--swellColor) 50.68359375%, transparent 50.78125%, var(--swellLight) 51.26953125%, var(--swellColor) 51.3671875%, transparent 51.5625%, var(--swellLight) 52.5390625%, var(--swellColor) 52.734375%, transparent 53.125%, var(--swellLight) 55.078125%, var(--swellColor) 55.46875%, transparent 56.25%, var(--swellLight) 60.15625%, var(--swellColor) 60.9375%, transparent 62.5%, var(--swellLight) 70.3125%, var(--swellColor) 71.875%, transparent 75%, var(--swellLight) 90.625%, var(--swellColor) 93.75%, transparent 100%), linear-gradient(to bottom, var(--skyColor3) 0%, var(--skyColor2) 37.5%, var(--skyColor1) 48%, var(--skyColor0) 50%, var(--seaColor0) 50%, var(--seaColor1) 52%, var(--seaColor2) 62.5%, var(--seaColor3) 100%);
-  background-size: 100% 100%, auto;
-  background-position: center, center, center;
+  background: linear-gradient(to bottom, var(--skyColor2) 0%, var(--skyColor1) 37.5%, var(--skyMist) 48%, var(--white) 50%, var(--seaMist) 52%, var(--seaColor1) 62.5%, var(--seaColor2) 100%);
   margin: 0 auto;
   padding: 1vw 3vw;
   border: 0.25em solid black;
   border-radius: 0.5em;
-  outline: 1px solid black;
-  color: var(--cm);
+  outline: 1pt solid black;
+  color: var(--cmh);
   --sW: calc(1em / 32);
-  --sC: #fff4;
-  -webkit-text-fill-color: var(--cm);
+  --sC: hsl(from var(--white) h s l / 50%);
+  -webkit-text-fill-color: var(--cmh);
   -webkit-text-stroke: 0.03125em black;
   paint-order: stroke fill;
   text-shadow: 0.0125em 0.0125em 0.0125em #000, 0.025em 0.025em 0.025em #0008, 0.05em 0.05em 0.05em #0004, 0.1em 0.1em 0.1em #0002, var(--sW) var(--sW) var(--sW) var(--sC), 0 var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) 0 var(--sW) var(--sC), calc(-1 * var(--sW)) calc(-1 * var(--sW)) var(--sW) var(--sC), 0 calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) 0 var(--sW) var(--sC);
-  font-family: "Princess Sofia", "Open Sans", sans-serif;
+  font-family: "Princess Sofia", "Itim", "Nunito", sans-serif;
   font-size: max(1.5rem, 4vw);
   display: flex;
   justify-content: center;
@@ -406,12 +381,24 @@ header h1, header:hover h1 {
   letter-spacing: 0.1em;
   line-height: 2;
   transition: all 1s;
-  animation-name: windAndWaves;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
-  animation-direction: normal;
-  animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
   cursor: pointer;
+}
+@media (min-width: 40rem) {
+  header h1, header:hover h1 {
+    background: linear-gradient(transparent calc(50% - 1em), var(--skyMist) 50%, var(--seaMist) 50%, transparent calc(50% + 1em)), linear-gradient(to bottom, transparent 0%, var(--cloudColor) 18.75%, var(--cloudLight) 21.875%, transparent 25%, var(--cloudColor) 34.375%, var(--cloudLight) 35.9375%, transparent 37.5%, var(--cloudColor) 42.1875%, var(--cloudLight) 42.96875%, transparent 43.75%, var(--cloudColor) 46.09375%, var(--cloudLight) 46.484375%, transparent 46.875%, var(--cloudColor) 48.046875%, var(--cloudLight) 48.2421875%, transparent 48.4375%, var(--cloudColor) 49.0234375%, var(--cloudLight) 49.12109375%, transparent 49.21875%, var(--cloudColor) 49.51171875%, var(--cloudLight) 49.560546875%, transparent 49.609375%, var(--cloudColor) 49.755859375%, var(--cloudLight) 49.7802734375%, transparent 49.8046875%, var(--cloudColor) 49.8779296875%, var(--cloudLight) 49.8901367188%, transparent 49.90234375%, var(--cloudColor) 49.9389648438%, var(--cloudLight) 49.9450683594%, transparent 49.951171875%, transparent 50.048828125%, var(--swellLight) 50.0793457031%, var(--swellColor) 50.0854492188%, transparent 50.09765625%, var(--swellLight) 50.1586914063%, var(--swellColor) 50.1708984375%, transparent 50.1953125%, var(--swellLight) 50.3173828125%, var(--swellColor) 50.341796875%, transparent 50.390625%, var(--swellLight) 50.634765625%, var(--swellColor) 50.68359375%, transparent 50.78125%, var(--swellLight) 51.26953125%, var(--swellColor) 51.3671875%, transparent 51.5625%, var(--swellLight) 52.5390625%, var(--swellColor) 52.734375%, transparent 53.125%, var(--swellLight) 55.078125%, var(--swellColor) 55.46875%, transparent 56.25%, var(--swellLight) 60.15625%, var(--swellColor) 60.9375%, transparent 62.5%, var(--swellLight) 70.3125%, var(--swellColor) 71.875%, transparent 75%, var(--swellLight) 90.625%, var(--swellColor) 93.75%, transparent 100%), linear-gradient(to bottom, var(--skyColor3) 0%, var(--skyColor2) 37.5%, var(--skyColor1) 48%, var(--skyMist) 50%, var(--seaMist) 50%, var(--seaColor1) 52%, var(--seaColor2) 62.5%, var(--seaColor3) 100%);
+    background-size: 100% 100%, auto;
+    background-position: center, center, center;
+    animation-name: windAndWaves;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
+  }
+}
+@supports (color: oklch(100% 100% 0)) {
+  header h1, header:hover h1 {
+    --sC: color-mix(in oklch, var(--white), transparent);
+  }
 }
 header h1::before, header:hover h1::before {
   content: "";
@@ -428,6 +415,16 @@ header h1::after, header:hover h1::after {
   height: 1em;
   background: center/contain no-repeat url('data:image/svg+xml,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0.0em" y="0.0em" width="1.0em" height="1.0em" viewBox="0 0 1.0em 1.0em" ><rect x="0.0em" y="0.0em" width="1.0em" height="0.2em" /><rect x="0.0em" y="0.4em" width="1.0em" height="0.2em" /><rect x="0.0em" y="0.8em" width="1.0em" height="0.2em" /></svg>');
   flex-shrink: 0;
+}
+@media (prefers-color-scheme: light) {
+  header h1::after, header:hover h1::after {
+    filter: none;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  header h1::after, header:hover h1::after {
+    filter: invert(1);
+  }
 }
 header h1 > span, header:hover h1 > span {
   flex-grow: 1;
@@ -470,20 +467,21 @@ header a {
 
 @keyframes waves {
   from {
-    background-size: 100% 100%, auto;
+    background-size: 100%, 100% 100%, auto;
   }
   to {
-    background-size: 100% 200%, auto;
+    background-size: 100%, 100% 200%, auto;
   }
 }
 footer {
+  font-family: "Itim", "Nunito", sans-serif;
   margin: 0;
   padding: 0;
   border: 0;
   outline: 0;
-  background: linear-gradient(to bottom, transparent 0%, transparent 3.125%, var(--swellLight) 3.90625%, var(--swellColor) 4.6875%, transparent 6.25%, var(--swellLight) 7.8125%, var(--swellColor) 9.375%, transparent 12.5%, var(--swellLight) 15.625%, var(--swellColor) 18.75%, transparent 25%, var(--swellLight) 31.25%, var(--swellColor) 37.5%, transparent 50%, var(--swellLight) 62.5%, var(--swellColor) 75%, transparent 100%), linear-gradient(to bottom, var(--seaColor1) 0%, var(--seaColor2) 50%, var(--seaColor3) 100%);
+  background: linear-gradient(to bottom, transparent, var(--seaShadow)), linear-gradient(to bottom, transparent 0%, transparent 3.125%, var(--swellLight) 3.90625%, var(--swellColor) 4.6875%, transparent 6.25%, var(--swellLight) 7.8125%, var(--swellColor) 9.375%, transparent 12.5%, var(--swellLight) 15.625%, var(--swellColor) 18.75%, transparent 25%, var(--swellLight) 31.25%, var(--swellColor) 37.5%, transparent 50%, var(--swellLight) 62.5%, var(--swellColor) 75%, transparent 100%), linear-gradient(to bottom, var(--seaColor1) 0%, var(--seaColor2) 50%, var(--seaColor3) 100%);
   background-size: 100% 100%, auto;
-  background-position: top, center;
+  background-position: center, top, center;
   border-top: 3pt ridge var(--cw75);
   color: var(--cw25);
   text-align: center;
@@ -497,28 +495,31 @@ footer {
 footer p {
   margin: 0;
   padding: 1em;
+  font-size: min(2rem, 4vw);
+  color: white;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke: 0.0625em black;
+  paint-order: stroke fill;
+  text-shadow: 0.0125em 0.0125em 0.0125em #000, 0.025em 0.025em 0.025em #0008, 0.05em 0.05em 0.05em #0004, 0.1em 0.1em 0.1em #0002;
 }
 footer a {
-  --sW: calc(1em / 32);
-  --sC: #000;
-  text-shadow: var(--sW) var(--sW) var(--sW) var(--sC), 0 var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) 0 var(--sW) var(--sC), calc(-1 * var(--sW)) calc(-1 * var(--sW)) var(--sW) var(--sC), 0 calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) 0 var(--sW) var(--sC);
-  -webkit-text-stroke: 2px var(--sC);
-  -webkit-text-fill-color: var(--cw85);
-  paint-order: stroke fill;
   text-decoration: none;
   letter-spacing: 0.5ch;
+  text-shadow: inherit;
 }
 footer a:link {
-  color: var(--cw85);
+  color: var(--cm85);
 }
 footer a:hover {
-  color: var(--cw90);
+  color: var(--cm90);
+  text-shadow: inherit;
 }
 footer a:active {
-  color: var(--cw95);
+  color: var(--cm95);
+  text-shadow: inherit;
 }
 footer a:visited {
-  color: var(--cw80);
+  color: var(--cm80);
 }
 @media only print {
   footer {
@@ -536,6 +537,13 @@ footer a:visited {
   flex-shrink: 1;
   position: relative;
   z-index: 1;
+  --nav-grad: linear-gradient(
+    to var(--curve),
+    var(--cc95) calc(0 * 100% / 6),
+    var(--cc85) calc(1 * 100% / 6),
+    var(--cc85) calc(5 * 100% / 6),
+    var(--cc75) calc(6 * 100% / 6)
+  );
 }
 @media (min-width: 40rem) {
   #menu {
@@ -562,14 +570,14 @@ footer a:visited {
   padding: 0 1em;
   padding-bottom: 2em;
   border: none;
-  border-top: 0px solid white;
+  border-top: 0pt solid white;
   outline: none;
   border-top-left-radius: 0.5em;
   border-top-right-radius: 0.5em;
-  background: linear-gradient(to bottom, var(--cc65) 0%, var(--cc25) 50%, var(--cc05) 100%);
-  background-size: 100% 200%;
-  background-position-y: 6.25%;
-  color: white;
+  background: var(--nav-grad);
+  background-size: 100% 300%;
+  background-position-y: 50%;
+  color: var(--text);
   text-align: center;
   text-decoration: none;
   line-height: 2;
@@ -577,59 +585,28 @@ footer a:visited {
   box-shadow: 1pt 1pt 0pt transparent inset, -1pt 0pt 0pt transparent inset, 1pt 1pt 0 0 var(--shade) inset;
   transition: all 0.5s;
 }
-#menu > a:nth-of-type(4) {
-  color: var(--cc95);
-  border-top-color: var(--cc95);
-  background-position-y: 12.5%;
+#menu > a:nth-last-of-type(2) {
+  opacity: 87.5%;
 }
-#menu > a:nth-of-type(3) {
-  color: var(--cc90);
-  border-top-color: var(--cc90);
-  background-position-y: 25%;
+#menu > a:nth-last-of-type(3) {
+  opacity: 75%;
 }
-#menu > a:nth-of-type(2) {
-  color: var(--cc75);
-  border-top-color: var(--cc75);
-  background-position-y: 50%;
+#menu > a:nth-last-of-type(4) {
+  opacity: 62.5%;
 }
-#menu > a:nth-of-type(1) {
-  color: var(--cc50);
-  border-top-color: var(--cc50);
-  background-position-y: 100%;
-}
-#menu > a:only-of-type {
-  display: none;
+#menu > a:nth-last-of-type(5) {
+  opacity: 50%;
 }
 #menu > a:hover, #menu > a:focus, #menu > a:active {
-  color: black;
   box-shadow: 1pt 1pt 0pt var(--gloss) inset, -1pt 0pt 0pt var(--shade) inset, 1pt 1pt 0 0 transparent inset;
+  opacity: 100%;
   background-position-y: 0%;
 }
-#menu > a:last-of-type {
-  color: black;
-  position: relative;
-  border: 1pt outset var(--cc70);
-  border-bottom: none;
-  background: linear-gradient(to bottom, white 0%, var(--cc85) 50%, var(--cc85) 100%);
-  background-size: 100% 200%;
-  background-position-y: 100%;
-  text-decoration: none;
-  box-shadow: 1pt 1pt 0pt transparent inset, -1pt 0pt 0pt transparent inset;
-}
-#menu > a:last-of-type:hover, #menu > a:last-of-type:focus, #menu > a:last-of-type:active {
-  background-position-y: 50%;
+#menu > a:hover ~ a:last-of-type, #menu > a:focus ~ a:last-of-type, #menu > a:active ~ a:last-of-type {
+  opacity: 93.75%;
 }
 #menu > a:last-of-type + ul {
   display: flex;
-  background: linear-gradient(to bottom, var(--cc85) 0%, var(--cc85) 50%, var(--cc75) 100%);
-  background-size: 100% 200%;
-  background-position-y: 0%;
-  box-shadow: 0pt -1pt 0pt transparent inset, 0pt 1pt 1pt transparent, 0 -1pt 0 0 var(--shade) inset;
-}
-#menu > a:last-of-type + ul:hover, #menu > a:last-of-type + ul:focus, #menu > a:last-of-type + ul:active {
-  box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade), 0 -1pt 0 0 transparent inset;
-  background-size: 100% 200%;
-  background-position-y: 100%;
 }
 #menu ul {
   flex-basis: 100%;
@@ -644,16 +621,17 @@ footer a:visited {
   margin-right: -0.5em;
   padding: 0.25em;
   border: 0;
-  background: linear-gradient(to bottom, var(--cc65) 0%, var(--cc25) 50%, var(--cc20) 100%);
-  background-size: 100% 200%;
+  background: var(--nav-grad);
+  background-size: 100% 300%;
   background-position-y: 50%;
   text-align: center;
   line-height: 2.5;
-  box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade), 0 -1pt 0 0 transparent inset;
+  box-shadow: 0pt -1pt 0pt transparent inset, 0pt 1pt 1pt transparent, 0 -1pt 0 0 var(--shade) inset;
   transition: box-shadow 0.5s, background-position-y 0.5s;
 }
 #menu ul:hover, #menu ul:focus, #menu ul:active {
   box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade), 0 -1pt 0 0 transparent inset;
+  background-position-y: 100%;
 }
 @media (min-width: 40rem) {
   #menu ul {
@@ -690,10 +668,10 @@ footer a:visited {
   padding: 0.5em 2em;
   border: none;
   border-radius: 0.5em;
-  background: radial-gradient(transparent, oklch(from var(--cch) l c h/0.1)), linear-gradient(to bottom, var(--cc95) 0%, var(--cc75) 100%);
+  background: radial-gradient(transparent, var(--ccg)), linear-gradient(to var(--curve), var(--cc95) 0%, var(--cc75) 100%);
   background-size: 1000% 1000%;
   background-position-y: 50%;
-  color: black;
+  color: var(--text);
   font-weight: normal;
   text-transform: none;
   text-decoration: none;
@@ -707,10 +685,10 @@ footer a:visited {
   background-size: 100% 100%;
 }
 #menu ul li a:hover {
-  background: radial-gradient(transparent, oklch(from var(--cmh) l c h/0.1)), linear-gradient(to bottom, var(--cm95), var(--cm75));
+  background: radial-gradient(transparent, var(--cmg)), linear-gradient(to var(--curve), var(--cm95), var(--cm75));
 }
 #menu ul li a:active {
-  background: radial-gradient(transparent, oklch(from var(--cwh) l c h/0.1)), linear-gradient(to bottom, var(--cw95), var(--cw75));
+  background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
 }
 #menu ul li a.submenu::before, #menu ul li a.submenu::after {
   content: "▼";
@@ -742,16 +720,16 @@ footer a:visited {
   z-index: 1;
 }
 #menu ul li.current a {
-  background: radial-gradient(transparent, oklch(from var(--cmh) l c h/0.1)), linear-gradient(to bottom, var(--cm95), var(--cm75));
+  background: radial-gradient(transparent, var(--cmg)), linear-gradient(to var(--curve), var(--cm95), var(--cm75));
   background-size: 1000% 1000%;
   /* Flip the dropdown menu arrows */
 }
 #menu ul li.current a:hover {
-  background: radial-gradient(transparent, oklch(from var(--cwh) l c h/0.1)), linear-gradient(to bottom, var(--cw95), var(--cw75));
+  background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
   background-size: 100% 100%;
 }
 #menu ul li.current a:active {
-  background: radial-gradient(transparent, oklch(from var(--cwh) l c h/0.1)), linear-gradient(to bottom, var(--cw95), var(--cw75));
+  background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
   background-size: 100% 100%;
 }
 #menu ul li.current a::before, #menu ul li.current a::after {
@@ -807,30 +785,31 @@ main {
   gap: 1em;
   border: 0;
   outline: 0;
-  background: radial-gradient(farthest-corner, var(--cw90), var(--cw95));
+  background: radial-gradient(farthest-corner, var(--cw90) 0%, var(--cw95) 100%);
   line-height: 1.5;
 }
 @media (min-width: 80rem) {
   main {
-    font-size: calc(1pc + 0.005 * (100vw - 80ch));
+    --mbfs: calc(1pc + 0.005 * (100vw - 80ch));
+    font-size: var(--mbfs);
   }
   main h1 {
-    font-size: calc(1.5 * (1pc + 0.005 * (100vw - 80ch)) + 1.2vmin);
+    font-size: calc(1.5 * var(--mbfs) + 1.2vw);
   }
   main h2 {
-    font-size: calc(1.4 * (1pc + 0.005 * (100vw - 80ch)) + 1vmin);
+    font-size: calc(1.4 * var(--mbfs) + 1vw);
   }
   main h3 {
-    font-size: calc(1.3 * (1pc + 0.005 * (100vw - 80ch)) + 0.8vmin);
+    font-size: calc(1.3 * var(--mbfs) + 0.8vw);
   }
   main h4 {
-    font-size: calc(1.2 * (1pc + 0.005 * (100vw - 80ch)) + 0.6vmin);
+    font-size: calc(1.2 * var(--mbfs) + 0.6vw);
   }
   main h5 {
-    font-size: calc(1.1 * (1pc + 0.005 * (100vw - 80ch)) + 0.4vmin);
+    font-size: calc(1.1 * var(--mbfs) + 0.4vw);
   }
   main h6 {
-    font-size: calc(1 * (1pc + 0.005 * (100vw - 80ch)) + 0.2vmin);
+    font-size: calc(1 * var(--mbfs) + 0.2vw);
   }
 }
 main > * {
@@ -845,7 +824,7 @@ main p.description {
   border-radius: 1em;
   border: none;
   border-bottom: 1pt groove var(--cw75);
-  font-style: italic;
+  color: var(--cm35);
   text-align: center;
   text-indent: 0;
 }
@@ -966,13 +945,14 @@ main .toggleAllControls a {
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
+  letter-spacing: 0.125ch;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background: var(--white);
   border-radius: 0.5em;
   padding: 0.25em 2em;
-  border: 1px solid #0004;
+  border: 1pt solid var(--gloss);
   opacity: 0.75;
   transition: all 0.5s;
 }
@@ -1064,7 +1044,7 @@ main section {
   border: 0;
   outline: 0;
   border-radius: 2em;
-  background: radial-gradient(farthest-corner, color-mix(in oklch, white, transparent 87.5%), color-mix(in oklch, white, transparent 50%));
+  background: radial-gradient(farthest-corner, var(--sbi), var(--sbo));
   box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--gloss) inset;
   transition: box-shadow 1s;
 }
@@ -1172,21 +1152,11 @@ main section.toggleable h6:hover::before,
 main section.toggleable h6:hover::after {
   opacity: 0.25;
 }
-main section.toggleable.collapsed h1::before,
-main section.toggleable.collapsed h2::before,
-main section.toggleable.collapsed h3::before,
-main section.toggleable.collapsed h4::before,
-main section.toggleable.collapsed h5::before,
-main section.toggleable.collapsed h6::before {
+main section.toggleable.collapsed > h1::before, main section.toggleable.collapsed > h2::before, main section.toggleable.collapsed > h3::before, main section.toggleable.collapsed > h4::before, main section.toggleable.collapsed > h5::before, main section.toggleable.collapsed > h6::before {
   transform: rotate(-90deg);
   opacity: 0.25;
 }
-main section.toggleable.collapsed h1::after,
-main section.toggleable.collapsed h2::after,
-main section.toggleable.collapsed h3::after,
-main section.toggleable.collapsed h4::after,
-main section.toggleable.collapsed h5::after,
-main section.toggleable.collapsed h6::after {
+main section.toggleable.collapsed > h1::after, main section.toggleable.collapsed > h2::after, main section.toggleable.collapsed > h3::after, main section.toggleable.collapsed > h4::after, main section.toggleable.collapsed > h5::after, main section.toggleable.collapsed > h6::after {
   transform: rotate(90deg);
   opacity: 0.25;
 }
@@ -1247,14 +1217,24 @@ main section figure {
 }
 main section figure.contained {
   overflow: hidden;
-  border: 0.125em solid var(--cw25);
+  border: 1pt solid var(--cw75);
   border-radius: 1em;
-  background: var(--cw25);
+  background: var(--cw75);
   box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
 }
 main section figure.contained:hover, main section figure.contained:focus, main section figure.contained:active {
   border-radius: 0.125em;
   box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
+}
+@media (prefers-color-scheme: light) {
+  main section figure.invertible {
+    filter: none;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  main section figure.invertible {
+    filter: invert(1) hue-rotate(0.5turn);
+  }
 }
 main section figure img {
   display: block;
@@ -1318,7 +1298,7 @@ main .gallery {
   border: 0;
   outline: 0 solid black;
   border-radius: 2em;
-  background: radial-gradient(farthest-corner, color-mix(in oklch, white, transparent 87.5%), color-mix(in oklch, white, transparent 50%));
+  background: radial-gradient(farthest-corner, var(--sbi), var(--sbo));
   text-align: center;
   font-size: 1rem;
   box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
@@ -1336,17 +1316,17 @@ main .gallery li {
   justify-content: space-between;
   margin: 0.5em;
   padding: 1em;
-  border: 0;
+  border: 0pt solid var(--cw75);
   border-radius: 1em;
-  background-color: white;
+  background-color: var(--white);
   text-align: center;
   list-style: none;
   vertical-align: top;
-  box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
+  box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--gloss) inset, 0 0 0 1pt var(--shade);
   transition: box-shadow 1s;
 }
 main .gallery li:hover, main .gallery li:focus, main .gallery li:active {
-  box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
+  box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset, 0 0 0 1pt transparent;
 }
 main .gallery li:before {
   display: none;
@@ -1354,7 +1334,7 @@ main .gallery li:before {
 main .gallery li h3 {
   margin: 0;
   padding: 0.5em 2em;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 1em;
   text-transform: none;
   line-height: 1.5;
@@ -1417,7 +1397,7 @@ main .gallery li p.description {
   margin: 0;
   padding: 0;
   opacity: 0;
-  background: radial-gradient(black, color-mix(in oklch, black, transparent 6.25%));
+  background: radial-gradient(black, var(--mbo));
   color: grey;
   font-size: calc(1rem + 1vmin);
   text-align: center;
