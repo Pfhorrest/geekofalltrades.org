@@ -9,7 +9,7 @@
 						My name is Forrest Cameranesi. I am a self-styled "Geek of All Trades" from Ojai, California.
 					</p>
 
-					<figure><img src="images/logo-main.png" alt="Main Logo" /></figure>
+					<figure class="invertible"><img src="images/logo-main.png" alt="Main Logo" /></figure>
 					
 					<p>
 						I do <a href="web">web development</a> for <a href="resume">work</a>.
