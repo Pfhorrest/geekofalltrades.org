@@ -1,16 +1,16 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Itim&family=Nunito&family=Princess+Sofia&display=swap");
 :root {
-  color-scheme: light dark;
   --hm: 120;
   --hs: 60;
   --hc: calc(var(--hm) + var(--hs));
   --hw: calc(var(--hm) - var(--hs));
-  --sm: 25%;
-  --ss: 25%;
-  --sh: 50%;
-  --sd: 6.25%;
-  --lm: 25%;
+  --sm: 50%;
+  --ss: calc(var(--sm) / 2);
+  --sh: calc((100% + var(--sm)) / 2);
+  --sd: calc(var(--ss) / 4);
+  --lmo: 75%;
+  color-scheme: light dark;
   --lt9: calc(var(--lm) + (var(--lti) * 9));
   --lt8: calc(var(--lm) + (var(--lti) * 8));
   --lt7: calc(var(--lm) + (var(--lti) * 7));
@@ -32,15 +32,12 @@
   --cm: hsl(var(--hm) var(--sm) var(--lm));
   --cc: hsl(var(--hc) var(--ss) var(--lm));
   --cw: hsl(var(--hw) var(--ss) var(--lm));
-  --cmh: hsl(var(--hm) var(--sh) calc(100% / 2));
-  --cch: hsl(var(--hc) var(--sh) calc(100% / 2));
-  --cwh: hsl(var(--hw) var(--sh) calc(100% / 2));
-  --cmg: hsl(from var(--cmh) h s l / 25%);
-  --ccg: hsl(from var(--cch) h s l / 25%);
-  --cwg: hsl(from var(--cwh) h s l / 25%);
-  --cmd: hsl(var(--hm) var(--sd) var(--lm));
-  --ccd: hsl(var(--hc) var(--sd) var(--lm));
-  --cwd: hsl(var(--hw) var(--sd) var(--lm));
+  --cmg: hsl(var(--hm) var(--sh) calc(100% / 2) / 25%);
+  --ccg: hsl(var(--hc) var(--sh) calc(100% / 2) / 25%);
+  --cwg: hsl(var(--hw) var(--sh) calc(100% / 2) / 25%);
+  --cmd: hsl(var(--hm) var(--sd) var(--lm) / 25%);
+  --ccd: hsl(var(--hc) var(--sd) var(--lm) / 25%);
+  --cwd: hsl(var(--hw) var(--sd) var(--lm) / 25%);
   --cm95: hsl(var(--hm) var(--sm) var(--lt9));
   --cm90: hsl(var(--hm) var(--sm) var(--lt8));
   --cm85: hsl(var(--hm) var(--sm) var(--lt7));
@@ -98,19 +95,21 @@
   --cw15: hsl(var(--hw) var(--ss) var(--ls7));
   --cw10: hsl(var(--hw) var(--ss) var(--ls8));
   --cw05: hsl(var(--hw) var(--ss) var(--ls9));
-  --skyHue1: 60;
-  --skyHue2: 30;
+  --ct: hsl(from var(--black) h s l / 75%);
+  --cbi: hsl(from var(--white) h s l / 12.5%);
+  --cbo: hsl(from var(--white) h s l / 50%);
   --skyHue3: 0;
+  --skyHue2: 30;
+  --skyHue1: 60;
   --seaHue1: 180;
   --seaHue2: 210;
   --seaHue3: 240;
   --seaShadow: hsl(from var(--seaColor1) h 100% 0% / 100%);
-  --sbi: hsl(from var(--white) h s l / 12.5%);
-  --sbo: hsl(from var(--white) h s l / 50%);
   --mbo: hsl(from black h s l 93.75%);
 }
 @media (prefers-color-scheme: light) {
   :root {
+    --lm: calc(100% - var(--lmo));
     --lti: calc((100% - var(--lm)) / 10);
     --lsi: calc((0% - var(--lm)) / 10);
     --black: black;
@@ -119,6 +118,7 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
+    --lm: calc(0% + var(--lmo));
     --lti: calc((0% - var(--lm)) / 10);
     --lsi: calc((100% - var(--lm)) / 10);
     --black: white;
@@ -129,14 +129,22 @@
   :root {
     --shade: #0001;
     --gloss: #fffc;
-    --text: #000c;
   }
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --shade: #000c;
     --gloss: #fff1;
-    --text: #fffc;
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --curve: bottom;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --curve: top;
   }
 }
 @media (prefers-color-scheme: light) {
@@ -171,21 +179,11 @@
     --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
   }
 }
-@media (prefers-color-scheme: light) {
-  :root {
-    --curve: bottom;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --curve: top;
-  }
-}
 
 html {
   height: 100%;
   background: black;
-  color: var(--text);
+  color: var(--ct);
   font-family: "Nunito", sans-serif;
   font-size: 1pc;
   line-height: 1;
@@ -211,7 +209,7 @@ main {
 
 a {
   border: 0;
-  color: var(--text);
+  color: var(--ct);
   text-decoration: underline;
   text-shadow: 1pt 1pt 1pt transparent;
   cursor: pointer;
@@ -247,7 +245,7 @@ h6 {
   padding: 1rem;
   border: none;
   outline: none;
-  color: var(--cm40);
+  color: var(--cm);
   font-family: "Itim", "Nunito", sans-serif;
   font-weight: normal;
   text-align: center;
@@ -323,14 +321,6 @@ h6 {
   font-size: calc(1rem + 0.2vw);
 }
 
-@keyframes windAndWaves {
-  from {
-    background-size: 100%, 100% 100%, auto;
-  }
-  to {
-    background-size: 100%, 100% 200%, auto;
-  }
-}
 header {
   position: sticky;
   top: 0;
@@ -365,10 +355,10 @@ header h1, header:hover h1 {
   border: 0.25em solid black;
   border-radius: 0.5em;
   outline: 1pt solid black;
-  color: var(--cmh);
+  color: var(--cm);
   --sW: calc(1em / 32);
   --sC: hsl(from var(--white) h s l / 50%);
-  -webkit-text-fill-color: var(--cmh);
+  -webkit-text-fill-color: var(--cm);
   -webkit-text-stroke: 0.03125em black;
   paint-order: stroke fill;
   text-shadow: 0.0125em 0.0125em 0.0125em #000, 0.025em 0.025em 0.025em #0008, 0.05em 0.05em 0.05em #0004, 0.1em 0.1em 0.1em #0002, var(--sW) var(--sW) var(--sW) var(--sC), 0 var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) 0 var(--sW) var(--sC), calc(-1 * var(--sW)) calc(-1 * var(--sW)) var(--sW) var(--sC), 0 calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) 0 var(--sW) var(--sC);
@@ -394,10 +384,13 @@ header h1, header:hover h1 {
     animation-direction: normal;
     animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
   }
-}
-@supports (color: oklch(100% 100% 0)) {
-  header h1, header:hover h1 {
-    --sC: color-mix(in oklch, var(--white), transparent);
+  @keyframes windAndWaves {
+    from {
+      background-size: 100%, 100% 100%, auto;
+    }
+    to {
+      background-size: 100%, 100% 200%, auto;
+    }
   }
 }
 header h1::before, header:hover h1::before {
@@ -465,14 +458,6 @@ header a {
   text-decoration: none;
 }
 
-@keyframes waves {
-  from {
-    background-size: 100%, 100% 100%, auto;
-  }
-  to {
-    background-size: 100%, 100% 200%, auto;
-  }
-}
 footer {
   font-family: "Itim", "Nunito", sans-serif;
   margin: 0;
@@ -491,6 +476,14 @@ footer {
   animation-iteration-count: infinite;
   animation-direction: normal;
   animation-timing-function: linear;
+}
+@keyframes waves {
+  from {
+    background-size: 100%, 100% 100%, auto;
+  }
+  to {
+    background-size: 100%, 100% 200%, auto;
+  }
 }
 footer p {
   margin: 0;
@@ -577,7 +570,7 @@ footer a:visited {
   background: var(--nav-grad);
   background-size: 100% 300%;
   background-position-y: 50%;
-  color: var(--text);
+  color: var(--ct);
   text-align: center;
   text-decoration: none;
   line-height: 2;
@@ -671,7 +664,7 @@ footer a:visited {
   background: radial-gradient(transparent, var(--ccg)), linear-gradient(to var(--curve), var(--cc95) 0%, var(--cc75) 100%);
   background-size: 1000% 1000%;
   background-position-y: 50%;
-  color: var(--text);
+  color: var(--ct);
   font-weight: normal;
   text-transform: none;
   text-decoration: none;
@@ -824,7 +817,7 @@ main p.description {
   border-radius: 1em;
   border: none;
   border-bottom: 1pt groove var(--cw75);
-  color: var(--cm35);
+  color: var(--cm50);
   text-align: center;
   text-indent: 0;
 }
@@ -1044,7 +1037,7 @@ main section {
   border: 0;
   outline: 0;
   border-radius: 2em;
-  background: radial-gradient(farthest-corner, var(--sbi), var(--sbo));
+  background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
   box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--gloss) inset;
   transition: box-shadow 1s;
 }
@@ -1298,7 +1291,7 @@ main .gallery {
   border: 0;
   outline: 0 solid black;
   border-radius: 2em;
-  background: radial-gradient(farthest-corner, var(--sbi), var(--sbo));
+  background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
   text-align: center;
   font-size: 1rem;
   box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;

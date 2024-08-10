@@ -1,8 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Itim&family=Nunito&family=Princess+Sofia&display=swap");
 
 :root {
-  color-scheme: light dark;
-
   // Color components
 
   // Hue
@@ -11,26 +9,31 @@
   --hc: calc(var(--hm) + var(--hs)); // Cooler hue
   --hw: calc(var(--hm) - var(--hs)); // Warmer hue
 
-  // Saturation or chroma
-  --sm: 25%; // Main saturation, or chroma
-  --ss: 25%; // Secondary saturation, or chroma
-  --sh: 50%; // Highlight saturation, or chroma
-  --sd: 6.25%; // Disabled saturation, or chroma
+  // Saturation
+  --sm: 50%; // Main saturation
+  --ss: calc(var(--sm) / 2); // Secondary saturation
+  --sh: calc((100% + var(--sm)) / 2); // Highlight saturation
+  --sd: calc(var(--ss) / 4); // Disabled saturation
 
   // Lightness
-  --lm: 25%; // Main lightness
+  --lmo: 75%; // Main lightness offset; contrast from background
+
+  color-scheme: light dark;
+
   @media (prefers-color-scheme: light) {
+    --lm: calc(100% - var(--lmo)); // Main lightness
     --lti: calc((100% - var(--lm)) / 10); // Lightness tint increment
     --lsi: calc((0% - var(--lm)) / 10); // Lightness shade increment
-    --black: black;
-    --white: white;
+    --black: black; // Variable black to invert for dark mode
+    --white: white; // Variable white to invert for dark mode
   }
   @media (prefers-color-scheme: dark) {
     // Inverted for dark mode
-    --lti: calc((0% - var(--lm)) / 10); // Lightness shade increment
-    --lsi: calc((100% - var(--lm)) / 10); // Lightness tint increment
-    --black: white;
-    --white: black;
+    --lm: calc(0% + var(--lmo)); // Main lightness
+    --lti: calc((0% - var(--lm)) / 10); // Lightness "shade" increment
+    --lsi: calc((100% - var(--lm)) / 10); // Lightness "tint" increment
+    --black: white; // Variable black inverted for dark mode
+    --white: black; // Variable white inverted for dark mode
   }
 
   --lt9: calc(var(--lm) + (var(--lti) * 9)); // Lightness tint 9
@@ -58,20 +61,15 @@
   --cc: hsl(var(--hc) var(--ss) var(--lm)); // Cooler color
   --cw: hsl(var(--hw) var(--ss) var(--lm)); // Warmer color
 
-  // Highlight colors
-  --cmh: hsl(var(--hm) var(--sh) calc(100% / 2)); // Main highlight
-  --cch: hsl(var(--hc) var(--sh) calc(100% / 2)); // Cooler highlight
-  --cwh: hsl(var(--hw) var(--sh) calc(100% / 2)); // Warmer highlight
-
   // Highlight glazes
-  --cmg: hsl(from var(--cmh) h s l / 25%); // Main glaze
-  --ccg: hsl(from var(--cch) h s l / 25%); // Cooler glaze
-  --cwg: hsl(from var(--cwh) h s l / 25%); // Warmer glaze
+  --cmg: hsl(var(--hm) var(--sh) calc(100% / 2) / 25%); // Main glaze
+  --ccg: hsl(var(--hc) var(--sh) calc(100% / 2) / 25%); // Cooler glaze
+  --cwg: hsl(var(--hw) var(--sh) calc(100% / 2) / 25%); // Warmer glaze
 
-  // Disabled colors
-  --cmd: hsl(var(--hm) var(--sd) var(--lm)); // Main disabled
-  --ccd: hsl(var(--hc) var(--sd) var(--lm)); // Cooler disabled
-  --cwd: hsl(var(--hw) var(--sd) var(--lm)); // Warmer disabled
+  // Disabled glazes
+  --cmd: hsl(var(--hm) var(--sd) var(--lm) / 25%); // Main disabled
+  --ccd: hsl(var(--hc) var(--sd) var(--lm) / 25%); // Cooler disabled
+  --cwd: hsl(var(--hw) var(--sd) var(--lm) / 25%); // Warmer disabled
 
   // Main color ramp
   --cm95: hsl(var(--hm) var(--sm) var(--lt9)); // Main color tint 9
@@ -139,17 +137,28 @@
   @media (prefers-color-scheme: light) {
     --shade: #0001;
     --gloss: #fffc;
-    --text: #000c;
   }
   @media (prefers-color-scheme: dark) {
     --shade: #000c;
     --gloss: #fff1;
-    --text: #fffc;
   }
 
-  --skyHue1: 60;
-  --skyHue2: 30;
+  --ct: hsl(from var(--black) h s l / 75%); // Main text color
+  --cbi: hsl(from var(--white) h s l / 12.5%); // Background inner color
+  --cbo: hsl(from var(--white) h s l / 50%); // Background outer color
+
+  // gradient curve direction
+  @media (prefers-color-scheme: light) {
+    --curve: bottom;
+  }
+  @media (prefers-color-scheme: dark) {
+    --curve: top;
+  }
+
+  // Main header colors
   --skyHue3: 0;
+  --skyHue2: 30;
+  --skyHue1: 60;
   --seaHue1: 180;
   --seaHue2: 210;
   --seaHue3: 240;
@@ -186,17 +195,7 @@
 
   --seaShadow: hsl(from var(--seaColor1) h 100% 0% / 100%); // For footer
 
-  --sbi: hsl(from var(--white) h s l / 12.5%); // Section background inner
-  --sbo: hsl(from var(--white) h s l / 50%); // Section background outer
   --mbo: hsl(from black h s l 93.75%); // Modal background outer
-
-  // gradient curve direction
-  @media (prefers-color-scheme: light) {
-    --curve: bottom;
-  }
-  @media (prefers-color-scheme: dark) {
-    --curve: top;
-  }
 
   // @supports (color: oklch(100% 100% 0)) {
   //   --hmx: calc(var(--hm) + 30); // Adjusted main hue
@@ -549,12 +548,12 @@
 
   //   --seaShadow: oklch(from var(--seaColor1) 0% 100% h / 100%);
 
-  //   --sbi: color-mix(
+  //   --cbi: color-mix(
   //     in oklch,
   //     var(--white),
   //     transparent 87.5%
   //   ); // Section background inner
-  //   --sbo: color-mix(
+  //   --cbo: color-mix(
   //     in oklch,
   //     var(--white),
   //     transparent 50%
@@ -570,7 +569,7 @@
 html {
   height: 100%;
   background: black;
-  color: var(--text);
+  color: var(--ct);
   font: {
     family: "Nunito", sans-serif;
     size: 1pc;
@@ -598,7 +597,7 @@ main {
 
 a {
   border: 0;
-  color: var(--text);
+  color: var(--ct);
   text-decoration: underline;
   text-shadow: 1pt 1pt 1pt transparent;
   cursor: pointer;
@@ -638,7 +637,7 @@ h6 {
   padding: 1rem;
   border: none;
   outline: none;
-  color: var(--cm40);
+  color: var(--cm);
   font: {
     family: "Itim", "Nunito", sans-serif;
     weight: normal;
@@ -680,15 +679,6 @@ h5 {
 }
 h6 {
   font-size: calc(1rem + 0.2vw);
-}
-
-@keyframes windAndWaves {
-  from {
-    background-size: 100%, 100% 100%, auto;
-  }
-  to {
-    background-size: 100%, 100% 200%, auto;
-  }
 }
 
 header {
@@ -818,19 +808,24 @@ header {
       animation-iteration-count: infinite;
       animation-direction: normal;
       animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
+      @keyframes windAndWaves {
+        from {
+          background-size: 100%, 100% 100%, auto;
+        }
+        to {
+          background-size: 100%, 100% 200%, auto;
+        }
+      }
     }
     margin: 0 auto;
     padding: 1vw 3vw;
     border: 0.25em solid black;
     border-radius: 0.5em;
     outline: 1pt solid black;
-    color: var(--cmh);
+    color: var(--cm);
     --sW: calc(1em / 32); // stroke width
     --sC: hsl(from var(--white) h s l / 50%); // stroke color
-    @supports (color: oklch(100% 100% 0)) {
-      --sC: color-mix(in oklch, var(--white), transparent);
-    }
-    -webkit-text-fill-color: var(--cmh);
+    -webkit-text-fill-color: var(--cm);
     -webkit-text-stroke: calc(1em / 32) black;
     paint-order: stroke fill;
     text-shadow: 0.0125em 0.0125em 0.0125em #000, 0.025em 0.025em 0.025em #0008,
@@ -931,15 +926,6 @@ header {
   }
 }
 
-@keyframes waves {
-  from {
-    background-size: 100%, 100% 100%, auto;
-  }
-  to {
-    background-size: 100%, 100% 200%, auto;
-  }
-}
-
 footer {
   font-family: "Itim", "Nunito", sans-serif;
   margin: 0;
@@ -984,6 +970,14 @@ footer {
   animation-iteration-count: infinite;
   animation-direction: normal;
   animation-timing-function: linear;
+  @keyframes waves {
+    from {
+      background-size: 100%, 100% 100%, auto;
+    }
+    to {
+      background-size: 100%, 100% 200%, auto;
+    }
+  }
 
   p {
     margin: 0;
@@ -1068,7 +1062,7 @@ footer {
     background: var(--nav-grad);
     background-size: 100% 300%;
     background-position-y: 50%;
-    color: var(--text);
+    color: var(--ct);
     text: {
       align: center;
       decoration: none;
@@ -1173,7 +1167,7 @@ footer {
           linear-gradient(to var(--curve), var(--cc95) 0%, var(--cc75) 100%);
         background-size: 1000% 1000%;
         background-position-y: 50%;
-        color: var(--text);
+        color: var(--ct);
         font-weight: normal;
         text: {
           transform: none;
@@ -1374,7 +1368,7 @@ main {
       border: none;
       border-bottom: 1pt groove var(--cw75);
       // font-style: italic;
-      color: var(--cm35);
+      color: var(--cm50);
       text: {
         align: center;
         indent: 0;
@@ -1605,7 +1599,7 @@ main {
     border: 0;
     outline: 0;
     border-radius: 2em;
-    background: radial-gradient(farthest-corner, var(--sbi), var(--sbo));
+    background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
     box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
       1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
       0 0 0 1pt var(--gloss) inset;
@@ -1874,7 +1868,7 @@ main {
     border: 0;
     outline: 0 solid black;
     border-radius: 2em;
-    background: radial-gradient(farthest-corner, var(--sbi), var(--sbo));
+    background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
     text-align: center;
     font-size: 1rem;
     box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
