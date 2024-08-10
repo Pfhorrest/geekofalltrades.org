@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: On Epistemology, Belief, and the Methods of Knowledge &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: On Epistemology, Belief, and the Methods of Knowledge &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>On Epistemology, Belief, and the Methods of Knowledge</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophy-structure-epistemology.svg" />
 							<source srcset="images/philosophy-structure-epistemology.png" />
@@ -87,7 +87,7 @@
 								Therefore to successfully do philosophy at all we must at least tacitly assume both criticism and liberalism, rejecting both dogmatism and cynicism.
 							</li>
 						</ul>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/fideism-skepticism.svg" />
 								<source srcset="images/fideism-skepticism.png" />
@@ -120,7 +120,7 @@
 						<p>
 							Similarly, <i>a priori</i> knowledge is knowledge that can be had before any particular experience of the world, knowledge that depends only on understanding concepts and their relationships to each other. Classical examples of <i>a priori</i> knowledge are mathematical facts, especially geometric ones, such as that the sum of the squares of the legs of a right triangle is equal to the square of that triangle's hypotenuse, which can be deduced just from thinking about imaginary triangles and squares and how they could or couldn't conceivably relate to each other, with no examination of actual triangular or square objects required. <i>A posteriori</i> knowledge, on the other hand, is knowledge that can only be had from some kind of experience of the world.
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/types-of-knowledge.svg" />
 								<source srcset="images/types-of-knowledge.png" />

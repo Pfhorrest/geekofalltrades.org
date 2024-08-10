@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: On Education, Religion, and the Institutions of Knowledge &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: On Education, Religion, and the Institutions of Knowledge &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>On Education, Religion, and the Institutions of Knowledge</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophy-structure-education.svg" />
 							<source srcset="images/philosophy-structure-education.png" />
@@ -154,7 +154,7 @@
 						<p>
 							It’s not until mysterianism is done away with, and truths are being actively and eagerly shared (proselytically), that there is any groundwork laid for doing physical sciences, that in turn can provide a plausible alternative to religions.
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/academic-spectrum.svg" />
 								<source srcset="images/academic-spectrum.png" />
@@ -174,7 +174,7 @@
 						<p>
 							I consider my position centrally located on not only that diagonal axis but this entire two-dimensional spectrum, respecting both private belief and public education, while opposing both mystery and religion.
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/progressive-conservative.svg" />
 								<source srcset="images/progressive-conservative.png" />

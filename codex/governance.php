@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: On Governance, State, and the Institutions of Justice &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: On Governance, State, and the Institutions of Justice &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>On Governance, State, and the Institutions of Justice</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophy-structure-governance.svg" />
 							<source srcset="images/philosophy-structure-governance.png" />
@@ -164,7 +164,7 @@
 						<p>
 							If instead contracts of usury were powerless, and so such arrangements legally unprotected, those who own more than they need would have no way to benefit from it other than by selling it, and as nobody else who has more than they need would be buying it as an investment vehicle to lend out, they would only be able to sell it to those who need more than they have, on terms that such buyers are able to afford. If they did not agree to sell on such terms, those in the owner class would take a complete loss on their investments in their excess property, so whatever those affordable terms are, it is in the owners' best interest to sell on them rather than not sell at all, and so in the absence of contracts of usury, the ideal free-trade redistribution of property that right-libertarian theory expects would actually happen.
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/political-spectrum.svg" />
 								<source srcset="images/political-spectrum.png" />
@@ -196,7 +196,7 @@
 						<p>
 							The emphasis first and foremost on liberty lead many to treat "left" and "liberal" as synonymous. But because the world powers of the Cold War were (at least nominally) libertarian capitalists of the First World and authoritarian socialists of the Second World, that perpendicular diagonal axis became the new common frame of reference for "left" and "right", leading some to even more generally associate "left" with authoritarianism and "right" with libertarianism. My qualms about what are commonly called "centrists" being called that is that they are only central within that limited quadrant of the spectrum, ignoring how much further away from statism and capitalism it is possible to advocate.
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/progressive-conservative.svg" />
 								<source srcset="images/progressive-conservative.png" />

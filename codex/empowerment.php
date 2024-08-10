@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: On Empowerment, Courage, and Serenity &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: On Empowerment, Courage, and Serenity &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>On Empowerment, Courage, and Serenity</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophy-structure-empowerment.svg" />
 							<source srcset="images/philosophy-structure-empowerment.png" />

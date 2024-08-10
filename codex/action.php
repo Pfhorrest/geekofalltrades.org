@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: On Action and the Meaning of Life &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: On Action and the Meaning of Life &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>On Action and the Meaning of Life</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophy-structure-action.svg" />
 							<source srcset="images/philosophy-structure-action.png" />
@@ -125,7 +125,7 @@
 						<p>
 							Between these extremes lies a spectrum of intermediary types of behavior that are less physiological than those examples of involuntary behavior but may nevertheless fail to rise to the level of purposeful, intentional action, such as many idle or habitual behaviors that we would colloquially describe as being done "without thinking about it", like drumming one's fingers with impatience or boredom, or walking a familiar route by rote. It is precisely that threshold of "<em>thinking</em> about it" that I hold to define action, which differentiates my philosophy of action only slightly from the traditional one.
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/action.svg" />
 								<source srcset="images/action.png" />
@@ -337,7 +337,7 @@
 							<p>
 								I find that, aside from simply allowing myself to ignore the meaningless craving for meaning that ontophobia brings on, the way to cultivate ontophilia is to practice the very same behaviors that it in turn inspires more of. Doing good things, either for others or just for oneself, and learning or teaching new truths, both seem to generate feelings of empowerment and enlightenment, respectively, and as those ramp up in a positive feedback loop, inspiring further such practices, an ontophilic state of mind can be cultivated.
 							</p>
-							<figure>
+							<figure class="invertible">
 								<picture>
 									<source srcset="images/meaningful-function.svg" />
 									<source srcset="images/meaningful-function.png" />
@@ -548,7 +548,7 @@
 							<p>
 								Metaphorically, it is as though we are on the surface of an infinitely deep ocean, and we can neither fly into the sky, for human flight is impossible, nor can we stand on the bottom, for there is no bottom. If we try to reach our feet to the bottom and hold ourselves up that way, we will only sink. If we reach our hands up to the sky and hope to fly out of the water, we will only sink. What we must do is <em>swim</em>, tread water, be comfortable remaining on the surface, with nothing below to support us and nothing above to lift us out, just our own hands and feet, pressing against the water surrounding us from every side, keeping our heads above water. And, just like in actual swimming, it's much easier to do if we don't panic about the fact that we have to swim, and can neither fly nor stand, but instead just relax and do it.
 							</p>
-							<figure>
+							<figure class="invertible">
 								<picture>
 									<source srcset="images/optimism-pessimism.svg" />
 									<source srcset="images/optimism-pessimism.png" />

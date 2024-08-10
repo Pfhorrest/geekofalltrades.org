@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: On Enlightenment, Curiosity, and Impartiality &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: On Enlightenment, Curiosity, and Impartiality &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>On Enlightenment, Curiosity, and Impartiality</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophy-structure-enlightenment.svg" />
 							<source srcset="images/philosophy-structure-enlightenment.png" />

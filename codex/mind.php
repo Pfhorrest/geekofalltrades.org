@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: On the Mind, Consciousness, and the Subjects of Reality &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: On the Mind, Consciousness, and the Subjects of Reality &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>On the Mind, Consciousness, and the Subjects of Reality</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophy-structure-mind.svg" />
 							<source srcset="images/philosophy-structure-mind.png" />
@@ -73,7 +73,7 @@
 						</p>
 						<section id="sensations">
 							<h4>On Sensations and Perceptions</h4>
-							<figure>
+							<figure class="invertible">
 								<picture>
 									<source srcset="images/consciousness-functions.svg" />
 									<source srcset="images/consciousness-functions.png" />
@@ -99,7 +99,7 @@
 							<p>
 								None of this is yet sufficient to call a mind conscious in our ordinary sense of the word. For that, we need all of the above plus also another function, a reflexive function that turns that sentient intelligence back upon the being in question itself, and forms perceptions and desires about its own process of interpreting experiences, and then acts upon itself to critique and judge itself and then filter the conclusions it has come to, accepting or rejecting them as either soundly concluded or not. That reflexive function in general I call "sapience", and the aspect of it concerned with critiquing and judging and filtering perceptions I call "consciousness" proper.
 							</p>
-							<figure>
+							<figure class="invertible">
 								<picture>
 									<source srcset="images/reflexive-functions.svg" />
 									<source srcset="images/reflexive-functions.png" />

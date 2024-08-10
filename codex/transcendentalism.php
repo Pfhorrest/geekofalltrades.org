@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: Against Transcendentalism &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: Against Transcendentalism &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>Against Transcendentalism</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophical-spectrum-no-transcendentalism.svg" />
 							<source srcset="images/philosophical-spectrum-no-cyntranscendentalismicism.png" />
@@ -88,7 +88,7 @@
 					<p>
 						In short, transcendentalism in this sense I am against is to assume that some opinions <em>could be</em> correct, <em>although</em> we could never tell; which I reject in favor of the alternative, to assume that <em>if</em> we could never tell, then it <em>couldn't be</em> correct.
 					</p>
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/transcendentalism.svg" />
 							<source srcset="images/transcendentalism.png" />
@@ -176,7 +176,7 @@
 					<hr />
 					<section id="skepticism">
 						<h3>Not Against All Objectivism</h3>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/objectivism-subjectivism.svg" />
 								<source srcset="images/objectivism-subjectivism.png" />

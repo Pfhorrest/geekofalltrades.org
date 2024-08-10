@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: On Axiology, Value, and the Objects of Morality &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: On Axiology, Value, and the Objects of Morality &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>On Axiology, Value, and the Objects of Morality</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophy-structure-axiology.svg" />
 							<source srcset="images/philosophy-structure-axiology.png" />
@@ -29,7 +29,7 @@
 					<p>
 						Meanwhile, however, I also reckon the field that I call "deontology", concerned with what constitute just means, to be analogous to the field of epistemology, and so something like the meta-ethical subfield of moral epistemology. Ontology and epistemology of course have some bearing upon each other, but they are still separate fields; and an ontological claim, about what is real, is not necessarily an epistemological claim, about what is knowable &ndash; or vice versa. So likewise please bear in mind throughout this essay on the subject of value that this is not my complete ethics laid out here at once: this concerns only what is a good end, but I am not saying that any means in pursuit of such ends is thereby justified, and I will go into further details on what means are just and why in a later essay.
 					</p>
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/attributive-predicative.svg" />
 							<source srcset="images/attributive-predicative.png" />
@@ -101,7 +101,7 @@
 								Therefore to successfully do axiology we must at least tacitly assume hedonic moralism.
 							</li>
 						</ul>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/objectivism-subjectivism.svg" />
 								<source srcset="images/objectivism-subjectivism.png" />
@@ -150,7 +150,7 @@
 					</section>
 					<section id="attributive-value">
 						<h3>On Attributive Value</h3>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/web-of-reality.svg" />
 								<source srcset="images/web-of-reality.png" />
@@ -187,7 +187,7 @@
 						</p>
 						<section id="emergent-value">
 							<h4>On Emergent Instrumental Attributive Value</h4>
-							<figure>
+							<figure class="invertible">
 								<picture>
 									<source srcset="images/reduction-emergence.svg" />
 									<source srcset="images/reduction-emergence.png" />

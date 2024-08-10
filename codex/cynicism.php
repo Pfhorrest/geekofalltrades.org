@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: Against Cynicism &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: Against Cynicism &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>Against Cynicism</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophical-spectrum-no-cynicism.svg" />
 							<source srcset="images/philosophical-spectrum-no-cynicism.png" />
@@ -87,7 +87,7 @@
 						In short, cynicism in this sense I am against is to assume that any given opinion <em>mustn't</em> be correct, until we can show that it <em>must</em> be correct; which I reject in favor of the alternative, to assume that any given opinion <em>could</em> be correct, until we can show that it <em>couldn't</em> be correct.
 					</p>
 					<hr />
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/cynicism.svg" />
 							<source srcset="images/cynicism.png" />
@@ -200,7 +200,7 @@
 					<hr />
 					<section id="skepticism">
 						<h3>Not Against All Skepticism</h3>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/fideism-skepticism.svg" />
 								<source srcset="images/fideism-skepticism.png" />

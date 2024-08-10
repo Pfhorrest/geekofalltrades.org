@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: Against Relativism &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: Against Relativism &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>Against Relativism</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophical-spectrum-no-relativism.svg" />
 							<source srcset="images/philosophical-spectrum-no-relativism.png" />
@@ -114,7 +114,7 @@
 						In short, I am against supposing that there are any such things as unanswerable questions.
 					</p>
 					<hr />
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/relativism.svg" />
 							<source srcset="images/relativism.png" />
@@ -173,7 +173,7 @@
 					<hr />
 					<section id="subjectivism">
 						<h3>Not Against All Subjectivism</h3>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/objectivism-subjectivism.svg" />
 								<source srcset="images/objectivism-subjectivism.png" />

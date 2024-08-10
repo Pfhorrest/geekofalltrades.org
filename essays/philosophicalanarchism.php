@@ -1,4 +1,4 @@
-<?php $title = "An Argument for Philosophical Anarchism &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "An Argument for Philosophical Anarchism &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 				
 				<section>

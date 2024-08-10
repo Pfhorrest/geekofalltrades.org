@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: Against Dogmatism &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: Against Dogmatism &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>Against Dogmatism</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophical-spectrum-no-dogmatism.svg" />
 							<source srcset="images/philosophical-spectrum-no-dogmatism.png" />
@@ -74,7 +74,7 @@
 						In short, I am against supposing that there are any such things as unquestionable answers.
 					</p>
 					<hr />
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/dogmatism.svg" />
 							<source srcset="images/dogmatism.png" />
@@ -145,7 +145,7 @@
 					<hr />
 					<section id="fideism">
 						<h3>Not Against All Fideism</h3>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/fideism-skepticism.svg" />
 								<source srcset="images/fideism-skepticism.png" />

@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: On Ontology, Existence, and the Objects of Reality &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: On Ontology, Existence, and the Objects of Reality &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>On Ontology, Existence, and the Objects of Reality</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophy-structure-ontology.svg" />
 							<source srcset="images/philosophy-structure-ontology.png" />
@@ -26,7 +26,7 @@
 					<p>
 						Ontology (from the Greek word <i>ontos</i>, meaning "being") is the study of being, as in existence, or reality. It is about the kinds of things that exist, and what it is to exist, or to be real. As such it is the core field of the slightly wider field of metaphysics, and often simply what it meant by the latter term. I think of it as the study of the objects of reality, in that it is about the things that are real, the things being described by descriptive speech-acts. I would also characterize it as being about the criteria by which we judge such descriptive speech to be correct, inasmuch as descriptive speech makes claims about what states of affairs are real, and ontology is about what it is for some state of affairs to be real.
 					</p>
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/abstract-concrete.svg" />
 							<source srcset="images/abstract-concrete.png" />
@@ -98,7 +98,7 @@
 								Therefore to successfully do ontology we must at least tacitly assume empirical realism.
 							</li>
 						</ul>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/objectivism-subjectivism.svg" />
 								<source srcset="images/objectivism-subjectivism.png" />
@@ -152,7 +152,7 @@
 							<p>
 								Every other property of an object is likewise defined by what it does, perhaps in response to something that we must do first: an object's color may be relative to what frequencies of light we shine on it (e.g. something that is red under white light may be black under blue light), the shape of the object as felt by touch is defined by where it pushes back on our nerves when we press them into it, and many other more subtle properties of things discovered by experiments are defined by what that thing does when we do something to it.
 							</p>
-							<figure>
+							<figure class="invertible">
 								<picture>
 									<source srcset="images/web-of-reality.svg" />
 									<source srcset="images/web-of-reality.png" />
@@ -285,7 +285,7 @@
 							<p>
 								We do not yet have a complete account of all physical sciences that perfectly reduces them all down to fundamental physics, but the question at hand is whether it is reasonable to expect that that <em>can</em> eventually be done, or if instead it is just in principle not possible. Just as in the pragmatic principles underlying my entire philosophy, I think it is merely giving up to assume that it cannot be done, rather than to assume that it can in principle and we just haven't done it <em>yet</em>. To say that emergence does happen but it cannot possibly be explained exactly when or why (for that would be a reduction) is essentially to invoke magic, running counter to my argument against supernaturalism in my previous essay <a href="transcendentalism">against transcendentalism</a>.
 							</p>
-							<figure>
+							<figure class="invertible">
 								<picture>
 									<source srcset="images/reduction-emergence.svg" />
 									<source srcset="images/reduction-emergence.png" />

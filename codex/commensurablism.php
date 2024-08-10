@@ -1,4 +1,4 @@
-<?php $title = "The Codex Quaerentis: The Philosophy of Commensurablism &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: The Philosophy of Commensurablism &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
@@ -93,7 +93,7 @@
 							</li>
 						</ul>
 
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/philosophical-spectrum.svg" />
 								<source srcset="images/philosophical-spectrum.png" />
@@ -153,7 +153,7 @@
 						<p>
 							(Henceforth I will use each of these terms in these specific senses only, to have clear labels for these positions. I am aware that many of these terms have uses other than the ones I am putting them to here, e.g. "objectivism" being used as the name of Ayn Rand's philosophy and "liberalism" being used in a variety of different political ways, and unless specifically mentioned I do not mean to imply any association with those usages where they differ from these ones).
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/commensurablism.svg" />
 								<source srcset="images/commensurablism.png" />
@@ -443,7 +443,7 @@
 
 						<hr />
 
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/principles-commensurablism.svg" />
 								<source srcset="images/principles-commensurablism.png" />
@@ -460,7 +460,7 @@
 						<p>
 							This conflation of similar but importantly distinct principles &ndash; objectivisms (transcendent or merely universal), subjectivisms (relativistic or merely phenomenal), skepticisms (cynical or merely critical), and fideisms (dogmatic or merely liberal) &ndash; leads many people, I suspect, to see the only available options as a transcendent dogmatic view, or else a cynical relativist view:
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/principles-phobosophies.svg" />
 								<source srcset="images/principles-phobosophies.png" />
@@ -474,7 +474,7 @@
 						<p>
 							Those who reject relativism, as I do, and correctly adopt its negation, universalism, <em>but wrongly equate phenomenalism with relativism and thus universalism with transcendentalism</em>, then correctly see that transcendentalism entails dogmatism, and so conclude that the only alternative to relativism is dogmatism. If they likewise correctly see that rejecting relativism entails rejecting cynicism, <em>but wrongly equate criticism with cynicism and thus liberalism with dogmatism</em>, they will likewise conclude that the only alternative to relativism is dogmatism. In either case, from their correct rejection of relativism, they find themselves seemingly but wrongly compelled to adopt dogmatism.
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/principles-incommensurablism.svg" />
 								<source srcset="images/principles-incommensurablism.png" />

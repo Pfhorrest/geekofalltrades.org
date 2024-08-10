@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: On Deontology, Intention, and the Methods of Justice &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: On Deontology, Intention, and the Methods of Justice &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>On Deontology, Intention, and the Methods of Justice</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophy-structure-deontology.svg" />
 							<source srcset="images/philosophy-structure-deontology.png" />
@@ -93,7 +93,7 @@
 								Therefore to successfully do philosophy at all we must at least tacitly assume both criticism and liberalism, rejecting both dogmatism and cynicism.
 							</li>
 						</ul>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/fideism-skepticism.svg" />
 								<source srcset="images/fideism-skepticism.png" />
@@ -134,7 +134,7 @@
 						<p>
 							I reckon that distinction, in turn, to be analogous to the epistemological distinction between <i>a priori</i> and <i>a posteriori</i> knowledge, because just as <i>a priori</i> knowledge comes directly from within one's own mind (concerning the kinds of things that can coherently be believed) while <i>a posteriori</i> knowledge comes from the outside world, so too perfect duties come directly from within one's own will (concerning the kinds of things that can coherently be intended) while imperfect duties comes from the outside world.
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/types-of-justice.svg" />
 								<source srcset="images/types-of-justice.png" />

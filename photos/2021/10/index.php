@@ -1,4 +1,4 @@
-<?php $title = "October 2021 Photography by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "October 2021 Photography by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<h2>October 2021 Photography</h2>

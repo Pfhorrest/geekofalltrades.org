@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: On Logic and Mathematics &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: On Logic and Mathematics &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>On Logic and Mathematics</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophy-structure-logic.svg" />
 							<source srcset="images/philosophy-structure-logic.png" />
@@ -41,7 +41,7 @@
 						<p>
 							I say that it is really just the ideas of "all men <em>being</em> mortal" and "Socrates <em>being</em> a man" that entail the idea of "Socrates <em>being</em> mortal", and whether we hold descriptive, idea-to-fit-world attitudes about those ideas, or prescriptive, world-to-fit-idea attitudes about them, whether we're impressing or expressing those attitudes, even whether we're making statements or asking questions about them, does not affect the logical relations between the ideas at all.
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/mood-structure.svg" />
 								<source srcset="images/mood-structure.png" />
@@ -120,7 +120,7 @@
 							Thus for something to be omissible, <em>not</em> obligatory, means that its negation <em>is</em> permissible; it <em>may</em> not be, it's morally okay if it's not, even if it would be good if it were. And for something to be impermissible, <em>not</em> permissible, means that its negation <em>is</em> obligatory; it <em>must</em> not be, and so it definitely should not be.
 						</p>
 						<hr />
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/modality.svg" />
 								<source srcset="images/modality.png" />
@@ -182,7 +182,7 @@
 							Aristotle's logic laid out explicit lists of which of forms of arguments, or syllogisms, each involving two statements either about all, some, none, or not all members of one category being in another category (e.g. "all men are mortal"), or about specific individuals being in categories (e.g. "Socrates is a man"), were valid or invalid. This captured much of the intuitive sense of logic people have in common discourse, but it had some major problems that have since been remedied.
 						</p>
 						<hr />
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/quantification.svg" />
 								<source srcset="images/quantification.png" />
@@ -247,7 +247,7 @@
 							In contemporary predicate logic, the predicate is treated as a logical function, called the propositional function, and the subject of that predicate treated as its argument: the function upon that argument then yields a specific proposition. For example, the proposition "Socrates is mortal" might be decomposed into the function <code>is-mortal()</code> which indicates that whatever is put into it is mortal, and the subject <code>Socrates</code>, such that <code>is-mortal(Socrates)</code> means "Socrates is mortal". This can then be combined with the quantification functions already discussed above, to encode a proposition like "all men are mortal" as <code>&forall;m(if is-man(m) then is-mortal(m))</code>.
 						</p>
 						<hr />
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/predication.svg" />
 								<source srcset="images/predication.png" />
@@ -273,7 +273,7 @@
 					</section>
 					<section id="connection">
 						<h3>On Connection</h3>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/connection.svg" />
 								<source srcset="images/connection.png" />
@@ -284,7 +284,7 @@
 						<p>
 							The final aspect of logic that I have yet to discuss is the most basic and fundamental aspect of it, the usual topic of any introductory course on logic: the logical connectives like "and", "or", "not", "if-then", and so forth. It is already well-known in contemporary logic that these connectives can be readily converted between each other; for example, conjunction ("and") and disjunction ("or") are once again De Morgan duals, where the negation of a conjunction ("not (A and B)") is equivalent to the disjunction of negations ("not-A or not-B"), and conversely the negation of a disjunction ("not (A or B)") is equivalent to the conjunction of negations ("not-A and not-B").
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/boolean-junctions.svg" />
 								<source srcset="images/boolean-junctions.png" />

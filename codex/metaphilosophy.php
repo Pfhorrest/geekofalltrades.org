@@ -1,4 +1,4 @@
-<?php $title = "The Codex Quaerentis: The Metaphilosophy of Analytic Pragmatism &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: The Metaphilosophy of Analytic Pragmatism &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
@@ -163,7 +163,7 @@
 						<p>
 							In a perfect world, the latter uses of either martial arts or philosophy would be unnecessary, as such attacks would not be made to begin with, but in the actual world it is unfortunately useful to be thus prepared; and even in a perfect world, with no external attackers, martial arts and philosophy are both still useful for their internal development and exercise of the body, mind, and will.
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/fields.svg" />
 								<source srcset="images/fields.png" />

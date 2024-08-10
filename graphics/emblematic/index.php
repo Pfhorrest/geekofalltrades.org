@@ -1,4 +1,4 @@
-<?php $title = "Emblematic Jewelry by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "Emblematic Jewelry by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<h2>Emblematic Jewelry</h2>

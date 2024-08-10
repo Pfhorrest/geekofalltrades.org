@@ -1,4 +1,4 @@
-<?php $title = "The Golden Rules of Kant and Mill &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Golden Rules of Kant and Mill &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 				
 				<section>

@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: A Note On Ethics &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: A Note On Ethics &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>A Note On Ethics</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophy-structure.svg" />
 							<source srcset="images/philosophy-structure.png" />

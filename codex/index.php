@@ -214,7 +214,7 @@
 						<p>
 							When I was younger and had more grandiose aspirations for this project, I once aimed to position my philosophy as the kind of epoch-defining synthesis of opposing sides of great philosophical divides that has repeatedly punctuated the history of western philosophy:
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/history-of-philosophy.svg" />
 								<source srcset="images/history-of-philosophy.png" />
@@ -256,7 +256,7 @@
 						<p>
 							My views have evolved dramatically over the course of my life. No matter where in the wide range of possibilities from naive faith to abject nihilism you might find your own views, I have probably held similar views myself at one point, and consequently have sympathy for why you hold your views now, even though I probably no longer agree with them, since I have long since disagreed with most of the possible worldviews I have encountered in my life.
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/my-history.svg" />
 								<source srcset="images/my-history.png" />
@@ -338,7 +338,7 @@
 						<p>
 							Most of the individual pieces of my philosophy are not by themselves wholly new to the world, and when they are not I will try to mention those who have held similar views for further reference on those lines of thought. But I have often independently reinvented these positions prior to learning that others already wrote extensively on similar thoughts, so my versions of these positions are often slightly different than the usual ones learned from a study of the history of philosophy.
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/philosophy-structure.svg" />
 								<source srcset="images/philosophy-structure.png" />

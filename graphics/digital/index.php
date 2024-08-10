@@ -1,4 +1,4 @@
-<?php $title = "Digital Arts by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "Digital Arts by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<h2>Digital Arts</h2>

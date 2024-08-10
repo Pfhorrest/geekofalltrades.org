@@ -1,11 +1,11 @@
-<?php $title = "The Codex Quaerentis: On Language and the Meaning of Words &ndash; by Forrest Cameranesi" ?>includes/header-dynamic.php
+<?php $title = "The Codex Quaerentis: On Language and the Meaning of Words &ndash; by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
 
 					<h2>On Language and the Meaning of Words</h2>
 				
-					<figure>
+					<figure class="invertible">
 						<picture>
 							<source srcset="images/philosophy-structure-language.svg" />
 							<source srcset="images/philosophy-structure-language.png" />
@@ -129,7 +129,7 @@
 						<p>
 							So if someone tells us that X is true, both impressing upon us that X is true and expressing their own belief that X is true, but then they also express <em>disbelief</em> that X is true, that contradicts the preceding expression of their belief. It is akin to shouting in a rage "I'M NOT ANGRY!". There is nothing self-contradictory in the content impressed, in either case &ndash; it's possible for someone to be non-angry, and it's possible for someone to disbelieve a truth &ndash; but just as the raged shouting expresses anger in contradiction to the claim of non-anger, the utterance "X is true" expresses belief in X, and so contradicts the attendant claim of disbelief.
 						</p>
-						<figure>
+						<figure class="invertible">
 							<picture>
 								<source srcset="images/communication.svg" />
 								<source srcset="images/communication.png" />
@@ -271,7 +271,7 @@
 									And lastly, higher-order or reflexive opinions with world-to-idea fit I call "intentions", and I hold that the distinguishing feature of intentions is that they "objectify" what have thus far been completely subjective opinions, because they are reflexive in attitude, being capable of casting judgement on other opinions with the same content: one can intend other than what one desires, or judge someone else's desires to be wrong as well. An intention is a desire that has been questioned (however thoroughly) and found (however correctly) to be the correct interpretation of appetites, the correct picture to use as a guide for the world, the correct opinion with world-to-idea fit.
 								</li>
 							</ul>
-							<figure>
+							<figure class="invertible">
 								<picture>
 									<source srcset="images/opinions.svg" />
 									<source srcset="images/opinions.png" />

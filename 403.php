@@ -1,4 +1,4 @@
-<?php $title = "Forrest Cameranesi &ndash; Geek of All Trades" ?>includes/header-dynamic.php
+<?php $title = "Forrest Cameranesi &ndash; Geek of All Trades" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>
