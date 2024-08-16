@@ -1,6 +1,14 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Itim&family=Nunito&family=Princess+Sofia&display=swap");
 :root {
+  --spaceFactor: 1;
+  --roundFactor: 1;
+  --spacing: var(--spacingRel);
+  --rounding: var(--roundingRel);
+  --spacingRel: clamp(0.5rem, 1vw, calc(var(--spaceFactor) * 1em));
+  --spacingAbs: clamp(0.5rem, 1vw, calc(var(--spaceFactor) * 1rem));
+  --roundingRel: calc(var(--spacingRel) * var(--roundFactor));
+  --roundingAbs: calc(var(--spacingAbs) * var(--roundFactor));
   --hm: 120;
   --hs: 60;
   --hc: calc(var(--hm) + var(--hs));
@@ -105,7 +113,7 @@
   --seaHue2: 210;
   --seaHue3: 240;
   --seaShadow: hsl(from var(--seaColor1) h 100% 0% / 100%);
-  --mbo: hsl(from black h s l 93.75%);
+  --mbo: hsl(from black h s l / 93.75%);
 }
 @media (prefers-color-scheme: light) {
   :root {
@@ -209,20 +217,20 @@ main {
 
 a {
   border: 0;
-  color: var(--ct);
+  color: var(--cm);
   text-decoration: underline;
   text-shadow: 1pt 1pt 1pt transparent;
   cursor: pointer;
   transition: color 0.5s, text-shadow 0.5s;
 }
 a:link, a:visited {
-  color: var(--cm30);
+  color: var(--cm50);
 }
 a:hover {
-  color: var(--cm35);
+  color: var(--cm55);
 }
 a:active {
-  color: var(--cm40);
+  color: var(--cm60);
 }
 a:hover, a:active {
   text-shadow: 1pt 1pt 1pt var(--shade);
@@ -242,7 +250,7 @@ h4,
 h5,
 h6 {
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0 var(--spacing);
   border: none;
   outline: none;
   color: var(--cm);
@@ -373,26 +381,6 @@ header h1, header:hover h1 {
   transition: all 1s;
   cursor: pointer;
 }
-@media (min-width: 40rem) {
-  header h1, header:hover h1 {
-    background: linear-gradient(transparent calc(50% - 1em), var(--skyMist) 50%, var(--seaMist) 50%, transparent calc(50% + 1em)), linear-gradient(to bottom, transparent 0%, var(--cloudColor) 18.75%, var(--cloudLight) 21.875%, transparent 25%, var(--cloudColor) 34.375%, var(--cloudLight) 35.9375%, transparent 37.5%, var(--cloudColor) 42.1875%, var(--cloudLight) 42.96875%, transparent 43.75%, var(--cloudColor) 46.09375%, var(--cloudLight) 46.484375%, transparent 46.875%, var(--cloudColor) 48.046875%, var(--cloudLight) 48.2421875%, transparent 48.4375%, var(--cloudColor) 49.0234375%, var(--cloudLight) 49.12109375%, transparent 49.21875%, var(--cloudColor) 49.51171875%, var(--cloudLight) 49.560546875%, transparent 49.609375%, var(--cloudColor) 49.755859375%, var(--cloudLight) 49.7802734375%, transparent 49.8046875%, var(--cloudColor) 49.8779296875%, var(--cloudLight) 49.8901367188%, transparent 49.90234375%, var(--cloudColor) 49.9389648438%, var(--cloudLight) 49.9450683594%, transparent 49.951171875%, transparent 50.048828125%, var(--swellLight) 50.0793457031%, var(--swellColor) 50.0854492188%, transparent 50.09765625%, var(--swellLight) 50.1586914063%, var(--swellColor) 50.1708984375%, transparent 50.1953125%, var(--swellLight) 50.3173828125%, var(--swellColor) 50.341796875%, transparent 50.390625%, var(--swellLight) 50.634765625%, var(--swellColor) 50.68359375%, transparent 50.78125%, var(--swellLight) 51.26953125%, var(--swellColor) 51.3671875%, transparent 51.5625%, var(--swellLight) 52.5390625%, var(--swellColor) 52.734375%, transparent 53.125%, var(--swellLight) 55.078125%, var(--swellColor) 55.46875%, transparent 56.25%, var(--swellLight) 60.15625%, var(--swellColor) 60.9375%, transparent 62.5%, var(--swellLight) 70.3125%, var(--swellColor) 71.875%, transparent 75%, var(--swellLight) 90.625%, var(--swellColor) 93.75%, transparent 100%), linear-gradient(to bottom, var(--skyColor3) 0%, var(--skyColor2) 37.5%, var(--skyColor1) 48%, var(--skyMist) 50%, var(--seaMist) 50%, var(--seaColor1) 52%, var(--seaColor2) 62.5%, var(--seaColor3) 100%);
-    background-size: 100% 100%, auto;
-    background-position: center, center, center;
-    animation-name: windAndWaves;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    animation-direction: normal;
-    animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
-  }
-  @keyframes windAndWaves {
-    from {
-      background-size: 100%, 100% 100%, auto;
-    }
-    to {
-      background-size: 100%, 100% 200%, auto;
-    }
-  }
-}
 header h1::before, header:hover h1::before {
   content: "";
   display: inline-block;
@@ -436,11 +424,26 @@ header h1 > span:first-of-type, header:hover h1 > span:first-of-type {
 }
 @media (min-width: 40rem) {
   header h1, header:hover h1 {
+    background: linear-gradient(transparent calc(50% - 1em), var(--skyMist) 50%, var(--seaMist) 50%, transparent calc(50% + 1em)), linear-gradient(to bottom, transparent 0%, var(--cloudColor) 18.75%, var(--cloudLight) 21.875%, transparent 25%, var(--cloudColor) 34.375%, var(--cloudLight) 35.9375%, transparent 37.5%, var(--cloudColor) 42.1875%, var(--cloudLight) 42.96875%, transparent 43.75%, var(--cloudColor) 46.09375%, var(--cloudLight) 46.484375%, transparent 46.875%, var(--cloudColor) 48.046875%, var(--cloudLight) 48.2421875%, transparent 48.4375%, var(--cloudColor) 49.0234375%, var(--cloudLight) 49.12109375%, transparent 49.21875%, var(--cloudColor) 49.51171875%, var(--cloudLight) 49.560546875%, transparent 49.609375%, var(--cloudColor) 49.755859375%, var(--cloudLight) 49.7802734375%, transparent 49.8046875%, var(--cloudColor) 49.8779296875%, var(--cloudLight) 49.8901367188%, transparent 49.90234375%, var(--cloudColor) 49.9389648438%, var(--cloudLight) 49.9450683594%, transparent 49.951171875%, transparent 50.048828125%, var(--swellLight) 50.0793457031%, var(--swellColor) 50.0854492188%, transparent 50.09765625%, var(--swellLight) 50.1586914063%, var(--swellColor) 50.1708984375%, transparent 50.1953125%, var(--swellLight) 50.3173828125%, var(--swellColor) 50.341796875%, transparent 50.390625%, var(--swellLight) 50.634765625%, var(--swellColor) 50.68359375%, transparent 50.78125%, var(--swellLight) 51.26953125%, var(--swellColor) 51.3671875%, transparent 51.5625%, var(--swellLight) 52.5390625%, var(--swellColor) 52.734375%, transparent 53.125%, var(--swellLight) 55.078125%, var(--swellColor) 55.46875%, transparent 56.25%, var(--swellLight) 60.15625%, var(--swellColor) 60.9375%, transparent 62.5%, var(--swellLight) 70.3125%, var(--swellColor) 71.875%, transparent 75%, var(--swellLight) 90.625%, var(--swellColor) 93.75%, transparent 100%), linear-gradient(to bottom, var(--skyColor3) 0%, var(--skyColor2) 37.5%, var(--skyColor1) 48%, var(--skyMist) 50%, var(--seaMist) 50%, var(--seaColor1) 52%, var(--seaColor2) 62.5%, var(--seaColor3) 100%);
     background-size: 100% 100%, auto;
+    background-position: center, center, center;
+    animation-name: windAndWaves;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
     padding: 1vw;
     border: 0.5rem solid black;
     border-radius: 6.25vw 6.25vw 0 0;
     box-shadow: inset 0 0 0.5vw 0 #0008, inset 0 0 0 0.5vw #000c;
+  }
+  @keyframes windAndWaves {
+    from {
+      background-size: 100%, 100% 100%, auto;
+    }
+    to {
+      background-size: 100%, 100% 200%, auto;
+    }
   }
   header h1::before, header:hover h1::before {
     width: 3em;
@@ -487,7 +490,7 @@ footer {
 }
 footer p {
   margin: 0;
-  padding: 1em;
+  padding: var(--spacing);
   font-size: min(2rem, 4vw);
   color: white;
   -webkit-text-fill-color: white;
@@ -523,8 +526,8 @@ footer a:visited {
 #menu {
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 0;
-  padding-right: 0.5em;
+  padding: 0 0.5em;
+  gap: 0 0.5em;
   display: flex;
   flex-flow: column nowrap;
   flex-shrink: 1;
@@ -558,15 +561,14 @@ footer a:visited {
   float: left;
   order: -1;
   margin: 0;
-  margin-left: 0.5em;
   margin-bottom: -2em;
   padding: 0 1em;
   padding-bottom: 2em;
   border: none;
   border-top: 0pt solid white;
   outline: none;
-  border-top-left-radius: 0.5em;
-  border-top-right-radius: 0.5em;
+  border-top-left-radius: calc(0.5 * var(--rounding));
+  border-top-right-radius: calc(0.5 * var(--rounding));
   background: var(--nav-grad);
   background-size: 100% 300%;
   background-position-y: 50%;
@@ -610,9 +612,9 @@ footer a:visited {
   overflow-y: auto;
   justify-content: space-between;
   clear: both;
-  margin: 0;
-  margin-right: -0.5em;
-  padding: 0.25em;
+  margin: 0 -0.5em;
+  padding: 0.5em;
+  gap: 0.5em;
   border: 0;
   background: var(--nav-grad);
   background-size: 100% 300%;
@@ -645,9 +647,9 @@ footer a:visited {
   position: relative;
   display: inline-block;
   height: auto;
-  margin: 0.25em;
+  margin: 0;
   padding: 0;
-  border-radius: 0.5em;
+  border-radius: calc(0.5 * var(--rounding));
   line-height: 1;
   list-style-type: none;
   /* An active dropdown menu button */
@@ -656,11 +658,12 @@ footer a:visited {
 #menu ul li a {
   display: inline-block;
   float: none;
-  width: calc(100% - 4em);
+  width: 100%;
+  box-sizing: border-box;
   margin: 0;
-  padding: 0.5em 2em;
+  padding: 0.5em 1em;
   border: none;
-  border-radius: 0.5em;
+  border-radius: calc(0.5 * var(--rounding));
   background: radial-gradient(transparent, var(--ccg)), linear-gradient(to var(--curve), var(--cc95) 0%, var(--cc75) 100%);
   background-size: 1000% 1000%;
   background-position-y: 50%;
@@ -708,6 +711,9 @@ footer a:visited {
   margin-left: 0.5em;
   transform: rotate(90deg);
 }
+#menu ul li a.submenu:hover::before {
+  text-shadow: -1pt 1pt 1pt var(--shade);
+}
 #menu ul li.current {
   position: relative;
   z-index: 1;
@@ -728,6 +734,9 @@ footer a:visited {
 #menu ul li.current a::before, #menu ul li.current a::after {
   transform: rotate(0deg);
 }
+#menu ul li.current a:hover::before {
+  text-shadow: 1pt 1pt 1pt var(--shade);
+}
 #menu ul li ul {
   display: none;
   overflow-y: auto;
@@ -737,7 +746,7 @@ footer a:visited {
   left: 0.5em;
   width: 100%;
   padding: 0.125em 0;
-  border-radius: 0.5em;
+  border-radius: calc(0.5 * var(--rounding));
   background: linear-gradient(to right, var(--cm70), var(--cm80), var(--cm70));
   background-size: 1000% 1000%;
   background-position-x: 50%;
@@ -751,7 +760,8 @@ footer a:visited {
 @media (min-width: 40rem) {
   #menu ul li ul {
     position: absolute;
-    width: calc(100% - 1em);
+    width: 100%;
+    box-sizing: border-box;
     max-height: calc(100vh - 10em);
     padding: 0;
     padding-top: 2em;
@@ -763,7 +773,8 @@ footer a:visited {
   white-space: normal;
 }
 #menu ul li ul li a {
-  width: calc(100% - 2em);
+  width: 100%;
+  box-sizing: border-box;
   padding: 0.5em 1em;
 }
 
@@ -774,8 +785,8 @@ main {
   align-items: center;
   flex: 1 1 auto;
   margin: 0;
-  padding: 1em;
-  gap: 1em;
+  padding: var(--spacingAbs);
+  gap: var(--spacingAbs);
   border: 0;
   outline: 0;
   background: radial-gradient(farthest-corner, var(--cw90) 0%, var(--cw95) 100%);
@@ -812,9 +823,9 @@ main p {
   text-indent: 2em;
 }
 main p.description {
-  padding: 1em;
+  padding: var(--spacing);
   padding-top: 0;
-  border-radius: 1em;
+  border-radius: var(--rounding);
   border: none;
   border-bottom: 1pt groove var(--cw75);
   color: var(--cm50);
@@ -826,11 +837,11 @@ main ol {
   overflow: hidden;
   margin: 0;
   padding: 0;
-  padding-left: 2em;
+  padding-left: calc(2 * var(--spacing));
 }
 main ul li,
 main ol li {
-  margin: 1em 0;
+  margin: var(--spacing) 0;
   padding: 0;
 }
 main ul p,
@@ -859,9 +870,9 @@ main ol.toc li span {
 main blockquote {
   position: relative;
   margin: 0 auto;
-  padding: 1em 2em;
+  padding: var(--spacing) calc(2 * var(--spacing));
   border: 1pt dashed var(--cw75);
-  border-radius: 0.5em;
+  border-radius: calc(0.5 * var(--rounding));
 }
 main blockquote:before {
   content: "“";
@@ -889,7 +900,7 @@ main hr {
   content: url(/images/hr-vine.svg);
   clear: both;
   width: 100%;
-  margin: 1em auto;
+  margin: var(--spacing) auto;
   padding: 0;
   border: 0;
   outline: 0;
@@ -899,23 +910,25 @@ main hr:nth-of-type(even) {
   transform: scaleX(-1);
 }
 main table {
-  width: calc(100% - 2em);
+  width: 100%;
+  box-sizing: border-box;
   font-size: 1em;
   border: 1pt solid black;
-  margin: 1em auto auto auto;
+  margin: var(--spacing) auto auto auto;
   background: #ccc;
 }
-main table th {
-  padding: 1em;
+main table th,
+main table td {
+  padding: var(--spacing);
   border: 1pt solid black;
+  text-align: center;
+}
+main table th {
   background: var(--cm95);
   text-align: center;
 }
-main table th td {
-  padding: 1em;
-  border: 1pt solid black;
-  background: white;
-  text-align: center;
+main table td {
+  background: var(--white);
 }
 main .toggleAllControls {
   width: 100%;
@@ -924,7 +937,7 @@ main .toggleAllControls {
   flex-flow: row wrap;
   justify-content: center;
   align-items: stretch;
-  gap: 1em;
+  gap: var(--spacing);
 }
 @media (min-width: 40rem) {
   main .toggleAllControls {
@@ -943,7 +956,7 @@ main .toggleAllControls a {
   justify-content: center;
   align-items: center;
   background: var(--white);
-  border-radius: 0.5em;
+  border-radius: calc(0.5 * var(--rounding));
   padding: 0.25em 2em;
   border: 1pt solid var(--gloss);
   opacity: 0.75;
@@ -970,6 +983,9 @@ main .toggleAllControls a.collapseOthers::before, main .toggleAllControls a.coll
 }
 main .toggleAllControls a.collapseOthers::after, main .toggleAllControls a.collapseAll::after {
   transform: rotate(90deg);
+}
+main .toggleAllControls a.collapseOthers:hover::before, main .toggleAllControls a.collapseAll:hover::before {
+  text-shadow: -1pt 1pt 1pt var(--shade);
 }
 main .toggleAllControls a.anchorTarget {
   border-left-width: 0;
@@ -1022,6 +1038,12 @@ main .toggleAllControls:last-of-type .anchorTarget::before {
 main .toggleAllControls:last-of-type .anchorTarget::after {
   transform: scaleY(-1);
 }
+main .toggleAllControls:last-of-type .anchorTarget:hover::before {
+  text-shadow: -1pt 1pt 1pt var(--shade);
+}
+main .toggleAllControls:last-of-type .anchorTarget:hover::after {
+  text-shadow: 1pt -1pt 1pt var(--shade);
+}
 @media only print {
   main .toggleAllControls {
     display: none;
@@ -1029,14 +1051,15 @@ main .toggleAllControls:last-of-type .anchorTarget::after {
 }
 main section {
   clear: both;
-  width: calc(100% - 2em);
+  width: 100%;
+  box-sizing: border-box;
   max-width: 80ch;
   margin: 0 auto;
-  margin-bottom: 1em;
-  padding: 1em;
+  padding: var(--spacing);
+  gap: var(--spacing);
   border: 0;
   outline: 0;
-  border-radius: 2em;
+  border-radius: calc(2 * var(--rounding));
   background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
   box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--gloss) inset;
   transition: box-shadow 1s;
@@ -1079,7 +1102,8 @@ main section.toggleable h3,
 main section.toggleable h4,
 main section.toggleable h5,
 main section.toggleable h6 {
-  padding: 1rem 3rem;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 main section.toggleable h1::before, main section.toggleable h1::after,
 main section.toggleable h2::before,
@@ -1159,16 +1183,17 @@ main section.toggleable.collapsed > h1::after, main section.toggleable.collapsed
   }
 }
 main section section {
-  border-radius: 1.75em;
+  margin-bottom: var(--spacing);
+  border-radius: calc(1.75 * var(--rounding));
 }
 main section section section {
-  border-radius: 1.5em;
+  border-radius: calc(1.5 * var(--rounding));
 }
 main section section section section {
-  border-radius: 1.25em;
+  border-radius: calc(1.25 * var(--rounding));
 }
 main section section section section section {
-  border-radius: 1em;
+  border-radius: var(--rounding);
 }
 main section .duo {
   display: flex;
@@ -1176,15 +1201,16 @@ main section .duo {
   justify-content: space-around;
   align-items: flex-start;
   text-align: center;
-  gap: 1em;
+  gap: var(--spacing);
 }
 main section .duo > * {
   display: inline-block;
   float: none;
   flex: 1 1 20ch;
   width: 36em;
-  max-width: calc(100% - 2em);
-  padding: 0 1em;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--spacing);
   vertical-align: top;
 }
 main section .duo section {
@@ -1192,7 +1218,7 @@ main section .duo section {
 }
 main section .duo figure:nth-of-type(1n + 0) {
   float: none;
-  margin: 1em;
+  margin: var(--spacing);
 }
 main section .duo figure li {
   margin: 0.125em 0;
@@ -1205,18 +1231,17 @@ main section figure {
   display: block;
   width: 100%;
   max-width: 100%;
-  margin: 1em auto;
+  margin: var(--spacing) auto;
   transition: all 1s ease-in;
 }
 main section figure.contained {
   overflow: hidden;
   border: 1pt solid var(--cw75);
-  border-radius: 1em;
+  border-radius: var(--rounding);
   background: var(--cw75);
   box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
 }
 main section figure.contained:hover, main section figure.contained:focus, main section figure.contained:active {
-  border-radius: 0.125em;
   box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
 }
 @media (prefers-color-scheme: light) {
@@ -1243,11 +1268,11 @@ main section figure ul {
   main section figure {
     float: left;
     max-width: calc((100% - 2em) / 2);
-    margin: 0 1em 1em 0;
+    margin: 0 var(--spacing) var(--spacing) 0;
   }
   main section figure:nth-of-type(even) {
     float: right;
-    margin-left: 1em;
+    margin-left: var(--spacing);
     margin-right: 0;
   }
   main section figure:active {
@@ -1255,12 +1280,12 @@ main section figure ul {
   }
   main section:nth-of-type(even) figure {
     float: right;
-    margin-left: 1em;
+    margin-left: var(--spacing);
     margin-right: 0;
   }
   main section:nth-of-type(even) figure:nth-of-type(even) {
     float: left;
-    margin-right: 1em;
+    margin-right: var(--spacing);
     margin-left: 0;
   }
   main section .solo {
@@ -1276,7 +1301,6 @@ main section .solo img {
   main section {
     padding-left: 0;
     padding-right: 0;
-    width: 100%;
   }
 }
 main .gallery {
@@ -1286,11 +1310,12 @@ main .gallery {
   align-items: stretch;
   max-width: 100%;
   margin: 0 auto;
-  margin-bottom: 1em;
-  padding: 1em;
+  margin-bottom: var(--spacing);
+  padding: var(--spacing);
+  gap: var(--spacing);
   border: 0;
   outline: 0 solid black;
-  border-radius: 2em;
+  border-radius: calc(2 * var(--rounding));
   background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
   text-align: center;
   font-size: 1rem;
@@ -1307,11 +1332,11 @@ main .gallery li {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  margin: 0.5em;
-  padding: 1em;
+  margin: 0;
+  padding: var(--spacing);
   border: 0pt solid var(--cw75);
-  border-radius: 1em;
-  background-color: var(--white);
+  border-radius: var(--rounding);
+  background-color: white;
   text-align: center;
   list-style: none;
   vertical-align: top;
@@ -1325,12 +1350,14 @@ main .gallery li:before {
   display: none;
 }
 main .gallery li h3 {
+  color: black;
   margin: 0;
   padding: 0.5em 2em;
   font-family: "Nunito", sans-serif;
   font-size: 1em;
   text-transform: none;
   line-height: 1.5;
+  text-shadow: none;
 }
 main .gallery li a {
   margin: auto 0;
@@ -1399,8 +1426,9 @@ main .gallery li p.description {
   position: absolute;
   top: 50%;
   left: 50%;
-  max-width: calc(100vw - 2 * (2vh + 1em));
-  max-height: calc(100vh - 2 * (2vh + 5em));
+  max-width: calc(100vw - 2em);
+  max-height: calc(100vh - 12em);
+  box-sizing: border-box;
   object-fit: scale-down;
   transform: translate(-50%, -50%);
   border: 1vh solid white;
@@ -1413,8 +1441,10 @@ main .gallery li p.description {
   z-index: 4;
   top: 0;
   width: auto;
-  padding: 2em;
+  padding: 1em;
   color: grey;
+  font-size: 2em;
+  line-height: 1em;
 }
 .modal nav {
   top: auto;
@@ -1426,7 +1456,7 @@ main .gallery li p.description {
   width: 1em;
   margin: 0 1em;
   padding: 0;
-  border-radius: 1em;
+  border-radius: var(--rounding);
   background: none;
   color: grey;
   font-weight: bold;

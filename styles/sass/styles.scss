@@ -1,6 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Itim&family=Nunito&family=Princess+Sofia&display=swap");
 
 :root {
+  // Spacing and rounding
+
+  --spaceFactor: 1; // Multiple of font size
+  --roundFactor: 1; // Multiple of font size
+  --spacing: var(--spacingRel); // Default to local (Rel) or root (Abs) font
+  --rounding: var(--roundingRel); // Default to local (Rel) or root (Abs) font
+  --spacingRel: clamp(0.5rem, 1vw, calc(var(--spaceFactor) * 1em));
+  --spacingAbs: clamp(0.5rem, 1vw, calc(var(--spaceFactor) * 1rem));
+  --roundingRel: calc(var(--spacingRel) * var(--roundFactor));
+  --roundingAbs: calc(var(--spacingAbs) * var(--roundFactor));
+
   // Color components
 
   // Hue
@@ -195,7 +206,7 @@
 
   --seaShadow: hsl(from var(--seaColor1) h 100% 0% / 100%); // For footer
 
-  --mbo: hsl(from black h s l 93.75%); // Modal background outer
+  --mbo: hsl(from black h s l / 93.75%); // Modal background outer
 
   // @supports (color: oklch(100% 100% 0)) {
   //   --hmx: calc(var(--hm) + 30); // Adjusted main hue
@@ -597,7 +608,7 @@ main {
 
 a {
   border: 0;
-  color: var(--ct);
+  color: var(--cm);
   text-decoration: underline;
   text-shadow: 1pt 1pt 1pt transparent;
   cursor: pointer;
@@ -605,13 +616,13 @@ a {
 
   &:link,
   &:visited {
-    color: var(--cm30);
+    color: var(--cm50);
   }
   &:hover {
-    color: var(--cm35);
+    color: var(--cm55);
   }
   &:active {
-    color: var(--cm40);
+    color: var(--cm60);
   }
   &:hover,
   &:active {
@@ -634,7 +645,7 @@ h4,
 h5,
 h6 {
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0 var(--spacing);
   border: none;
   outline: none;
   color: var(--cm);
@@ -718,6 +729,79 @@ header {
       var(--seaColor1) 62.5%,
       var(--seaColor2) 100%
     );
+    margin: 0 auto;
+    padding: 1vw 3vw;
+    border: 0.25em solid black;
+    border-radius: 0.5em;
+    outline: 1pt solid black;
+    color: var(--cm);
+    --sW: calc(1em / 32); // stroke width
+    --sC: hsl(from var(--white) h s l / 50%); // stroke color
+    -webkit-text-fill-color: var(--cm);
+    -webkit-text-stroke: calc(1em / 32) black;
+    paint-order: stroke fill;
+    text-shadow: 0.0125em 0.0125em 0.0125em #000, 0.025em 0.025em 0.025em #0008,
+      0.05em 0.05em 0.05em #0004, 0.1em 0.1em 0.1em #0002,
+      var(--sW) var(--sW) var(--sW) var(--sC), 0 var(--sW) var(--sW) var(--sC),
+      calc(-1 * var(--sW)) var(--sW) var(--sW) var(--sC),
+      calc(-1 * var(--sW)) 0 var(--sW) var(--sC),
+      calc(-1 * var(--sW)) calc(-1 * var(--sW)) var(--sW) var(--sC),
+      0 calc(-1 * var(--sW)) var(--sW) var(--sC),
+      var(--sW) calc(-1 * var(--sW)) var(--sW) var(--sC),
+      var(--sW) 0 var(--sW) var(--sC);
+    font-family: "Princess Sofia", "Itim", "Nunito", sans-serif;
+    font-size: max(1.5rem, 4vw);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    letter-spacing: 0.1em;
+    line-height: 2;
+    transition: all 1s;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 1.5em;
+      height: 1.5em;
+      background: center / contain no-repeat url(/images/logo.png);
+      flex-shrink: 0;
+    }
+
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      background: center / contain no-repeat
+        url('data:image/svg+xml,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0.0em" y="0.0em" width="1.0em" height="1.0em" viewBox="0 0 1.0em 1.0em" ><rect x="0.0em" y="0.0em" width="1.0em" height="0.2em" /><rect x="0.0em" y="0.4em" width="1.0em" height="0.2em" /><rect x="0.0em" y="0.8em" width="1.0em" height="0.2em" /></svg>');
+      flex-shrink: 0;
+      @media (prefers-color-scheme: light) {
+        filter: none;
+      }
+      @media (prefers-color-scheme: dark) {
+        filter: invert(1);
+      }
+    }
+
+    > span {
+      flex-grow: 1;
+      flex-basis: 100%;
+
+      > span {
+        display: none;
+
+        @media (min-width: 20rem) {
+          display: inline;
+        }
+      }
+    }
+
+    > span:first-of-type {
+      display: none;
+    }
+
     @media (min-width: 40rem) {
       background: linear-gradient(
           transparent calc(50% - 1em),
@@ -816,94 +900,10 @@ header {
           background-size: 100%, 100% 200%, auto;
         }
       }
-    }
-    margin: 0 auto;
-    padding: 1vw 3vw;
-    border: 0.25em solid black;
-    border-radius: 0.5em;
-    outline: 1pt solid black;
-    color: var(--cm);
-    --sW: calc(1em / 32); // stroke width
-    --sC: hsl(from var(--white) h s l / 50%); // stroke color
-    -webkit-text-fill-color: var(--cm);
-    -webkit-text-stroke: calc(1em / 32) black;
-    paint-order: stroke fill;
-    text-shadow: 0.0125em 0.0125em 0.0125em #000, 0.025em 0.025em 0.025em #0008,
-      0.05em 0.05em 0.05em #0004, 0.1em 0.1em 0.1em #0002,
-      var(--sW) var(--sW) var(--sW) var(--sC), 0 var(--sW) var(--sW) var(--sC),
-      calc(-1 * var(--sW)) var(--sW) var(--sW) var(--sC),
-      calc(-1 * var(--sW)) 0 var(--sW) var(--sC),
-      calc(-1 * var(--sW)) calc(-1 * var(--sW)) var(--sW) var(--sC),
-      0 calc(-1 * var(--sW)) var(--sW) var(--sC),
-      var(--sW) calc(-1 * var(--sW)) var(--sW) var(--sC),
-      var(--sW) 0 var(--sW) var(--sC);
-    font-family: "Princess Sofia", "Itim", "Nunito", sans-serif;
-    font-size: max(1.5rem, 4vw);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    white-space: nowrap;
-    letter-spacing: 0.1em;
-    line-height: 2;
-    transition: all 1s;
-    cursor: pointer;
-
-    &::before {
-      content: "";
-      display: inline-block;
-      width: 1.5em;
-      height: 1.5em;
-      background: center / contain no-repeat url(/images/logo.png);
-      flex-shrink: 0;
-    }
-
-    &::after {
-      content: "";
-      display: inline-block;
-      width: 1em;
-      height: 1em;
-      background: center / contain no-repeat
-        url('data:image/svg+xml,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0.0em" y="0.0em" width="1.0em" height="1.0em" viewBox="0 0 1.0em 1.0em" ><rect x="0.0em" y="0.0em" width="1.0em" height="0.2em" /><rect x="0.0em" y="0.4em" width="1.0em" height="0.2em" /><rect x="0.0em" y="0.8em" width="1.0em" height="0.2em" /></svg>');
-      flex-shrink: 0;
-      @media (prefers-color-scheme: light) {
-        filter: none;
-      }
-      @media (prefers-color-scheme: dark) {
-        filter: invert(1);
-      }
-    }
-
-    > span {
-      flex-grow: 1;
-      flex-basis: 100%;
-
-      > span {
-        display: none;
-
-        @media (min-width: 20rem) {
-          display: inline;
-        }
-      }
-    }
-
-    > span:first-of-type {
-      display: none;
-    }
-
-    @media (min-width: 40rem) {
-      background-size: 100% 100%, auto;
       padding: 1vw;
       border: 0.5rem solid black;
       border-radius: 6.25vw 6.25vw 0 0;
       box-shadow: inset 0 0 0.5vw 0 #0008, inset 0 0 0 0.5vw #000c;
-      // &:hover {
-      //   color: var(--cm);
-      //   -webkit-text-fill-color: var(--cm);
-      //   -webkit-text-stroke: 0.03125em black;
-      //   text-shadow: 0.0125em 0.0125em 0.0125em #000,
-      //     0.025em 0.025em 0.025em #0008, 0.05em 0.05em 0.05em #0004,
-      //     0.1em 0.1em 0.1em #0002;
-      // }
 
       &::before {
         width: 3em;
@@ -981,7 +981,7 @@ footer {
 
   p {
     margin: 0;
-    padding: 1em;
+    padding: var(--spacing);
     font-size: min(2rem, 4vw);
     color: white;
     -webkit-text-fill-color: white;
@@ -1017,8 +1017,8 @@ footer {
 #menu {
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 0;
-  padding-right: 0.5em;
+  padding: 0 0.5em;
+  gap: 0 0.5em;
   display: flex;
   flex-flow: column nowrap;
   flex-shrink: 1;
@@ -1050,15 +1050,14 @@ footer {
     float: left;
     order: -1;
     margin: 0;
-    margin-left: 0.5em;
     margin-bottom: -2em;
     padding: 0 1em;
     padding-bottom: 2em;
     border: none;
     border-top: 0pt solid white;
     outline: none;
-    border-top-left-radius: 0.5em;
-    border-top-right-radius: 0.5em;
+    border-top-left-radius: calc(0.5 * var(--rounding));
+    border-top-right-radius: calc(0.5 * var(--rounding));
     background: var(--nav-grad);
     background-size: 100% 300%;
     background-position-y: 50%;
@@ -1112,9 +1111,9 @@ footer {
     overflow-y: auto;
     justify-content: space-between;
     clear: both;
-    margin: 0;
-    margin-right: -0.5em;
-    padding: 0.25em;
+    margin: 0 -0.5em;
+    padding: 0.5em;
+    gap: 0.5em;
     border: 0;
     background: var(--nav-grad);
     background-size: 100% 300%;
@@ -1149,20 +1148,21 @@ footer {
       position: relative;
       display: inline-block;
       height: auto;
-      margin: 0.25em;
+      margin: 0;
       padding: 0;
-      border-radius: 0.5em;
+      border-radius: calc(0.5 * var(--rounding));
       line-height: 1;
       list-style-type: none;
 
       a {
         display: inline-block;
         float: none;
-        width: calc(100% - 4em);
+        width: 100%;
+        box-sizing: border-box;
         margin: 0;
-        padding: 0.5em 2em;
+        padding: 0.5em 1em;
         border: none;
-        border-radius: 0.5em;
+        border-radius: calc(0.5 * var(--rounding));
         background: radial-gradient(transparent, var(--ccg)),
           linear-gradient(to var(--curve), var(--cc95) 0%, var(--cc75) 100%);
         background-size: 1000% 1000%;
@@ -1225,6 +1225,9 @@ footer {
             margin-left: 0.5em;
             transform: rotate(90deg);
           }
+          &:hover::before {
+            text-shadow: -1pt 1pt 1pt var(--shade);
+          }
         }
       }
 
@@ -1253,6 +1256,9 @@ footer {
           &::after {
             transform: rotate(0deg);
           }
+          &:hover::before {
+            text-shadow: 1pt 1pt 1pt var(--shade);
+          }
         }
       }
 
@@ -1266,7 +1272,7 @@ footer {
         left: 0.5em;
         width: 100%;
         padding: 0.125em 0;
-        border-radius: 0.5em;
+        border-radius: calc(0.5 * var(--rounding));
         background: linear-gradient(
           to right,
           var(--cm70),
@@ -1291,7 +1297,8 @@ footer {
 
         @media (min-width: 40rem) {
           position: absolute;
-          width: calc(100% - 1em);
+          width: 100%;
+          box-sizing: border-box;
           max-height: calc(100vh - 10em);
           padding: 0;
           padding-top: 2em;
@@ -1303,7 +1310,8 @@ footer {
           white-space: normal;
 
           a {
-            width: calc(100% - 2em);
+            width: 100%;
+            box-sizing: border-box;
             padding: 0.5em 1em;
           }
         }
@@ -1319,8 +1327,8 @@ main {
   align-items: center;
   flex: 1 1 auto;
   margin: 0;
-  padding: 1em;
-  gap: 1em;
+  padding: var(--spacingAbs);
+  gap: var(--spacingAbs);
   border: 0;
   outline: 0;
   background: radial-gradient(
@@ -1362,12 +1370,11 @@ main {
     text-indent: 2em;
 
     &.description {
-      padding: 1em;
+      padding: var(--spacing);
       padding-top: 0;
-      border-radius: 1em;
+      border-radius: var(--rounding);
       border: none;
       border-bottom: 1pt groove var(--cw75);
-      // font-style: italic;
       color: var(--cm50);
       text: {
         align: center;
@@ -1381,10 +1388,10 @@ main {
     overflow: hidden;
     margin: 0;
     padding: 0;
-    padding-left: 2em;
+    padding-left: calc(2 * var(--spacing));
 
     li {
-      margin: 1em 0;
+      margin: var(--spacing) 0;
       padding: 0;
     }
 
@@ -1414,9 +1421,9 @@ main {
   blockquote {
     position: relative;
     margin: 0 auto;
-    padding: 1em 2em;
+    padding: var(--spacing) calc(2 * var(--spacing));
     border: 1pt dashed var(--cw75);
-    border-radius: 0.5em;
+    border-radius: calc(0.5 * var(--rounding));
 
     &:before {
       content: "“";
@@ -1446,7 +1453,7 @@ main {
     content: url(/images/hr-vine.svg);
     clear: both;
     width: 100%;
-    margin: 1em auto;
+    margin: var(--spacing) auto;
     padding: 0;
     border: 0;
     outline: 0;
@@ -1458,22 +1465,24 @@ main {
   }
 
   table {
-    width: calc(100% - 2em);
+    width: 100%;
+    box-sizing: border-box;
     font-size: 1em;
     border: 1pt solid black;
-    margin: 1em auto auto auto;
+    margin: var(--spacing) auto auto auto;
     background: #ccc;
-    th {
-      padding: 1em;
+    th,
+    td {
+      padding: var(--spacing);
       border: 1pt solid black;
+      text-align: center;
+    }
+    th {
       background: var(--cm95);
       text-align: center;
-      td {
-        padding: 1em;
-        border: 1pt solid black;
-        background: white;
-        text-align: center;
-      }
+    }
+    td {
+      background: var(--white);
     }
   }
 
@@ -1487,7 +1496,7 @@ main {
     }
     justify-content: center;
     align-items: stretch;
-    gap: 1em;
+    gap: var(--spacing);
     a {
       flex: 1 1 100%;
       position: relative;
@@ -1500,7 +1509,7 @@ main {
       justify-content: center;
       align-items: center;
       background: var(--white);
-      border-radius: 0.5em;
+      border-radius: calc(0.5 * var(--rounding));
       padding: 0.25em 2em;
       border: 1pt solid var(--gloss);
       opacity: 0.75;
@@ -1534,6 +1543,9 @@ main {
         }
         &::after {
           transform: rotate(90deg);
+        }
+        &:hover::before {
+          text-shadow: -1pt 1pt 1pt var(--shade);
         }
       }
       &.anchorTarget {
@@ -1583,6 +1595,12 @@ main {
       &::after {
         transform: scaleY(-1);
       }
+      &:hover::before {
+        text-shadow: -1pt 1pt 1pt var(--shade);
+      }
+      &:hover::after {
+        text-shadow: 1pt -1pt 1pt var(--shade);
+      }
     }
     @media only print {
       display: none;
@@ -1591,14 +1609,15 @@ main {
 
   section {
     clear: both;
-    width: calc(100% - 2em);
+    width: 100%;
+    box-sizing: border-box;
     max-width: 80ch;
     margin: 0 auto;
-    margin-bottom: 1em;
-    padding: 1em;
+    padding: var(--spacing);
+    gap: var(--spacing);
     border: 0;
     outline: 0;
-    border-radius: 2em;
+    border-radius: calc(2 * var(--rounding));
     background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
     box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
       1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
@@ -1651,7 +1670,8 @@ main {
       h4,
       h5,
       h6 {
-        padding: 1rem 3rem;
+        padding-left: 1em;
+        padding-right: 1em;
         &::before,
         &::after {
           content: "▼";
@@ -1683,16 +1703,6 @@ main {
         }
       }
       &.collapsed {
-        // &::after {
-        //   content: "...";
-        //   position: relative;
-        //   top: -0.5em;
-        //   margin: auto;
-        //   text-align: center;
-        //   opacity: 0.5;
-        //   letter-spacing: 1ch;
-        //   transition: all;
-        // }
         & > h1,
         & > h2,
         & > h3,
@@ -1717,13 +1727,14 @@ main {
     }
 
     section {
-      border-radius: 1.75em;
+      margin-bottom: var(--spacing);
+      border-radius: calc(1.75 * var(--rounding));
       section {
-        border-radius: 1.5em;
+        border-radius: calc(1.5 * var(--rounding));
         section {
-          border-radius: 1.25em;
+          border-radius: calc(1.25 * var(--rounding));
           section {
-            border-radius: 1em;
+            border-radius: var(--rounding);
           }
         }
       }
@@ -1735,16 +1746,16 @@ main {
       justify-content: space-around;
       align-items: flex-start;
       text-align: center;
-      gap: 1em;
+      gap: var(--spacing);
 
       > * {
         display: inline-block;
         float: none;
         flex: 1 1 20ch;
         width: 36em;
-        max-width: calc(100% - 2em);
-        // margin: 1em;
-        padding: 0 1em;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 0 var(--spacing);
         vertical-align: top;
       }
       section {
@@ -1753,7 +1764,7 @@ main {
       figure {
         &:nth-of-type(1n + 0) {
           float: none;
-          margin: 1em;
+          margin: var(--spacing);
         }
         li {
           margin: 0.125em 0;
@@ -1769,13 +1780,13 @@ main {
       display: block;
       width: 100%;
       max-width: 100%;
-      margin: 1em auto;
+      margin: var(--spacing) auto;
       transition: all 1s ease-in;
 
       &.contained {
         overflow: hidden;
         border: 1pt solid var(--cw75);
-        border-radius: 1em;
+        border-radius: var(--rounding);
         background: var(--cw75);
         box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent,
           1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
@@ -1783,7 +1794,6 @@ main {
         &:hover,
         &:focus,
         &:active {
-          border-radius: 0.125em;
           box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss),
             1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
             0 0 0 1pt transparent inset;
@@ -1816,11 +1826,11 @@ main {
       figure {
         float: left;
         max-width: calc((100% - 2em) / 2);
-        margin: 0 1em 1em 0;
+        margin: 0 var(--spacing) var(--spacing) 0;
 
         &:nth-of-type(even) {
           float: right;
-          margin-left: 1em;
+          margin-left: var(--spacing);
           margin-right: 0;
         }
 
@@ -1830,12 +1840,12 @@ main {
       }
       &:nth-of-type(even) figure {
         float: right;
-        margin-left: 1em;
+        margin-left: var(--spacing);
         margin-right: 0;
 
         &:nth-of-type(even) {
           float: left;
-          margin-right: 1em;
+          margin-right: var(--spacing);
           margin-left: 0;
         }
       }
@@ -1852,7 +1862,6 @@ main {
     @media only print {
       padding-left: 0;
       padding-right: 0;
-      width: 100%;
     }
   }
 
@@ -1863,11 +1872,12 @@ main {
     align-items: stretch;
     max-width: 100%;
     margin: 0 auto;
-    margin-bottom: 1em;
-    padding: 1em;
+    margin-bottom: var(--spacing);
+    padding: var(--spacing);
+    gap: var(--spacing);
     border: 0;
     outline: 0 solid black;
-    border-radius: 2em;
+    border-radius: calc(2 * var(--rounding));
     background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
     text-align: center;
     font-size: 1rem;
@@ -1891,12 +1901,11 @@ main {
       display: flex;
       flex-flow: column nowrap;
       justify-content: space-between;
-      // width: 16em;
-      margin: 0.5em;
-      padding: 1em;
+      margin: 0;
+      padding: var(--spacing);
       border: 0pt solid var(--cw75);
-      border-radius: 1em;
-      background-color: var(--white);
+      border-radius: var(--rounding);
+      background-color: white;
       text-align: center;
       list-style: none;
       vertical-align: top;
@@ -1917,6 +1926,7 @@ main {
       }
 
       h3 {
+        color: black;
         margin: 0;
         padding: 0.5em 2em;
         font: {
@@ -1925,6 +1935,7 @@ main {
         }
         text-transform: none;
         line-height: 1.5;
+        text-shadow: none;
       }
 
       a {
@@ -2003,8 +2014,9 @@ main {
     position: absolute;
     top: 50%;
     left: 50%;
-    max-width: calc(100vw - 2 * (2vh + 1em));
-    max-height: calc(100vh - 2 * (2vh + 5em));
+    max-width: calc(100vw - 2 * 1em);
+    max-height: calc(100vh - 2 * 6em);
+    box-sizing: border-box;
     object-fit: scale-down;
     transform: translate(-50%, -50%);
     border: 1vh solid white;
@@ -2018,8 +2030,10 @@ main {
     z-index: 4;
     top: 0;
     width: auto;
-    padding: 2em;
+    padding: 1em;
     color: grey;
+    font-size: 2em;
+    line-height: 1em;
   }
 
   nav {
@@ -2033,7 +2047,7 @@ main {
     width: 1em;
     margin: 0 1em;
     padding: 0;
-    border-radius: 1em;
+    border-radius: var(--rounding);
     background: none;
     color: grey;
     font-weight: bold;
