@@ -1936,6 +1936,10 @@ main {
         text-transform: none;
         line-height: 1.5;
         text-shadow: none;
+        &::before, &::after {
+          content: "";
+          display: none;
+        }
       }
 
       a {

@@ -1359,6 +1359,10 @@ main .gallery li h3 {
   line-height: 1.5;
   text-shadow: none;
 }
+main .gallery li h3::before, main .gallery li h3::after {
+  content: "";
+  display: none;
+}
 main .gallery li a {
   margin: auto 0;
 }
