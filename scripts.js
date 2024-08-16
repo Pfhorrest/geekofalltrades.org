@@ -229,7 +229,9 @@ const collapseOthersExpandAnchor = () => {
   if (anchor) {
     collapseSections(anchor);
     expandSections(anchor);
-    document.getElementById(anchor).scrollIntoView(true);
+    setTimeout(() => {
+      document.getElementById(anchor).scrollIntoView(true);
+    }, 501);
   }
 };
 document.addEventListener("DOMContentLoaded", collapseOthersExpandAnchor);
