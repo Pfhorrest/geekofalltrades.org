@@ -1333,12 +1333,13 @@ main .gallery {
   font-size: 1rem;
   box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
   transition: box-shadow 1s;
+  --gim: 24ch;
 }
 main .gallery:hover, main .gallery:focus, main .gallery:active {
   box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
 }
 main .gallery > * {
-  flex: 1 1 16em;
+  flex: 1 0 var(--gim);
 }
 main .gallery li {
   display: flex;
@@ -1382,8 +1383,8 @@ main .gallery li a {
 }
 main .gallery li img {
   display: inline-block;
-  max-width: 16em;
-  max-height: 16em;
+  max-width: var(--gim);
+  max-height: var(--gim);
   margin: 0 auto;
   background: white;
 }

@@ -1565,8 +1565,10 @@ main {
     }
     transition: box-shadow 1s;
 
+    --gim: 24ch; // Gallery item measurement
+
     > * {
-      flex: 1 1 16em;
+      flex: 1 0 var(--gim);
     }
 
     li {
@@ -1623,8 +1625,8 @@ main {
 
       img {
         display: inline-block;
-        max-width: 16em;
-        max-height: 16em;
+        max-width: var(--gim);
+        max-height: var(--gim);
         margin: 0 auto;
         background: white;
       }
