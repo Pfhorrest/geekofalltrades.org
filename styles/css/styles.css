@@ -194,6 +194,7 @@ html {
   color: var(--ct);
   font-family: "Nunito", sans-serif;
   font-size: 1pc;
+  font-size: clamp(0.75pc, clamp(1pc + (100vw - 80pc) * 0.25 / 20, 1pc, 0.75pc + (100vw - 30pc) * 0.25 / 10), 1.2pc);
   line-height: 1;
   scroll-padding-top: 6rem;
   scroll-behavior: smooth;
@@ -560,6 +561,7 @@ footer a:visited {
   display: block;
   float: left;
   order: -1;
+  z-index: 1;
   margin: 0;
   margin-bottom: -2em;
   padding: 0 1em;
@@ -603,6 +605,11 @@ footer a:visited {
 #menu > a:last-of-type + ul {
   display: flex;
 }
+@media (max-width: 40rem) {
+  #menu > a:last-of-type + ul {
+    box-shadow: 0pt -1pt 0 0 var(--shade);
+  }
+}
 #menu ul {
   flex-basis: 100%;
   z-index: 1;
@@ -623,6 +630,17 @@ footer a:visited {
   line-height: 2.5;
   box-shadow: 0pt -1pt 0pt transparent inset, 0pt 1pt 1pt transparent, 0 -1pt 0 0 var(--shade) inset;
   transition: box-shadow 0.5s, background-position-y 0.5s;
+}
+@media (max-width: 40rem) {
+  #menu ul:not(:last-of-type) {
+    display: none !important;
+  }
+  #menu ul:last-of-type {
+    display: flex !important;
+    height: auto !important;
+    margin: 0 -0.5em !important;
+    padding: 0.5em !important;
+  }
 }
 #menu ul:hover, #menu ul:focus, #menu ul:active {
   box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade), 0 -1pt 0 0 transparent inset;
@@ -661,7 +679,7 @@ footer a:visited {
   width: 100%;
   box-sizing: border-box;
   margin: 0;
-  padding: 0.5em 1em;
+  padding: 0.5em 2em;
   border: none;
   border-radius: calc(0.5 * var(--rounding));
   background: radial-gradient(transparent, var(--ccg)), linear-gradient(to var(--curve), var(--cc95) 0%, var(--cc75) 100%);
@@ -1071,6 +1089,7 @@ main section .gallery {
   padding: 0;
   background: none;
   box-shadow: none;
+  border-radius: 0;
 }
 main section .gallery:hover, main section .gallery:active, main section .gallery:focus {
   background: none;
@@ -1308,6 +1327,7 @@ main .gallery {
   gap: var(--spacing);
   border: 0;
   outline: 0 solid black;
+  border-radius: calc(2 * var(--rounding));
   background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
   text-align: center;
   font-size: 1rem;
@@ -1329,6 +1349,8 @@ main .gallery li {
   border: 0pt solid var(--cw75);
   border-radius: var(--rounding);
   background-color: white;
+  --ct: hsl(from black h s l / 75%);
+  color: var(--ct);
   text-align: center;
   list-style: none;
   vertical-align: top;

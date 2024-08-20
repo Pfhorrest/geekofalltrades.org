@@ -207,375 +207,27 @@
   --seaShadow: hsl(from var(--seaColor1) h 100% 0% / 100%); // For footer
 
   --mbo: hsl(from black h s l / 93.75%); // Modal background outer
-
-  // @supports (color: oklch(100% 100% 0)) {
-  //   --hmx: calc(var(--hm) + 30); // Adjusted main hue
-  //   // because lch rotates hues from hsl
-  //   @media (prefers-color-scheme: light) {
-  //     --lm: 50%; // Main lightness
-  //   }
-  //   @media (prefers-color-scheme: dark) {
-  //     --lm: 75%; // Main lightness
-  //   }
-  //   // because lch lightness curve is different
-
-  //   // Basic colors
-  //   --cm: oklch(var(--lm) var(--sm) var(--hmx)); // Main color
-  //   --cc: oklch(from var(--cm) l var(--ss) calc(h + var(--hs))); // Cooler color
-  //   --cw: oklch(from var(--cm) l var(--ss) calc(h - var(--hs))); // Warmer color
-
-  //   // Highlight colors
-  //   --cmh: oklch(from var(--cm) 100% var(--sh) h); // Main highlight
-  //   --cch: oklch(from var(--cc) 100% var(--sh) h); // Cooler highlight
-  //   --cwh: oklch(from var(--cw) 100% var(--sh) h); // Warmer highlight
-
-  //   // Highlight glazes
-  //   --cmg: oklch(from var(--cmh) l c h / 0.1); // Main glaze
-  //   --ccg: oklch(from var(--cch) l c h / 0.1); // Cooler glaze
-  //   --cwg: oklch(from var(--cwh) l c h / 0.1); // Warmer glaze
-
-  //   // Disabled colors
-  //   --cmd: oklch(from var(--cm) l var(--sd) h); // Main disabled
-  //   --ccd: oklch(from var(--cc) l var(--sd) h); // Cooler disabled
-  //   --cwd: oklch(from var(--cw) l var(--sd) h); // Warmer disabled
-
-  //   // Main color ramp
-  //   --cm95: color-mix(
-  //     in oklch,
-  //     var(--cm) 10%,
-  //     var(--white)
-  //   ); // Main color tint 9
-  //   --cm90: color-mix(
-  //     in oklch,
-  //     var(--cm) 20%,
-  //     var(--white)
-  //   ); // Main color tint 8
-  //   --cm85: color-mix(
-  //     in oklch,
-  //     var(--cm) 30%,
-  //     var(--white)
-  //   ); // Main color tint 7
-  //   --cm80: color-mix(
-  //     in oklch,
-  //     var(--cm) 40%,
-  //     var(--white)
-  //   ); // Main color tint 6
-  //   --cm75: color-mix(
-  //     in oklch,
-  //     var(--cm) 50%,
-  //     var(--white)
-  //   ); // Main color tint 5
-  //   --cm70: color-mix(
-  //     in oklch,
-  //     var(--cm) 60%,
-  //     var(--white)
-  //   ); // Main color tint 4
-  //   --cm65: color-mix(
-  //     in oklch,
-  //     var(--cm) 70%,
-  //     var(--white)
-  //   ); // Main color tint 3
-  //   --cm60: color-mix(
-  //     in oklch,
-  //     var(--cm) 80%,
-  //     var(--white)
-  //   ); // Main color tint 2
-  //   --cm55: color-mix(
-  //     in oklch,
-  //     var(--cm) 90%,
-  //     var(--white)
-  //   ); // Main color tint 1
-  //   --cm50: var(--cm); // Main color
-  //   --cm45: color-mix(
-  //     in oklch,
-  //     var(--cm) 90%,
-  //     var(--black)
-  //   ); // Main color shade 1
-  //   --cm40: color-mix(
-  //     in oklch,
-  //     var(--cm) 80%,
-  //     var(--black)
-  //   ); // Main color shade 2
-  //   --cm35: color-mix(
-  //     in oklch,
-  //     var(--cm) 70%,
-  //     var(--black)
-  //   ); // Main color shade 3
-  //   --cm30: color-mix(
-  //     in oklch,
-  //     var(--cm) 60%,
-  //     var(--black)
-  //   ); // Main color shade 4
-  //   --cm25: color-mix(
-  //     in oklch,
-  //     var(--cm) 50%,
-  //     var(--black)
-  //   ); // Main color shade 5
-  //   --cm20: color-mix(
-  //     in oklch,
-  //     var(--cm) 40%,
-  //     var(--black)
-  //   ); // Main color shade 6
-  //   --cm15: color-mix(
-  //     in oklch,
-  //     var(--cm) 30%,
-  //     var(--black)
-  //   ); // Main color shade 7
-  //   --cm10: color-mix(
-  //     in oklch,
-  //     var(--cm) 20%,
-  //     var(--black)
-  //   ); // Main color shade 8
-  //   --cm05: color-mix(
-  //     in oklch,
-  //     var(--cm) 10%,
-  //     var(--black)
-  //   ); // Main color shade 9
-
-  //   // Cooler color ramp
-  //   --cc95: color-mix(
-  //     in oklch,
-  //     var(--cc) 10%,
-  //     var(--white)
-  //   ); // Cooler color tint 9
-  //   --cc90: color-mix(
-  //     in oklch,
-  //     var(--cc) 20%,
-  //     var(--white)
-  //   ); // Cooler color tint 8
-  //   --cc85: color-mix(
-  //     in oklch,
-  //     var(--cc) 30%,
-  //     var(--white)
-  //   ); // Cooler color tint 7
-  //   --cc80: color-mix(
-  //     in oklch,
-  //     var(--cc) 40%,
-  //     var(--white)
-  //   ); // Cooler color tint 6
-  //   --cc75: color-mix(
-  //     in oklch,
-  //     var(--cc) 50%,
-  //     var(--white)
-  //   ); // Cooler color tint 5
-  //   --cc70: color-mix(
-  //     in oklch,
-  //     var(--cc) 60%,
-  //     var(--white)
-  //   ); // Cooler color tint 4
-  //   --cc65: color-mix(
-  //     in oklch,
-  //     var(--cc) 70%,
-  //     var(--white)
-  //   ); // Cooler color tint 3
-  //   --cc60: color-mix(
-  //     in oklch,
-  //     var(--cc) 80%,
-  //     var(--white)
-  //   ); // Cooler color tint 2
-  //   --cc55: color-mix(
-  //     in oklch,
-  //     var(--cc) 90%,
-  //     var(--white)
-  //   ); // Cooler color tint 1
-  //   --cc50: var(--cc); // Cooler color
-  //   --cc45: color-mix(
-  //     in oklch,
-  //     var(--cc) 90%,
-  //     var(--black)
-  //   ); // Cooler color shade 1
-  //   --cc40: color-mix(
-  //     in oklch,
-  //     var(--cc) 80%,
-  //     var(--black)
-  //   ); // Cooler color shade 2
-  //   --cc35: color-mix(
-  //     in oklch,
-  //     var(--cc) 70%,
-  //     var(--black)
-  //   ); // Cooler color shade 3
-  //   --cc30: color-mix(
-  //     in oklch,
-  //     var(--cc) 60%,
-  //     var(--black)
-  //   ); // Cooler color shade 4
-  //   --cc25: color-mix(
-  //     in oklch,
-  //     var(--cc) 50%,
-  //     var(--black)
-  //   ); // Cooler color shade 5
-  //   --cc20: color-mix(
-  //     in oklch,
-  //     var(--cc) 40%,
-  //     var(--black)
-  //   ); // Cooler color shade 6
-  //   --cc15: color-mix(
-  //     in oklch,
-  //     var(--cc) 30%,
-  //     var(--black)
-  //   ); // Cooler color shade 7
-  //   --cc10: color-mix(
-  //     in oklch,
-  //     var(--cc) 20%,
-  //     var(--black)
-  //   ); // Cooler color shade 8
-  //   --cc05: color-mix(
-  //     in oklch,
-  //     var(--cc) 10%,
-  //     var(--black)
-  //   ); // Cooler color shade 9
-
-  //   // Warmer color ramp
-  //   --cw95: color-mix(
-  //     in oklch,
-  //     var(--cw) 10%,
-  //     var(--white)
-  //   ); // Warmer color tint 9
-  //   --cw90: color-mix(
-  //     in oklch,
-  //     var(--cw) 20%,
-  //     var(--white)
-  //   ); // Warmer color tint 8
-  //   --cw85: color-mix(
-  //     in oklch,
-  //     var(--cw) 30%,
-  //     var(--white)
-  //   ); // Warmer color tint 7
-  //   --cw80: color-mix(
-  //     in oklch,
-  //     var(--cw) 40%,
-  //     var(--white)
-  //   ); // Warmer color tint 6
-  //   --cw75: color-mix(
-  //     in oklch,
-  //     var(--cw) 50%,
-  //     var(--white)
-  //   ); // Warmer color tint 5
-  //   --cw70: color-mix(
-  //     in oklch,
-  //     var(--cw) 60%,
-  //     var(--white)
-  //   ); // Warmer color tint 4
-  //   --cw65: color-mix(
-  //     in oklch,
-  //     var(--cw) 70%,
-  //     var(--white)
-  //   ); // Warmer color tint 3
-  //   --cw60: color-mix(
-  //     in oklch,
-  //     var(--cw) 80%,
-  //     var(--white)
-  //   ); // Warmer color tint 2
-  //   --cw55: color-mix(
-  //     in oklch,
-  //     var(--cw) 90%,
-  //     var(--white)
-  //   ); // Warmer color tint 1
-  //   --cw50: var(--cw); // Warmer color
-  //   --cw45: color-mix(
-  //     in oklch,
-  //     var(--cw) 90%,
-  //     var(--black)
-  //   ); // Warmer color shade 1
-  //   --cw40: color-mix(
-  //     in oklch,
-  //     var(--cw) 80%,
-  //     var(--black)
-  //   ); // Warmer color shade 2
-  //   --cw35: color-mix(
-  //     in oklch,
-  //     var(--cw) 70%,
-  //     var(--black)
-  //   ); // Warmer color shade 3
-  //   --cw30: color-mix(
-  //     in oklch,
-  //     var(--cw) 60%,
-  //     var(--black)
-  //   ); // Warmer color shade 4
-  //   --cw25: color-mix(
-  //     in oklch,
-  //     var(--cw) 50%,
-  //     var(--black)
-  //   ); // Warmer color shade 5
-  //   --cw20: color-mix(
-  //     in oklch,
-  //     var(--cw) 40%,
-  //     var(--black)
-  //   ); // Warmer color shade 6
-  //   --cw15: color-mix(
-  //     in oklch,
-  //     var(--cw) 30%,
-  //     var(--black)
-  //   ); // Warmer color shade 7
-  //   --cw10: color-mix(
-  //     in oklch,
-  //     var(--cw) 20%,
-  //     var(--black)
-  //   ); // Warmer color shade 8
-  //   --cw05: color-mix(
-  //     in oklch,
-  //     var(--cw) 10%,
-  //     var(--black)
-  //   ); // Warmer color shade 9
-
-  //   @media (prefers-color-scheme: light) {
-  //     --shade: color-mix(in oklch, black 12.5%, transparent);
-  //     --gloss: color-mix(in oklch, white 75%, transparent);
-  //   }
-  //   @media (prefers-color-scheme: dark) {
-  //     --shade: color-mix(in oklch, black 75%, transparent);
-  //     --gloss: color-mix(in oklch, white 12.5%, transparent);
-  //   }
-
-  //   @media (prefers-color-scheme: light) {
-  //     --cloudLight: oklch(from var(--cloudColor) 100% 100% h);
-  //     --cloudColor: oklch(100% 100% calc(var(--skyHue1) + 30) / 50%);
-  //     --skyColor3: oklch(37.5% 75% calc(var(--skyHue3) + 30));
-  //     --skyColor2: oklch(62.5% 50% calc(var(--skyHue2) + 30));
-  //     --skyColor1: oklch(87.5% 25% calc(var(--skyHue1) + 30));
-  //     --skyMist: oklch(100% 25% var(--skyHue1));
-  //     --seaMist: oklch(100% 25% var(--seaHue1));
-  //     --seaColor1: oklch(87.5% 25% calc(var(--seaHue1) + 30));
-  //     --seaColor2: oklch(62.5% 50% calc(var(--seaHue2) + 30));
-  //     --seaColor3: oklch(37.5% 75% calc(var(--seaHue3) + 30));
-  //     --swellColor: oklch(100% 100% calc(var(--seaHue1) + 30) / 50%);
-  //     --swellLight: oklch(from var(--swellColor) 100% 100% h);
-  //   }
-
-  //   @media (prefers-color-scheme: dark) {
-  //     --cloudLight: oklch(from var(--cloudColor) 100% 100% h);
-  //     --cloudColor: oklch(50% 100% calc(var(--skyHue1) + 30) / 50%);
-  //     --skyColor3: oklch(50% 100% calc(var(--skyHue3) + 30));
-  //     --skyColor2: oklch(37.5% 50% calc(var(--skyHue2) + 30));
-  //     --skyColor1: oklch(25% 25% calc(var(--skyHue1) + 30));
-  //     --skyMist: oklch(18.75% 12.5% var(--skyHue1));
-  //     --seaMist: oklch(18.75% 12.5% var(--seaHue1));
-  //     --seaColor1: oklch(25% 25% calc(var(--seaHue1) + 30));
-  //     --seaColor2: oklch(37.5% 50% calc(var(--seaHue2) + 30));
-  //     --seaColor3: oklch(50% 100% calc(var(--seaHue3) + 30));
-  //     --swellColor: oklch(50% 100% calc(var(--seaHue1) + 30) / 50%);
-  //     --swellLight: oklch(from var(--swellColor) 100% 100% h);
-  //   }
-
-  //   --seaShadow: oklch(from var(--seaColor1) 0% 100% h / 100%);
-
-  //   --cbi: color-mix(
-  //     in oklch,
-  //     var(--white),
-  //     transparent 87.5%
-  //   ); // Section background inner
-  //   --cbo: color-mix(
-  //     in oklch,
-  //     var(--white),
-  //     transparent 50%
-  //   ); // Section background outer
-  //   --mbo: color-mix(
-  //     in oklch,
-  //     black,
-  //     transparent 6.25%
-  //   ); // Modal background outer
-  // }
 }
+
+// Calculate responsive font sizes
+@function rfs($minValue, $minWidth, $maxValue, $maxWidth) {
+  $units: rem;
+  $minValueWithUnits: $minValue + $units;
+  $maxValueWithUnits: $maxValue + $units;
+  $minWidthWithUnits: $minWidth + $units;
+  $maxWidthWithUnits: $maxWidth + $units;
+  @return clamp(
+    $minValueWithUnits,
+    calc(
+      $minValueWithUnits + (100vw - $minWidthWithUnits) *
+        ($maxValue - $minValue) / ($maxWidth - $minWidth)
+    ),
+    $maxValueWithUnits
+  );
+}
+// Standard min and max widths
+$minWidth: 20; // 20rem or 320px
+$maxWidth: 160; // 160rem or 2560px
 
 html {
   height: 100%;
@@ -584,6 +236,15 @@ html {
   font: {
     family: "Nunito", sans-serif;
     size: 1pc;
+    size: clamp(
+      0.75pc,
+      clamp(
+        calc(1pc + (100vw - 80pc) * (1.25 - 1) / (100 - 80)),
+        1pc,
+        calc(0.75pc + (100vw - 30pc) * (1 - 0.75) / (40 - 30))
+      ),
+      1.2pc
+    );
   }
   line-height: 1;
   scroll-padding-top: 6rem;
@@ -1049,6 +710,7 @@ footer {
     display: block;
     float: left;
     order: -1;
+    z-index: 1;
     margin: 0;
     margin-bottom: -2em;
     padding: 0 1em;
@@ -1099,6 +761,9 @@ footer {
 
     &:last-of-type + ul {
       display: flex;
+      @media (max-width: 40rem) {
+        box-shadow: 0pt -1pt 0 0 var(--shade);
+      }
     }
   }
 
@@ -1106,6 +771,17 @@ footer {
     flex-basis: 100%;
     z-index: 1;
     display: none;
+    @media (max-width: 40rem) {
+      &:not(:last-of-type) {
+        display: none !important;
+      }
+      &:last-of-type {
+        display: flex !important;
+        height: auto !important;
+        margin: 0 -0.5em !important;
+        padding: 0.5em !important;
+      }
+    }
     flex-flow: row wrap;
     flex-shrink: 1;
     overflow-y: auto;
@@ -1160,7 +836,7 @@ footer {
         width: 100%;
         box-sizing: border-box;
         margin: 0;
-        padding: 0.5em 1em;
+        padding: 0.5em 2em;
         border: none;
         border-radius: calc(0.5 * var(--rounding));
         background: radial-gradient(transparent, var(--ccg)),
@@ -1337,26 +1013,6 @@ main {
     var(--cw95) 100%
   );
   line-height: 1.5;
-
-  // Calculate responsive font sizes
-  @function rfs($minValue, $minWidth, $maxValue, $maxWidth) {
-    $units: rem;
-    $minValueWithUnits: $minValue + $units;
-    $maxValueWithUnits: $maxValue + $units;
-    $minWidthWithUnits: $minWidth + $units;
-    $maxWidthWithUnits: $maxWidth + $units;
-    @return clamp(
-      $minValueWithUnits,
-      calc(
-        $minValueWithUnits + (100vw - $minWidthWithUnits) *
-          ($maxValue - $minValue) / ($maxWidth - $minWidth)
-      ),
-      $maxValueWithUnits
-    );
-  }
-  // Standard min and max widths
-  $minWidth: 20; // 20rem or 320px
-  $maxWidth: 160; // 160rem or 2560px
 
   h2 {
     font-size: rfs(1.5, $minWidth, (1 + 2) * 1.5, $maxWidth);
@@ -1658,6 +1314,7 @@ main {
       padding: 0;
       background: none;
       box-shadow: none;
+      border-radius: 0;
 
       &:hover,
       &:active,
@@ -1892,7 +1549,7 @@ main {
     gap: var(--spacing);
     border: 0;
     outline: 0 solid black;
-    // border-radius: calc(2 * var(--rounding));
+    border-radius: calc(2 * var(--rounding));
     background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
     text-align: center;
     font-size: 1rem;
@@ -1921,6 +1578,8 @@ main {
       border: 0pt solid var(--cw75);
       border-radius: var(--rounding);
       background-color: white;
+      --ct: hsl(from black h s l / 75%);
+      color: var(--ct);
       text-align: center;
       list-style: none;
       vertical-align: top;
