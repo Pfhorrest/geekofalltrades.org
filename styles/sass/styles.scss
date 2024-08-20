@@ -155,8 +155,8 @@
   }
 
   --ct: hsl(from var(--black) h s l / 75%); // Main text color
-  --cbi: hsl(from var(--white) h s l / 12.5%); // Background inner color
-  --cbo: hsl(from var(--white) h s l / 50%); // Background outer color
+  --cbi: hsl(from var(--white) h s l / 25%); // Background inner color
+  --cbo: hsl(from var(--white) h s l / 75%); // Background outer color
 
   // gradient curve direction
   @media (prefers-color-scheme: light) {
@@ -1333,37 +1333,52 @@ main {
   outline: 0;
   background: radial-gradient(
     farthest-corner,
-    var(--cw90) 0%,
+    var(--cw75) 0%,
     var(--cw95) 100%
   );
   line-height: 1.5;
 
-  @media (min-width: 80rem) {
-    --mbfs: calc(1pc + 0.005 * (100vw - 80ch));
-    h1 {
-      font-size: calc(1.5 * var(--mbfs) + 1.2vw);
-    }
-    h2 {
-      font-size: calc(1.4 * var(--mbfs) + 1vw);
-    }
-    h3 {
-      font-size: calc(1.3 * var(--mbfs) + 0.8vw);
-    }
-    h4 {
-      font-size: calc(1.2 * var(--mbfs) + 0.6vw);
-    }
-    h5 {
-      font-size: calc(1.1 * var(--mbfs) + 0.4vw);
-    }
-    h6 {
-      font-size: calc(1 * var(--mbfs) + 0.2vw);
-    }
-
-    font-size: var(--mbfs);
+  // Calculate responsive font sizes
+  @function rfs($minValue, $minWidth, $maxValue, $maxWidth) {
+    $units: rem;
+    $minValueWithUnits: $minValue + $units;
+    $maxValueWithUnits: $maxValue + $units;
+    $minWidthWithUnits: $minWidth + $units;
+    $maxWidthWithUnits: $maxWidth + $units;
+    @return clamp(
+      $minValueWithUnits,
+      calc(
+        $minValueWithUnits + (100vw - $minWidthWithUnits) *
+          ($maxValue - $minValue) / ($maxWidth - $minWidth)
+      ),
+      $maxValueWithUnits
+    );
   }
+  // Standard min and max widths
+  $minWidth: 20; // 20rem or 320px
+  $maxWidth: 160; // 160rem or 2560px
+
+  h2 {
+    font-size: rfs(1.5, $minWidth, (1 + 2) * 1.5, $maxWidth);
+  }
+  h3 {
+    font-size: rfs(1.4, $minWidth, (1 + 1) * 1.5, $maxWidth);
+  }
+  h4 {
+    font-size: rfs(1.3, $minWidth, (1 + 0.5) * 1.5, $maxWidth);
+  }
+  h5 {
+    font-size: rfs(1.2, $minWidth, (1 + 0.25) * 1.5, $maxWidth);
+  }
+  h6 {
+    font-size: rfs(1.1, $minWidth, (1 + 0.125) * 1.5, $maxWidth);
+  }
+
+  font-size: rfs(1, $minWidth, 1.5, $maxWidth);
 
   > * {
     flex: 0 1 auto;
+    text-shadow: 0 0 0.5em var(--cbi);
   }
 
   p {
@@ -1877,7 +1892,7 @@ main {
     gap: var(--spacing);
     border: 0;
     outline: 0 solid black;
-    border-radius: calc(2 * var(--rounding));
+    // border-radius: calc(2 * var(--rounding));
     background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
     text-align: center;
     font-size: 1rem;
@@ -1901,7 +1916,7 @@ main {
       display: flex;
       flex-flow: column nowrap;
       justify-content: space-between;
-      margin: 0;
+      margin: 1pt;
       padding: var(--spacing);
       border: 0pt solid var(--cw75);
       border-radius: var(--rounding);
@@ -1936,7 +1951,8 @@ main {
         text-transform: none;
         line-height: 1.5;
         text-shadow: none;
-        &::before, &::after {
+        &::before,
+        &::after {
           content: "";
           display: none;
         }
