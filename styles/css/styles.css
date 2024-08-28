@@ -114,6 +114,10 @@
   --seaHue3: 240;
   --seaShadow: hsl(from var(--seaColor1) h 100% 0% / 100%);
   --mbo: hsl(from black h s l / 93.75%);
+  --bp1: 20rem;
+  --bp2: 40rem;
+  --bp3: 60rem;
+  --bp4: 80rem;
 }
 @media (prefers-color-scheme: light) {
   :root {
@@ -188,13 +192,16 @@
   }
 }
 
+* {
+  transition: all 0.5s;
+}
+
 html {
   height: 100%;
   background: black;
   color: var(--ct);
   font-family: "Nunito", sans-serif;
   font-size: 1pc;
-  font-size: clamp(0.75pc, clamp(1pc + (100vw - 80pc) * 0.25 / 20, 1pc, 0.75pc + (100vw - 30pc) * 0.25 / 10), 1.2pc);
   line-height: 1;
   scroll-padding-top: 6rem;
   scroll-behavior: smooth;
@@ -222,7 +229,6 @@ a {
   text-decoration: underline;
   text-shadow: 1pt 1pt 1pt transparent;
   cursor: pointer;
-  transition: color 0.5s, text-shadow 0.5s;
 }
 a:link, a:visited {
   color: var(--cm50);
@@ -260,7 +266,6 @@ h6 {
   text-align: center;
   line-height: 1.25;
   text-shadow: 0.0625em 0.0625em 0.0625em transparent;
-  transition: all 1s;
   position: relative;
   overflow-wrap: anywhere;
 }
@@ -306,28 +311,24 @@ h6 span {
   white-space: nowrap;
 }
 
-h1 {
-  font-size: calc(1.5rem + 1.2vw);
-}
-
 h2 {
-  font-size: calc(1.4rem + 1vw);
+  font-size: clamp(1.5rem, 1.5rem + (100vw - 20rem) * 2.25 / 60, 3.75rem);
 }
 
 h3 {
-  font-size: calc(1.3rem + 0.8vw);
+  font-size: clamp(1.4rem, 1.4rem + (100vw - 20rem) * 1.1 / 60, 2.5rem);
 }
 
 h4 {
-  font-size: calc(1.2rem + 0.6vw);
+  font-size: clamp(1.3rem, 1.3rem + (100vw - 20rem) * 0.575 / 60, 1.875rem);
 }
 
 h5 {
-  font-size: calc(1.1rem + 0.4vw);
+  font-size: clamp(1.2rem, 1.2rem + (100vw - 20rem) * 0.3625 / 60, 1.5625rem);
 }
 
 h6 {
-  font-size: calc(1rem + 0.2vw);
+  font-size: clamp(1.1rem, 1.1rem + (100vw - 20rem) * 0.30625 / 60, 1.40625rem);
 }
 
 header {
@@ -379,7 +380,6 @@ header h1, header:hover h1 {
   white-space: nowrap;
   letter-spacing: 0.1em;
   line-height: 2;
-  transition: all 1s;
   cursor: pointer;
 }
 header h1::before, header:hover h1::before {
@@ -429,7 +429,7 @@ header h1 > span:first-of-type, header:hover h1 > span:first-of-type {
     background-size: 100% 100%, auto;
     background-position: center, center, center;
     animation-name: windAndWaves;
-    animation-duration: 4s;
+    animation-duration: 12s;
     animation-iteration-count: infinite;
     animation-direction: normal;
     animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
@@ -476,7 +476,7 @@ footer {
   text-align: center;
   box-shadow: 0 0.5em 0.5em var(--shade) inset;
   animation-name: waves;
-  animation-duration: 5s;
+  animation-duration: 4s;
   animation-iteration-count: infinite;
   animation-direction: normal;
   animation-timing-function: linear;
@@ -563,9 +563,7 @@ footer a:visited {
   order: -1;
   z-index: 1;
   margin: 0;
-  margin-bottom: -2em;
   padding: 0 1em;
-  padding-bottom: 2em;
   border: none;
   border-top: 0pt solid white;
   outline: none;
@@ -580,7 +578,6 @@ footer a:visited {
   line-height: 2;
   flex: 1 1 auto;
   box-shadow: 1pt 1pt 0pt transparent inset, -1pt 0pt 0pt transparent inset, 1pt 1pt 0 0 var(--shade) inset;
-  transition: all 0.5s;
 }
 #menu > a:nth-last-of-type(2) {
   opacity: 87.5%;
@@ -594,21 +591,22 @@ footer a:visited {
 #menu > a:nth-last-of-type(5) {
   opacity: 50%;
 }
-#menu > a:hover, #menu > a:focus, #menu > a:active {
-  box-shadow: 1pt 1pt 0pt var(--gloss) inset, -1pt 0pt 0pt var(--shade) inset, 1pt 1pt 0 0 transparent inset;
-  opacity: 100%;
-  background-position-y: 0%;
-}
-#menu > a:hover ~ a:last-of-type, #menu > a:focus ~ a:last-of-type, #menu > a:active ~ a:last-of-type {
-  opacity: 93.75%;
+@media (min-width: 40rem) {
+  #menu > a {
+    margin-bottom: -2em;
+    padding-bottom: 2em;
+  }
+  #menu > a:hover, #menu > a:focus, #menu > a:active {
+    box-shadow: 1pt 1pt 0pt var(--gloss) inset, -1pt 0pt 0pt var(--shade) inset, 1pt 1pt 0 0 transparent inset;
+    opacity: 100%;
+    background-position-y: 0%;
+  }
+  #menu > a:hover ~ a:last-of-type, #menu > a:focus ~ a:last-of-type, #menu > a:active ~ a:last-of-type {
+    opacity: 93.75%;
+  }
 }
 #menu > a:last-of-type + ul {
   display: flex;
-}
-@media (max-width: 40rem) {
-  #menu > a:last-of-type + ul {
-    box-shadow: 0pt -1pt 0 0 var(--shade);
-  }
 }
 #menu ul {
   flex-basis: 100%;
@@ -628,23 +626,17 @@ footer a:visited {
   background-position-y: 50%;
   text-align: center;
   line-height: 2.5;
-  box-shadow: 0pt -1pt 0pt transparent inset, 0pt 1pt 1pt transparent, 0 -1pt 0 0 var(--shade) inset;
-  transition: box-shadow 0.5s, background-position-y 0.5s;
+  box-shadow: 0pt -1pt 0 0 var(--shade);
 }
-@media (max-width: 40rem) {
-  #menu ul:not(:last-of-type) {
-    display: none !important;
+@media (min-width: 40rem) {
+  #menu ul {
+    box-shadow: 0pt -1pt 0pt transparent inset, 0pt 1pt 1pt transparent, 0 -1pt 0 0 var(--shade) inset;
+    transition: height 0s, margin 0s, padding 0s;
   }
-  #menu ul:last-of-type {
-    display: flex !important;
-    height: auto !important;
-    margin: 0 -0.5em !important;
-    padding: 0.5em !important;
+  #menu ul:hover, #menu ul:focus, #menu ul:active {
+    box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade), 0 -1pt 0 0 transparent inset;
+    background-position-y: 100%;
   }
-}
-#menu ul:hover, #menu ul:focus, #menu ul:active {
-  box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade), 0 -1pt 0 0 transparent inset;
-  background-position-y: 100%;
 }
 @media (min-width: 40rem) {
   #menu ul {
@@ -657,7 +649,7 @@ footer a:visited {
 }
 @media (min-width: 40rem) {
   #menu ul > * {
-    flex: 1 0 10em;
+    flex: 1 0 0%;
     white-space: nowrap;
   }
 }
@@ -711,7 +703,6 @@ footer a:visited {
   top: 0.5em;
   opacity: 0.25;
   vertical-align: middle;
-  transition: transform 0.5s;
   transform: rotate(0deg);
 }
 @media only print {
@@ -769,7 +760,6 @@ footer a:visited {
   background-size: 1000% 1000%;
   background-position-x: 50%;
   box-shadow: 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 1pt 1pt 1pt transparent, 0 0 0 1pt var(--shade) inset;
-  transition: box-shadow 0.5s, background-size 0.5s, background-position-x 0.5s;
 }
 #menu ul li ul:hover, #menu ul li ul:focus, #menu ul li ul:active {
   box-shadow: 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade), 0 0 0 1pt transparent inset;
@@ -808,27 +798,59 @@ main {
   border: 0;
   outline: 0;
   background: radial-gradient(farthest-corner, var(--cw75) 0%, var(--cw95) 100%);
+  background-position: center;
+  background-size: 100% 100%;
+  animation-name: mainLighting;
+  animation-duration: 44s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transition-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
   line-height: 1.5;
-  font-size: clamp(1rem, 1rem + (100vw - 20rem) * 0.5 / 140, 1.5rem);
+  font-size: clamp(1rem, 1rem + (100vw - 20rem) * 0.25 / 60, 1.25rem);
 }
-main h2 {
-  font-size: clamp(1.5rem, 1.5rem + (100vw - 20rem) * 3 / 140, 4.5rem);
-}
-main h3 {
-  font-size: clamp(1.4rem, 1.4rem + (100vw - 20rem) * 1.6 / 140, 3rem);
-}
-main h4 {
-  font-size: clamp(1.3rem, 1.3rem + (100vw - 20rem) * 0.95 / 140, 2.25rem);
-}
-main h5 {
-  font-size: clamp(1.2rem, 1.2rem + (100vw - 20rem) * 0.675 / 140, 1.875rem);
-}
-main h6 {
-  font-size: clamp(1.1rem, 1.1rem + (100vw - 20rem) * 0.5875 / 140, 1.6875rem);
+@keyframes mainLighting {
+  from {
+    background-size: 100% 100%;
+  }
+  to {
+    background-size: 400% 200%;
+  }
 }
 main > * {
   flex: 0 1 auto;
   text-shadow: 0 0 0.5em var(--cbi);
+}
+main * {
+  transition: all 0.5s, opacity var(--dur) linear, transform var(--dur) cubic-bezier(0.75, 1.75, 0.75, 0.75) calc(var(--delA) + var(--delB));
+  --dur: 1s;
+  --delA: 0s;
+  --delB: 0s;
+}
+main *.hidden > * {
+  --delA: calc(1s / 16);
+}
+main *.hidden > *.hidden > * {
+  --delA: calc(2s / 16);
+}
+main *.hidden > *.hidden > *.hidden > * {
+  --delA: calc(3s / 16);
+}
+main *.hidden > *.hidden > *.hidden > *.hidden > * {
+  --delA: calc(4s / 16);
+}
+main *.hidden {
+  opacity: 0;
+  transition-delay: 0s;
+  transform: rotateY(0.25turn);
+  --dur: 0s;
+}
+main a,
+main em,
+main strong,
+main i,
+main b,
+main span {
+  --dur: 0s;
 }
 main p {
   text-indent: 2em;
@@ -918,7 +940,7 @@ main hr {
   filter: drop-shadow(0 2pt 1pt var(--shade));
 }
 main hr:nth-of-type(even) {
-  transform: scaleX(-1);
+  transform: rotateY(-0.5turn);
 }
 main table {
   width: 100%;
@@ -942,8 +964,9 @@ main table td {
   background: var(--white);
 }
 main .toggleAllControls {
+  --dur: 0.5s;
   width: 100%;
-  max-width: 80ch;
+  max-width: calc(80ch - 2 * var(--spacing));
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -958,7 +981,7 @@ main .toggleAllControls {
 main .toggleAllControls a {
   flex: 1 1 100%;
   position: relative;
-  font-size: 0.75pc;
+  font-size: 0.75rem;
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
@@ -971,12 +994,10 @@ main .toggleAllControls a {
   padding: 0.25em 2em;
   border: 1pt solid var(--gloss);
   opacity: 0.75;
-  transition: all 0.5s;
 }
 main .toggleAllControls a.expandAll::before, main .toggleAllControls a.expandAll::after, main .toggleAllControls a.expandAnchor::before, main .toggleAllControls a.expandAnchor::after, main .toggleAllControls a.collapseOthers::before, main .toggleAllControls a.collapseOthers::after, main .toggleAllControls a.collapseAll::before, main .toggleAllControls a.collapseAll::after {
   content: "▼";
   opacity: 0.25;
-  transition: all 0.5s;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -1061,10 +1082,12 @@ main .toggleAllControls:last-of-type .anchorTarget:hover::after {
   }
 }
 main section {
+  --dur: 0s;
+  transition: all 0.5s;
   clear: both;
   width: 100%;
   box-sizing: border-box;
-  max-width: 80ch;
+  max-width: calc(80ch + 2 * var(--spacing));
   margin: 0 auto;
   padding: var(--spacing);
   gap: var(--spacing);
@@ -1072,8 +1095,43 @@ main section {
   outline: 0;
   border-radius: calc(2 * var(--rounding));
   background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+  background-position: center;
+  animation-name: mainLighting;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
   box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--gloss) inset;
-  transition: box-shadow 1s;
+}
+main section:nth-of-type(5n + 1) {
+  animation-delay: 0s;
+}
+main section:nth-of-type(10n + 2) {
+  animation-delay: 0.5s;
+}
+main section:nth-of-type(10n + 3) {
+  animation-delay: 1s;
+}
+main section:nth-of-type(10n + 4) {
+  animation-delay: 1.5s;
+}
+main section:nth-of-type(10n + 5) {
+  animation-delay: 2s;
+}
+main section:nth-of-type(10n + 6) {
+  animation-delay: 2.5s;
+}
+main section:nth-of-type(10n + 7) {
+  animation-delay: 3s;
+}
+main section:nth-of-type(10n + 8) {
+  animation-delay: 3.5s;
+}
+main section:nth-of-type(10n + 9) {
+  animation-delay: 4s;
+}
+main section:nth-of-type(10n + 0) {
+  animation-delay: 4.5s;
 }
 main section:hover, main section:focus, main section:active {
   box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
@@ -1084,28 +1142,28 @@ main section:after {
   height: 0;
   clear: both;
 }
-main section .gallery {
+main section .gallery:not(.expansive) {
   margin: 0;
   padding: 0;
   background: none;
   box-shadow: none;
   border-radius: 0;
 }
-main section .gallery:hover, main section .gallery:active, main section .gallery:focus {
+main section .gallery:not(.expansive):hover, main section .gallery:not(.expansive):active, main section .gallery:not(.expansive):focus {
   background: none;
   box-shadow: none;
 }
-main section .gallery h1::before, main section .gallery h1::after,
-main section .gallery h2::before,
-main section .gallery h2::after,
-main section .gallery h3::before,
-main section .gallery h3::after,
-main section .gallery h4::before,
-main section .gallery h4::after,
-main section .gallery h5::before,
-main section .gallery h5::after,
-main section .gallery h6::before,
-main section .gallery h6::after {
+main section .gallery:not(.expansive) h1::before, main section .gallery:not(.expansive) h1::after,
+main section .gallery:not(.expansive) h2::before,
+main section .gallery:not(.expansive) h2::after,
+main section .gallery:not(.expansive) h3::before,
+main section .gallery:not(.expansive) h3::after,
+main section .gallery:not(.expansive) h4::before,
+main section .gallery:not(.expansive) h4::after,
+main section .gallery:not(.expansive) h5::before,
+main section .gallery:not(.expansive) h5::after,
+main section .gallery:not(.expansive) h6::before,
+main section .gallery:not(.expansive) h6::after {
   display: none;
 }
 main section.toggleable h1,
@@ -1130,7 +1188,6 @@ main section.toggleable h6::before,
 main section.toggleable h6::after {
   content: "▼";
   opacity: 0.0625;
-  transition: all 0.5s;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -1168,6 +1225,35 @@ main section.toggleable h5::after,
 main section.toggleable h6::after {
   right: 0;
 }
+main section.toggleable h1::before, main section.toggleable h1::after,
+main section.toggleable h2::before,
+main section.toggleable h2::after,
+main section.toggleable h3::before,
+main section.toggleable h3::after,
+main section.toggleable h4::before,
+main section.toggleable h4::after,
+main section.toggleable h5::before,
+main section.toggleable h5::after,
+main section.toggleable h6::before,
+main section.toggleable h6::after {
+  --dur: 1s;
+  transition: opacity var(--dur);
+  transition-delay: var(--dur);
+}
+main section.toggleable h1.hidden::before, main section.toggleable h1.hidden::after,
+main section.toggleable h2.hidden::before,
+main section.toggleable h2.hidden::after,
+main section.toggleable h3.hidden::before,
+main section.toggleable h3.hidden::after,
+main section.toggleable h4.hidden::before,
+main section.toggleable h4.hidden::after,
+main section.toggleable h5.hidden::before,
+main section.toggleable h5.hidden::after,
+main section.toggleable h6.hidden::before,
+main section.toggleable h6.hidden::after {
+  opacity: 0;
+  transition-delay: 0s;
+}
 main section.toggleable h1:hover::before, main section.toggleable h1:hover::after,
 main section.toggleable h2:hover::before,
 main section.toggleable h2:hover::after,
@@ -1197,15 +1283,83 @@ main section.toggleable.collapsed > h1::after, main section.toggleable.collapsed
 main section section {
   margin-bottom: var(--spacing);
   border-radius: calc(1.75 * var(--rounding));
+  animation-duration: 4s;
+  --dur: 0.25s;
+}
+main section section:nth-of-type(8n + 1) {
+  animation-delay: 0s;
+}
+main section section:nth-of-type(8n + 2) {
+  animation-delay: 0.5s;
+}
+main section section:nth-of-type(8n + 3) {
+  animation-delay: 1s;
+}
+main section section:nth-of-type(8n + 4) {
+  animation-delay: 1.5s;
+}
+main section section:nth-of-type(8n + 5) {
+  animation-delay: 2s;
+}
+main section section:nth-of-type(8n + 6) {
+  animation-delay: 2.5s;
+}
+main section section:nth-of-type(8n + 7) {
+  animation-delay: 3s;
+}
+main section section:nth-of-type(8n + 0) {
+  animation-delay: 3.5s;
 }
 main section section section {
   border-radius: calc(1.5 * var(--rounding));
+  animation-duration: 3s;
+  --dur: 0.5s;
+}
+main section section section:nth-of-type(6n + 1) {
+  animation-delay: 0s;
+}
+main section section section:nth-of-type(6n + 2) {
+  animation-delay: 1.5s;
+}
+main section section section:nth-of-type(6n + 3) {
+  animation-delay: 1s;
+}
+main section section section:nth-of-type(6n + 4) {
+  animation-delay: 1.5s;
+}
+main section section section:nth-of-type(6n + 5) {
+  animation-delay: 2s;
+}
+main section section section:nth-of-type(6n + 0) {
+  animation-delay: 2.5s;
 }
 main section section section section {
   border-radius: calc(1.25 * var(--rounding));
+  animation-duration: 2s;
+  --dur: 0.75s;
+}
+main section section section section:nth-of-type(4n + 1) {
+  animation-delay: 0s;
+}
+main section section section section:nth-of-type(4n + 2) {
+  animation-delay: 0.5s;
+}
+main section section section section:nth-of-type(4n + 3) {
+  animation-delay: 1s;
+}
+main section section section section:nth-of-type(4n + 0) {
+  animation-delay: 1.5s;
 }
 main section section section section section {
   border-radius: var(--rounding);
+  animation-duration: 1s;
+  --dur: 1s;
+}
+main section section section section section:nth-of-type(2n + 1) {
+  animation-delay: 0s;
+}
+main section section section section section:nth-of-type(2n + 2) {
+  animation-delay: 0.5s;
 }
 main section .duo {
   display: flex;
@@ -1239,12 +1393,12 @@ main section .duo figure li:before {
   content: none;
 }
 main section figure {
+  --dur: 0.5s;
   float: none;
   display: block;
   width: 100%;
   max-width: 100%;
   margin: var(--spacing) auto;
-  transition: all 1s ease-in;
 }
 main section figure.contained {
   overflow: hidden;
@@ -1256,13 +1410,16 @@ main section figure.contained {
 main section figure.contained:hover, main section figure.contained:focus, main section figure.contained:active {
   box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
 }
+main section figure.contained.hidden img {
+  transform: none;
+}
 @media (prefers-color-scheme: light) {
-  main section figure.invertible {
+  main section figure.invertible img {
     filter: none;
   }
 }
 @media (prefers-color-scheme: dark) {
-  main section figure.invertible {
+  main section figure.invertible img {
     filter: invert(1) hue-rotate(0.5turn);
   }
 }
@@ -1270,6 +1427,9 @@ main section figure img {
   display: block;
   max-width: 100%;
   margin: auto;
+}
+main section figure.hidden img {
+  transform: scale(0);
 }
 main section figure ul {
   margin: 0;
@@ -1279,34 +1439,87 @@ main section figure ul {
 @media (min-width: 40rem) {
   main section figure {
     float: left;
-    max-width: calc((100% - 2em) / 2);
+    transform-origin: left;
+    --fw: calc(50% - 1.5 * var(--spacing));
+    max-width: var(--fw);
     margin: 0 var(--spacing) var(--spacing) 0;
   }
-  main section figure:nth-of-type(even) {
+  main section figure:nth-of-type(even):not(.solo) {
     float: right;
+    transform-origin: right;
     margin-left: var(--spacing);
     margin-right: 0;
   }
-  main section figure:active {
+  main section figure.solo {
+    float: none;
+    transform-origin: center;
     max-width: 100%;
   }
-  main section:nth-of-type(even) figure {
+  main section:nth-of-type(even) figure:not(.solo) {
     float: right;
+    transform-origin: right;
     margin-left: var(--spacing);
     margin-right: 0;
   }
-  main section:nth-of-type(even) figure:nth-of-type(even) {
+  main section:nth-of-type(even) figure:not(.solo):nth-of-type(even):not(.solo) {
     float: left;
+    transform-origin: left;
     margin-right: var(--spacing);
     margin-left: 0;
   }
-  main section .solo {
-    float: none;
-    max-width: 100%;
+}
+@media (min-width: 80rem) {
+  main section figure {
+    transition-duration: calc(4 * var(--dur)), 0.5s;
+    transition-property: transform, all;
+    padding: var(--spacing);
+    border-radius: calc(2 * var(--spacing));
+    box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
+    --fms: calc(-1 * min(calc((100vw - 100%) / 2), 100%) + var(--spacing));
+    --fmw: min(
+      calc(100% - 5 * var(--spacing)),
+      calc(var(--fw) - 0.5 * var(--fms))
+    );
+    margin-left: var(--fms);
+    transform-origin: right;
+    max-width: var(--fmw);
   }
-  main section .solo picture,
-main section .solo img {
-    max-width: 100%;
+  main section figure, main section figure.contained {
+    background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+    animation-name: mainLighting;
+    animation-duration: 5s;
+    border: none;
+  }
+  main section figure img {
+    transition-duration: 0s;
+    transition-property: transform;
+    max-height: calc(100vh - 10rem);
+    object-fit: contain;
+  }
+  main section figure:hover, main section figure:focus, main section figure:active {
+    box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
+  }
+  main section figure:nth-of-type(even):not(.solo) {
+    margin-left: var(--spacing);
+    margin-right: var(--fms);
+    transform-origin: left;
+  }
+  main section figure.solo {
+    width: 100vw;
+    max-width: min(300%, 100% - 2 * var(--fms) - 2 * var(--spacing));
+    margin-right: var(--fms);
+    transform-origin: center;
+    transition-duration: calc(2 * var(--dur));
+  }
+  main section:nth-of-type(even) figure:not(.solo) {
+    margin-left: var(--spacing);
+    margin-right: var(--fms);
+    transform-origin: left;
+  }
+  main section:nth-of-type(even) figure:not(.solo):nth-of-type(even):not(.solo) {
+    margin-right: var(--spacing);
+    margin-left: var(--fms);
+    transform-origin: right;
   }
 }
 @media only print {
@@ -1329,17 +1542,105 @@ main .gallery {
   outline: 0 solid black;
   border-radius: calc(2 * var(--rounding));
   background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+  animation-name: mainLighting;
+  animation-duration: 5s;
   text-align: center;
-  font-size: 1rem;
   box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
-  transition: box-shadow 1s;
-  --gim: 24ch;
+  --gin: 3;
+  --gim: calc(
+    (80ch - (var(--gin) + 1) * var(--spacing) - var(--gin) * 2 * 1pt - 1pt) /
+      var(--gin)
+  );
 }
 main .gallery:hover, main .gallery:focus, main .gallery:active {
   box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
 }
 main .gallery > * {
   flex: 1 0 var(--gim);
+  box-sizing: border-box;
+}
+@media (min-width: 80rem) {
+  main .gallery.expansive {
+    width: 100vw;
+    max-width: calc(100vw - 2 * var(--spacingAbs) - 2 * var(--spacing));
+    margin-left: calc(50% - 50vw + var(--spacingAbs) + var(--spacing));
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}
+@media (min-width: 80rem) and (min-width: 83rem) {
+  main .gallery.expansive li:nth-of-type(4n + 1), main .gallery.expansive li:nth-of-type(4n + 1) * {
+    --delB: calc(1s / 4);
+  }
+  main .gallery.expansive li:nth-of-type(4n + 2), main .gallery.expansive li:nth-of-type(4n + 2) * {
+    --delB: calc(2s / 4);
+  }
+  main .gallery.expansive li:nth-of-type(4n + 3), main .gallery.expansive li:nth-of-type(4n + 3) * {
+    --delB: calc(3s / 4);
+  }
+  main .gallery.expansive li:nth-of-type(4n + 0), main .gallery.expansive li:nth-of-type(4n + 0) * {
+    --delB: calc(4s / 4);
+  }
+}
+@media (min-width: 80rem) and (min-width: 104rem) {
+  main .gallery.expansive li:nth-of-type(5n + 1), main .gallery.expansive li:nth-of-type(5n + 1) * {
+    --delB: calc(1s / 5);
+  }
+  main .gallery.expansive li:nth-of-type(5n + 2), main .gallery.expansive li:nth-of-type(5n + 2) * {
+    --delB: calc(2s / 5);
+  }
+  main .gallery.expansive li:nth-of-type(5n + 3), main .gallery.expansive li:nth-of-type(5n + 3) * {
+    --delB: calc(3s / 5);
+  }
+  main .gallery.expansive li:nth-of-type(5n + 4), main .gallery.expansive li:nth-of-type(5n + 4) * {
+    --delB: calc(4s / 5);
+  }
+  main .gallery.expansive li:nth-of-type(5n + 0), main .gallery.expansive li:nth-of-type(5n + 0) * {
+    --delB: calc(5s / 5);
+  }
+}
+@media (min-width: 80rem) and (min-width: 123rem) {
+  main .gallery.expansive li:nth-of-type(6n + 1), main .gallery.expansive li:nth-of-type(6n + 1) * {
+    --delB: calc(1s / 6);
+  }
+  main .gallery.expansive li:nth-of-type(6n + 2), main .gallery.expansive li:nth-of-type(6n + 2) * {
+    --delB: calc(2s / 6);
+  }
+  main .gallery.expansive li:nth-of-type(6n + 3), main .gallery.expansive li:nth-of-type(6n + 3) * {
+    --delB: calc(3s / 6);
+  }
+  main .gallery.expansive li:nth-of-type(6n + 4), main .gallery.expansive li:nth-of-type(6n + 4) * {
+    --delB: calc(4s / 6);
+  }
+  main .gallery.expansive li:nth-of-type(6n + 5), main .gallery.expansive li:nth-of-type(6n + 5) * {
+    --delB: calc(5s / 6);
+  }
+  main .gallery.expansive li:nth-of-type(6n + 0), main .gallery.expansive li:nth-of-type(6n + 0) * {
+    --delB: calc(6s / 6);
+  }
+}
+@media (min-width: 80rem) and (min-width: 141rem) {
+  main .gallery.expansive li:nth-of-type(7n + 1), main .gallery.expansive li:nth-of-type(7n + 1) * {
+    --delB: calc(1s / 7);
+  }
+  main .gallery.expansive li:nth-of-type(7n + 2), main .gallery.expansive li:nth-of-type(7n + 2) * {
+    --delB: calc(2s / 7);
+  }
+  main .gallery.expansive li:nth-of-type(7n + 3), main .gallery.expansive li:nth-of-type(7n + 3) * {
+    --delB: calc(3s / 7);
+  }
+  main .gallery.expansive li:nth-of-type(7n + 4), main .gallery.expansive li:nth-of-type(7n + 4) * {
+    --delB: calc(4s / 7);
+  }
+  main .gallery.expansive li:nth-of-type(7n + 5), main .gallery.expansive li:nth-of-type(7n + 5) * {
+    --delB: calc(5s / 7);
+  }
+  main .gallery.expansive li:nth-of-type(7n + 6), main .gallery.expansive li:nth-of-type(7n + 6) * {
+    --delB: calc(6s / 7);
+  }
+  main .gallery.expansive li:nth-of-type(7n + 0), main .gallery.expansive li:nth-of-type(7n + 0) * {
+    --delB: calc(7s / 7);
+  }
 }
 main .gallery li {
   display: flex;
@@ -1356,13 +1657,29 @@ main .gallery li {
   list-style: none;
   vertical-align: top;
   box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--gloss) inset, 0 0 0 1pt var(--shade);
-  transition: box-shadow 1s;
 }
 main .gallery li:hover, main .gallery li:focus, main .gallery li:active {
   box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset, 0 0 0 1pt transparent;
 }
 main .gallery li:before {
   display: none;
+}
+main .gallery li:nth-of-type(2n + 1), main .gallery li:nth-of-type(2n + 1) * {
+  --delB: calc(1s / 2);
+}
+main .gallery li:nth-of-type(2n + 0), main .gallery li:nth-of-type(2n + 0) * {
+  --delB: calc(2s / 2);
+}
+@media (min-width: 40rem) {
+  main .gallery li:nth-of-type(3n + 1), main .gallery li:nth-of-type(3n + 1) * {
+    --delB: calc(1s / 3);
+  }
+  main .gallery li:nth-of-type(3n + 2), main .gallery li:nth-of-type(3n + 2) * {
+    --delB: calc(2s / 3);
+  }
+  main .gallery li:nth-of-type(3n + 0), main .gallery li:nth-of-type(3n + 0) * {
+    --delB: calc(3s / 3);
+  }
 }
 main .gallery li h3 {
   color: black;
@@ -1383,16 +1700,23 @@ main .gallery li a {
 }
 main .gallery li img {
   display: inline-block;
-  max-width: var(--gim);
-  max-height: var(--gim);
+  max-width: calc(var(--gim) - 2 * var(--spacing));
+  max-height: calc(var(--gim) - 2 * var(--spacing));
   margin: 0 auto;
   background: white;
+  transition: border-radius var(--dur) calc(var(--delA) + var(--delB)), transform var(--dur) calc(var(--delA) + var(--delB));
+}
+main .gallery li.hidden img {
+  transform: scale(0);
+  border-radius: 100%;
+  transition-delay: 0s;
 }
 main .gallery li p,
 main .gallery li p.description {
   margin: 0 auto;
   padding: 0.5em 2em;
   border: 0;
+  font-size: 1rem;
   text-indent: 0;
   text-align: center;
   line-height: 1.5;
@@ -1481,7 +1805,6 @@ main .gallery li p.description {
   font-weight: bold;
   text-decoration: none;
   text-shadow: 0 0 0.125em transparent;
-  transition: all 1s;
   user-select: none;
   cursor: pointer;
 }

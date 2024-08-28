@@ -1,11 +1,14 @@
 <?php $title = "Traditional Arts by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
+			<section>
 				<h2>Traditional Arts</h2>
+
+				<p class="description">Examples of more traditional art, in assorted media.</p>
 				
 				<?php require $_SERVER['DOCUMENT_ROOT'] . "/display/basepath.php" ?>
 
-				<ul class="gallery">
+				<ul class="gallery expansive">
 					<li>
 						<h3><?php $caption = "Pen Tree"; echo $caption ?></h3>
 						<?php echo '<a href="/display/?image=' . $basepath . 'images/pentree_finished.jpg&amp;title=' . rawurlencode($caption) . '" rel="external">
@@ -37,5 +40,6 @@
 						<p>India ink pen, 2002.</p>
 					</li>
 				</ul>
+			</section>
 
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

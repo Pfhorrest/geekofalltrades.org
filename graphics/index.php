@@ -1,9 +1,12 @@
 <?php $title = "Graphic Design by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
+			<section>
 				<h2>Graphic Design Galleries</h2>
 
-				<ul class="gallery">
+				<p class="description">Examples of my graphic design for a variety of media and use cases.</p>
+
+				<ul class="gallery expansive">
 					<li>
 						<h3>Emblematic Jewelry</h3>
 						<a href="emblematic/"><img src="emblematic/images/5326-gear-pin-v1-fancy-thumb.png" alt="thumbnail" /></a>
@@ -40,5 +43,6 @@
 						<p>Examples of more traditional art, in assorted media.</p>
 					</li>
 				</ul>
+			</section>
 
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+			<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

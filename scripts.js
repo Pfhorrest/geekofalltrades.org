@@ -60,6 +60,15 @@ const initMenus = () => {
 document.addEventListener("DOMContentLoaded", initMenus);
 
 //Show parent breadcrumbs' submnavs on hover
+const getMinWidth = () => {
+  return (
+    parseFloat(
+      getComputedStyle(document.body).getPropertyValue("font-size"),
+      10
+    ) *
+    parseInt(getComputedStyle(document.body).getPropertyValue("--bp2"), 10)
+  );
+};
 const initSubnavsOnHover = () => {
   let lastSubnav = document.querySelector("#menu > a:last-of-type + ul");
   document
@@ -69,19 +78,22 @@ const initSubnavsOnHover = () => {
       if (nextSibling.tagName.toLowerCase() == "ul") {
         let thisSubnav = nextSibling;
         breadcrumb.addEventListener("mouseenter", (e) => {
-          if (e.relatedTarget != thisSubnav) {
-            let subnavs = document.querySelectorAll(
-              "#menu > a:not(:last-of-type) + *"
-            );
-            $(subnavs).clearQueue().stop().hide(0);
-            $(lastSubnav).clearQueue().stop().show(0);
+          console.log(getMinWidth());
+          if (window.innerWidth > getMinWidth()) {
+            if (e.relatedTarget != thisSubnav) {
+              let subnavs = document.querySelectorAll(
+                "#menu > a:not(:last-of-type) + *"
+              );
+              $(subnavs).clearQueue().stop().hide(0);
+              $(lastSubnav).clearQueue().stop().show(0);
+            }
+            $(lastSubnav).slideUp();
+            $(thisSubnav).slideDown({
+              start: () => {
+                thisSubnav.style.display = "flex";
+              },
+            });
           }
-          $(lastSubnav).slideUp();
-          $(thisSubnav).slideDown({
-            start: () => {
-              thisSubnav.style.display = "flex";
-            },
-          });
         });
         let hideSubnavFromHover = () => {
           $(thisSubnav).slideUp();
@@ -89,12 +101,18 @@ const initSubnavsOnHover = () => {
           closeNavDropdowns();
         };
         breadcrumb.addEventListener("mouseleave", (e) => {
-          if (e.relatedTarget != thisSubnav) {
+          if (
+            e.relatedTarget.closest("ul") != thisSubnav &&
+            window.innerWidth > getMinWidth()
+          ) {
             hideSubnavFromHover();
           }
         });
         nextSibling.addEventListener("mouseleave", (e) => {
-          if (e.relatedTarget != breadcrumb) {
+          if (
+            e.relatedTarget != breadcrumb &&
+            window.innerWidth > getMinWidth()
+          ) {
             hideSubnavFromHover();
           }
         });
@@ -110,12 +128,24 @@ const initToggleSections = () => {
       "section > h2, section > h3, section > h4, section > h5, section > h6"
     )
     .forEach((elem) => {
-      elem.style.cursor = "pointer";
-      elem.setAttribute("title", "Collapse section");
-      elem.closest("section").classList.add("toggleable");
-      elem.addEventListener("click", () => {
-        toggleSection(elem);
-      });
+      let theSection = elem.closest("section");
+      if (
+        [...theSection.children].filter(
+          (child) =>
+            !(
+              child.tagName.toLowerCase() == "h2" ||
+              (child.tagName.toLowerCase() == "p" &&
+                child.classList.contains("description"))
+            )
+        ).length > 0
+      ) {
+        elem.style.cursor = "pointer";
+        elem.setAttribute("title", "Collapse section");
+        theSection.classList.add("toggleable");
+        elem.addEventListener("click", () => {
+          toggleSection(elem);
+        });
+      }
     });
 };
 document.addEventListener("DOMContentLoaded", initToggleSections);
@@ -337,6 +367,40 @@ const externalLinks = () => {
   });
 };
 document.addEventListener("DOMContentLoaded", externalLinks);
+
+// Animate stuff in on scroll
+const elementIsVisibleInViewport = (el, partiallyVisible = false) => {
+  const { top, left, bottom, right } = el.getBoundingClientRect();
+  const { innerHeight, innerWidth } = window;
+  return partiallyVisible
+    ? ((top > 0 && top < innerHeight) ||
+        (bottom > 0 && bottom < innerHeight)) &&
+        ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth))
+    : top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
+};
+const hideablesObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.target.classList.contains("hidden")) {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove("hidden");
+      }
+    } else {
+      if (!entry.isIntersecting) {
+        entry.target.classList.add("hidden");
+      }
+    }
+  });
+});
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .querySelectorAll("main *:not(a, em, strong, i, b, span, img")
+    .forEach((element) => {
+      if (!elementIsVisibleInViewport(element, true)) {
+        element.classList.add("hidden");
+      }
+      hideablesObserver.observe(element);
+    });
+});
 
 // Gallery modal display functionality
 

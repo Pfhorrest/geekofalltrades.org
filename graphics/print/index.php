@@ -1,11 +1,14 @@
 <?php $title = "Print Design by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
+			<section>
 				<h2>Print Design</h2>
+
+				<p class="description">Examples of my design for print.</p>
 
 				<?php require $_SERVER['DOCUMENT_ROOT'] . "/display/basepath.php" ?>
 
-				<ul class="gallery">
+				<ul class="gallery expansive">
 					<li>
 						<h3><?php $caption = "My resume"; echo $caption ?></h3>
 							<?php echo '<a href="images/resume.pdf" rel="external">
@@ -145,5 +148,6 @@
 						<p>Photoshop, 2001.</p>
 					</li>
 				</ul>
-				
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+			</section>
+
+			<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

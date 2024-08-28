@@ -1,11 +1,14 @@
 <?php $title = "Digital Arts by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
+			<section>
 				<h2>Digital Arts</h2>
+
+				<p class="description">Examples of my other design for screen.</p>
 			
 				<?php require $_SERVER['DOCUMENT_ROOT'] . "/display/basepath.php" ?>
 
-				<ul class="gallery">
+				<ul class="gallery expansive">
 
 					<li>
 						<h3><?php $caption = "Sample project for <i>DSG</i>"; echo $caption ?></h3>
@@ -68,5 +71,6 @@
 						<p>Photoshop, 2004.</p>
 					</li>
 				</ul>
-				
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
+			</section>				
+
+			<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

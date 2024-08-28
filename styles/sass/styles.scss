@@ -1,3 +1,4 @@
+@use "sass:math";
 @import url("https://fonts.googleapis.com/css2?family=Itim&family=Nunito&family=Princess+Sofia&display=swap");
 
 :root {
@@ -207,27 +208,36 @@
   --seaShadow: hsl(from var(--seaColor1) h 100% 0% / 100%); // For footer
 
   --mbo: hsl(from black h s l / 93.75%); // Modal background outer
+
+  // Standard breakpoints
+  --bp1: 20rem;
+  --bp2: 40rem;
+  --bp3: 60rem;
+  --bp4: 80rem;
 }
+$bp1: 20rem; // = 320px
+$bp2: 40rem; // = 640px
+$bp3: 60rem; // = 640px
+$bp4: 80rem; // = 1280px
 
 // Calculate responsive font sizes
+@function su($num) {
+  @return math.div($num, ($num * 0 + 1));
+}
 @function rfs($minValue, $minWidth, $maxValue, $maxWidth) {
-  $units: rem;
-  $minValueWithUnits: $minValue + $units;
-  $maxValueWithUnits: $maxValue + $units;
-  $minWidthWithUnits: $minWidth + $units;
-  $maxWidthWithUnits: $maxWidth + $units;
   @return clamp(
-    $minValueWithUnits,
+    $minValue,
     calc(
-      $minValueWithUnits + (100vw - $minWidthWithUnits) *
-        ($maxValue - $minValue) / ($maxWidth - $minWidth)
+      $minValue + (100vw - $minWidth) * (su($maxValue) - su($minValue)) /
+        (su($maxWidth) - su($minWidth))
     ),
-    $maxValueWithUnits
+    $maxValue
   );
 }
-// Standard min and max widths
-$minWidth: 20; // 20rem or 320px
-$maxWidth: 160; // 160rem or 2560px
+
+* {
+  transition: all 0.5s;
+}
 
 html {
   height: 100%;
@@ -236,15 +246,6 @@ html {
   font: {
     family: "Nunito", sans-serif;
     size: 1pc;
-    size: clamp(
-      0.75pc,
-      clamp(
-        calc(1pc + (100vw - 80pc) * (1.25 - 1) / (100 - 80)),
-        1pc,
-        calc(0.75pc + (100vw - 30pc) * (1 - 0.75) / (40 - 30))
-      ),
-      1.2pc
-    );
   }
   line-height: 1;
   scroll-padding-top: 6rem;
@@ -273,7 +274,6 @@ a {
   text-decoration: underline;
   text-shadow: 1pt 1pt 1pt transparent;
   cursor: pointer;
-  transition: color 0.5s, text-shadow 0.5s;
 
   &:link,
   &:visited {
@@ -325,7 +325,6 @@ h6 {
   *:active > & {
     text-shadow: 0.0625em 0.0625em 0.0625em var(--shade);
   }
-  transition: all 1s;
   position: relative;
   overflow-wrap: anywhere;
 
@@ -334,23 +333,23 @@ h6 {
   }
 }
 
-h1 {
-  font-size: calc(1.5rem + 1.2vw);
-}
+// Main body font size at bp4
+$mfs: 1.25rem;
+
 h2 {
-  font-size: calc(1.4rem + 1vw);
+  font-size: rfs(1.5rem, $bp1, (1 + 2) * $mfs, $bp4);
 }
 h3 {
-  font-size: calc(1.3rem + 0.8vw);
+  font-size: rfs(1.4rem, $bp1, (1 + 1) * $mfs, $bp4);
 }
 h4 {
-  font-size: calc(1.2rem + 0.6vw);
+  font-size: rfs(1.3rem, $bp1, (1 + 0.5) * $mfs, $bp4);
 }
 h5 {
-  font-size: calc(1.1rem + 0.4vw);
+  font-size: rfs(1.2rem, $bp1, (1 + 0.25) * $mfs, $bp4);
 }
 h6 {
-  font-size: calc(1rem + 0.2vw);
+  font-size: rfs(1.1rem, $bp1, (1 + 0.125) * $mfs, $bp4);
 }
 
 header {
@@ -366,7 +365,7 @@ header {
   display: flex;
   flex-flow: column;
 
-  @media (min-width: 40rem) {
+  @media (min-width: $bp2) {
     top: calc(-1 * (3 * max(1.5rem, 4vw) + 2vw + 0.5rem));
     overflow-y: visible;
   }
@@ -418,7 +417,6 @@ header {
     white-space: nowrap;
     letter-spacing: 0.1em;
     line-height: 2;
-    transition: all 1s;
     cursor: pointer;
 
     &::before {
@@ -453,7 +451,7 @@ header {
       > span {
         display: none;
 
-        @media (min-width: 20rem) {
+        @media (min-width: $bp1) {
           display: inline;
         }
       }
@@ -463,7 +461,7 @@ header {
       display: none;
     }
 
-    @media (min-width: 40rem) {
+    @media (min-width: $bp2) {
       background: linear-gradient(
           transparent calc(50% - 1em),
           var(--skyMist) 50%,
@@ -549,7 +547,7 @@ header {
       background-size: 100% 100%, auto;
       background-position: center, center, center;
       animation-name: windAndWaves;
-      animation-duration: 4s;
+      animation-duration: 12s;
       animation-iteration-count: infinite;
       animation-direction: normal;
       animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
@@ -627,7 +625,7 @@ footer {
   text-align: center;
   box-shadow: 0 0.5em 0.5em var(--shade) inset;
   animation-name: waves;
-  animation-duration: 5s;
+  animation-duration: 4s;
   animation-iteration-count: infinite;
   animation-direction: normal;
   animation-timing-function: linear;
@@ -693,7 +691,7 @@ footer {
     var(--cc75) calc(6 * 100% / 6)
   );
 
-  @media (min-width: 40rem) {
+  @media (min-width: $bp2) {
     flex-flow: row wrap;
     max-height: auto;
     min-height: auto;
@@ -712,9 +710,7 @@ footer {
     order: -1;
     z-index: 1;
     margin: 0;
-    margin-bottom: -2em;
     padding: 0 1em;
-    padding-bottom: 2em;
     border: none;
     border-top: 0pt solid white;
     outline: none;
@@ -732,7 +728,6 @@ footer {
     flex: 1 1 auto;
     box-shadow: 1pt 1pt 0pt transparent inset, -1pt 0pt 0pt transparent inset,
       1pt 1pt 0 0 var(--shade) inset;
-    transition: all 0.5s;
 
     &:nth-last-of-type(2) {
       opacity: 87.5%;
@@ -747,23 +742,24 @@ footer {
       opacity: 50%;
     }
 
-    &:hover,
-    &:focus,
-    &:active {
-      box-shadow: 1pt 1pt 0pt var(--gloss) inset,
-        -1pt 0pt 0pt var(--shade) inset, 1pt 1pt 0 0 transparent inset;
-      opacity: 100%;
-      background-position-y: 0%;
-      & ~ a:last-of-type {
-        opacity: 93.75%;
+    @media (min-width: $bp2) {
+      margin-bottom: -2em;
+      padding-bottom: 2em;
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: 1pt 1pt 0pt var(--gloss) inset,
+          -1pt 0pt 0pt var(--shade) inset, 1pt 1pt 0 0 transparent inset;
+        opacity: 100%;
+        background-position-y: 0%;
+        & ~ a:last-of-type {
+          opacity: 93.75%;
+        }
       }
     }
 
     &:last-of-type + ul {
       display: flex;
-      @media (max-width: 40rem) {
-        box-shadow: 0pt -1pt 0 0 var(--shade);
-      }
     }
   }
 
@@ -771,17 +767,6 @@ footer {
     flex-basis: 100%;
     z-index: 1;
     display: none;
-    @media (max-width: 40rem) {
-      &:not(:last-of-type) {
-        display: none !important;
-      }
-      &:last-of-type {
-        display: flex !important;
-        height: auto !important;
-        margin: 0 -0.5em !important;
-        padding: 0.5em !important;
-      }
-    }
     flex-flow: row wrap;
     flex-shrink: 1;
     overflow-y: auto;
@@ -796,26 +781,29 @@ footer {
     background-position-y: 50%;
     text-align: center;
     line-height: 2.5;
-    box-shadow: 0pt -1pt 0pt transparent inset, 0pt 1pt 1pt transparent,
-      0 -1pt 0 0 var(--shade) inset;
-    &:hover,
-    &:focus,
-    &:active {
-      box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade),
-        0 -1pt 0 0 transparent inset;
-      background-position-y: 100%;
+    box-shadow: 0pt -1pt 0 0 var(--shade);
+    @media (min-width: $bp2) {
+      box-shadow: 0pt -1pt 0pt transparent inset, 0pt 1pt 1pt transparent,
+        0 -1pt 0 0 var(--shade) inset;
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade),
+          0 -1pt 0 0 transparent inset;
+        background-position-y: 100%;
+      }
+      transition: height 0s, margin 0s, padding 0s;
     }
-    transition: box-shadow 0.5s, background-position-y 0.5s;
 
-    @media (min-width: 40rem) {
+    @media (min-width: $bp2) {
       overflow-y: visible;
     }
 
     > * {
       flex: 1 1 100%;
       white-space: normal;
-      @media (min-width: 40rem) {
-        flex: 1 0 10em;
+      @media (min-width: $bp2) {
+        flex: 1 0 0%;
         white-space: nowrap;
       }
     }
@@ -883,7 +871,6 @@ footer {
             top: 0.5em;
             opacity: 0.25;
             vertical-align: middle;
-            transition: transform 0.5s;
             transform: rotate(0deg);
 
             @media only print {
@@ -968,10 +955,8 @@ footer {
             0 0 0 1pt transparent inset;
           background-size: 100% 100%;
         }
-        transition: box-shadow 0.5s, background-size 0.5s,
-          background-position-x 0.5s;
 
-        @media (min-width: 40rem) {
+        @media (min-width: $bp2) {
           position: absolute;
           width: 100%;
           box-sizing: border-box;
@@ -1012,29 +997,63 @@ main {
     var(--cw75) 0%,
     var(--cw95) 100%
   );
+  background-position: center;
+  background-size: 100% 100%;
+  animation-name: mainLighting;
+  animation-duration: 44s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transition-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
+  @keyframes mainLighting {
+    from {
+      background-size: 100% 100%;
+    }
+    to {
+      background-size: 400% 200%;
+    }
+  }
   line-height: 1.5;
-
-  h2 {
-    font-size: rfs(1.5, $minWidth, (1 + 2) * 1.5, $maxWidth);
-  }
-  h3 {
-    font-size: rfs(1.4, $minWidth, (1 + 1) * 1.5, $maxWidth);
-  }
-  h4 {
-    font-size: rfs(1.3, $minWidth, (1 + 0.5) * 1.5, $maxWidth);
-  }
-  h5 {
-    font-size: rfs(1.2, $minWidth, (1 + 0.25) * 1.5, $maxWidth);
-  }
-  h6 {
-    font-size: rfs(1.1, $minWidth, (1 + 0.125) * 1.5, $maxWidth);
-  }
-
-  font-size: rfs(1, $minWidth, 1.5, $maxWidth);
+  font-size: rfs(1rem, $bp1, $mfs, $bp4);
 
   > * {
     flex: 0 1 auto;
     text-shadow: 0 0 0.5em var(--cbi);
+  }
+
+  * {
+    transition: all 0.5s, opacity var(--dur) linear,
+      transform var(--dur) cubic-bezier(0.75, 1.75, 0.75, 0.75)
+        calc(var(--delA) + var(--delB));
+    --dur: 1s;
+    --delA: 0s;
+    --delB: 0s;
+    &.hidden > * {
+      --delA: calc(1s / 16);
+      &.hidden > * {
+        --delA: calc(2s / 16);
+        &.hidden > * {
+          --delA: calc(3s / 16);
+          &.hidden > * {
+            --delA: calc(4s / 16);
+          }
+        }
+      }
+    }
+    &.hidden {
+      opacity: 0;
+      transition-delay: 0s;
+      transform: rotateY(0.25turn);
+      --dur: 0s;
+    }
+  }
+
+  a,
+  em,
+  strong,
+  i,
+  b,
+  span {
+    --dur: 0s;
   }
 
   p {
@@ -1131,7 +1150,7 @@ main {
     filter: drop-shadow(0 2pt 1pt var(--shade));
 
     &:nth-of-type(even) {
-      transform: scaleX(-1);
+      transform: rotateY(-0.5turn);
     }
   }
 
@@ -1158,11 +1177,12 @@ main {
   }
 
   .toggleAllControls {
+    --dur: 0.5s;
     width: 100%;
-    max-width: 80ch;
+    max-width: calc(80ch - 2 * var(--spacing));
     display: flex;
     flex-flow: row wrap;
-    @media (min-width: 40rem) {
+    @media (min-width: $bp2) {
       flex-wrap: nowrap;
     }
     justify-content: center;
@@ -1171,7 +1191,7 @@ main {
     a {
       flex: 1 1 100%;
       position: relative;
-      font-size: 0.75pc;
+      font-size: 0.75rem;
       text-decoration: none;
       text-transform: uppercase;
       text-align: center;
@@ -1184,7 +1204,6 @@ main {
       padding: 0.25em 2em;
       border: 1pt solid var(--gloss);
       opacity: 0.75;
-      transition: all 0.5s;
       &.expandAll,
       &.expandAnchor,
       &.collapseOthers,
@@ -1193,7 +1212,6 @@ main {
         &::after {
           content: "▼";
           opacity: 0.25;
-          transition: all 0.5s;
           position: absolute;
           top: 0;
           bottom: 0;
@@ -1224,7 +1242,7 @@ main {
         border-right-width: 0;
         border-radius: 0;
         order: 10;
-        @media (min-width: 40rem) {
+        @media (min-width: $bp2) {
           order: unset;
         }
         &::before,
@@ -1250,14 +1268,14 @@ main {
         pointer-events: none;
         opacity: 0.25;
         display: none;
-        @media (min-width: 40rem) {
+        @media (min-width: $bp2) {
           display: block;
         }
       }
     }
     &:last-of-type .anchorTarget {
       order: -1;
-      @media (min-width: 40rem) {
+      @media (min-width: $bp2) {
         order: unset;
       }
       &::before {
@@ -1279,10 +1297,12 @@ main {
   }
 
   section {
+    --dur: 0s;
+    transition: all 0.5s;
     clear: both;
     width: 100%;
     box-sizing: border-box;
-    max-width: 80ch;
+    max-width: calc(80ch + 2 * var(--spacing));
     margin: 0 auto;
     padding: var(--spacing);
     gap: var(--spacing);
@@ -1290,6 +1310,42 @@ main {
     outline: 0;
     border-radius: calc(2 * var(--rounding));
     background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+    background-position: center;
+    animation-name: mainLighting;
+    animation-duration: 5s;
+    &:nth-of-type(5n + 1) {
+      animation-delay: 0s;
+    }
+    &:nth-of-type(10n + 2) {
+      animation-delay: 0.5s;
+    }
+    &:nth-of-type(10n + 3) {
+      animation-delay: 1s;
+    }
+    &:nth-of-type(10n + 4) {
+      animation-delay: 1.5s;
+    }
+    &:nth-of-type(10n + 5) {
+      animation-delay: 2s;
+    }
+    &:nth-of-type(10n + 6) {
+      animation-delay: 2.5s;
+    }
+    &:nth-of-type(10n + 7) {
+      animation-delay: 3s;
+    }
+    &:nth-of-type(10n + 8) {
+      animation-delay: 3.5s;
+    }
+    &:nth-of-type(10n + 9) {
+      animation-delay: 4s;
+    }
+    &:nth-of-type(10n + 0) {
+      animation-delay: 4.5s;
+    }
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
     box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
       1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
       0 0 0 1pt var(--gloss) inset;
@@ -1300,7 +1356,6 @@ main {
         1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
         0 0 0 1pt transparent inset;
     }
-    transition: box-shadow 1s;
 
     &:after {
       content: "";
@@ -1309,7 +1364,7 @@ main {
       clear: both;
     }
 
-    .gallery {
+    .gallery:not(.expansive) {
       margin: 0;
       padding: 0;
       background: none;
@@ -1348,7 +1403,6 @@ main {
         &::after {
           content: "▼";
           opacity: 0.0625;
-          transition: all 0.5s;
           position: absolute;
           top: 0;
           bottom: 0;
@@ -1365,6 +1419,21 @@ main {
         }
         &::after {
           right: 0;
+        }
+
+        &::before,
+        &::after {
+          --dur: 1s;
+          transition: opacity var(--dur);
+          transition-delay: var(--dur);
+        }
+
+        &.hidden {
+          &::before,
+          &::after {
+            opacity: 0;
+            transition-delay: 0s;
+          }
         }
 
         &:hover {
@@ -1401,12 +1470,80 @@ main {
     section {
       margin-bottom: var(--spacing);
       border-radius: calc(1.75 * var(--rounding));
+      animation-duration: 4s;
+      &:nth-of-type(8n + 1) {
+        animation-delay: 0s;
+      }
+      &:nth-of-type(8n + 2) {
+        animation-delay: 0.5s;
+      }
+      &:nth-of-type(8n + 3) {
+        animation-delay: 1s;
+      }
+      &:nth-of-type(8n + 4) {
+        animation-delay: 1.5s;
+      }
+      &:nth-of-type(8n + 5) {
+        animation-delay: 2s;
+      }
+      &:nth-of-type(8n + 6) {
+        animation-delay: 2.5s;
+      }
+      &:nth-of-type(8n + 7) {
+        animation-delay: 3s;
+      }
+      &:nth-of-type(8n + 0) {
+        animation-delay: 3.5s;
+      }
+      --dur: 0.25s;
       section {
         border-radius: calc(1.5 * var(--rounding));
+        animation-duration: 3s;
+        &:nth-of-type(6n + 1) {
+          animation-delay: 0s;
+        }
+        &:nth-of-type(6n + 2) {
+          animation-delay: 1.5s;
+        }
+        &:nth-of-type(6n + 3) {
+          animation-delay: 1s;
+        }
+        &:nth-of-type(6n + 4) {
+          animation-delay: 1.5s;
+        }
+        &:nth-of-type(6n + 5) {
+          animation-delay: 2s;
+        }
+        &:nth-of-type(6n + 0) {
+          animation-delay: 2.5s;
+        }
+        --dur: 0.5s;
         section {
           border-radius: calc(1.25 * var(--rounding));
+          animation-duration: 2s;
+          &:nth-of-type(4n + 1) {
+            animation-delay: 0s;
+          }
+          &:nth-of-type(4n + 2) {
+            animation-delay: 0.5s;
+          }
+          &:nth-of-type(4n + 3) {
+            animation-delay: 1s;
+          }
+          &:nth-of-type(4n + 0) {
+            animation-delay: 1.5s;
+          }
+          --dur: 0.75s;
           section {
             border-radius: var(--rounding);
+            animation-duration: 1s;
+            &:nth-of-type(2n + 1) {
+              animation-delay: 0s;
+            }
+            &:nth-of-type(2n + 2) {
+              animation-delay: 0.5s;
+            }
+            --dur: 1s;
           }
         }
       }
@@ -1448,12 +1585,12 @@ main {
     }
 
     figure {
+      --dur: 0.5s;
       float: none;
       display: block;
       width: 100%;
       max-width: 100%;
       margin: var(--spacing) auto;
-      transition: all 1s ease-in;
 
       &.contained {
         overflow: hidden;
@@ -1470,14 +1607,23 @@ main {
             1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
             0 0 0 1pt transparent inset;
         }
+        &.hidden {
+          img {
+            transform: none;
+          }
+        }
       }
 
       &.invertible {
         @media (prefers-color-scheme: light) {
-          filter: none;
+          img {
+            filter: none;
+          }
         }
         @media (prefers-color-scheme: dark) {
-          filter: invert(1) hue-rotate(0.5turn);
+          img {
+            filter: invert(1) hue-rotate(0.5turn);
+          }
         }
       }
 
@@ -1485,6 +1631,11 @@ main {
         display: block;
         max-width: 100%;
         margin: auto;
+      }
+      &.hidden {
+        img {
+          transform: scale(0);
+        }
       }
 
       ul {
@@ -1494,43 +1645,107 @@ main {
       }
     }
 
-    @media (min-width: 40rem) {
+    @media (min-width: $bp2) {
       figure {
         float: left;
-        max-width: calc((100% - 2em) / 2);
+        transform-origin: left;
+        --fw: calc(50% - 1.5 * var(--spacing)); // Figure width
+        max-width: var(--fw);
         margin: 0 var(--spacing) var(--spacing) 0;
 
-        &:nth-of-type(even) {
+        &:nth-of-type(even):not(.solo) {
           float: right;
+          transform-origin: right;
           margin-left: var(--spacing);
           margin-right: 0;
         }
-
-        &:active {
+        &.solo {
+          float: none;
+          transform-origin: center;
           max-width: 100%;
         }
       }
-      &:nth-of-type(even) figure {
+      &:nth-of-type(even) figure:not(.solo) {
         float: right;
+        transform-origin: right;
         margin-left: var(--spacing);
         margin-right: 0;
 
-        &:nth-of-type(even) {
+        &:nth-of-type(even):not(.solo) {
           float: left;
+          transform-origin: left;
           margin-right: var(--spacing);
           margin-left: 0;
         }
       }
-      .solo {
-        float: none;
-        max-width: 100%;
-
-        picture,
+    }
+    @media (min-width: $bp4) {
+      figure {
+        &,
+        &.contained {
+          background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+          animation-name: mainLighting;
+          animation-duration: 5s;
+          border: none;
+        }
+        transition-duration: calc(4 * var(--dur)), 0.5s;
+        transition-property: transform, all;
         img {
-          max-width: 100%;
+          transition-duration: 0s;
+          transition-property: transform;
+          max-height: calc(100vh - 10rem);
+          object-fit: contain;
+        }
+        padding: var(--spacing);
+        border-radius: calc(2 * var(--spacing));
+        box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
+          1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+          0 0 0 1pt var(--shade) inset;
+        &:hover,
+        &:focus,
+        &:active {
+          box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss),
+            1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+            0 0 0 1pt transparent inset;
+        }
+
+        // Fancy margin size
+        --fms: calc(-1 * min(calc((100vw - 100%) / 2), 100%) + var(--spacing));
+        // Fancy max-width
+        --fmw: min(
+          calc(100% - 5 * var(--spacing)),
+          calc(var(--fw) - 0.5 * var(--fms))
+        );
+
+        margin-left: var(--fms);
+        transform-origin: right;
+        &:nth-of-type(even):not(.solo) {
+          margin-left: var(--spacing);
+          margin-right: var(--fms);
+          transform-origin: left;
+        }
+        max-width: var(--fmw);
+        &.solo {
+          width: 100vw;
+          max-width: min(300%, 100% - 2 * var(--fms) - 2 * var(--spacing));
+          margin-right: var(--fms);
+          transform-origin: center;
+          transition-duration: calc(2 * var(--dur));
+        }
+      }
+      &:nth-of-type(even) figure:not(.solo) {
+        margin-left: var(--spacing);
+        margin-right: var(--fms);
+        transform-origin: left;
+
+        &:nth-of-type(even):not(.solo) {
+          margin-right: var(--spacing);
+          margin-left: var(--fms);
+          transform-origin: right;
         }
       }
     }
+
     @media only print {
       padding-left: 0;
       padding-right: 0;
@@ -1551,8 +1766,9 @@ main {
     outline: 0 solid black;
     border-radius: calc(2 * var(--rounding));
     background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+    animation-name: mainLighting;
+    animation-duration: 5s;
     text-align: center;
-    font-size: 1rem;
     box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
       1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
       0 0 0 1pt var(--shade) inset;
@@ -1563,12 +1779,173 @@ main {
         1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
         0 0 0 1pt transparent inset;
     }
-    transition: box-shadow 1s;
 
-    --gim: 24ch; // Gallery item measurement
+    --gin: 3;
+    --gim: calc(
+      (80ch - (var(--gin) + 1) * var(--spacing) - var(--gin) * 2 * 1pt - 1pt) /
+        var(--gin)
+    ); // Gallery item measurement
+    // The extra 1pt is a fudge for a problem of unknown origin
 
     > * {
       flex: 1 0 var(--gim);
+      box-sizing: border-box;
+    }
+
+    @media (min-width: $bp4) {
+      &.expansive {
+        width: 100vw;
+        max-width: calc(100vw - (2 * var(--spacingAbs)) - (2 * var(--spacing)));
+        margin-left: calc(50% - 50vw + var(--spacingAbs) + var(--spacing));
+        justify-content: center;
+        box-sizing: border-box;
+        // background: radial-gradient(farthest-corner, var(--cbo), var(--cbi));
+        // > * {
+        //   flex: 0 0 var(--gim);
+        // }
+        li {
+          @media (min-width: 83rem) {
+            &:nth-of-type(4n + 1) {
+              &,
+              & * {
+                --delB: calc(1s / 4);
+              }
+            }
+            &:nth-of-type(4n + 2) {
+              &,
+              & * {
+                --delB: calc(2s / 4);
+              }
+            }
+            &:nth-of-type(4n + 3) {
+              &,
+              & * {
+                --delB: calc(3s / 4);
+              }
+            }
+            &:nth-of-type(4n + 0) {
+              &,
+              & * {
+                --delB: calc(4s / 4);
+              }
+            }
+          }
+          @media (min-width: 104rem) {
+            &:nth-of-type(5n + 1) {
+              &,
+              & * {
+                --delB: calc(1s / 5);
+              }
+            }
+            &:nth-of-type(5n + 2) {
+              &,
+              & * {
+                --delB: calc(2s / 5);
+              }
+            }
+            &:nth-of-type(5n + 3) {
+              &,
+              & * {
+                --delB: calc(3s / 5);
+              }
+            }
+            &:nth-of-type(5n + 4) {
+              &,
+              & * {
+                --delB: calc(4s / 5);
+              }
+            }
+            &:nth-of-type(5n + 0) {
+              &,
+              & * {
+                --delB: calc(5s / 5);
+              }
+            }
+          }
+          @media (min-width: 123rem) {
+            &:nth-of-type(6n + 1) {
+              &,
+              & * {
+                --delB: calc(1s / 6);
+              }
+            }
+            &:nth-of-type(6n + 2) {
+              &,
+              & * {
+                --delB: calc(2s / 6);
+              }
+            }
+            &:nth-of-type(6n + 3) {
+              &,
+              & * {
+                --delB: calc(3s / 6);
+              }
+            }
+            &:nth-of-type(6n + 4) {
+              &,
+              & * {
+                --delB: calc(4s / 6);
+              }
+            }
+            &:nth-of-type(6n + 5) {
+              &,
+              & * {
+                --delB: calc(5s / 6);
+              }
+            }
+            &:nth-of-type(6n + 0) {
+              &,
+              & * {
+                --delB: calc(6s / 6);
+              }
+            }
+          }
+          @media (min-width: 141rem) {
+            &:nth-of-type(7n + 1) {
+              &,
+              & * {
+                --delB: calc(1s / 7);
+              }
+            }
+            &:nth-of-type(7n + 2) {
+              &,
+              & * {
+                --delB: calc(2s / 7);
+              }
+            }
+            &:nth-of-type(7n + 3) {
+              &,
+              & * {
+                --delB: calc(3s / 7);
+              }
+            }
+            &:nth-of-type(7n + 4) {
+              &,
+              & * {
+                --delB: calc(4s / 7);
+              }
+            }
+            &:nth-of-type(7n + 5) {
+              &,
+              & * {
+                --delB: calc(5s / 7);
+              }
+            }
+            &:nth-of-type(7n + 6) {
+              &,
+              & * {
+                --delB: calc(6s / 7);
+              }
+            }
+            &:nth-of-type(7n + 0) {
+              &,
+              & * {
+                --delB: calc(7s / 7);
+              }
+            }
+          }
+        }
+      }
     }
 
     li {
@@ -1595,10 +1972,42 @@ main {
           1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
           0 0 0 1pt transparent inset, 0 0 0 1pt transparent;
       }
-      transition: box-shadow 1s;
 
       &:before {
         display: none;
+      }
+
+      &:nth-of-type(2n + 1) {
+        &,
+        & * {
+          --delB: calc(1s / 2);
+        }
+      }
+      &:nth-of-type(2n + 0) {
+        &,
+        & * {
+          --delB: calc(2s / 2);
+        }
+      }
+      @media (min-width: $bp2) {
+        &:nth-of-type(3n + 1) {
+          &,
+          & * {
+            --delB: calc(1s / 3);
+          }
+        }
+        &:nth-of-type(3n + 2) {
+          &,
+          & * {
+            --delB: calc(2s / 3);
+          }
+        }
+        &:nth-of-type(3n + 0) {
+          &,
+          & * {
+            --delB: calc(3s / 3);
+          }
+        }
       }
 
       h3 {
@@ -1625,10 +2034,19 @@ main {
 
       img {
         display: inline-block;
-        max-width: var(--gim);
-        max-height: var(--gim);
+        max-width: calc(var(--gim) - 2 * var(--spacing));
+        max-height: calc(var(--gim) - 2 * var(--spacing));
         margin: 0 auto;
         background: white;
+        transition: border-radius var(--dur) calc(var(--delA) + var(--delB)),
+          transform var(--dur) calc(var(--delA) + var(--delB));
+      }
+      &.hidden {
+        img {
+          transform: scale(0);
+          border-radius: 100%;
+          transition-delay: 0s;
+        }
       }
 
       p,
@@ -1636,6 +2054,7 @@ main {
         margin: 0 auto;
         padding: 0.5em 2em;
         border: 0;
+        font-size: 1rem;
         text: {
           indent: 0;
           align: center;
@@ -1739,7 +2158,6 @@ main {
     &:active {
       text-shadow: 0 0 0.125em black;
     }
-    transition: all 1s;
     user-select: none;
     cursor: pointer;
 

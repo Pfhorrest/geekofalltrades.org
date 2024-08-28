@@ -1,11 +1,14 @@
 <?php $title = "Emblematic Jewelry by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
+			<section>
 				<h2>Emblematic Jewelry</h2>
 				
+				<p class="description">Examples of graphic arts for manufacture as products like custom pins, coins, and other emblematic jewelry.</p>
+
 				<?php require $_SERVER['DOCUMENT_ROOT'] . "/display/basepath.php" ?>
 
-				<ul class="gallery">
+				<ul class="gallery expansive">
 					<li>
 						<h3><?php $caption = "UFO cat pin"; echo $caption ?></h3>
 						<?php echo '<a href="/display/?image=' . $basepath . 'images/1777310-ufo-cat-v3-fancy.png&amp;title=' . rawurlencode($caption) . '" rel="external">
@@ -200,5 +203,6 @@
 					</li>
 
 				</ul>
-				
+			</section>
+
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

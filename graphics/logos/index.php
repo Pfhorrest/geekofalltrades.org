@@ -1,11 +1,14 @@
 <?php $title = "Logo Design by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
+			<section>
 				<h2>Logo Design</h2>
+
+				<p class="description">Examples of my logos and branding.</p>
 			
 				<?php require $_SERVER['DOCUMENT_ROOT'] . "/display/basepath.php" ?>
 
-				<ul class="gallery">
+				<ul class="gallery expansive">
 					<li>
 						<h3><?php $caption = "<i>Codex Quaerentis</i> logo"; echo $caption ?></h3>
 						<?php echo '<a href="/display/?image=' . $basepath . 'images/codex.jpg&amp;title=' . rawurlencode($caption) . '" rel="external">
@@ -140,5 +143,6 @@
 						<p>Photoshop, 2001.</p>
 					</li>
 				</ul>
+			</section>
 
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
