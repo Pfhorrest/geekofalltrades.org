@@ -1,165 +1,150 @@
 <?php $title = "April 2022 Photography by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
-
-				<h2>April 2022 Photography</h2>
-				
-				<?php require $_SERVER['DOCUMENT_ROOT'] . "/display/basepath.php" ?>
-
-				<ul class="gallery">
-					<li>
-						<h3><?php $caption = "Canada goose at Ventura Harbor Ecological Preserve"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/30/IMG_3974.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="30/IMG_3974-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-30.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Mallard couple at Ventura Harbor Ecological Preserve"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/30/IMG_3970.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="30/IMG_3970-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-30.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Matilija poppy in the Ventura Riverbottom"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/29/IMG_3963.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="29/IMG_3963-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-29.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Thistle in the Ventura Riverbottom"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/29/IMG_3950.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="29/IMG_3950-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-29.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Purple sage on Shelf Road"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/26/IMG_3915.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="26/IMG_3915-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-26.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Sunrise on Los Angeles from inside a plane"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/24/IMG_3870.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="24/IMG_3870-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-24.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Butter daisies at Waipi'o Valley Lookout"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/23/IMG_3778.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="23/IMG_3778-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-23.</p>
-						<p><a href="23">More from the 23rd</a>.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Green sea turtle from Kailua pier"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/22/IMG_3695.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="22/IMG_3695-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-22.</p>
-						<p><a href="22">More from the 22nd</a>.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Alakahi stream at Onomea Bay"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/21/IMG_5178.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="21/IMG_5178-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-21.</p>
-						<p><a href="21">More from the 21st</a>.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Lili'uokalani garden"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/20/IMG_3362.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="20/IMG_3362-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-20.</p>
-						<p><a href="20">More from the 20th</a>.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Sunset outside Royal Kona Resort"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/19/IMG_3177.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="19/IMG_3177-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-19.</p>
-						<p><a href="19">More from the 19th</a>.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Halo in a hale at Ai'opio"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/18/IMG_2842.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="18/IMG_2842-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-18.</p>
-						<p><a href="18">More from the 18th</a>.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Gold dust day gecko at Punalu'u Bake Shop"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/17/IMG_2436.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="17/IMG_2436-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-17.</p>
-						<p><a href="17">More from the 17th</a>.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Santa Cruz and Santa Rosa islands from the sky"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/16/IMG_2269.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="16/IMG_2269-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-16.</p>
-						<p><a href="16">More from the 16th</a>.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Fairy iris on my porch"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/15/IMG_2240.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="15/IMG_2240-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-15.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "California wild rose at Ojai Meadows"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/15/IMG_2237.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="15/IMG_2237-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-15.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Ventura River crossing at Oso Trailhead"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/13/IMG_2230.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="13/IMG_2230-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-13.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Hills above Matilija Canyon"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/09/IMG_2215.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="09/IMG_2215-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-09.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Yarrow and daisies at Ventura Harbor"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/08/IMG_2202.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="08/IMG_2202-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-08.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "California poppy at Ojai Meadows"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/06/IMG_2176.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="06/IMG_2176-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-06.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Pink roses at Krotona"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/04/IMG_2165.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="04/IMG_2165-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-04.</p>
-						<p><a href="04">More from the 4th</a>.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Red maid at Ojai Meadows"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/03/IMG_2150.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="03/IMG_2150-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-03.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Wild strawberry off Cottonwood"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/02/IMG_2129.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="02/IMG_2129-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-02.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Blue heron at Ventura Harbor"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/04/01/IMG_2120.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="01/IMG_2120-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-04-01.</p>
-					</li>
-
-				</ul>
-				
+<section>
+	<h2>April 2022 Photography</h2>
+	<p class="description">Best of the month</p>
+	<?php
+		$images = array(
+			array(
+				'title' => 'Canada goose at Ventura Harbor Ecological Preserve',
+				'filename' => '30/IMG_3974.JPG',
+				'description' => 'iPhone 7, 2022-04-30.',
+			),
+			array(
+				'title' => 'Mallard couple at Ventura Harbor Ecological Preserve',
+				'filename' => '30/IMG_3970.JPG',
+				'description' => 'iPhone 7, 2022-04-30.',
+			),
+			array(
+				'title' => 'Matilija poppy in the Ventura Riverbottom',
+				'filename' => '29/IMG_3963.JPG',
+				'description' => 'iPhone 7, 2022-04-29.',
+			),
+			array(
+				'title' => 'Thistle in the Ventura Riverbottom',
+				'filename' => '29/IMG_3950.JPG',
+				'description' => 'iPhone 7, 2022-04-29.',
+			),
+			array(
+				'title' => 'Purple sage on Shelf Road',
+				'filename' => '26/IMG_3915.JPG',
+				'description' => 'iPhone 7, 2022-04-26.',
+			),
+			array(
+				'title' => 'Sunrise on Los Angeles from inside a plane',
+				'filename' => '24/IMG_3870.JPG',
+				'description' => 'iPhone 7, 2022-04-24.',
+			),
+			array(
+				'title' => 'Butter daisies at Waipi\'o Valley Lookout',
+				'filename' => '23/IMG_3778.JPG',
+				'description' => 'iPhone 7, 2022-04-23.',
+				'morelink' => '23',
+				'moretext' => 'More from the 23rd.',
+			),
+			array(
+				'title' => 'Green sea turtle from Kailua pier',
+				'filename' => '22/IMG_3695.JPG',
+				'description' => 'iPhone 7, 2022-04-22.',
+				'morelink' => '22',
+				'moretext' => 'More from the 22nd.',
+			),
+			array(
+				'title' => 'Alakahi stream at Onomea Bay',
+				'filename' => '21/IMG_5178.JPG',
+				'description' => 'iPhone 7, 2022-04-21.',
+				'morelink' => '21',
+				'moretext' => 'More from the 21st.',
+			),
+			array(
+				'title' => 'Lili\'uokalani garden',
+				'filename' => '20/IMG_3362.JPG',
+				'description' => 'iPhone 7, 2022-04-20.',
+				'morelink' => '20',
+				'moretext' => 'More from the 20th.',
+			),
+			array(
+				'title' => 'Sunset outside Royal Kona Resort',
+				'filename' => '19/IMG_3177.JPG',
+				'description' => 'iPhone 7, 2022-04-19.',
+				'morelink' => '19',
+				'moretext' => 'More from the 19th.',
+			),
+			array(
+				'title' => 'Halo in a hale at Ai\'opio',
+				'filename' => '18/IMG_2842.JPG',
+				'description' => 'iPhone 7, 2022-04-18.',
+				'morelink' => '18',
+				'moretext' => 'More from the 18th.',
+			),
+			array(
+				'title' => 'Gold dust day gecko at Punalu\'u Bake Shop',
+				'filename' => '17/IMG_2436.JPG',
+				'description' => 'iPhone 7, 2022-04-17.',
+				'morelink' => '17',
+				'moretext' => 'More from the 17th.',
+			),
+			array(
+				'title' => 'Santa Cruz and Santa Rosa islands from the sky',
+				'filename' => '16/IMG_2269.JPG',
+				'description' => 'iPhone 7, 2022-04-16.',
+				'morelink' => '16',
+				'moretext' => 'More from the 16th.',
+			),
+			array(
+				'title' => 'Fairy iris on my porch',
+				'filename' => '15/IMG_2240.JPG',
+				'description' => 'iPhone 7, 2022-04-15.',
+			),
+			array(
+				'title' => 'California wild rose at Ojai Meadows',
+				'filename' => '15/IMG_2237.JPG',
+				'description' => 'iPhone 7, 2022-04-15.',
+			),
+			array(
+				'title' => 'Ventura River crossing at Oso Trailhead',
+				'filename' => '13/IMG_2230.JPG',
+				'description' => 'iPhone 7, 2022-04-13.',
+			),
+			array(
+				'title' => 'Hills above Matilija Canyon',
+				'filename' => '09/IMG_2215.JPG',
+				'description' => 'iPhone 7, 2022-04-09.',
+			),
+			array(
+				'title' => 'Yarrow and daisies at Ventura Harbor',
+				'filename' => '08/IMG_2202.JPG',
+				'description' => 'iPhone 7, 2022-04-08.',
+			),
+			array(
+				'title' => 'California poppy at Ojai Meadows',
+				'filename' => '06/IMG_2176.JPG',
+				'description' => 'iPhone 7, 2022-04-06.',
+			),
+			array(
+				'title' => 'Pink roses at Krotona',
+				'filename' => '04/IMG_2165.JPG',
+				'description' => 'iPhone 7, 2022-04-04.',
+				'morelink' => '04',
+				'moretext' => 'More from the 4th.',
+			),
+			array(
+				'title' => 'Red maid at Ojai Meadows',
+				'filename' => '03/IMG_2150.JPG',
+				'description' => 'iPhone 7, 2022-04-03.',
+			),
+			array(
+				'title' => 'Wild strawberry off Cottonwood',
+				'filename' => '02/IMG_2129.JPG',
+				'description' => 'iPhone 7, 2022-04-02.',
+			),
+			array(
+				'title' => 'Blue heron at Ventura Harbor',
+				'filename' => '01/IMG_2120.JPG',
+				'description' => 'iPhone 7, 2022-04-01.',
+			),
+		);
+		require $_SERVER['DOCUMENT_ROOT'] . "/display/gallery.php";
+	?>
+</section>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

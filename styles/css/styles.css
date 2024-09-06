@@ -1142,30 +1142,6 @@ main section:after {
   height: 0;
   clear: both;
 }
-main section .gallery:not(.expansive) {
-  margin: 0;
-  padding: 0;
-  background: none;
-  box-shadow: none;
-  border-radius: 0;
-}
-main section .gallery:not(.expansive):hover, main section .gallery:not(.expansive):active, main section .gallery:not(.expansive):focus {
-  background: none;
-  box-shadow: none;
-}
-main section .gallery:not(.expansive) h1::before, main section .gallery:not(.expansive) h1::after,
-main section .gallery:not(.expansive) h2::before,
-main section .gallery:not(.expansive) h2::after,
-main section .gallery:not(.expansive) h3::before,
-main section .gallery:not(.expansive) h3::after,
-main section .gallery:not(.expansive) h4::before,
-main section .gallery:not(.expansive) h4::after,
-main section .gallery:not(.expansive) h5::before,
-main section .gallery:not(.expansive) h5::after,
-main section .gallery:not(.expansive) h6::before,
-main section .gallery:not(.expansive) h6::after {
-  display: none;
-}
 main section.toggleable h1,
 main section.toggleable h2,
 main section.toggleable h3,
@@ -1528,124 +1504,209 @@ main section figure ul {
     padding-right: 0;
   }
 }
-main .gallery {
+main section .gallery {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: stretch;
   max-width: 100%;
-  margin: 0 auto;
-  margin-bottom: var(--spacing);
-  padding: var(--spacing);
+  margin: 0;
+  padding: 0;
   gap: var(--spacing);
   border: 0;
   outline: 0 solid black;
-  border-radius: calc(2 * var(--rounding));
-  background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+  border-radius: 0;
+  background: none;
   animation-name: mainLighting;
   animation-duration: 5s;
   text-align: center;
-  box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
+  box-shadow: none;
   --gin: 3;
   --gim: calc(
-    (80ch - (var(--gin) + 1) * var(--spacing) - var(--gin) * 2 * 1pt - 1pt) /
-      var(--gin)
+    (
+        80ch - (var(--gin) - 1 + 2 * 5) * var(--spacing) - var(--gin) * 2 *
+          1pt - 1pt
+      ) / var(--gin)
   );
 }
-main .gallery:hover, main .gallery:focus, main .gallery:active {
-  box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
+main section .gallery:hover, main section .gallery:active, main section .gallery:focus {
+  background: none;
+  box-shadow: none;
 }
-main .gallery > * {
+main section .gallery > * {
   flex: 1 0 var(--gim);
   box-sizing: border-box;
 }
+@media (min-width: 34rem) {
+  main section .gallery > *:nth-of-type(2n + 1), main section .gallery > *:nth-of-type(2n + 1) * {
+    --delB: calc(1s / 2);
+  }
+  main section .gallery > *:nth-of-type(2n + 0), main section .gallery > *:nth-of-type(2n + 0) * {
+    --delB: calc(2s / 2);
+  }
+}
+@media (min-width: 53rem) {
+  main section .gallery > *:nth-of-type(3n + 1), main section .gallery > *:nth-of-type(3n + 1) * {
+    --delB: calc(1s / 3);
+  }
+  main section .gallery > *:nth-of-type(3n + 2), main section .gallery > *:nth-of-type(3n + 2) * {
+    --delB: calc(2s / 3);
+  }
+  main section .gallery > *:nth-of-type(3n + 0), main section .gallery > *:nth-of-type(3n + 0) * {
+    --delB: calc(3s / 3);
+  }
+}
 @media (min-width: 80rem) {
-  main .gallery.expansive {
+  main section .gallery.expansive {
     width: 100vw;
     max-width: calc(100vw - 2 * var(--spacingAbs) - 2 * var(--spacing));
     margin-left: calc(50% - 50vw + var(--spacingAbs) + var(--spacing));
+    padding: var(--spacing);
     justify-content: center;
     box-sizing: border-box;
+    border-radius: calc(2 * var(--rounding));
+    background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+    box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
   }
-}
-@media (min-width: 80rem) and (min-width: 83rem) {
-  main .gallery.expansive li:nth-of-type(4n + 1), main .gallery.expansive li:nth-of-type(4n + 1) * {
+  main section .gallery.expansive:hover, main section .gallery.expansive:focus, main section .gallery.expansive:active {
+    box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
+  }
+  main section .gallery.expansive > *:nth-of-type(4n + 1), main section .gallery.expansive > *:nth-of-type(4n + 1) * {
     --delB: calc(1s / 4);
   }
-  main .gallery.expansive li:nth-of-type(4n + 2), main .gallery.expansive li:nth-of-type(4n + 2) * {
+  main section .gallery.expansive > *:nth-of-type(4n + 2), main section .gallery.expansive > *:nth-of-type(4n + 2) * {
     --delB: calc(2s / 4);
   }
-  main .gallery.expansive li:nth-of-type(4n + 3), main .gallery.expansive li:nth-of-type(4n + 3) * {
+  main section .gallery.expansive > *:nth-of-type(4n + 3), main section .gallery.expansive > *:nth-of-type(4n + 3) * {
     --delB: calc(3s / 4);
   }
-  main .gallery.expansive li:nth-of-type(4n + 0), main .gallery.expansive li:nth-of-type(4n + 0) * {
+  main section .gallery.expansive > *:nth-of-type(4n + 0), main section .gallery.expansive > *:nth-of-type(4n + 0) * {
     --delB: calc(4s / 4);
   }
 }
-@media (min-width: 80rem) and (min-width: 104rem) {
-  main .gallery.expansive li:nth-of-type(5n + 1), main .gallery.expansive li:nth-of-type(5n + 1) * {
+@media (min-width: 80rem) and (min-width: 91rem) {
+  main section .gallery.expansive > *:nth-of-type(5n + 1), main section .gallery.expansive > *:nth-of-type(5n + 1) * {
     --delB: calc(1s / 5);
   }
-  main .gallery.expansive li:nth-of-type(5n + 2), main .gallery.expansive li:nth-of-type(5n + 2) * {
+  main section .gallery.expansive > *:nth-of-type(5n + 2), main section .gallery.expansive > *:nth-of-type(5n + 2) * {
     --delB: calc(2s / 5);
   }
-  main .gallery.expansive li:nth-of-type(5n + 3), main .gallery.expansive li:nth-of-type(5n + 3) * {
+  main section .gallery.expansive > *:nth-of-type(5n + 3), main section .gallery.expansive > *:nth-of-type(5n + 3) * {
     --delB: calc(3s / 5);
   }
-  main .gallery.expansive li:nth-of-type(5n + 4), main .gallery.expansive li:nth-of-type(5n + 4) * {
+  main section .gallery.expansive > *:nth-of-type(5n + 4), main section .gallery.expansive > *:nth-of-type(5n + 4) * {
     --delB: calc(4s / 5);
   }
-  main .gallery.expansive li:nth-of-type(5n + 0), main .gallery.expansive li:nth-of-type(5n + 0) * {
+  main section .gallery.expansive > *:nth-of-type(5n + 0), main section .gallery.expansive > *:nth-of-type(5n + 0) * {
     --delB: calc(5s / 5);
   }
 }
-@media (min-width: 80rem) and (min-width: 123rem) {
-  main .gallery.expansive li:nth-of-type(6n + 1), main .gallery.expansive li:nth-of-type(6n + 1) * {
+@media (min-width: 80rem) and (min-width: 106rem) {
+  main section .gallery.expansive > *:nth-of-type(6n + 1), main section .gallery.expansive > *:nth-of-type(6n + 1) * {
     --delB: calc(1s / 6);
   }
-  main .gallery.expansive li:nth-of-type(6n + 2), main .gallery.expansive li:nth-of-type(6n + 2) * {
+  main section .gallery.expansive > *:nth-of-type(6n + 2), main section .gallery.expansive > *:nth-of-type(6n + 2) * {
     --delB: calc(2s / 6);
   }
-  main .gallery.expansive li:nth-of-type(6n + 3), main .gallery.expansive li:nth-of-type(6n + 3) * {
+  main section .gallery.expansive > *:nth-of-type(6n + 3), main section .gallery.expansive > *:nth-of-type(6n + 3) * {
     --delB: calc(3s / 6);
   }
-  main .gallery.expansive li:nth-of-type(6n + 4), main .gallery.expansive li:nth-of-type(6n + 4) * {
+  main section .gallery.expansive > *:nth-of-type(6n + 4), main section .gallery.expansive > *:nth-of-type(6n + 4) * {
     --delB: calc(4s / 6);
   }
-  main .gallery.expansive li:nth-of-type(6n + 5), main .gallery.expansive li:nth-of-type(6n + 5) * {
+  main section .gallery.expansive > *:nth-of-type(6n + 5), main section .gallery.expansive > *:nth-of-type(6n + 5) * {
     --delB: calc(5s / 6);
   }
-  main .gallery.expansive li:nth-of-type(6n + 0), main .gallery.expansive li:nth-of-type(6n + 0) * {
+  main section .gallery.expansive > *:nth-of-type(6n + 0), main section .gallery.expansive > *:nth-of-type(6n + 0) * {
     --delB: calc(6s / 6);
   }
 }
-@media (min-width: 80rem) and (min-width: 141rem) {
-  main .gallery.expansive li:nth-of-type(7n + 1), main .gallery.expansive li:nth-of-type(7n + 1) * {
+@media (min-width: 80rem) and (min-width: 120rem) {
+  main section .gallery.expansive > *:nth-of-type(7n + 1), main section .gallery.expansive > *:nth-of-type(7n + 1) * {
     --delB: calc(1s / 7);
   }
-  main .gallery.expansive li:nth-of-type(7n + 2), main .gallery.expansive li:nth-of-type(7n + 2) * {
+  main section .gallery.expansive > *:nth-of-type(7n + 2), main section .gallery.expansive > *:nth-of-type(7n + 2) * {
     --delB: calc(2s / 7);
   }
-  main .gallery.expansive li:nth-of-type(7n + 3), main .gallery.expansive li:nth-of-type(7n + 3) * {
+  main section .gallery.expansive > *:nth-of-type(7n + 3), main section .gallery.expansive > *:nth-of-type(7n + 3) * {
     --delB: calc(3s / 7);
   }
-  main .gallery.expansive li:nth-of-type(7n + 4), main .gallery.expansive li:nth-of-type(7n + 4) * {
+  main section .gallery.expansive > *:nth-of-type(7n + 4), main section .gallery.expansive > *:nth-of-type(7n + 4) * {
     --delB: calc(4s / 7);
   }
-  main .gallery.expansive li:nth-of-type(7n + 5), main .gallery.expansive li:nth-of-type(7n + 5) * {
+  main section .gallery.expansive > *:nth-of-type(7n + 5), main section .gallery.expansive > *:nth-of-type(7n + 5) * {
     --delB: calc(5s / 7);
   }
-  main .gallery.expansive li:nth-of-type(7n + 6), main .gallery.expansive li:nth-of-type(7n + 6) * {
+  main section .gallery.expansive > *:nth-of-type(7n + 6), main section .gallery.expansive > *:nth-of-type(7n + 6) * {
     --delB: calc(6s / 7);
   }
-  main .gallery.expansive li:nth-of-type(7n + 0), main .gallery.expansive li:nth-of-type(7n + 0) * {
+  main section .gallery.expansive > *:nth-of-type(7n + 0), main section .gallery.expansive > *:nth-of-type(7n + 0) * {
     --delB: calc(7s / 7);
   }
 }
-main .gallery li {
+@media (min-width: 80rem) and (min-width: 137rem) {
+  main section .gallery.expansive > *:nth-of-type(8n + 1), main section .gallery.expansive > *:nth-of-type(8n + 1) * {
+    --delB: calc(1s / 8);
+  }
+  main section .gallery.expansive > *:nth-of-type(8n + 2), main section .gallery.expansive > *:nth-of-type(8n + 2) * {
+    --delB: calc(2s / 8);
+  }
+  main section .gallery.expansive > *:nth-of-type(8n + 3), main section .gallery.expansive > *:nth-of-type(8n + 3) * {
+    --delB: calc(3s / 8);
+  }
+  main section .gallery.expansive > *:nth-of-type(8n + 4), main section .gallery.expansive > *:nth-of-type(8n + 4) * {
+    --delB: calc(4s / 8);
+  }
+  main section .gallery.expansive > *:nth-of-type(8n + 5), main section .gallery.expansive > *:nth-of-type(8n + 5) * {
+    --delB: calc(5s / 8);
+  }
+  main section .gallery.expansive > *:nth-of-type(8n + 6), main section .gallery.expansive > *:nth-of-type(8n + 6) * {
+    --delB: calc(6s / 8);
+  }
+  main section .gallery.expansive > *:nth-of-type(8n + 7), main section .gallery.expansive > *:nth-of-type(8n + 7) * {
+    --delB: calc(7s / 8);
+  }
+  main section .gallery.expansive > *:nth-of-type(8n + 0), main section .gallery.expansive > *:nth-of-type(8n + 0) * {
+    --delB: calc(8s / 8);
+  }
+}
+@media (min-width: 80rem) and (min-width: 152rem) {
+  main section .gallery.expansive > *:nth-of-type(9n + 1), main section .gallery.expansive > *:nth-of-type(9n + 1) * {
+    --delB: calc(1s / 9);
+  }
+  main section .gallery.expansive > *:nth-of-type(9n + 2), main section .gallery.expansive > *:nth-of-type(9n + 2) * {
+    --delB: calc(2s / 9);
+  }
+  main section .gallery.expansive > *:nth-of-type(9n + 3), main section .gallery.expansive > *:nth-of-type(9n + 3) * {
+    --delB: calc(3s / 9);
+  }
+  main section .gallery.expansive > *:nth-of-type(9n + 4), main section .gallery.expansive > *:nth-of-type(9n + 4) * {
+    --delB: calc(4s / 9);
+  }
+  main section .gallery.expansive > *:nth-of-type(9n + 5), main section .gallery.expansive > *:nth-of-type(9n + 5) * {
+    --delB: calc(5s / 9);
+  }
+  main section .gallery.expansive > *:nth-of-type(9n + 6), main section .gallery.expansive > *:nth-of-type(9n + 6) * {
+    --delB: calc(6s / 9);
+  }
+  main section .gallery.expansive > *:nth-of-type(9n + 7), main section .gallery.expansive > *:nth-of-type(9n + 7) * {
+    --delB: calc(7s / 9);
+  }
+  main section .gallery.expansive > *:nth-of-type(9n + 8), main section .gallery.expansive > *:nth-of-type(9n + 8) * {
+    --delB: calc(8s / 9);
+  }
+  main section .gallery.expansive > *:nth-of-type(9n + 0), main section .gallery.expansive > *:nth-of-type(9n + 0) * {
+    --delB: calc(9s / 9);
+  }
+}
+main section .gallery .item {
+  overflow: hidden;
+  position: relative;
   display: flex;
+  gap: var(--spacing);
   flex-flow: column nowrap;
   justify-content: space-between;
+  max-width: 80ch;
   margin: 1pt;
   padding: var(--spacing);
   border: 0pt solid var(--cw75);
@@ -1658,100 +1719,87 @@ main .gallery li {
   vertical-align: top;
   box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--gloss) inset, 0 0 0 1pt var(--shade);
 }
-main .gallery li:hover, main .gallery li:focus, main .gallery li:active {
+main section .gallery .item:hover, main section .gallery .item:focus, main section .gallery .item:active {
   box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset, 0 0 0 1pt transparent;
 }
-main .gallery li:before {
+main section .gallery .item:before {
   display: none;
 }
-main .gallery li:nth-of-type(2n + 1), main .gallery li:nth-of-type(2n + 1) * {
-  --delB: calc(1s / 2);
-}
-main .gallery li:nth-of-type(2n + 0), main .gallery li:nth-of-type(2n + 0) * {
-  --delB: calc(2s / 2);
-}
-@media (min-width: 40rem) {
-  main .gallery li:nth-of-type(3n + 1), main .gallery li:nth-of-type(3n + 1) * {
-    --delB: calc(1s / 3);
-  }
-  main .gallery li:nth-of-type(3n + 2), main .gallery li:nth-of-type(3n + 2) * {
-    --delB: calc(2s / 3);
-  }
-  main .gallery li:nth-of-type(3n + 0), main .gallery li:nth-of-type(3n + 0) * {
-    --delB: calc(3s / 3);
-  }
-}
-main .gallery li h3 {
-  color: black;
-  margin: 0;
-  padding: 0.5em 2em;
-  font-family: "Nunito", sans-serif;
-  font-size: 1em;
-  text-transform: none;
-  line-height: 1.5;
-  text-shadow: none;
-}
-main .gallery li h3::before, main .gallery li h3::after {
-  content: "";
+main section .gallery .item h1::before, main section .gallery .item h1::after,
+main section .gallery .item h2::before,
+main section .gallery .item h2::after,
+main section .gallery .item h3::before,
+main section .gallery .item h3::after,
+main section .gallery .item h4::before,
+main section .gallery .item h4::after,
+main section .gallery .item h5::before,
+main section .gallery .item h5::after,
+main section .gallery .item h6::before,
+main section .gallery .item h6::after {
   display: none;
 }
-main .gallery li a {
-  margin: auto 0;
-}
-main .gallery li img {
+main section .gallery .item img {
   display: inline-block;
   max-width: calc(var(--gim) - 2 * var(--spacing));
   max-height: calc(var(--gim) - 2 * var(--spacing));
-  margin: 0 auto;
+  margin: auto;
   background: white;
   transition: border-radius var(--dur) calc(var(--delA) + var(--delB)), transform var(--dur) calc(var(--delA) + var(--delB));
 }
-main .gallery li.hidden img {
+main section .gallery .item.hidden img {
   transform: scale(0);
   border-radius: 100%;
   transition-delay: 0s;
 }
-main .gallery li p,
-main .gallery li p.description {
+main section .gallery .item p {
   margin: 0 auto;
-  padding: 0.5em 2em;
+  padding: 0;
   border: 0;
   font-size: 1rem;
   text-indent: 0;
   text-align: center;
   line-height: 1.5;
+  color: black;
 }
-
-.display {
+main section .gallery .item p.title, main section .gallery .item p.more {
+  font-family: "Nunito", sans-serif;
+  font-size: 1em;
+}
+main section .gallery .item p a {
+  position: relative;
+  z-index: 1;
+  text-decoration: underline;
+  color: var(--cm25);
+}
+@media (prefers-color-scheme: dark) {
+  main section .gallery .item p a {
+    color: var(--cm75);
+  }
+}
+main section .gallery .item a {
+  margin: auto 0;
+  color: var(--ct);
+  text-decoration: none;
+}
+main section .gallery .item a, main section .gallery .item a:hover, main section .gallery .item a:focus, main section .gallery .item a:active {
+  text-shadow: none;
+}
+main section .gallery .item a.cover {
+  position: absolute;
+  inset: 0;
   display: flex;
-  flex-flow: column nowrap;
-  float: none;
-  max-width: 100%;
-  height: 100%;
-  margin: -1em;
-  padding: 2em;
-  background: black;
-  color: white;
+  justify-content: center;
+  align-items: center;
 }
-.display img {
-  max-width: 100%;
-  max-height: calc(75vh - 288px);
-  margin: 0 auto;
-  object-fit: scale-down;
-  background: white;
-}
-.display h2 {
-  color: grey;
+main section .gallery .item a.cover, main section .gallery .item a.cover:hover, main section .gallery .item a.cover:focus, main section .gallery .item a.cover:active {
+  color: transparent;
 }
 
 /* Modal image display */
-.modal {
+.display {
   position: fixed;
   z-index: 3;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -1759,13 +1807,20 @@ main .gallery li p.description {
   overflow: hidden;
   margin: 0;
   padding: 0;
-  opacity: 0;
   background: radial-gradient(black, var(--mbo));
   color: grey;
   font-size: calc(1rem + 1vmin);
   text-align: center;
+  float: none;
+  gap: var(--spacing);
 }
-.modal img {
+.display.modal {
+  opacity: 0;
+}
+.display, .display * {
+  transition-duration: 0s;
+}
+.display img {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1776,10 +1831,14 @@ main .gallery li p.description {
   transform: translate(-50%, -50%);
   border: 1vh solid white;
   box-shadow: 0 0 3em 3em black;
+  margin: 0 auto;
+  background: white;
 }
-.modal h2,
-.modal nav {
-  display: inline;
+.display h2,
+.display nav {
+  display: flex;
+  align-items: center;
+  max-height: 1em;
   position: absolute;
   z-index: 4;
   top: 0;
@@ -1788,13 +1847,14 @@ main .gallery li p.description {
   color: grey;
   font-size: 2em;
   line-height: 1em;
+  gap: 0.5ch;
 }
-.modal nav {
+.display nav {
   top: auto;
   bottom: 0;
   background: none;
 }
-.modal a {
+.display a {
   display: inline-block;
   width: 1em;
   margin: 0 1em;
@@ -1808,10 +1868,10 @@ main .gallery li p.description {
   user-select: none;
   cursor: pointer;
 }
-.modal a:hover, .modal a:focus, .modal a:active {
+.display a:hover, .display a:focus, .display a:active {
   text-shadow: 0 0 0.125em black;
 }
-.modal a:hover, .modal a:focus {
+.display a:hover, .display a:focus {
   color: white;
 }
 

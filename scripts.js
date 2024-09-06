@@ -65,8 +65,7 @@ const getMinWidth = () => {
     parseFloat(
       getComputedStyle(document.body).getPropertyValue("font-size"),
       10
-    ) *
-    parseInt(getComputedStyle(document.body).getPropertyValue("--bp2"), 10)
+    ) * parseInt(getComputedStyle(document.body).getPropertyValue("--bp2"), 10)
   );
 };
 const initSubnavsOnHover = () => {
@@ -78,7 +77,6 @@ const initSubnavsOnHover = () => {
       if (nextSibling.tagName.toLowerCase() == "ul") {
         let thisSubnav = nextSibling;
         breadcrumb.addEventListener("mouseenter", (e) => {
-          console.log(getMinWidth());
           if (window.innerWidth > getMinWidth()) {
             if (e.relatedTarget != thisSubnav) {
               let subnavs = document.querySelectorAll(
@@ -353,9 +351,11 @@ const externalLinks = () => {
   document.querySelectorAll("a").forEach((link) => {
     let theHref = link.getAttribute("href");
     if (
-      theHref &&
-      theHref.startsWith("http") &&
-      !theHref.includes(location.hostname)
+      link
+        .getAttribute("rel")
+        ?.localeCompare("external", undefined, { sensitivity: "accent" }) ===
+        0 ||
+      (theHref?.startsWith("http") && !theHref.includes(location.hostname))
     ) {
       link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -410,11 +410,11 @@ var slides;
 //Sets up the structure of the modal (all hidden by default) and the events listeners to open and close it
 const initDisplayModal = () => {
   //Gathers all the slides into a collection
-  slides = document.querySelectorAll(".gallery a[href*='/display/'] img");
+  slides = document.querySelectorAll(".gallery a[href*='/display/']");
 
   //Adds onclick event to every slide link to open modal display
   slides.forEach((element, index) => {
-    element.closest("a").addEventListener("click", (e) => {
+    element.addEventListener("click", (e) => {
       e.preventDefault();
       currentSlide(index);
       openModal();
@@ -473,11 +473,15 @@ const showSlides = (n) => {
     slideIndex = l - 1;
   }
   var slide = slides[slideIndex];
-  var caption = document.getElementById("caption");
-  var captionText = slide.closest("li").querySelector("h3").innerHTML;
-  caption.innerHTML = captionText;
+  var parentItem = slide.closest(".item");
+  var captionText = parentItem.querySelector(".title, h3").innerHTML;
+  document.getElementById("caption").innerHTML = captionText;
   var image = document.getElementById("modalImage");
-  var srcstr = slide.getAttribute("src").replace(/-thumb/, "");
+  var link = parentItem.querySelector("a.cover").getAttribute("href");
+  var displayPattern = "/display/?image=";
+  var srcstr = link.includes(displayPattern)
+    ? link.split(displayPattern)[1].split("&")[0]
+    : link;
   image.setAttribute("src", srcstr);
   image.setAttribute("alt", captionText);
 };

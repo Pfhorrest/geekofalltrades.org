@@ -1,48 +1,42 @@
 <?php $title = "1st of January 2022 Photography by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
-
-				<h2>1st of January 2022 Photography</h2>
-				
-				<?php require $_SERVER['DOCUMENT_ROOT'] . "/display/basepath.php" ?>
-
-				<ul class="gallery">
-					<li>
-						<h3><?php $caption = "Snowy Topa Topa from Upper Ojai"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/01/01/IMG_0141.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_0141-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-01-01.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Santa Paula Creek near Thomas Aquinas College"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/01/01/IMG_0132.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_0132-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-01-01.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Candelabra aloe at Krotona"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/01/01/IMG_0130.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_0130-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-01-01.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Blue potato bush at Krotona"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/01/01/IMG_0128.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_0128-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-01-01.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Lily of the Incas at Krotona"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/01/01/IMG_0126.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_0126-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-01-01.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Snowy Topa Topa from Ojai Meadows Preserve"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/01/01/IMG_0121.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_0121-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-01-01.</p>
-					</li>
-
-				</ul>
-				
+<section>
+	<h2>1st of January 2022 Photography</h2>
+	<p class="description">Best of the day</p>
+	<?php
+		$images = array(
+			array(
+				'title' => 'Snowy Topa Topa from Upper Ojai',
+				'filename' => 'IMG_0141.JPG',
+				'description' => 'iPhone 7, 2022-01-01.',
+			),
+			array(
+				'title' => 'Santa Paula Creek near Thomas Aquinas College',
+				'filename' => 'IMG_0132.JPG',
+				'description' => 'iPhone 7, 2022-01-01.',
+			),
+			array(
+				'title' => 'Candelabra aloe at Krotona',
+				'filename' => 'IMG_0130.JPG',
+				'description' => 'iPhone 7, 2022-01-01.',
+			),
+			array(
+				'title' => 'Blue potato bush at Krotona',
+				'filename' => 'IMG_0128.JPG',
+				'description' => 'iPhone 7, 2022-01-01.',
+			),
+			array(
+				'title' => 'Lily of the Incas at Krotona',
+				'filename' => 'IMG_0126.JPG',
+				'description' => 'iPhone 7, 2022-01-01.',
+			),
+			array(
+				'title' => 'Snowy Topa Topa from Ojai Meadows Preserve',
+				'filename' => 'IMG_0121.JPG',
+				'description' => 'iPhone 7, 2022-01-01.',
+			),
+		);
+		require $_SERVER['DOCUMENT_ROOT'] . "/display/gallery.php";
+	?>
+</section>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

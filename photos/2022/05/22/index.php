@@ -1,35 +1,32 @@
 <?php $title = "22nd of May 2022 Photography by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
-
-				<h2>22nd of May 2022 Photography</h2>
-				
-				<?php require $_SERVER['DOCUMENT_ROOT'] . "/display/basepath.php" ?>
-
-				<ul class="gallery">
-					<li>
-						<h3><?php $caption = "Sunlit trail through Ellwood Mesa"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/05/22/IMG_4222.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_4222-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-05-22.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Dandelion puff at Ellwood Mesa"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/05/22/IMG_4217.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_4217-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-05-22.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "The beach at Ellwood Mesa"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/05/22/IMG_4215.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_4215-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-05-22.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "My hands in a black disc at Santa Barbara Museum of Art"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/05/22/IMG_4148.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_4148-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-05-22.</p>
-					</li>
-				</ul>
-				
+<section>
+	<h2>22nd of May 2022 Photography</h2>
+	<p class="description">Best of the day</p>
+	<?php
+		$images = array(
+			array(
+				'title' => 'Sunlit trail through Ellwood Mesa',
+				'filename' => 'IMG_4222.JPG',
+				'description' => 'iPhone 7, 2022-05-22.',
+			),
+			array(
+				'title' => 'Dandelion puff at Ellwood Mesa',
+				'filename' => 'IMG_4217.JPG',
+				'description' => 'iPhone 7, 2022-05-22.',
+			),
+			array(
+				'title' => 'The beach at Ellwood Mesa',
+				'filename' => 'IMG_4215.JPG',
+				'description' => 'iPhone 7, 2022-05-22.',
+			),
+			array(
+				'title' => 'My hands in a black disc at Santa Barbara Museum of Art',
+				'filename' => 'img_4148+4145.JPG',
+				'description' => 'iPhone 7, 2022-05-22.',
+			),
+		);
+		require $_SERVER['DOCUMENT_ROOT'] . "/display/gallery.php";
+	?>
+</section>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

@@ -1,35 +1,32 @@
 <?php $title = "21st of February 2022 Photography by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
-
-				<h2>21st of February 2022 Photography</h2>
-				
-				<?php require $_SERVER['DOCUMENT_ROOT'] . "/display/basepath.php" ?>
-
-				<ul class="gallery">
-					<li>
-						<h3><?php $caption = "Oaks, sky, and Spanish tile at Krotona"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/02/21/IMG_1268.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_1268-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-02-21.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Yellow oxalis in a yard behind Krotona"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/02/21/IMG_1257.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_1257-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-02-21.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Cloudy skies above Krotona"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/02/21/IMG_1253.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_1253-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-02-21.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Pink geranium at Krotona"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . '2022/02/21/IMG_1246.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="IMG_1246-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 7, 2022-02-21.</p>
-					</li>
-				</ul>
-				
+<section>
+	<h2>21st of February 2022 Photography</h2>
+	<p class="description">Best of the day</p>
+	<?php
+		$images = array(
+			array(
+				'title' => 'Oaks, sky, and Spanish tile at Krotona',
+				'filename' => 'IMG_1268.JPG',
+				'description' => 'iPhone 7, 2022-02-21.',
+			),
+			array(
+				'title' => 'Yellow oxalis in a yard behind Krotona',
+				'filename' => 'IMG_1257.JPG',
+				'description' => 'iPhone 7, 2022-02-21.',
+			),
+			array(
+				'title' => 'Cloudy skies above Krotona',
+				'filename' => 'IMG_1253.JPG',
+				'description' => 'iPhone 7, 2022-02-21.',
+			),
+			array(
+				'title' => 'Pink geranium at Krotona',
+				'filename' => 'IMG_1246.JPG',
+				'description' => 'iPhone 7, 2022-02-21.',
+			),
+		);
+		require $_SERVER['DOCUMENT_ROOT'] . "/display/gallery.php";
+	?>
+</section>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

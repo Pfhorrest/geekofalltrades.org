@@ -6,10 +6,8 @@
 		}
 	$title = $t . " by Forrest Cameranesi"
 ?>
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-global.php" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
-	<main>
-		
 		<figure class="display">
 			<h2><?php echo $_GET["title"] ; ?></h2>
 			<?php echo "<img src='" . $_GET["image"] . "' alt='" . $t . "' />" ; ?>

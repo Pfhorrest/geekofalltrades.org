@@ -1,86 +1,75 @@
 <?php $title = "2012 Photography by Forrest Cameranesi" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
+<section>
+	<h2>2012 Photography</h2>
+	<p class="description">Best of the year</p>
+	<?php
+		$images = array(
+			array(
+				'title' => 'Koi at the Japanese Friendship Garden',
+				'filename' => '11/IMG_0286.JPG',
+				'description' => 'iPhone 4s, 2012-11-24.'
+			),
 
-				<h2>2012 Photography</h2>
-				
-				<?php require $_SERVER['DOCUMENT_ROOT'] . "/display/basepath.php" ?>
+			array(
+				'title' => 'Sunset at the Santa Monica Pier',
+				'filename' => '10/IMG_0152.JPG',
+				'description' => 'iPhone 4s, 2012-10-06.'
+			),
 
-				<ul class="gallery">
-					<li>
-						<h3><?php $caption = "Koi at the Japanese Friendship Garden"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . 'images/2012/11/IMG_0286.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="../images/2012/11/IMG_0286-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 4s, 2012-11-24.</p>
-					</li>
+			array(
+				'title' => 'Flamingo and chick at the Santa Barbara Zoo',
+				'filename' => '09/IMG_0001.jpg',
+				'description' => 'iPhone 4s, 2012-09-09.'
+			),
 
-					<li>
-						<h3><?php $caption = "Sunset at the Santa Monica Pier"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . 'images/2012/10/IMG_0152.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="../images/2012/10/IMG_0152-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 4s, 2012-10-06.</p>
-					</li>
-
-					<li>
-						<h3><?php $caption = "Flamingo and chick at the Santa Barbara Zoo"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . 'images/2012/09/IMG_0001.jpg&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="../images/2012/09/IMG_0001-thumb.jpg" alt="' . $caption . '" /></a>' ?>
-						<p>iPhone 4s, 2012-09-09.</p>
-					</li>
-
-					<li>
-						<h3><?php $caption = "Neptune Pool at Hearst's Castle"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . 'images/2012/07/IMG_9102.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="../images/2012/07/IMG_9102-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>Canon PowerShot A530, 2012-07-29.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Statue at Hearst's Castle"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . 'images/2012/07/IMG_9100.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="../images/2012/07/IMG_9100-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>Canon PowerShot A530, 2012-07-29.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Marble Fork Kaweah River near Tokopah Falls"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . 'images/2012/07/IMG_9020.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="../images/2012/07/IMG_9020-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>Canon PowerShot A530, 2012-07-28.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "The Watchtower from Tokopah Falls Trail"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . 'images/2012/07/IMG_9006.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="../images/2012/07/IMG_9006-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>Canon PowerShot A530, 2012-07-28.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Westward view from Moro Rock"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . 'images/2012/07/IMG_8985.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="../images/2012/07/IMG_8985-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>Canon PowerShot A530, 2012-07-27.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Moon over sequoias from Crescent Meadow"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . 'images/2012/07/IMG_8914.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="../images/2012/07/IMG_8914-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>Canon PowerShot A530, 2012-07-26.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Burnt out sequoia near Crescent Meadow"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . 'images/2012/07/IMG_8901.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="../images/2012/07/IMG_8901-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>Canon PowerShot A530, 2012-07-26.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "A sprig of fern near Crescent Meadow"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . 'images/2012/07/IMG_8895.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="../images/2012/07/IMG_8895-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>Canon PowerShot A530, 2012-07-26.</p>
-					</li>
-					<li>
-						<h3><?php $caption = "Sequoias at Dorst Creek Campground"; echo $caption ?></h3>
-						<?php echo '<a href="/display/?image=' . $basepath . 'images/2012/07/IMG_8862.JPG&title=' . rawurlencode($caption) . '" rel="external">
-							<img src="../images/2012/07/IMG_8862-thumb.JPG" alt="' . $caption . '" /></a>' ?>
-						<p>Canon PowerShot A530, 2012-07-26.</p>
-					</li>
-				</ul>
-				
+			array(
+				'title' => 'Neptune Pool at Hearst\'s Castle',
+				'filename' => '07/IMG_9102.JPG',
+				'description' => 'Canon PowerShot A530, 2012-07-29.'
+			),
+			array(
+				'title' => 'Statue at Hearst\'s Castle',
+				'filename' => '07/IMG_9100.JPG',
+				'description' => 'Canon PowerShot A530, 2012-07-29.'
+			),
+			array(
+				'title' => 'Marble Fork Kaweah River near Tokopah Falls',
+				'filename' => '07/IMG_9020.JPG',
+				'description' => 'Canon PowerShot A530, 2012-07-28.'
+			),
+			array(
+				'title' => 'The Watchtower from Tokopah Falls Trail',
+				'filename' => '07/IMG_9006.JPG',
+				'description' => 'Canon PowerShot A530, 2012-07-28.'
+			),
+			array(
+				'title' => 'Westward view from Moro Rock',
+				'filename' => '07/IMG_8985.JPG',
+				'description' => 'Canon PowerShot A530, 2012-07-27.'
+			),
+			array(
+				'title' => 'Moon over sequoias from Crescent Meadow',
+				'filename' => '07/IMG_8914.JPG',
+				'description' => 'Canon PowerShot A530, 2012-07-26.'
+			),
+			array(
+				'title' => 'Burnt out sequoia near Crescent Meadow',
+				'filename' => '07/IMG_8901.JPG',
+				'description' => 'Canon PowerShot A530, 2012-07-26.'
+			),
+			array(
+				'title' => 'A sprig of fern near Crescent Meadow',
+				'filename' => '07/IMG_8895.JPG',
+				'description' => 'Canon PowerShot A530, 2012-07-26.'
+			),
+			array(
+				'title' => 'Sequoias at Dorst Creek Campground',
+				'filename' => '07/IMG_8862.JPG',
+				'description' => 'Canon PowerShot A530, 2012-07-26.'
+			),
+		);
+		require $_SERVER['DOCUMENT_ROOT'] . "/display/gallery.php";
+	?>
+</section>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

@@ -1364,32 +1364,6 @@ main {
       clear: both;
     }
 
-    .gallery:not(.expansive) {
-      margin: 0;
-      padding: 0;
-      background: none;
-      box-shadow: none;
-      border-radius: 0;
-
-      &:hover,
-      &:active,
-      &:focus {
-        background: none;
-        box-shadow: none;
-      }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        &::before,
-        &::after {
-          display: none;
-        }
-      }
-    }
-
     &.toggleable {
       h1,
       h2,
@@ -1750,61 +1724,104 @@ main {
       padding-left: 0;
       padding-right: 0;
     }
-  }
 
-  .gallery {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: stretch;
-    max-width: 100%;
-    margin: 0 auto;
-    margin-bottom: var(--spacing);
-    padding: var(--spacing);
-    gap: var(--spacing);
-    border: 0;
-    outline: 0 solid black;
-    border-radius: calc(2 * var(--rounding));
-    background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
-    animation-name: mainLighting;
-    animation-duration: 5s;
-    text-align: center;
-    box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
-      1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
-      0 0 0 1pt var(--shade) inset;
-    &:hover,
-    &:focus,
-    &:active {
-      box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss),
-        1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
-        0 0 0 1pt transparent inset;
-    }
+    .gallery {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: stretch;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      gap: var(--spacing);
+      border: 0;
+      outline: 0 solid black;
+      border-radius: 0;
+      background: none;
+      animation-name: mainLighting;
+      animation-duration: 5s;
+      text-align: center;
+      box-shadow: none;
+      &:hover,
+      &:active,
+      &:focus {
+        background: none;
+        box-shadow: none;
+      }
 
-    --gin: 3;
-    --gim: calc(
-      (80ch - (var(--gin) + 1) * var(--spacing) - var(--gin) * 2 * 1pt - 1pt) /
-        var(--gin)
-    ); // Gallery item measurement
-    // The extra 1pt is a fudge for a problem of unknown origin
+      --gin: 3;
+      --gim: calc(
+        (
+            80ch - (var(--gin) - 1 + 2 * 5) * var(--spacing) - var(--gin) * 2 *
+              1pt - 1pt
+          ) / var(--gin)
+      ); // Gallery item measurement
+      // The extra 1pt is a fudge for a problem of unknown origin
 
-    > * {
-      flex: 1 0 var(--gim);
-      box-sizing: border-box;
-    }
-
-    @media (min-width: $bp4) {
-      &.expansive {
-        width: 100vw;
-        max-width: calc(100vw - (2 * var(--spacingAbs)) - (2 * var(--spacing)));
-        margin-left: calc(50% - 50vw + var(--spacingAbs) + var(--spacing));
-        justify-content: center;
+      > * {
+        flex: 1 0 var(--gim);
         box-sizing: border-box;
-        // background: radial-gradient(farthest-corner, var(--cbo), var(--cbi));
-        // > * {
-        //   flex: 0 0 var(--gim);
-        // }
-        li {
-          @media (min-width: 83rem) {
+
+        @media (min-width: 34rem) {
+          &:nth-of-type(2n + 1) {
+            &,
+            & * {
+              --delB: calc(1s / 2);
+            }
+          }
+          &:nth-of-type(2n + 0) {
+            &,
+            & * {
+              --delB: calc(2s / 2);
+            }
+          }
+        }
+        @media (min-width: 53rem) {
+          &:nth-of-type(3n + 1) {
+            &,
+            & * {
+              --delB: calc(1s / 3);
+            }
+          }
+          &:nth-of-type(3n + 2) {
+            &,
+            & * {
+              --delB: calc(2s / 3);
+            }
+          }
+          &:nth-of-type(3n + 0) {
+            &,
+            & * {
+              --delB: calc(3s / 3);
+            }
+          }
+        }
+      }
+
+      &.expansive {
+        @media (min-width: $bp4) {
+          width: 100vw;
+          max-width: calc(
+            100vw - (2 * var(--spacingAbs)) - (2 * var(--spacing))
+          );
+          margin-left: calc(50% - 50vw + var(--spacingAbs) + var(--spacing));
+          padding: var(--spacing);
+          justify-content: center;
+          box-sizing: border-box;
+          border-radius: calc(2 * var(--rounding));
+          background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+          box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
+            1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+            0 0 0 1pt var(--shade) inset;
+          &:hover,
+          &:focus,
+          &:active {
+            box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss),
+              1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+              0 0 0 1pt transparent inset;
+          }
+
+          > * {
             &:nth-of-type(4n + 1) {
               &,
               & * {
@@ -1829,274 +1846,354 @@ main {
                 --delB: calc(4s / 4);
               }
             }
-          }
-          @media (min-width: 104rem) {
-            &:nth-of-type(5n + 1) {
-              &,
-              & * {
-                --delB: calc(1s / 5);
+            @media (min-width: 91rem) {
+              &:nth-of-type(5n + 1) {
+                &,
+                & * {
+                  --delB: calc(1s / 5);
+                }
+              }
+              &:nth-of-type(5n + 2) {
+                &,
+                & * {
+                  --delB: calc(2s / 5);
+                }
+              }
+              &:nth-of-type(5n + 3) {
+                &,
+                & * {
+                  --delB: calc(3s / 5);
+                }
+              }
+              &:nth-of-type(5n + 4) {
+                &,
+                & * {
+                  --delB: calc(4s / 5);
+                }
+              }
+              &:nth-of-type(5n + 0) {
+                &,
+                & * {
+                  --delB: calc(5s / 5);
+                }
               }
             }
-            &:nth-of-type(5n + 2) {
-              &,
-              & * {
-                --delB: calc(2s / 5);
+            @media (min-width: 106rem) {
+              &:nth-of-type(6n + 1) {
+                &,
+                & * {
+                  --delB: calc(1s / 6);
+                }
+              }
+              &:nth-of-type(6n + 2) {
+                &,
+                & * {
+                  --delB: calc(2s / 6);
+                }
+              }
+              &:nth-of-type(6n + 3) {
+                &,
+                & * {
+                  --delB: calc(3s / 6);
+                }
+              }
+              &:nth-of-type(6n + 4) {
+                &,
+                & * {
+                  --delB: calc(4s / 6);
+                }
+              }
+              &:nth-of-type(6n + 5) {
+                &,
+                & * {
+                  --delB: calc(5s / 6);
+                }
+              }
+              &:nth-of-type(6n + 0) {
+                &,
+                & * {
+                  --delB: calc(6s / 6);
+                }
               }
             }
-            &:nth-of-type(5n + 3) {
-              &,
-              & * {
-                --delB: calc(3s / 5);
+            @media (min-width: 120rem) {
+              &:nth-of-type(7n + 1) {
+                &,
+                & * {
+                  --delB: calc(1s / 7);
+                }
+              }
+              &:nth-of-type(7n + 2) {
+                &,
+                & * {
+                  --delB: calc(2s / 7);
+                }
+              }
+              &:nth-of-type(7n + 3) {
+                &,
+                & * {
+                  --delB: calc(3s / 7);
+                }
+              }
+              &:nth-of-type(7n + 4) {
+                &,
+                & * {
+                  --delB: calc(4s / 7);
+                }
+              }
+              &:nth-of-type(7n + 5) {
+                &,
+                & * {
+                  --delB: calc(5s / 7);
+                }
+              }
+              &:nth-of-type(7n + 6) {
+                &,
+                & * {
+                  --delB: calc(6s / 7);
+                }
+              }
+              &:nth-of-type(7n + 0) {
+                &,
+                & * {
+                  --delB: calc(7s / 7);
+                }
               }
             }
-            &:nth-of-type(5n + 4) {
-              &,
-              & * {
-                --delB: calc(4s / 5);
+            @media (min-width: 137rem) {
+              &:nth-of-type(8n + 1) {
+                &,
+                & * {
+                  --delB: calc(1s / 8);
+                }
+              }
+              &:nth-of-type(8n + 2) {
+                &,
+                & * {
+                  --delB: calc(2s / 8);
+                }
+              }
+              &:nth-of-type(8n + 3) {
+                &,
+                & * {
+                  --delB: calc(3s / 8);
+                }
+              }
+              &:nth-of-type(8n + 4) {
+                &,
+                & * {
+                  --delB: calc(4s / 8);
+                }
+              }
+              &:nth-of-type(8n + 5) {
+                &,
+                & * {
+                  --delB: calc(5s / 8);
+                }
+              }
+              &:nth-of-type(8n + 6) {
+                &,
+                & * {
+                  --delB: calc(6s / 8);
+                }
+              }
+              &:nth-of-type(8n + 7) {
+                &,
+                & * {
+                  --delB: calc(7s / 8);
+                }
+              }
+              &:nth-of-type(8n + 0) {
+                &,
+                & * {
+                  --delB: calc(8s / 8);
+                }
               }
             }
-            &:nth-of-type(5n + 0) {
-              &,
-              & * {
-                --delB: calc(5s / 5);
+            @media (min-width: 152rem) {
+              &:nth-of-type(9n + 1) {
+                &,
+                & * {
+                  --delB: calc(1s / 9);
+                }
               }
-            }
-          }
-          @media (min-width: 123rem) {
-            &:nth-of-type(6n + 1) {
-              &,
-              & * {
-                --delB: calc(1s / 6);
+              &:nth-of-type(9n + 2) {
+                &,
+                & * {
+                  --delB: calc(2s / 9);
+                }
               }
-            }
-            &:nth-of-type(6n + 2) {
-              &,
-              & * {
-                --delB: calc(2s / 6);
+              &:nth-of-type(9n + 3) {
+                &,
+                & * {
+                  --delB: calc(3s / 9);
+                }
               }
-            }
-            &:nth-of-type(6n + 3) {
-              &,
-              & * {
-                --delB: calc(3s / 6);
+              &:nth-of-type(9n + 4) {
+                &,
+                & * {
+                  --delB: calc(4s / 9);
+                }
               }
-            }
-            &:nth-of-type(6n + 4) {
-              &,
-              & * {
-                --delB: calc(4s / 6);
+              &:nth-of-type(9n + 5) {
+                &,
+                & * {
+                  --delB: calc(5s / 9);
+                }
               }
-            }
-            &:nth-of-type(6n + 5) {
-              &,
-              & * {
-                --delB: calc(5s / 6);
+              &:nth-of-type(9n + 6) {
+                &,
+                & * {
+                  --delB: calc(6s / 9);
+                }
               }
-            }
-            &:nth-of-type(6n + 0) {
-              &,
-              & * {
-                --delB: calc(6s / 6);
+              &:nth-of-type(9n + 7) {
+                &,
+                & * {
+                  --delB: calc(7s / 9);
+                }
               }
-            }
-          }
-          @media (min-width: 141rem) {
-            &:nth-of-type(7n + 1) {
-              &,
-              & * {
-                --delB: calc(1s / 7);
+              &:nth-of-type(9n + 8) {
+                &,
+                & * {
+                  --delB: calc(8s / 9);
+                }
               }
-            }
-            &:nth-of-type(7n + 2) {
-              &,
-              & * {
-                --delB: calc(2s / 7);
-              }
-            }
-            &:nth-of-type(7n + 3) {
-              &,
-              & * {
-                --delB: calc(3s / 7);
-              }
-            }
-            &:nth-of-type(7n + 4) {
-              &,
-              & * {
-                --delB: calc(4s / 7);
-              }
-            }
-            &:nth-of-type(7n + 5) {
-              &,
-              & * {
-                --delB: calc(5s / 7);
-              }
-            }
-            &:nth-of-type(7n + 6) {
-              &,
-              & * {
-                --delB: calc(6s / 7);
-              }
-            }
-            &:nth-of-type(7n + 0) {
-              &,
-              & * {
-                --delB: calc(7s / 7);
+              &:nth-of-type(9n + 0) {
+                &,
+                & * {
+                  --delB: calc(9s / 9);
+                }
               }
             }
           }
         }
       }
-    }
 
-    li {
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: space-between;
-      margin: 1pt;
-      padding: var(--spacing);
-      border: 0pt solid var(--cw75);
-      border-radius: var(--rounding);
-      background-color: white;
-      --ct: hsl(from black h s l / 75%);
-      color: var(--ct);
-      text-align: center;
-      list-style: none;
-      vertical-align: top;
-      box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent,
-        1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
-        0 0 0 1pt var(--gloss) inset, 0 0 0 1pt var(--shade);
-      &:hover,
-      &:focus,
-      &:active {
-        box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss),
-          1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
-          0 0 0 1pt transparent inset, 0 0 0 1pt transparent;
-      }
+      .item {
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        gap: var(--spacing);
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        max-width: 80ch;
+        margin: 1pt;
+        padding: var(--spacing);
+        border: 0pt solid var(--cw75);
+        border-radius: var(--rounding);
+        background-color: white;
+        --ct: hsl(from black h s l / 75%);
+        color: var(--ct);
+        text-align: center;
+        list-style: none;
+        vertical-align: top;
+        box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent,
+          1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+          0 0 0 1pt var(--gloss) inset, 0 0 0 1pt var(--shade);
+        &:hover,
+        &:focus,
+        &:active {
+          box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss),
+            1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+            0 0 0 1pt transparent inset, 0 0 0 1pt transparent;
+        }
 
-      &:before {
-        display: none;
-      }
-
-      &:nth-of-type(2n + 1) {
-        &,
-        & * {
-          --delB: calc(1s / 2);
-        }
-      }
-      &:nth-of-type(2n + 0) {
-        &,
-        & * {
-          --delB: calc(2s / 2);
-        }
-      }
-      @media (min-width: $bp2) {
-        &:nth-of-type(3n + 1) {
-          &,
-          & * {
-            --delB: calc(1s / 3);
-          }
-        }
-        &:nth-of-type(3n + 2) {
-          &,
-          & * {
-            --delB: calc(2s / 3);
-          }
-        }
-        &:nth-of-type(3n + 0) {
-          &,
-          & * {
-            --delB: calc(3s / 3);
-          }
-        }
-      }
-
-      h3 {
-        color: black;
-        margin: 0;
-        padding: 0.5em 2em;
-        font: {
-          family: "Nunito", sans-serif;
-          size: 1em;
-        }
-        text-transform: none;
-        line-height: 1.5;
-        text-shadow: none;
-        &::before,
-        &::after {
-          content: "";
+        &:before {
           display: none;
         }
-      }
 
-      a {
-        margin: auto 0;
-      }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          &::before,
+          &::after {
+            display: none;
+          }
+        }
 
-      img {
-        display: inline-block;
-        max-width: calc(var(--gim) - 2 * var(--spacing));
-        max-height: calc(var(--gim) - 2 * var(--spacing));
-        margin: 0 auto;
-        background: white;
-        transition: border-radius var(--dur) calc(var(--delA) + var(--delB)),
-          transform var(--dur) calc(var(--delA) + var(--delB));
-      }
-      &.hidden {
         img {
-          transform: scale(0);
-          border-radius: 100%;
-          transition-delay: 0s;
+          display: inline-block;
+          max-width: calc(var(--gim) - 2 * var(--spacing));
+          max-height: calc(var(--gim) - 2 * var(--spacing));
+          margin: auto;
+          background: white;
+          transition: border-radius var(--dur) calc(var(--delA) + var(--delB)),
+            transform var(--dur) calc(var(--delA) + var(--delB));
         }
-      }
+        &.hidden {
+          img {
+            transform: scale(0);
+            border-radius: 100%;
+            transition-delay: 0s;
+          }
+        }
 
-      p,
-      p.description {
-        margin: 0 auto;
-        padding: 0.5em 2em;
-        border: 0;
-        font-size: 1rem;
-        text: {
-          indent: 0;
-          align: center;
+        p {
+          margin: 0 auto;
+          padding: 0;
+          border: 0;
+          font-size: 1rem;
+          text: {
+            indent: 0;
+            align: center;
+          }
+          line-height: 1.5;
+          color: black;
+          &.title,
+          &.more {
+            font: {
+              family: "Nunito", sans-serif;
+              size: 1em;
+            }
+          }
+          a {
+            position: relative;
+            z-index: 1;
+            text-decoration: underline;
+            color: var(--cm25);
+            @media (prefers-color-scheme: dark) {
+              color: var(--cm75);
+            }
+          }
         }
-        line-height: 1.5;
+        a {
+          margin: auto 0;
+          color: var(--ct);
+          text-decoration: none;
+          &,
+          &:hover,
+          &:focus,
+          &:active {
+            text-shadow: none;
+          }
+          &.cover {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &,
+            &:hover,
+            &:focus,
+            &:active {
+              color: transparent;
+            }
+          }
+        }
       }
     }
-  }
-}
-
-.display {
-  display: flex;
-  flex-flow: column nowrap;
-  float: none;
-  max-width: 100%;
-  height: 100%;
-  margin: -1em;
-  padding: 2em;
-  background: black;
-  color: white;
-
-  img {
-    max-width: 100%;
-    max-height: calc(75vh - 288px);
-    margin: 0 auto;
-    object-fit: scale-down;
-    background: white;
-  }
-
-  h2 {
-    color: grey;
   }
 }
 
 /* Modal image display */
-.modal {
+.display {
   position: fixed;
   z-index: 3;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -2104,11 +2201,19 @@ main {
   overflow: hidden;
   margin: 0;
   padding: 0;
-  opacity: 0;
   background: radial-gradient(black, var(--mbo));
   color: grey;
   font-size: calc(1rem + 1vmin);
   text-align: center;
+  float: none;
+  gap: var(--spacing);
+  &.modal {
+    opacity: 0;
+  }
+
+  &, * {
+    transition-duration: 0s;
+  }
 
   img {
     position: absolute;
@@ -2121,11 +2226,15 @@ main {
     transform: translate(-50%, -50%);
     border: 1vh solid white;
     box-shadow: 0 0 3em 3em black;
+    margin: 0 auto;
+    background: white;
   }
 
   h2,
   nav {
-    display: inline;
+    display: flex;
+    align-items: center;
+    max-height: 1em;
     position: absolute;
     z-index: 4;
     top: 0;
@@ -2134,6 +2243,7 @@ main {
     color: grey;
     font-size: 2em;
     line-height: 1em;
+    gap: 0.5ch;
   }
 
   nav {

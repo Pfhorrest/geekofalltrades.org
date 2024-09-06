@@ -22,31 +22,31 @@
 								<h5>Back-End</h5>
 								<p class="description"></p>
 								<ul class="gallery">
-									<li>
+									<li class="item">
 										EC Cube <sup>(since 2023)</sup>
 									</li>
-									<li>
+									<li class="item">
 										NextJS <sup>(since 2022)</sup>
 									</li>
-									<li>
+									<li class="item">
 										Laravel <sup>(since 2022)</sup>
 									</li>
-									<li>
+									<li class="item">
 										Symphony <sup>(since 2022)</sup>
 									</li>
-									<li>
+									<li class="item">
 										NodeJS <sup>(since 2021)</sup>
 									</li>
-									<li>
+									<li class="item">
 										JSON <sup>(since 2011)</sup>
 									</li>
-									<li>
+									<li class="item">
 										Ruby on Rails <sup>(since 2011)</sup>
 									</li>
-									<li>
+									<li class="item">
 										SQL <sup>(since 2008)</sup>
 									</li>
-									<li>
+									<li class="item">
 										PHP <sup>(since 2002)</sup>
 									</li>
 								</ul>
@@ -55,31 +55,31 @@
 								<h5>Front-End</h5>
 								<p class="description"></p>
 								<ul class="gallery">
-									<li>
+									<li class="item">
 										ReactJS <sup>(since 2021)</sup>
 									</li>
-									<li>
+									<li class="item">
 										Divi Builder <sup>(since 2021)</sup>
 									</li>
-									<li>
+									<li class="item">
 										Webflow <sup>(since 2021)</sup>
 									</li>
-									<li>
+									<li class="item">
 										jQuery <sup>(since 2011)</sup>
 									</li>
-									<li>
+									<li class="item">
 										SASS <sup>(since 2011)</sup>
 									</li>
-									<li>
+									<li class="item">
 										WordPress <sup>(since 2010)</sup>
 									</li>
-									<li>
+									<li class="item">
 										Javascript <sup>(since 2010)</sup>
 									</li>
-									<li>
+									<li class="item">
 										CSS <sup>(since 2008)</sup>
 									</li>
-									<li>
+									<li class="item">
 										HTML <sup>(since 1996)</sup>
 									</li>
 								</ul>
@@ -88,31 +88,31 @@
 								<h5>Hosting and Deployment</h5>
 								<p class="description"></p>
 								<ul class="gallery">
-									<li>
+									<li class="item">
 										Supabase / PostgreSQL <sup>(since 2024)</sup>
 									</li>
-									<li>
+									<li class="item">
 										Amazon EC2 <sup>(since 2022)</sup>
 									</li>
-									<li>
+									<li class="item">
 										iOS App Store <sup>(since 2022)</sup>
 									</li>
-									<li>
+									<li class="item">
 										Adobe Experience Manager <sup>(since 2022)</sup>
 									</li>
-									<li>
+									<li class="item">
 										Sitecore <sup>(since 2022)</sup>
 									</li>
-									<li>
+									<li class="item">
 										WPEngine <sup>(since 2021)</sup>
 									</li>
-									<li>
+									<li class="item">
 										MySQL <sup>(since 2008)</sup>
 									</li>
-									<li>
+									<li class="item">
 										Apache <sup>(since 1996)</sup>
 									</li>
-									<li>
+									<li class="item">
 										FTP <sup>(since 1996)</sup>
 									</li>
 								</ul>
@@ -121,22 +121,22 @@
 								<h5>Development Tools</h5>
 								<p class="description"></p>
 								<ul class="gallery">
-									<li>
+									<li class="item">
 										XCode <sup>(since 2022)</sup>
 									</li>
-									<li>
+									<li class="item">
 										Visual Studio Code <sup>(since 2021)</sup>
 									</li>
-									<li>
+									<li class="item">
 										yarn <sup>(since 2021)</sup>
 									</li>
-									<li>
+									<li class="item">
 										npm <sup>(since 2021)</sup>
 									</li>
-									<li>
+									<li class="item">
 										webpack <sup>(since 2021)</sup>
 									</li>
-									<li>
+									<li class="item">
 										git <sup>(since 2011)</sup>
 									</li>
 								</ul>
@@ -150,16 +150,16 @@
 								</a>
 							</p>
 							<ul class="gallery">
-								<li>
+								<li class="item">
 									Photoshop <sup>(since 1996)</sup>
 								</li>
-								<li>
+								<li class="item">
 									InDesign <sup>(since 2002)</sup>
 								</li>
-								<li>
+								<li class="item">
 									Illustrator <sup>(since 2003)</sup>
 								</li>
-								<!-- <li>
+								<!-- <li class="item">
 									Figma <sup>(since 2021)</sup>
 								</li> -->
 							</ul>

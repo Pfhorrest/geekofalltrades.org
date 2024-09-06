@@ -4,5 +4,9 @@
 					} else {
 						$protocol = 'http' ;
 					}
-					$basepath = $protocol . '://' . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']) . '/' ;
+					$basepath = $protocol
+						. '://'
+						. $_SERVER['SERVER_NAME']
+						. dirname($_SERVER['PHP_SELF'])
+						. '/' ;
 				?>
