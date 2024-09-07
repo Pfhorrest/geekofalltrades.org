@@ -1027,19 +1027,19 @@ main {
     --dur: 1s;
     --delA: 0s;
     --delB: 0s;
-    &.hidden > * {
+    &.animate-in > * {
       --delA: calc(1s / 16);
-      &.hidden > * {
+      &.animate-in > * {
         --delA: calc(2s / 16);
-        &.hidden > * {
+        &.animate-in > * {
           --delA: calc(3s / 16);
-          &.hidden > * {
+          &.animate-in > * {
             --delA: calc(4s / 16);
           }
         }
       }
     }
-    &.hidden {
+    &.animate-in {
       @media only screen {
         opacity: 0;
         transform: rotateY(0.25turn);
@@ -1404,7 +1404,7 @@ main {
           transition-delay: var(--dur);
         }
 
-        &.hidden {
+        &.animate-in {
           &::before,
           &::after {
             @media only screen {
@@ -1585,7 +1585,7 @@ main {
             1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
             0 0 0 1pt transparent inset;
         }
-        &.hidden {
+        &.animate-in {
           img {
             transform: none;
           }
@@ -1610,7 +1610,7 @@ main {
         max-width: 100%;
         margin: auto;
       }
-      &.hidden {
+      &.animate-in {
         @media only screen {
           img {
             transform: scale(0);
@@ -2130,7 +2130,7 @@ main {
           transition: border-radius var(--dur) calc(var(--delA) + var(--delB)),
             transform var(--dur) calc(var(--delA) + var(--delB));
         }
-        &.hidden {
+        &.animate-in {
           @media only screen {
             img {
               transform: scale(0);

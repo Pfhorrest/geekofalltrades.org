@@ -380,13 +380,13 @@ const elementIsVisibleInViewport = (el, partiallyVisible = false) => {
 };
 const hideablesObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach((entry) => {
-    if (entry.target.classList.contains("hidden")) {
+    if (entry.target.classList.contains("animate-in")) {
       if (entry.isIntersecting) {
-        entry.target.classList.remove("hidden");
+        entry.target.classList.remove("animate-in");
       }
     } else {
       if (!entry.isIntersecting) {
-        entry.target.classList.add("hidden");
+        entry.target.classList.add("animate-in");
       }
     }
   });
@@ -396,7 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .querySelectorAll("main *:not(a, em, strong, i, b, span, img")
     .forEach((element) => {
       if (!elementIsVisibleInViewport(element, true)) {
-        element.classList.add("hidden");
+        element.classList.add("animate-in");
       }
       hideablesObserver.observe(element);
     });

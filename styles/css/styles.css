@@ -826,24 +826,24 @@ main * {
   --delA: 0s;
   --delB: 0s;
 }
-main *.hidden > * {
+main *.animate-in > * {
   --delA: calc(1s / 16);
 }
-main *.hidden > *.hidden > * {
+main *.animate-in > *.animate-in > * {
   --delA: calc(2s / 16);
 }
-main *.hidden > *.hidden > *.hidden > * {
+main *.animate-in > *.animate-in > *.animate-in > * {
   --delA: calc(3s / 16);
 }
-main *.hidden > *.hidden > *.hidden > *.hidden > * {
+main *.animate-in > *.animate-in > *.animate-in > *.animate-in > * {
   --delA: calc(4s / 16);
 }
-main *.hidden {
+main *.animate-in {
   transition-delay: 0s;
   --dur: 0s;
 }
 @media only screen {
-  main *.hidden {
+  main *.animate-in {
     opacity: 0;
     transform: rotateY(0.25turn);
   }
@@ -1220,31 +1220,31 @@ main section.toggleable h6::after {
   transition: opacity var(--dur);
   transition-delay: var(--dur);
 }
-main section.toggleable h1.hidden::before, main section.toggleable h1.hidden::after,
-main section.toggleable h2.hidden::before,
-main section.toggleable h2.hidden::after,
-main section.toggleable h3.hidden::before,
-main section.toggleable h3.hidden::after,
-main section.toggleable h4.hidden::before,
-main section.toggleable h4.hidden::after,
-main section.toggleable h5.hidden::before,
-main section.toggleable h5.hidden::after,
-main section.toggleable h6.hidden::before,
-main section.toggleable h6.hidden::after {
+main section.toggleable h1.animate-in::before, main section.toggleable h1.animate-in::after,
+main section.toggleable h2.animate-in::before,
+main section.toggleable h2.animate-in::after,
+main section.toggleable h3.animate-in::before,
+main section.toggleable h3.animate-in::after,
+main section.toggleable h4.animate-in::before,
+main section.toggleable h4.animate-in::after,
+main section.toggleable h5.animate-in::before,
+main section.toggleable h5.animate-in::after,
+main section.toggleable h6.animate-in::before,
+main section.toggleable h6.animate-in::after {
   transition-delay: 0s;
 }
 @media only screen {
-  main section.toggleable h1.hidden::before, main section.toggleable h1.hidden::after,
-main section.toggleable h2.hidden::before,
-main section.toggleable h2.hidden::after,
-main section.toggleable h3.hidden::before,
-main section.toggleable h3.hidden::after,
-main section.toggleable h4.hidden::before,
-main section.toggleable h4.hidden::after,
-main section.toggleable h5.hidden::before,
-main section.toggleable h5.hidden::after,
-main section.toggleable h6.hidden::before,
-main section.toggleable h6.hidden::after {
+  main section.toggleable h1.animate-in::before, main section.toggleable h1.animate-in::after,
+main section.toggleable h2.animate-in::before,
+main section.toggleable h2.animate-in::after,
+main section.toggleable h3.animate-in::before,
+main section.toggleable h3.animate-in::after,
+main section.toggleable h4.animate-in::before,
+main section.toggleable h4.animate-in::after,
+main section.toggleable h5.animate-in::before,
+main section.toggleable h5.animate-in::after,
+main section.toggleable h6.animate-in::before,
+main section.toggleable h6.animate-in::after {
     opacity: 0;
   }
 }
@@ -1404,7 +1404,7 @@ main section figure.contained {
 main section figure.contained:hover, main section figure.contained:focus, main section figure.contained:active {
   box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
 }
-main section figure.contained.hidden img {
+main section figure.contained.animate-in img {
   transform: none;
 }
 @media (prefers-color-scheme: light) {
@@ -1423,7 +1423,7 @@ main section figure img {
   margin: auto;
 }
 @media only screen {
-  main section figure.hidden img {
+  main section figure.animate-in img {
     transform: scale(0);
   }
 }
@@ -1767,7 +1767,7 @@ main section .gallery .item img {
   transition: border-radius var(--dur) calc(var(--delA) + var(--delB)), transform var(--dur) calc(var(--delA) + var(--delB));
 }
 @media only screen {
-  main section .gallery .item.hidden img {
+  main section .gallery .item.animate-in img {
     transform: scale(0);
     border-radius: 100%;
     transition-delay: 0s;
