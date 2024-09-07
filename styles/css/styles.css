@@ -839,10 +839,14 @@ main *.hidden > *.hidden > *.hidden > *.hidden > * {
   --delA: calc(4s / 16);
 }
 main *.hidden {
-  opacity: 0;
   transition-delay: 0s;
-  transform: rotateY(0.25turn);
   --dur: 0s;
+}
+@media only screen {
+  main *.hidden {
+    opacity: 0;
+    transform: rotateY(0.25turn);
+  }
 }
 main a,
 main em,
@@ -1227,8 +1231,22 @@ main section.toggleable h5.hidden::before,
 main section.toggleable h5.hidden::after,
 main section.toggleable h6.hidden::before,
 main section.toggleable h6.hidden::after {
-  opacity: 0;
   transition-delay: 0s;
+}
+@media only screen {
+  main section.toggleable h1.hidden::before, main section.toggleable h1.hidden::after,
+main section.toggleable h2.hidden::before,
+main section.toggleable h2.hidden::after,
+main section.toggleable h3.hidden::before,
+main section.toggleable h3.hidden::after,
+main section.toggleable h4.hidden::before,
+main section.toggleable h4.hidden::after,
+main section.toggleable h5.hidden::before,
+main section.toggleable h5.hidden::after,
+main section.toggleable h6.hidden::before,
+main section.toggleable h6.hidden::after {
+    opacity: 0;
+  }
 }
 main section.toggleable h1:hover::before, main section.toggleable h1:hover::after,
 main section.toggleable h2:hover::before,
@@ -1404,8 +1422,10 @@ main section figure img {
   max-width: 100%;
   margin: auto;
 }
-main section figure.hidden img {
-  transform: scale(0);
+@media only screen {
+  main section figure.hidden img {
+    transform: scale(0);
+  }
 }
 main section figure ul {
   margin: 0;
@@ -1746,10 +1766,12 @@ main section .gallery .item img {
   background: white;
   transition: border-radius var(--dur) calc(var(--delA) + var(--delB)), transform var(--dur) calc(var(--delA) + var(--delB));
 }
-main section .gallery .item.hidden img {
-  transform: scale(0);
-  border-radius: 100%;
-  transition-delay: 0s;
+@media only screen {
+  main section .gallery .item.hidden img {
+    transform: scale(0);
+    border-radius: 100%;
+    transition-delay: 0s;
+  }
 }
 main section .gallery .item p {
   margin: 0 auto;
@@ -1817,7 +1839,8 @@ main section .gallery .item a.cover, main section .gallery .item a.cover:hover, 
 .display.modal {
   opacity: 0;
 }
-.display, .display * {
+.display,
+.display * {
   transition-duration: 0s;
 }
 .display img {
