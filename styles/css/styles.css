@@ -874,7 +874,7 @@ main ol {
   overflow: hidden;
   margin: 0;
   padding: 0;
-  padding-left: calc(2 * var(--spacing));
+  padding-left: 1.5ch;
 }
 main ul li,
 main ol li {
