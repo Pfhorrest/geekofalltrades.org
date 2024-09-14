@@ -7,12 +7,12 @@
 
 				<p class="description"></p>
 			
-				<ul class="gallery expansive">
+				<div class="gallery expansive">
 
-					<li>
-						<h3>The Chronicles of Quelouva</h3>
+					<div class="item">
+						<div class="title">The Chronicles of Quelouva</div>
 						<img src="/images/logo-chronicles.png" alt="thumbnail" />
-						<p>
+						<p class="description">
 							My main writing project,
 							an epic tapestry of tales
 							involving alien space wizards,
@@ -20,9 +20,9 @@
 							and a virtual reality afterlife.
 						</p>
 						<a class="cover" href="/chronicles">View</a>
-					</li>
+					</div>
 					
-				</ul>
+				</div>
 				</section>
 
 				<section>
@@ -37,23 +37,23 @@
 				
 					<p class="description"></p>
 
-					<ul class="gallery expansive">
+					<div class="gallery expansive">
 
-						<li>
-							<h3>Moebius: A Movie About Itself</h3>
+						<div class="item">
+							<div class="title">>Moebius: A Movie About Itself</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>An outline of a script for a film like this one.</p>
+							<p class="description">An outline of a script for a film like this one.</p>
 							<a class="cover" href="moebius">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>Surfing the Cosmic Cataclysm</h3>
+						<div class="item">
+							<div class="title">Surfing the Cosmic Cataclysm</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>A story about the unending end of the universe.</p>
+							<p class="description">A story about the unending end of the universe.</p>
 							<a class="cover" href="surfing-the-cosmic-cataclysm">View</a>
 						</li>
 						
-					</ul>
+					</div>
 					
 				</section>
 
@@ -63,30 +63,30 @@
 				
 					<p class="description"></p>
 
-					<ul class="gallery expansive">
+					<div class="gallery expansive">
 
-						<li>
-							<h3>Superjesus Trilogy</h3>
+						<div class="item">
+							<div class="title">Superjesus Trilogy</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>A very bizarre comedy mashup of Superman, Jesus, and Santa Claus mythos, together with some other Christmas themes.</p>
+							<p class="description">A very bizarre comedy mashup of Superman, Jesus, and Santa Claus mythos, together with some other Christmas themes.</p>
 							<a class="cover" href="superjesus">View</a>
-						</li>
+						</div>
 
-						<li>
-							<h3>Jimmy Pan</h3>
+						<div class="item">
+							<div class="title">Jimmy Pan</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>A tragic prequel to a classic children's tale.</p>
+							<p class="description">A tragic prequel to a classic children's tale.</p>
 							<a class="cover" href="jimmypan">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>Princess Destiny</h3>
+						<div class="item">
+							<div class="title">Princess Destiny</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>A deconstruction, reconstruction, and general zig-zagging of "Disney Princess" genre tropes.</p>
+							<p class="description">A deconstruction, reconstruction, and general zig-zagging of "Disney Princess" genre tropes.</p>
 							<a class="cover" href="princess-destiny">View</a>
-						</li>
+						</div>
 						
-					</ul>
+					</div>
 
 				</section>
 
@@ -96,65 +96,65 @@
 				
 					<p class="description"></p>
 
-					<ul class="gallery expansive">
+					<div class="gallery expansive">
 
-						<li>
-							<h3>The Legend Of Korra</h3>
+						<div class="item">
+							<div class="title">The Legend Of Korra</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>Tying the first two books more tightly to the later two, and exploring an implication of the second season finale.</p>
+							<p class="description">Tying the first two books more tightly to the later two, and exploring an implication of the second season finale.</p>
 							<a class="cover" href="korra">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>The Matrix Trilogy</h3>
+						<div class="item">
+							<div class="title">The Matrix Trilogy</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>Tweaking the second film and largely rewriting the third to better continue the philosophical spirit of the first.</p>
+							<p class="description">Tweaking the second film and largely rewriting the third to better continue the philosophical spirit of the first.</p>
 							<a class="cover" href="matrix">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>Stargate Atlantis</h3>
+						<div class="item">
+							<div class="title">Stargate Atlantis</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>An earlier ending for <i>Stargate SG-1</i> leading into a merger of canon <i>Stargate Atlantis</i> with the later seasons of <i>SG-1</i> plus some original material.</p>
+							<p class="description">An earlier ending for <i>Stargate SG-1</i> leading into a merger of canon <i>Stargate Atlantis</i> with the later seasons of <i>SG-1</i> plus some original material.</p>
 							<a class="cover" href="stargate-atlantis">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>Stargate Universe</h3>
+						<div class="item">
+							<div class="title">Stargate Universe</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>Spinning events from the end of canon <i>SGU</i> season 2 into a cosmic plot arc connecting with the foundations of the <i>Stargate</i> mythos.</p>
+							<p class="description">Spinning events from the end of canon <i>SGU</i> season 2 into a cosmic plot arc connecting with the foundations of the <i>Stargate</i> mythos.</p>
 							<a class="cover" href="stargate-universe">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>Star Trek: Enterprise</h3>
+						<div class="item">
+							<div class="title">Star Trek: Enterprise</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>Remixing the best elements of the series into a stronger finish with connections to the classic shows.</p>
+							<p class="description">Remixing the best elements of the series into a stronger finish with connections to the classic shows.</p>
 							<a class="cover" href="startrek-enterprise">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>Star Trek: Voyager</h3>
+						<div class="item">
+							<div class="title">Star Trek: Voyager</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>Bridging the early Ocampa plot better with the later Borg plot, and tying the whole thing closer together with Deep Space Nine's Gamma Quadrant.</p>
+							<p class="description">Bridging the early Ocampa plot better with the later Borg plot, and tying the whole thing closer together with Deep Space Nine's Gamma Quadrant.</p>
 							<a class="cover" href="startrek-voyager">View</a>
-						</li>
+						</div>
 
-						<li>
-							<h3>Heroes</h3>
+						<div class="item">
+							<div class="title">Heroes</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>Tidying up the loose ends and cleaning up the technical details of how powers work for a much more streamlined story.</p>
+							<p class="description">Tidying up the loose ends and cleaning up the technical details of how powers work for a much more streamlined story.</p>
 							<a class="cover" href="heroes">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>Battlestar Galactica</h3>
+						<div class="item">
+							<div class="title">Battlestar Galactica</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>Minor tweaks to the very end keep all the major dramatic twists without destroying the message otherwise built up throughout the series.</p>
+							<p class="description">Minor tweaks to the very end keep all the major dramatic twists without destroying the message otherwise built up throughout the series.</p>
 							<a class="cover" href="battlestar">View</a>
-						</li>
+						</div>
 						
-					</ul>
+					</div>
 
 				</section>
 
@@ -164,37 +164,37 @@
 				
 					<p class="description"></p>
 
-					<ul class="gallery expansive">
+					<div class="gallery expansive">
 
-						<li>
-							<h3>Smallville Foreknowledge</h3>
+						<div class="item">
+							<div class="title">Smallville Foreknowledge</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>How might the Smallville series have gone if the protagonists knew at the start all of the things they learned by the end?</p>
+							<p class="description">How might the Smallville series have gone if the protagonists knew at the start all of the things they learned by the end?</p>
 							<a class="cover" href="smallville-foreknowledge">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>Lord of the Rings Foreknowledge</h3>
+						<div class="item">
+							<div class="title">Lord of the Rings Foreknowledge</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>How might the Hobbit and the Lord of the Rings have gone if the protagonists knew at the start all of the things they learned by the end?</p>
+							<p class="description">How might the Hobbit and the Lord of the Rings have gone if the protagonists knew at the start all of the things they learned by the end?</p>
 							<a class="cover" href="lotr-foreknowledge">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>Stargate Foreknowledge</h3>
+						<div class="item">
+							<div class="title">Stargate Foreknowledge</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>How might the Stargate series have gone if the protagonists knew at the start all of the things they learned by the end?</p>
+							<p class="description">How might the Stargate series have gone if the protagonists knew at the start all of the things they learned by the end?</p>
 							<a class="cover" href="stargate-foreknowledge">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>Harry Potter Foreknowledge</h3>
+						<div class="item">
+							<div class="title">Harry Potter Foreknowledge</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>How might the Harry Potter series have gone if the protagonists knew at the start all of the things they learned by the end?</p>
+							<p class="description">How might the Harry Potter series have gone if the protagonists knew at the start all of the things they learned by the end?</p>
 							<a class="cover" href="hp-foreknowledge">View</a>
-						</li>
+						</div>
 						
-					</ul>
+					</div>
 
 				</section>
 
@@ -204,37 +204,37 @@
 				
 					<p class="description"></p>
 
-					<ul class="gallery expansive">
+					<div class="gallery expansive">
 
-						<li>
-							<h3>Buffyverse Spinoff</h3>
+						<div class="item">
+							<div class="title">Buffyverse Spinoff</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>An idea for a spin-off series set in the same fictional universe as <i>Buffy the Vampire Slayer</i> and <i>Angel</i>.</p>
+							<p class="description">An idea for a spin-off series set in the same fictional universe as <i>Buffy the Vampire Slayer</i> and <i>Angel</i>.</p>
 							<a class="cover" href="buffyverse">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>The First Waterbender</h3>
+						<div class="item">
+							<div class="title">The First Waterbender</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>A prequel to <i>Avatar: The Last Airbender</i> outlining the first cycle of the Avatar.</p>
+							<p class="description">A prequel to <i>Avatar: The Last Airbender</i> outlining the first cycle of the Avatar.</p>
 							<a class="cover" href="avatar-the-first-waterbender">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>Wood and Metal</h3>
+						<div class="item">
+							<div class="title">Wood and Metal</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>A sequel to <i>Avatar: The Legend of Korra</i> redefining the balance of the elements.</p>
+							<p class="description">A sequel to <i>Avatar: The Legend of Korra</i> redefining the balance of the elements.</p>
 							<a class="cover" href="avatar-wood-and-metal">View</a>
-						</li>
+						</div>
 						
-						<li>
-							<h3>Terminator: Redemption</h3>
+						<div class="item">
+							<div class="title">Terminator: Redemption</div>
 							<img src="/images/doc-thumb.png" alt="thumbnail" />
-							<p>A peaceful resolution to the never-ending time war of the <i>Terminator</i> franchise.</p>
+							<p class="description">A peaceful resolution to the never-ending time war of the <i>Terminator</i> franchise.</p>
 							<a class="cover" href="terminator">View</a>
-						</li>
+						</div>
 						
-					</ul>
+					</div>
 
 				</section>
 
