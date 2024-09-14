@@ -21,7 +21,7 @@
 			echo '<script src="' . $jsfilename . '?v=' . $jsdate . '" defer="true"></script>' ;
 		?>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="description" content="Forrest Cameranesi is a &quot;Geek of all Trades&quot; &ndash; a web developer, graphic designer, philosopher, science-fantasy writer, retro game modder, and nature photographer &ndash; from Ojai, California." />
+		<meta name="description" content="<?php echo ($description ? $description : $nav_description) ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/png" href="/favicon-196.png" />
 		<title><?php echo $title ; ?></title>
@@ -47,8 +47,13 @@
 					$paths = ["/"];
 					$i = 0;
 					do {
-						// echo "<p>" . $_SERVER['DOCUMENT_ROOT'] . $paths[array_key_last($paths)] . "nav.html</p>";
-						include $_SERVER['DOCUMENT_ROOT'] . $paths[array_key_last($paths)] . "nav.html";
+						$navpath = $_SERVER['DOCUMENT_ROOT'] . $paths[array_key_last($paths)] . "nav.";
+						$navfile = $navpath . "php";
+						if (is_file($navfile)) {
+							include $navfile;
+						} else {
+							include $navpath . "html";
+						}
 						$paths[] = $paths[array_key_last($paths)] . $segments[$i+1] . "/";
 						$i++;
 					} while ($i < count($segments) + 1);
