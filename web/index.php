@@ -1,4 +1,7 @@
-<?php $title = "Web Development &amp; Design by Forrest Cameranesi" ?>
+<?php
+	$title = "Web Development &amp; Design by Forrest Cameranesi";
+	$description = "Forrest Cameranesi is a professional full-stack web developer with decades of experience in diverse fields of application.";
+?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section>

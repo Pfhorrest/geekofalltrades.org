@@ -5,7 +5,7 @@
 					
 					<h2>The Chronicles of Quelouva</h2>
 					
-					<p class="description">A epic tapestry of tales about alien space wizards, prehistoric nanotech gods, and a virtual reality afterlife.</p>
+					<p class="description">An epic tapestry of tales about alien space wizards, prehistoric nanotech gods, and a virtual reality afterlife.</p>
 
 					<figure>
 						<img src="chronicles-cover.jpg" alt="The Chronicles"/>

@@ -1,4 +1,7 @@
-<?php $title = "Eternal by Forrest Cameranesi" ?>
+<?php
+	$title = "Eternal by Forrest Cameranesi";
+	$description = "Eternal is a free mod for Bungie's classic Marathon series, created by a team under the direction of Forrest Cameranesi.";
+?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header-dynamic.php" ?>
 
 				<section id="eternal">

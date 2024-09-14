@@ -1,3 +1,4 @@
+<?php $nav_description = "The Codex Quarentis is a series of essays by Forrest Cameranesi laying out a comprehensive system of philosophy."; ?>
 <a href="/codex/">The Codex Quaerentis:</a>
 <ul>
     <li>
