@@ -1,4 +1,3 @@
-<?php $nav_description = "Forrest Cameranesi is a an amateur photographer focusing primarily on nature subjects in Southern California."; ?>
 <a href="/photos">Photography:</a>
 <ul>
     <li>

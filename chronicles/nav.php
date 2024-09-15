@@ -1,4 +1,3 @@
-<?php $nav_description = "The Chronicles of Quelouva are a tapestry of science-fantasy stories written by Forrest Cameranesi."; ?>
 <a href="/chronicles/">The Chronicles of Quelouva:</a>
 <ul>
     <li><a href="/chronicles/">Introduction</a></li>

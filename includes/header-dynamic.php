@@ -19,47 +19,55 @@
 				$jsdate = filemtime ($jspath) ;
 			}
 			echo '<script src="' . $jsfilename . '?v=' . $jsdate . '" defer="true"></script>' ;
+			$segments = array_filter(explode("/",$_SERVER['REQUEST_URI']));
 		?>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="description" content="<?php echo ($description ? $description : $nav_description) ?>" />
+		<?php
+			$paths = ["/"];
+			foreach ($segments as $segment) {
+				$paths[] = $paths[array_key_last($paths)] . $segment . "/";
+			}
+
+			$page_description = $description;
+			foreach ($paths as $path) {
+				include $_SERVER['DOCUMENT_ROOT'] . $path . "description.php";
+			}
+			if ($page_description) {
+				$description = $page_description;
+			}
+		?>
+		<meta name="description" content="<?php echo $description ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/png" href="/favicon-196.png" />
 		<title><?php echo $title ; ?></title>
 	</head>
 
 	<body>
-		
-			<header>
-				<h1>
-					<span>Forrest Cameranesi</span>
-					<span>
-						G<span>eek</span>
-						o<span>f</span>
-						a<span>ll</span>
-						T<span>rades</span>
-					</span>
-				</h1>
+		<header>
+			<h1>
+				<span>Forrest Cameranesi</span>
+				<span>
+					G<span>eek</span>
+					o<span>f</span>
+					a<span>ll</span>
+					T<span>rades</span>
+				</span>
+			</h1>
 
-				<nav id="menu">
+			<nav id="menu">
 
-				<?php
-					$segments = array_filter(explode("/",$_SERVER['REQUEST_URI']));
-					$paths = ["/"];
-					$i = 0;
-					do {
-						$navpath = $_SERVER['DOCUMENT_ROOT'] . $paths[array_key_last($paths)] . "nav.";
-						$navfile = $navpath . "php";
-						if (is_file($navfile)) {
-							include $navfile;
-						} else {
-							include $navpath . "html";
-						}
-						$paths[] = $paths[array_key_last($paths)] . $segments[$i+1] . "/";
-						$i++;
-					} while ($i < count($segments) + 1);
-				?>
-	
+			<?php
+				foreach ($paths as $path) {
+					$navpath = $_SERVER['DOCUMENT_ROOT'] . $path . "nav.";
+					$navfile = $navpath . "php";
+					if (is_file($navfile)) {
+						include $navfile;
+					} else {
+						include $navpath . "html";
+					}
+				}
+			?>
 
-				</nav>
-			</header>
-			<main>
+			</nav>
+		</header>
+		<main>
