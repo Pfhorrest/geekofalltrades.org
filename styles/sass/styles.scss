@@ -728,7 +728,11 @@ footer {
     flex: 1 1 auto;
     box-shadow: 1pt 1pt 0pt transparent inset, -1pt 0pt 0pt transparent inset,
       1pt 1pt 0 0 var(--shade) inset;
+    opacity: 50%;
 
+    &:nth-last-of-type(1) {
+      opacity: 100%;
+    }
     &:nth-last-of-type(2) {
       opacity: 87.5%;
     }
