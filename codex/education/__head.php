@@ -1,0 +1,1 @@
+<?php $title = "The Codex Quaerentis: On Education, Religion, and the Institutions of Knowledge &ndash; by Forrest Cameranesi" ?>

@@ -1,0 +1,1 @@
+<?php $title = "Why Functionalism Works &ndash; by Forrest Cameranesi" ?>

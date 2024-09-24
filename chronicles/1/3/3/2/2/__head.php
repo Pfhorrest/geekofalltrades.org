@@ -1,0 +1,1 @@
+<?php $title = "The Chronicles of Quelouva (7x23): Nurbal Enemy: Part 2, Episode 2 &ndash; by Forrest Cameranesi"  ?>

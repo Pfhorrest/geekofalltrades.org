@@ -36,7 +36,7 @@
 				'description' => 'iPhone 7, 2022-07-23.',
 			),
 		);
-		require $_SERVER['DOCUMENT_ROOT'] . "/display/gallery.php";
+		require $_SERVER['DOCUMENT_ROOT'] . "/___prevhp/gallery.php";
 	?>
 </section>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>

@@ -1,0 +1,1 @@
+<?php $title = "2014 Photography by Forrest Cameranesi" ?>

@@ -1,0 +1,1 @@
+<?php $title = "Normal Science &ndash; by Forrest Cameranesi" ?>

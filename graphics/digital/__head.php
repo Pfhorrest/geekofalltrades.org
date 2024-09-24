@@ -1,0 +1,1 @@
+<?php $title = "Digital Arts by Forrest Cameranesi" ?>

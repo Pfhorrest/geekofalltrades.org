@@ -1,0 +1,1 @@
+<?php $title = "Teachings of Jesus &ndash; by Forrest Cameranesi" ?>
