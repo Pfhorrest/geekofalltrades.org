@@ -1,12 +1,14 @@
 <?php
+	$root = $_SERVER['DOCUMENT_ROOT'];
 	$segs = array_filter(explode("/",$_SERVER['REQUEST_URI']));
 	$crumbs = ["/"];
 	foreach ($segs as $seg) {
 		$crumbs[] = $crumbs[array_key_last($crumbs)] . $seg
-			. (((count(explode(".",$seg))) > 1) ? "" : "/");
+			. (is_dir(
+				$_SERVER['DOCUMENT_ROOT'] . $crumbs[array_key_last($crumbs)] . $seg
+			) ? "/" : "");
 	}
 	$path = $crumbs[array_key_last($crumbs)];
-	$root = $_SERVER['DOCUMENT_ROOT'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
