@@ -1895,6 +1895,7 @@ main section .gallery .item a.cover, main section .gallery .item a.cover:hover, 
   font-size: 2em;
   line-height: 1em;
   gap: 0.5ch;
+  border: none;
 }
 .display nav {
   top: auto;

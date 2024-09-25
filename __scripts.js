@@ -412,7 +412,7 @@ var slides;
 //Sets up the structure of the modal (all hidden by default) and the events listeners to open and close it
 const initDisplayModal = () => {
   //Gathers all the slides into a collection
-  slides = document.querySelectorAll(".gallery a[href*='/display/']");
+  slides = document.querySelectorAll(".gallery a[href*='display=']");
 
   //Adds onclick event to every slide link to open modal display
   slides.forEach((element, index) => {
@@ -426,7 +426,7 @@ const initDisplayModal = () => {
   //Gets the modal from an external file and appends it after the (last) main element
   if (slides.length !== 0) {
     //Fetch the modal
-    fetch("/display/modal.html")
+    fetch("/___prevhp/modal.html")
       .then((res) => res.text())
       .then((html) => {
         let theModal = new DOMParser()
@@ -480,7 +480,7 @@ const showSlides = (n) => {
   document.getElementById("caption").innerHTML = captionText;
   var image = document.getElementById("modalImage");
   var link = parentItem.querySelector("a.cover").getAttribute("href");
-  var displayPattern = "/display/?image=";
+  var displayPattern = "display=";
   var srcstr = link.includes(displayPattern)
     ? link.split(displayPattern)[1].split("&")[0]
     : link;

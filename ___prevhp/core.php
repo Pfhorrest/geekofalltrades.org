@@ -1,12 +1,11 @@
 <?php
 	$root = $_SERVER['DOCUMENT_ROOT'];
-	$segs = array_filter(explode("/",$_SERVER['REQUEST_URI']));
+	$queryless = array_filter(explode("?",$_SERVER['REQUEST_URI']))[0];
+	$segments = array_filter(explode("/",$queryless));
 	$crumbs = ["/"];
-	foreach ($segs as $seg) {
-		$crumbs[] = $crumbs[array_key_last($crumbs)] . $seg
-			. (is_dir(
-				$_SERVER['DOCUMENT_ROOT'] . $crumbs[array_key_last($crumbs)] . $seg
-			) ? "/" : "");
+	foreach ($segments as $segment) {
+		$this_crumb = $crumbs[array_key_last($crumbs)] . $segment;
+		$crumbs[] = $this_crumb . (is_dir($root.$this_crumb) ? "/" : "");
 	}
 	$path = $crumbs[array_key_last($crumbs)];
 ?>
@@ -41,7 +40,14 @@
 				}
 			}
 		?>
-		<title><?php echo $title ?></title>
+		<title>
+			<?php
+				if ($_GET["title"]) {
+					$title = $_GET["title"] . " by Forrest Cameranesi";
+				}
+				echo $title;
+			?>
+		</title>
 		<meta name="description" content="<?php echo $description ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -74,26 +80,13 @@
 				$mainpath = $root . $path . "__main.php";
 				if (is_file($mainpath)) {
 					include $mainpath;
+					if ($display = $_GET["display"]) {
+						include $root . "/___prevhp/modal.php";
+					}
 				} elseif (is_dir($root.$path)) {
-					echo '<section>
-						<h2>'.$path.'</h2>
-						<p class="description">Directory Listing</p>
-						<ul>';
-						$files = scandir($root . $path);
-						foreach ($files as $file) {
-							echo '<li>
-								<a href="'.$path.$file.'">'
-								.$file.
-								'</a>
-							</li>';
-						}
-					echo '</ul>
-					</section>';
+					include $root . "/___prevhp/directory.php";
 				} else {
-					echo '<section>
-						<h2>File Not Found</h2>
-						<p class="description">No such file as '.$path.'</p>
-					</section>';
+					include $root . "/___prevhp/error.php";
 				}
 			?>
 		</main>

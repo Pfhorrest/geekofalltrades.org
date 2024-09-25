@@ -1,10 +1,10 @@
 <?php
     $protocol = ($_SERVER['HTTPS']) ? 'https' : 'http' ;
-    $uri = $_SERVER['REQUEST_URI'] ;
+    $uri = $queryless ;
     $basepath = $_SERVER['DOCUMENT_ROOT'] . $uri ;
 
     echo '<div class="gallery expansive">';
-    foreach ($images as $image) {
+    foreach ($images as $key => $image) {
         $filepath = (is_file($basepath.$image['filename']))
             ? $image['filename']
             : '__images/'.$image['filename'] ;
@@ -31,7 +31,7 @@
         }
         */
         echo '
-            <div class=item>
+            <div class=item id="item'.$key.'">
                 <p class=title>'.$image['title'].'</p>
                 <img src="'.$thumbpath.'"
                     alt="">
@@ -53,9 +53,11 @@
                 ).'
                 <a class=cover
                     href="'.(($image['altlink'])
-                        ? $uri.$altpath.'" rel="external"'
-                        : '/display/?image='.$uri.$filepath
-                            .'&title='.urlencode($image['title']).'"'
+                        ? ($uri.$altpath.'" rel="external"')
+                        : (
+                            '?display='.$image['filename']
+                            .'&title='.urlencode($image['title'])
+                            .'"')
                     ).'>
                     View '.$image['title'].'
                 </a>
