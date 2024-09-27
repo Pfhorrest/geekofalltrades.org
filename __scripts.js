@@ -77,20 +77,25 @@ const initSubnavsOnHover = () => {
       if (nextSibling.tagName.toLowerCase() == "ul") {
         let thisSubnav = nextSibling;
         breadcrumb.addEventListener("mouseenter", (e) => {
+          breadcrumb.mouseIn = true;
           if (window.innerWidth > getMinWidth()) {
-            if (e.relatedTarget != thisSubnav) {
-              let subnavs = document.querySelectorAll(
-                "#menu > a:not(:last-of-type) + *"
-              );
-              $(subnavs).clearQueue().stop().hide(0);
-              $(lastSubnav).clearQueue().stop().show(0);
-            }
-            $(lastSubnav).slideUp();
-            $(thisSubnav).slideDown({
-              start: () => {
-                thisSubnav.style.display = "flex";
-              },
-            });
+            setTimeout(() => {
+              if (breadcrumb.mouseIn == true) {
+                if (e.relatedTarget != thisSubnav) {
+                  let subnavs = document.querySelectorAll(
+                    "#menu > a:not(:last-of-type) + *"
+                  );
+                  $(subnavs).clearQueue().stop().hide(0);
+                  $(lastSubnav).clearQueue().stop().show(0);
+                }
+                $(lastSubnav).slideUp();
+                $(thisSubnav).slideDown({
+                  start: () => {
+                    thisSubnav.style.display = "flex";
+                  },
+                });
+              }
+            }, 1000);
           }
         });
         let hideSubnavFromHover = () => {
@@ -99,20 +104,33 @@ const initSubnavsOnHover = () => {
           closeNavDropdowns();
         };
         breadcrumb.addEventListener("mouseleave", (e) => {
+          breadcrumb.mouseIn = false;
           if (
             e.relatedTarget.closest("ul") != thisSubnav &&
             window.innerWidth > getMinWidth()
           ) {
-            hideSubnavFromHover();
+            setTimeout(() => {
+              if (breadcrumb.mouseIn == false && nextSibling.mouseIn == false) {
+                hideSubnavFromHover();
+              }
+            }, 1000);
           }
         });
         nextSibling.addEventListener("mouseleave", (e) => {
+          nextSibling.mouseIn = false;
           if (
             e.relatedTarget != breadcrumb &&
             window.innerWidth > getMinWidth()
           ) {
-            hideSubnavFromHover();
+            setTimeout(() => {
+              if (breadcrumb.mouseIn == false && nextSibling.mouseIn == false) {
+                hideSubnavFromHover();
+              }
+            }, 1000);
           }
+        });
+        nextSibling.addEventListener("mouseenter", (e) => {
+          nextSibling.mouseIn = true;
         });
       }
     });
