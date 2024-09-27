@@ -77,16 +77,30 @@
 		</header>
 		<main>
 			<?php
-				$mainpath = $root . $path . "__main.php";
-				if (is_file($mainpath)) {
-					include $mainpath;
-					if ($display = $_GET["display"]) {
-						include $root . "/___prevhp/modal.php";
-					}
-				} elseif (is_dir($root.$path)) {
-					include $root . "/___prevhp/directory.php";
-				} else {
-					include $root . "/___prevhp/error.php";
+				$dirpath = $root . $path;
+				$mainpath = $dirpath . "__main.php";
+				switch (true) {
+					case is_file($mainpath):
+						include $mainpath;
+						if ($display = $_GET["display"]) {
+							include $root . "/___prevhp/modal.php";
+						}
+						break;
+					case is_dir($dirpath):
+						if (is_file($dirpath . "index.php")) {
+							echo '<meta http-equiv="refresh"
+								content="0;url='.$queryless.'index.php">';
+							break;
+						} elseif (is_file($dirpath . "index.html")) {
+							echo '<meta http-equiv="refresh"
+								content="0;url='.$queryless.'index.html">';
+							break;
+						} elseif ($indexes) {
+							include $root . "/___prevhp/directory.php";
+							break;
+						}
+					default:
+						include $root . "/___prevhp/error.php";
 				}
 			?>
 		</main>
