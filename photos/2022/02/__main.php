@@ -89,6 +89,6 @@
 				'moretext' => 'More from the 7th',
 			),
 		);
-		require $_SERVER['DOCUMENT_ROOT'] . "/___prevhp/gallery.php";
+		require "modules/gallery.php";
 	?>
 </section>

@@ -1,23 +1,19 @@
 <?php
-    $protocol = ($_SERVER['HTTPS']) ? 'https' : 'http' ;
-    $uri = $queryless ;
-    $basepath = $_SERVER['DOCUMENT_ROOT'] . $uri ;
-
     echo '<div class="gallery expansive">';
     foreach ($images as $key => $image) {
-        $filepath = (is_file($basepath.$image['filename']))
+        $filepath = (is_file($rootpath.$image['filename']))
             ? $image['filename']
             : '__images/'.$image['filename'] ;
-        $altpath = (is_file($basepath.$image['altlink']))
+        $altpath = (is_file($rootpath.$image['altlink']))
             ? $image['altlink']
             : '__images/'.$image['altlink'] ;
         $filenameParts = explode('.',$image['filename']);
         $filenameSuffix = array_pop($filenameParts);
         $filenameBase = implode($filenameParts);
         $thumbname = $filenameBase.'-thumb'.$filenameSuffix;
-        $thumbpath = (is_file($basepath.$thumbname))
+        $thumbpath = (is_file($rootpath.$thumbname))
             ? $thumbname
-            : ((is_file($basepath.'__images/'.$thumbname))
+            : ((is_file($rootpath.'__images/'.$thumbname))
                 ? '__images/'.$thumbname
                 : $filepath);
         /* Need to install imagick on host
@@ -53,7 +49,7 @@
                 ).'
                 <a class=cover
                     href="'.(($image['altlink'])
-                        ? ($uri.$altpath.'" rel="external"')
+                        ? ($path.$altpath.'" rel="external"')
                         : (
                             '?display='.$image['filename']
                             .'&title='.urlencode($image['title'])

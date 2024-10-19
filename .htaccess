@@ -2,8 +2,14 @@
 RewriteEngine On
 RewriteBase /
 
-# Forward everything to PrevHP
+# Forward everything to PrevHP except requests in PrevHP directories
+RewriteCond %{REQUEST_URI} !/__
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule .* ___prevhp/core.php [L]
+RewriteRule .* ___structure/html.php [L]
+
+# Redirect requests to directories within __scripts to .js files
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(__scripts/.+)$ $1.js [L]
 
 </IfModule>

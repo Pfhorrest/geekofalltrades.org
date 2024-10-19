@@ -211,7 +211,7 @@
 
   --seaShadow: hsl(from var(--seaColor1) h 100% 0% / 100%); // For footer
 
-  --mbo: hsl(from black h s l / 93.75%); // Modal background outer
+  --lbo: hsl(from black h s l / 93.75%); // Lightbox background outer
 
   // Standard breakpoints
   --bp1: 20rem;
@@ -687,7 +687,11 @@ footer {
   overflow-y: auto;
   padding: 0 0.5em;
   gap: 0 0.5em;
-  display: flex;
+  --display: flex;
+  & * {
+    --display: ;
+  }
+  display: none;
   flex-flow: column nowrap;
   flex-shrink: 1;
   position: relative;
@@ -701,8 +705,8 @@ footer {
   );
 
   @media (min-width: $bp2) {
+    display: flex;
     flex-flow: row wrap;
-    max-height: auto;
     min-height: auto;
     overflow-x: visible;
     overflow-y: visible;
@@ -719,7 +723,9 @@ footer {
     order: -1;
     z-index: 1;
     margin: 0;
+    margin-bottom: -2em;
     padding: 0 1em;
+    padding-bottom: 2em;
     border: none;
     border-top: 0pt solid white;
     outline: none;
@@ -758,8 +764,8 @@ footer {
     }
 
     @media (min-width: $bp2) {
-      margin-bottom: -2em;
-      padding-bottom: 2em;
+      margin-bottom: 0;
+      padding-bottom: 0;
       &:hover,
       &:focus,
       &:active {
@@ -778,9 +784,14 @@ footer {
     }
   }
 
-  ul {
-    flex-basis: 100%;
+  > ul {
+    box-sizing: border-box;
+    flex-basis: auto;
     z-index: 1;
+    --display: flex;
+    & * {
+      --display: ;
+    }
     display: none;
     flex-flow: row wrap;
     flex-shrink: 1;
@@ -798,6 +809,7 @@ footer {
     line-height: 2.5;
     box-shadow: 0pt -1pt 0 0 var(--shade);
     @media (min-width: $bp2) {
+      flex-basis: 100vw;
       box-shadow: 0pt -1pt 0pt transparent inset, 0pt 1pt 1pt transparent,
         0 -1pt 0 0 var(--shade) inset;
       &:hover,
@@ -807,8 +819,9 @@ footer {
           0 -1pt 0 0 transparent inset;
         background-position-y: 100%;
       }
-      transition: height 0s, margin 0s, padding 0s;
     }
+    transition: all 0.25s;
+    will-change: height, padding-top, padding-bottom, row-gap;
 
     @media (min-width: $bp2) {
       overflow-y: visible;
@@ -951,6 +964,7 @@ footer {
         left: 0.5em;
         width: 100%;
         padding: 0.125em 0;
+        margin: 0;
         border-radius: calc(0.5 * var(--rounding));
         background: linear-gradient(
           to right,
@@ -977,6 +991,7 @@ footer {
           width: 100%;
           box-sizing: border-box;
           max-height: calc(100vh - 10em);
+          margin: 0 -0.5em;
           padding: 0;
           padding-top: 2em;
         }
@@ -1037,25 +1052,25 @@ main {
   }
 
   * {
-    transition: all 0.5s, opacity var(--dur) linear,
+    transition: all var(--dur), opacity var(--dur) linear,
       transform var(--dur) cubic-bezier(0.75, 1.75, 0.75, 0.75)
         calc(var(--delA) + var(--delB));
     --dur: 1s;
     --delA: 0s;
     --delB: 0s;
-    &.animate-in > * {
+    &.off-screen > * {
       --delA: calc(1s / 16);
-      &.animate-in > * {
+      &.off-screen > * {
         --delA: calc(2s / 16);
-        &.animate-in > * {
+        &.off-screen > * {
           --delA: calc(3s / 16);
-          &.animate-in > * {
+          &.off-screen > * {
             --delA: calc(4s / 16);
           }
         }
       }
     }
-    &.animate-in {
+    &.off-screen {
       @media only screen {
         opacity: 0;
         transform: rotateY(0.25turn);
@@ -1311,7 +1326,7 @@ main {
   }
 
   section {
-    --dur: 0s;
+    --dur: 0.5s;
     transition: all 0.5s;
     clear: both;
     width: 100%;
@@ -1426,7 +1441,7 @@ main {
           transition: all var(--dur), opacity var(--dur) var(--dur);
         }
 
-        &.animate-in {
+        &.off-screen {
           &::before,
           &::after {
             @media only screen {
@@ -1612,7 +1627,7 @@ main {
             1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
             0 0 0 1pt transparent inset;
         }
-        &.animate-in {
+        &.off-screen {
           img {
             transform: none;
           }
@@ -1637,7 +1652,7 @@ main {
         max-width: 100%;
         margin: auto;
       }
-      &.animate-in {
+      &.off-screen {
         @media only screen {
           img {
             transform: scale(0);
@@ -2157,7 +2172,7 @@ main {
           transition: border-radius var(--dur) calc(var(--delA) + var(--delB)),
             transform var(--dur) calc(var(--delA) + var(--delB));
         }
-        &.animate-in {
+        &.off-screen {
           @media only screen {
             img {
               transform: scale(0);
@@ -2224,8 +2239,8 @@ main {
   }
 }
 
-/* Modal image display */
-.display {
+/* Lightbox */
+.lightbox {
   position: fixed;
   z-index: 3;
   inset: 0;
@@ -2236,7 +2251,7 @@ main {
   overflow: hidden;
   margin: 0;
   padding: 0;
-  background: radial-gradient(black, var(--mbo));
+  background: radial-gradient(black, var(--lbo));
   color: grey;
   font-size: calc(1rem + 1vmin);
   text-align: center;

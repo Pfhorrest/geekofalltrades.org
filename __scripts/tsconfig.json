@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": ["es2016", "dom"],
+    "strict": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    // "module": "AMD",
+    // "target": "ES5",
+    // "outFile": "scripts-intermediate.js",
+  },
+  "include": ["**/*.ts"]
+}

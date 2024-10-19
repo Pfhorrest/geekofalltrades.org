@@ -246,7 +246,7 @@
 	<p class="description"></p>
 	<section id="ucsb">
 		<h4>Bachelor of Arts in Philosophy</h4>
-		<p class="description">at the University of California at Santa Barbara, class of 2007 with a 3.9 GPA, Highest Honors, and Dean's Honor Roll</p>
+		<p class="description">at the University of California at Santa Barbara, class of 2007 with a 3.9 GPA, Highest Honors, and Dean's Honor Roll (plus a declined invitation to Phi Beta Kappa)</p>
 		<p>
 			Classes in ancient and modern history of philosophy, logic,
 			general metaphysics, philosophy of space and time, philosophy of mind, philosophy of science, philosophy of religion,

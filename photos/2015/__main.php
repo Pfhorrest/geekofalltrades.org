@@ -66,6 +66,6 @@
 				'description' => 'iPhone 4, 2015-01-11.'
 			),
 		);
-		require $_SERVER['DOCUMENT_ROOT'] . "/___prevhp/gallery.php";
+		require "modules/gallery.php";
 	?>
 </section>

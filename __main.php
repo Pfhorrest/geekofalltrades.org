@@ -158,19 +158,23 @@
 		I continuously update it to conform to newer standards and best practices and
 		to take advantage of newer technologies. However not only the methods but also
 		the values of the web have changed over that time, sometimes for the better
-		but not always, and I strive in this site, the one place where I have free
-		reign, to both uphold the good aspects of the old web in spite of trends to
-		the contrary, and also to embrace the good aspects of the new web to improve
-		upon the way things used to be.
-	</p>
-	<p>To that end:</p> 
+		but not always.
+	</p> 
+	<p>
+		So I strive in this site, the one place where I have free reign with no
+		other stakeholders to please, to both uphold the good aspects of the old web
+		in spite of trends to the contrary, and also to embrace the good aspects of
+		the new web to improve upon the way things used to be. To that end:
+	</p> 
 	<ul>
 		<li>
-			<strong>[M]</strong>
+			<strong>Structure</strong>
 			<ul>
 				<li>
 					This site is all hand-written in plain HTML, except for some
-					limited use of PHP to enable code reuse and avoid repetition.
+					limited use of PHP to enable code reuse and avoid repetition,
+					borrowing some useful concepts from NextJS to create something
+					that I playfully call "PrevHP".
 				</li>
 				<li>
 					But that's all modern fully semantic polyglot (X)HTML5, which
@@ -178,15 +182,10 @@
 					accessible to screen readers without any special additional
 					effort.
 				</li>
-				<li>
-					I also borrow some useful concepts from NextJS into my very
-					lightweight custom PHP system to create something that I
-					playfully call "PrevHP".
-				</li>
 			</ul>
 		</li>
 		<li>
-			<strong>[V]</strong>
+			<strong>Styles</strong>
 			<ul>
 				<li>
 					Because that underlying structure makes natural sense regardless
@@ -222,24 +221,22 @@
 			</ul>
 		</li>
 		<li>
-			<strong>[C]</strong>
+			<strong>Scripts</strong>
 			<ul>
 				<li>
 					Thanks to that separation of concerns, the site also works fine
 					even with JavaScript completely disabled, unlike many modern
 					SPAs (which again helps automatically ensure searchability and
-					accessibility).
-				</li>
-				<li>
-					But it has tons of subtle progressive enhancements to the UX
+					accessibility); but it has tons of subtle progressive enhancements to the UX
 					for those who do have Javascript enabled.
 				</li>
 				<li>
-					And all of that is written almost entirely in vanilla modern ES6,
-					plus a dash of jQuery for some things that would be unwieldy to
-					implement in vanilla even today but which that allows to be done
-					cleanly: no dependence on any heavy frameworks, making for snappy
-					performance on both the client and server ends.
+					And all of that is written almost entirely in vanilla modern ES6
+					(or actually TypeScript, for better error checking):
+					no dependence on any heavy frameworks, making for snappy
+					performance on both the client and server ends, and easy
+					approachability to developers with little more than the basically
+					vanilla web technologies.
 				</li>
 			</ul>
 		</li>

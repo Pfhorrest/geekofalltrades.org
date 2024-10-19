@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build": "rm -f scripts-intermediate.js && tsc && wait-on scripts-intermediate.js && webpack",
+    "watch": "rm -f scripts-intermediate.js && tsc --watch && wait-on scripts-intermediate.js webpack --watch"
+  }
+}

@@ -117,7 +117,7 @@
   --seaHue2: 210;
   --seaHue3: 240;
   --seaShadow: hsl(from var(--seaColor1) h 100% 0% / 100%);
-  --mbo: hsl(from black h s l / 93.75%);
+  --lbo: hsl(from black h s l / 93.75%);
   --bp1: 20rem;
   --bp2: 40rem;
   --bp3: 60rem;
@@ -535,7 +535,8 @@ footer a:visited {
   overflow-y: auto;
   padding: 0 0.5em;
   gap: 0 0.5em;
-  display: flex;
+  --display: flex;
+  display: none;
   flex-flow: column nowrap;
   flex-shrink: 1;
   position: relative;
@@ -548,10 +549,13 @@ footer a:visited {
     var(--cc75) calc(6 * 100% / 6)
   );
 }
+#menu * {
+  --display: ;
+}
 @media (min-width: 40rem) {
   #menu {
+    display: flex;
     flex-flow: row wrap;
-    max-height: auto;
     min-height: auto;
     overflow-x: visible;
     overflow-y: visible;
@@ -569,7 +573,9 @@ footer a:visited {
   order: -1;
   z-index: 1;
   margin: 0;
+  margin-bottom: -2em;
   padding: 0 1em;
+  padding-bottom: 2em;
   border: none;
   border-top: 0pt solid white;
   outline: none;
@@ -605,8 +611,8 @@ footer a:visited {
 }
 @media (min-width: 40rem) {
   #menu > a {
-    margin-bottom: -2em;
-    padding-bottom: 2em;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
   #menu > a:hover, #menu > a:focus, #menu > a:active {
     box-shadow: 1pt 1pt 0pt var(--gloss) inset, -1pt 0pt 0pt var(--shade) inset, 1pt 1pt 0 0 transparent inset;
@@ -620,9 +626,11 @@ footer a:visited {
 #menu > a:last-of-type + ul {
   display: flex;
 }
-#menu ul {
-  flex-basis: 100%;
+#menu > ul {
+  box-sizing: border-box;
+  flex-basis: auto;
   z-index: 1;
+  --display: flex;
   display: none;
   flex-flow: row wrap;
   flex-shrink: 1;
@@ -639,33 +647,38 @@ footer a:visited {
   text-align: center;
   line-height: 2.5;
   box-shadow: 0pt -1pt 0 0 var(--shade);
+  transition: all 0.25s;
+  will-change: height, padding-top, padding-bottom, row-gap;
+}
+#menu > ul * {
+  --display: ;
 }
 @media (min-width: 40rem) {
-  #menu ul {
+  #menu > ul {
+    flex-basis: 100vw;
     box-shadow: 0pt -1pt 0pt transparent inset, 0pt 1pt 1pt transparent, 0 -1pt 0 0 var(--shade) inset;
-    transition: height 0s, margin 0s, padding 0s;
   }
-  #menu ul:hover, #menu ul:focus, #menu ul:active {
+  #menu > ul:hover, #menu > ul:focus, #menu > ul:active {
     box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade), 0 -1pt 0 0 transparent inset;
     background-position-y: 100%;
   }
 }
 @media (min-width: 40rem) {
-  #menu ul {
+  #menu > ul {
     overflow-y: visible;
   }
 }
-#menu ul > * {
+#menu > ul > * {
   flex: 1 1 100%;
   white-space: normal;
 }
 @media (min-width: 40rem) {
-  #menu ul > * {
+  #menu > ul > * {
     flex: 1 0 0%;
     white-space: nowrap;
   }
 }
-#menu ul li {
+#menu > ul li {
   position: relative;
   display: inline-block;
   height: auto;
@@ -677,7 +690,7 @@ footer a:visited {
   /* An active dropdown menu button */
   /* The contents of the dropdown menu */
 }
-#menu ul li a {
+#menu > ul li a {
   display: inline-block;
   float: none;
   width: 100%;
@@ -699,17 +712,17 @@ footer a:visited {
   transition: all 1s;
   /* For the dropdown menu arrows */
 }
-#menu ul li a:hover, #menu ul li a:focus, #menu ul li a:active {
+#menu > ul li a:hover, #menu > ul li a:focus, #menu > ul li a:active {
   box-shadow: 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade), 0 0 0 1pt transparent inset;
   background-size: 100% 100%;
 }
-#menu ul li a:hover {
+#menu > ul li a:hover {
   background: radial-gradient(transparent, var(--cmg)), linear-gradient(to var(--curve), var(--cm95), var(--cm75));
 }
-#menu ul li a:active {
+#menu > ul li a:active {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
 }
-#menu ul li a.submenu::before, #menu ul li a.submenu::after {
+#menu > ul li a.submenu::before, #menu > ul li a.submenu::after {
   content: "▼";
   display: inline-block;
   position: absolute;
@@ -719,47 +732,47 @@ footer a:visited {
   transform: rotate(0deg);
 }
 @media only print {
-  #menu ul li a.submenu::before, #menu ul li a.submenu::after {
+  #menu > ul li a.submenu::before, #menu > ul li a.submenu::after {
     display: none;
   }
 }
-#menu ul li a.submenu::before {
+#menu > ul li a.submenu::before {
   left: 0.5em;
   margin-right: 0.5em;
   transform: rotate(-90deg);
 }
-#menu ul li a.submenu::after {
+#menu > ul li a.submenu::after {
   right: 0.5em;
   margin-left: 0.5em;
   transform: rotate(90deg);
 }
-#menu ul li a.submenu:hover::before {
+#menu > ul li a.submenu:hover::before {
   text-shadow: -1pt 1pt 1pt var(--shade);
 }
-#menu ul li.current {
+#menu > ul li.current {
   position: relative;
   z-index: 1;
 }
-#menu ul li.current a {
+#menu > ul li.current a {
   background: radial-gradient(transparent, var(--cmg)), linear-gradient(to var(--curve), var(--cm95), var(--cm75));
   background-size: 1000% 1000%;
   /* Flip the dropdown menu arrows */
 }
-#menu ul li.current a:hover {
+#menu > ul li.current a:hover {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
   background-size: 100% 100%;
 }
-#menu ul li.current a:active {
+#menu > ul li.current a:active {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
   background-size: 100% 100%;
 }
-#menu ul li.current a::before, #menu ul li.current a::after {
+#menu > ul li.current a::before, #menu > ul li.current a::after {
   transform: rotate(0deg);
 }
-#menu ul li.current a:hover::before {
+#menu > ul li.current a:hover::before {
   text-shadow: 1pt 1pt 1pt var(--shade);
 }
-#menu ul li ul {
+#menu > ul li ul {
   display: none;
   overflow-y: auto;
   position: static;
@@ -768,32 +781,34 @@ footer a:visited {
   left: 0.5em;
   width: 100%;
   padding: 0.125em 0;
+  margin: 0;
   border-radius: calc(0.5 * var(--rounding));
   background: linear-gradient(to right, var(--cm70), var(--cm80), var(--cm70));
   background-size: 1000% 1000%;
   background-position-x: 50%;
   box-shadow: 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 1pt 1pt 1pt transparent, 0 0 0 1pt var(--shade) inset;
 }
-#menu ul li ul:hover, #menu ul li ul:focus, #menu ul li ul:active {
+#menu > ul li ul:hover, #menu > ul li ul:focus, #menu > ul li ul:active {
   box-shadow: 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade), 0 0 0 1pt transparent inset;
   background-size: 100% 100%;
 }
 @media (min-width: 40rem) {
-  #menu ul li ul {
+  #menu > ul li ul {
     position: absolute;
     width: 100%;
     box-sizing: border-box;
     max-height: calc(100vh - 10em);
+    margin: 0 -0.5em;
     padding: 0;
     padding-top: 2em;
   }
 }
-#menu ul li ul li {
+#menu > ul li ul li {
   display: block;
   margin: 0.5em;
   white-space: normal;
 }
-#menu ul li ul li a {
+#menu > ul li ul li a {
   width: 100%;
   box-sizing: border-box;
   padding: 0.5em 1em;
@@ -834,29 +849,29 @@ main > * {
   text-shadow: 0 0 0.5em var(--cbi);
 }
 main * {
-  transition: all 0.5s, opacity var(--dur) linear, transform var(--dur) cubic-bezier(0.75, 1.75, 0.75, 0.75) calc(var(--delA) + var(--delB));
+  transition: all var(--dur), opacity var(--dur) linear, transform var(--dur) cubic-bezier(0.75, 1.75, 0.75, 0.75) calc(var(--delA) + var(--delB));
   --dur: 1s;
   --delA: 0s;
   --delB: 0s;
 }
-main *.animate-in > * {
+main *.off-screen > * {
   --delA: calc(1s / 16);
 }
-main *.animate-in > *.animate-in > * {
+main *.off-screen > *.off-screen > * {
   --delA: calc(2s / 16);
 }
-main *.animate-in > *.animate-in > *.animate-in > * {
+main *.off-screen > *.off-screen > *.off-screen > * {
   --delA: calc(3s / 16);
 }
-main *.animate-in > *.animate-in > *.animate-in > *.animate-in > * {
+main *.off-screen > *.off-screen > *.off-screen > *.off-screen > * {
   --delA: calc(4s / 16);
 }
-main *.animate-in {
+main *.off-screen {
   transition-delay: 0s;
   --dur: 0s;
 }
 @media only screen {
-  main *.animate-in {
+  main *.off-screen {
     opacity: 0;
     transform: rotateY(0.25turn);
   }
@@ -1096,7 +1111,7 @@ main .toggleAllControls:last-of-type .anchorTarget:hover::after {
   }
 }
 main section {
-  --dur: 0s;
+  --dur: 0.5s;
   transition: all 0.5s;
   clear: both;
   width: 100%;
@@ -1239,31 +1254,31 @@ main section.toggleable h6::after {
   --dur: 1s;
   transition: all var(--dur), opacity var(--dur) var(--dur);
 }
-main section.toggleable h1.animate-in::before, main section.toggleable h1.animate-in::after,
-main section.toggleable h2.animate-in::before,
-main section.toggleable h2.animate-in::after,
-main section.toggleable h3.animate-in::before,
-main section.toggleable h3.animate-in::after,
-main section.toggleable h4.animate-in::before,
-main section.toggleable h4.animate-in::after,
-main section.toggleable h5.animate-in::before,
-main section.toggleable h5.animate-in::after,
-main section.toggleable h6.animate-in::before,
-main section.toggleable h6.animate-in::after {
+main section.toggleable h1.off-screen::before, main section.toggleable h1.off-screen::after,
+main section.toggleable h2.off-screen::before,
+main section.toggleable h2.off-screen::after,
+main section.toggleable h3.off-screen::before,
+main section.toggleable h3.off-screen::after,
+main section.toggleable h4.off-screen::before,
+main section.toggleable h4.off-screen::after,
+main section.toggleable h5.off-screen::before,
+main section.toggleable h5.off-screen::after,
+main section.toggleable h6.off-screen::before,
+main section.toggleable h6.off-screen::after {
   transition-delay: 0s;
 }
 @media only screen {
-  main section.toggleable h1.animate-in::before, main section.toggleable h1.animate-in::after,
-main section.toggleable h2.animate-in::before,
-main section.toggleable h2.animate-in::after,
-main section.toggleable h3.animate-in::before,
-main section.toggleable h3.animate-in::after,
-main section.toggleable h4.animate-in::before,
-main section.toggleable h4.animate-in::after,
-main section.toggleable h5.animate-in::before,
-main section.toggleable h5.animate-in::after,
-main section.toggleable h6.animate-in::before,
-main section.toggleable h6.animate-in::after {
+  main section.toggleable h1.off-screen::before, main section.toggleable h1.off-screen::after,
+main section.toggleable h2.off-screen::before,
+main section.toggleable h2.off-screen::after,
+main section.toggleable h3.off-screen::before,
+main section.toggleable h3.off-screen::after,
+main section.toggleable h4.off-screen::before,
+main section.toggleable h4.off-screen::after,
+main section.toggleable h5.off-screen::before,
+main section.toggleable h5.off-screen::after,
+main section.toggleable h6.off-screen::before,
+main section.toggleable h6.off-screen::after {
     opacity: 0;
   }
 }
@@ -1428,7 +1443,7 @@ main section figure.contained {
 main section figure.contained:hover, main section figure.contained:focus, main section figure.contained:active {
   box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
 }
-main section figure.contained.animate-in img {
+main section figure.contained.off-screen img {
   transform: none;
 }
 @media (prefers-color-scheme: light) {
@@ -1447,7 +1462,7 @@ main section figure img {
   margin: auto;
 }
 @media only screen {
-  main section figure.animate-in img {
+  main section figure.off-screen img {
     transform: scale(0);
   }
 }
@@ -1791,7 +1806,7 @@ main section .gallery .item img {
   transition: border-radius var(--dur) calc(var(--delA) + var(--delB)), transform var(--dur) calc(var(--delA) + var(--delB));
 }
 @media only screen {
-  main section .gallery .item.animate-in img {
+  main section .gallery .item.off-screen img {
     transform: scale(0);
     border-radius: 100%;
     transition-delay: 0s;
@@ -1841,8 +1856,8 @@ main section .gallery .item a.cover, main section .gallery .item a.cover:hover, 
   color: transparent;
 }
 
-/* Modal image display */
-.display {
+/* Lightbox */
+.lightbox {
   position: fixed;
   z-index: 3;
   inset: 0;
@@ -1853,21 +1868,21 @@ main section .gallery .item a.cover, main section .gallery .item a.cover:hover, 
   overflow: hidden;
   margin: 0;
   padding: 0;
-  background: radial-gradient(black, var(--mbo));
+  background: radial-gradient(black, var(--lbo));
   color: grey;
   font-size: calc(1rem + 1vmin);
   text-align: center;
   float: none;
   gap: var(--spacing);
 }
-.display.modal {
+.lightbox.modal {
   opacity: 0;
 }
-.display,
-.display * {
+.lightbox,
+.lightbox * {
   transition-duration: 0s;
 }
-.display img {
+.lightbox img {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1881,8 +1896,8 @@ main section .gallery .item a.cover, main section .gallery .item a.cover:hover, 
   margin: 0 auto;
   background: white;
 }
-.display h2,
-.display nav {
+.lightbox h2,
+.lightbox nav {
   display: flex;
   align-items: center;
   max-height: 1em;
@@ -1897,12 +1912,12 @@ main section .gallery .item a.cover, main section .gallery .item a.cover:hover, 
   gap: 0.5ch;
   border: none;
 }
-.display nav {
+.lightbox nav {
   top: auto;
   bottom: 0;
   background: none;
 }
-.display a {
+.lightbox a {
   display: inline-block;
   width: 1em;
   margin: 0 1em;
@@ -1916,10 +1931,10 @@ main section .gallery .item a.cover, main section .gallery .item a.cover:hover, 
   user-select: none;
   cursor: pointer;
 }
-.display a:hover, .display a:focus, .display a:active {
+.lightbox a:hover, .lightbox a:focus, .lightbox a:active {
   text-shadow: 0 0 0.125em black;
 }
-.display a:hover, .display a:focus {
+.lightbox a:hover, .lightbox a:focus {
   color: white;
 }
 

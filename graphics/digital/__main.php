@@ -45,6 +45,6 @@
 				'description' => 'Photoshop, 2004.'
 			),
 		);
-		require $_SERVER['DOCUMENT_ROOT'] . "/___prevhp/gallery.php";
+		require "modules/gallery.php";
 	?>
 </section>
