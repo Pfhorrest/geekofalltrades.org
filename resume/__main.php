@@ -80,7 +80,7 @@
 			</ul>
 		</section>
 		<section id="deployment">
-			<h5>Hosting and Deployment</h5>
+			<h5>Dev Ops</h5>
 			<p class="description"></p>
 			<ul class="gallery">
 				<li class="item">
@@ -113,7 +113,7 @@
 			</ul>
 		</section>
 		<section id="development">
-			<h5>Development Tools</h5>
+			<h5>Dev Tools</h5>
 			<p class="description"></p>
 			<ul class="gallery">
 				<li class="item">
