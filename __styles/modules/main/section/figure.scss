@@ -72,37 +72,46 @@
 
     /* At larger viewports, float figures alternately left or right */
     @media (min-width: $bp2) {
-      float: left;
-      transform-origin: left;
       --fw: calc(50% - 1.5 * var(--spacing)); // Figure width
       max-width: var(--fw);
-      margin: 0 var(--spacing) var(--spacing) 0;
+      margin-top: 0;
+      margin-bottom: var(--spacing);
 
-      &:nth-of-type(even):not(.solo) {
-        float: right;
-        transform-origin: right;
-        margin-left: var(--spacing);
-        margin-right: 0;
-      }
       /* Unless they're classed "solo" */
       &.solo {
         float: none;
         transform-origin: center;
         max-width: 100%;
       }
-      /* Imperfect hack to continue alternation across multiple sections */
-      section:nth-of-type(even) &:not(.solo) {
-        float: right;
-        transform-origin: right;
-        margin-left: var(--spacing);
-        margin-right: 0;
-
-        &:nth-of-type(even):not(.solo) {
+      
+      /* Otherwise ... */
+      &:not(.solo) {
+        &:nth-of-type(odd) {
           float: left;
           transform-origin: left;
           margin-right: var(--spacing);
           margin-left: 0;
         }
+        &:nth-of-type(even) {
+          float: right;
+          transform-origin: right;
+          margin-left: var(--spacing);
+          margin-right: 0;
+        }
+      }
+      /* Imperfect hack to continue alternation across multiple sections */
+      @at-root main section:nth-of-type(even) figure:nth-of-type(odd) {
+        float: right;
+        transform-origin: right;
+        margin-left: var(--spacing);
+        margin-right: 0;
+      }
+
+      @at-root main section:nth-of-type(even) figure:nth-of-type(even) {
+        float: left;
+        transform-origin: left;
+        margin-right: var(--spacing);
+        margin-left: 0;
       }
     }
 
@@ -116,35 +125,43 @@
         calc(var(--fw) - 0.5 * var(--fms))
       );
 
-      margin-left: var(--fms);
-      transform-origin: right;
-      &:nth-of-type(even):not(.solo) {
-        margin-left: var(--spacing);
-        margin-right: var(--fms);
-        transform-origin: left;
-      }
-      max-width: var(--fmw);
-
-      /* These need to be applied to those in alternating sections too */
-      section:nth-of-type(even) &:not(.solo) {
-        margin-left: var(--spacing);
-        margin-right: var(--fms);
-        transform-origin: left;
-
-        &:nth-of-type(even):not(.solo) {
-          margin-right: var(--spacing);
-          margin-left: var(--fms);
-          transform-origin: right;
-        }
-      }
-
       /* Those classed as "solo" extent out beyond both sides of their sections */
       &.solo {
         width: 100vw;
         max-width: min(300%, 100% - 2 * var(--fms) - 2 * var(--spacing));
+        margin-left: var(--fms);
         margin-right: var(--fms);
         transform-origin: center;
         transition-duration: calc(2 * var(--dur));
+      }
+
+      /* The rest of them... */
+      &:not(.solo) {
+        max-width: var(--fmw);
+
+        &:nth-of-type(odd) {
+          margin-right: var(--spacing);
+          margin-left: var(--fms);
+          transform-origin: right;
+        }
+        &:nth-of-type(even) {
+          margin-left: var(--spacing);
+          margin-right: var(--fms);
+          transform-origin: left;
+        }
+
+        /* These need to be applied to those in alternating sections too */
+        @at-root main section:nth-of-type(even) figure:nth-of-type(odd) {
+          margin-left: var(--spacing);
+          margin-right: var(--fms);
+          transform-origin: right;
+        }
+
+        @at-root main section:nth-of-type(even) figure:nth-of-type(even) {
+          margin-right: var(--spacing);
+          margin-left: var(--fms);
+          transform-origin: left;
+        }
       }
 
       /* They need a section-like padding, borders and backgrounds to look nice */
