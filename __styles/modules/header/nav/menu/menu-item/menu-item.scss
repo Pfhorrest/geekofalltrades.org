@@ -83,6 +83,7 @@ li {
       &:active,
       &:hover,
       &:focus,
+      &:link,
       &:visited {
         color: var(--ct);
       }

@@ -662,7 +662,7 @@ header nav > ul li a {
   transition: all 1s;
   /* Different colors for hover and active states */
 }
-header nav > ul li a, header nav > ul li a:active, header nav > ul li a:hover, header nav > ul li a:focus, header nav > ul li a:visited {
+header nav > ul li a, header nav > ul li a:active, header nav > ul li a:hover, header nav > ul li a:focus, header nav > ul li a:link, header nav > ul li a:visited {
   color: var(--ct);
 }
 header nav > ul li a:hover, header nav > ul li a:focus, header nav > ul li a:active {
