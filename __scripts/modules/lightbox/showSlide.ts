@@ -12,9 +12,17 @@ export const showSlide = (index: number): void => {
   // Get the list of slides
   const slidesList = slides();
   const slidesLength = slidesList.length;
-  // Loop the index around to the beginning or end of the list if it is out of bounds
-  if (index >= slidesLength || index < 0) {
+  // Loop around to the end of the list if the index is negative
+  if (index < 0) {
+    // console.log("index is negative:", index);
+    index = slidesLength + index;
+    // console.log("slidesLength + index:", slidesLength + index);
+  }
+  // Loop around to the beginning of the list if the index is out of bounds
+  if (index >= slidesLength) {
+    // console.log("index is out of bounds:", index);
     index = index % slidesLength;
+    // console.log("index % slidesLength:", index % slidesLength);
   }
   // Get the slide at the specified index
   const slide = slidesList[index];
@@ -77,14 +85,14 @@ export const showSlide = (index: number): void => {
         // console.log("Setting image source to:", srcUrl);
         imageElement.src = srcUrl;
       } else {
-        // If not, look in __images/ instead
-        // console.log("Setting image source to:", "__images/" + srcUrl);
-        imageElement.src = "__images/" + srcUrl;
+        // If not, look in _media/images/ instead
+        // console.log("Setting image source to:", "_media/images/" + srcUrl);
+        imageElement.src = "_media/images/" + srcUrl;
       }
     })
     .catch(() => {
-      // console.log("Setting image source to:", "__images/" + srcUrl);
-      imageElement.src = "__images/" + srcUrl;
+      // console.log("Setting image source to:", "_media/images/" + srcUrl);
+      imageElement.src = "_media/images/" + srcUrl;
     });
   // Set the image alt attribute to the caption text
   imageElement.alt = captionElement?.textContent || "";
