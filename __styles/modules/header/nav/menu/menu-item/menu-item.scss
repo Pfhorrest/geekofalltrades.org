@@ -117,5 +117,10 @@ li {
 
     /* Styles for menu items with submenus */
     @include menu-item-with-submenu;
+
+    /* Hide submenus by default (even if menu item isn't classed ".submenu") */
+    > ul {
+      display: none;
+    }
   }
 }

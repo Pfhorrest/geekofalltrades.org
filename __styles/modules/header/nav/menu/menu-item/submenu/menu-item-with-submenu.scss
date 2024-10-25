@@ -8,7 +8,7 @@
 
 @mixin menu-item-with-submenu {
   /* For the dropdown menu arrows */
-  &.submenu {
+  &.submenu, &:has(ul) {
     > a {
       &::before,
       &::after {

@@ -621,6 +621,7 @@ header nav > ul li {
   /* Styles for active menu items */
   /* Styles for menu items with submenus */
   /* For the dropdown menu arrows */
+  /* Hide submenus by default (even if menu item isn't classed ".submenu") */
 }
 @media (min-width: 40rem) {
   header nav > ul li {
@@ -695,16 +696,16 @@ header nav > ul li.current a:active {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
   background-size: 100% 100%;
 }
-header nav > ul li.submenu {
+header nav > ul li.submenu, header nav > ul li:has(ul) {
   /* But when the menu item is active ... */
 }
-header nav > ul li.submenu > a {
+header nav > ul li.submenu > a, header nav > ul li:has(ul) > a {
   /* Rotate the left one counter-clockwise by default */
   /* Rotate the right one clockwise by default */
   /* Reverse the shadow of the left one
      since they're in opposite orientations now */
 }
-header nav > ul li.submenu > a::before, header nav > ul li.submenu > a::after {
+header nav > ul li.submenu > a::before, header nav > ul li.submenu > a::after, header nav > ul li:has(ul) > a::before, header nav > ul li:has(ul) > a::after {
   content: "▼";
   position: absolute;
   display: inline-block;
@@ -713,30 +714,30 @@ header nav > ul li.submenu > a::before, header nav > ul li.submenu > a::after {
   vertical-align: middle;
   transform: rotate(0deg);
 }
-header nav > ul li.submenu > a::before {
+header nav > ul li.submenu > a::before, header nav > ul li:has(ul) > a::before {
   left: 0.5em;
   margin-right: 0.5em;
   transform: rotate(-90deg);
 }
-header nav > ul li.submenu > a::after {
+header nav > ul li.submenu > a::after, header nav > ul li:has(ul) > a::after {
   right: 0.5em;
   margin-left: 0.5em;
   transform: rotate(90deg);
 }
-header nav > ul li.submenu > a:hover::before {
+header nav > ul li.submenu > a:hover::before, header nav > ul li:has(ul) > a:hover::before {
   text-shadow: -1pt 1pt 1pt var(--shade);
 }
-header nav > ul li.submenu.current a {
+header nav > ul li.submenu.current a, header nav > ul li:has(ul).current a {
   /* Flip the dropdown menu arrows back to normal */
   /* Reverse the shadow of the left one back again */
 }
-header nav > ul li.submenu.current a::before, header nav > ul li.submenu.current a::after {
+header nav > ul li.submenu.current a::before, header nav > ul li.submenu.current a::after, header nav > ul li:has(ul).current a::before, header nav > ul li:has(ul).current a::after {
   transform: rotate(0deg);
 }
-header nav > ul li.submenu.current a:hover::before {
+header nav > ul li.submenu.current a:hover::before, header nav > ul li:has(ul).current a:hover::before {
   text-shadow: 1pt 1pt 1pt var(--shade);
 }
-header nav > ul li.submenu ul {
+header nav > ul li.submenu ul, header nav > ul li:has(ul) ul {
   /* Layout */
   position: static;
   display: none;
@@ -759,12 +760,12 @@ header nav > ul li.submenu ul {
   /* At larger viewport widths, drop down instead of just expanding in place */
   /* Submenu items */
 }
-header nav > ul li.submenu ul:hover, header nav > ul li.submenu ul:focus, header nav > ul li.submenu ul:active {
+header nav > ul li.submenu ul:hover, header nav > ul li.submenu ul:focus, header nav > ul li.submenu ul:active, header nav > ul li:has(ul) ul:hover, header nav > ul li:has(ul) ul:focus, header nav > ul li:has(ul) ul:active {
   box-shadow: 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade), 0 0 0 1pt transparent inset;
   background-size: 100% 100%;
 }
 @media (min-width: 40rem) {
-  header nav > ul li.submenu ul {
+  header nav > ul li.submenu ul, header nav > ul li:has(ul) ul {
     position: absolute;
     width: 100%;
     box-sizing: border-box;
@@ -773,16 +774,19 @@ header nav > ul li.submenu ul:hover, header nav > ul li.submenu ul:focus, header
     padding: 2em 0 0;
   }
 }
-header nav > ul li.submenu ul li {
+header nav > ul li.submenu ul li, header nav > ul li:has(ul) ul li {
   display: block;
   margin: 0.5em;
   white-space: normal;
   /* Item links */
 }
-header nav > ul li.submenu ul li a {
+header nav > ul li.submenu ul li a, header nav > ul li:has(ul) ul li a {
   width: 100%;
   box-sizing: border-box;
   padding: 0.5em 1em;
+}
+header nav > ul li > ul {
+  display: none;
 }
 header nav > a:last-of-type + ul {
   display: flex;
