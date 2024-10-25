@@ -1,0 +1,56 @@
+@use "./submenu.scss" as *;
+
+/// Styles for menu items that have submenus
+/// @group header
+/// @require {mixin} submenu - Styles for submenus
+/// @see {mixin} menu-item - General styles for menu items
+/// @see {mixin} menu-item-current - Styles for active menu items
+
+@mixin menu-item-with-submenu {
+  /* For the dropdown menu arrows */
+  &.submenu {
+    > a {
+      &::before,
+      &::after {
+        content: "▼";
+        position: absolute;
+        display: inline-block;
+        top: 0.5em;
+        opacity: 0.25;
+        vertical-align: middle;
+        transform: rotate(0deg);
+      }
+
+      /* Rotate the left one counter-clockwise by default */
+      &::before {
+        left: 0.5em;
+        margin-right: 0.5em;
+        transform: rotate(-90deg);
+      }
+      /* Rotate the right one clockwise by default */
+      &::after {
+        right: 0.5em;
+        margin-left: 0.5em;
+        transform: rotate(90deg);
+      }
+      /* Reverse the shadow of the left one
+         since they're in opposite orientations now */
+      &:hover::before {
+        text-shadow: -1pt 1pt 1pt var(--shade);
+      }
+    }
+    /* But when the menu item is active ... */
+    &.current a {
+      /* Flip the dropdown menu arrows back to normal */
+      &::before,
+      &::after {
+        transform: rotate(0deg);
+      }
+      /* Reverse the shadow of the left one back again */
+      &:hover::before {
+        text-shadow: 1pt 1pt 1pt var(--shade);
+      }
+    }
+    @include submenu;
+  }
+}

@@ -1,0 +1,119 @@
+@use "./section-toggleable.scss" as *;
+@use "./section-animation.scss" as *;
+@use "./figure.scss" as *;
+@use "./duo.scss" as *;
+@use "./gallery/gallery.scss" as *;
+
+/// Styles for sections
+/// @group main
+/// @requires {mixin} section-toggleable - Styles for sections that can be toggled
+/// @requires {mixin} section-animation - Styles for section animations
+/// @requires {mixin} figure - Styles for figures
+/// @requires {mixin} duo - Styles for duos of sections side by side when possible
+/// @requires {mixin} gallery - Styles for galleries
+
+@mixin section {
+  section {
+    /* Layout */
+    clear: both;
+
+    /* Sizing */
+    width: 100%;
+    box-sizing: border-box;
+
+    /* Spacing */
+    max-width: calc(80ch + 2 * var(--spacing));
+    margin: 0 auto;
+    /* First-order sections have flex gap between them, so no vertical margins */
+    section:not(:last-child) {
+      /* But sections within sections do get bottom margins, unless they're last */
+      margin-bottom: var(--spacing);
+    }
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    padding: var(--spacing);
+
+    /* Borders */
+    border: 0;
+    outline: 0;
+    /* Deeper nested subsections get less rounded */
+    border-radius: calc(2 * var(--rounding));
+    section {
+      border-radius: calc(1.75 * var(--rounding));
+      section {
+        border-radius: calc(1.5 * var(--rounding));
+        section {
+          border-radius: calc(1.25 * var(--rounding));
+          section {
+            border-radius: calc(1 * var(--rounding));
+          }
+        }
+      }
+    }
+    box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
+      1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+      0 0 0 1pt var(--gloss) inset;
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss),
+        1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+        0 0 0 1pt transparent inset;
+    }
+
+    /* Background */
+    background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+    background-position: center;
+
+    /* Typography */
+    text-shadow: 0 0 0.5em var(--cbi);
+
+    /* Effects */
+    transition: all 0.5s;
+    /* Deeper nested subsections transition more slowly */
+    --dur: 0.5s;
+    section {
+      --dur: 0.25s;
+      section {
+        --dur: 0.5s;
+        section {
+          --dur: 0.75s;
+          section {
+            --dur: 1s;
+          }
+        }
+      }
+    }
+
+    /* Clear fix so floating figures don't extend beyond their sections */
+    &:after {
+      content: "";
+      display: block;
+      height: 0;
+      clear: both;
+    }
+
+    /* Get rid of padding on print */
+    @media only print {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    /* Styles for section animations */
+    @include section-animation;
+
+    /* Styles for sections that can be toggled */
+    @include toggleable;
+
+    /* Styles for figures */
+    @include figure;
+
+    /* Styles for duos of sections side by side when possible */
+    @include duo;
+
+    /* Styles for galleries */
+    @include gallery;
+  }
+}

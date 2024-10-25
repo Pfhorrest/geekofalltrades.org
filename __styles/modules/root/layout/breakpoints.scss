@@ -1,0 +1,53 @@
+/// First breakpoint value
+/// @group layout
+/// @type Length
+/// @see $bp2 - Second breakpoint value
+/// @see $bp3 - Third breakpoint value
+/// @see $bp4 - Fourth breakpoint value
+
+$bp1: 20rem; // = 320px
+
+
+/// Second breakpoint value
+/// @group layout
+/// @type Length
+/// @see $bp1 - First breakpoint value
+/// @see $bp3 - Third breakpoint value
+/// @see $bp4 - Fourth breakpoint value
+
+$bp2: 40rem; // = 640px
+
+
+/// Third breakpoint value
+/// @group layout
+/// @type Length
+/// @see $bp1 - First breakpoint value
+/// @see $bp2 - Second breakpoint value
+/// @see $bp4 - Fourth breakpoint value
+
+$bp3: 60rem; // = 640px
+
+
+/// Fourth breakpoint value
+/// @group layout
+/// @type Length
+/// @see $bp1 - First breakpoint value
+/// @see $bp2 - Second breakpoint value
+/// @see $bp3 - Third breakpoint value
+
+$bp4: 80rem; // = 1280px
+
+
+/// CSS variables for breakpoints, to include in root element
+/// @group layout
+/// @see $bp1 - First breakpoint value
+/// @see $bp2 - Second breakpoint value
+/// @see $bp3 - Third breakpoint value
+/// @see $bp4 - Fourth breakpoint value
+
+@mixin breakpoints {
+  --bp1: #{$bp1};
+  --bp2: #{$bp2};
+  --bp3: #{$bp3};
+  --bp4: #{$bp4};
+}

@@ -1,0 +1,111 @@
+/// Styles for general elements of the main section
+/// @group main
+/// @see {mixin} headings - Styles for headings in particular
+/// @see {mixin} main - General styles for the main section
+
+@mixin main-elements {
+  /* Paragraphs */
+  p {
+    text-indent: 2em;
+
+    /* Special description paragraphs for below section headiings */
+    &.description {
+      padding: var(--spacing);
+      padding-top: 0;
+      border-radius: var(--rounding);
+      border: none;
+      border-bottom: 1pt groove var(--cw75);
+      color: var(--cm50);
+      text: {
+        align: center;
+        indent: 0;
+      }
+    }
+  }
+
+  /* Lists */
+  ul,
+  ol {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    padding-left: 1.5ch;
+
+    /* List items */
+    li {
+      margin: var(--spacing) 0;
+      padding: 0;
+    }
+  }
+
+  /* Blockquotes */
+  blockquote {
+    position: relative;
+    margin: 0 auto;
+    padding: var(--spacing) calc(2 * var(--spacing));
+    border: 1pt dashed var(--cw75);
+    border-radius: calc(0.5 * var(--rounding));
+
+    /* Decorative quotation marks */
+    &:before {
+      content: "“";
+      position: absolute;
+      top: 0;
+      left: 1rem;
+      display: block;
+      width: 1em;
+      height: 1em;
+      font-size: 2em;
+      text-align: left;
+    }
+    &:after {
+      content: "”";
+      position: absolute;
+      bottom: 0;
+      right: 1rem;
+      display: block;
+      width: 1em;
+      height: 1em;
+      font-size: 2em;
+      text-align: right;
+    }
+  }
+
+  /* Horizontal rules */
+  hr {
+    content: url(/_media/images/hr-vine.svg);
+    clear: both;
+    width: 100%;
+    margin: var(--spacing) auto;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    filter: drop-shadow(0 2pt 1pt var(--shade));
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1em;
+    border: 1pt solid black;
+    margin: var(--spacing) auto auto auto;
+    background: #ccc;
+    /* Head and data cell common styles */
+    th,
+    td {
+      padding: var(--spacing);
+      border: 1pt solid black;
+      text-align: center;
+    }
+    /* Head cell specific styles */
+    th {
+      background: var(--cm95);
+      text-align: center;
+    }
+    /* Data cell specific styles */
+    td {
+      background: var(--white);
+    }
+  }
+}

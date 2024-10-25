@@ -7,7 +7,7 @@
         T<span>rades</span>
     </span>
 </h1>
-<nav id="menu">
+<nav>
     <?php
         foreach ($crumbs as $crumb) {
             $navpath = $root . $crumb . "__nav.php";

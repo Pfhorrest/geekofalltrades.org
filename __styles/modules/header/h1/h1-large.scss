@@ -1,0 +1,142 @@
+@use "../../root/layout/breakpoints.scss" as *;
+
+/// Style overrides for the main heading at larger viewport widths
+/// (Assumes details for smaller viewports are already defined)
+/// @group header
+/// @requires {Length} $bp2 - Second breakpoint value
+/// @see {mixin} h1 - General styles for the main heading
+/// @see {mixin} h1-small - Styling details for small viewport widths
+/// @see {mixin} colors-header-footer - Color variables for the header and footer
+
+@mixin h1-large {
+  @media (min-width: $bp2) {
+    /* Wind and waves background */
+    background:
+      /* Mist in the distance creating depth */ linear-gradient(
+        transparent calc(50% - 1em),
+        var(--skyMist) 50%,
+        var(--seaMist) 50%,
+        transparent calc(50% + 1em)
+      ),
+      /* Clouds in the sky and swells in the sea */
+        linear-gradient(
+          to bottom,
+          transparent 0%,
+          var(--cloudColor) calc(50% - 1.25 * 50% / 2),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 2),
+          transparent calc(50% - 1 * 50% / 2),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 4),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 4),
+          transparent calc(50% - 1 * 50% / 4),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 8),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 8),
+          transparent calc(50% - 1 * 50% / 8),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 16),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 16),
+          transparent calc(50% - 1 * 50% / 16),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 32),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 32),
+          transparent calc(50% - 1 * 50% / 32),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 64),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 64),
+          transparent calc(50% - 1 * 50% / 64),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 128),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 128),
+          transparent calc(50% - 1 * 50% / 128),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 256),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 256),
+          transparent calc(50% - 1 * 50% / 256),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 512),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 512),
+          transparent calc(50% - 1 * 50% / 512),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 1024),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 1024),
+          transparent calc(50% - 1 * 50% / 1024),
+          transparent calc(50% + 1 * 50% / 1024),
+          var(--swellLight) calc(50% + 1.625 * 50% / 1024),
+          var(--swellColor) calc(50% + 1.75 * 50% / 1024),
+          transparent calc(50% + 1 * 50% / 512),
+          var(--swellLight) calc(50% + 1.625 * 50% / 512),
+          var(--swellColor) calc(50% + 1.75 * 50% / 512),
+          transparent calc(50% + 1 * 50% / 256),
+          var(--swellLight) calc(50% + 1.625 * 50% / 256),
+          var(--swellColor) calc(50% + 1.75 * 50% / 256),
+          transparent calc(50% + 1 * 50% / 128),
+          var(--swellLight) calc(50% + 1.625 * 50% / 128),
+          var(--swellColor) calc(50% + 1.75 * 50% / 128),
+          transparent calc(50% + 1 * 50% / 64),
+          var(--swellLight) calc(50% + 1.625 * 50% / 64),
+          var(--swellColor) calc(50% + 1.75 * 50% / 64),
+          transparent calc(50% + 1 * 50% / 32),
+          var(--swellLight) calc(50% + 1.625 * 50% / 32),
+          var(--swellColor) calc(50% + 1.75 * 50% / 32),
+          transparent calc(50% + 1 * 50% / 16),
+          var(--swellLight) calc(50% + 1.625 * 50% / 16),
+          var(--swellColor) calc(50% + 1.75 * 50% / 16),
+          transparent calc(50% + 1 * 50% / 8),
+          var(--swellLight) calc(50% + 1.625 * 50% / 8),
+          var(--swellColor) calc(50% + 1.75 * 50% / 8),
+          transparent calc(50% + 1 * 50% / 4),
+          var(--swellLight) calc(50% + 1.625 * 50% / 4),
+          var(--swellColor) calc(50% + 1.75 * 50% / 4),
+          transparent calc(50% + 1 * 50% / 2),
+          var(--swellLight) calc(50% + 1.625 * 50% / 2),
+          var(--swellColor) calc(50% + 1.75 * 50% / 2),
+          transparent 100%
+        ),
+      /* Basic colors of sky and sea */
+        linear-gradient(
+          to bottom,
+          var(--skyColor3) 0%,
+          var(--skyColor2) 37.5%,
+          var(--skyColor1) 48%,
+          var(--skyMist) 50%,
+          var(--seaMist) 50%,
+          var(--seaColor1) 52%,
+          var(--seaColor2) 62.5%,
+          var(--seaColor3) 100%
+        );
+    background-size: 100%, 100% 100%, auto;
+    background-position: center, center, center;
+
+    /* Animation */
+    @keyframes windAndWaves {
+      from {
+        background-size: 100%, 100% 100%, auto;
+      }
+      to {
+        background-size: 100%, 100% 200%, auto;
+      }
+    }
+    animation-name: windAndWaves;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    /* Custom animation timing function aiming to make loop look seamless */
+    animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
+
+    /* Borders and shadows to create windowframe effect */
+    padding: 1vw;
+    border: 0.5rem solid black;
+    border-radius: 6.25vw 6.25vw 0 0;
+    box-shadow: inset 0 0 0.5vw 0 #0008, inset 0 0 0 0.5vw #000c;
+
+    /* Scale up the logo (previously set in this ::before pseudo-element) */
+    &::before {
+      width: 3em;
+      height: 3em;
+    }
+
+    /* Hide the hamburger menu (previously set in this ::after pseudo-element) */
+    &::after {
+      display: none;
+    }
+
+    /* Display the first line of text, now that there's room;
+       and sort it before the logo */
+    > span:first-of-type {
+      display: inline;
+      order: -1;
+    }
+  }
+}

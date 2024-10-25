@@ -1,0 +1,116 @@
+@use "./gallery-item.scss" as *;
+@use "./gallery-expansive.scss" as *;
+
+/// Styles for galleries
+/// @group main
+/// @require {mixin} gallery-item - Styles for gallery items
+/// @require {mixin} gallery-expansive - Styles for galleries that expand beyond the main section width
+/// @see {mixin} section - General styles for sections
+
+@mixin gallery {
+  .gallery {
+    /* Layout */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch;
+
+    /* Sizing */
+    max-width: 100%;
+
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+    gap: var(--spacing);
+
+    /* Borders */
+    border: 0;
+    outline: 0 solid black;
+    border-radius: 0;
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      box-shadow: none;
+    }
+
+    /* Background */
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      background: none;
+    }
+
+    /* Typography */
+    text-align: center;
+    box-shadow: none;
+
+    /* Animation */
+    animation-name: mainLighting;
+    animation-duration: 5s;
+
+    /* Gallery item fitting*/
+    > .item {
+      /* Gallery item number (how many columns should there be)
+        assuming the gallery is within an 80ch wide section */
+      --gin: 3;
+
+      /* Gallery item measurement (to make them fit those columns) */
+      --gim: calc(
+        (
+            80ch - (var(--gin) - 1 + 2 * 5) * var(--spacing) - var(--gin) * 2 *
+              1pt - 1pt
+          ) / var(--gin)
+      ); // The extra 1pt is a fudge for a problem of unknown origin
+
+      /* Assuming one column by default at smallest viewport widths */
+
+      flex: 1 0 var(--gim);
+      box-sizing: border-box;
+
+      /* Make two-column gallery items transition in with appropriate timing */
+      @media (min-width: 34rem) {
+        &:nth-of-type(2n + 1) {
+          &,
+          & * {
+            --delB: calc(1s / 2);
+          }
+        }
+        &:nth-of-type(2n + 0) {
+          &,
+          & * {
+            --delB: calc(2s / 2);
+          }
+        }
+      }
+      /* Make three-column gallery items transition in with appropriate timing */
+      @media (min-width: 53rem) {
+        &:nth-of-type(3n + 1) {
+          &,
+          & * {
+            --delB: calc(1s / 3);
+          }
+        }
+        &:nth-of-type(3n + 2) {
+          &,
+          & * {
+            --delB: calc(2s / 3);
+          }
+        }
+        &:nth-of-type(3n + 0) {
+          &,
+          & * {
+            --delB: calc(3s / 3);
+          }
+        }
+      }
+    }
+
+    /* Style details for gallery items */
+    @include gallery-item;
+
+    /* Styles for galleries that expand beyond the main section width */
+    @include gallery-expansive;
+  }
+}

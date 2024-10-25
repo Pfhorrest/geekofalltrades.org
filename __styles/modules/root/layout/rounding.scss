@@ -1,0 +1,19 @@
+@use "./spacing.scss" as *;
+
+/// Rounding variables
+/// @group layout
+/// @requires {mixin} spacing - Spacing variables
+
+@mixin rounding {
+  @include spacing;
+
+  /* Configurable rounding variables */
+  --roundingFactor: 1; // Multiple of font size
+  $roundingType: "Rel"; // Default to local font size (Rel) or root (Abs)
+
+  /* Calculated rounding variables */
+  --roundingRel: calc(var(--spacingRel) * var(--roundingFactor));
+  --roundingAbs: calc(var(--spacingAbs) * var(--roundingFactor));
+  $roundingCalc: if($roundingType == "Rel", --roundingRel, --roundingAbs);
+  --rounding: var(#{$roundingCalc});
+}

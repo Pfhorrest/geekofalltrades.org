@@ -7,31 +7,30 @@ import { closeDropdowns } from "../helpers/closeDropdowns";
  */
 export const hydrateDropdowns = () => {
     // console.log("hydrating dropdowns");
-    // Loop over all nav links
+    // Loop over all menu links
     document
-        .querySelectorAll("#menu ul li > a")
-        .forEach((navLink) => {
-        // Get the container of the nav link
-        const navContainer = navLink.closest("li");
-        // Abort if there is none
-        if (!navContainer)
-            return;
-        // Get the associated submenu
-        const submenu = navContainer.querySelector("ul");
+        .querySelectorAll("header > nav > ul > li")
+        .forEach((menuItem) => {
+        // Get the link within it
+        const menuItemLink = menuItem.querySelector("a");
+        // Get the submenu within it, if any
+        const submenu = menuItem.querySelector("ul");
         if (submenu) {
-            // Mark nav link as having a submenu
-            navLink.classList.add("submenu");
-            navLink.setAttribute("title", "Expand submenu");
-            // Add event listener to the nav link
-            navLink.addEventListener("click", (e) => {
+            // Mark menu as having a submenu
+            menuItem.classList.add("submenu");
+            // Add title attribute to the menu link
+            menuItemLink?.setAttribute("title", "Expand submenu");
+            // Add event listener to the menu link
+            menuItemLink?.addEventListener("click", (e) => {
                 e.preventDefault();
-                // console.log(`click event on ${navLink.textContent}`);
+                // console.log(`click event on ${menuItemLink.textContent}`);
                 // Save the open/closed state of this dropdown,
                 // so we can know if it was open before we closed everything
-                const wasCurrent = navContainer.classList.contains("current");
+                const wasCurrent = menuItem.classList.contains("current");
+                // console.log(`wasCurrent?`, wasCurrent);
                 // If there's any other dropdowns open, close them all
-                const anOpenDropdown = document.querySelector("#menu li.current");
-                if (anOpenDropdown && anOpenDropdown != navContainer) {
+                const anOpenDropdown = document.querySelector("header > nav > ul > li.current");
+                if (anOpenDropdown && anOpenDropdown != menuItem) {
                     // console.log(`closing other dropdowns`);
                     closeDropdowns();
                 }
@@ -43,9 +42,9 @@ export const hydrateDropdowns = () => {
                     if (!wasCurrent) {
                         // If the dropdown wasn't open before, expand it
                         // console.log("expanding submenu");
-                        navContainer.classList.add("current");
+                        menuItem.classList.add("current");
                         // console.log("setting title to collapse");
-                        navLink.setAttribute("title", "Collapse submenu");
+                        menuItemLink.setAttribute("title", "Collapse submenu");
                         slideDown(submenu);
                     }
                     else {
@@ -53,9 +52,9 @@ export const hydrateDropdowns = () => {
                         // console.log("collapsing submenu");
                         slideUp(submenu);
                         setTimeout(() => {
-                            navContainer.classList.remove("current");
+                            menuItem.classList.remove("current");
                             // console.log("setting title to expand");
-                            navLink.setAttribute("title", "Expand submenu");
+                            menuItemLink.setAttribute("title", "Expand submenu");
                         }, getDuration(submenu));
                     }
                 }, anOpenDropdown ? getDuration(anOpenDropdown) : 10);
@@ -66,7 +65,7 @@ export const hydrateDropdowns = () => {
     // Listen for clicks outside of a dropdown
     document.body.addEventListener("click", (e) => {
         if (!(e.target instanceof HTMLElement &&
-            e.target.classList.contains("submenu"))) {
+            e.target.closest("li")?.classList.contains("submenu"))) {
             // Close all dropdowns if so
             // console.log("click outside of a dropdown, closing all");
             closeDropdowns();

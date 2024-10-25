@@ -1,0 +1,157 @@
+@use "./colors-config.scss" as *;
+
+/// Calculated secondary color variables
+/// @group root
+/// @requires {mixin} colors-config - Configurable primary color variables
+/// @see {mixin} colors-header-footer - Color variables for the header and footer
+/// @see {mixin} colors - General color variable styles
+
+@mixin colors-calc {
+  @include colors-config;
+
+  // Hue
+  --hc: calc(var(--hm) + var(--hs)); // Cooler hue
+  --hw: calc(var(--hm) - var(--hs)); // Warmer hue
+
+  // Saturation
+  --ss: calc(var(--sm) / 2); // Secondary saturation
+  --sh: calc((100% + var(--sm)) / 2); // Highlight saturation
+  --sd: calc(var(--ss) / 4); // Disabled saturation
+
+  color-scheme: light dark;
+
+  @media (prefers-color-scheme: light) {
+    --lm: calc(100% - var(--lmo)); // Main lightness
+    --lti: calc((100% - var(--lm)) / 10); // Lightness tint increment
+    --lsi: calc((0% - var(--lm)) / 10); // Lightness shade increment
+    --black: black; // Variable black to invert for dark mode
+    --white: white; // Variable white to invert for dark mode
+  }
+  @media (prefers-color-scheme: dark) {
+    // Inverted for dark mode
+    --lm: calc(0% + var(--lmo)); // Main lightness
+    --lti: calc((0% - var(--lm)) / 10); // Lightness "shade" increment
+    --lsi: calc((100% - var(--lm)) / 10); // Lightness "tint" increment
+    --black: white; // Variable black inverted for dark mode
+    --white: black; // Variable white inverted for dark mode
+  }
+
+  --lt9: calc(var(--lm) + (var(--lti) * 9)); // Lightness tint 9
+  --lt8: calc(var(--lm) + (var(--lti) * 8)); // Lightness tint 8
+  --lt7: calc(var(--lm) + (var(--lti) * 7)); // Lightness tint 7
+  --lt6: calc(var(--lm) + (var(--lti) * 6)); // Lightness tint 6
+  --lt5: calc(var(--lm) + (var(--lti) * 5)); // Lightness tint 5
+  --lt4: calc(var(--lm) + (var(--lti) * 4)); // Lightness tint 4
+  --lt3: calc(var(--lm) + (var(--lti) * 3)); // Lightness tint 3
+  --lt2: calc(var(--lm) + (var(--lti) * 2)); // Lightness tint 2
+  --lt1: calc(var(--lm) + (var(--lti) * 1)); // Lightness tint 1
+
+  --ls1: calc(var(--lm) + (var(--lsi) * 1)); // Lightness shade 1
+  --ls2: calc(var(--lm) + (var(--lsi) * 2)); // Lightness shade 2
+  --ls3: calc(var(--lm) + (var(--lsi) * 3)); // Lightness shade 3
+  --ls4: calc(var(--lm) + (var(--lsi) * 4)); // Lightness shade 4
+  --ls5: calc(var(--lm) + (var(--lsi) * 5)); // Lightness shade 5
+  --ls6: calc(var(--lm) + (var(--lsi) * 6)); // Lightness shade 6
+  --ls7: calc(var(--lm) + (var(--lsi) * 7)); // Lightness shade 7
+  --ls8: calc(var(--lm) + (var(--lsi) * 8)); // Lightness shade 8
+  --ls9: calc(var(--lm) + (var(--lsi) * 9)); // Lightness shade 9
+
+  // Basic colors
+  --cm: hsl(var(--hm) var(--sm) var(--lm)); // Main color
+  --cc: hsl(var(--hc) var(--ss) var(--lm)); // Cooler color
+  --cw: hsl(var(--hw) var(--ss) var(--lm)); // Warmer color
+
+  // Highlight glazes
+  --cmg: hsl(var(--hm) var(--sh) calc(100% / 2) / 25%); // Main glaze
+  --ccg: hsl(var(--hc) var(--sh) calc(100% / 2) / 25%); // Cooler glaze
+  --cwg: hsl(var(--hw) var(--sh) calc(100% / 2) / 25%); // Warmer glaze
+
+  // Disabled glazes
+  --cmd: hsl(var(--hm) var(--sd) var(--lm) / 25%); // Main disabled
+  --ccd: hsl(var(--hc) var(--sd) var(--lm) / 25%); // Cooler disabled
+  --cwd: hsl(var(--hw) var(--sd) var(--lm) / 25%); // Warmer disabled
+
+  // Main color ramp
+  --cm95: hsl(var(--hm) var(--sm) var(--lt9)); // Main color tint 9
+  --cm90: hsl(var(--hm) var(--sm) var(--lt8)); // Main color tint 8
+  --cm85: hsl(var(--hm) var(--sm) var(--lt7)); // Main color tint 7
+  --cm80: hsl(var(--hm) var(--sm) var(--lt6)); // Main color tint 6
+  --cm75: hsl(var(--hm) var(--sm) var(--lt5)); // Main color tint 5
+  --cm70: hsl(var(--hm) var(--sm) var(--lt4)); // Main color tint 4
+  --cm65: hsl(var(--hm) var(--sm) var(--lt3)); // Main color tint 3
+  --cm60: hsl(var(--hm) var(--sm) var(--lt2)); // Main color tint 2
+  --cm55: hsl(var(--hm) var(--sm) var(--lt1)); // Main color tint 1
+  --cm50: var(--cm); // Main color
+  --cm45: hsl(var(--hm) var(--sm) var(--ls1)); // Main color shade 1
+  --cm40: hsl(var(--hm) var(--sm) var(--ls2)); // Main color shade 2
+  --cm35: hsl(var(--hm) var(--sm) var(--ls3)); // Main color shade 3
+  --cm30: hsl(var(--hm) var(--sm) var(--ls4)); // Main color shade 4
+  --cm25: hsl(var(--hm) var(--sm) var(--ls5)); // Main color shade 5
+  --cm20: hsl(var(--hm) var(--sm) var(--ls6)); // Main color shade 6
+  --cm15: hsl(var(--hm) var(--sm) var(--ls7)); // Main color shade 7
+  --cm10: hsl(var(--hm) var(--sm) var(--ls8)); // Main color shade 8
+  --cm05: hsl(var(--hm) var(--sm) var(--ls9)); // Main color shade 9
+
+  // Cooler color ramp
+  --cc95: hsl(var(--hc) var(--ss) var(--lt9)); // Cooler color tint 9
+  --cc90: hsl(var(--hc) var(--ss) var(--lt8)); // Cooler color tint 8
+  --cc85: hsl(var(--hc) var(--ss) var(--lt7)); // Cooler color tint 7
+  --cc80: hsl(var(--hc) var(--ss) var(--lt6)); // Cooler color tint 6
+  --cc75: hsl(var(--hc) var(--ss) var(--lt5)); // Cooler color tint 5
+  --cc70: hsl(var(--hc) var(--ss) var(--lt4)); // Cooler color tint 4
+  --cc65: hsl(var(--hc) var(--ss) var(--lt3)); // Cooler color tint 3
+  --cc60: hsl(var(--hc) var(--ss) var(--lt2)); // Cooler color tint 2
+  --cc55: hsl(var(--hc) var(--ss) var(--lt1)); // Cooler color tint 1
+  --cc50: var(--cc); // Cooler color
+  --cc45: hsl(var(--hc) var(--ss) var(--ls1)); // Cooler color shade 1
+  --cc40: hsl(var(--hc) var(--ss) var(--ls2)); // Cooler color shade 2
+  --cc35: hsl(var(--hc) var(--ss) var(--ls3)); // Cooler color shade 3
+  --cc30: hsl(var(--hc) var(--ss) var(--ls4)); // Cooler color shade 4
+  --cc25: hsl(var(--hc) var(--ss) var(--ls5)); // Cooler color shade 5
+  --cc20: hsl(var(--hc) var(--ss) var(--ls6)); // Cooler color shade 6
+  --cc15: hsl(var(--hc) var(--ss) var(--ls7)); // Cooler color shade 7
+  --cc10: hsl(var(--hc) var(--ss) var(--ls8)); // Cooler color shade 8
+  --cc05: hsl(var(--hc) var(--ss) var(--ls9)); // Cooler color shade 9
+
+  // Warmer color ramp
+  --cw95: hsl(var(--hw) var(--ss) var(--lt9)); // Warmer color tint 9
+  --cw90: hsl(var(--hw) var(--ss) var(--lt8)); // Warmer color tint 8
+  --cw85: hsl(var(--hw) var(--ss) var(--lt7)); // Warmer color tint 7
+  --cw80: hsl(var(--hw) var(--ss) var(--lt6)); // Warmer color tint 6
+  --cw75: hsl(var(--hw) var(--ss) var(--lt5)); // Warmer color tint 5
+  --cw70: hsl(var(--hw) var(--ss) var(--lt4)); // Warmer color tint 4
+  --cw65: hsl(var(--hw) var(--ss) var(--lt3)); // Warmer color tint 3
+  --cw60: hsl(var(--hw) var(--ss) var(--lt2)); // Warmer color tint 2
+  --cw55: hsl(var(--hw) var(--ss) var(--lt1)); // Warmer color tint 1
+  --cw50: var(--cw); // Warmer color
+  --cw45: hsl(var(--hw) var(--ss) var(--ls1)); // Warmer color shade 1
+  --cw40: hsl(var(--hw) var(--ss) var(--ls2)); // Warmer color shade 2
+  --cw35: hsl(var(--hw) var(--ss) var(--ls3)); // Warmer color shade 3
+  --cw30: hsl(var(--hw) var(--ss) var(--ls4)); // Warmer color shade 4
+  --cw25: hsl(var(--hw) var(--ss) var(--ls5)); // Warmer color shade 5
+  --cw20: hsl(var(--hw) var(--ss) var(--ls6)); // Warmer color shade 6
+  --cw15: hsl(var(--hw) var(--ss) var(--ls7)); // Warmer color shade 7
+  --cw10: hsl(var(--hw) var(--ss) var(--ls8)); // Warmer color shade 8
+  --cw05: hsl(var(--hw) var(--ss) var(--ls9)); // Warmer color shade 9
+
+  --ct: hsl(from var(--black) h s l / 75%); // Main text color
+  --cbi: hsl(from var(--white) h s l / 25%); // Background inner color
+  --cbo: hsl(from var(--white) h s l / 75%); // Background outer color
+
+  @media (prefers-color-scheme: light) {
+    --shade: #0001;
+    --gloss: #fffc;
+  }
+  @media (prefers-color-scheme: dark) {
+    --shade: #000c;
+    --gloss: #fff1;
+  }
+
+  // Gradient curve direction
+  @media (prefers-color-scheme: light) {
+    --curve: bottom;
+  }
+  @media (prefers-color-scheme: dark) {
+    --curve: top;
+  }
+}

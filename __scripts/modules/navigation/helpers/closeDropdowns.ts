@@ -6,11 +6,11 @@ import { slideUp, getDuration } from "../../effects/effects";
  */
 export const closeDropdowns = () => {
   const openDropdowns =
-    document.querySelectorAll<HTMLElement>("#menu ul li ul");
-  const currentMenus = document.querySelectorAll<HTMLElement>(
-    "#menu ul li.current"
+    document.querySelectorAll<HTMLElement>("header > nav > ul > li > ul");
+  const currentMenuItems = document.querySelectorAll<HTMLElement>(
+    "header > nav > ul > li.current"
   );
-  if (openDropdowns.length > 0 || currentMenus.length > 0) {
+  if (openDropdowns.length > 0 || currentMenuItems.length > 0) {
     // console.groupCollapsed(
     //   `Closing all dropdowns at ${new Date().toISOString()}`
     // );
@@ -28,20 +28,19 @@ export const closeDropdowns = () => {
       }
     });
 
-    // Remove 'current' from all menus, after the slide-up animations are done
-    currentMenus.forEach((menu) => {
+    // Remove 'current' from all menu items, after the slide-up animations are done
+    currentMenuItems.forEach((item) => {
       // console.log(
-      //   `Setting timeout for '${menu.querySelector("a")?.innerText}'`
+      //   `Setting timeout for '${item.querySelector("a")?.innerText}'`
       // );
       setTimeout(() => {
         // console.log(
-        //   `Removing 'current' from '${menu.querySelector("a")?.innerText}'`
-        // );
-        menu.classList.remove("current");
-        menu
+          item        // );
+          item.classList.remove("current");
+          item
           ?.querySelector<HTMLElement>("a")
           ?.setAttribute("title", "Collapse submenu");
-      }, getDuration(menu));
+      }, getDuration(item));
     });
 
     console.groupEnd();

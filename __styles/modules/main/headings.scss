@@ -1,0 +1,81 @@
+@use "../root/typography.scss" as *;
+@use "../root/layout/breakpoints.scss" as *;
+
+/// Styles for headings
+/// @group main
+/// @require {function} rfs - Responsive font size generator
+/// @require {Calc}$mfs - Main font size
+/// @require {Length} $bp1 - First breakpoint value
+/// @require {Length} $bp4 - Fourth breakpoint value
+/// @see {mixin} main-elements - Styles for other elements
+/// @see {mixin} section - Styles for sections
+/// @see {mixin} main - General styles for main
+
+@mixin headings {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    /* Layout */
+    position: relative;
+
+    /* Sizing */
+    overflow-wrap: anywhere;
+
+    /* Spacing */
+    margin: 0 auto;
+    padding: 0 var(--spacing);
+    &:not(:has(+ .description)) {
+      padding-bottom: calc(2 * var(--spacing));
+      border-bottom: 1pt groove var(--cw75);
+      border-radius: var(--rounding);
+      margin-bottom: var(--spacing);
+    }
+
+    /* Borders */
+    border: none;
+    outline: none;
+
+    /* Typography */
+    color: var(--cm);
+    font: {
+      family: "Itim", "Nunito", sans-serif;
+      weight: normal;
+    }
+    text-align: center;
+    line-height: 1.25;
+    text-shadow: 0.0625em 0.0625em 0.0625em transparent;
+    &:hover,
+    &:focus,
+    &:active,
+    *:hover > &,
+    *:focus > &,
+    *:active > & {
+      text-shadow: 0.0625em 0.0625em 0.0625em var(--shade);
+    }
+
+    /* To allow for select non-wrapping text with spans */
+    span {
+      white-space: nowrap;
+    }
+  }
+
+  /* Scale all sizes from one-and-a-fraction rem at the first breakpoint up to
+     one-to-three-times the main font size (mfs) at the fourth breakpoint */
+  h2 {
+    font-size: rfs(1.5rem, $bp1, (1 + 2) * $mfs, $bp4);
+  }
+  h3 {
+    font-size: rfs(1.4rem, $bp1, (1 + 1) * $mfs, $bp4);
+  }
+  h4 {
+    font-size: rfs(1.3rem, $bp1, (1 + 0.5) * $mfs, $bp4);
+  }
+  h5 {
+    font-size: rfs(1.2rem, $bp1, (1 + 0.25) * $mfs, $bp4);
+  }
+  h6 {
+    font-size: rfs(1.1rem, $bp1, (1 + 0.125) * $mfs, $bp4);
+  }
+}

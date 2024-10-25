@@ -8,7 +8,7 @@ export const hydrateToggleButtons = () => {
     // Only run if there is at least one section in main
     const main = document.querySelector("main");
     if (main && main.querySelector("section")) {
-        // Set up the toggle-all-controls container
+        // Set up the toggle-all-sections-controls container
         const toggleAllControls = main.appendChild(document.createElement("div"));
         toggleAllControls.classList.add("toggleAllControls");
         // Reusable function to create a control with the given class and text

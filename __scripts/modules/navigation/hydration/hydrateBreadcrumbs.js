@@ -1,5 +1,4 @@
 import { slideUp, slideDown, getDuration, getBreakpoint, } from "../../effects/effects";
-import { closeDropdowns } from "../helpers/closeDropdowns";
 /**
  * Adds event listeners to show parent breadcrumbs' subnavs on hover.
  *
@@ -9,7 +8,7 @@ export const hydrateBreadcrumbs = () => {
     // Get the breakpoint above which any of this matters
     const breakpoint = getBreakpoint();
     // Get the last subnav
-    const lastSubnav = document.querySelector("#menu > a:last-of-type + ul");
+    const lastSubnav = document.querySelector("header > nav > a:last-of-type + ul");
     // If there are no subnavs, never mind
     if (!lastSubnav) {
         // console.error("No subnav elements found.");
@@ -21,35 +20,26 @@ export const hydrateBreadcrumbs = () => {
     const hoverDelayDuration = 2 * transitionDuration;
     // Resuable function to switch subnavs
     let switchSubnav = (targetSubnav) => {
-        // Check if any dropdowns are open
-        const anOpenDropdown = document.querySelector("#menu li.current");
-        // If there are, close them
-        if (anOpenDropdown) {
-            // console.log("there's open dropdowns, closing them");
-            closeDropdowns();
-        }
-        // Wait for that if necessary, then...
+        // Remove 'current' from all subnavs
+        // Slide up any open subnavs
+        Array.from(document.querySelectorAll("header > nav > a + ul"))
+            .filter((subnav) => subnav != targetSubnav)
+            .forEach((subnav) => {
+            // console.log("about to slide up subnav", subnav);
+            slideUp(subnav);
+        });
+        // Wait the transition duration and then show the target subnav
+        // console.log("about to slide down subnav:", targetSubnav);
         setTimeout(() => {
-            // Slide up any open subnavs
-            Array.from(document.querySelectorAll("#menu > a + ul"))
-                .filter((subnav) => subnav != targetSubnav)
-                .forEach((subnav) => {
-                // console.log("about to slide up subnav", subnav);
-                slideUp(subnav);
-            });
-            // Wait the transition duration and then show the target subnav
-            // console.log("about to slide down subnav:", targetSubnav);
-            setTimeout(() => {
-                // (if necessary)
-                if (getComputedStyle(targetSubnav).display == "none") {
-                    slideDown(targetSubnav);
-                }
-            }, transitionDuration);
-        }, anOpenDropdown ? getDuration(anOpenDropdown) : 0);
+            // (if necessary)
+            if (getComputedStyle(targetSubnav).display == "none") {
+                slideDown(targetSubnav);
+            }
+        }, transitionDuration);
     };
     // For every breadcrumb
     document
-        .querySelectorAll("#menu > a")
+        .querySelectorAll("header > nav > a")
         .forEach((breadcrumb) => {
         // If it has a subnav
         const nextSibling = breadcrumb.nextElementSibling;
@@ -60,6 +50,7 @@ export const hydrateBreadcrumbs = () => {
             breadcrumb.addEventListener("mouseenter", (e) => {
                 // Mark that the mouse is in the breadcrumb
                 breadcrumb.mouseIn = true;
+                breadcrumb.classList.add("current");
                 // console.log(`Mouse entered breadcrumb '${breadcrumb.innerText}'`);
                 if (window.innerWidth >= breakpoint) {
                     // If we're above the breakpoint, wait the hover delay then...
@@ -82,8 +73,14 @@ export const hydrateBreadcrumbs = () => {
                     e.relatedTarget.closest("ul") != thisSubnav) {
                     // If it's to something other than its subnav, revert to last subnav
                     // console.log("...into something other than its subnav, so....");
+                    // Check if any dropdowns are open
+                    const anOpenDropdown = document.querySelector("header > nav > ul > li.current");
                     setTimeout(() => {
-                        if (!breadcrumb.mouseIn && !thisSubnav.mouseIn) {
+                        if (!breadcrumb.mouseIn &&
+                            !thisSubnav.mouseIn &&
+                            !anOpenDropdown) {
+                            // console.log("removing 'current' class from subnav");
+                            breadcrumb.classList.remove("current");
                             // console.log("Reverting to last subnav");
                             switchSubnav(lastSubnav);
                         }
@@ -98,8 +95,14 @@ export const hydrateBreadcrumbs = () => {
                     e.relatedTarget != breadcrumb) {
                     // If it's to something other than its breadcrumb, revert to last subnav
                     // console.log("...into something other than its breadcrumb, so....");
+                    // Check if any dropdowns are open
+                    const anOpenDropdown = document.querySelector("header > nav > ul > li.current");
                     setTimeout(() => {
-                        if (!breadcrumb.mouseIn && !thisSubnav.mouseIn) {
+                        if (!breadcrumb.mouseIn &&
+                            !thisSubnav.mouseIn &&
+                            !anOpenDropdown) {
+                            // console.log("removing 'current' class from subnav");
+                            breadcrumb.classList.remove("current");
                             // console.log("Reverting to last subnav");
                             switchSubnav(lastSubnav);
                         }

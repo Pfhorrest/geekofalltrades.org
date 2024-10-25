@@ -1,0 +1,46 @@
+/// Colors variables for header and footer
+/// @group root
+/// @see {mixin} h1 - Styles for h1 in header
+/// @see {mixin} footer - Styles for footer
+/// @see {mixin} colors-config - Configurable primary color variables
+/// @see {mixin} colors-calc - Calculated secondary color variables
+/// @see {mixin} colors - General color variable styles
+
+@mixin colors-header-footer {
+  --skyHue3: 0;
+  --skyHue2: 30;
+  --skyHue1: 60;
+  --seaHue1: 180;
+  --seaHue2: 210;
+  --seaHue3: 240;
+
+  @media (prefers-color-scheme: light) {
+    --cloudLight: hsl(from var(--cloudColor) h 100% calc(100% / 2) / 50%);
+    --cloudColor: hsl(var(--skyHue1) 100% calc(100% / 2) / 25%);
+    --skyColor3: hsl(var(--skyHue3) 100% calc(50% / 2));
+    --skyColor2: hsl(var(--skyHue2) 100% calc(75% / 2));
+    --skyColor1: hsl(var(--skyHue1) 100% calc(100% / 2));
+    --skyMist: hsl(var(--skyHue1) 100% 87.5%);
+    --seaMist: hsl(var(--seaHue1) 100% 87.5%);
+    --seaColor1: hsl(var(--seaHue1) 100% calc(100% / 2));
+    --seaColor2: hsl(var(--seaHue2) 100% calc(75% / 2));
+    --seaColor3: hsl(var(--seaHue3) 100% calc(50% / 2));
+    --swellColor: hsl(var(--seaHue1) 100% calc(100% / 2) / 25%);
+    --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    --cloudLight: hsl(from var(--cloudColor) h 100% calc(100% / 2) / 50%);
+    --cloudColor: hsl(var(--skyHue1) 100% calc(75% / 2) / 25%);
+    --skyColor3: hsl(var(--skyHue3) 100% calc(50% / 2));
+    --skyColor2: hsl(var(--skyHue2) 100% calc(25% / 2));
+    --skyColor1: hsl(var(--skyHue1) 100% calc(12.5% / 2));
+    --skyMist: hsl(var(--skyHue1) 100% calc(6.25% / 2));
+    --seaMist: hsl(var(--seaHue1) 100% calc(6.25% / 2));
+    --seaColor1: hsl(var(--seaHue1) 100% calc(12.5% / 2));
+    --seaColor2: hsl(var(--seaHue2) 100% calc(25% / 2));
+    --seaColor3: hsl(var(--seaHue3) 100% calc(50% / 2));
+    --swellColor: hsl(var(--seaHue1) 100% calc(75% / 2) / 25%);
+    --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
+  }
+}

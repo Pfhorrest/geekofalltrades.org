@@ -1,0 +1,32 @@
+/// Styles for active menu items
+/// @group header
+/// @see {mixin} menu-item - Styles for menu items
+/// @see {mixin} menu-item-with-submenu - Styles for menu items with submenus
+
+@mixin menu-item-current {
+  &.current {
+    /* To pop out in front of other items */
+    position: relative;
+    z-index: 1;
+
+    /* Menu item link */
+    a {
+      background: radial-gradient(transparent, var(--cmg)),
+        linear-gradient(to var(--curve), var(--cm95), var(--cm75));
+      background-size: 1000% 1000%;
+      /* When hovered */
+      &:hover {
+        background: radial-gradient(transparent, var(--cwg)),
+          linear-gradient(to var(--curve), var(--cw95), var(--cw75));
+        background-size: 100% 100%;
+      }
+      /* When active */
+      &:active {
+        background: radial-gradient(transparent, var(--cwg)),
+          linear-gradient(to var(--curve), var(--cw95), var(--cw75));
+        background-size: 100% 100%;
+      }
+
+    }
+  }
+}

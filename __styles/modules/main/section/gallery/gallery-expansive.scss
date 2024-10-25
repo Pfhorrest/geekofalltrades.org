@@ -1,0 +1,312 @@
+@use "../../../root/layout/breakpoints.scss" as *;
+
+/// Styles for galleries that expand beyond the main section width
+/// @group main
+/// @requires {Length} $bp3 - Third breakpoint value
+/// @see {mixin} gallery - General styles for galleries
+
+@mixin gallery-expansive {
+  &.expansive {
+    /* Only applies at larger viewport widths */
+    @media (min-width: $bp3) {
+      /* Layout */
+      justify-content: center;
+
+      /* Sizing */
+      box-sizing: border-box;
+      width: 100vw;
+      max-width: calc(100vw - (2 * var(--spacingAbs)) - (2 * var(--spacing)));
+
+      /* Spacing */
+      margin-left: calc(50% - 50vw + var(--spacingAbs) + var(--spacing));
+      padding: var(--spacing);
+
+      /* Borders */
+      border-radius: calc(2 * var(--rounding));
+      box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
+        1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+        0 0 0 1pt var(--shade) inset;
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss),
+          1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+          0 0 0 1pt transparent inset;
+      }
+
+      /* Background */
+      background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+
+      /* Gallery item max-width sides multiple, used in max-width below */
+      --gimwsm: 2;
+      section {
+        --gimwsm: 4;
+        section {
+          --gimwsm: 6;
+          section {
+            --gimwsm: 8;
+            section {
+              --gimwsm: 10;
+            }
+          }
+        }
+      }
+
+      > .item {
+        /* Make the last item in a gallery looks contained in the parent section */
+        max-width: calc(80ch - var(--gimwsm) * var(--spacing));
+
+        /* Make four-column gallery items transition in with appropriate timing */
+        &:nth-of-type(4n + 1) {
+          &,
+          & * {
+            --delB: calc(1s / 4);
+          }
+        }
+        &:nth-of-type(4n + 2) {
+          &,
+          & * {
+            --delB: calc(2s / 4);
+          }
+        }
+        &:nth-of-type(4n + 3) {
+          &,
+          & * {
+            --delB: calc(3s / 4);
+          }
+        }
+        &:nth-of-type(4n + 0) {
+          &,
+          & * {
+            --delB: calc(4s / 4);
+          }
+        }
+        /* Make five-column gallery items transition in with appropriate timing */
+        @media (min-width: 91rem) {
+          &:nth-of-type(5n + 1) {
+            &,
+            & * {
+              --delB: calc(1s / 5);
+            }
+          }
+          &:nth-of-type(5n + 2) {
+            &,
+            & * {
+              --delB: calc(2s / 5);
+            }
+          }
+          &:nth-of-type(5n + 3) {
+            &,
+            & * {
+              --delB: calc(3s / 5);
+            }
+          }
+          &:nth-of-type(5n + 4) {
+            &,
+            & * {
+              --delB: calc(4s / 5);
+            }
+          }
+          &:nth-of-type(5n + 0) {
+            &,
+            & * {
+              --delB: calc(5s / 5);
+            }
+          }
+        }
+        /* Make six-column gallery items transition in with appropriate timing */
+        @media (min-width: 106rem) {
+          &:nth-of-type(6n + 1) {
+            &,
+            & * {
+              --delB: calc(1s / 6);
+            }
+          }
+          &:nth-of-type(6n + 2) {
+            &,
+            & * {
+              --delB: calc(2s / 6);
+            }
+          }
+          &:nth-of-type(6n + 3) {
+            &,
+            & * {
+              --delB: calc(3s / 6);
+            }
+          }
+          &:nth-of-type(6n + 4) {
+            &,
+            & * {
+              --delB: calc(4s / 6);
+            }
+          }
+          &:nth-of-type(6n + 5) {
+            &,
+            & * {
+              --delB: calc(5s / 6);
+            }
+          }
+          &:nth-of-type(6n + 0) {
+            &,
+            & * {
+              --delB: calc(6s / 6);
+            }
+          }
+        }
+        /* Make seven-column gallery items transition in with appropriate timing */
+        @media (min-width: 120rem) {
+          &:nth-of-type(7n + 1) {
+            &,
+            & * {
+              --delB: calc(1s / 7);
+            }
+          }
+          &:nth-of-type(7n + 2) {
+            &,
+            & * {
+              --delB: calc(2s / 7);
+            }
+          }
+          &:nth-of-type(7n + 3) {
+            &,
+            & * {
+              --delB: calc(3s / 7);
+            }
+          }
+          &:nth-of-type(7n + 4) {
+            &,
+            & * {
+              --delB: calc(4s / 7);
+            }
+          }
+          &:nth-of-type(7n + 5) {
+            &,
+            & * {
+              --delB: calc(5s / 7);
+            }
+          }
+          &:nth-of-type(7n + 6) {
+            &,
+            & * {
+              --delB: calc(6s / 7);
+            }
+          }
+          &:nth-of-type(7n + 0) {
+            &,
+            & * {
+              --delB: calc(7s / 7);
+            }
+          }
+        }
+        /* Make eight-column gallery items transition in with appropriate timing */
+        @media (min-width: 137rem) {
+          &:nth-of-type(8n + 1) {
+            &,
+            & * {
+              --delB: calc(1s / 8);
+            }
+          }
+          &:nth-of-type(8n + 2) {
+            &,
+            & * {
+              --delB: calc(2s / 8);
+            }
+          }
+          &:nth-of-type(8n + 3) {
+            &,
+            & * {
+              --delB: calc(3s / 8);
+            }
+          }
+          &:nth-of-type(8n + 4) {
+            &,
+            & * {
+              --delB: calc(4s / 8);
+            }
+          }
+          &:nth-of-type(8n + 5) {
+            &,
+            & * {
+              --delB: calc(5s / 8);
+            }
+          }
+          &:nth-of-type(8n + 6) {
+            &,
+            & * {
+              --delB: calc(6s / 8);
+            }
+          }
+          &:nth-of-type(8n + 7) {
+            &,
+            & * {
+              --delB: calc(7s / 8);
+            }
+          }
+          &:nth-of-type(8n + 0) {
+            &,
+            & * {
+              --delB: calc(8s / 8);
+            }
+          }
+        }
+        /* Make nine-column gallery items transition in with appropriate timing */
+        @media (min-width: 152rem) {
+          &:nth-of-type(9n + 1) {
+            &,
+            & * {
+              --delB: calc(1s / 9);
+            }
+          }
+          &:nth-of-type(9n + 2) {
+            &,
+            & * {
+              --delB: calc(2s / 9);
+            }
+          }
+          &:nth-of-type(9n + 3) {
+            &,
+            & * {
+              --delB: calc(3s / 9);
+            }
+          }
+          &:nth-of-type(9n + 4) {
+            &,
+            & * {
+              --delB: calc(4s / 9);
+            }
+          }
+          &:nth-of-type(9n + 5) {
+            &,
+            & * {
+              --delB: calc(5s / 9);
+            }
+          }
+          &:nth-of-type(9n + 6) {
+            &,
+            & * {
+              --delB: calc(6s / 9);
+            }
+          }
+          &:nth-of-type(9n + 7) {
+            &,
+            & * {
+              --delB: calc(7s / 9);
+            }
+          }
+          &:nth-of-type(9n + 8) {
+            &,
+            & * {
+              --delB: calc(8s / 9);
+            }
+          }
+          &:nth-of-type(9n + 0) {
+            &,
+            & * {
+              --delB: calc(9s / 9);
+            }
+          }
+        }
+      }
+    }
+  }
+}

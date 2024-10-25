@@ -1,0 +1,16 @@
+@use "./colors-calc.scss" as *;
+@use "./colors-header-footer.scss" as *;
+
+/// Color variables
+/// @group root
+/// @requires {mixin} colors-calc - Calculated secondary color variables
+/// @requires {mixin} colors-header-footer - Color variables for the header and footer
+/// @see {mixin} colors-config - Configurable primary color variables
+
+@mixin colors {
+  /* General site-wide color variables */
+  @include colors-calc;
+
+  /* Colors variables for header and footer */
+  @include colors-header-footer;
+}

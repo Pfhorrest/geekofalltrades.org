@@ -1,0 +1,104 @@
+/// Styles for lightbox
+
+@mixin lightbox {
+  .lightbox {
+    /* Layout */
+    position: fixed;
+    z-index: 3;
+    inset: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    float: none;
+
+    /* Sizing */
+    overflow: hidden;
+
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+    gap: var(--spacing);
+
+    /* Background */
+    background: radial-gradient(black, hsla(0deg 0% 0% / 93.75%));
+
+    /* Typography */
+    color: grey;
+    font-size: calc(1rem + 1vmin);
+    text-align: center;
+
+    /* If the lightbox is modal, hide it by default */
+    &.modal {
+      opacity: 0;
+    }
+
+    /* Image */
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      max-width: calc(100vw - 2 * 1em);
+      max-height: calc(100vh - 2 * 6em);
+      box-sizing: border-box;
+      object-fit: scale-down;
+      transform: translate(-50%, -50%);
+      margin: 0 auto;
+      border: 1vh solid white;
+      box-shadow: 0 0 3em 3em black;
+      background: white;
+    }
+
+    /* Caption and navigation common styles*/
+    #caption,
+    nav {
+      position: absolute;
+      top: 0;
+      display: flex;
+      align-items: center;
+      z-index: 4;
+      width: auto;
+      max-height: 1em;
+      padding: 1em;
+      gap: 0.5ch;
+      border: none;
+      border-bottom: none;
+      color: grey;
+      font-size: 2em;
+      line-height: 1em;
+    }
+
+    /* Navigation style details */
+    nav {
+      top: auto;
+      bottom: 0;
+      background: none;
+
+      /* Navigation buttons */
+      a {
+        display: inline-block;
+        width: 1em;
+        margin: 0 1em;
+        padding: 0;
+        border-radius: var(--rounding);
+        background: none;
+        color: grey;
+        font-weight: bold;
+        text-decoration: none;
+        text-shadow: 0 0 0.125em transparent;
+        &:hover,
+        &:focus,
+        &:active {
+          text-shadow: 0 0 0.125em black;
+        }
+        user-select: none;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+          color: white;
+        }
+      }
+    }
+  }
+}

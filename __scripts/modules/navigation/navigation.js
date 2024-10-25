@@ -2,16 +2,20 @@ import { hydrateBreadcrumbs } from "./hydration/hydrateBreadcrumbs";
 import { hydrateDropdowns } from "./hydration/hydrateDropdowns";
 import { slideToggle } from "../effects/effects";
 /**
- *  Adds event listener to toggle the menu when the h1 is clicked
+ *  Adds event listener to toggle the nav when the h1 is clicked
  *
  *  @returns {void}
  */
 const hydrateH1 = () => {
-    document.querySelector("header > h1")?.addEventListener("click", () => {
-        document.querySelectorAll("#menu")?.forEach((el) => {
-            slideToggle(el);
+    const h1 = document.querySelector("header > h1");
+    if (h1) {
+        h1.addEventListener("click", () => {
+            document.querySelectorAll("header > nav")?.forEach((el) => {
+                slideToggle(el);
+            });
         });
-    });
+        h1.style.cursor = "pointer";
+    }
 };
 export const hydrateNavigation = () => {
     document.addEventListener("DOMContentLoaded", () => {

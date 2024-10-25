@@ -1,0 +1,77 @@
+@use "../../../root/layout/breakpoints.scss" as *;
+@use "./menu-item/menu-item.scss" as *;
+
+/// Styles for menus
+/// @group header
+/// @require {Length} $bp2 - Second breakpoint value
+/// @require {mixin} menu-item - Styles for menu items
+/// @see {mixin} breadcrumb - Styles for breadcrumbs
+/// @see {mixin} nav - General styles for navigation
+
+@mixin menu {
+  > ul {
+    /* Layout */
+    z-index: 1;
+    display: none; // Actual initial display value
+    --display: flex; // Intended display value once made visible
+    & * {
+      --display: ; // Cleared so children don't inherit it
+    }
+    flex-flow: row wrap;
+    justify-content: space-between;
+    flex-basis: auto; // Do what it needs to do at small viewport widths
+    flex-shrink: 1; // Including shrinking if necessary
+    clear: both;
+
+    /* Sizing */
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    /* Spacing */
+    margin: 0 -0.5em;
+    padding: 0.5em;
+    gap: 0.5em;
+
+    /* Background */
+    background: var(--nav-grad);
+    background-size: 100% 300%;
+    background-position-y: 50%;
+
+    /* Borders */
+    border: 0;
+    box-shadow: 0pt -1pt 0 0 var(--shade);
+
+    /* Typography */
+    text-align: center;
+    line-height: 2.5;
+
+    /* Effects */
+    transition: all 0.25s;
+    will-change: height, padding-top, padding-bottom, row-gap;
+
+    /* At large viewport widths... */
+    @media (min-width: $bp2) {
+      /* Go full width and grow tall as needed */
+      flex-basis: 100vw;
+      overflow-y: visible;
+      /* Get skeueomorphic on interaction */
+      box-shadow: 0pt -1pt 0pt transparent inset, 0pt 1pt 1pt transparent,
+        0 -1pt 0 0 var(--shade) inset;
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade),
+          0 -1pt 0 0 transparent inset;
+        background-position-y: 100%;
+      }
+    }
+
+    /* Styles for menu items */
+    @include menu-item-styles;
+  }
+  
+  /* Show the menu associated with the last breadcrumb by default */
+  > a:last-of-type + ul {
+    display: flex;
+  }
+}

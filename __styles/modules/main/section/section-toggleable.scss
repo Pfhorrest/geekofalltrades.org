@@ -1,0 +1,91 @@
+/// Styles for sections that can be toggled (collapsed and expanded)
+/// @group main
+/// @see {mixin} section - General styles for sections
+
+@mixin toggleable {
+  &.toggleable {
+    /* Only on screens so as not to mess up printing */
+    @media only screen {
+      /* For all their headings ... */
+      & > h2,
+      & > h3,
+      & > h4,
+      & > h5,
+      & > h6 {
+        /* Make space for the toggle controls */
+        padding-left: 1em;
+        padding-right: 1em;
+
+        /* Create the toggle controls in ::before and ::after pseudo-elements */
+        &::before,
+        &::after {
+          content: "▼";
+          opacity: 0.0625;
+          position: absolute;
+          top: 0;
+          bottom: auto;
+          display: flex;
+          align-items: center;
+        }
+
+        /* Align them to the left and right */
+        &::before {
+          left: 0;
+        }
+        &::after {
+          right: 0;
+        }
+
+        /* Delay their appearance when the section transitions into view */
+        &::before,
+        &::after {
+          --dur: 1s;
+          transition: all var(--dur), opacity var(--dur) var(--dur);
+        }
+
+        &.off-screen {
+          &::before,
+          &::after {
+            opacity: 0;
+            transition-delay: 0s;
+          }
+        }
+
+        /* Make them more opaque on hover */
+        &:hover {
+          &::before,
+          &::after {
+            opacity: 0.25;
+          }
+        }
+      }
+    }
+  }
+  &.collapsed {
+    /* When the sections are collapsed ... */
+    & > h1,
+    & > h2,
+    & > h3,
+    & > h4,
+    & > h5,
+    & > h6 {
+      /* Rotate the toggle controls inward */
+      &::before {
+        transform: rotate(-90deg);
+        opacity: 0.25;
+      }
+      &::after {
+        transform: rotate(90deg);
+        opacity: 0.25;
+      }
+    }
+    /* Don't hide contents of collapsed sections on print */
+    > *:not(h2, h3, h4, h5, h6, .description) {
+      @media only print {
+        display: initial !important;
+        opacity: initial !important;
+        height: initial !important;
+      }
+    }
+  }
+}

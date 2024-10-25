@@ -1,0 +1,128 @@
+/// Styles for gallery items
+/// @group main
+/// @see {mixin} gallery - General styles for galleries
+
+@mixin gallery-item {
+  .item {
+    /* Layout */
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+
+    /* Sizing */
+    max-width: 80ch;
+    overflow: hidden;
+
+    /* Spacing */
+    margin: 1pt;
+    padding: var(--spacing);
+    gap: var(--spacing);
+
+    /* Borders */
+    border: 0pt solid var(--cw75);
+    border-radius: var(--rounding);
+    box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent,
+      1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+      0 0 0 1pt var(--gloss) inset, 0 0 0 1pt var(--shade);
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss),
+        1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+        0 0 0 1pt transparent inset, 0 0 0 1pt transparent;
+    }
+
+    /* Background */
+    background-color: white;
+
+    /* Typography */
+    text-align: center;
+    vertical-align: top;
+    color: var(--ct);
+    /* Reset text color since these backgrounds are always white */
+    --ct: hsl(from black h s l / 75%);
+
+    /* Miscellaneous */
+    list-style: none;
+
+    /* Images */
+    img {
+      display: inline-block;
+      max-width: calc(var(--gim) - 2 * var(--spacing));
+      max-height: calc(var(--gim) - 2 * var(--spacing));
+      margin: auto;
+      background: white;
+      transition: all var(--dur) calc(var(--delA) + var(--delB));
+    }
+    /* Styles for when the images are off-screen waiting to transition in */
+    &.off-screen {
+      /* Only apply these on screens, so that printing doesn't get messsed up */
+      @media only screen {
+        img {
+          transform: scale(0);
+          border-radius: 100%;
+          transition-delay: 0s;
+        }
+      }
+    }
+
+    /* Text */
+    p {
+      margin: 0 auto;
+      padding: 0;
+      border: 0;
+      font-size: 1rem;
+      text: {
+        indent: 0;
+        align: center;
+      }
+      line-height: 1.5;
+      color: black;
+      /* Titles and 'More' links */
+      &.title,
+      &.more {
+        font: {
+          family: "Nunito", sans-serif;
+          size: 1em;
+        }
+      }
+      /* Links within text element*/
+      a {
+        position: relative;
+        z-index: 1; // So they're independently clickable despite any cover links
+        text-decoration: underline;
+        color: var(--cm25);
+        @media (prefers-color-scheme: dark) {
+          color: var(--cm75);
+        }
+      }
+    }
+    /* Links in general */
+    a {
+      margin: auto 0;
+      color: var(--ct);
+      text-decoration: none;
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        text-shadow: none;
+      }
+      /* Links that cover the entire gallery item, making it clickable as a whole */
+      &.cover {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+          color: transparent;
+        }
+      }
+    }
+  }
+}

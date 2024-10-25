@@ -1,0 +1,115 @@
+/// Styles for the footer
+/// @see {mixin} colors-header-footer - Color variables for the header and footer
+
+@mixin footer {
+  footer {
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+
+    /* Borders */
+    border: 0;
+    border-top: 3pt ridge var(--cw75);
+    outline: 0;
+    box-shadow: 0 0.5em 0.5em var(--shade) inset;
+
+    /* Background */
+    --seaShadow: hsla(from var(--seaColor1) h 100% 0% / 100%);
+    background:
+    /* Shadow the foreground */ linear-gradient(
+        to bottom,
+        transparent,
+        var(--seaShadow)
+      ),
+      /* Swells in the sea */
+        linear-gradient(
+          to bottom,
+          transparent 0%,
+          transparent calc(1 * 100% / 32),
+          var(--swellLight) calc(1.25 * 100% / 32),
+          var(--swellColor) calc(1.5 * 100% / 32),
+          transparent calc(1 * 100% / 16),
+          var(--swellLight) calc(1.25 * 100% / 16),
+          var(--swellColor) calc(1.5 * 100% / 16),
+          transparent calc(1 * 100% / 8),
+          var(--swellLight) calc(1.25 * 100% / 8),
+          var(--swellColor) calc(1.5 * 100% / 8),
+          transparent calc(1 * 100% / 4),
+          var(--swellLight) calc(1.25 * 100% / 4),
+          var(--swellColor) calc(1.5 * 100% / 4),
+          transparent calc(1 * 100% / 2),
+          var(--swellLight) calc(1.25 * 100% / 2),
+          var(--swellColor) calc(1.5 * 100% / 2),
+          transparent 100%
+        ),
+      /* Basic colors of sea */
+        linear-gradient(
+          to bottom,
+          var(--seaColor1) 0%,
+          var(--seaColor2) 50%,
+          var(--seaColor3) 100%
+        );
+    background-size: 100% 100%, auto;
+    background-position: center, top, center;
+
+    /* Animation */
+    @keyframes waves {
+      from {
+        background-size: 100%, 100% 100%, auto;
+      }
+      to {
+        background-size: 100%, 100% 200%, auto;
+      }
+    }
+    animation-name: waves;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+
+    /* Typography */
+    font-family: "Itim", "Nunito", sans-serif;
+    color: var(--cw25);
+    text-align: center;
+
+    /* Paragraphs */
+    p {
+      margin: 0;
+      padding: var(--spacing);
+      font-size: min(2rem, 4vw);
+      color: white;
+      -webkit-text-fill-color: white;
+      -webkit-text-stroke: calc(1em / 16) black;
+      paint-order: stroke fill;
+      text-shadow: 0.0125em 0.0125em 0.0125em #000,
+        0.025em 0.025em 0.025em #0008, 0.05em 0.05em 0.05em #0004,
+        0.1em 0.1em 0.1em #0002;
+    }
+
+    /* Links */
+    a {
+      text-decoration: none;
+      letter-spacing: 0.5ch;
+      text-shadow: inherit;
+      &:link {
+        color: var(--cm85);
+      }
+      &:hover {
+        color: var(--cm90);
+        text-shadow: inherit;
+      }
+      &:active {
+        color: var(--cm95);
+        text-shadow: inherit;
+      }
+      &:visited {
+        color: var(--cm80);
+      }
+    }
+
+    /* Hide whoel footer on print */
+    @media only print {
+      display: none;
+    }
+  }
+}

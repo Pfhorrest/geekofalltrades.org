@@ -1,0 +1,73 @@
+@use "../../../../../root/layout/breakpoints.scss" as *;
+
+/// Styles for dropdown submenus
+/// @group header
+/// @require $bp2 - Second breakpoint value
+/// @see {mixin} menu-item-with-submenu - Styles for menu items with submenus
+/// @see {mixin} menu-item - General styles for menu items
+
+@mixin submenu {
+  ul {
+    /* Layout */
+    position: static;
+    display: none;
+    z-index: -1;
+    top: 0;
+    left: 0.5em;
+    overflow-y: auto;
+
+    /* Sizing */
+    width: 100%;
+
+    /* Spacing */
+    padding: 0.125em 0;
+    margin: 0;
+
+    /* Background */
+    background: linear-gradient(
+      to right,
+      var(--cm70),
+      var(--cm80),
+      var(--cm70)
+    );
+    background-size: 1000% 1000%;
+    background-position-x: 50%;
+
+    /* Borders */
+    border-radius: calc(0.5 * var(--rounding));
+    box-shadow: 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+      1pt 1pt 1pt transparent, 0 0 0 1pt var(--shade) inset;
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: 1pt 1pt 0pt var(--gloss) inset,
+        -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade),
+        0 0 0 1pt transparent inset;
+      background-size: 100% 100%;
+    }
+
+    /* At larger viewport widths, drop down instead of just expanding in place */
+    @media (min-width: $bp2) {
+      position: absolute;
+      width: 100%;
+      box-sizing: border-box;
+      max-height: calc(100vh - 10em);
+      margin: 0 -0.5em;
+      padding: 2em 0 0;
+    }
+
+    /* Submenu items */
+    li {
+      display: block;
+      margin: 0.5em;
+      white-space: normal;
+
+      /* Item links */
+      a {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.5em 1em;
+      }
+    }
+  }
+}

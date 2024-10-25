@@ -1,0 +1,19 @@
+
+
+/// Configurable primary color variables
+/// @group root
+/// @see {mixin} colors-calc - Calculated secondary color variables
+/// @see {mixing} colors-header-footer - Color variables for the header and footer
+/// @see {mixin} colors - General color variable styles
+
+@mixin colors-config {
+  // Hue
+  --hm: 120; // Main hue
+  --hs: 60; // Hue separation
+
+  // Saturation
+  --sm: 50%; // Main saturation
+
+  // Lightness
+  --lmo: 75%; // Main lightness offset; contrast from background
+}

@@ -1,0 +1,19 @@
+/// Spacing variables
+/// @group layout
+/// @see {mixin} rounding - Rounding variables
+
+@mixin spacing {
+  /* Configurable spacing variables */
+  --spacingFactor: 1; // Multiple of font size
+  $spacingType: "Rel"; // Default to local font size (Rel) or root (Abs)
+
+  /* Calculated spacing variables */
+  --spacingRel: clamp(0.5rem, calc(100vw / 60), calc(var(--spacingFactor) * 1em));
+  --spacingAbs: clamp(
+    0.5rem,
+    calc(100vw / 60),
+    calc(var(--spacingFactor) * 1rem)
+  );
+  $spacingCalc: if($spacingType == "Rel", --spacingRel, --spacingAbs);
+  --spacing: var(#{$spacingCalc});
+}

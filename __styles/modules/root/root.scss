@@ -1,0 +1,17 @@
+@use "./colors/colors.scss" as *;
+@use "./layout/layout.scss" as *;
+
+/// Root styles for the site
+/// @require {mixin} colors - Color variables
+/// @require {mixin} layout - Layout variables
+/// @require {mixin} typography - Typography variables
+
+@mixin root {
+  :root {
+    /* Color variables */
+    @include colors;
+
+    /* Layout variables */
+    @include layout;
+  }
+}

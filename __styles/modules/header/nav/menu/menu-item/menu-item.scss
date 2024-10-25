@@ -1,0 +1,121 @@
+@use "../../../../root/layout/breakpoints.scss" as *;
+@use "./menu-item-current.scss" as *;
+@use "./submenu/menu-item-with-submenu.scss" as *;
+
+/// Styles for menu items
+/// @group header
+/// @require {Length} $bp2 - Second breakpoint value
+/// @require {mixin} menu-item-current - Styles for active menu items
+/// @require {mixin} menu-item-with-submenu - Styles for menu items with submenus
+/// @see {mixin} menu - General styles for menus
+
+@mixin menu-item-styles {
+li {
+    /* Layout */
+    position: relative;
+    display: inline-block;
+    flex: 1 1 100%;
+
+    /* Sizing */
+    height: auto;
+
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+
+    /* Borders */
+    border-radius: calc(0.5 * var(--rounding));
+
+    /* Typography */
+    line-height: 1;
+    white-space: normal;
+
+    /* Miscelleneous */
+    list-style-type: none;
+
+    /* At larger viewpoint widths ... */
+    @media (min-width: $bp2) {
+      /* Accommodate content but no more */
+      flex: 1 0 0%;
+      /* No line wrapping */
+      white-space: nowrap;
+    }
+
+
+    /* Menu item link */
+    a {
+      /* Layout */
+      display: inline-block;
+
+      /* Sizing */
+      width: 100%;
+      box-sizing: border-box;
+
+      /* Spacing */
+      margin: 0;
+      padding: 0.5em 2em;
+
+      /* Background */
+      background: radial-gradient(transparent, var(--ccg)),
+        linear-gradient(to var(--curve), var(--cc95) 0%, var(--cc75) 100%);
+      /* Background is scaled up and centered to create illusory flatness
+         that can then be scaled back down to animate in skeuomorphism */
+      background-size: 1000% 1000%;
+      background-position-y: 50%;
+
+      /* Borders */
+      border: none;
+      border-radius: calc(0.5 * var(--rounding));
+      box-shadow: 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+        1pt 1pt 1pt transparent, 0 0 0 1pt var(--shade) inset;
+
+      /* Typography */
+      font-weight: normal;
+      text: {
+        transform: none;
+        decoration: none;
+      }
+      overflow-wrap: break-word;
+      line-height: 1;
+
+      /* Text color should be ordinary text color in all circumstances */
+      &,
+      &:active,
+      &:hover,
+      &:focus,
+      &:visited {
+        color: var(--ct);
+      }
+
+      /* Effects */
+
+      /* Skeuomorphisms on all interaction*/
+      transition: all 1s;
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: 1pt 1pt 0pt var(--gloss) inset,
+          -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade),
+          0 0 0 1pt transparent inset;
+        /* Scale background back to normal to animate in gradient */
+        background-size: 100% 100%;
+      }
+
+      /* Different colors for hover and active states */
+      &:hover {
+        background: radial-gradient(transparent, var(--cmg)),
+          linear-gradient(to var(--curve), var(--cm95), var(--cm75));
+      }
+      &:active {
+        background: radial-gradient(transparent, var(--cwg)),
+          linear-gradient(to var(--curve), var(--cw95), var(--cw75));
+      }
+    }
+
+    /* Styles for active menu items */
+    @include menu-item-current;
+
+    /* Styles for menu items with submenus */
+    @include menu-item-with-submenu;
+  }
+}

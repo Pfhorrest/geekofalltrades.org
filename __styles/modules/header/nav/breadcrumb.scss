@@ -1,0 +1,92 @@
+@use "../../root/layout/breakpoints.scss" as *;
+
+/// Styles for breadcrumbs
+/// @group header
+/// @require {Length} $bp2 - Second breakpoint value
+/// @see {mixin} menu - Styles for menus
+/// @see {mixin} nav - General styles for navigation
+
+@mixin breadcrumb {
+  > a {
+    /* Layout */
+    display: block;
+    float: left;
+    z-index: 1;
+    flex: 1 1 auto;
+    order: -1;
+    opacity: 50%;
+
+    /* Sizing */
+    overflow: hidden;
+
+    /* Spacing */
+    margin: 0;
+    margin-bottom: -2em;
+    padding: 0 1em;
+    padding-bottom: 2em;
+
+    /* Background */
+    background: var(--nav-grad);
+    background-size: 100% 300%;
+    background-position-y: 50%;
+
+    /* Borders */
+    border: none;
+    border-top: 0pt solid white;
+    outline: none;
+    border-top-left-radius: calc(0.5 * var(--rounding));
+    border-top-right-radius: calc(0.5 * var(--rounding));
+    box-shadow: 1pt 1pt 0pt transparent inset, -1pt 0pt 0pt transparent inset,
+      1pt 1pt 0 0 var(--shade) inset;
+
+    /* Typography */
+    color: var(--ct);
+    text: {
+      align: center;
+      decoration: none;
+    }
+    line-height: 2;
+    text-overflow: ellipsis;
+
+    /* Fade out opacity from latest to earlier breadcrumbs */
+    &:nth-last-of-type(1) {
+      opacity: 100%;
+    }
+    &:nth-last-of-type(2) {
+      opacity: 87.5%;
+    }
+    &:nth-last-of-type(3) {
+      opacity: 75%;
+    }
+    &:nth-last-of-type(4) {
+      opacity: 62.5%;
+    }
+    &:nth-last-of-type(5) {
+      opacity: 50%;
+    }
+
+    /* At larger viewport widths ... */
+    @media (min-width: $bp2) {
+      /* No gap between breadcrumbs and menus */
+      margin-bottom: 0;
+      padding-bottom: 0;
+      /* On interaction... */
+      &:hover,
+      &:focus,
+      &:active,
+      &.current {
+        /* Get skeueomorphic */
+        box-shadow: 1pt 1pt 0pt var(--gloss) inset,
+          -1pt 0pt 0pt var(--shade) inset, 1pt 1pt 0 0 transparent inset;
+        /* Shift background gradient to top (for highlight effect) */
+        background-position-y: 0%;
+        /* Come to full opacity */
+        opacity: 100%;
+        /* If it's not the last one, dim the last one a little in comparison */
+        & ~ a:last-of-type {
+          opacity: 93.75%;
+        }
+      }
+    }
+  }
+}

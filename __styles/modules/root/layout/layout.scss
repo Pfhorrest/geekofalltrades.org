@@ -1,0 +1,20 @@
+@use './breakpoints.scss' as *;
+@use './spacing.scss' as *;
+@use './rounding.scss' as *;
+
+/// Layout variables
+/// @group layout
+/// @requires {mixin} spacing - Spacing variables
+/// @requires {mixin} rounding - Rounding variables
+/// @requires {mixin} breakpoints - Breakpoint variables
+
+@mixin layout {
+    /* Spacing variables */
+    @include spacing;
+
+    /* Rounding variables */
+    @include rounding;
+
+    /* Breakpoint variables */
+    @include breakpoints;
+}

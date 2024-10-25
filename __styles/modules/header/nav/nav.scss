@@ -1,0 +1,57 @@
+@use "../../root/layout/breakpoints.scss" as *;
+@use "./breadcrumb.scss" as *;
+@use "./menu/menu.scss" as *;
+
+/// Styles for navigation
+/// @group header
+/// @require {Length} $bp2 - Second breakpoint value
+/// @require {mixin} breadcrumb - Styles for breadcrumbs
+/// @require {mixin} menu - Styles for menus
+
+@mixin nav {
+  nav {
+    /* Layout */
+    position: relative;
+    z-index: 1;
+    display: none; // Actual initial display value at small viewport widths
+    --display: flex; // Intended display value once made visible
+    & * {
+      --display: ; // Cleared so children don't inherit it
+    }
+    flex-flow: column nowrap;
+    flex-shrink: 1;
+
+    /* Sizing */
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    /* Spacing */
+    padding: 0 0.5em;
+    gap: 0 0.5em;
+
+    /* Background gradient used throughout child elements */
+    --nav-grad: linear-gradient(
+      to var(--curve),
+      var(--cc95) calc(0 * 100% / 6),
+      var(--cc85) calc(1 * 100% / 6),
+      var(--cc85) calc(5 * 100% / 6),
+      var(--cc75) calc(6 * 100% / 6)
+    );
+
+    /* At larger viewport widths, show fully by default */
+    @media (min-width: $bp2) {
+      display: flex;
+      flex-flow: row wrap;
+      min-height: auto;
+      overflow-x: visible;
+      overflow-y: visible;
+      background-position-y: 0;
+    }
+
+    /* Styles for breadcrumbs */
+    @include breadcrumb;
+
+    /* Styles for menus */
+    @include menu;
+  }
+}

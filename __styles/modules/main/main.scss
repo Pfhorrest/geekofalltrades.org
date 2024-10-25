@@ -1,0 +1,125 @@
+@use "../root/layout/breakpoints.scss" as *;
+@use "../root/typography.scss" as *;
+@use "./headings.scss" as *;
+@use "./main-elements.scss" as *;
+@use "./section/section.scss" as *;
+@use "./section/toggle-all-sections-controls.scss" as *;
+
+/// Styles for the main section
+/// @group main
+/// @require {Length} $bp1 - First breakpoint value
+/// @require {Length} $bp4 - Fourth breakpoint value
+/// @require {Calc} $mfs - Main font size
+/// @require {function} rfs - Function for responsive font sizing
+/// @require {mixin} headings - Styles for headings
+/// @require {mixin} main-elements - Styles for other elements
+/// @require {mixin} section - Styles for sections
+/// @require {mixin} toggle-all-sections-controls - Styles for the toggle-all-sections controls
+
+@mixin main {
+  main {
+    /* Layout */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 1 auto;
+
+    /* Sizing */
+    margin: 0;
+    padding: var(--spacingAbs);
+    gap: var(--spacingAbs);
+
+    /* Borders */
+    border: 0;
+    outline: 0;
+
+    /* Background */
+    background: radial-gradient(
+      farthest-corner,
+      var(--cw75) 0%,
+      var(--cw95) 100%
+    );
+    background-position: center;
+    background-size: 100% 100%;
+
+    /* Typography */
+    font-size: rfs(1rem, $bp1, $mfs, $bp4);
+    line-height: 1.5;
+
+    /* Animation */
+    @keyframes mainLighting {
+      from {
+        background-size: 100% 100%;
+      }
+      to {
+        background-size: 400% 200%;
+      }
+    }
+    animation-name: mainLighting;
+    animation-duration: 44s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transition-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
+
+    /* Direct children layout */
+    > * {
+      flex: 0 1 auto;
+    }
+
+    /* All children transitions */
+    * {
+      transition: all var(--dur), opacity var(--dur) linear,
+        transform var(--dur) cubic-bezier(0.75, 1.75, 0.75, 0.75)
+          calc(var(--delA) + var(--delB));
+      --dur: 1s; // Transition duration
+      --delA: 0s; // Primary transition delay (varies by nesting)
+      --delB: 0s; // Secondary transition delay (varies by column)
+      /* Children of children have longer delays so they transition in in sequence */
+      &.off-screen > * {
+        --delA: calc(1s / 16);
+        &.off-screen > * {
+          --delA: calc(2s / 16);
+          &.off-screen > * {
+            --delA: calc(3s / 16);
+            &.off-screen > * {
+              --delA: calc(4s / 16);
+            }
+          }
+        }
+      }
+      /* Styles for off-screen elements to transition back in from when they enter */
+      &.off-screen {
+        @media only screen {
+          opacity: 0;
+          transform: rotateY(0.25turn);
+        }
+        transition-delay: 0s;
+        --dur: 0s;
+      }
+    }
+
+    /* Give some selected elements zero transition delay
+    so they just appear immediately with their parents */
+    a,
+    em,
+    strong,
+    i,
+    b,
+    span {
+      --dur: 0s;
+    }
+
+    /* Styles for headings */
+    @include headings;
+
+    /* Styles for other elements */
+    @include main-elements;
+
+    /* Styles for sections */
+    @include section;
+
+    /* Styles for the toggle-all-sections controls */
+    @include toggle-all-section-controls;
+  }
+}

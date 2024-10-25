@@ -1,0 +1,42 @@
+@use "sass:math";
+@import url("https://fonts.googleapis.com/css2?family=Itim&family=Nunito&family=Princess+Sofia&display=swap");
+
+/// Helper function to strip unit from a length
+/// @group typography
+/// @param {Length} $length - Number to strip unit from
+/// @return {number} - Number with unit removed
+/// @see {function} rfs - Calculate responsive font sizes
+
+@function su($length: Length) {
+  @return math.div($length, ($length * 0 + 1));
+}
+
+/// Function to calculate responsive font sizes
+/// @group typography
+/// @param {Length} $minValue - Minimum font size
+/// @param {Length} $minWidth - Minimum viewport width
+/// @param {Length} $maxValue - Maximum font size
+/// @param {Length} $maxWidth - Maximum viewport width
+/// @return {Calc} - CSS clamp() function for responsive font-size value
+
+@function rfs(
+  $minValue: Length,
+  $minWidth: Length,
+  $maxValue: Length,
+  $maxWidth: Length
+) {
+  @return clamp(
+    $minValue,
+    calc(
+      $minValue + (100vw - $minWidth) * (su($maxValue) - su($minValue)) /
+        (su($maxWidth) - su($minWidth))
+    ),
+    $maxValue
+  );
+}
+
+/// Main font size at largest viewport widths
+/// @group typography
+/// @type Length
+
+$mfs: 1.25rem;

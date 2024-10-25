@@ -1,0 +1,185 @@
+@use "../../root/layout/breakpoints.scss" as *;
+
+/// Styles for figures
+/// @group main
+/// @require {Length} $bp2 - Second breakpoint value
+/// @require {Length} $bp3 - Third breakpoint value
+/// @see {mixing} section - General styles for sections
+
+@mixin figure {
+  figure {
+    float: none; // Default for smaller viewports, overridden at larger viewports
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: var(--spacing) auto;
+    --dur: 0.5s;
+
+    /* Figure images */
+    img {
+      display: block;
+      max-width: 100%;
+      margin: auto;
+    }
+    /* To transform in and out as they enter or exit the viewport */
+    &.off-screen {
+      /* But only on screen so as not to mess up printing */
+      @media only screen {
+        img {
+          transform: scale(0);
+        }
+      }
+    }
+
+    /* Figures that can be inverted with light and dark mode */
+    &.invertible {
+      @media (prefers-color-scheme: light) {
+        img {
+          filter: none;
+        }
+      }
+      @media (prefers-color-scheme: dark) {
+        img {
+          filter: invert(1) hue-rotate(0.5turn);
+        }
+      }
+    }
+
+    /* Figures that aren't freeform within sections but rather 
+       are contained within definite borders with backgrounds */
+    &.contained {
+      overflow: hidden;
+      border: 1pt solid var(--cw75);
+      border-radius: var(--rounding);
+      box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent,
+        1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+        0 0 0 1pt var(--shade) inset;
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss),
+          1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+          0 0 0 1pt transparent inset;
+      }
+      background: var(--cw75);
+      /* Don't do separate transitions on their images when entering viewport */
+      &.off-screen {
+        img {
+          transform: none;
+        }
+      }
+    }
+
+    /* At larger viewports, float figures alternately left or right */
+    @media (min-width: $bp2) {
+      float: left;
+      transform-origin: left;
+      --fw: calc(50% - 1.5 * var(--spacing)); // Figure width
+      max-width: var(--fw);
+      margin: 0 var(--spacing) var(--spacing) 0;
+
+      &:nth-of-type(even):not(.solo) {
+        float: right;
+        transform-origin: right;
+        margin-left: var(--spacing);
+        margin-right: 0;
+      }
+      /* Unless they're classed "solo" */
+      &.solo {
+        float: none;
+        transform-origin: center;
+        max-width: 100%;
+      }
+      /* Imperfect hack to continue alternation across multiple sections */
+      section:nth-of-type(even) &:not(.solo) {
+        float: right;
+        transform-origin: right;
+        margin-left: var(--spacing);
+        margin-right: 0;
+
+        &:nth-of-type(even):not(.solo) {
+          float: left;
+          transform-origin: left;
+          margin-right: var(--spacing);
+          margin-left: 0;
+        }
+      }
+    }
+
+    /* At even larger viewports, float figures even outside of their sections */
+    @media (min-width: $bp3) {
+      /* Fancy negative margin size to pull them outside of their sections */
+      --fms: calc(-1 * min(calc((100vw - 100%) / 2), 100%) + var(--spacing));
+      /* Fancy max-width size to scale them appropriately for the larger width */
+      --fmw: min(
+        calc(100% - 5 * var(--spacing)),
+        calc(var(--fw) - 0.5 * var(--fms))
+      );
+
+      margin-left: var(--fms);
+      transform-origin: right;
+      &:nth-of-type(even):not(.solo) {
+        margin-left: var(--spacing);
+        margin-right: var(--fms);
+        transform-origin: left;
+      }
+      max-width: var(--fmw);
+
+      /* These need to be applied to those in alternating sections too */
+      section:nth-of-type(even) &:not(.solo) {
+        margin-left: var(--spacing);
+        margin-right: var(--fms);
+        transform-origin: left;
+
+        &:nth-of-type(even):not(.solo) {
+          margin-right: var(--spacing);
+          margin-left: var(--fms);
+          transform-origin: right;
+        }
+      }
+
+      /* Those classed as "solo" extent out beyond both sides of their sections */
+      &.solo {
+        width: 100vw;
+        max-width: min(300%, 100% - 2 * var(--fms) - 2 * var(--spacing));
+        margin-right: var(--fms);
+        transform-origin: center;
+        transition-duration: calc(2 * var(--dur));
+      }
+
+      /* They need a section-like padding, borders and backgrounds to look nice */
+      padding: var(--spacing);
+      border-radius: calc(2 * var(--spacing));
+      box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
+        1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+        0 0 0 1pt var(--shade) inset;
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss),
+          1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+          0 0 0 1pt transparent inset;
+      }
+      &,
+      &.contained {
+        border: none;
+        background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+        animation-name: mainLighting;
+        animation-duration: 5s;
+      }
+
+      /* And to transition in with different timing than other section content */
+      transition-duration: calc(4 * var(--dur)), 0.5s;
+      transition-property: transform, all;
+
+      img {
+        /* Images transition in immediately with their figures now */
+        transition-duration: 0s;
+        transition-property: transform;
+        /* And don't get too big now that they have more opportunity to grow */
+        max-height: calc(100vh - 10rem);
+        object-fit: contain;
+      }
+    }
+  }
+}

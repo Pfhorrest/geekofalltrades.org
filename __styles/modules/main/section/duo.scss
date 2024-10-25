@@ -1,0 +1,28 @@
+/// Styles for duos of sections side by side when possible
+/// @group main
+/// @see {mixin} section - General styles for sections
+/// @see {mixin} figure - General styles for figures
+
+@mixin duo {
+  .duo {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    text-align: left;
+    gap: var(--spacing);
+
+    /* Child elements */
+    > section {
+      display: inline-block;
+      float: none;
+      flex: 1 1 20ch;
+      width: 36em;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: var(--spacing);
+      margin: 0;
+      vertical-align: top;
+    }
+  }
+}
