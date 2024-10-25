@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophical-spectrum-no-transcendentalism.svg" />
-			<source srcset="../__images/philosophical-spectrum-no-cyntranscendentalismicism.png" />
-			<img src="../__images/philosophical-spectrum-no-transcendentalism.jpg"
+			<source srcset="../_media/images/philosophical-spectrum-no-transcendentalism.svg" />
+			<source srcset="../_media/images/philosophical-spectrum-no-cyntranscendentalismicism.png" />
+			<img src="../_media/images/philosophical-spectrum-no-transcendentalism.jpg"
 				alt="Anti-transcendentalism on a spectrum of philosophical positions" />
 		</picture>
 	</figure>
@@ -87,9 +87,9 @@
 	</p>
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/transcendentalism.svg" />
-			<source srcset="../__images/transcendentalism.png" />
-			<img src="../__images/transcendentalism.jpg"
+			<source srcset="../_media/images/transcendentalism.svg" />
+			<source srcset="../_media/images/transcendentalism.png" />
+			<img src="../_media/images/transcendentalism.jpg"
 				alt="Transcendentalism" />
 		</picture>
 	</figure>
@@ -175,9 +175,9 @@
 		<h3>Not Against All Objectivism</h3>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/objectivism-subjectivism.svg" />
-				<source srcset="../__images/objectivism-subjectivism.png" />
-				<img src="../__images/objectivism-subjectivism.jpg"
+				<source srcset="../_media/images/objectivism-subjectivism.svg" />
+				<source srcset="../_media/images/objectivism-subjectivism.png" />
+				<img src="../_media/images/objectivism-subjectivism.jpg"
 					alt="Objectivism vs Subjectivism" />
 			</picture>
 		</figure>

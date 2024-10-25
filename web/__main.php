@@ -13,7 +13,7 @@
 			Built in NextJS / ReactJS with Supabase.
 			(2023-2024)
 		</p>
-		<figure class="contained solo"><img src="__images/pantry-screenshot.jpg" alt="Pantry screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/pantry-screenshot.jpg" alt="Pantry screenshot" /></figure>
 		<p>
 			This is a customer portal for
 			<a href="#ingredients-plus">Ingredients Plus</a>.
@@ -89,7 +89,7 @@
 			with Freshworks CRM API, hosted on Amazon EC2.
 			(2023-2024)
 		</p>
-		<figure class="contained solo"><img src="__images/rc-jp-screenshot.jpg" alt="Royal Copenhagen Japan screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/rc-jp-screenshot.jpg" alt="Royal Copenhagen Japan screenshot" /></figure>
 		<p>
 			This was a project to update the web store for
 			<a href="https://www.royalcopenhagen.com" rel="external">Royal Copenhagen</a>'s
@@ -115,7 +115,7 @@
 			with Freshworks CRM API, hosted on Amazon EC2.
 			(2023-2024)
 		</p>
-		<figure class="contained solo"><img src="__images/moomin-jp-screenshot.jpg" alt="Moomin Arabia Japan screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/moomin-jp-screenshot.jpg" alt="Moomin Arabia Japan screenshot" /></figure>
 		<p>
 			This was a project to update the web store for
 			<a href="https://www.moominarabia.com" rel="external">Moomin Arabia</a>'s
@@ -141,7 +141,7 @@
 			with Freshworks CRM API, hosted on Amazon EC2.
 			(2023-2024)
 		</p>
-		<figure class="contained solo"><img src="__images/iittala-jp-screenshot.jpg" alt="Iittala Japan screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/iittala-jp-screenshot.jpg" alt="Iittala Japan screenshot" /></figure>
 		<p>
 			This was a project to update the web store for
 			<a href="https://www.iittala.com" rel="external">Iittala</a>'s
@@ -167,7 +167,7 @@
 			with Freshworks CRM API, hosted on Amazon EC2.
 			(2023-2024)
 		</p>
-		<figure class="contained solo"><img src="__images/wedgwood-jp-screenshot.jpg" alt="Wedgwood Japan screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/wedgwood-jp-screenshot.jpg" alt="Wedgwood Japan screenshot" /></figure>
 		<p>
 			This was a project to update the web store for
 			<a href="https://www.wedgwood.com" rel="external">Wedgwood</a>'s
@@ -212,7 +212,7 @@
 			Built in Webflow.
 			(2022-2024)
 		</p>
-		<figure class="contained solo"><img src="__images/ip-screenshot.jpg" alt="Ingredients Plus screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/ip-screenshot.jpg" alt="Ingredients Plus screenshot" /></figure>
 		<p>
 			This is a fairly straightforward brochure-style site for Ingredients Plus,
 			whom we rebranded from their old identity as Sweeteners Plus when they began working
@@ -245,7 +245,7 @@
 			Built in Webflow.
 			(2022-2024)
 		</p>
-		<figure class="contained solo"><img src="__images/tr-screenshot.jpg" alt="Twisted Rope screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/tr-screenshot.jpg" alt="Twisted Rope screenshot" /></figure>
 		<p>
 			When I joined Twisted Rope, one of the early tasks assigned to myself and 
 			some other new hires was to rebuild the company website. We did so over
@@ -279,7 +279,7 @@
 			Built in vanilla PHP, HTML5, CSS3, and JS / jQuery.
 			(2008-2024)
 		</p>
-		<figure class="contained solo"><img src="__images/goat-screenshot.jpg" alt="Geek of all Trades screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/goat-screenshot.jpg" alt="Geek of all Trades screenshot" /></figure>
 		<p>
 			This is my own personal site. It's been gradually undergoing intermittent
 			redevelopment since I first built it at this domain in 2008 &ndash; and even that 
@@ -327,7 +327,7 @@
 			hosted on WPEngine.
 			(2023)
 		</p>
-		<figure class="contained solo"><img src="__images/gnp-screenshot.jpg" alt="Get Nature Positive screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/gnp-screenshot.jpg" alt="Get Nature Positive screenshot" /></figure>
 		<p>
 			This project was created by some coworkers at Twisted Rope before I joined the company,
 			but I eventually became the main support person &ndash; and after the last of the
@@ -345,7 +345,7 @@
 			Built in WordPress with Divi theme, hosted on WPEngine.
 			(2023)
 		</p>
-		<figure class="contained solo"><img src="__images/zquip-screenshot.jpg" alt="Zquip screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/zquip-screenshot.jpg" alt="Zquip screenshot" /></figure>
 		<p>
 			This project was mostly developed by my coworkers, but I helped with minor touch-ups
 			and fixes here and there.
@@ -361,7 +361,7 @@
 			Built in vanilla HTML and CSS, hosted on AEM.
 			(2023)
 		</p>
-		<figure class="contained solo"><img src="__images/me-spotlight-screenshot.jpg" alt="Accenture Media &amp; Entertainment Spotlight screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/me-spotlight-screenshot.jpg" alt="Accenture Media &amp; Entertainment Spotlight screenshot" /></figure>
 		<p>
 			This project just involved embedding some code exported from InDesign by our
 			design team into the appropriate place within the client's AEM site, with
@@ -412,7 +412,7 @@
 			Built in HTML, SCSS / CSS, JS, JSON, and NodeJS, hosted on AEM.
 			(2023)
 		</p>
-		<figure class="contained solo"><img src="__images/accenture-inclusion-diversity-screenshot.jpg" alt="Accenture Workforce Inclusion &amp; Diversity Initiatives interactive screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/accenture-inclusion-diversity-screenshot.jpg" alt="Accenture Workforce Inclusion &amp; Diversity Initiatives interactive screenshot" /></figure>
 		<p>
 			This project is what the client refers to as an "interactive element" of an
 			otherwise fairly static page, where data is displayed in a more complex manner
@@ -457,7 +457,7 @@
 			Built in WordPress with Divi theme, hosted on WPEngine.
 			(2022-2023)
 		</p>
-		<figure class="contained solo"><img src="__images/moog-screenshot.jpg" alt="Moog Construction screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/moog-screenshot.jpg" alt="Moog Construction screenshot" /></figure>
 		<p>
 			A fairly straightforward brochure-style site for Moog Construction, this was mostly 
 			developed by one of my coworkers, but I helped resolve some tricky CSS 
@@ -504,7 +504,7 @@
 			Built in WordPress with Divi theme, hosted on WPEngine.
 			(2022-2023)
 		</p>
-		<figure class="contained solo"><img src="__images/landmark-screenshot.jpg" alt="Landmark screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/landmark-screenshot.jpg" alt="Landmark screenshot" /></figure>
 		<p>
 			This was a team project to completely rebuild the site for a client whose old 
 			site looked like it hadn't been updated in decades. The new site is still a
@@ -532,7 +532,7 @@
 			Built in HTML, SCSS / CSS, JS, JSON, and NodeJS, hosted on AEM.
 			(2022-2023)
 		</p>
-		<figure class="contained solo"><img src="__images/accenture-global-delivery-centers-screenshot.jpg" alt="Accenture Global Delivery Centers interactive screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/accenture-global-delivery-centers-screenshot.jpg" alt="Accenture Global Delivery Centers interactive screenshot" /></figure>
 		<p>
 			This project is what the client refers to as an "interactive element" of an
 			otherwise fairly static page, where data is displayed in a more complex manner
@@ -553,7 +553,7 @@
 			Built in Webflow with heavily customized CSS and JS.
 			(2022)
 		</p>
-		<figure class="contained solo"><img src="__images/moog-bauma-screenshot.jpg" alt="Moog Bauma demo screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/moog-bauma-screenshot.jpg" alt="Moog Bauma demo screenshot" /></figure>
 		<p>
 			These were three similar projects, all stand-alone sites that could run locally 
 			in a browser on a tablet not connected to the internet at the
@@ -587,7 +587,7 @@
 			an API served on Node, hosted on Amazon EC2.
 			(2022)
 		</p>
-		<figure class="contained solo"><img src="__images/erp-screenshot.jpg" alt="ERP@Motion screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/erp-screenshot.jpg" alt="ERP@Motion screenshot" /></figure>
 		<p>
 			This was originally a simple static microsite built as an educational resource 
 			for employees of a company the client had just acquired, which a coworker of 
@@ -629,7 +629,7 @@
 			Built in Laravel / Symphony / PHP with MySQL and Elasticsearch.
 			(2022)
 		</p>
-		<figure class="contained solo"><img src="__images/runzy-screenshot.jpg" alt="Runzy screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/runzy-screenshot.jpg" alt="Runzy screenshot" /></figure>
 		<p>
 			This project is a search engine for running events. It was started 
 			by one of my more senior coworkers who then brought on myself and
@@ -648,7 +648,7 @@
 			Built in WordPress with Divi theme on WPEngine.
 			(2022)
 		</p>
-		<figure class="contained solo"><img src="__images/founders-intelligence-screenshot.jpg" alt="Founders Intelligence screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/founders-intelligence-screenshot.jpg" alt="Founders Intelligence screenshot" /></figure>
 		<p>
 			This was a migration of the client's existing site, to be reimplemented in WordPress 
 			and hosted on WPEngine, as required by their new parent company. We at Twisted Rope 
@@ -702,7 +702,7 @@
 			Built in vanilla HTML, CSS, and JS / jQuery, hosted on Sitecore.
 			(2022)
 		</p>
-		<figure class="contained solo"><img src="__images/building-sustainable-futures-screenshot.jpg" alt="Building Sustainable Futures screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/building-sustainable-futures-screenshot.jpg" alt="Building Sustainable Futures screenshot" /></figure>
 		<p>
 			This is a page or microsite for an Accenture podcast. It was quite 
 			enjoyable just building this in vanilla code, structurally and 
@@ -723,7 +723,7 @@
 			Built in HTML, SCSS / CSS, JS, JSON, and NodeJS, hosted on Sitecore.
 			(2022)
 		</p>
-		<figure class="contained solo"><img src="__images/accenture-global-delivery-centers-screenshot.jpg" alt="Accenture Global Delivery Centers interactive screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/accenture-global-delivery-centers-screenshot.jpg" alt="Accenture Global Delivery Centers interactive screenshot" /></figure>
 		<p>
 			This project is what the client refers to as an "interactive element" of an
 			otherwise fairly static page, where data is displayed in a more complex manner
@@ -762,7 +762,7 @@
 			Built in WordPress with Divi theme on WPEngine.
 			(2022)
 		</p>
-		<figure class="contained solo"><img src="__images/blueworx-screenshot.jpg" alt="BlueWorx screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/blueworx-screenshot.jpg" alt="BlueWorx screenshot" /></figure>
 		<p>
 			This was a migration of the client's existing site, to be reimplemented in WordPress 
 			and hosted on WPEngine, as required by their new parent company. We at Twisted Rope 
@@ -856,7 +856,7 @@
 			Built in WordPress with Divi theme on WPEngine.
 			(2021-2022)
 		</p>
-		<figure class="contained solo"><img src="__images/blueworx-screenshot.jpg" alt="BlueWorx screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/blueworx-screenshot.jpg" alt="BlueWorx screenshot" /></figure>
 		<p>
 			This was a migration of the client's existing site, to be reimplemented in WordPress 
 			and hosted on WPEngine, as required by their new parent company. We at Twisted Rope 
@@ -891,7 +891,7 @@
 			Built in vanilla HTML5, SASS / CSS3, PHP, and JS / jQuery.
 			(2004-2020)
 		</p>
-		<figure class="contained solo"><img src="__images/eternal-screenshot.jpg" alt="Eternal screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/eternal-screenshot.jpg" alt="Eternal screenshot" /></figure>
 		<p>
 			This is a simple static brochure-style site for my own personal game mod
 			<i>Eternal</i>, that I have been gradually updating since the first public 
@@ -917,7 +917,7 @@
 			Built in vanilla HTML5, CSS3, and PHP.
 			(2002-2020)
 		</p>
-		<figure class="contained solo"><img src="__images/cpbt-screenshot.jpg" alt="Castellino Training screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/cpbt-screenshot.jpg" alt="Castellino Training screenshot" /></figure>
 		<p>
 			I was hired by the Castellinos specifically to build them a website in what was
 			originally just going to be a summer job between my first two terms at college,
@@ -945,7 +945,7 @@
 			Built in vanilla HTML5, CSS3, MGI, and JS / jQuery.
 			(1998-2020)
 		</p>
-		<figure class="contained solo"><img src="__images/mbo-screenshot.jpg" alt="Myth @ Bungie.Org screenshot" /></figure>
+		<figure class="contained solo"><img src="_media/images/mbo-screenshot.jpg" alt="Myth @ Bungie.Org screenshot" /></figure>
 		<p>
 			This is by far the oldest site of mine that's still online, for another old video 
 			game I was a fan of back in the late 90s. I didn't build the original version, but
@@ -1017,7 +1017,7 @@
 		</p>
 		<p>More details, screenshots, and links coming soon.</p>
 		-- No longer online --
-		-- <a href="https://www.github.com/Pfhorrest/antiquedollsofsantabarbara.com" rel="external"><img src="__images/AntiqueDollsSite_thumb.png" alt="thumbnail" /></a> --
+		-- <a href="https://www.github.com/Pfhorrest/antiquedollsofsantabarbara.com" rel="external"><img src="_media/images/AntiqueDollsSite_thumb.png" alt="thumbnail" /></a> --
 	</section> -->
 
 	<section id="anacapa-equipment">
@@ -1050,7 +1050,7 @@
 		</p>
 		<p>More details, screenshots, and links coming soon.</p>
 		-- No longer online --
-		-- <a href="https://www.github.com/Pfhorrest/anacapamobile.com/" rel="external"><img src="__images/AnacapaMobileSite_thumb.png" alt="thumbnail" /></a> --
+		-- <a href="https://www.github.com/Pfhorrest/anacapamobile.com/" rel="external"><img src="_media/images/AnacapaMobileSite_thumb.png" alt="thumbnail" /></a> --
 	</section> -->
 
 </section>

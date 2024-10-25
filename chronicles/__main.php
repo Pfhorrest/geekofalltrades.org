@@ -5,7 +5,7 @@
 	<p class="description">An epic tapestry of tales about alien space wizards, prehistoric nanotech gods, and a virtual reality afterlife.</p>
 
 	<figure>
-		<img src="__images/chronicles-cover.jpg" alt="The Chronicles"/>
+		<img src="_media/images/chronicles-cover.jpg" alt="The Chronicles"/>
 	</figure>
 	
 	<p><strong>Begin with <a href="2/2/2/2/2">Season 1, Episode 1.</a></strong></p>
@@ -63,9 +63,9 @@
 	</p>
 	<figure class="solo">
 		<picture>
-			<source srcset="__images/chronicles-timeline.svg" />
-			<source srcset="__images/chronicles-timeline.png" />
-			<img src="__images/chronicles-timeline.jpg" alt="Chronicles timeline" />
+			<source srcset="_media/images/chronicles-timeline.svg" />
+			<source srcset="_media/images/chronicles-timeline.png" />
+			<img src="_media/images/chronicles-timeline.jpg" alt="Chronicles timeline" />
 		</picture>
 	</figure>
 	<hr />

@@ -64,7 +64,7 @@
 			$favicon_sizes = [16, 32, 96, 180];
 			foreach ($favicon_sizes as $size) {
 				echo '<link rel="icon" type="image/png"
-					href="/__images/favicons/favicon-'.$size.'.png"
+					href="/_media/images/favicons/favicon-'.$size.'.png"
 					sizes="'.$size.'x'.$size.'" />';
 			}
 		?>

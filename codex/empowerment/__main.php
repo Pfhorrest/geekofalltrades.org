@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure-empowerment.svg" />
-			<source srcset="../__images/philosophy-structure-empowerment.png" />
-			<img src="../__images/philosophy-structure-empowerment.jpg"
+			<source srcset="../_media/images/philosophy-structure-empowerment.svg" />
+			<source srcset="../_media/images/philosophy-structure-empowerment.png" />
+			<img src="../_media/images/philosophy-structure-empowerment.jpg"
 				alt="The structure of philosophy, centered on empowerment" />
 		</picture>
 	</figure>

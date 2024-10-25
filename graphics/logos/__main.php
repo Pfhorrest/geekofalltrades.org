@@ -17,17 +17,17 @@
 
 			array(
 				'title' => '<i>Eternal</i> Pfhor logon',
-				'filename' => '../../../eternal/__images/logons/terminal-pfhor.jpg',
+				'filename' => '../../../../eternal/_media/images/logons/terminal-pfhor.jpg',
 				'description' => 'Illustrator, 2013.'
 			),
 			array(
 				'title' => '<i>Eternal</i> Leela-S\'bhuth logon',
-				'filename' => '../../../eternal/__images/logons/terminal-klila.jpg',
+				'filename' => '../../../../eternal/_media/images/logons/terminal-klila.jpg',
 				'description' => 'Illustrator, 2013.'
 			),
 			array(
 				'title' => '<i>Eternal</i> Forerunner logon',
-				'filename' => '../../../eternal/__images/logons/terminal-forerunner.jpg',
+				'filename' => '../../../../eternal/_media/images/logons/terminal-forerunner.jpg',
 				'description' => 'Illustrator, 2013.'
 			),
 

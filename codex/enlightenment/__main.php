@@ -4,9 +4,9 @@
 				
 					<figure class="invertible">
 						<picture>
-							<source srcset="../__images/philosophy-structure-enlightenment.svg" />
-							<source srcset="../__images/philosophy-structure-enlightenment.png" />
-							<img src="../__images/philosophy-structure-enlightenment.jpg"
+							<source srcset="../_media/images/philosophy-structure-enlightenment.svg" />
+							<source srcset="../_media/images/philosophy-structure-enlightenment.png" />
+							<img src="../_media/images/philosophy-structure-enlightenment.jpg"
 								alt="The structure of philosophy, centered on enlightenment" />
 						</picture>
 					</figure>

@@ -5,7 +5,7 @@
 	<p class="description">A Pragmatic Analysis of Philosophy from the Meaning of Words to the Meaning of Life.</p>
 
 		<figure>
-			<img src="__images/codex-cover.jpg" alt="The Codex Quarentis: A Pragmatic Analysis of Philosophy from the Meaning of Words to the Meaning of Life" />
+			<img src="_media/images/codex-cover.jpg" alt="The Codex Quarentis: A Pragmatic Analysis of Philosophy from the Meaning of Words to the Meaning of Life" />
 		</figure>
 	
 <!--
@@ -214,9 +214,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="__images/history-of-philosophy.svg" />
-				<source srcset="__images/history-of-philosophy.png" />
-				<img src="__images/history-of-philosophy.jpg"
+				<source srcset="_media/images/history-of-philosophy.svg" />
+				<source srcset="_media/images/history-of-philosophy.png" />
+				<img src="_media/images/history-of-philosophy.jpg"
 					alt="History of Philosophy" />
 			</picture>
 		</figure>
@@ -256,9 +256,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="__images/my-history.svg" />
-				<source srcset="__images/my-history.png" />
-				<img src="__images/my-history.jpg"
+				<source srcset="_media/images/my-history.svg" />
+				<source srcset="_media/images/my-history.png" />
+				<img src="_media/images/my-history.jpg"
 					alt="My philosophical history" />
 			</picture>
 		</figure>
@@ -338,9 +338,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="__images/philosophy-structure.svg" />
-				<source srcset="__images/philosophy-structure.png" />
-				<img src="__images/philosophy-structure.jpg"
+				<source srcset="_media/images/philosophy-structure.svg" />
+				<source srcset="_media/images/philosophy-structure.png" />
+				<img src="_media/images/philosophy-structure.jpg"
 					alt="The structure of philosophy" />
 			</picture>
 		</figure>

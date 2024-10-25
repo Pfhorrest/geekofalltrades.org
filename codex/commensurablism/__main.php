@@ -92,9 +92,9 @@
 
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/philosophical-spectrum.svg" />
-				<source srcset="../__images/philosophical-spectrum.png" />
-				<img src="../__images/philosophical-spectrum.jpg"
+				<source srcset="../_media/images/philosophical-spectrum.svg" />
+				<source srcset="../_media/images/philosophical-spectrum.png" />
+				<img src="../_media/images/philosophical-spectrum.jpg"
 					alt="Philosophical spectrum" />
 			</picture>
 		</figure>
@@ -152,9 +152,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/commensurablism.svg" />
-				<source srcset="../__images/commensurablism.png" />
-				<img src="../__images/commensurablism.jpg"
+				<source srcset="../_media/images/commensurablism.svg" />
+				<source srcset="../_media/images/commensurablism.png" />
+				<img src="../_media/images/commensurablism.jpg"
 					alt="Commensurablism" />
 			</picture>
 		</figure>
@@ -442,9 +442,9 @@
 
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/principles-commensurablism.svg" />
-				<source srcset="../__images/principles-commensurablism.png" />
-				<img src="../__images/principles-commensurablism.jpg"
+				<source srcset="../_media/images/principles-commensurablism.svg" />
+				<source srcset="../_media/images/principles-commensurablism.png" />
+				<img src="../_media/images/principles-commensurablism.jpg"
 					alt="Principles and Counter-Principles of Commensurablism" />
 			</picture>
 		</figure>
@@ -459,9 +459,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/principles-phobosophies.svg" />
-				<source srcset="../__images/principles-phobosophies.png" />
-				<img src="../__images/principles-phobosophies.jpg"
+				<source srcset="../_media/images/principles-phobosophies.svg" />
+				<source srcset="../_media/images/principles-phobosophies.png" />
+				<img src="../_media/images/principles-phobosophies.jpg"
 					alt="Phobosophies" />
 			</picture>
 		</figure>
@@ -473,9 +473,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/principles-incommensurablism.svg" />
-				<source srcset="../__images/principles-incommensurablism.png" />
-				<img src="../__images/principles-incommensurablism.jpg"
+				<source srcset="../_media/images/principles-incommensurablism.svg" />
+				<source srcset="../_media/images/principles-incommensurablism.png" />
+				<img src="../_media/images/principles-incommensurablism.jpg"
 					alt="Incommensurablism" />
 			</picture>
 		</figure>

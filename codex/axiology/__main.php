@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure-axiology.svg" />
-			<source srcset="../__images/philosophy-structure-axiology.png" />
-			<img src="../__images/philosophy-structure-axiology.jpg"
+			<source srcset="../_media/images/philosophy-structure-axiology.svg" />
+			<source srcset="../_media/images/philosophy-structure-axiology.png" />
+			<img src="../_media/images/philosophy-structure-axiology.jpg"
 				alt="The structure of philosophy, centered on axiology" />
 		</picture>
 	</figure>
@@ -28,9 +28,9 @@
 	</p>
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/attributive-predicative.svg" />
-			<source srcset="../__images/attributive-predicative.png" />
-			<img src="../__images/attributive-predicative.jpg"
+			<source srcset="../_media/images/attributive-predicative.svg" />
+			<source srcset="../_media/images/attributive-predicative.png" />
+			<img src="../_media/images/attributive-predicative.jpg"
 				alt="Attributive and Predicative value" />
 		</picture>
 	</figure>
@@ -100,9 +100,9 @@
 		</ul>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/objectivism-subjectivism.svg" />
-				<source srcset="../__images/objectivism-subjectivism.png" />
-				<img src="../__images/objectivism-subjectivism.jpg"
+				<source srcset="../_media/images/objectivism-subjectivism.svg" />
+				<source srcset="../_media/images/objectivism-subjectivism.png" />
+				<img src="../_media/images/objectivism-subjectivism.jpg"
 					alt="Objectivism vs Subjectivism" />
 			</picture>
 		</figure>
@@ -149,9 +149,9 @@
 		<h3>On Attributive Value</h3>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/web-of-reality.svg" />
-				<source srcset="../__images/web-of-reality.png" />
-				<img src="../__images/web-of-reality.jpg"
+				<source srcset="../_media/images/web-of-reality.svg" />
+				<source srcset="../_media/images/web-of-reality.png" />
+				<img src="../_media/images/web-of-reality.jpg"
 					alt="Web of Reality" />
 			</picture>
 		</figure>
@@ -186,9 +186,9 @@
 			<h4>On Emergent Instrumental Attributive Value</h4>
 			<figure class="invertible">
 				<picture>
-					<source srcset="../__images/reduction-emergence.svg" />
-					<source srcset="../__images/reduction-emergence.png" />
-					<img src="../__images/reduction-emergence.jpg"
+					<source srcset="../_media/images/reduction-emergence.svg" />
+					<source srcset="../_media/images/reduction-emergence.png" />
+					<img src="../_media/images/reduction-emergence.jpg"
 						alt="Reduction and Emergence" />
 				</picture>
 			</figure>

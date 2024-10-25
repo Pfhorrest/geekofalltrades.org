@@ -3,18 +3,18 @@
     foreach ($images as $key => $image) {
         $filepath = (is_file($rootpath.$image['filename']))
             ? $image['filename']
-            : '__images/'.$image['filename'] ;
+            : '_media/images/'.$image['filename'] ;
         $altpath = (is_file($rootpath.$image['altlink']))
             ? $image['altlink']
-            : '__images/'.$image['altlink'] ;
+            : '_media/images/'.$image['altlink'] ;
         $filenameParts = explode('.',$image['filename']);
         $filenameSuffix = array_pop($filenameParts);
         $filenameBase = implode($filenameParts);
         $thumbname = $filenameBase.'-thumb'.$filenameSuffix;
         $thumbpath = (is_file($rootpath.$thumbname))
             ? $thumbname
-            : ((is_file($rootpath.'__images/'.$thumbname))
-                ? '__images/'.$thumbname
+            : ((is_file($rootpath.'_media/images/'.$thumbname))
+                ? '_media/images/'.$thumbname
                 : $filepath);
         /* Need to install imagick on host
         if (!is_file($thumbpath) && is_file($filepath)) {

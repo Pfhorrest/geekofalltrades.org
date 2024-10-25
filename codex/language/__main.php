@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure-language.svg" />
-			<source srcset="../__images/philosophy-structure-language.png" />
-			<img src="../__images/philosophy-structure-language.jpg"
+			<source srcset="../_media/images/philosophy-structure-language.svg" />
+			<source srcset="../_media/images/philosophy-structure-language.png" />
+			<img src="../_media/images/philosophy-structure-language.jpg"
 				alt="The structure of philosophy, centered on philosophy of language" />
 		</picture>
 	</figure>
@@ -128,9 +128,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/communication.svg" />
-				<source srcset="../__images/communication.png" />
-				<img src="../__images/communication.jpg"
+				<source srcset="../_media/images/communication.svg" />
+				<source srcset="../_media/images/communication.png" />
+				<img src="../_media/images/communication.jpg"
 					alt="Communication" />
 			</picture>
 		</figure>
@@ -270,9 +270,9 @@
 			</ul>
 			<figure class="invertible">
 				<picture>
-					<source srcset="../__images/opinions.svg" />
-					<source srcset="../__images/opinions.png" />
-					<img src="../__images/opinions.jpg"
+					<source srcset="../_media/images/opinions.svg" />
+					<source srcset="../_media/images/opinions.png" />
+					<img src="../_media/images/opinions.jpg"
 						alt="Opinions" />
 				</picture>
 			</figure>

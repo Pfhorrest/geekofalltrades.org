@@ -3,7 +3,7 @@
 	<p class="description">
 		My name is Forrest Cameranesi. I am a self-styled "Geek of All Trades" from Ojai, California.
 	</p>
-	<figure class="invertible"><img src="__images/logo-main.png" alt="Main Logo" /></figure>
+	<figure class="invertible"><img src="_media/images/logo-main.png" alt="Main Logo" /></figure>
 	<p>
 		I do <a href="web">web development</a> for <a href="resume">work</a>.
 	</p>
@@ -53,13 +53,13 @@
 	<div class="gallery">
 		<div class="item">
 			<p class="title">Web Development</p>
-			<img src="/web/__images/goat-thumb.jpg" alt="" />
+			<img src="/web/_media/images/goat-thumb.jpg" alt="" />
 			<p>Examples of my work in web development &amp; design.</p>
 			<a class="cover" href="web">View web development portfolio</a>
 		</div>
 		<div class="item">
 			<p class="title">Graphic Design</p>
-			<img src="/graphics/logos/__images/forrest-logo-thumb.png" alt="" />
+			<img src="/graphics/logos/_media/images/forrest-logo-thumb.png" alt="" />
 			<p>Examples of my work in various subfields of graphic design.</p>
 			<a class="cover" href="graphics">View graphic design portfolio</a>
 		</div>
@@ -77,7 +77,7 @@
 <section id="eternal">
 	<h2>Eternal</h2>
 	<p class="description">Beyond Infinity Lies Destiny.</p>
-	<figure class="invertible"><img src="__images/logo-eternal.png" alt="Eternal Logo" /></figure>
+	<figure class="invertible"><img src="_media/images/logo-eternal.png" alt="Eternal Logo" /></figure>
 	<p>
 		<a href="eternal">Eternal</a> is the closest thing to a video game I've ever actually released.
 		It is an extensive mod for and expansion of <i>Marathon</i>, a '90s first-person shooter game from <a href="http://www.bungie.com/" rel="external">Bungie</a>,
@@ -107,7 +107,7 @@
 <section id="codex">
 	<h2>The Codex</h2>
 	<p class="description">A Pragmatic Analysis of Philosophy from the Meaning of Words to the Meaning of Life.</p>
-	<figure><img src="__images/logo-codex.png" alt="Codex Logo" /></figure>
+	<figure><img src="_media/images/logo-codex.png" alt="Codex Logo" /></figure>
 	<p>
 		<i>The <a href="codex">Codex Quaerentis</a></i>
 		is a series of essays describing my complete system of philosophy, arguing for my positions on virtually every subject  &ndash; 
@@ -131,7 +131,7 @@
 <section id="chronicles">
 	<h2>The Chronicles</h2>
 	<p class="description">A epic tapestry of tales about alien space wizards, prehistoric nanotech gods, and a virtual reality afterlife.</p>
-	<figure><img src="__images/logo-chronicles.png" alt="Chronicles Logo" /></figure>
+	<figure><img src="_media/images/logo-chronicles.png" alt="Chronicles Logo" /></figure>
 	<p>
 		<i>The <a href="chronicles">Chronicles of Quelouva</a></i> is a large series of interconnected
 		stories set in the same fictional universe, involving an ancient alien empire, human
@@ -174,6 +174,7 @@
 					This site is all hand-written in plain HTML, except for some
 					limited use of PHP to enable code reuse and avoid repetition,
 					borrowing some useful concepts from NextJS to create something
+					that could have been implemented in ancient LAMP-stack sites,
 					that I playfully call "PrevHP".
 				</li>
 				<li>
@@ -228,14 +229,14 @@
 					even with JavaScript completely disabled, unlike many modern
 					SPAs (which again helps automatically ensure searchability and
 					accessibility); but it has tons of subtle progressive enhancements to the UX
-					for those who do have Javascript enabled.
+					for those who (like most users) do have Javascript enabled.
 				</li>
 				<li>
 					And all of that is written almost entirely in vanilla modern ES6
 					(or actually TypeScript, for better error checking):
 					no dependence on any heavy frameworks, making for snappy
 					performance on both the client and server ends, and easy
-					approachability to developers with little more than the basically
+					approachability to developers with little more than the basic
 					vanilla web technologies.
 				</li>
 			</ul>

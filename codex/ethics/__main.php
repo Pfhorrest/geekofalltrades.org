@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure.svg" />
-			<source srcset="../__images/philosophy-structure.png" />
-			<img src="../__images/philosophy-structure.jpg"
+			<source srcset="../_media/images/philosophy-structure.svg" />
+			<source srcset="../_media/images/philosophy-structure.png" />
+			<img src="../_media/images/philosophy-structure.jpg"
 				alt="The structure of philosophy" />
 		</picture>
 	</figure>

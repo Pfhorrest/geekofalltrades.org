@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure-ontology.svg" />
-			<source srcset="../__images/philosophy-structure-ontology.png" />
-			<img src="../__images/philosophy-structure-ontology.jpg"
+			<source srcset="../_media/images/philosophy-structure-ontology.svg" />
+			<source srcset="../_media/images/philosophy-structure-ontology.png" />
+			<img src="../_media/images/philosophy-structure-ontology.jpg"
 				alt="The structure of philosophy, centered on ontology" />
 		</picture>
 	</figure>
@@ -25,9 +25,9 @@
 	</p>
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/abstract-concrete.svg" />
-			<source srcset="../__images/abstract-concrete.png" />
-			<img src="../__images/abstract-concrete.jpg"
+			<source srcset="../_media/images/abstract-concrete.svg" />
+			<source srcset="../_media/images/abstract-concrete.png" />
+			<img src="../_media/images/abstract-concrete.jpg"
 				alt="Abstract and Concrete Existence" />
 		</picture>
 	</figure>
@@ -97,9 +97,9 @@
 		</ul>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/objectivism-subjectivism.svg" />
-				<source srcset="../__images/objectivism-subjectivism.png" />
-				<img src="../__images/objectivism-subjectivism.jpg"
+				<source srcset="../_media/images/objectivism-subjectivism.svg" />
+				<source srcset="../_media/images/objectivism-subjectivism.png" />
+				<img src="../_media/images/objectivism-subjectivism.jpg"
 					alt="Objectivism vs Subjectivism" />
 			</picture>
 		</figure>
@@ -151,9 +151,9 @@
 			</p>
 			<figure class="invertible">
 				<picture>
-					<source srcset="../__images/web-of-reality.svg" />
-					<source srcset="../__images/web-of-reality.png" />
-					<img src="../__images/web-of-reality.jpg"
+					<source srcset="../_media/images/web-of-reality.svg" />
+					<source srcset="../_media/images/web-of-reality.png" />
+					<img src="../_media/images/web-of-reality.jpg"
 						alt="Web of Reality" />
 				</picture>
 			</figure>
@@ -284,9 +284,9 @@
 			</p>
 			<figure class="invertible">
 				<picture>
-					<source srcset="../__images/reduction-emergence.svg" />
-					<source srcset="../__images/reduction-emergence.png" />
-					<img src="../__images/reduction-emergence.jpg"
+					<source srcset="../_media/images/reduction-emergence.svg" />
+					<source srcset="../_media/images/reduction-emergence.png" />
+					<img src="../_media/images/reduction-emergence.jpg"
 						alt="Reduction and Emergence" />
 				</picture>
 			</figure>

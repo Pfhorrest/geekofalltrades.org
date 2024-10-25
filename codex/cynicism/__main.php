@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophical-spectrum-no-cynicism.svg" />
-			<source srcset="../__images/philosophical-spectrum-no-cynicism.png" />
-			<img src="../__images/philosophical-spectrum-no-cynicism.jpg"
+			<source srcset="../_media/images/philosophical-spectrum-no-cynicism.svg" />
+			<source srcset="../_media/images/philosophical-spectrum-no-cynicism.png" />
+			<img src="../_media/images/philosophical-spectrum-no-cynicism.jpg"
 				alt="Anti-cynicism on a spectrum of philosophical positions" />
 		</picture>
 	</figure>
@@ -86,9 +86,9 @@
 	<hr />
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/cynicism.svg" />
-			<source srcset="../__images/cynicism.png" />
-			<img src="../__images/cynicism.jpg"
+			<source srcset="../_media/images/cynicism.svg" />
+			<source srcset="../_media/images/cynicism.png" />
+			<img src="../_media/images/cynicism.jpg"
 				alt="Cynicism"  />
 		</picture>
 	</figure>
@@ -199,9 +199,9 @@
 		<h3>Not Against All Skepticism</h3>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/fideism-skepticism.svg" />
-				<source srcset="../__images/fideism-skepticism.png" />
-				<img src="../__images/fideism-skepticism.jpg"
+				<source srcset="../_media/images/fideism-skepticism.svg" />
+				<source srcset="../_media/images/fideism-skepticism.png" />
+				<img src="../_media/images/fideism-skepticism.jpg"
 					alt="Fideism vs Skepticism" />
 			</picture>
 		</figure>

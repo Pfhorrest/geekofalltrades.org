@@ -8,7 +8,7 @@
         }
         $display = (is_file($basepath.$display))
             ? $display
-            : '__images/'.$display ;
+            : '_media/images/'.$display ;
         $prev = $images[($item_id - 1)];
         $next = $images[($item_id + 1)];
     }

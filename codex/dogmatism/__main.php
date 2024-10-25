@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophical-spectrum-no-dogmatism.svg" />
-			<source srcset="../__images/philosophical-spectrum-no-dogmatism.png" />
-			<img src="../__images/philosophical-spectrum-no-dogmatism.jpg"
+			<source srcset="../_media/images/philosophical-spectrum-no-dogmatism.svg" />
+			<source srcset="../_media/images/philosophical-spectrum-no-dogmatism.png" />
+			<img src="../_media/images/philosophical-spectrum-no-dogmatism.jpg"
 				alt="Anti-dogmatism on a spectrum of philosophical positions" />
 		</picture>
 	</figure>
@@ -73,9 +73,9 @@
 	<hr />
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/dogmatism.svg" />
-			<source srcset="../__images/dogmatism.png" />
-			<img src="../__images/dogmatism.jpg"
+			<source srcset="../_media/images/dogmatism.svg" />
+			<source srcset="../_media/images/dogmatism.png" />
+			<img src="../_media/images/dogmatism.jpg"
 				alt="Dogmatism" />
 		</picture>
 	</figure>
@@ -144,9 +144,9 @@
 		<h3>Not Against All Fideism</h3>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/fideism-skepticism.svg" />
-				<source srcset="../__images/fideism-skepticism.png" />
-				<img src="../__images/fideism-skepticism.jpg"
+				<source srcset="../_media/images/fideism-skepticism.svg" />
+				<source srcset="../_media/images/fideism-skepticism.png" />
+				<img src="../_media/images/fideism-skepticism.jpg"
 					alt="Fideism vs Skepticism" />
 			</picture>
 		</figure>

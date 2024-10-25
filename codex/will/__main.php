@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure-will.svg" />
-			<source srcset="../__images/philosophy-structure-will.png" />
-			<img src="../__images/philosophy-structure-will.jpg"
+			<source srcset="../_media/images/philosophy-structure-will.svg" />
+			<source srcset="../_media/images/philosophy-structure-will.png" />
+			<img src="../_media/images/philosophy-structure-will.jpg"
 				alt="The structure of philosophy, centered on philosophy of will" />
 		</picture>
 	</figure>
@@ -79,9 +79,9 @@
 			<h4>On Appetites and Desires</h4>
 			<figure class="invertible">
 				<picture>
-					<source srcset="../__images/will-functions.svg" />
-					<source srcset="../__images/will-functions.png" />
-					<img src="../__images/will-functions.jpg"
+					<source srcset="../_media/images/will-functions.svg" />
+					<source srcset="../_media/images/will-functions.png" />
+					<img src="../_media/images/will-functions.jpg"
 						alt="Will Functions" />
 				</picture>
 			</figure>
@@ -105,9 +105,9 @@
 			</p>
 			<figure class="invertible">
 				<picture>
-					<source srcset="../__images/reflexive-functions.svg" />
-					<source srcset="../__images/reflexive-functions.png" />
-					<img src="../__images/reflexive-functions.jpg"
+					<source srcset="../_media/images/reflexive-functions.svg" />
+					<source srcset="../_media/images/reflexive-functions.png" />
+					<img src="../_media/images/reflexive-functions.jpg"
 						alt="Reflexive Functions" />
 				</picture>
 			</figure>

@@ -162,9 +162,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/fields.svg" />
-				<source srcset="../__images/fields.png" />
-				<img src="../__images/fields.jpg"
+				<source srcset="../_media/images/fields.svg" />
+				<source srcset="../_media/images/fields.png" />
+				<img src="../_media/images/fields.jpg"
 					alt="Fields" />
 			</picture>
 		</figure>

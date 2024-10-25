@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure-deontology.svg" />
-			<source srcset="../__images/philosophy-structure-deontology.png" />
-			<img src="../__images/philosophy-structure-deontology.jpg"
+			<source srcset="../_media/images/philosophy-structure-deontology.svg" />
+			<source srcset="../_media/images/philosophy-structure-deontology.png" />
+			<img src="../_media/images/philosophy-structure-deontology.jpg"
 				alt="The structure of philosophy, centered on deontology" />
 		</picture>
 	</figure>
@@ -92,9 +92,9 @@
 		</ul>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/fideism-skepticism.svg" />
-				<source srcset="../__images/fideism-skepticism.png" />
-				<img src="../__images/fideism-skepticism.jpg"
+				<source srcset="../_media/images/fideism-skepticism.svg" />
+				<source srcset="../_media/images/fideism-skepticism.png" />
+				<img src="../_media/images/fideism-skepticism.jpg"
 					alt="Fideism vs Skepticism" />
 			</picture>
 		</figure>
@@ -133,9 +133,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/types-of-justice.svg" />
-				<source srcset="../__images/types-of-justice.png" />
-				<img src="../__images/types-of-justice.jpg"
+				<source srcset="../_media/images/types-of-justice.svg" />
+				<source srcset="../_media/images/types-of-justice.png" />
+				<img src="../_media/images/types-of-justice.jpg"
 					alt="Types of Justice" />
 			</picture>
 		</figure>

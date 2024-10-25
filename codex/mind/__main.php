@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure-mind.svg" />
-			<source srcset="../__images/philosophy-structure-mind.png" />
-			<img src="../__images/philosophy-structure-mind.jpg"
+			<source srcset="../_media/images/philosophy-structure-mind.svg" />
+			<source srcset="../_media/images/philosophy-structure-mind.png" />
+			<img src="../_media/images/philosophy-structure-mind.jpg"
 				alt="The structure of philosophy, centered on philosophy of mind" />
 		</picture>
 	</figure>
@@ -72,9 +72,9 @@
 			<h4>On Sensations and Perceptions</h4>
 			<figure class="invertible">
 				<picture>
-					<source srcset="../__images/consciousness-functions.svg" />
-					<source srcset="../__images/consciousness-functions.png" />
-					<img src="../__images/consciousness-functions.jpg"
+					<source srcset="../_media/images/consciousness-functions.svg" />
+					<source srcset="../_media/images/consciousness-functions.png" />
+					<img src="../_media/images/consciousness-functions.jpg"
 						alt="Consciousness Functions" />
 				</picture>
 			</figure>
@@ -98,9 +98,9 @@
 			</p>
 			<figure class="invertible">
 				<picture>
-					<source srcset="../__images/reflexive-functions.svg" />
-					<source srcset="../__images/reflexive-functions.png" />
-					<img src="../__images/reflexive-functions.jpg"
+					<source srcset="../_media/images/reflexive-functions.svg" />
+					<source srcset="../_media/images/reflexive-functions.png" />
+					<img src="../_media/images/reflexive-functions.jpg"
 						alt="Reflexive Functions" />
 				</picture>
 			</figure>

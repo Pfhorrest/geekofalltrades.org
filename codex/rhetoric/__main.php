@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure-rhetoric.svg" />
-			<source srcset="../__images/philosophy-structure-rhetoric.png" />
-			<img src="../__images/philosophy-structure-rhetoric.jpg"
+			<source srcset="../_media/images/philosophy-structure-rhetoric.svg" />
+			<source srcset="../_media/images/philosophy-structure-rhetoric.png" />
+			<img src="../_media/images/philosophy-structure-rhetoric.jpg"
 				alt="The structure of philosophy, centered on rhetoric" />
 		</picture>
 	</figure>

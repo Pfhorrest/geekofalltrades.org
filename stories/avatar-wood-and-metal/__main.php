@@ -256,9 +256,9 @@
 
 	<figure class="solo invertible">
 		<picture>
-			<source srcset="__images/avatar-wood-and-metal.svg" />
-			<source srcset="__images/avatar-wood-and-metal.png" />
-			<img src="__images/avatar-wood-and-metal.jpg" alt="Six Elements" />
+			<source srcset="_media/images/avatar-wood-and-metal.svg" />
+			<source srcset="_media/images/avatar-wood-and-metal.png" />
+			<img src="_media/images/avatar-wood-and-metal.jpg" alt="Six Elements" />
 		</picture>
 	</figure>
 

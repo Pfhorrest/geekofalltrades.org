@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure-governance.svg" />
-			<source srcset="../__images/philosophy-structure-governance.png" />
-			<img src="../__images/philosophy-structure-governance.jpg"
+			<source srcset="../_media/images/philosophy-structure-governance.svg" />
+			<source srcset="../_media/images/philosophy-structure-governance.png" />
+			<img src="../_media/images/philosophy-structure-governance.jpg"
 				alt="The structure of philosophy, centered on philosophy of governance" />
 		</picture>
 	</figure>
@@ -163,9 +163,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/political-spectrum.svg" />
-				<source srcset="../__images/political-spectrum.png" />
-				<img src="../__images/political-spectrum.jpg"
+				<source srcset="../_media/images/political-spectrum.svg" />
+				<source srcset="../_media/images/political-spectrum.png" />
+				<img src="../_media/images/political-spectrum.jpg"
 					alt="Political Spectrum" />
 			</picture>
 		</figure>
@@ -195,9 +195,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/progressive-conservative.svg" />
-				<source srcset="../__images/progressive-conservative.png" />
-				<img src="../__images/progressive-conservative.jpg"
+				<source srcset="../_media/images/progressive-conservative.svg" />
+				<source srcset="../_media/images/progressive-conservative.png" />
+				<img src="../_media/images/progressive-conservative.jpg"
 					alt="Progressive-Conservative Spectrum" />
 			</picture>
 		</figure>

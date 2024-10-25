@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure-epistemology.svg" />
-			<source srcset="../__images/philosophy-structure-epistemology.png" />
-			<img src="../__images/philosophy-structure-epistemology.jpg"
+			<source srcset="../_media/images/philosophy-structure-epistemology.svg" />
+			<source srcset="../_media/images/philosophy-structure-epistemology.png" />
+			<img src="../_media/images/philosophy-structure-epistemology.jpg"
 				alt="The structure of philosophy, centered on epistemology" />
 		</picture>
 	</figure>
@@ -86,9 +86,9 @@
 		</ul>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/fideism-skepticism.svg" />
-				<source srcset="../__images/fideism-skepticism.png" />
-				<img src="../__images/fideism-skepticism.jpg"
+				<source srcset="../_media/images/fideism-skepticism.svg" />
+				<source srcset="../_media/images/fideism-skepticism.png" />
+				<img src="../_media/images/fideism-skepticism.jpg"
 					alt="Fideism vs Skepticism" />
 			</picture>
 		</figure>
@@ -119,9 +119,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/types-of-knowledge.svg" />
-				<source srcset="../__images/types-of-knowledge.png" />
-				<img src="../__images/types-of-knowledge.jpg"
+				<source srcset="../_media/images/types-of-knowledge.svg" />
+				<source srcset="../_media/images/types-of-knowledge.png" />
+				<img src="../_media/images/types-of-knowledge.jpg"
 					alt="Types of Knowledge" />
 			</picture>
 		</figure>

@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure-action.svg" />
-			<source srcset="../__images/philosophy-structure-action.png" />
-			<img src="../__images/philosophy-structure-action.jpg"
+			<source srcset="../_media/images/philosophy-structure-action.svg" />
+			<source srcset="../_media/images/philosophy-structure-action.png" />
+			<img src="../_media/images/philosophy-structure-action.jpg"
 				alt="The structure of philosophy, centered on philosophy of action" />
 		</picture>
 	</figure>
@@ -124,9 +124,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/action.svg" />
-				<source srcset="../__images/action.png" />
-				<img src="../__images/action.jpg"
+				<source srcset="../_media/images/action.svg" />
+				<source srcset="../_media/images/action.png" />
+				<img src="../_media/images/action.jpg"
 					alt="Action Functions" />
 			</picture>
 		</figure>
@@ -259,9 +259,9 @@
 			</p>
 			<figure>
 				<picture>
-					<source srcset="../__images/moods.svg" />
-					<source srcset="../__images/moods.png" />
-					<img src="../__images/moods.jpg"
+					<source srcset="../_media/images/moods.svg" />
+					<source srcset="../_media/images/moods.png" />
+					<img src="../_media/images/moods.jpg"
 						alt="Moods" />
 				</picture>
 			</figure>
@@ -336,9 +336,9 @@
 			</p>
 			<figure class="invertible">
 				<picture>
-					<source srcset="../__images/meaningful-function.svg" />
-					<source srcset="../__images/meaningful-function.png" />
-					<img src="../__images/meaningful-function.jpg"
+					<source srcset="../_media/images/meaningful-function.svg" />
+					<source srcset="../_media/images/meaningful-function.png" />
+					<img src="../_media/images/meaningful-function.jpg"
 						alt="Cultivating meaning through learning, teaching, achieving, and helping" />
 				</picture>
 			</figure>
@@ -547,9 +547,9 @@
 			</p>
 			<figure class="invertible">
 				<picture>
-					<source srcset="../__images/optimism-pessimism.svg" />
-					<source srcset="../__images/optimism-pessimism.png" />
-					<img src="../__images/optimism-pessimism.jpg"
+					<source srcset="../_media/images/optimism-pessimism.svg" />
+					<source srcset="../_media/images/optimism-pessimism.png" />
+					<img src="../_media/images/optimism-pessimism.jpg"
 						alt="Optimism and Pessimism" />
 				</picture>
 			</figure>

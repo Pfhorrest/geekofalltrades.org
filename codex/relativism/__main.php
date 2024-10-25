@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophical-spectrum-no-relativism.svg" />
-			<source srcset="../__images/philosophical-spectrum-no-relativism.png" />
-			<img src="../__images/philosophical-spectrum-no-relativism.jpg"
+			<source srcset="../_media/images/philosophical-spectrum-no-relativism.svg" />
+			<source srcset="../_media/images/philosophical-spectrum-no-relativism.png" />
+			<img src="../_media/images/philosophical-spectrum-no-relativism.jpg"
 				alt="Anti-relativism on a spectrum of philosophical positions" />
 		</picture>
 	</figure>
@@ -113,9 +113,9 @@
 	<hr />
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/relativism.svg" />
-			<source srcset="../__images/relativism.png" />
-			<img src="../__images/relativism.jpg"
+			<source srcset="../_media/images/relativism.svg" />
+			<source srcset="../_media/images/relativism.png" />
+			<img src="../_media/images/relativism.jpg"
 				alt="Relativism" />
 		</picture>
 	</figure>
@@ -172,9 +172,9 @@
 		<h3>Not Against All Subjectivism</h3>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/objectivism-subjectivism.svg" />
-				<source srcset="../__images/objectivism-subjectivism.png" />
-				<img src="../__images/objectivism-subjectivism.jpg"
+				<source srcset="../_media/images/objectivism-subjectivism.svg" />
+				<source srcset="../_media/images/objectivism-subjectivism.png" />
+				<img src="../_media/images/objectivism-subjectivism.jpg"
 					alt="Objectivism vs Subjectivism" />
 			</picture>
 		</figure>

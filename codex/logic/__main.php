@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure-logic.svg" />
-			<source srcset="../__images/philosophy-structure-logic.png" />
-			<img src="../__images/philosophy-structure-logic.jpg"
+			<source srcset="../_media/images/philosophy-structure-logic.svg" />
+			<source srcset="../_media/images/philosophy-structure-logic.png" />
+			<img src="../_media/images/philosophy-structure-logic.jpg"
 				alt="The structure of philosophy, centered on logic" />
 		</picture>
 	</figure>
@@ -40,9 +40,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/mood-structure.svg" />
-				<source srcset="../__images/mood-structure.png" />
-				<img src="../__images/mood-structure.jpg"
+				<source srcset="../_media/images/mood-structure.svg" />
+				<source srcset="../_media/images/mood-structure.png" />
+				<img src="../_media/images/mood-structure.jpg"
 					alt="Structure of Moods" />
 			</picture>
 		</figure>
@@ -119,9 +119,9 @@
 		<hr />
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/modality.svg" />
-				<source srcset="../__images/modality.png" />
-				<img src="../__images/modality.jpg"
+				<source srcset="../_media/images/modality.svg" />
+				<source srcset="../_media/images/modality.png" />
+				<img src="../_media/images/modality.jpg"
 					alt="Modality" />
 			</picture>
 		</figure>
@@ -181,9 +181,9 @@
 		<hr />
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/quantification.svg" />
-				<source srcset="../__images/quantification.png" />
-				<img src="../__images/quantification.jpg"
+				<source srcset="../_media/images/quantification.svg" />
+				<source srcset="../_media/images/quantification.png" />
+				<img src="../_media/images/quantification.jpg"
 					alt="Quantification" />
 			</picture>
 		</figure>
@@ -246,9 +246,9 @@
 		<hr />
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/predication.svg" />
-				<source srcset="../__images/predication.png" />
-				<img src="../__images/predication.jpg"
+				<source srcset="../_media/images/predication.svg" />
+				<source srcset="../_media/images/predication.png" />
+				<img src="../_media/images/predication.jpg"
 					alt="Predication" />
 			</picture>
 		</figure>
@@ -272,9 +272,9 @@
 		<h3>On Connection</h3>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/connection.svg" />
-				<source srcset="../__images/connection.png" />
-				<img src="../__images/connection.jpg"
+				<source srcset="../_media/images/connection.svg" />
+				<source srcset="../_media/images/connection.png" />
+				<img src="../_media/images/connection.jpg"
 					alt="Connection" />
 			</picture>
 		</figure>
@@ -283,9 +283,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/boolean-junctions.svg" />
-				<source srcset="../__images/boolean-junctions.png" />
-				<img src="../__images/boolean-junctions.jpg"
+				<source srcset="../_media/images/boolean-junctions.svg" />
+				<source srcset="../_media/images/boolean-junctions.png" />
+				<img src="../_media/images/boolean-junctions.jpg"
 					alt="Boolean Junctions" />
 			</picture>
 		</figure>

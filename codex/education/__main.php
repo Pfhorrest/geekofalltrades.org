@@ -4,9 +4,9 @@
 
 	<figure class="invertible">
 		<picture>
-			<source srcset="../__images/philosophy-structure-education.svg" />
-			<source srcset="../__images/philosophy-structure-education.png" />
-			<img src="../__images/philosophy-structure-education.jpg"
+			<source srcset="../_media/images/philosophy-structure-education.svg" />
+			<source srcset="../_media/images/philosophy-structure-education.png" />
+			<img src="../_media/images/philosophy-structure-education.jpg"
 				alt="The structure of philosophy, centered on philosophy of education" />
 		</picture>
 	</figure>
@@ -153,9 +153,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/academic-spectrum.svg" />
-				<source srcset="../__images/academic-spectrum.png" />
-				<img src="../__images/academic-spectrum.jpg"
+				<source srcset="../_media/images/academic-spectrum.svg" />
+				<source srcset="../_media/images/academic-spectrum.png" />
+				<img src="../_media/images/academic-spectrum.jpg"
 					alt="Academic Spectrum" />
 			</picture>
 		</figure>
@@ -173,9 +173,9 @@
 		</p>
 		<figure class="invertible">
 			<picture>
-				<source srcset="../__images/progressive-conservative.svg" />
-				<source srcset="../__images/progressive-conservative.png" />
-				<img src="../__images/progressive-conservative.jpg"
+				<source srcset="../_media/images/progressive-conservative.svg" />
+				<source srcset="../_media/images/progressive-conservative.png" />
+				<img src="../_media/images/progressive-conservative.jpg"
 					alt="Progressive-Conservative Spectrum" />
 			</picture>
 		</figure>

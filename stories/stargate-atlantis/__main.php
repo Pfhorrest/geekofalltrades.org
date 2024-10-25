@@ -133,9 +133,9 @@
 
 	<figure class="solo invertible">
 		<picture>
-			<source srcset="__images/stargate-atlantis.svg" />
-			<source srcset="__images/stargate-atlantis.png" />
-			<img src="__images/stargate-atlantis.jpg" alt="The Four Galaxies" />
+			<source srcset="_media/images/stargate-atlantis.svg" />
+			<source srcset="_media/images/stargate-atlantis.png" />
+			<img src="_media/images/stargate-atlantis.jpg" alt="The Four Galaxies" />
 		</picture>
 	</figure>
 

@@ -42,9 +42,9 @@
 	<p>The model of sex and sexuality I propose is one based on a multidimensional spectrum of external, anatomic sex; not genetics or other internal features that can only be discovered by advanced medical testing, but the ordinary features that any untrained person can see when looking at a person's body.</p>
 	<figure class="invertible">
 		<picture>
-			<source srcset="__images/reconstructinggender.svg">
-			<source srcset="__images/reconstructinggender.png">
-			<img src="__images/reconstructinggender.jpg" alt="Two-dimensional spectrum of sexes" />
+			<source srcset="_media/images/reconstructinggender.svg">
+			<source srcset="_media/images/reconstructinggender.png">
+			<img src="_media/images/reconstructinggender.jpg" alt="Two-dimensional spectrum of sexes" />
 		</picture>
 	</figure>
 	<p>For a start, we can imagine a two-dimensional spectrum, with one axis indicating conformity to typical male anatomy, and another indicating conformity to typical female anatomy; the majority of unambiguous males and females would be found clustered near two opposite corners, and people with ambiguous or mixed sexual anatomy due either to birth conditions or later modifications would be found scattered around other parts of the spectrum. This spectrum is merely a first pass at modeling a diverse and non-binary assortment of anatomic sexes; I am open to suggested modifications.</p>
