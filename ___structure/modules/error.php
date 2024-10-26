@@ -1,7 +1,22 @@
 <?php
-    $errorSegments = $segments;
-    array_pop($errorSegments);
-    $parentPath = implode("/", $errorSegments);
+    /** 
+     * Segments of the external request path minus the last one
+     * (to use for link back to "parent director" in error message).
+     * 
+     * @var array
+     * @uses $segments
+     */
+    $parentSegments = $segments;
+    array_pop($parentSegments);
+
+    /** 
+     * Path to parent directory of requested file *or* directory
+     * (to use for link back to "parent director" in error message).
+     * 
+     * @var string
+     * @uses $parentSegments
+     */
+    $parentPath = implode("/", $parentSegments);
     echo '<section>
         <h2>File Not Found</h2>
         <p class="description">No such file as '.$path.'</p>
