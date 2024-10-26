@@ -9,7 +9,9 @@ export { collapseSections, expandSections };
  */
 export const expandAnchorSectionCollapseOthers = () => {
     // Find the anchor element
-    const anchor = document.getElementById(location.hash.substring(1));
+    const anchor = location.hash
+        ? document.getElementById(location.hash.substring(1))
+        : "";
     // console.log("Anchor:", anchor);
     // If there is one...
     if (anchor) {

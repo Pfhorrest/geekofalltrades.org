@@ -7,12 +7,14 @@ export { collapseSections, expandSections };
 
 /**
  * Expands anchor section and its parents, collapses all other sections.
- * 
+ *
  * @returns {void}
  */
 export const expandAnchorSectionCollapseOthers = (): void => {
   // Find the anchor element
-  const anchor = document.getElementById(location.hash.substring(1));
+  const anchor = location.hash
+    ? document.getElementById(location.hash.substring(1))
+    : "";
   // console.log("Anchor:", anchor);
   // If there is one...
   if (anchor) {
