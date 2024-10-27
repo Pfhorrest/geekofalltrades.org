@@ -83,7 +83,7 @@
         transform-origin: center;
         max-width: 100%;
       }
-      
+
       /* Otherwise ... */
       &:not(.solo) {
         &:nth-of-type(odd) {
@@ -140,27 +140,27 @@
         max-width: var(--fmw);
 
         &:nth-of-type(odd) {
-          margin-right: var(--spacing);
           margin-left: var(--fms);
+          margin-right: var(--spacing);
           transform-origin: right;
         }
         &:nth-of-type(even) {
-          margin-left: var(--spacing);
           margin-right: var(--fms);
+          margin-left: var(--spacing);
           transform-origin: left;
         }
 
         /* These need to be applied to those in alternating sections too */
         @at-root main section:nth-of-type(even) figure:nth-of-type(odd) {
-          margin-left: var(--spacing);
           margin-right: var(--fms);
-          transform-origin: right;
+          margin-left: var(--spacing);
+          transform-origin: left;
         }
 
         @at-root main section:nth-of-type(even) figure:nth-of-type(even) {
-          margin-right: var(--spacing);
           margin-left: var(--fms);
-          transform-origin: left;
+          margin-right: var(--spacing);
+          transform-origin: right;
         }
       }
 

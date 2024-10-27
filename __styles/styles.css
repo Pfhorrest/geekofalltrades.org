@@ -1444,25 +1444,25 @@ main section figure.contained.off-screen img {
     /* These need to be applied to those in alternating sections too */
   }
   main section figure:not(.solo):nth-of-type(odd) {
-    margin-right: var(--spacing);
     margin-left: var(--fms);
+    margin-right: var(--spacing);
     transform-origin: right;
   }
   main section figure:not(.solo):nth-of-type(even) {
-    margin-left: var(--spacing);
     margin-right: var(--fms);
+    margin-left: var(--spacing);
     transform-origin: left;
   }
   main section:nth-of-type(even) figure:nth-of-type(odd) {
-    margin-left: var(--spacing);
     margin-right: var(--fms);
-    transform-origin: right;
+    margin-left: var(--spacing);
+    transform-origin: left;
   }
 
   main section:nth-of-type(even) figure:nth-of-type(even) {
-    margin-right: var(--spacing);
     margin-left: var(--fms);
-    transform-origin: left;
+    margin-right: var(--spacing);
+    transform-origin: right;
   }
 
   main section figure:hover, main section figure:focus, main section figure:active {
