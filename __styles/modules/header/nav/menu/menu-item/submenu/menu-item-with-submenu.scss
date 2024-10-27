@@ -3,8 +3,8 @@
 /// Styles for menu items that have submenus
 /// @group header
 /// @require {mixin} submenu - Styles for submenus
-/// @see {mixin} menu-item - General styles for menu items
 /// @see {mixin} menu-item-current - Styles for active menu items
+/// @see {mixin} menu-item - General styles for menu items
 
 @mixin menu-item-with-submenu {
   /* For the dropdown menu arrows */
@@ -52,5 +52,11 @@
       }
     }
     @include submenu;
+  }
+  /* Basic dropdown functionality for when no Javascript */
+  &:not(.submenu):has(ul):hover {
+   > ul {
+     display: block;
+   }
   }
 }

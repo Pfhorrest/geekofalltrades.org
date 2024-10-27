@@ -621,6 +621,7 @@ header nav > ul li {
   /* Styles for active menu items */
   /* Styles for menu items with submenus */
   /* For the dropdown menu arrows */
+  /* Basic dropdown functionality for when no Javascript */
   /* Hide submenus by default (even if menu item isn't classed ".submenu") */
 }
 @media (min-width: 40rem) {
@@ -676,23 +677,23 @@ header nav > ul li a:hover {
 header nav > ul li a:active {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
 }
-header nav > ul li.current {
+header nav > ul li.current, header nav > ul li:not(.submenu):has(ul):hover {
   /* To pop out in front of other items */
   position: relative;
   z-index: 1;
   /* Menu item link */
 }
-header nav > ul li.current a {
+header nav > ul li.current a, header nav > ul li:not(.submenu):has(ul):hover a {
   background: radial-gradient(transparent, var(--cmg)), linear-gradient(to var(--curve), var(--cm95), var(--cm75));
   background-size: 1000% 1000%;
   /* When hovered */
   /* When active */
 }
-header nav > ul li.current a:hover {
+header nav > ul li.current a:hover, header nav > ul li:not(.submenu):has(ul):hover a:hover {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
   background-size: 100% 100%;
 }
-header nav > ul li.current a:active {
+header nav > ul li.current a:active, header nav > ul li:not(.submenu):has(ul):hover a:active {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
   background-size: 100% 100%;
 }
@@ -784,6 +785,9 @@ header nav > ul li.submenu ul li a, header nav > ul li:has(ul) ul li a {
   width: 100%;
   box-sizing: border-box;
   padding: 0.5em 1em;
+}
+header nav > ul li:not(.submenu):has(ul):hover > ul {
+  display: block;
 }
 header nav > ul li > ul {
   display: none;
