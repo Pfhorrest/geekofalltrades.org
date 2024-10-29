@@ -852,7 +852,7 @@ main > * {
   flex: 0 1 auto;
 }
 main * {
-  transition: all var(--dur), opacity var(--dur) linear, transform var(--dur) cubic-bezier(0.75, 1.75, 0.75, 0.75) calc(var(--delA) + var(--delB));
+  transition: all var(--dur), opacity var(--dur) linear, transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75) calc(var(--delA) + var(--delB));
   --dur: 1s;
   --delA: 0s;
   --delB: 0s;
