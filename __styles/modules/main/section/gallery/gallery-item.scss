@@ -43,6 +43,10 @@
     /* Reset text color since these backgrounds are always white */
     --ct: hsl(from black h s l / 75%);
 
+    /* Transitions */
+    transition-timing-function: cubic-bezier(0.75, 1.75, 0.75, 0.75), ease;
+    transition-property: transform, all;
+
     /* Miscellaneous */
     list-style: none;
 

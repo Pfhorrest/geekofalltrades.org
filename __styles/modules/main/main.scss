@@ -77,13 +77,13 @@
       --delB: 0s; // Secondary transition delay (varies by column)
       /* Children of children have longer delays so they transition in in sequence */
       &.off-screen > * {
-        --delA: calc(1s / 16);
+        --delA: calc(1s / 32);
         &.off-screen > * {
-          --delA: calc(2s / 16);
+          --delA: calc(2s / 32);
           &.off-screen > * {
-            --delA: calc(3s / 16);
+            --delA: calc(3s / 32);
             &.off-screen > * {
-              --delA: calc(4s / 16);
+              --delA: calc(4s / 32);
             }
           }
         }
