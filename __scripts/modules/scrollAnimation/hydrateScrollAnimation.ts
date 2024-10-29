@@ -14,7 +14,7 @@ export const hydrateScrollAnimation = (): void => {
     // Iterate over select items
     document
       .querySelectorAll<HTMLElement>(
-        "main *:not(a, em, strong, i, b, span, img)"
+        "main *:not(a, em, strong, i, b, span, img, li, q)"
       )
       .forEach((element) => {
         // const elementName =

@@ -12,7 +12,7 @@ export const hydrateScrollAnimation = () => {
     document.addEventListener("DOMContentLoaded", () => {
         // Iterate over select items
         document
-            .querySelectorAll("main *:not(a, em, strong, i, b, span, img)")
+            .querySelectorAll("main *:not(a, em, strong, i, b, span, img, li, q)")
             .forEach((element) => {
             // const elementName =
             //   entry.target.tagName.toLowerCase() +
