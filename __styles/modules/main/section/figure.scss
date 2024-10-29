@@ -100,18 +100,20 @@
         }
       }
       /* Imperfect hack to continue alternation across multiple sections */
-      @at-root main section:nth-of-type(even) figure:nth-of-type(odd) {
-        float: right;
-        transform-origin: right;
-        margin-left: var(--spacing);
-        margin-right: 0;
-      }
+      @at-root main section:nth-of-type(even) figure:not(.solo) {
+        &:nth-of-type(odd) {
+          float: right;
+          transform-origin: right;
+          margin-left: var(--spacing);
+          margin-right: 0;
+        }
 
-      @at-root main section:nth-of-type(even) figure:nth-of-type(even) {
-        float: left;
-        transform-origin: left;
-        margin-right: var(--spacing);
-        margin-left: 0;
+        &:nth-of-type(even) {
+          float: left;
+          transform-origin: left;
+          margin-right: var(--spacing);
+          margin-left: 0;
+        }
       }
     }
 
@@ -151,16 +153,18 @@
         }
 
         /* These need to be applied to those in alternating sections too */
-        @at-root main section:nth-of-type(even) figure:nth-of-type(odd) {
-          margin-right: var(--fms);
-          margin-left: var(--spacing);
-          transform-origin: left;
-        }
+        @at-root main section:nth-of-type(even) figure:not(.solo) {
+          &:nth-of-type(odd) {
+            margin-right: var(--fms);
+            margin-left: var(--spacing);
+            transform-origin: left;
+          }
 
-        @at-root main section:nth-of-type(even) figure:nth-of-type(even) {
-          margin-left: var(--fms);
-          margin-right: var(--spacing);
-          transform-origin: right;
+          &:nth-of-type(even) {
+            margin-left: var(--fms);
+            margin-right: var(--spacing);
+            transform-origin: right;
+          }
         }
       }
 

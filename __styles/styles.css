@@ -1402,14 +1402,13 @@ main section figure.contained.off-screen img {
     margin-left: var(--spacing);
     margin-right: 0;
   }
-  main section:nth-of-type(even) figure:nth-of-type(odd) {
+  main section:nth-of-type(even) figure:not(.solo):nth-of-type(odd) {
     float: right;
     transform-origin: right;
     margin-left: var(--spacing);
     margin-right: 0;
   }
-
-  main section:nth-of-type(even) figure:nth-of-type(even) {
+  main section:nth-of-type(even) figure:not(.solo):nth-of-type(even) {
     float: left;
     transform-origin: left;
     margin-right: var(--spacing);
@@ -1457,13 +1456,12 @@ main section figure.contained.off-screen img {
     margin-left: var(--spacing);
     transform-origin: left;
   }
-  main section:nth-of-type(even) figure:nth-of-type(odd) {
+  main section:nth-of-type(even) figure:not(.solo):nth-of-type(odd) {
     margin-right: var(--fms);
     margin-left: var(--spacing);
     transform-origin: left;
   }
-
-  main section:nth-of-type(even) figure:nth-of-type(even) {
+  main section:nth-of-type(even) figure:not(.solo):nth-of-type(even) {
     margin-left: var(--fms);
     margin-right: var(--spacing);
     transform-origin: right;
