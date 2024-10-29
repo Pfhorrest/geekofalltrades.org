@@ -81,7 +81,12 @@
 					/* Modified date of that styles file
 					   to use in link href to prevent excessive cacheing */
 					$styledate = filemtime($stylefile) ;
-					echo '<link href="' . $stylepath . '?v=' . $styledate . '" 
+					$styleurl = $stylepath . '?v=' . $styledate;
+					/* Preload the styles file to prevent
+					   a flash of unstyled content */
+					echo '<link href="' . $styleurl . '" 
+							rel="preload" />';
+					echo '<link href="' . $styleurl . '" 
 							rel="stylesheet" />';
 				}
 
