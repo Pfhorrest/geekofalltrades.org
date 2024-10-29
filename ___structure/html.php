@@ -59,7 +59,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<?php include_once("analyticstracking.php") ?>
+		<?php include_once("modules/analytics/google-script.php") ?>
 		<?php
 			// echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
 			// <script>
@@ -128,6 +128,7 @@
 		?>
   	</head>
 	<body>
+		<?php include_once("modules/analytics/google-noscript.php") ?>
 		<header>
 			<?php
 				/* Include all available header files from deep to shallow */
