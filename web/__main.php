@@ -965,7 +965,7 @@
 			of today.
 		</p>
 		<p>
-			You can see the finished product at <a href="https://www.castellinotraining.com" rel="external">www.castellinotraining.com</a>.
+			You can see the finished product at <a href="https://myth.bungie.org" rel="external">myth.bungie.org</a>.
 		</p>
 	</section>
 
