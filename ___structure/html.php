@@ -98,10 +98,7 @@
 					/* Modified date of that scripts file
 					   to use in link href to prevent excessive cacheing */
 					   $scriptdated = $scriptpath . '?v=' . filemtime($scriptfile);
-					   echo '<link href="' . $scriptdated . '" 
-							rel="preload" as="script" />'
-							.
-							'<script src="' . $scriptdated . '"
+					   echo '<script src="' . $scriptdated . '"
 							defer="true" type="module"></script>' ;
 				}
 
