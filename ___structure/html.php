@@ -80,13 +80,13 @@
 				if (is_file($stylefile)) {
 					/* Modified date of that styles file
 					   to use in link href to prevent excessive cacheing */
-					$styledate = filemtime($stylefile) ;
-					$styleurl = $stylepath . '?v=' . $styledate;
+					$styledated = $stylepath . '?v=' . filemtime($stylefile);
 					/* Preload the styles file to prevent
 					   a flash of unstyled content */
-					echo '<link href="' . $styleurl . '" 
-							rel="preload" />';
-					echo '<link href="' . $styleurl . '" 
+					echo '<link href="' . $styledated . '" 
+							rel="preload" as="style" />'
+							.
+							'<link href="' . $styledated . '" 
 							rel="stylesheet" />';
 				}
 
@@ -97,8 +97,11 @@
 				if (is_file($scriptfile)) {
 					/* Modified date of that scripts file
 					   to use in link href to prevent excessive cacheing */
-					   $scriptdate = filemtime($scriptfile) ;
-					echo '<script src="' . $scriptpath . '?v=' . $scriptdate . '"
+					   $scriptdated = $scriptpath . '?v=' . filemtime($scriptfile);
+					   echo '<link href="' . $scriptdated . '" 
+							rel="preload" as="script" />'
+							.
+							'<script src="' . $scriptdated . '"
 							defer="true" type="module"></script>' ;
 				}
 
