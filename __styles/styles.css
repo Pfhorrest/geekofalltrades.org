@@ -489,6 +489,7 @@ header nav > a {
   order: -1;
   opacity: 50%;
   /* Sizing */
+  min-height: 2em;
   overflow: hidden;
   /* Spacing */
   margin: 0;
