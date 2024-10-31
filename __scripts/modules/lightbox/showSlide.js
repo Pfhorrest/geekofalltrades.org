@@ -27,7 +27,7 @@ export const showSlide = (index) => {
     const slide = slidesList[index];
     // Handle the case where there is no slide at the specified index
     if (!slide) {
-        console.error("No slide at index:", index);
+        // console.error("No slide at index:", index);
         return;
     }
     // console.log("slide:", slide);
@@ -35,7 +35,7 @@ export const showSlide = (index) => {
     const parentItem = slide.closest(".item");
     // Handle the case where there is no parent item
     if (!parentItem) {
-        console.error("No parent item found for slide:", slide);
+        // console.error("No parent item found for slide:", slide);
         return;
     }
     // console.log("parentItem:", parentItem);
@@ -46,7 +46,7 @@ export const showSlide = (index) => {
     const captionElement = document.getElementById("caption");
     // Handle the case where there is no caption element
     if (!captionElement) {
-        console.error("No caption element found");
+        // console.error("No caption element found");
         return;
     }
     // Set the caption text
@@ -58,12 +58,12 @@ export const showSlide = (index) => {
         console.error("No image element found");
         return;
     }
-    // console.log("imageElement:", imageElement);
+    console.log("imageElement:", imageElement);
     // Get the src URL from the slide's href attribute
-    const srcUrl = new URL(location.href + slide.getAttribute("href") || "").searchParams.get("display");
+    const srcUrl = new URL(location.href.split("#")[0] + slide.getAttribute("href") || "").searchParams.get("display");
     // Handle the case where there is no src URL
     if (!srcUrl) {
-        // console.error("No display param found in URL:", slide.getAttribute("href"));
+        console.error("No display param found in URL:", slide.getAttribute("href"));
         return;
     }
     // console.log("srcUrl:", srcUrl);
