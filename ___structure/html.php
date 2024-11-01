@@ -172,7 +172,7 @@
 							break;
 						}
 					default:
-						/* All else fails, show an error */
+						/* If all else fails, show an error */
 						include "modules/error.php";
 				}
 			?>
