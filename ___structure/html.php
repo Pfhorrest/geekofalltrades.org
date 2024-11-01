@@ -1,10 +1,11 @@
 <?php
 	/**  
-	 * The core of the PrevHP system, that loops through every subdirectory
-	 * to the requested URL and loads any styles, scripts, meta-data, and main
-	 * body content found in each of them. Also handles special cases like
-	 * requests for non-systematic HTML or PHP files, requests for lightboxed
-	 * images via the "display" parameter, directory listings, and errors.
+	 * The core of the PrevHP system, that loops through every subdirectory to
+	 * the requested URL and loads any styles, scripts, and meta-data found in
+	 * each of them, plus main body content from the last of them.
+	 * Also handles special cases like requests for non-systematic HTML or PHP
+	 * files, requests for lightboxed images via the "display" parameter,
+	 * directory listings, and errors.
 	 * 
 	*/
 
@@ -61,17 +62,6 @@
 	<head>
 		<?php include_once("modules/analytics.php") ?>
 		<?php
-			// echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
-			// <script>
-			// 	require([\'__scripts/scripts-intermediate\'], function(scripts) {
-			// 		console.log(\'Main module and dependencies loaded.\');
-			// 	}, function(err) {
-			// 		console.error(\'Failed to load the main module:\', err);
-			// 	});
-			// </script>';
-
-			// echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="__scripts/scripts-intermediate.js" defer="true"></script>';
-
 			foreach ($crumbs as $crumb) {
 				/* Relative path to the styles file from the crumb root */
 				$stylepath = $crumb . "__styles/styles.css" ;
@@ -160,7 +150,6 @@
 						/* If there is a 'display' parameter,
 						   include the lightbox too */
 						if ($display = $_GET["display"]) {
-							echo $display;
 							include "modules/lightbox.php";
 						}
 						break;
