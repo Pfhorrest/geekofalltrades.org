@@ -23,6 +23,7 @@ export const hydrateToggleButtons = () => {
         Object.assign(document.createElement("a"), {
           className,
           innerText: text,
+          role: "button",
         })
       );
 

@@ -20,7 +20,8 @@ export const collapseSection = (element) => {
     // console.log("duration:", duration);
     // Give the section appropriate class and title
     section.classList.add("collapsed");
-    element.setAttribute("title", "Expand section");
+    element.title = "Expand section";
+    element.ariaExpanded = "false";
     // Get the children of the section that are not headings or descriptions
     const children = Array.from(section.children).filter((child) => child instanceof HTMLElement &&
         !(["h2", "h3", "h4", "h5", "h6"].includes(child.tagName.toLowerCase()) ||

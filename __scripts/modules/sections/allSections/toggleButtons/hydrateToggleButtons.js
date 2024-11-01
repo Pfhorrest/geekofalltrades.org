@@ -15,6 +15,7 @@ export const hydrateToggleButtons = () => {
         const createControl = (className, text) => toggleAllControls.appendChild(Object.assign(document.createElement("a"), {
             className,
             innerText: text,
+            role: "button",
         }));
         // Create the controls
         const expandControl = createControl("expandAll", "Expand All");

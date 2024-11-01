@@ -22,7 +22,8 @@ export const collapseSection = (element: HTMLElement): void => {
 
   // Give the section appropriate class and title
   section.classList.add("collapsed");
-  element.setAttribute("title", "Expand section");
+  element.title = "Expand section";
+  element.ariaExpanded = "false";
 
   // Get the children of the section that are not headings or descriptions
   const children = Array.from(section.children).filter(

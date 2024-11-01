@@ -24,10 +24,13 @@ const hydrateSectionHeadings = () => {
                 (child.tagName.toLowerCase() === "p" &&
                     child.classList.contains("description")))).length > 0) {
             // console.log(`Found section '${heading.innerText}' to hydrate`);
+            // Give is a button role
+            heading.role = "button";
             // Make it look clickable
             heading.style.cursor = "pointer";
             // Give it appropriate title and class
-            heading.setAttribute("title", "Collapse section");
+            heading.title = "Collapse section";
+            heading.ariaExpanded = "true";
             section.classList.add("toggleable");
             // Add an event listener to toggle the section when clicked
             heading.addEventListener("click", () => {

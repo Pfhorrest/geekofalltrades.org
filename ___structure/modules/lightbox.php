@@ -58,20 +58,20 @@
         <nav class="displayControls">'
             .(
                 $images
-                ? '<a class="prev"
+                ? '<a class="prev" role="button" title="Previous image">
                     href="?display='.$prev['filename']
                     .'&title='.urldecode($prev['title']).'">
                         &#10094;
                     </a>'
                 : ''
             ).
-            '<a class="close cursor"
+            '<a class="close cursor" role="button" title="Close image"
                 href="'.$path.'#item'.$item_id.'">
                 &times;
             </a>'
             .(
                 $images
-                ? '<a class="next"
+                ? '<a class="next" role="button" title="Next image"
                     href="?display='.$next['filename']
                     .'&title='.urldecode($next['title']).'">
                         &#10095;

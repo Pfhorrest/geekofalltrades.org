@@ -5,7 +5,7 @@ import { toggleToggleButtons } from "../allSections/toggleButtons/toggleToggleBu
  * Expands a section (and all parent sections) from one of its elements
  *
  * @param {HTMLElement} element - An element inside the section to expand
- * 
+ *
  * @returns {void}
  */
 export const expandSection = (element: HTMLElement): void => {
@@ -33,10 +33,11 @@ export const expandSection = (element: HTMLElement): void => {
     // console.log(`expanding section #${section.id}`);
     // Give the section appropriate class and title
     section.classList.remove("collapsed");
-    section
-      .querySelector("h2, h3, h4, h5, h6")
-      ?.setAttribute("title", "Expand section");
-    // Set its min-height to 0px so that it can be animated smoothly
+    const element = section.querySelector<HTMLElement>("h2, h3, h4, h5, h6");
+    if (element) {
+      element.title = "Collapse section";
+      element.ariaExpanded = "true";
+    } // Set its min-height to 0px so that it can be animated smoothly
     section.style.setProperty("min-height", `0px`);
     // Get the children of the section that are not headings or descriptions
     const children = Array.from(section.children).filter(

@@ -5,8 +5,9 @@ import { slideUp, getDuration } from "../../effects/effects";
  * Closes all dropdown menus.
  */
 export const closeDropdowns = () => {
-  const openDropdowns =
-    document.querySelectorAll<HTMLElement>("header > nav > ul > li > ul");
+  const openDropdowns = document.querySelectorAll<HTMLElement>(
+    "header > nav > ul > li > ul"
+  );
   const currentMenuItems = document.querySelectorAll<HTMLElement>(
     "header > nav > ul > li.current"
   );
@@ -34,12 +35,13 @@ export const closeDropdowns = () => {
       //   `Setting timeout for '${item.querySelector("a")?.innerText}'`
       // );
       setTimeout(() => {
-        // console.log(
-          item        // );
-          item.classList.remove("current");
-          item
-          ?.querySelector<HTMLElement>("a")
-          ?.setAttribute("title", "Collapse submenu");
+        // console.log(item);
+        item.classList.remove("current");
+        const itemLink = item.querySelector<HTMLElement>("a");
+        if (itemLink) {
+          itemLink.title = "Expand submenu";
+          itemLink.ariaExpanded = "true";
+        }
       }, getDuration(item));
     });
 

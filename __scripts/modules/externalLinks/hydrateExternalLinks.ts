@@ -26,7 +26,7 @@ export const hydrateExternalLinks = (): void => {
         window.open(link.href, "_blank");
       });
       // Add a title attribute to indicate the link will open in a new window.
-      link.setAttribute("title", "Opens in a new window");
+      link.title = "Opens in a new window";
     });
   });
 };

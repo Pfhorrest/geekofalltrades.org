@@ -28,12 +28,13 @@ export const closeDropdowns = () => {
             //   `Setting timeout for '${item.querySelector("a")?.innerText}'`
             // );
             setTimeout(() => {
-                // console.log(
-                item; // );
+                // console.log(item);
                 item.classList.remove("current");
-                item
-                    ?.querySelector("a")
-                    ?.setAttribute("title", "Collapse submenu");
+                const itemLink = item.querySelector("a");
+                if (itemLink) {
+                    itemLink.title = "Expand submenu";
+                    itemLink.ariaExpanded = "true";
+                }
             }, getDuration(item));
         });
         console.groupEnd();
