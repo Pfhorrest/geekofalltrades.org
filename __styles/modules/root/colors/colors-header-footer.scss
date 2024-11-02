@@ -1,5 +1,8 @@
+@use "../colors/prefers-color-scheme.scss" as *;
+
 /// Colors variables for header and footer
-/// @group root
+/// @group colors
+/// @requires {mixin} prefers-color-scheme - DRY color scheme helper
 /// @see {mixin} h1 - Styles for h1 in header
 /// @see {mixin} footer - Styles for footer
 /// @see {mixin} colors-config - Configurable primary color variables
@@ -14,7 +17,7 @@
   --seaHue2: 210;
   --seaHue3: 240;
 
-  @media (prefers-color-scheme: light) {
+  @include prefers-color-scheme("light") {
     --cloudLight: hsl(from var(--cloudColor) h 100% calc(100% / 2) / 50%);
     --cloudColor: hsl(var(--skyHue1) 100% calc(100% / 2) / 25%);
     --skyColor3: hsl(var(--skyHue3) 100% calc(50% / 2));
@@ -29,7 +32,7 @@
     --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
   }
 
-  @media (prefers-color-scheme: dark) {
+  @include prefers-color-scheme("dark") {
     --cloudLight: hsl(from var(--cloudColor) h 100% calc(100% / 2) / 50%);
     --cloudColor: hsl(var(--skyHue1) 100% calc(75% / 2) / 25%);
     --skyColor3: hsl(var(--skyHue3) 100% calc(50% / 2));

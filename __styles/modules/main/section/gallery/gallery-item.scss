@@ -1,5 +1,8 @@
+@use "../../../root/colors/prefers-color-scheme.scss" as *;
+
 /// Styles for gallery items
 /// @group main
+/// @requires {mixin} prefers-color-scheme - DRY color scheme helper
 /// @see {mixin} gallery - General styles for galleries
 
 @mixin gallery-item {
@@ -97,7 +100,7 @@
         z-index: 1; // So they're independently clickable despite any cover links
         text-decoration: underline;
         color: var(--cm25);
-        @media (prefers-color-scheme: dark) {
+        @include prefers-color-scheme("dark") {
           color: var(--cm75);
         }
       }

@@ -61,6 +61,7 @@
 <html lang="en">
 	<head>
 		<?php include_once("modules/analytics.php") ?>
+		<?php include_once("modules/color-scheme.php") ?>
 		<?php
 			foreach ($crumbs as $crumb) {
 				/* Relative path to the styles file from the crumb root */
@@ -68,8 +69,8 @@
 				/* Absolute path to the styles file on the server */
 				$stylefile = $root . $stylepath;
 				if (is_file($stylefile)) {
-					/* Modified date of that styles file
-					   to use in link href to prevent excessive cacheing */
+					/* Put modified date of styles file in link href
+					   to prevent excessive cacheing */
 					$styledated = $stylepath . '?v=' . filemtime($stylefile);
 					/* Preload the styles file to prevent
 					   a flash of unstyled content */
@@ -85,11 +86,11 @@
 				/* Absolute path to the scripts file on the server */
 				$scriptfile = $root . $scriptpath ;
 				if (is_file($scriptfile)) {
-					/* Modified date of that scripts file
-					   to use in link href to prevent excessive cacheing */
-					   $scriptdated = $scriptpath . '?v=' . filemtime($scriptfile);
-					   echo '<script src="' . $scriptdated . '"
-							defer="true" type="module"></script>' ;
+					/* Put modified date of scripts file in script src
+					   to prevent excessive cacheing */
+					$scriptdated = $scriptpath . '?v=' . filemtime($scriptfile);
+					echo '<script src="' . $scriptdated . '"
+						type="module"></script>' ;
 				}
 
 				/* Absolute path to the head file (for meta-data) on the server */

@@ -1,0 +1,15 @@
+/// Helper mixin that sets color scheme styles to both
+/// a @media (prefers-color-scheme: whatever) {...} block
+/// and an html[data-color-scheme=whatever] {...} block
+/// without having to duplicate code.
+/// @group colors
+
+@mixin prefers-color-scheme($mode) {
+  @media (prefers-color-scheme: $mode) {
+    @content;
+  }
+  &[data-color-scheme=#{$mode}],
+  html[data-color-scheme=#{$mode}] & {
+    @content;
+  }
+}

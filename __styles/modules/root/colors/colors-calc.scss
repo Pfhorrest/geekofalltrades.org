@@ -1,8 +1,10 @@
 @use "./colors-config.scss" as *;
+@use "./prefers-color-scheme.scss" as *;
 
 /// Calculated secondary color variables
-/// @group root
+/// @group colors
 /// @requires {mixin} colors-config - Configurable primary color variables
+/// @requires {mixin} prefers-color-scheme - DRY color scheme helper
 /// @see {mixin} colors-header-footer - Color variables for the header and footer
 /// @see {mixin} colors - General color variable styles
 
@@ -20,14 +22,14 @@
 
   color-scheme: light dark;
 
-  @media (prefers-color-scheme: light) {
+  @include prefers-color-scheme("light") {
     --lm: calc(100% - var(--lmo)); // Main lightness
     --lti: calc((100% - var(--lm)) / 10); // Lightness tint increment
     --lsi: calc((0% - var(--lm)) / 10); // Lightness shade increment
     --black: black; // Variable black to invert for dark mode
     --white: white; // Variable white to invert for dark mode
   }
-  @media (prefers-color-scheme: dark) {
+  @include prefers-color-scheme("dark") {
     // Inverted for dark mode
     --lm: calc(0% + var(--lmo)); // Main lightness
     --lti: calc((0% - var(--lm)) / 10); // Lightness "shade" increment
@@ -138,20 +140,20 @@
   --cbi: hsl(from var(--white) h s l / 25%); // Background inner color
   --cbo: hsl(from var(--white) h s l / 75%); // Background outer color
 
-  @media (prefers-color-scheme: light) {
+  @include prefers-color-scheme("light") {
     --shade: #0001;
     --gloss: #fffc;
   }
-  @media (prefers-color-scheme: dark) {
+  @include prefers-color-scheme("dark") {
     --shade: #000c;
     --gloss: #fff1;
   }
 
   // Gradient curve direction
-  @media (prefers-color-scheme: light) {
+  @include prefers-color-scheme("light") {
     --curve: bottom;
   }
-  @media (prefers-color-scheme: dark) {
+  @include prefers-color-scheme("dark") {
     --curve: top;
   }
 }

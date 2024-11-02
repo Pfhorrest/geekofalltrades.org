@@ -1,9 +1,11 @@
 @use "../../root/layout/breakpoints.scss" as *;
+@use "../../root/colors/prefers-color-scheme.scss" as *;
 
 /// Styles for figures
 /// @group main
 /// @require {Length} $bp2 - Second breakpoint value
 /// @require {Length} $bp3 - Third breakpoint value
+/// @requires {mixin} prefers-color-scheme - DRY color scheme helper
 /// @see {mixing} section - General styles for sections
 
 @mixin figure {
@@ -33,12 +35,12 @@
 
     /* Figures that can be inverted with light and dark mode */
     &.invertible {
-      @media (prefers-color-scheme: light) {
+      @include prefers-color-scheme("light") {
         img {
           filter: none;
         }
       }
-      @media (prefers-color-scheme: dark) {
+      @include prefers-color-scheme("dark") {
         img {
           filter: invert(1) hue-rotate(0.5turn);
         }

@@ -151,6 +151,13 @@
     --white: white;
   }
 }
+:root[data-color-scheme=light], html[data-color-scheme=light] :root {
+  --lm: calc(100% - var(--lmo));
+  --lti: calc((100% - var(--lm)) / 10);
+  --lsi: calc((0% - var(--lm)) / 10);
+  --black: black;
+  --white: white;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --lm: calc(0% + var(--lmo));
@@ -160,11 +167,22 @@
     --white: black;
   }
 }
+:root[data-color-scheme=dark], html[data-color-scheme=dark] :root {
+  --lm: calc(0% + var(--lmo));
+  --lti: calc((0% - var(--lm)) / 10);
+  --lsi: calc((100% - var(--lm)) / 10);
+  --black: white;
+  --white: black;
+}
 @media (prefers-color-scheme: light) {
   :root {
     --shade: #0001;
     --gloss: #fffc;
   }
+}
+:root[data-color-scheme=light], html[data-color-scheme=light] :root {
+  --shade: #0001;
+  --gloss: #fffc;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -172,15 +190,25 @@
     --gloss: #fff1;
   }
 }
+:root[data-color-scheme=dark], html[data-color-scheme=dark] :root {
+  --shade: #000c;
+  --gloss: #fff1;
+}
 @media (prefers-color-scheme: light) {
   :root {
     --curve: bottom;
   }
 }
+:root[data-color-scheme=light], html[data-color-scheme=light] :root {
+  --curve: bottom;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --curve: top;
   }
+}
+:root[data-color-scheme=dark], html[data-color-scheme=dark] :root {
+  --curve: top;
 }
 @media (prefers-color-scheme: light) {
   :root {
@@ -198,6 +226,20 @@
     --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
   }
 }
+:root[data-color-scheme=light], html[data-color-scheme=light] :root {
+  --cloudLight: hsl(from var(--cloudColor) h 100% calc(100% / 2) / 50%);
+  --cloudColor: hsl(var(--skyHue1) 100% calc(100% / 2) / 25%);
+  --skyColor3: hsl(var(--skyHue3) 100% calc(50% / 2));
+  --skyColor2: hsl(var(--skyHue2) 100% calc(75% / 2));
+  --skyColor1: hsl(var(--skyHue1) 100% calc(100% / 2));
+  --skyMist: hsl(var(--skyHue1) 100% 87.5%);
+  --seaMist: hsl(var(--seaHue1) 100% 87.5%);
+  --seaColor1: hsl(var(--seaHue1) 100% calc(100% / 2));
+  --seaColor2: hsl(var(--seaHue2) 100% calc(75% / 2));
+  --seaColor3: hsl(var(--seaHue3) 100% calc(50% / 2));
+  --swellColor: hsl(var(--seaHue1) 100% calc(100% / 2) / 25%);
+  --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --cloudLight: hsl(from var(--cloudColor) h 100% calc(100% / 2) / 50%);
@@ -213,6 +255,20 @@
     --swellColor: hsl(var(--seaHue1) 100% calc(75% / 2) / 25%);
     --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
   }
+}
+:root[data-color-scheme=dark], html[data-color-scheme=dark] :root {
+  --cloudLight: hsl(from var(--cloudColor) h 100% calc(100% / 2) / 50%);
+  --cloudColor: hsl(var(--skyHue1) 100% calc(75% / 2) / 25%);
+  --skyColor3: hsl(var(--skyHue3) 100% calc(50% / 2));
+  --skyColor2: hsl(var(--skyHue2) 100% calc(25% / 2));
+  --skyColor1: hsl(var(--skyHue1) 100% calc(12.5% / 2));
+  --skyMist: hsl(var(--skyHue1) 100% calc(6.25% / 2));
+  --seaMist: hsl(var(--seaHue1) 100% calc(6.25% / 2));
+  --seaColor1: hsl(var(--seaHue1) 100% calc(12.5% / 2));
+  --seaColor2: hsl(var(--seaHue2) 100% calc(25% / 2));
+  --seaColor3: hsl(var(--seaHue3) 100% calc(50% / 2));
+  --swellColor: hsl(var(--seaHue1) 100% calc(75% / 2) / 25%);
+  --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
 }
 
 * {
@@ -373,10 +429,16 @@ header h1::after {
     filter: none;
   }
 }
+header h1::after[data-color-scheme=light], html[data-color-scheme=light] header h1::after {
+  filter: none;
+}
 @media (prefers-color-scheme: dark) {
   header h1::after {
     filter: invert(1);
   }
+}
+header h1::after[data-color-scheme=dark], html[data-color-scheme=dark] header h1::after {
+  filter: invert(1);
 }
 header h1 > span {
   flex-grow: 1;
@@ -1357,10 +1419,16 @@ main section figure.off-screen {
     filter: none;
   }
 }
+main section figure.invertible[data-color-scheme=light] img, html[data-color-scheme=light] main section figure.invertible img {
+  filter: none;
+}
 @media (prefers-color-scheme: dark) {
   main section figure.invertible img {
     filter: invert(1) hue-rotate(0.5turn);
   }
+}
+main section figure.invertible[data-color-scheme=dark] img, html[data-color-scheme=dark] main section figure.invertible img {
+  filter: invert(1) hue-rotate(0.5turn);
 }
 main section figure.contained {
   overflow: hidden;
@@ -1657,6 +1725,9 @@ main section .gallery .item p a {
   main section .gallery .item p a {
     color: var(--cm75);
   }
+}
+main section .gallery .item p a[data-color-scheme=dark], html[data-color-scheme=dark] main section .gallery .item p a {
+  color: var(--cm75);
 }
 main section .gallery .item a {
   margin: auto 0;
@@ -1993,9 +2064,15 @@ main .toggleAllControls:last-of-type .anchorTarget:hover::after {
 
 /* Styles for the footer */
 footer {
+  /* Layout */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
   /* Spacing */
   margin: 0;
-  padding: 0;
+  padding: calc(2 * var(--spacing));
+  gap: calc(2 * var(--spacing));
   /* Borders */
   border: 0;
   border-top: 3pt ridge var(--cw75);
@@ -2030,8 +2107,9 @@ footer {
 }
 footer p {
   margin: 0;
-  padding: var(--spacing);
+  padding: 0;
   font-size: min(2rem, 4vw);
+  letter-spacing: 0.5ch;
   color: white;
   -webkit-text-fill-color: white;
   -webkit-text-stroke: 0.0625em black;
@@ -2040,25 +2118,67 @@ footer p {
 }
 footer a {
   text-decoration: none;
-  letter-spacing: 0.5ch;
   text-shadow: inherit;
-}
-footer a:link {
-  color: var(--cm85);
-}
-footer a:hover {
-  color: var(--cm90);
-  text-shadow: inherit;
-}
-footer a:active {
-  color: var(--cm95);
-  text-shadow: inherit;
-}
-footer a:visited {
-  color: var(--cm80);
 }
 @media only print {
   footer {
+    display: none;
+  }
+}
+
+/* Color scheme switcher */
+.colorSchemeSwitcher {
+  /* The container */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  max-width: 40rem;
+  gap: var(--spacing);
+  --dur: 0.5s;
+  /* The individual buttons */
+  /* Don't show any of this in print */
+}
+.colorSchemeSwitcher a {
+  /* Layout */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 100%;
+  /* Spacing */
+  padding: 0.25em 2em;
+  /* Borders */
+  border: 1pt solid var(--gloss);
+  border-radius: calc(0.5 * var(--rounding));
+  /* Background */
+  background: var(--white);
+  opacity: 0.75;
+  /* Typography */
+  font-size: 0.75rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.125ch;
+}
+html[data-color-scheme=light] .colorSchemeSwitcher a.lightMode {
+  opacity: 1;
+  outline: 1px solid var(--black);
+}
+
+html:not([data-color-scheme]) .colorSchemeSwitcher a.autoMode {
+  opacity: 1;
+  outline: 1px solid var(--black);
+}
+
+html[data-color-scheme=dark] .colorSchemeSwitcher a.darkMode {
+  opacity: 1;
+  outline: 1px solid var(--black);
+}
+
+@media only print {
+  .colorSchemeSwitcher {
     display: none;
   }
 }

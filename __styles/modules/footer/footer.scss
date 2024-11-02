@@ -1,11 +1,20 @@
+@use "./color-scheme-switcher.scss" as *;
+
 /// Styles for the footer
 /// @see {mixin} colors-header-footer - Color variables for the header and footer
 
 @mixin footer {
   footer {
+    /* Layout */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
     /* Spacing */
     margin: 0;
-    padding: 0;
+    padding: calc(2 * var(--spacing));
+    gap: calc(2 * var(--spacing));
 
     /* Borders */
     border: 0;
@@ -75,8 +84,9 @@
     /* Paragraphs */
     p {
       margin: 0;
-      padding: var(--spacing);
+      padding: 0;
       font-size: min(2rem, 4vw);
+      letter-spacing: 0.5ch;
       color: white;
       -webkit-text-fill-color: white;
       -webkit-text-stroke: calc(1em / 16) black;
@@ -89,22 +99,7 @@
     /* Links */
     a {
       text-decoration: none;
-      letter-spacing: 0.5ch;
       text-shadow: inherit;
-      &:link {
-        color: var(--cm85);
-      }
-      &:hover {
-        color: var(--cm90);
-        text-shadow: inherit;
-      }
-      &:active {
-        color: var(--cm95);
-        text-shadow: inherit;
-      }
-      &:visited {
-        color: var(--cm80);
-      }
     }
 
     /* Hide whoel footer on print */
@@ -112,4 +107,7 @@
       display: none;
     }
   }
+
+  /* Color scheme switcher */
+  @include color-scheme-switcher;
 }

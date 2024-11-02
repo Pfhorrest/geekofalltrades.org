@@ -12,3 +12,6 @@ hydrateExternalLinks();
 
 import { hydrateLightbox } from "./modules/lightbox/hydrateLightbox";
 hydrateLightbox();
+
+import { hydrateSwitcherButtons } from "./modules/colorSchemes/hydrateSwitcherButtons";
+hydrateSwitcherButtons();

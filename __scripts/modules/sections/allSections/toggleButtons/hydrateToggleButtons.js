@@ -1,6 +1,6 @@
 import { expandSections, collapseSections, expandAnchorSectionCollapseOthers, } from "../allSections";
 /**
- * Adds event listeners to control toggle-all-sections buttons
+ * Creates toggle-all-sections buttons and adds event listeners to control them
  *
  * @returns {void}
  */
