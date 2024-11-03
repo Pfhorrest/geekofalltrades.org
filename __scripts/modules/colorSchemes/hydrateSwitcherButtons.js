@@ -21,7 +21,7 @@ export const hydrateSwitcherButtons = () => {
             // Create the controls
             const expandControl = createControl("lightMode", "Light Mode");
             // console.log("created lightMode:", lightMode);
-            const anchorControl = createControl("autoMode", "Automatic");
+            const anchorControl = createControl("autoMode", "Auto Mode");
             // console.log("created autoMode:", autoMode);
             const collapseControl = createControl("darkMode", "Dark Mode");
             // console.log("created darkMode:", darkMode);
