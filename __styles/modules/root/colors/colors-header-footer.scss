@@ -17,7 +17,7 @@
   --seaHue2: 210;
   --seaHue3: 240;
 
-  &[data-theme=warmer] {
+  &[data-theme="warmer"] {
     --skyHue3: 30;
     --skyHue2: 45;
     --skyHue1: 60;
@@ -25,7 +25,7 @@
     --seaHue2: 15;
     --seaHue3: 00;
   }
-  &[data-theme=cooler] {
+  &[data-theme="cooler"] {
     --skyHue3: 210;
     --skyHue2: 195;
     --skyHue1: 180;
@@ -33,17 +33,19 @@
     --seaHue2: 225;
     --seaHue3: 240;
   }
-  &[data-theme=purples] {
+  &[data-theme="purples"] {
     --skyHue3: 0;
     --skyHue2: 330;
     --skyHue1: 345;
     --seaHue1: 285;
     --seaHue2: 270;
     --seaHue3: 240;
-    }
+  }
 
   @include prefers-color-scheme("light") {
-    --cloudLight: hsl(from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+    --cloudLight: hsl(
+      from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+    );
     --cloudColor: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(100% / 2) / 25%);
     --skyColor3: hsl(var(--skyHue3) calc(var(--sm) * 2) calc(50% / 2));
     --skyColor2: hsl(var(--skyHue2) calc(var(--sm) * 2) calc(75% / 2));
@@ -54,11 +56,15 @@
     --seaColor2: hsl(var(--seaHue2) calc(var(--sm) * 2) calc(75% / 2));
     --seaColor3: hsl(var(--seaHue3) calc(var(--sm) * 2) calc(50% / 2));
     --swellColor: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(100% / 2) / 25%);
-    --swellLight: hsl(from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+    --swellLight: hsl(
+      from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+    );
   }
 
   @include prefers-color-scheme("dark") {
-    --cloudLight: hsl(from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+    --cloudLight: hsl(
+      from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+    );
     --cloudColor: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(75% / 2) / 25%);
     --skyColor3: hsl(var(--skyHue3) calc(var(--sm) * 2) calc(50% / 2));
     --skyColor2: hsl(var(--skyHue2) calc(var(--sm) * 2) calc(25% / 2));
@@ -69,6 +75,8 @@
     --seaColor2: hsl(var(--seaHue2) calc(var(--sm) * 2) calc(25% / 2));
     --seaColor3: hsl(var(--seaHue3) calc(var(--sm) * 2) calc(50% / 2));
     --swellColor: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(75% / 2) / 25%);
-    --swellLight: hsl(from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+    --swellLight: hsl(
+      from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+    );
   }
 }

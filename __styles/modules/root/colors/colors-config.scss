@@ -6,7 +6,7 @@
 
 @mixin colors-config {
   &,
-  &[data-theme=natural] {
+  &[data-theme="natural"] {
     // Hue
     --hm: 120; // Main hue
     --hs: 60; // Hue separation
@@ -18,27 +18,26 @@
     --lmo: 75%; // Main lightness offset; contrast from background
   }
 
-  &[data-theme=graeys] {
+  &[data-theme="grays"] {
     // Saturation
     --sm: 0%; // Main saturation
   }
 
-  &[data-theme=warmer] {
+  &[data-theme="warmer"] {
     // Hue
     --hm: 45; // Main hue
     --hs: 15; // Hue separation
   }
 
-  &[data-theme=cooler] {
+  &[data-theme="cooler"] {
     // Hue
     --hm: 195; // Main hue
     --hs: 15; // Hue separation
   }
 
-  &[data-theme=purples] {
+  &[data-theme="purples"] {
     // Hue
     --hm: 300; // Main hue
     --hs: -60; // Hue separation
   }
-
 }

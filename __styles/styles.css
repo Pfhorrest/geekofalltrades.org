@@ -144,7 +144,7 @@
   --sm: 50%;
   --lmo: 75%;
 }
-:root[data-theme=graeys] {
+:root[data-theme=grays] {
   --sm: 0%;
 }
 :root[data-theme=warmer] {
@@ -253,7 +253,9 @@
 }
 @media (prefers-color-scheme: light) {
   :root {
-    --cloudLight: hsl(from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+    --cloudLight: hsl(
+      from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+    );
     --cloudColor: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(100% / 2) / 25%);
     --skyColor3: hsl(var(--skyHue3) calc(var(--sm) * 2) calc(50% / 2));
     --skyColor2: hsl(var(--skyHue2) calc(var(--sm) * 2) calc(75% / 2));
@@ -264,11 +266,15 @@
     --seaColor2: hsl(var(--seaHue2) calc(var(--sm) * 2) calc(75% / 2));
     --seaColor3: hsl(var(--seaHue3) calc(var(--sm) * 2) calc(50% / 2));
     --swellColor: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(100% / 2) / 25%);
-    --swellLight: hsl(from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+    --swellLight: hsl(
+      from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+    );
   }
 }
 :root[data-color-scheme=light], html[data-color-scheme=light] :root {
-  --cloudLight: hsl(from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+  --cloudLight: hsl(
+    from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+  );
   --cloudColor: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(100% / 2) / 25%);
   --skyColor3: hsl(var(--skyHue3) calc(var(--sm) * 2) calc(50% / 2));
   --skyColor2: hsl(var(--skyHue2) calc(var(--sm) * 2) calc(75% / 2));
@@ -279,11 +285,15 @@
   --seaColor2: hsl(var(--seaHue2) calc(var(--sm) * 2) calc(75% / 2));
   --seaColor3: hsl(var(--seaHue3) calc(var(--sm) * 2) calc(50% / 2));
   --swellColor: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(100% / 2) / 25%);
-  --swellLight: hsl(from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+  --swellLight: hsl(
+    from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+  );
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --cloudLight: hsl(from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+    --cloudLight: hsl(
+      from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+    );
     --cloudColor: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(75% / 2) / 25%);
     --skyColor3: hsl(var(--skyHue3) calc(var(--sm) * 2) calc(50% / 2));
     --skyColor2: hsl(var(--skyHue2) calc(var(--sm) * 2) calc(25% / 2));
@@ -294,11 +304,15 @@
     --seaColor2: hsl(var(--seaHue2) calc(var(--sm) * 2) calc(25% / 2));
     --seaColor3: hsl(var(--seaHue3) calc(var(--sm) * 2) calc(50% / 2));
     --swellColor: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(75% / 2) / 25%);
-    --swellLight: hsl(from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+    --swellLight: hsl(
+      from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+    );
   }
 }
 :root[data-color-scheme=dark], html[data-color-scheme=dark] :root {
-  --cloudLight: hsl(from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+  --cloudLight: hsl(
+    from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+  );
   --cloudColor: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(75% / 2) / 25%);
   --skyColor3: hsl(var(--skyHue3) calc(var(--sm) * 2) calc(50% / 2));
   --skyColor2: hsl(var(--skyHue2) calc(var(--sm) * 2) calc(25% / 2));
@@ -309,7 +323,9 @@
   --seaColor2: hsl(var(--seaHue2) calc(var(--sm) * 2) calc(25% / 2));
   --seaColor3: hsl(var(--seaHue3) calc(var(--sm) * 2) calc(50% / 2));
   --swellColor: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(75% / 2) / 25%);
-  --swellLight: hsl(from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+  --swellLight: hsl(
+    from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+  );
 }
 
 * {
@@ -2228,7 +2244,7 @@ html[data-color-scheme=dark] .color-scheme-switcher a.darkMode {
   outline: 1px solid var(--black);
 }
 
-html[data-theme=graeys] .color-scheme-switcher a.graeys-theme {
+html[data-theme=grays] .color-scheme-switcher a.grays-theme {
   opacity: 1;
   outline: 1px solid var(--black);
 }

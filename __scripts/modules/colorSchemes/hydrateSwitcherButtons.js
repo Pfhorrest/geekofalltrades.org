@@ -65,8 +65,8 @@ export const hydrateSwitcherButtons = () => {
             themeSwitcher.id = "themeSwitcher";
             themeSwitcher.classList.add("color-scheme-switcher");
             // Create the controls
-            const graeys = createControl("themeSwitcher", "graeys-theme", "Graeys");
-            // console.log("created Graeys:", graeys);
+            const grays = createControl("themeSwitcher", "grays-theme", "Grays");
+            // console.log("created Grays:", grays);
             const warmer = createControl("themeSwitcher", "warmer-theme", "Warmer");
             // console.log("created Warmer:", warmer);
             const natural = createControl("themeSwitcher", "natural-theme", "Natural");
@@ -76,13 +76,13 @@ export const hydrateSwitcherButtons = () => {
             const purples = createControl("themeSwitcher", "purples-theme", "Purples");
             // console.log("created Purples:", purples);
             // Add event listeners
-            document.querySelectorAll(".graeys-theme").forEach((control) => {
+            document.querySelectorAll(".grays-theme").forEach((control) => {
                 // console.log("Setting up event listener on", control);
                 control.addEventListener("click", () => {
-                    // console.log("Switch to graeys theme");
-                    document.documentElement.setAttribute("data-theme", "graeys");
+                    // console.log("Switch to grays theme");
+                    document.documentElement.setAttribute("data-theme", "grays");
                     document.cookie =
-                        "theme=graeys; expires=" +
+                        "theme=grays; expires=" +
                             new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
                             "; path=/";
                 });
