@@ -4,6 +4,13 @@
 	<?php
 		$images = array(
 			array(
+				'title' => 'Untitled',
+				'filename' => '2023/01/01/IMG_6782.jpeg',
+				'description' => 'Description pending.',
+				'morelink' => '2023',
+				'moretext' => 'More from 2023',
+			),
+			array(
 				'title' => 'Butter daisies at Waipi\'o Valley Lookout',
 				'filename' => '2022/04/23/IMG_3778.JPG',
 				'description' => 'iPhone 7, 2022-04-23.',
