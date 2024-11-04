@@ -9,15 +9,13 @@ export const hydrateSwitcherButtons = () => {
     const footer = document.querySelector("footer");
     // Only run if it exists
     if (footer) {
-      // Set up the color-scheme-switcher container
-      const colorSchemeSwitcher = footer.appendChild(
-        document.createElement("div")
-      );
-      colorSchemeSwitcher.classList.add("colorSchemeSwitcher");
-
       // Reusable function to create a control with the given class and text
-      const createControl = (className: string, text: string) =>
-        colorSchemeSwitcher.appendChild(
+      const createControl = (
+        container: string,
+        className: string,
+        text: string
+      ) =>
+        document.getElementById(container)?.appendChild(
           Object.assign(document.createElement("a"), {
             className,
             innerText: text,
@@ -25,12 +23,31 @@ export const hydrateSwitcherButtons = () => {
           })
         );
 
+      // Set up the color-scheme-switcher container
+      const lightOrDarkSwitcher = footer.appendChild(
+        document.createElement("div")
+      );
+      lightOrDarkSwitcher.id = "lightOrDarkSwitcher";
+      lightOrDarkSwitcher.classList.add("color-scheme-switcher");
+
       // Create the controls
-      const expandControl = createControl("lightMode", "Light Mode");
+      const lightMode = createControl(
+        "lightOrDarkSwitcher",
+        "lightMode",
+        "Light Mode"
+      );
       // console.log("created lightMode:", lightMode);
-      const anchorControl = createControl("autoMode", "Auto Mode");
+      const autoMode = createControl(
+        "lightOrDarkSwitcher",
+        "autoMode",
+        "Auto Mode"
+      );
       // console.log("created autoMode:", autoMode);
-      const collapseControl = createControl("darkMode", "Dark Mode");
+      const darkMode = createControl(
+        "lightOrDarkSwitcher",
+        "darkMode",
+        "Dark Mode"
+      );
       // console.log("created darkMode:", darkMode);
 
       // Add event listeners
@@ -63,6 +80,80 @@ export const hydrateSwitcherButtons = () => {
           document.documentElement.setAttribute("data-color-scheme", "dark");
           document.cookie =
             "color-scheme=dark; expires=" +
+            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
+            "; path=/";
+        });
+      });
+
+      // Set up the color-scheme-switcher container
+      const themeSwitcher = footer.appendChild(document.createElement("div"));
+      themeSwitcher.id = "themeSwitcher";
+      themeSwitcher.classList.add("color-scheme-switcher");
+
+      // Create the controls
+      const graeys = createControl("themeSwitcher", "graeys-theme", "Graeys");
+      // console.log("created Graeys:", graeys);
+      const warmer = createControl("themeSwitcher", "warmer-theme", "Warmer");
+      // console.log("created Warmer:", warmer);
+      const natural = createControl("themeSwitcher", "natural-theme", "Natural");
+      // console.log("created Natural:", natural);
+      const cooler = createControl("themeSwitcher", "cooler-theme", "Cooler");
+      // console.log("created Cooler:", cooler);
+      const purples = createControl("themeSwitcher", "purples-theme", "Purples");
+      // console.log("created Purples:", purples);
+
+      // Add event listeners
+      document.querySelectorAll(".graeys-theme").forEach((control) => {
+        // console.log("Setting up event listener on", control);
+        control.addEventListener("click", () => {
+          // console.log("Switch to graeys theme");
+          document.documentElement.setAttribute("data-theme", "graeys");
+          document.cookie =
+            "theme=graeys; expires=" +
+            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
+            "; path=/";
+        });
+      });
+      document.querySelectorAll(".warmer-theme").forEach((control) => {
+        // console.log("Setting up event listener on", control);
+        control.addEventListener("click", () => {
+          // console.log("Switch to warmer theme");
+          document.documentElement.setAttribute("data-theme", "warmer");
+          document.cookie =
+            "theme=warmer; expires=" +
+            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
+            "; path=/";
+        });
+      });
+      document.querySelectorAll(".natural-theme").forEach((control) => {
+        // console.log("Setting up event listener on", control);
+        control.addEventListener("click", () => {
+          // console.log("Switch to natural theme");
+          document.documentElement.setAttribute("data-theme", "natural");
+          document.cookie =
+            "theme=natural; expires=" +
+            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
+            "; path=/";
+        });
+      });
+      document.querySelectorAll(".cooler-theme").forEach((control) => {
+        // console.log("Setting up event listener on", control);
+        control.addEventListener("click", () => {
+          // console.log("Switch to cooler theme");
+          document.documentElement.setAttribute("data-theme", "cooler");
+          document.cookie =
+            "theme=cooler; expires=" +
+            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
+            "; path=/";
+        });
+      });
+      document.querySelectorAll(".purples-theme").forEach((control) => {
+        // console.log("Setting up event listener on", control);
+        control.addEventListener("click", () => {
+          // console.log("Switch to purples theme");
+          document.documentElement.setAttribute("data-theme", "purples");
+          document.cookie =
+            "theme=purples; expires=" +
             new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
             "; path=/";
         });

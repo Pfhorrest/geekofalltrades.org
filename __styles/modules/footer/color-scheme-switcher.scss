@@ -6,7 +6,7 @@
 /// @see {mixin} colors - General color variable styles
 
 @mixin color-scheme-switcher {
-  .colorSchemeSwitcher {
+  .color-scheme-switcher {
     /* The container */
     display: flex;
     flex-flow: row nowrap; // Wrap at smallest viewport widths
@@ -61,6 +61,37 @@
       }
       &.darkMode {
         @at-root html[data-color-scheme=dark] & {
+            opacity: 1;
+            outline: 1px solid var(--black);
+        }
+      }
+
+      &.graeys-theme {
+        @at-root html[data-theme=graeys] & {
+            opacity: 1;
+            outline: 1px solid var(--black);
+        }
+      }
+      &.warmer-theme {
+        @at-root html[data-theme=warmer] & {
+            opacity: 1;
+            outline: 1px solid var(--black);
+        }
+      }
+      &.natural-theme {
+        @at-root html:not([data-theme]) &, html[data-theme=natural] & {
+            opacity: 1;
+            outline: 1px solid var(--black);
+        }
+      }
+      &.cooler-theme {
+        @at-root html[data-theme=cooler] & {
+            opacity: 1;
+            outline: 1px solid var(--black);
+        }
+      }
+      &.purples-theme {
+        @at-root html[data-theme=purples] & {
             opacity: 1;
             outline: 1px solid var(--black);
         }

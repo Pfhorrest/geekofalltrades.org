@@ -17,7 +17,7 @@
 
   // Saturation
   --ss: calc(var(--sm) / 2); // Secondary saturation
-  --sh: calc((100% + var(--sm)) / 2); // Highlight saturation
+  --sh: calc((2 * var(--sm))); // Highlight saturation
   --sd: calc(var(--ss) / 4); // Disabled saturation
 
   color-scheme: light dark;

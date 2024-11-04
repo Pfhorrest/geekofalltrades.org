@@ -1,5 +1,3 @@
-
-
 /// Configurable primary color variables
 /// @group colors
 /// @see {mixin} colors-calc - Calculated secondary color variables
@@ -7,13 +5,40 @@
 /// @see {mixin} colors - General color variable styles
 
 @mixin colors-config {
-  // Hue
-  --hm: 120; // Main hue
-  --hs: 60; // Hue separation
+  &,
+  &[data-theme=natural] {
+    // Hue
+    --hm: 120; // Main hue
+    --hs: 60; // Hue separation
 
-  // Saturation
-  --sm: 50%; // Main saturation
+    // Saturation
+    --sm: 50%; // Main saturation
 
-  // Lightness
-  --lmo: 75%; // Main lightness offset; contrast from background
+    // Lightness
+    --lmo: 75%; // Main lightness offset; contrast from background
+  }
+
+  &[data-theme=graeys] {
+    // Saturation
+    --sm: 0%; // Main saturation
+  }
+
+  &[data-theme=warmer] {
+    // Hue
+    --hm: 45; // Main hue
+    --hs: 15; // Hue separation
+  }
+
+  &[data-theme=cooler] {
+    // Hue
+    --hm: 195; // Main hue
+    --hs: 15; // Hue separation
+  }
+
+  &[data-theme=purples] {
+    // Hue
+    --hm: 300; // Main hue
+    --hs: -60; // Hue separation
+  }
+
 }

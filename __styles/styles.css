@@ -3,14 +3,10 @@
 :root {
   /* Color variables */
   /* General site-wide color variables */
-  --hm: 120;
-  --hs: 60;
-  --sm: 50%;
-  --lmo: 75%;
   --hc: calc(var(--hm) + var(--hs));
   --hw: calc(var(--hm) - var(--hs));
   --ss: calc(var(--sm) / 2);
-  --sh: calc((100% + var(--sm)) / 2);
+  --sh: calc((2 * var(--sm)));
   --sd: calc(var(--ss) / 4);
   color-scheme: light dark;
   --lt9: calc(var(--lm) + (var(--lti) * 9));
@@ -142,6 +138,27 @@
   --bp3: 60rem;
   --bp4: 80rem;
 }
+:root, :root[data-theme=natural] {
+  --hm: 120;
+  --hs: 60;
+  --sm: 50%;
+  --lmo: 75%;
+}
+:root[data-theme=graeys] {
+  --sm: 0%;
+}
+:root[data-theme=warmer] {
+  --hm: 45;
+  --hs: 15;
+}
+:root[data-theme=cooler] {
+  --hm: 195;
+  --hs: 15;
+}
+:root[data-theme=purples] {
+  --hm: 300;
+  --hs: -60;
+}
 @media (prefers-color-scheme: light) {
   :root {
     --lm: calc(100% - var(--lmo));
@@ -210,65 +227,89 @@
 :root[data-color-scheme=dark], html[data-color-scheme=dark] :root {
   --curve: top;
 }
+:root[data-theme=warmer] {
+  --skyHue3: 30;
+  --skyHue2: 45;
+  --skyHue1: 60;
+  --seaHue1: 30;
+  --seaHue2: 15;
+  --seaHue3: 00;
+}
+:root[data-theme=cooler] {
+  --skyHue3: 210;
+  --skyHue2: 195;
+  --skyHue1: 180;
+  --seaHue1: 210;
+  --seaHue2: 225;
+  --seaHue3: 240;
+}
+:root[data-theme=purples] {
+  --skyHue3: 0;
+  --skyHue2: 330;
+  --skyHue1: 345;
+  --seaHue1: 285;
+  --seaHue2: 270;
+  --seaHue3: 240;
+}
 @media (prefers-color-scheme: light) {
   :root {
-    --cloudLight: hsl(from var(--cloudColor) h 100% calc(100% / 2) / 50%);
-    --cloudColor: hsl(var(--skyHue1) 100% calc(100% / 2) / 25%);
-    --skyColor3: hsl(var(--skyHue3) 100% calc(50% / 2));
-    --skyColor2: hsl(var(--skyHue2) 100% calc(75% / 2));
-    --skyColor1: hsl(var(--skyHue1) 100% calc(100% / 2));
-    --skyMist: hsl(var(--skyHue1) 100% 87.5%);
-    --seaMist: hsl(var(--seaHue1) 100% 87.5%);
-    --seaColor1: hsl(var(--seaHue1) 100% calc(100% / 2));
-    --seaColor2: hsl(var(--seaHue2) 100% calc(75% / 2));
-    --seaColor3: hsl(var(--seaHue3) 100% calc(50% / 2));
-    --swellColor: hsl(var(--seaHue1) 100% calc(100% / 2) / 25%);
-    --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
+    --cloudLight: hsl(from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+    --cloudColor: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(100% / 2) / 25%);
+    --skyColor3: hsl(var(--skyHue3) calc(var(--sm) * 2) calc(50% / 2));
+    --skyColor2: hsl(var(--skyHue2) calc(var(--sm) * 2) calc(75% / 2));
+    --skyColor1: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(100% / 2));
+    --skyMist: hsl(var(--skyHue1) calc(var(--sm) * 2) 87.5%);
+    --seaMist: hsl(var(--seaHue1) calc(var(--sm) * 2) 87.5%);
+    --seaColor1: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(100% / 2));
+    --seaColor2: hsl(var(--seaHue2) calc(var(--sm) * 2) calc(75% / 2));
+    --seaColor3: hsl(var(--seaHue3) calc(var(--sm) * 2) calc(50% / 2));
+    --swellColor: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(100% / 2) / 25%);
+    --swellLight: hsl(from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
   }
 }
 :root[data-color-scheme=light], html[data-color-scheme=light] :root {
-  --cloudLight: hsl(from var(--cloudColor) h 100% calc(100% / 2) / 50%);
-  --cloudColor: hsl(var(--skyHue1) 100% calc(100% / 2) / 25%);
-  --skyColor3: hsl(var(--skyHue3) 100% calc(50% / 2));
-  --skyColor2: hsl(var(--skyHue2) 100% calc(75% / 2));
-  --skyColor1: hsl(var(--skyHue1) 100% calc(100% / 2));
-  --skyMist: hsl(var(--skyHue1) 100% 87.5%);
-  --seaMist: hsl(var(--seaHue1) 100% 87.5%);
-  --seaColor1: hsl(var(--seaHue1) 100% calc(100% / 2));
-  --seaColor2: hsl(var(--seaHue2) 100% calc(75% / 2));
-  --seaColor3: hsl(var(--seaHue3) 100% calc(50% / 2));
-  --swellColor: hsl(var(--seaHue1) 100% calc(100% / 2) / 25%);
-  --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
+  --cloudLight: hsl(from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+  --cloudColor: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(100% / 2) / 25%);
+  --skyColor3: hsl(var(--skyHue3) calc(var(--sm) * 2) calc(50% / 2));
+  --skyColor2: hsl(var(--skyHue2) calc(var(--sm) * 2) calc(75% / 2));
+  --skyColor1: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(100% / 2));
+  --skyMist: hsl(var(--skyHue1) calc(var(--sm) * 2) 87.5%);
+  --seaMist: hsl(var(--seaHue1) calc(var(--sm) * 2) 87.5%);
+  --seaColor1: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(100% / 2));
+  --seaColor2: hsl(var(--seaHue2) calc(var(--sm) * 2) calc(75% / 2));
+  --seaColor3: hsl(var(--seaHue3) calc(var(--sm) * 2) calc(50% / 2));
+  --swellColor: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(100% / 2) / 25%);
+  --swellLight: hsl(from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --cloudLight: hsl(from var(--cloudColor) h 100% calc(100% / 2) / 50%);
-    --cloudColor: hsl(var(--skyHue1) 100% calc(75% / 2) / 25%);
-    --skyColor3: hsl(var(--skyHue3) 100% calc(50% / 2));
-    --skyColor2: hsl(var(--skyHue2) 100% calc(25% / 2));
-    --skyColor1: hsl(var(--skyHue1) 100% calc(12.5% / 2));
-    --skyMist: hsl(var(--skyHue1) 100% calc(6.25% / 2));
-    --seaMist: hsl(var(--seaHue1) 100% calc(6.25% / 2));
-    --seaColor1: hsl(var(--seaHue1) 100% calc(12.5% / 2));
-    --seaColor2: hsl(var(--seaHue2) 100% calc(25% / 2));
-    --seaColor3: hsl(var(--seaHue3) 100% calc(50% / 2));
-    --swellColor: hsl(var(--seaHue1) 100% calc(75% / 2) / 25%);
-    --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
+    --cloudLight: hsl(from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+    --cloudColor: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(75% / 2) / 25%);
+    --skyColor3: hsl(var(--skyHue3) calc(var(--sm) * 2) calc(50% / 2));
+    --skyColor2: hsl(var(--skyHue2) calc(var(--sm) * 2) calc(25% / 2));
+    --skyColor1: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(12.5% / 2));
+    --skyMist: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(6.25% / 2));
+    --seaMist: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(6.25% / 2));
+    --seaColor1: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(12.5% / 2));
+    --seaColor2: hsl(var(--seaHue2) calc(var(--sm) * 2) calc(25% / 2));
+    --seaColor3: hsl(var(--seaHue3) calc(var(--sm) * 2) calc(50% / 2));
+    --swellColor: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(75% / 2) / 25%);
+    --swellLight: hsl(from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
   }
 }
 :root[data-color-scheme=dark], html[data-color-scheme=dark] :root {
-  --cloudLight: hsl(from var(--cloudColor) h 100% calc(100% / 2) / 50%);
-  --cloudColor: hsl(var(--skyHue1) 100% calc(75% / 2) / 25%);
-  --skyColor3: hsl(var(--skyHue3) 100% calc(50% / 2));
-  --skyColor2: hsl(var(--skyHue2) 100% calc(25% / 2));
-  --skyColor1: hsl(var(--skyHue1) 100% calc(12.5% / 2));
-  --skyMist: hsl(var(--skyHue1) 100% calc(6.25% / 2));
-  --seaMist: hsl(var(--seaHue1) 100% calc(6.25% / 2));
-  --seaColor1: hsl(var(--seaHue1) 100% calc(12.5% / 2));
-  --seaColor2: hsl(var(--seaHue2) 100% calc(25% / 2));
-  --seaColor3: hsl(var(--seaHue3) 100% calc(50% / 2));
-  --swellColor: hsl(var(--seaHue1) 100% calc(75% / 2) / 25%);
-  --swellLight: hsl(from var(--swellColor) h 100% calc(100% / 2) / 50%);
+  --cloudLight: hsl(from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
+  --cloudColor: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(75% / 2) / 25%);
+  --skyColor3: hsl(var(--skyHue3) calc(var(--sm) * 2) calc(50% / 2));
+  --skyColor2: hsl(var(--skyHue2) calc(var(--sm) * 2) calc(25% / 2));
+  --skyColor1: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(12.5% / 2));
+  --skyMist: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(6.25% / 2));
+  --seaMist: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(6.25% / 2));
+  --seaColor1: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(12.5% / 2));
+  --seaColor2: hsl(var(--seaHue2) calc(var(--sm) * 2) calc(25% / 2));
+  --seaColor3: hsl(var(--seaHue3) calc(var(--sm) * 2) calc(50% / 2));
+  --swellColor: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(75% / 2) / 25%);
+  --swellLight: hsl(from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%);
 }
 
 * {
@@ -2127,7 +2168,7 @@ footer a {
 }
 
 /* Color scheme switcher */
-.colorSchemeSwitcher {
+.color-scheme-switcher {
   /* The container */
   display: flex;
   flex-flow: row nowrap;
@@ -2140,7 +2181,7 @@ footer a {
   /* The individual buttons */
   /* Don't show any of this in print */
 }
-.colorSchemeSwitcher a {
+.color-scheme-switcher a {
   /* Layout */
   position: relative;
   display: flex;
@@ -2162,23 +2203,48 @@ footer a {
   text-align: center;
   letter-spacing: 0.125ch;
 }
-html[data-color-scheme=light] .colorSchemeSwitcher a.lightMode {
+html[data-color-scheme=light] .color-scheme-switcher a.lightMode {
   opacity: 1;
   outline: 1px solid var(--black);
 }
 
-html:not([data-color-scheme]) .colorSchemeSwitcher a.autoMode {
+html:not([data-color-scheme]) .color-scheme-switcher a.autoMode {
   opacity: 1;
   outline: 1px solid var(--black);
 }
 
-html[data-color-scheme=dark] .colorSchemeSwitcher a.darkMode {
+html[data-color-scheme=dark] .color-scheme-switcher a.darkMode {
+  opacity: 1;
+  outline: 1px solid var(--black);
+}
+
+html[data-theme=graeys] .color-scheme-switcher a.graeys-theme {
+  opacity: 1;
+  outline: 1px solid var(--black);
+}
+
+html[data-theme=warmer] .color-scheme-switcher a.warmer-theme {
+  opacity: 1;
+  outline: 1px solid var(--black);
+}
+
+html:not([data-theme]) .color-scheme-switcher a.natural-theme, html[data-theme=natural] .color-scheme-switcher a.natural-theme {
+  opacity: 1;
+  outline: 1px solid var(--black);
+}
+
+html[data-theme=cooler] .color-scheme-switcher a.cooler-theme {
+  opacity: 1;
+  outline: 1px solid var(--black);
+}
+
+html[data-theme=purples] .color-scheme-switcher a.purples-theme {
   opacity: 1;
   outline: 1px solid var(--black);
 }
 
 @media only print {
-  .colorSchemeSwitcher {
+  .color-scheme-switcher {
     display: none;
   }
 }
