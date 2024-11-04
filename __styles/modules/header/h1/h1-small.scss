@@ -28,14 +28,18 @@
     background: center / contain no-repeat
       url('data:image/svg+xml,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0.0em" y="0.0em" width="1.0em" height="1.0em" viewBox="0 0 1.0em 1.0em" ><rect x="0.0em" y="0.0em" width="1.0em" height="0.2em" /><rect x="0.0em" y="0.4em" width="1.0em" height="0.2em" /><rect x="0.0em" y="0.8em" width="1.0em" height="0.2em" /></svg>');
     flex-shrink: 0;
-    /* In light mode, it's unfiltered
-       (and therefore black against the light background) */
-    @include prefers-color-scheme("light") {
+  }
+  /* In light mode, it's unfiltered
+     (and therefore black against the light background) */
+  @include prefers-color-scheme("light") {
+    &::after {
       filter: none;
     }
-    /* In dark mode, it's inverted
-       (and therefore white against the dark background) */
-    @include prefers-color-scheme("dark") {
+  }
+  /* In dark mode, it's inverted
+      (and therefore white against the dark background) */
+  @include prefers-color-scheme("dark") {
+    &::after {
       filter: invert(1);
     }
   }
