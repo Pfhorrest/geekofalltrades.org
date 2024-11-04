@@ -2181,6 +2181,9 @@ footer a {
   /* The individual buttons */
   /* Don't show any of this in print */
 }
+.color-scheme-switcher#themeSwitcher {
+  flex-wrap: wrap;
+}
 .color-scheme-switcher a {
   /* Layout */
   position: relative;
@@ -2202,6 +2205,8 @@ footer a {
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 0.125ch;
+  /* Light and dark mode switchers */
+  /* Custom theme switchers */
 }
 html[data-color-scheme=light] .color-scheme-switcher a.lightMode {
   opacity: 1;
