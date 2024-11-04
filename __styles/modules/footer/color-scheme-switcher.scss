@@ -1,0 +1,108 @@
+@use "../root/layout/breakpoints.scss" as *;
+
+/// Styles for the toggle-all-sections controls
+/// @group main
+/// @require {Length} $bp2 - Second breakpoint value
+/// @see {mixin} colors - General color variable styles
+
+@mixin color-scheme-switcher {
+  .color-scheme-switcher {
+    /* The container */
+    display: flex;
+    flex-flow: row nowrap;
+    &#themeSwitcher {
+      flex-wrap: wrap;
+    }
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: $bp2;
+    gap: var(--spacing);
+    --dur: 0.5s;
+
+    /* The individual buttons */
+    a {
+      /* Layout */
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1 1 100%;
+
+      /* Spacing */
+      padding: 0.25em 2em;
+
+      /* Borders */
+      border: 1pt solid var(--gloss);
+      border-radius: calc(0.5 * var(--rounding));
+
+      /* Background */
+      background: var(--white);
+      opacity: 0.75;
+
+      /* Typography */
+      font-size: 0.75rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.125ch;
+
+      /* Light and dark mode switchers */
+      &.lightMode {
+        @at-root html[data-color-scheme=light] & {
+            opacity: 1;
+            outline: 1px solid var(--black);
+        }
+      }
+      &.autoMode {
+        @at-root html:not([data-color-scheme]) & {
+            opacity: 1;
+            outline: 1px solid var(--black);
+        }
+      }
+      &.darkMode {
+        @at-root html[data-color-scheme=dark] & {
+            opacity: 1;
+            outline: 1px solid var(--black);
+        }
+      }
+
+      /* Custom theme switchers */
+      &.graeys-theme {
+        @at-root html[data-theme=graeys] & {
+            opacity: 1;
+            outline: 1px solid var(--black);
+        }
+      }
+      &.warmer-theme {
+        @at-root html[data-theme=warmer] & {
+            opacity: 1;
+            outline: 1px solid var(--black);
+        }
+      }
+      &.natural-theme {
+        @at-root html:not([data-theme]) &, html[data-theme=natural] & {
+            opacity: 1;
+            outline: 1px solid var(--black);
+        }
+      }
+      &.cooler-theme {
+        @at-root html[data-theme=cooler] & {
+            opacity: 1;
+            outline: 1px solid var(--black);
+        }
+      }
+      &.purples-theme {
+        @at-root html[data-theme=purples] & {
+            opacity: 1;
+            outline: 1px solid var(--black);
+        }
+      }
+    }
+
+    /* Don't show any of this in print */
+    @media only print {
+      display: none;
+    }
+  }
+}
