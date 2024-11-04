@@ -12,6 +12,9 @@
     flex-flow: row nowrap;
     &#themeSwitcher {
       flex-wrap: wrap;
+      @media (min-width: $bp2) {
+        flex-wrap: nowrap;
+      }
     }
     justify-content: center;
     align-items: stretch;

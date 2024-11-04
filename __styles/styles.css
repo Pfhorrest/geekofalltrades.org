@@ -2184,6 +2184,11 @@ footer a {
 .color-scheme-switcher#themeSwitcher {
   flex-wrap: wrap;
 }
+@media (min-width: 40rem) {
+  .color-scheme-switcher#themeSwitcher {
+    flex-wrap: nowrap;
+  }
+}
 .color-scheme-switcher a {
   /* Layout */
   position: relative;
