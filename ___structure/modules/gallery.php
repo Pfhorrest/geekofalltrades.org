@@ -1,5 +1,88 @@
 <?php
+
+    /* If no imagess are provided, search for images in the rootpath. */
+    if (!isset($images)) {
+        $images = [];
+    }
+    if(empty($images)) {
+        $files = scandir($rootpath);
+        foreach ($files as $file) {
+            if (!str_starts_with($file, '.') && !str_starts_with($file, '_')) {
+                // echo '<p>'.$file.':
+                //     is_file? ('.is_file($rootpath.$file).')
+                //     exif_imagetype: ['.exif_imagetype($rootpath.$file).']
+                //     is_dir? ('.is_dir($rootpath.$file).')
+                //     </p>';
+                if (exif_imagetype($rootpath.$file)) {
+                    $images[] = [
+                        'title' => 'Untitled',
+                        'description' => 'Description pending.',
+                        'filename' => $file,
+                    ];
+                } elseif (is_dir($rootpath.$file)) {
+                    $image = [];
+                    $subfiles = scandir($rootpath.$file);
+                    $subfiles_image_count = 0;
+                    foreach ($subfiles as $subfile) {
+                        if (
+                            !str_starts_with($subfile, '.') &&
+                            !str_starts_with($subfile, '_')
+                        ) {
+                            // echo '<p>-- '.$file.'/'.$subfile.':
+                            //     is_file? ('.is_file($rootpath.$file.'/'.$subfile).')
+                            //     exif_imagetype: ['.exif_imagetype($rootpath.$file.'/'.$subfile).']
+                            //     is_dir? ('.is_dir($rootpath.$file.'/'.$subfile).')
+                            //     </p>';
+                            if (
+                                exif_imagetype($rootpath.$file.'/'.$subfile)
+                            ) {
+                                if (!$image['filename']) {
+                                    $image['filename'] = $file.'/'.$subfile;
+                                }
+                                $subfiles_image_count++;
+                            } elseif (is_dir($rootpath.$file.'/'.$subfile)) {
+                                $subfiles_image_count++;
+                                if (!$image['filename']) {
+                                    $grandfiles = scandir($rootpath.$file.'/'.$subfile);
+                                    foreach ($grandfiles as $grandfile) {
+                                        if (
+                                            !str_starts_with($grandfile, '.') &&
+                                            !str_starts_with($grandfile, '_')
+                                        ) {
+                                            // echo '<p>-- -- '.$file.'/'.$subfile.'/'.$grandfile.':
+                                            //     is_file? ('.is_file($rootpath.$file.'/'.$subfile.'/'.$grandfile).')
+                                            //     exif_imagetype: ['.exif_imagetype($rootpath.$file.'/'.$subfile.'/'.$grandfile).']
+                                            //     is_dir? ('.is_dir($rootpath.$file.'/'.$subfile.'/'.$grandfile).')
+                                            //     </p>';
+                                            if (
+                                                exif_imagetype($rootpath.$file.'/'.$subfile.'/'.$grandfile)
+                                            ) {
+                                                $image['filename'] = $file.'/'.$subfile.'/'.$grandfile;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if ($image['filename']) {
+                        $image['title'] = 'Untitled';
+                        $image['description'] = 'Description pending.';
+                        if ($subfiles_image_count > 1) {
+                            $image['moretext'] = 'More from ' . $file;
+                            $image['morelink'] = $file;
+                        }
+                        $images[] = $image;
+                    }
+                }
+            }
+        }
+    }
+
+    // print_r($images);
+
     echo '<div class="gallery expansive">';
+
     foreach ($images as $key => $image) {
         /**
          * Path to the file specified in $images array.
@@ -128,5 +211,5 @@
         ';
     }
     unset($image);
-    echo '</ul>';
+    echo '</div>';
 ?>
