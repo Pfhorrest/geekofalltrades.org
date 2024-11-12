@@ -99,8 +99,8 @@ export const hydrateSwitcherButtons = () => {
       // console.log("created Natural:", natural);
       const cooler = createControl("themeSwitcher", "cooler-theme", "Cooler");
       // console.log("created Cooler:", cooler);
-      const purples = createControl("themeSwitcher", "purples-theme", "Purples");
-      // console.log("created Purples:", purples);
+      const alien = createControl("themeSwitcher", "alien-theme", "Alien");
+      // console.log("created Alien:", alien);
 
       // Add event listeners
       document.querySelectorAll(".grays-theme").forEach((control) => {
@@ -147,13 +147,13 @@ export const hydrateSwitcherButtons = () => {
             "; path=/";
         });
       });
-      document.querySelectorAll(".purples-theme").forEach((control) => {
+      document.querySelectorAll(".alien-theme").forEach((control) => {
         // console.log("Setting up event listener on", control);
         control.addEventListener("click", () => {
-          // console.log("Switch to purples theme");
-          document.documentElement.setAttribute("data-theme", "purples");
+          // console.log("Switch to alien theme");
+          document.documentElement.setAttribute("data-theme", "alien");
           document.cookie =
-            "theme=purples; expires=" +
+            "theme=alien; expires=" +
             new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
             "; path=/";
         });

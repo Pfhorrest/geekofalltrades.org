@@ -155,7 +155,7 @@
   --hm: 195;
   --hs: 15;
 }
-:root[data-theme=purples] {
+:root[data-theme=alien] {
   --hm: 300;
   --hs: -60;
 }
@@ -243,7 +243,7 @@
   --seaHue2: 225;
   --seaHue3: 240;
 }
-:root[data-theme=purples] {
+:root[data-theme=alien] {
   --skyHue3: 0;
   --skyHue2: 330;
   --skyHue1: 345;
@@ -2264,7 +2264,7 @@ html[data-theme=cooler] .color-scheme-switcher a.cooler-theme {
   outline: 1px solid var(--black);
 }
 
-html[data-theme=purples] .color-scheme-switcher a.purples-theme {
+html[data-theme=alien] .color-scheme-switcher a.alien-theme {
   opacity: 1;
   outline: 1px solid var(--black);
 }

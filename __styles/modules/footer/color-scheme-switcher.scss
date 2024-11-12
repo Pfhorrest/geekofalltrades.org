@@ -95,8 +95,8 @@
             outline: 1px solid var(--black);
         }
       }
-      &.purples-theme {
-        @at-root html[data-theme=purples] & {
+      &.alien-theme {
+        @at-root html[data-theme=alien] & {
             opacity: 1;
             outline: 1px solid var(--black);
         }
