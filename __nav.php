@@ -21,6 +21,8 @@
         <ul>
             <li><a href="/photos">All</a></li>
             <li>&nbsp;</li>
+            <li><a href="/photos/2025/">2025</a></li>
+            <li><a href="/photos/2024/">2024</a></li>
             <li><a href="/photos/2023/">2023</a></li>
             <li><a href="/photos/2022/">2022</a></li>
             <li><a href="/photos/2021/">2021</a></li>

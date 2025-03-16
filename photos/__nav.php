@@ -216,7 +216,7 @@
             <li>&nbsp;</li>
             <li><a href="/photos/2023/01">Jan</a></li>
             <li><a href="/photos/2023/02">Feb</a></li>
-            <!-- <li><a href="/photos/2023/03">Mar</a></li>
+            <li><a href="/photos/2023/03">Mar</a></li>
             <li><a href="/photos/2023/04">Apr</a></li>
             <li><a href="/photos/2023/05">May</a></li>
             <li><a href="/photos/2023/06">Jun</a></li>
@@ -225,7 +225,47 @@
             <li><a href="/photos/2023/09">Sep</a></li>
             <li><a href="/photos/2023/10">Oct</a></li>
             <li><a href="/photos/2023/11">Nov</a></li>
-            <li><a href="/photos/2023/12">Dec</a></li> -->
+            <li><a href="/photos/2023/12">Dec</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="/photos/2024">2024</a>
+        <ul>
+            <li><a href="/photos/2024">All</a></li>
+            <li>&nbsp;</li>
+            <li><a href="/photos/2024/01">Jan</a></li>
+            <li><a href="/photos/2024/02">Feb</a></li>
+            <li><a href="/photos/2024/03">Mar</a></li>
+            <li><a href="/photos/2024/04">Apr</a></li>
+            <li><a href="/photos/2024/05">May</a></li>
+            <li><a href="/photos/2024/06">Jun</a></li>
+            <li><a href="/photos/2024/07">Jul</a></li>
+            <li><a href="/photos/2024/08">Aug</a></li>
+            <li><a href="/photos/2024/09">Sep</a></li>
+            <li><a href="/photos/2024/10">Oct</a></li>
+            <li><a href="/photos/2024/11">Nov</a></li>
+            <li><a href="/photos/2024/12">Dec</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="/photos/2025">2025</a>
+        <ul>
+            <li><a href="/photos/2025">All</a></li>
+            <li>&nbsp;</li>
+            <li><a href="/photos/2025/01">Jan</a></li>
+            <li><a href="/photos/2025/02">Feb</a></li>
+            <li><a href="/photos/2025/03">Mar</a></li>
+            <!--
+            <li><a href="/photos/2025/04">Apr</a></li>
+            <li><a href="/photos/2025/05">May</a></li>
+            <li><a href="/photos/2025/06">Jun</a></li>
+            <li><a href="/photos/2025/07">Jul</a></li>
+            <li><a href="/photos/2025/08">Aug</a></li>
+            <li><a href="/photos/2025/09">Sep</a></li>
+            <li><a href="/photos/2025/10">Oct</a></li>
+            <li><a href="/photos/2025/11">Nov</a></li>
+            <li><a href="/photos/2025/12">Dec</a></li>
+            -->
         </ul>
     </li>
 </ul>
