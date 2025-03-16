@@ -1,6 +1,9 @@
+@use "../../root/optional-motion.scss" as *;
+
 /// Styles for sections that can be toggled (collapsed and expanded)
 /// @group main
 /// @see {mixin} section - General styles for sections
+/// @require {mixin} optional-motion - DRY optional motion helper
 
 @mixin toggleable {
   &.toggleable {
@@ -44,10 +47,12 @@
         }
 
         &.off-screen {
-          &::before,
-          &::after {
-            opacity: 0;
-            transition-delay: 0s;
+          @include optional-motion() {
+            &::before,
+            &::after {
+              opacity: 0;
+              transition-delay: 0s;
+            }
           }
         }
 

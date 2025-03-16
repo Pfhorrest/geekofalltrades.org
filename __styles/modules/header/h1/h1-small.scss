@@ -3,8 +3,8 @@
 
 /// Styling details for the main heading at small viewport widths
 /// @group header
-/// @requires {Length} $bp1 - Fist breakpoint value
-/// @requires {mixin} prefers-color-scheme - DRY color scheme helper
+/// @require {Length} $bp1 - Fist breakpoint value
+/// @require {mixin} prefers-color-scheme - DRY color scheme helper
 /// @see {mixin} h1 - General styles for the main heading
 /// @see {mixin} h1-large - Overrides for larger viewport widths
 

@@ -1,8 +1,10 @@
 @use "../../../root/colors/prefers-color-scheme.scss" as *;
+@use "../../../root/optional-motion.scss" as *;
 
 /// Styles for gallery items
 /// @group main
-/// @requires {mixin} prefers-color-scheme - DRY color scheme helper
+/// @require {mixin} prefers-color-scheme - DRY color scheme helper
+/// @require {mixin} optional-motion - DRY optional motion helper
 /// @see {mixin} gallery - General styles for galleries
 
 @mixin gallery-item {
@@ -66,10 +68,12 @@
     &.off-screen {
       /* Only apply these on screens, so that printing doesn't get messsed up */
       @media only screen {
-        img {
-          transform: scale(0);
-          border-radius: 100%;
-          transition-delay: 0s;
+        @include optional-motion() {
+          img {
+            transform: scale(0);
+            border-radius: 100%;
+            transition-delay: 0s;
+          }
         }
       }
     }

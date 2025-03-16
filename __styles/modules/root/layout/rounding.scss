@@ -2,7 +2,7 @@
 
 /// Rounding variables
 /// @group layout
-/// @requires {mixin} spacing - Spacing variables
+/// @require {mixin} spacing - Spacing variables
 
 @mixin rounding {
   @include spacing;

@@ -1,21 +1,15 @@
 @use "../root/layout/breakpoints.scss" as *;
 
-/// Styles for the color-scheme-switcher controls
+/// Styles for the reduced-motion-switcher controls
 /// @group main
 /// @require {Length} $bp2 - Second breakpoint value
 /// @see {mixin} colors - General color variable styles
 
-@mixin color-scheme-switcher {
-  .color-scheme-switcher {
+@mixin reduced-motion-switcher {
+  .reduced-motion-switcher {
     /* The container */
     display: flex;
     flex-flow: row nowrap;
-    &#themeSwitcher {
-      flex-wrap: wrap;
-      @media (min-width: $bp2) {
-        flex-wrap: nowrap;
-      }
-    }
     justify-content: center;
     align-items: stretch;
     width: 100%;
@@ -50,53 +44,21 @@
       text-align: center;
       letter-spacing: 0.125ch;
 
-      /* Light and dark mode switchers */
-      &.lightMode {
-        @at-root html[data-color-scheme=light] & {
+      /* Reduced motion switchers */
+      &.moreMotion {
+        @at-root html[data-reduced-motion=no] & {
             opacity: 1;
             outline: 1px solid var(--black);
         }
       }
-      &.autoMode {
-        @at-root html:not([data-color-scheme]) & {
+      &.autoMotion {
+        @at-root html:not([data-reduced-motion]) & {
             opacity: 1;
             outline: 1px solid var(--black);
         }
       }
-      &.darkMode {
-        @at-root html[data-color-scheme=dark] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
-        }
-      }
-
-      /* Custom theme switchers */
-      &.grays-theme {
-        @at-root html[data-theme=grays] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
-        }
-      }
-      &.warmer-theme {
-        @at-root html[data-theme=warmer] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
-        }
-      }
-      &.natural-theme {
-        @at-root html:not([data-theme]) &, html[data-theme=natural] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
-        }
-      }
-      &.cooler-theme {
-        @at-root html[data-theme=cooler] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
-        }
-      }
-      &.alien-theme {
-        @at-root html[data-theme=alien] & {
+      &.lessMotion {
+        @at-root html[data-reduced-motion=yes] & {
             opacity: 1;
             outline: 1px solid var(--black);
         }

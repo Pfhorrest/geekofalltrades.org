@@ -1,11 +1,13 @@
 @use "../../root/layout/breakpoints.scss" as *;
 @use "../../root/colors/prefers-color-scheme.scss" as *;
+@use "../../root/optional-motion.scss" as *;
 
 /// Styles for figures
 /// @group main
 /// @require {Length} $bp2 - Second breakpoint value
 /// @require {Length} $bp3 - Third breakpoint value
-/// @requires {mixin} prefers-color-scheme - DRY color scheme helper
+/// @require {mixin} prefers-color-scheme - DRY color scheme helper
+/// @require {mixin} optional-motion - DRY optional motion helper
 /// @see {mixing} section - General styles for sections
 
 @mixin figure {
@@ -27,8 +29,10 @@
     &.off-screen {
       /* But only on screen so as not to mess up printing */
       @media only screen {
-        img {
-          transform: scale(0);
+        @include optional-motion() {
+          img {
+            transform: scale(0);
+          }
         }
       }
     }
@@ -187,8 +191,10 @@
       &.contained {
         border: none;
         background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
-        animation-name: mainLighting;
-        animation-duration: 5s;
+        @include optional-motion() {
+          animation-name: mainLighting;
+          animation-duration: 5s;
+        }
       }
 
       /* And to transition in with different timing than other section content */

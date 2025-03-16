@@ -4,9 +4,9 @@
 
 /// Layout variables
 /// @group layout
-/// @requires {mixin} spacing - Spacing variables
-/// @requires {mixin} rounding - Rounding variables
-/// @requires {mixin} breakpoints - Breakpoint variables
+/// @require {mixin} spacing - Spacing variables
+/// @require {mixin} rounding - Rounding variables
+/// @require {mixin} breakpoints - Breakpoint variables
 
 @mixin layout {
     /* Spacing variables */

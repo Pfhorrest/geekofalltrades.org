@@ -1,120 +1,125 @@
+@use "../../root/optional-motion.scss" as *;
+
 /// Styles for section animations
 /// @group main
+/// @require {mixin} optional-motion - DRY optional motion helper
 /// @see {mixin} section - General styles for sections
 
 @mixin section-animation {
-  animation-name: mainLighting;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  animation-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
+  @include optional-motion() {
+    animation-name: mainLighting;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
 
-  /* Different delays for different level of section nesting,
+    /* Different delays for different level of section nesting,
     faster and shorter cycles at deeper nesting levels,
     to make the animation look more varied */
 
-  /* First level (5s loop over 10 sections) */
-  animation-duration: 5s;
-  &:nth-of-type(10n + 1) {
-    animation-delay: 0s;
-  }
-  &:nth-of-type(10n + 2) {
-    animation-delay: 0.5s;
-  }
-  &:nth-of-type(10n + 3) {
-    animation-delay: 1s;
-  }
-  &:nth-of-type(10n + 4) {
-    animation-delay: 1.5s;
-  }
-  &:nth-of-type(10n + 5) {
-    animation-delay: 2s;
-  }
-  &:nth-of-type(10n + 6) {
-    animation-delay: 2.5s;
-  }
-  &:nth-of-type(10n + 7) {
-    animation-delay: 3s;
-  }
-  &:nth-of-type(10n + 8) {
-    animation-delay: 3.5s;
-  }
-  &:nth-of-type(10n + 9) {
-    animation-delay: 4s;
-  }
-  &:nth-of-type(10n + 0) {
-    animation-delay: 4.5s;
-  }
-  /* Second level (4s loop over 8 sections) */
-  section {
-    animation-duration: 4s;
-    &:nth-of-type(8n + 1) {
+    /* First level (5s loop over 10 sections) */
+    animation-duration: 5s;
+    &:nth-of-type(10n + 1) {
       animation-delay: 0s;
     }
-    &:nth-of-type(8n + 2) {
+    &:nth-of-type(10n + 2) {
       animation-delay: 0.5s;
     }
-    &:nth-of-type(8n + 3) {
+    &:nth-of-type(10n + 3) {
       animation-delay: 1s;
     }
-    &:nth-of-type(8n + 4) {
+    &:nth-of-type(10n + 4) {
       animation-delay: 1.5s;
     }
-    &:nth-of-type(8n + 5) {
+    &:nth-of-type(10n + 5) {
       animation-delay: 2s;
     }
-    &:nth-of-type(8n + 6) {
+    &:nth-of-type(10n + 6) {
       animation-delay: 2.5s;
     }
-    &:nth-of-type(8n + 7) {
+    &:nth-of-type(10n + 7) {
       animation-delay: 3s;
     }
-    &:nth-of-type(8n + 0) {
+    &:nth-of-type(10n + 8) {
       animation-delay: 3.5s;
     }
-    /* Third level (3s loop over 6 sections) */
+    &:nth-of-type(10n + 9) {
+      animation-delay: 4s;
+    }
+    &:nth-of-type(10n + 0) {
+      animation-delay: 4.5s;
+    }
+    /* Second level (4s loop over 8 sections) */
     section {
-      animation-duration: 3s;
-      &:nth-of-type(6n + 1) {
+      animation-duration: 4s;
+      &:nth-of-type(8n + 1) {
         animation-delay: 0s;
       }
-      &:nth-of-type(6n + 2) {
-        animation-delay: 1.5s;
+      &:nth-of-type(8n + 2) {
+        animation-delay: 0.5s;
       }
-      &:nth-of-type(6n + 3) {
+      &:nth-of-type(8n + 3) {
         animation-delay: 1s;
       }
-      &:nth-of-type(6n + 4) {
+      &:nth-of-type(8n + 4) {
         animation-delay: 1.5s;
       }
-      &:nth-of-type(6n + 5) {
+      &:nth-of-type(8n + 5) {
         animation-delay: 2s;
       }
-      &:nth-of-type(6n + 0) {
+      &:nth-of-type(8n + 6) {
         animation-delay: 2.5s;
       }
-      /* Fourth level (2s loop over 4 sections) */
+      &:nth-of-type(8n + 7) {
+        animation-delay: 3s;
+      }
+      &:nth-of-type(8n + 0) {
+        animation-delay: 3.5s;
+      }
+      /* Third level (3s loop over 6 sections) */
       section {
-        animation-duration: 2s;
-        &:nth-of-type(4n + 1) {
+        animation-duration: 3s;
+        &:nth-of-type(6n + 1) {
           animation-delay: 0s;
         }
-        &:nth-of-type(4n + 2) {
-          animation-delay: 0.5s;
-        }
-        &:nth-of-type(4n + 3) {
-          animation-delay: 1s;
-        }
-        &:nth-of-type(4n + 0) {
+        &:nth-of-type(6n + 2) {
           animation-delay: 1.5s;
         }
-        /* Fifth level (1s loop over 2 sections) */
+        &:nth-of-type(6n + 3) {
+          animation-delay: 1s;
+        }
+        &:nth-of-type(6n + 4) {
+          animation-delay: 1.5s;
+        }
+        &:nth-of-type(6n + 5) {
+          animation-delay: 2s;
+        }
+        &:nth-of-type(6n + 0) {
+          animation-delay: 2.5s;
+        }
+        /* Fourth level (2s loop over 4 sections) */
         section {
-          animation-duration: 1s;
-          &:nth-of-type(2n + 1) {
+          animation-duration: 2s;
+          &:nth-of-type(4n + 1) {
             animation-delay: 0s;
           }
-          &:nth-of-type(2n + 2) {
+          &:nth-of-type(4n + 2) {
             animation-delay: 0.5s;
+          }
+          &:nth-of-type(4n + 3) {
+            animation-delay: 1s;
+          }
+          &:nth-of-type(4n + 0) {
+            animation-delay: 1.5s;
+          }
+          /* Fifth level (1s loop over 2 sections) */
+          section {
+            animation-duration: 1s;
+            &:nth-of-type(2n + 1) {
+              animation-delay: 0s;
+            }
+            &:nth-of-type(2n + 2) {
+              animation-delay: 0.5s;
+            }
           }
         }
       }

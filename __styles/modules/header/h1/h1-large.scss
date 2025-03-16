@@ -1,9 +1,11 @@
 @use "../../root/layout/breakpoints.scss" as *;
+@use "../../root/optional-motion.scss" as *;
 
 /// Style overrides for the main heading at larger viewport widths
 /// (Assumes details for smaller viewports are already defined)
 /// @group header
-/// @requires {Length} $bp2 - Second breakpoint value
+/// @require {Length} $bp2 - Second breakpoint value
+/// @require {mixin} optional-motion - DRY optional motion helper
 /// @see {mixin} h1 - General styles for the main heading
 /// @see {mixin} h1-small - Styling details for small viewport widths
 /// @see {mixin} colors-header-footer - Color variables for the header and footer
@@ -99,22 +101,23 @@
     background-size: 100%, 100% 100%, auto;
     background-position: center, center, center;
 
-    /* Animation */
-    @keyframes windAndWaves {
-      from {
-        background-size: 100%, 100% 100%, auto;
+    @include optional-motion() {
+      /* Animation */
+      @keyframes windAndWaves {
+        from {
+          background-size: 100%, 100% 100%, auto;
+        }
+        to {
+          background-size: 100%, 100% 200%, auto;
+        }
       }
-      to {
-        background-size: 100%, 100% 200%, auto;
-      }
+      animation-name: windAndWaves;
+      animation-duration: 12s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+      /* Custom animation timing function aiming to make loop look seamless */
+      animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
     }
-    animation-name: windAndWaves;
-    animation-duration: 12s;
-    animation-iteration-count: infinite;
-    animation-direction: normal;
-    /* Custom animation timing function aiming to make loop look seamless */
-    animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
-
     /* Borders and shadows to create windowframe effect */
     padding: 1vw;
     border: 0.5rem solid black;

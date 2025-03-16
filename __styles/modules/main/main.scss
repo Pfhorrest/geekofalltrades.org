@@ -4,6 +4,7 @@
 @use "./main-elements.scss" as *;
 @use "./section/section.scss" as *;
 @use "./section/toggle-all-sections-controls.scss" as *;
+@use "../root/optional-motion.scss" as *;
 
 /// Styles for the main section
 /// @group main
@@ -15,6 +16,7 @@
 /// @require {mixin} main-elements - Styles for other elements
 /// @require {mixin} section - Styles for sections
 /// @require {mixin} toggle-all-sections-controls - Styles for the toggle-all-sections controls
+/// @require {mixin} optional-motion - DRY optional motion helper
 
 @mixin main {
   main {
@@ -47,21 +49,22 @@
     font-size: rfs(1rem, $bp1, $mfs, $bp4);
     line-height: 1.5;
 
-    /* Animation */
-    @keyframes mainLighting {
-      from {
-        background-size: 100% 100%;
+    @include optional-motion() {
+      /* Animation */
+      @keyframes mainLighting {
+        from {
+          background-size: 100% 100%;
+        }
+        to {
+          background-size: 400% 200%;
+        }
       }
-      to {
-        background-size: 400% 200%;
-      }
+      animation-name: mainLighting;
+      animation-duration: 44s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      transition-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
     }
-    animation-name: mainLighting;
-    animation-duration: 44s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    transition-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
-
     /* Direct children layout */
     > * {
       flex: 0 1 auto;
@@ -91,8 +94,10 @@
       /* Styles for off-screen elements to transition back in from when they enter */
       &.off-screen {
         @media only screen {
-          opacity: 0;
-          transform: rotateY(0.25turn);
+          @include optional-motion() {
+            opacity: 0;
+            transform: rotateY(0.25turn);
+          }
         }
         transition-delay: 0s;
         --dur: 0s;

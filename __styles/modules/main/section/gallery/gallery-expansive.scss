@@ -2,7 +2,7 @@
 
 /// Styles for galleries that expand beyond the main section width
 /// @group main
-/// @requires {Length} $bp3 - Third breakpoint value
+/// @require {Length} $bp3 - Third breakpoint value
 /// @see {mixin} gallery - General styles for galleries
 
 @mixin gallery-expansive {

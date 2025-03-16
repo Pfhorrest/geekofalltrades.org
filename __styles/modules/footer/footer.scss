@@ -1,6 +1,11 @@
 @use "./color-scheme-switcher.scss" as *;
+@use "./reduced-motion-switcher.scss" as *;
+@use "../root/optional-motion.scss" as *;
 
 /// Styles for the footer
+/// @require {mixin} color-scheme-switcher - Color scheme switcher
+/// @require {mixin} reduced-motion-switcher - Reduced motion switcher
+/// @require {mixin} optional-motion - DRY optional motion helper
 /// @see {mixin} colors-header-footer - Color variables for the header and footer
 
 @mixin footer {
@@ -61,20 +66,22 @@
     background-size: 100% 100%, auto;
     background-position: center, top, center;
 
-    /* Animation */
-    @keyframes waves {
-      from {
-        background-size: 100%, 100% 100%, auto;
+    @include optional-motion() {
+      /* Animation */
+      @keyframes waves {
+        from {
+          background-size: 100%, 100% 100%, auto;
+        }
+        to {
+          background-size: 100%, 100% 200%, auto;
+        }
       }
-      to {
-        background-size: 100%, 100% 200%, auto;
-      }
+      animation-name: waves;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+      animation-timing-function: linear;
     }
-    animation-name: waves;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    animation-direction: normal;
-    animation-timing-function: linear;
 
     /* Typography */
     font-family: "Itim", "Nunito", sans-serif;
@@ -110,4 +117,7 @@
 
   /* Color scheme switcher */
   @include color-scheme-switcher;
+
+  /* Reduced motion switcher */
+  @include reduced-motion-switcher;
 }

@@ -8,6 +8,8 @@ import { hydrateExternalLinks } from "./modules/externalLinks/hydrateExternalLin
 hydrateExternalLinks();
 import { hydrateLightbox } from "./modules/lightbox/hydrateLightbox";
 hydrateLightbox();
-import { hydrateSwitcherButtons } from "./modules/colorSchemes/hydrateSwitcherButtons";
-hydrateSwitcherButtons();
+import { hydrateColorSwitcher } from "./modules/colorSchemes/hydrateColorSwitcher";
+hydrateColorSwitcher();
+import { hydrateMotionSwitcher } from "./modules/effects/hydrateMotionSwitcher";
+hydrateMotionSwitcher();
 //# sourceMappingURL=scripts.js.map

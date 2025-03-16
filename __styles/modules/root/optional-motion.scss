@@ -1,0 +1,25 @@
+@use "./layout/breakpoints.scss" as *;
+
+/// Helper mixin that sets animations and transitions to apply
+/// only when the browser is not set to reduced motion
+/// and the viewport is at least $bp2
+/// and the data-reduced-motion attribute is not set to yes
+/// in either the html or the element,
+/// but always when the data-reduced-motion attribute is set to no
+/// in either the html or the element
+/// regardless browser preference or viewport size,
+/// without having to duplicate code.
+/// @require {Length} $bp2 - Second breakpoint value
+
+@mixin optional-motion() {
+  @media (prefers-reduced-motion: no-preference) and (min-width: $bp2) {
+    html:not([data-reduced-motion=yes]) &:not([data-reduced-motion=yes]) {
+      @content;
+    }
+  }
+  &[data-reduced-motion=no],
+  html[data-reduced-motion=no] & {
+    @content;
+  }
+}
+

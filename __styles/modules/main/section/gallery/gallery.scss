@@ -1,10 +1,12 @@
 @use "./gallery-item.scss" as *;
 @use "./gallery-expansive.scss" as *;
+@use "../../../root/optional-motion.scss" as *;
 
 /// Styles for galleries
 /// @group main
 /// @require {mixin} gallery-item - Styles for gallery items
 /// @require {mixin} gallery-expansive - Styles for galleries that expand beyond the main section width
+/// @require {mixin} optional-motion - DRY optional motion helper
 /// @see {mixin} section - General styles for sections
 
 @mixin gallery {
@@ -46,9 +48,11 @@
     text-align: center;
     box-shadow: none;
 
-    /* Animation */
-    animation-name: mainLighting;
-    animation-duration: 5s;
+    @include optional-motion() {
+      /* Animation */
+      animation-name: mainLighting;
+      animation-duration: 5s;
+    }
 
     /* Gallery item fitting*/
     > .item {
