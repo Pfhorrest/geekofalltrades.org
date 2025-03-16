@@ -276,7 +276,7 @@
 	<section id="goat">
 		<h3><i>Geek of all Trades</i> site</h3>
 		<p class="description">
-			Built in vanilla PHP, HTML5, CSS3, and JS / jQuery.
+			Built in vanilla PHP, HTML5, CSS3 / SCSS, and JS / TS.
 			(2008-2024)
 		</p>
 		<figure class="contained solo"><img src="_media/images/goat-screenshot.jpg" alt="Geek of all Trades screenshot" /></figure>
@@ -298,10 +298,8 @@
 			Despite that long development history, I have iteratively cleaned up and
 			refactored the code over time, especially as new versions of the core vanilla 
 			technologies (HTML, CSS, JS) have become available and offered enhanced
-			capabilities. I also make use of some things slightly beyond those as is useful:
-			PHP mainly just for includes (so I can reuse code for the header and footer),
-			and jQuery because some things (such as animating the dropdown menus in the 
-			main navigation menu) are still needlessly clunky to implement even in ES6/CSS3.
+			capabilities. I also make light use of some things slightly beyond those as is
+			useful, including PHP, SCSS, and TypeScript.
 		</p>
 		<p>
 			I like that I also get to stick to design features that I think are timeless and 
