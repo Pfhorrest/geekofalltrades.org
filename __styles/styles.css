@@ -533,7 +533,7 @@ header h1 > span:first-of-type {
        and sort it before the logo */
   }
 }
-@media (min-width: 40rem) and (prefers-reduced-motion: no-preference) and (min-width: 40rem) {
+@media (min-width: 40rem) and (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion=yes]) header h1:not([data-reduced-motion=yes]) {
     /* Animation */
     animation-name: windAndWaves;
@@ -983,7 +983,7 @@ main {
   /* Styles for sections */
   /* Styles for the toggle-all-sections controls */
 }
-@media (prefers-reduced-motion: no-preference) and (min-width: 40rem) {
+@media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion=yes]) main:not([data-reduced-motion=yes]) {
     /* Animation */
     animation-name: mainLighting;
@@ -1044,7 +1044,7 @@ main *.off-screen {
   transition-delay: 0s;
   --dur: 0s;
 }
-@media only screen and (prefers-reduced-motion: no-preference) and (min-width: 40rem) {
+@media only screen and (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion=yes]) main *.off-screen:not([data-reduced-motion=yes]) {
     opacity: 0;
     transform: rotateY(0.25turn);
@@ -1318,7 +1318,7 @@ main section:after {
     padding-right: 0;
   }
 }
-@media (prefers-reduced-motion: no-preference) and (min-width: 40rem) {
+@media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) {
     animation-name: mainLighting;
     animation-iteration-count: infinite;
@@ -1590,7 +1590,7 @@ main section.toggleable {
     transition: all var(--dur), opacity var(--dur) var(--dur);
   }
 }
-@media only screen and (prefers-reduced-motion: no-preference) and (min-width: 40rem) {
+@media only screen and (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion=yes]) main section.toggleable > h2.off-screen:not([data-reduced-motion=yes])::before, html:not([data-reduced-motion=yes]) main section.toggleable > h2.off-screen:not([data-reduced-motion=yes])::after, html:not([data-reduced-motion=yes]) main section.toggleable > h3.off-screen:not([data-reduced-motion=yes])::before, html:not([data-reduced-motion=yes]) main section.toggleable > h3.off-screen:not([data-reduced-motion=yes])::after, html:not([data-reduced-motion=yes]) main section.toggleable > h4.off-screen:not([data-reduced-motion=yes])::before, html:not([data-reduced-motion=yes]) main section.toggleable > h4.off-screen:not([data-reduced-motion=yes])::after, html:not([data-reduced-motion=yes]) main section.toggleable > h5.off-screen:not([data-reduced-motion=yes])::before, html:not([data-reduced-motion=yes]) main section.toggleable > h5.off-screen:not([data-reduced-motion=yes])::after, html:not([data-reduced-motion=yes]) main section.toggleable > h6.off-screen:not([data-reduced-motion=yes])::before, html:not([data-reduced-motion=yes]) main section.toggleable > h6.off-screen:not([data-reduced-motion=yes])::after {
     opacity: 0;
     transition-delay: 0s;
@@ -1652,7 +1652,7 @@ main section figure img {
 main section figure.off-screen {
   /* But only on screen so as not to mess up printing */
 }
-@media only screen and (prefers-reduced-motion: no-preference) and (min-width: 40rem) {
+@media only screen and (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion=yes]) main section figure.off-screen:not([data-reduced-motion=yes]) img {
     transform: scale(0);
   }
@@ -1792,7 +1792,7 @@ main section figure.contained.off-screen img {
     background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
   }
 }
-@media (min-width: 60rem) and (prefers-reduced-motion: no-preference) and (min-width: 40rem) {
+@media (min-width: 60rem) and (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion=yes]) main section figure:not([data-reduced-motion=yes]), html:not([data-reduced-motion=yes]) main section figure.contained:not([data-reduced-motion=yes]) {
     animation-name: mainLighting;
     animation-duration: 5s;
@@ -1864,7 +1864,7 @@ main section .gallery, main section .gallery:hover, main section .gallery:active
 main section .gallery, main section .gallery:hover, main section .gallery:active, main section .gallery:focus {
   background: none;
 }
-@media (prefers-reduced-motion: no-preference) and (min-width: 40rem) {
+@media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion=yes]) main section .gallery:not([data-reduced-motion=yes]) {
     /* Animation */
     animation-name: mainLighting;
@@ -1961,7 +1961,7 @@ main section .gallery .item img {
 main section .gallery .item.off-screen {
   /* Only apply these on screens, so that printing doesn't get messsed up */
 }
-@media only screen and (prefers-reduced-motion: no-preference) and (min-width: 40rem) {
+@media only screen and (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion=yes]) main section .gallery .item.off-screen:not([data-reduced-motion=yes]) img {
     transform: scale(0);
     border-radius: 100%;
@@ -2367,7 +2367,7 @@ footer {
   /* Links */
   /* Hide whoel footer on print */
 }
-@media (prefers-reduced-motion: no-preference) and (min-width: 40rem) {
+@media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion=yes]) footer:not([data-reduced-motion=yes]) {
     /* Animation */
     animation-name: waves;

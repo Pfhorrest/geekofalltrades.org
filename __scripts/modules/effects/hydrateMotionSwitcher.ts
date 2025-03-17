@@ -5,6 +5,8 @@
  */
 export const hydrateMotionSwitcher = () => {
   document.addEventListener("DOMContentLoaded", () => {
+
+    // Read the cookie and set the data-reduced-motion attribute from it
     decodeURIComponent(document.cookie)
     .split(";")
     .forEach((cookie) => {
@@ -16,6 +18,43 @@ export const hydrateMotionSwitcher = () => {
             );
         }
     });
+
+    
+    // Measure FPS and set reduced-motion attribute if necessary
+
+    // Initialize time, frame count, and fps
+    let lastFrameTime = performance.now();
+    let frameCount = 0;
+    let fps = 0;
+    
+    // Function to measure the frames per second
+    const measureFPS = () => {
+        // Every loop, get the current time and increment the frame count
+        const now = performance.now();
+        frameCount++;
+    
+        // If a second has passed, update the fps
+        if (now - lastFrameTime >= 1000) {
+            fps = frameCount;
+            frameCount = 0;
+            lastFrameTime = now;
+    
+            // If the fps is less than 30, set the data-reduced-motion attribute
+            if (fps < 30) {
+                const html = document.documentElement;
+                if (html.getAttribute("data-reduced-motion") !== "no") {
+                    html.setAttribute("data-reduced-motion", "yes");
+                }
+            }
+        }
+    
+        // Do it again next frame
+        requestAnimationFrame(measureFPS);
+    }
+    
+    // Start the loop
+    measureFPS();
+
 
     // Get the footer element
     const footer = document.querySelector("footer");

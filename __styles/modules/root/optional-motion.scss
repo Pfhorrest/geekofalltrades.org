@@ -12,7 +12,7 @@
 /// @require {Length} $bp2 - Second breakpoint value
 
 @mixin optional-motion() {
-  @media (prefers-reduced-motion: no-preference) and (min-width: $bp2) {
+  @media (prefers-reduced-motion: no-preference) {
     html:not([data-reduced-motion=yes]) &:not([data-reduced-motion=yes]) {
       @content;
     }
