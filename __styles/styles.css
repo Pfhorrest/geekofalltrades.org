@@ -534,7 +534,7 @@ header h1 > span:first-of-type {
   }
 }
 @media (min-width: 40rem) and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion=yes]) header h1:not([data-reduced-motion=yes]) {
+  html:not([data-reduced-motion^=yes]) header h1:not([data-reduced-motion^=yes]) {
     /* Animation */
     animation-name: windAndWaves;
     animation-duration: 12s;
@@ -553,7 +553,7 @@ header h1 > span:first-of-type {
   }
 }
 @media (min-width: 40rem) {
-  header h1[data-reduced-motion=no], html[data-reduced-motion=no] header h1 {
+  header h1[data-reduced-motion^=no], html[data-reduced-motion^=no] header h1 {
     /* Animation */
     animation-name: windAndWaves;
     animation-duration: 12s;
@@ -984,7 +984,7 @@ main {
   /* Styles for the toggle-all-sections controls */
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion=yes]) main:not([data-reduced-motion=yes]) {
+  html:not([data-reduced-motion^=yes]) main:not([data-reduced-motion^=yes]) {
     /* Animation */
     animation-name: mainLighting;
     animation-duration: 44s;
@@ -1001,7 +1001,7 @@ main {
     }
   }
 }
-main[data-reduced-motion=no], html[data-reduced-motion=no] main {
+main[data-reduced-motion^=no], html[data-reduced-motion^=no] main {
   /* Animation */
   animation-name: mainLighting;
   animation-duration: 44s;
@@ -1045,13 +1045,13 @@ main *.off-screen {
   --dur: 0s;
 }
 @media only screen and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion=yes]) main *.off-screen:not([data-reduced-motion=yes]) {
+  html:not([data-reduced-motion^=yes]) main *.off-screen:not([data-reduced-motion^=yes]) {
     opacity: 0;
     transform: rotateY(0.25turn);
   }
 }
 @media only screen {
-  main *.off-screen[data-reduced-motion=no], html[data-reduced-motion=no] main *.off-screen {
+  main *.off-screen[data-reduced-motion^=no], html[data-reduced-motion^=no] main *.off-screen {
     opacity: 0;
     transform: rotateY(0.25turn);
   }
@@ -1319,7 +1319,7 @@ main section:after {
   }
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) {
     animation-name: mainLighting;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -1331,113 +1331,113 @@ main section:after {
     animation-duration: 5s;
     /* Second level (4s loop over 8 sections) */
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]):nth-of-type(10n + 1) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 1) {
     animation-delay: 0s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]):nth-of-type(10n + 2) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 2) {
     animation-delay: 0.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]):nth-of-type(10n + 3) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 3) {
     animation-delay: 1s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]):nth-of-type(10n + 4) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 4) {
     animation-delay: 1.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]):nth-of-type(10n + 5) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 5) {
     animation-delay: 2s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]):nth-of-type(10n + 6) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 6) {
     animation-delay: 2.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]):nth-of-type(10n + 7) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 7) {
     animation-delay: 3s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]):nth-of-type(10n + 8) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 8) {
     animation-delay: 3.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]):nth-of-type(10n + 9) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 9) {
     animation-delay: 4s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]):nth-of-type(10n + 0) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 0) {
     animation-delay: 4.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section {
     animation-duration: 4s;
     /* Third level (3s loop over 6 sections) */
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section:nth-of-type(8n + 1) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 1) {
     animation-delay: 0s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section:nth-of-type(8n + 2) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 2) {
     animation-delay: 0.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section:nth-of-type(8n + 3) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 3) {
     animation-delay: 1s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section:nth-of-type(8n + 4) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 4) {
     animation-delay: 1.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section:nth-of-type(8n + 5) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 5) {
     animation-delay: 2s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section:nth-of-type(8n + 6) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 6) {
     animation-delay: 2.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section:nth-of-type(8n + 7) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 7) {
     animation-delay: 3s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section:nth-of-type(8n + 0) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 0) {
     animation-delay: 3.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section {
     animation-duration: 3s;
     /* Fourth level (2s loop over 4 sections) */
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section:nth-of-type(6n + 1) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 1) {
     animation-delay: 0s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section:nth-of-type(6n + 2) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 2) {
     animation-delay: 1.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section:nth-of-type(6n + 3) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 3) {
     animation-delay: 1s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section:nth-of-type(6n + 4) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 4) {
     animation-delay: 1.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section:nth-of-type(6n + 5) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 5) {
     animation-delay: 2s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section:nth-of-type(6n + 0) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 0) {
     animation-delay: 2.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section section {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section {
     animation-duration: 2s;
     /* Fifth level (1s loop over 2 sections) */
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section section:nth-of-type(4n + 1) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section:nth-of-type(4n + 1) {
     animation-delay: 0s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section section:nth-of-type(4n + 2) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section:nth-of-type(4n + 2) {
     animation-delay: 0.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section section:nth-of-type(4n + 3) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section:nth-of-type(4n + 3) {
     animation-delay: 1s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section section:nth-of-type(4n + 0) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section:nth-of-type(4n + 0) {
     animation-delay: 1.5s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section section section {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section section {
     animation-duration: 1s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section section section:nth-of-type(2n + 1) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section section:nth-of-type(2n + 1) {
     animation-delay: 0s;
   }
-  html:not([data-reduced-motion=yes]) main section:not([data-reduced-motion=yes]) section section section section:nth-of-type(2n + 2) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section section:nth-of-type(2n + 2) {
     animation-delay: 0.5s;
   }
 }
-main section[data-reduced-motion=no], html[data-reduced-motion=no] main section {
+main section[data-reduced-motion^=no], html[data-reduced-motion^=no] main section {
   animation-name: mainLighting;
   animation-iteration-count: infinite;
   animation-direction: alternate;
@@ -1449,109 +1449,109 @@ main section[data-reduced-motion=no], html[data-reduced-motion=no] main section 
   animation-duration: 5s;
   /* Second level (4s loop over 8 sections) */
 }
-main section[data-reduced-motion=no]:nth-of-type(10n + 1), html[data-reduced-motion=no] main section:nth-of-type(10n + 1) {
+main section[data-reduced-motion^=no]:nth-of-type(10n + 1), html[data-reduced-motion^=no] main section:nth-of-type(10n + 1) {
   animation-delay: 0s;
 }
-main section[data-reduced-motion=no]:nth-of-type(10n + 2), html[data-reduced-motion=no] main section:nth-of-type(10n + 2) {
+main section[data-reduced-motion^=no]:nth-of-type(10n + 2), html[data-reduced-motion^=no] main section:nth-of-type(10n + 2) {
   animation-delay: 0.5s;
 }
-main section[data-reduced-motion=no]:nth-of-type(10n + 3), html[data-reduced-motion=no] main section:nth-of-type(10n + 3) {
+main section[data-reduced-motion^=no]:nth-of-type(10n + 3), html[data-reduced-motion^=no] main section:nth-of-type(10n + 3) {
   animation-delay: 1s;
 }
-main section[data-reduced-motion=no]:nth-of-type(10n + 4), html[data-reduced-motion=no] main section:nth-of-type(10n + 4) {
+main section[data-reduced-motion^=no]:nth-of-type(10n + 4), html[data-reduced-motion^=no] main section:nth-of-type(10n + 4) {
   animation-delay: 1.5s;
 }
-main section[data-reduced-motion=no]:nth-of-type(10n + 5), html[data-reduced-motion=no] main section:nth-of-type(10n + 5) {
+main section[data-reduced-motion^=no]:nth-of-type(10n + 5), html[data-reduced-motion^=no] main section:nth-of-type(10n + 5) {
   animation-delay: 2s;
 }
-main section[data-reduced-motion=no]:nth-of-type(10n + 6), html[data-reduced-motion=no] main section:nth-of-type(10n + 6) {
+main section[data-reduced-motion^=no]:nth-of-type(10n + 6), html[data-reduced-motion^=no] main section:nth-of-type(10n + 6) {
   animation-delay: 2.5s;
 }
-main section[data-reduced-motion=no]:nth-of-type(10n + 7), html[data-reduced-motion=no] main section:nth-of-type(10n + 7) {
+main section[data-reduced-motion^=no]:nth-of-type(10n + 7), html[data-reduced-motion^=no] main section:nth-of-type(10n + 7) {
   animation-delay: 3s;
 }
-main section[data-reduced-motion=no]:nth-of-type(10n + 8), html[data-reduced-motion=no] main section:nth-of-type(10n + 8) {
+main section[data-reduced-motion^=no]:nth-of-type(10n + 8), html[data-reduced-motion^=no] main section:nth-of-type(10n + 8) {
   animation-delay: 3.5s;
 }
-main section[data-reduced-motion=no]:nth-of-type(10n + 9), html[data-reduced-motion=no] main section:nth-of-type(10n + 9) {
+main section[data-reduced-motion^=no]:nth-of-type(10n + 9), html[data-reduced-motion^=no] main section:nth-of-type(10n + 9) {
   animation-delay: 4s;
 }
-main section[data-reduced-motion=no]:nth-of-type(10n + 0), html[data-reduced-motion=no] main section:nth-of-type(10n + 0) {
+main section[data-reduced-motion^=no]:nth-of-type(10n + 0), html[data-reduced-motion^=no] main section:nth-of-type(10n + 0) {
   animation-delay: 4.5s;
 }
-main section[data-reduced-motion=no] section, html[data-reduced-motion=no] main section section {
+main section[data-reduced-motion^=no] section, html[data-reduced-motion^=no] main section section {
   animation-duration: 4s;
   /* Third level (3s loop over 6 sections) */
 }
-main section[data-reduced-motion=no] section:nth-of-type(8n + 1), html[data-reduced-motion=no] main section section:nth-of-type(8n + 1) {
+main section[data-reduced-motion^=no] section:nth-of-type(8n + 1), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 1) {
   animation-delay: 0s;
 }
-main section[data-reduced-motion=no] section:nth-of-type(8n + 2), html[data-reduced-motion=no] main section section:nth-of-type(8n + 2) {
+main section[data-reduced-motion^=no] section:nth-of-type(8n + 2), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 2) {
   animation-delay: 0.5s;
 }
-main section[data-reduced-motion=no] section:nth-of-type(8n + 3), html[data-reduced-motion=no] main section section:nth-of-type(8n + 3) {
+main section[data-reduced-motion^=no] section:nth-of-type(8n + 3), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 3) {
   animation-delay: 1s;
 }
-main section[data-reduced-motion=no] section:nth-of-type(8n + 4), html[data-reduced-motion=no] main section section:nth-of-type(8n + 4) {
+main section[data-reduced-motion^=no] section:nth-of-type(8n + 4), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 4) {
   animation-delay: 1.5s;
 }
-main section[data-reduced-motion=no] section:nth-of-type(8n + 5), html[data-reduced-motion=no] main section section:nth-of-type(8n + 5) {
+main section[data-reduced-motion^=no] section:nth-of-type(8n + 5), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 5) {
   animation-delay: 2s;
 }
-main section[data-reduced-motion=no] section:nth-of-type(8n + 6), html[data-reduced-motion=no] main section section:nth-of-type(8n + 6) {
+main section[data-reduced-motion^=no] section:nth-of-type(8n + 6), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 6) {
   animation-delay: 2.5s;
 }
-main section[data-reduced-motion=no] section:nth-of-type(8n + 7), html[data-reduced-motion=no] main section section:nth-of-type(8n + 7) {
+main section[data-reduced-motion^=no] section:nth-of-type(8n + 7), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 7) {
   animation-delay: 3s;
 }
-main section[data-reduced-motion=no] section:nth-of-type(8n + 0), html[data-reduced-motion=no] main section section:nth-of-type(8n + 0) {
+main section[data-reduced-motion^=no] section:nth-of-type(8n + 0), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 0) {
   animation-delay: 3.5s;
 }
-main section[data-reduced-motion=no] section section, html[data-reduced-motion=no] main section section section {
+main section[data-reduced-motion^=no] section section, html[data-reduced-motion^=no] main section section section {
   animation-duration: 3s;
   /* Fourth level (2s loop over 4 sections) */
 }
-main section[data-reduced-motion=no] section section:nth-of-type(6n + 1), html[data-reduced-motion=no] main section section section:nth-of-type(6n + 1) {
+main section[data-reduced-motion^=no] section section:nth-of-type(6n + 1), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 1) {
   animation-delay: 0s;
 }
-main section[data-reduced-motion=no] section section:nth-of-type(6n + 2), html[data-reduced-motion=no] main section section section:nth-of-type(6n + 2) {
+main section[data-reduced-motion^=no] section section:nth-of-type(6n + 2), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 2) {
   animation-delay: 1.5s;
 }
-main section[data-reduced-motion=no] section section:nth-of-type(6n + 3), html[data-reduced-motion=no] main section section section:nth-of-type(6n + 3) {
+main section[data-reduced-motion^=no] section section:nth-of-type(6n + 3), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 3) {
   animation-delay: 1s;
 }
-main section[data-reduced-motion=no] section section:nth-of-type(6n + 4), html[data-reduced-motion=no] main section section section:nth-of-type(6n + 4) {
+main section[data-reduced-motion^=no] section section:nth-of-type(6n + 4), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 4) {
   animation-delay: 1.5s;
 }
-main section[data-reduced-motion=no] section section:nth-of-type(6n + 5), html[data-reduced-motion=no] main section section section:nth-of-type(6n + 5) {
+main section[data-reduced-motion^=no] section section:nth-of-type(6n + 5), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 5) {
   animation-delay: 2s;
 }
-main section[data-reduced-motion=no] section section:nth-of-type(6n + 0), html[data-reduced-motion=no] main section section section:nth-of-type(6n + 0) {
+main section[data-reduced-motion^=no] section section:nth-of-type(6n + 0), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 0) {
   animation-delay: 2.5s;
 }
-main section[data-reduced-motion=no] section section section, html[data-reduced-motion=no] main section section section section {
+main section[data-reduced-motion^=no] section section section, html[data-reduced-motion^=no] main section section section section {
   animation-duration: 2s;
   /* Fifth level (1s loop over 2 sections) */
 }
-main section[data-reduced-motion=no] section section section:nth-of-type(4n + 1), html[data-reduced-motion=no] main section section section section:nth-of-type(4n + 1) {
+main section[data-reduced-motion^=no] section section section:nth-of-type(4n + 1), html[data-reduced-motion^=no] main section section section section:nth-of-type(4n + 1) {
   animation-delay: 0s;
 }
-main section[data-reduced-motion=no] section section section:nth-of-type(4n + 2), html[data-reduced-motion=no] main section section section section:nth-of-type(4n + 2) {
+main section[data-reduced-motion^=no] section section section:nth-of-type(4n + 2), html[data-reduced-motion^=no] main section section section section:nth-of-type(4n + 2) {
   animation-delay: 0.5s;
 }
-main section[data-reduced-motion=no] section section section:nth-of-type(4n + 3), html[data-reduced-motion=no] main section section section section:nth-of-type(4n + 3) {
+main section[data-reduced-motion^=no] section section section:nth-of-type(4n + 3), html[data-reduced-motion^=no] main section section section section:nth-of-type(4n + 3) {
   animation-delay: 1s;
 }
-main section[data-reduced-motion=no] section section section:nth-of-type(4n + 0), html[data-reduced-motion=no] main section section section section:nth-of-type(4n + 0) {
+main section[data-reduced-motion^=no] section section section:nth-of-type(4n + 0), html[data-reduced-motion^=no] main section section section section:nth-of-type(4n + 0) {
   animation-delay: 1.5s;
 }
-main section[data-reduced-motion=no] section section section section, html[data-reduced-motion=no] main section section section section section {
+main section[data-reduced-motion^=no] section section section section, html[data-reduced-motion^=no] main section section section section section {
   animation-duration: 1s;
 }
-main section[data-reduced-motion=no] section section section section:nth-of-type(2n + 1), html[data-reduced-motion=no] main section section section section section:nth-of-type(2n + 1) {
+main section[data-reduced-motion^=no] section section section section:nth-of-type(2n + 1), html[data-reduced-motion^=no] main section section section section section:nth-of-type(2n + 1) {
   animation-delay: 0s;
 }
-main section[data-reduced-motion=no] section section section section:nth-of-type(2n + 2), html[data-reduced-motion=no] main section section section section section:nth-of-type(2n + 2) {
+main section[data-reduced-motion^=no] section section section section:nth-of-type(2n + 2), html[data-reduced-motion^=no] main section section section section section:nth-of-type(2n + 2) {
   animation-delay: 0.5s;
 }
 main section.toggleable {
@@ -1591,13 +1591,13 @@ main section.toggleable {
   }
 }
 @media only screen and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion=yes]) main section.toggleable > h2.off-screen:not([data-reduced-motion=yes])::before, html:not([data-reduced-motion=yes]) main section.toggleable > h2.off-screen:not([data-reduced-motion=yes])::after, html:not([data-reduced-motion=yes]) main section.toggleable > h3.off-screen:not([data-reduced-motion=yes])::before, html:not([data-reduced-motion=yes]) main section.toggleable > h3.off-screen:not([data-reduced-motion=yes])::after, html:not([data-reduced-motion=yes]) main section.toggleable > h4.off-screen:not([data-reduced-motion=yes])::before, html:not([data-reduced-motion=yes]) main section.toggleable > h4.off-screen:not([data-reduced-motion=yes])::after, html:not([data-reduced-motion=yes]) main section.toggleable > h5.off-screen:not([data-reduced-motion=yes])::before, html:not([data-reduced-motion=yes]) main section.toggleable > h5.off-screen:not([data-reduced-motion=yes])::after, html:not([data-reduced-motion=yes]) main section.toggleable > h6.off-screen:not([data-reduced-motion=yes])::before, html:not([data-reduced-motion=yes]) main section.toggleable > h6.off-screen:not([data-reduced-motion=yes])::after {
+  html:not([data-reduced-motion^=yes]) main section.toggleable > h2.off-screen:not([data-reduced-motion^=yes])::before, html:not([data-reduced-motion^=yes]) main section.toggleable > h2.off-screen:not([data-reduced-motion^=yes])::after, html:not([data-reduced-motion^=yes]) main section.toggleable > h3.off-screen:not([data-reduced-motion^=yes])::before, html:not([data-reduced-motion^=yes]) main section.toggleable > h3.off-screen:not([data-reduced-motion^=yes])::after, html:not([data-reduced-motion^=yes]) main section.toggleable > h4.off-screen:not([data-reduced-motion^=yes])::before, html:not([data-reduced-motion^=yes]) main section.toggleable > h4.off-screen:not([data-reduced-motion^=yes])::after, html:not([data-reduced-motion^=yes]) main section.toggleable > h5.off-screen:not([data-reduced-motion^=yes])::before, html:not([data-reduced-motion^=yes]) main section.toggleable > h5.off-screen:not([data-reduced-motion^=yes])::after, html:not([data-reduced-motion^=yes]) main section.toggleable > h6.off-screen:not([data-reduced-motion^=yes])::before, html:not([data-reduced-motion^=yes]) main section.toggleable > h6.off-screen:not([data-reduced-motion^=yes])::after {
     opacity: 0;
     transition-delay: 0s;
   }
 }
 @media only screen {
-  main section.toggleable > h2.off-screen[data-reduced-motion=no]::before, main section.toggleable > h2.off-screen[data-reduced-motion=no]::after, html[data-reduced-motion=no] main section.toggleable > h2.off-screen::before, html[data-reduced-motion=no] main section.toggleable > h2.off-screen::after, main section.toggleable > h3.off-screen[data-reduced-motion=no]::before, main section.toggleable > h3.off-screen[data-reduced-motion=no]::after, html[data-reduced-motion=no] main section.toggleable > h3.off-screen::before, html[data-reduced-motion=no] main section.toggleable > h3.off-screen::after, main section.toggleable > h4.off-screen[data-reduced-motion=no]::before, main section.toggleable > h4.off-screen[data-reduced-motion=no]::after, html[data-reduced-motion=no] main section.toggleable > h4.off-screen::before, html[data-reduced-motion=no] main section.toggleable > h4.off-screen::after, main section.toggleable > h5.off-screen[data-reduced-motion=no]::before, main section.toggleable > h5.off-screen[data-reduced-motion=no]::after, html[data-reduced-motion=no] main section.toggleable > h5.off-screen::before, html[data-reduced-motion=no] main section.toggleable > h5.off-screen::after, main section.toggleable > h6.off-screen[data-reduced-motion=no]::before, main section.toggleable > h6.off-screen[data-reduced-motion=no]::after, html[data-reduced-motion=no] main section.toggleable > h6.off-screen::before, html[data-reduced-motion=no] main section.toggleable > h6.off-screen::after {
+  main section.toggleable > h2.off-screen[data-reduced-motion^=no]::before, main section.toggleable > h2.off-screen[data-reduced-motion^=no]::after, html[data-reduced-motion^=no] main section.toggleable > h2.off-screen::before, html[data-reduced-motion^=no] main section.toggleable > h2.off-screen::after, main section.toggleable > h3.off-screen[data-reduced-motion^=no]::before, main section.toggleable > h3.off-screen[data-reduced-motion^=no]::after, html[data-reduced-motion^=no] main section.toggleable > h3.off-screen::before, html[data-reduced-motion^=no] main section.toggleable > h3.off-screen::after, main section.toggleable > h4.off-screen[data-reduced-motion^=no]::before, main section.toggleable > h4.off-screen[data-reduced-motion^=no]::after, html[data-reduced-motion^=no] main section.toggleable > h4.off-screen::before, html[data-reduced-motion^=no] main section.toggleable > h4.off-screen::after, main section.toggleable > h5.off-screen[data-reduced-motion^=no]::before, main section.toggleable > h5.off-screen[data-reduced-motion^=no]::after, html[data-reduced-motion^=no] main section.toggleable > h5.off-screen::before, html[data-reduced-motion^=no] main section.toggleable > h5.off-screen::after, main section.toggleable > h6.off-screen[data-reduced-motion^=no]::before, main section.toggleable > h6.off-screen[data-reduced-motion^=no]::after, html[data-reduced-motion^=no] main section.toggleable > h6.off-screen::before, html[data-reduced-motion^=no] main section.toggleable > h6.off-screen::after {
     opacity: 0;
     transition-delay: 0s;
   }
@@ -1653,12 +1653,12 @@ main section figure.off-screen {
   /* But only on screen so as not to mess up printing */
 }
 @media only screen and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion=yes]) main section figure.off-screen:not([data-reduced-motion=yes]) img {
+  html:not([data-reduced-motion^=yes]) main section figure.off-screen:not([data-reduced-motion^=yes]) img {
     transform: scale(0);
   }
 }
 @media only screen {
-  main section figure.off-screen[data-reduced-motion=no] img, html[data-reduced-motion=no] main section figure.off-screen img {
+  main section figure.off-screen[data-reduced-motion^=no] img, html[data-reduced-motion^=no] main section figure.off-screen img {
     transform: scale(0);
   }
 }
@@ -1793,13 +1793,13 @@ main section figure.contained.off-screen img {
   }
 }
 @media (min-width: 60rem) and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion=yes]) main section figure:not([data-reduced-motion=yes]), html:not([data-reduced-motion=yes]) main section figure.contained:not([data-reduced-motion=yes]) {
+  html:not([data-reduced-motion^=yes]) main section figure:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section figure.contained:not([data-reduced-motion^=yes]) {
     animation-name: mainLighting;
     animation-duration: 5s;
   }
 }
 @media (min-width: 60rem) {
-  main section figure[data-reduced-motion=no], html[data-reduced-motion=no] main section figure, main section figure.contained[data-reduced-motion=no], html[data-reduced-motion=no] main section figure.contained {
+  main section figure[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure, main section figure.contained[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure.contained {
     animation-name: mainLighting;
     animation-duration: 5s;
   }
@@ -1865,13 +1865,13 @@ main section .gallery, main section .gallery:hover, main section .gallery:active
   background: none;
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion=yes]) main section .gallery:not([data-reduced-motion=yes]) {
+  html:not([data-reduced-motion^=yes]) main section .gallery:not([data-reduced-motion^=yes]) {
     /* Animation */
     animation-name: mainLighting;
     animation-duration: 5s;
   }
 }
-main section .gallery[data-reduced-motion=no], html[data-reduced-motion=no] main section .gallery {
+main section .gallery[data-reduced-motion^=no], html[data-reduced-motion^=no] main section .gallery {
   /* Animation */
   animation-name: mainLighting;
   animation-duration: 5s;
@@ -1962,14 +1962,14 @@ main section .gallery .item.off-screen {
   /* Only apply these on screens, so that printing doesn't get messsed up */
 }
 @media only screen and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion=yes]) main section .gallery .item.off-screen:not([data-reduced-motion=yes]) img {
+  html:not([data-reduced-motion^=yes]) main section .gallery .item.off-screen:not([data-reduced-motion^=yes]) img {
     transform: scale(0);
     border-radius: 100%;
     transition-delay: 0s;
   }
 }
 @media only screen {
-  main section .gallery .item.off-screen[data-reduced-motion=no] img, html[data-reduced-motion=no] main section .gallery .item.off-screen img {
+  main section .gallery .item.off-screen[data-reduced-motion^=no] img, html[data-reduced-motion^=no] main section .gallery .item.off-screen img {
     transform: scale(0);
     border-radius: 100%;
     transition-delay: 0s;
@@ -2368,7 +2368,7 @@ footer {
   /* Hide whoel footer on print */
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion=yes]) footer:not([data-reduced-motion=yes]) {
+  html:not([data-reduced-motion^=yes]) footer:not([data-reduced-motion^=yes]) {
     /* Animation */
     animation-name: waves;
     animation-duration: 4s;
@@ -2385,7 +2385,7 @@ footer {
     }
   }
 }
-footer[data-reduced-motion=no], html[data-reduced-motion=no] footer {
+footer[data-reduced-motion^=no], html[data-reduced-motion^=no] footer {
   /* Animation */
   animation-name: waves;
   animation-duration: 4s;
@@ -2551,17 +2551,17 @@ html[data-theme=alien] .color-scheme-switcher a.alien-theme {
   letter-spacing: 0.125ch;
   /* Reduced motion switchers */
 }
-html[data-reduced-motion=no] .reduced-motion-switcher a.moreMotion {
+html[data-reduced-motion^=no] .reduced-motion-switcher a.moreMotion {
   opacity: 1;
   outline: 1px solid var(--black);
 }
 
-html:not([data-reduced-motion]) .reduced-motion-switcher a.autoMotion {
+html:not([data-reduced-motion]) .reduced-motion-switcher a.autoMotion, html[data-reduced-motion$=auto] .reduced-motion-switcher a.autoMotion {
   opacity: 1;
   outline: 1px solid var(--black);
 }
 
-html[data-reduced-motion=yes] .reduced-motion-switcher a.lessMotion {
+html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
   opacity: 1;
   outline: 1px solid var(--black);
 }

@@ -46,21 +46,21 @@
 
       /* Reduced motion switchers */
       &.moreMotion {
-        @at-root html[data-reduced-motion=no] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
+        @at-root html[data-reduced-motion^=no] & {
+          opacity: 1;
+          outline: 1px solid var(--black);
         }
       }
       &.autoMotion {
-        @at-root html:not([data-reduced-motion]) & {
-            opacity: 1;
-            outline: 1px solid var(--black);
+        @at-root html:not([data-reduced-motion]) &, html[data-reduced-motion$=auto] & {
+          opacity: 1;
+          outline: 1px solid var(--black);
         }
       }
       &.lessMotion {
-        @at-root html[data-reduced-motion=yes] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
+        @at-root html[data-reduced-motion^=yes] & {
+          opacity: 1;
+          outline: 1px solid var(--black);
         }
       }
     }

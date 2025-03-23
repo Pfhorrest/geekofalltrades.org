@@ -13,12 +13,12 @@
 
 @mixin optional-motion() {
   @media (prefers-reduced-motion: no-preference) {
-    html:not([data-reduced-motion=yes]) &:not([data-reduced-motion=yes]) {
+    html:not([data-reduced-motion^=yes]) &:not([data-reduced-motion^=yes]) {
       @content;
     }
   }
-  &[data-reduced-motion=no],
-  html[data-reduced-motion=no] & {
+  &[data-reduced-motion^=no],
+  html[data-reduced-motion^=no] & {
     @content;
   }
 }

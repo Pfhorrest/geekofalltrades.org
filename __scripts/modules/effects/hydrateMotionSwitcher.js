@@ -16,31 +16,74 @@ export const hydrateMotionSwitcher = () => {
         });
         // Measure FPS and set reduced-motion attribute if necessary
         // Initialize time, frame count, and fps
-        let lastFrameTime = performance.now();
+        let fpsTimer = 1;
+        console.log("fpsTimer:", fpsTimer);
+        let fpsTimerDelay = 0;
+        console.log("fpsTimerDelay:", fpsTimerDelay);
+        let fpsTimestamp = performance.now();
+        console.log("fpsTimestamp:", fpsTimestamp);
         let frameCount = 0;
+        console.log("frameCount:", frameCount);
         let fps = 0;
+        console.log("fps:", fps);
         // Function to measure the frames per second
         const measureFPS = () => {
             // Every loop, get the current time and increment the frame count
             const now = performance.now();
+            // console.log("now:", now);
             frameCount++;
+            // console.log("frameCount:", frameCount);
             // If a second has passed, update the fps
-            if (now - lastFrameTime >= 1000) {
-                fps = frameCount;
+            if (now - fpsTimestamp >= 1000 * fpsTimer) {
+                console.log(`${fpsTimer}s passed`);
+                fps = frameCount / fpsTimer;
+                console.log("fps:", fps);
                 frameCount = 0;
-                lastFrameTime = now;
-                // If the fps is less than 30, set the data-reduced-motion attribute
-                if (fps < 30) {
-                    const html = document.documentElement;
-                    if (html.getAttribute("data-reduced-motion") !== "no") {
-                        html.setAttribute("data-reduced-motion", "yes");
+                // console.log("frameCount:", frameCount);
+                fpsTimestamp = now;
+                // console.log("lastFrameTime:", lastFrameTime);
+                // Based on the fps, set the data-reduced-motion attribute
+                const html = document.documentElement;
+                const reducedMotion = html.getAttribute("data-reduced-motion") || "";
+                // Only do this if reduced-motion is auto
+                if (!["yes", "no"].includes(reducedMotion)) {
+                    console.log("reduced-motion is auto, checking fps...");
+                    if (fps < 30) {
+                        // Upon failure...
+                        console.log("fps < 30, setting reduced-motion to yes-auto");
+                        html.setAttribute("data-reduced-motion", "yes-auto");
+                        // Increase delay *geometrically* on failure
+                        // so if we fail a lot we retry much more slowly.
+                        // Minimum of 3 to ensure increase at the threshold of oscillation,
+                        // because that, minus 1, times 2, is still greater than that.
+                        fpsTimerDelay = Math.max(3, (fpsTimerDelay * 2));
+                        console.log("fpsTimerDelay:", fpsTimerDelay);
+                        // Delayed cycle after failure
+                        fpsTimer = Math.max(1, fpsTimerDelay);
+                        console.log("fpsTimer:", fpsTimer);
+                    }
+                    else if (fps >= 30) {
+                        // Upon pass...
+                        console.log("fps >= 30, setting reduced-motion to no-auto");
+                        html.setAttribute("data-reduced-motion", "no-auto");
+                        // Decrease delay *linearly* on pass
+                        // so if we pass a lot we retry gradually more quickly
+                        // Minimum of 2 to ensure increase at the threshold of oscillation,
+                        // because that, times 2, minus 1, is still greater than that.
+                        fpsTimerDelay = Math.max(2, (fpsTimerDelay - 1));
+                        console.log("fpsTimerDelay:", fpsTimerDelay);
+                        // Rapid cycle after pass
+                        fpsTimer = 1;
+                        console.log("fpsTimer:", fpsTimer);
                     }
                 }
             }
             // Do it again next frame
+            // console.log("looping fps counter...");
             requestAnimationFrame(measureFPS);
         };
         // Start the loop
+        // console.log("starting fps counter...");
         measureFPS();
         // Get the footer element
         const footer = document.querySelector("footer");
