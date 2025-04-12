@@ -22,6 +22,9 @@ export const hydrateMotionSwitcher = () => {
         // console.log("fpsTimerDelay:", fpsTimerDelay);
         let fpsTimestamp = performance.now();
         // console.log("fpsTimestamp:", fpsTimestamp);
+        let fpsTimeStampInitial = fpsTimestamp;
+        // console.log("fpsTimeStampInitial:", fpsTimeStampInitial);
+        let fpsTimeSinceInitial = fpsTimestamp - fpsTimeStampInitial;
         let frameCount = 0;
         // console.log("frameCount:", frameCount);
         let fps = 0;
@@ -33,47 +36,54 @@ export const hydrateMotionSwitcher = () => {
             // console.log("now:", now);
             frameCount++;
             // console.log("frameCount:", frameCount);
+            // Purposefully slow things down for testing
+            // const win = window as any;
+            // if (!win._leak) win._leak = [];
+            // const junk = new Array(2*100000).fill(Math.random());
+            // win._leak.push(junk);
             // If a second has passed, update the fps
             if (now - fpsTimestamp >= 1000 * fpsTimer) {
-                // console.log(`${fpsTimer}s passed`);
-                fps = frameCount / fpsTimer;
-                // console.log("fps:", fps);
-                frameCount = 0;
+                console.log(`${fpsTimer}s passed`);
+                fpsTimeSinceInitial = fpsTimestamp - fpsTimeStampInitial;
+                console.log("fpsTimeSinceInitial:", fpsTimeSinceInitial);
+                fps = frameCount / fpsTimeSinceInitial * 1000;
+                console.log("fps:", fps);
+                // frameCount = 0;
                 // console.log("frameCount:", frameCount);
                 fpsTimestamp = now;
-                // console.log("lastFrameTime:", lastFrameTime);
+                console.log("fpsTimestamp:", fpsTimestamp);
                 // Based on the fps, set the data-reduced-motion attribute
                 const html = document.documentElement;
                 const reducedMotion = html.getAttribute("data-reduced-motion") || "";
                 // Only do this if reduced-motion is auto
                 if (!["yes", "no"].includes(reducedMotion)) {
-                    // console.log("reduced-motion is auto, checking fps...");
+                    console.log("reduced-motion is auto, checking fps...");
                     if (fps < 30) {
                         // Upon failure...
-                        // console.log("fps < 30, setting reduced-motion to yes-auto");
+                        console.log("fps < 30, setting reduced-motion to yes-auto");
                         html.setAttribute("data-reduced-motion", "yes-auto");
                         // Increase delay *geometrically* on failure
                         // so if we fail a lot we retry much more slowly.
                         // Minimum of 3 to ensure increase at the threshold of oscillation,
                         // because that, minus 1, times 2, is still greater than that.
-                        fpsTimerDelay = Math.max(3, (fpsTimerDelay * 2));
+                        // fpsTimerDelay = Math.max(3, (fpsTimerDelay * 2));
                         // console.log("fpsTimerDelay:", fpsTimerDelay);
                         // Delayed cycle after failure
-                        fpsTimer = Math.max(1, fpsTimerDelay);
+                        // fpsTimer = Math.max(1, fpsTimerDelay);
                         // console.log("fpsTimer:", fpsTimer);
                     }
                     else if (fps >= 30) {
                         // Upon pass...
-                        // console.log("fps >= 30, setting reduced-motion to no-auto");
+                        console.log("fps >= 30, setting reduced-motion to no-auto");
                         html.setAttribute("data-reduced-motion", "no-auto");
                         // Decrease delay *linearly* on pass
                         // so if we pass a lot we retry gradually more quickly.
                         // Minimum of 2 to ensure increase at the threshold of oscillation,
                         // because that, times 2, minus 1, is still greater than that.
-                        fpsTimerDelay = Math.max(2, (fpsTimerDelay - 1));
+                        // fpsTimerDelay = Math.max(2, (fpsTimerDelay - 1));
                         // console.log("fpsTimerDelay:", fpsTimerDelay);
                         // Rapid cycle after pass
-                        fpsTimer = 1;
+                        // fpsTimer = 1;
                         // console.log("fpsTimer:", fpsTimer);
                     }
                 }
