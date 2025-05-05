@@ -256,8 +256,8 @@
             <li><a href="/photos/2025/02">Feb</a></li>
             <li><a href="/photos/2025/03">Mar</a></li>
             <li><a href="/photos/2025/04">Apr</a></li>
-            <!--
             <li><a href="/photos/2025/05">May</a></li>
+            <!--
             <li><a href="/photos/2025/06">Jun</a></li>
             <li><a href="/photos/2025/07">Jul</a></li>
             <li><a href="/photos/2025/08">Aug</a></li>
