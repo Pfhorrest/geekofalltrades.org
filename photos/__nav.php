@@ -135,11 +135,11 @@
     </li>
     <li>
         <a href="/photos/2019">2019</a>
-        <!-- <ul>
+        <ul>
             <li><a href="/photos/2019">All</a></li>
             <li>&nbsp;</li>
-            <li><a href="/photos/2019/01">Jan</a></li>
-            <li><a href="/photos/2019/02">Feb</a></li>
+			<li><a href="#"><s>Jan</s></a></li>
+			<li><a href="#"><s>Feb</s></a></li>
             <li><a href="/photos/2019/03">Mar</a></li>
             <li><a href="/photos/2019/04">Apr</a></li>
             <li><a href="/photos/2019/05">May</a></li>
@@ -150,7 +150,7 @@
             <li><a href="/photos/2019/10">Oct</a></li>
             <li><a href="/photos/2019/11">Nov</a></li>
             <li><a href="/photos/2019/12">Dec</a></li>
-        </ul> -->
+        </ul>
     </li>
     <li>
         <a href="/photos/2020">2020</a>
