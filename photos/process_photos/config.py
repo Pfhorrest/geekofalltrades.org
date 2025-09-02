@@ -13,3 +13,7 @@ SUBJECT_CACHE_FILE = package_dir / "_caches" / "subjects.json"
 
 credentials_path = package_dir / "_keys" / "vision.json"
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(credentials_path)
+
+# Minimum number of images to link to sub-gallery
+# for more instead of just including them all
+subimage_threshold = 3

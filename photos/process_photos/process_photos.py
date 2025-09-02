@@ -5,7 +5,7 @@ import textwrap
 from pathlib import Path
 from datetime import datetime
 from PIL import Image
-from .config import image_extensions, THUMB_SUFFIX, THUMB_SIZE, base_dir, package_dir
+from .config import image_extensions, THUMB_SUFFIX, THUMB_SIZE, base_dir, package_dir, subimage_threshold
 from .generate_gallery import generate_gallery
 
 def process_photos():
@@ -209,19 +209,33 @@ def process_photos():
                             child_images = parse_images_from_php(sub_main)
                             print(f"    Parsed child images: {child_images}")
                             if child_images:
+                                # Always include the first image
                                 first_img = child_images[0].copy()
                                 if 'filename' in first_img:
                                     first_img['filename'] = f"{sub.name}/{first_img['filename']}"
-                                first_img['morelink'] = sub.name
-                                if date_granularity == "month":
-                                    day_num = int(sub.name)  # safe now, only digits allowed
-                                    suffix = 'th' if 11<=day_num%100<=13 else {1:'st',2:'nd',3:'rd'}.get(day_num%10, 'th')
-                                    first_img['moretext'] = f"More from the {day_num}{suffix}"
-                                elif date_granularity == "year":
-                                    month_name = datetime(2000, int(sub.name), 1).strftime('%B')
-                                    first_img['moretext'] = f"More from {month_name}"
+
+                                # Add morelink/moretext if this child gallery has enough images
+                                if len(child_images) >= subimage_threshold:
+                                    first_img['morelink'] = sub.name
+                                    if date_granularity == "month":
+                                        day_num = int(sub.name)
+                                        suffix = 'th' if 11<=day_num%100<=13 else {1:'st',2:'nd',3:'rd'}.get(day_num%10, 'th')
+                                        first_img['moretext'] = f"More from the {day_num}{suffix}"
+                                    elif date_granularity == "year":
+                                        month_name = datetime(2000, int(sub.name), 1).strftime('%B')
+                                        first_img['moretext'] = f"More from {month_name}"
                                 subimages.append(first_img)
                                 print(f"    Using first image: {child_images[0]}")
+
+                                # If the gallery has fewer than threshold images, include them all
+                                # Otherwise, just include the first image (with "more" link)
+                                if len(child_images) < subimage_threshold:
+                                    for n in range(1, len(child_images)):
+                                        next_img = child_images[n].copy()
+                                        if 'filename' in next_img:
+                                            next_img['filename'] = f"{sub.name}/{next_img['filename']}"
+                                        subimages.append(next_img)
+                                        print(f"     And image {n+1}: {child_images[n]}")
                     if subimages:
                         images = subimages
 
