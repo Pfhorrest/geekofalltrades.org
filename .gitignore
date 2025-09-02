@@ -1,2 +1,2 @@
-web/sites/8ball/
-photos/
+photos/**/*.jpg
+photos/**/*.jpeg
