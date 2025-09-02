@@ -1,7 +1,7 @@
 <section>
 <h2 id="resume">Curriculum Vitae</h2>
 <p class="description">
-	I have extensive experience in web development and related fields. I work quickly and thoroughly, I learn quickly and thoroughly, and I relish the chance to learn more in the course of my work — and better still, to help others to learn and work more effectively as well.
+	Full-stack developer with extensive experience across frontend, backend, and cloud technologies. Delivered 40+ client projects using modern stacks from PHP and WordPress to Next.js and React. Proven ability to succeed in fully remote environments, with over a decade of experience working with distributed teams across time zones. Equally comfortable working independently or within cross-functional teams. Recognized for strong problem-solving, rapid learning, and clear communication. Open to roles at all levels, including support positions, and motivated by contribution and growth over title. U.S. Citizen – authorized to work in the U.S. without sponsorship, eligible for security clearance.
 </p>
 <section id="hard-skills">
 	<h3>Hard Skills</h3>
@@ -194,51 +194,91 @@
 	<section id="twisted-rope">
 		<h4>Full-Stack Developer</h4>
 		<p class="description">at Twisted Rope, 2021-present</p>
-		<p>Full-stack development in a small agency environment, working on many different projects for many different clients using many different technology stacks, from vanilla HTML/CSS/JS through XAMP to modern Next/React SPAs. As part of an interdisciplinary team I sometimes function in a support role for projects other people lead, sometimes work small projects on my own, and other times lead projects with support from other developers, as well as interfacing frequently with members of our design and marketing teams and project management.</p>
-		<p>(They are located at 495 Main St. #314, Buffalo, NY 14214, but I work remotely.)
+		<ul>
+			<li>
+				Delivered 30–40 client websites and applications, ranging from simple static builds to large-scale Next.js and React SPAs.
+			</li>
+			<li>
+				Adapted quickly to diverse stacks (vanilla JS, PHP, Laravel, modern frameworks) based on client needs.
+			</li>
+			<li>
+				Collaborated in varying roles — support developer, independent project owner, and project lead.
+			</li>
+			<li>
+				Contributed to refining internal processes, documentation, and technical approaches.
+			</li>
+		</ul>
+		<p>(They are located at 495 Main St. #314, Buffalo, NY 14214, but I worked remotely. My supervisor was Greg Norton, CEO<!-- , who can be reached at 716-553-0714 -->. My position there was downsized.)
 	</section>
 	<section id="monterey">
 		<h4>Art Director</h4>
 		<p class="description">at The Monterey Company, 2012-2020</p>
-		<p>Graphic design primarily in Illustrator for production of lapel pins, coins, medallions, and all varieties of art on metal, both production-ready technical art for manufacturing and photorealistic proofs for customers; design and oversight of workflows and collaboration processes to coordinate between sales representatives, external art resources, and manufacturers; and miscellaneous graphic and web work for internal use.</p>
-		<p>(They are located at 35 SW Century Dr #110, Bend, OR 97702, but I worked remotely. My supervisor was Paul Stark, the founder and CEO, who can be reached at 541-699-6063. My position here was eliminated due to the economic impact of the COVID-19 pandemic.)
+		<ul>
+			<li>
+				Designed thousands of emblematic jewelry and promotional products annually.
+			</li>
+			<li>
+				Managed workflows for a creative team, balancing client requests with production requirements.
+			</li>
+			<li>
+				Developed technical artwork for die-cast metals, screen printing, embroidery, and other media.
+			</li>
+		</ul>
+		<p>(They are located at 35 SW Century Dr #110, Bend, OR 97702, but I worked remotely. My supervisor was Paul Stark, the founder and CEO<!-- , who can be reached at 541-699-6063 -->. My position here was eliminated due to the economic impact of the COVID-19 pandemic.)
 	</section>
 	<section id="cvtech">
 		<h4>Software Engineer</h4>
 		<p class="description">at CVTech, 2011-2012</p>
-		<p>Development of an ecommerce platform in Ruby on Rails, JQuery/Javascript, CSS &amp; HTML, as well as motion graphic advertisements and other graphics work for web and print.</p>
-		<p>(They were located at 10 E Yanonali St, Santa Barbara, CA 93101. My supervisor was Ethan Kravitz, the founder, who can be reached at 203-240-1675. This small startup went out of business.)
+		<ul>
+			<li>
+				Built e-commerce features using Ruby on Rails, HTML, SCSS, and JQuery.
+			</li>
+			<li>
+				Created motion graphic ads to support marketing campaigns.
+			</li>
+		</ul>
+		<p>(They were located at 10 E Yanonali St, Santa Barbara, CA 93101. My supervisor was Ethan Kravitz, the founder<!-- , who can be reached at 203-240-1675 -->. This small startup went out of business.)
 	</section>
 	<section id="stratus">
 		<h4>Graphic &amp; Web Designer</h4>
 		<p class="description">at Stratus Media Group, 2010-2011</p>
-		<p>Lead design, development, and management of most company websites; graphic and web design for screen and print to serve both marketing and operational needs, including logos, advertisements, flyers, posters, and event collateral such as tickets and signage; minor video and audio editing; copy editing of texts for publication; and assistance and advice in installation and maintenance of IT infrastructure.</p>
-		<p>(They were located at 3 E De La Guerra St, Santa Barbara, CA 93101. My supervisor was Jamie Schaible, the Director of Marketing, who could be reached at 805-884-9977. The entire department I was part of got downsized.)
+		<ul>
+			<li>
+				Designed and launched three company websites.
+			</li>
+			<li>
+				Produced graphics, marketing collateral, and event branding.
+			</li>
+			<li>
+				Edited promotional videos and audio content.
+			</li>
+		</ul>
+		<p>(They were located at 3 E De La Guerra St, Santa Barbara, CA 93101. My supervisor was Jamie Schaible, the Director of Marketing<!-- , who could be reached at 805-884-9977 -->. The entire department I was part of got downsized.)
 	</section>
 	<section id="castellinos">
 		<h4>Technical &amp; Administrative Assistant</h4>
 		<p class="description">at Castellino Training &amp; The BEBA Clinic, 2002-2012</p>
 		<p>Creative and technical responsibilities included graphic design and page layout, web design and administration, database design and administration, computer and network maintenance, minor video production in Final Cut Pro and iMovie, and proofreading and editing of publications.</p>
 		<p>Administrative duties included recording payments in Quicken and the company's FileMaker database, preparing deposits, and taking them to the bank; running reports and preparing spreadsheets on financial and statistical data; check-in, check-out and billing of clients; copying MiniDV tapes to video DVDs for sale and archival; processing orders for resale products; bulk mailings (both postal and email); shipping and receiving; payroll; scheduling; filing and other organization; and miscellaneous errands. Once or twice per year I was entrusted with the full administration of the business for one month, including my own payroll, while the head administrator went on vacation.</p>
-		<p>(They are located at 1105 N Ontare Rd, Santa Barbara, CA 93105. My supervisor was Sandra Castellino, the co-founder and chief administrator, who can be reached at 805-687-2897. I left this position to pursue better growth opportunities.)
+		<p>(They are located at 1105 N Ontare Rd, Santa Barbara, CA 93105. My supervisor was Sandra Castellino, the co-founder and chief administrator<!-- , who can be reached at 805-687-2897 -->. I left this position to pursue better growth opportunities.)
 	</section>
 	<section id="diane">
 		<h4>Graphic &amp; Web Designer</h4>
 		<p class="description">at Diane Steele &amp; Company, 2001-2002</p>
 		<p>Logo and business card design, graphic design for dye-sublimation onto merchandising products (e.g. T-shirts, mouse pads, etc), and some web design.</p>
-		<p>(They are located at 102 W Summer St #22, Ojai, CA 93023. My supervisor was Diane Steele, the founder, who can be reached at 805-646-6266. I left this position to return to school.)
+		<p>(They are located at 102 W Summer St #22, Ojai, CA 93023. My supervisor was Diane Steele, the founder<!-- , who can be reached at 805-646-6266 -->. I left this position to return to school.)
 	</section>
 	<section id="bitvision">
 		<h4>Computer Technician</h4>
 		<p class="description">at BitVision, 2001</p>
 		<p>Repair, maintenance, and installation of Macintosh computer systems for local schools and businesses.</p>
-		<p>(They are located at 305 W Ojai Ave, Ojai, CA 93023. My supervisor was Anthony Winecoff, the founder and CEO, who can be reached at 805-640-3300. This was a temporary job.)
+		<p>(They are located at 305 W Ojai Ave, Ojai, CA 93023. My supervisor was Anthony Winecoff, the founder and CEO<!-- , who can be reached at 805-640-3300 -->. This was a temporary job.)
 	</section>
 	<section id="machq">
 		<h4>Computer Technician &amp; Salesperson</h4>
 		<p class="description">at Mac HQ, 2000-2001</p>
 		<p>Sale, repair, maintenance and installation of Macintosh computers and related equipment, and assorted administrative duties including billing, shipping and receiving, and filing.</p>
-		<p>(They were located at 2377 E Main St, Ventura, CA 93003. My supervisor was Shaun Moon, the founder, who could be reached at 805-585-0065. I was downsized from this position.)
+		<p>(They were located at 2377 E Main St, Ventura, CA 93003. My supervisor was Shaun Moon, the founder<!-- , who could be reached at 805-585-0065 -->. I was downsized from this position.)
 	</section>
 </section>
 <section id="education">
