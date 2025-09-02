@@ -1,1 +1,0 @@
-<?php $title = "17th of April 2022 Photography by Forrest Cameranesi" ?>

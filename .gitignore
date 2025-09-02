@@ -1,5 +1,5 @@
-photos/**/*.jpg
-photos/**/*.jpeg
+photos/*
+!photos/process_photos/
+photos/process_photos/_keys/
+photos/process_photos/_caches/
 **/__pycache__/
-/photos/process_photos/_keys
-/photos/process_photos/_caches
