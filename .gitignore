@@ -1,2 +1,5 @@
 photos/**/*.jpg
 photos/**/*.jpeg
+**/__pycache__/
+/photos/process_photos/_keys
+/photos/process_photos/_caches
