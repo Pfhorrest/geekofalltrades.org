@@ -6,7 +6,7 @@
     }
     if(empty($images)) {
         foreach (scandir($rootpath) as $file) {
-            if (!str_starts_with($file, '.') && !str_starts_with($file, '_')) {
+            if (!str_starts_with($file, '.') && !str_starts_with($file, '_') && !preg_match('/-thumb(?=\.[^.]+$)/', $file)) {
                 // echo '<p>'.$file.':
                 //     is_file? ('.is_file($rootpath.$file).')
                 //     exif_imagetype: ['.exif_imagetype($rootpath.$file).']
