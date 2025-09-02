@@ -58,7 +58,7 @@
         <nav class="displayControls">'
             .(
                 $images
-                ? '<a class="prev" role="button" title="Previous image">
+                ? '<a class="prev" role="button" title="Previous image"
                     href="?display='.$prev['filename']
                     .'&title='.urldecode($prev['title']).'">
                         &#10094;
