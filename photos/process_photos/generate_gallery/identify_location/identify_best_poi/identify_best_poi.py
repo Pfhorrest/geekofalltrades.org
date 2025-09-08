@@ -6,7 +6,10 @@ from .safe_polygon_from_coords import safe_polygon_from_coords
 
 def identify_best_poi(lat, lon):
     overpass_url = "https://overpass-api.de/api/interpreter"
-    features = ["education", "geological", "historic", "leisure", "man_made", "military", "natural", "tourism"]
+    features = [
+        "education", "geological", "historic", "leisure",
+        "man_made", "military", "natural", "tourism"
+    ]
     radius = 100  # meters
     feature_block = "\n".join(
         f'  {t}["{key}"]["name"](around:{radius},{lat},{lon});'
@@ -35,6 +38,7 @@ def identify_best_poi(lat, lon):
     named_ways = []
     named_relations = []
 
+    # --- Parse elements ---
     for el in elements:
         tags = el.get("tags", {})
         name = tags.get("name")
@@ -54,6 +58,13 @@ def identify_best_poi(lat, lon):
             if poly:
                 el["__geometry"] = poly
                 named_ways.append(el)
+            else:
+                # fallback: approximate with centroid of coords
+                if coords:
+                    avg_lon = sum(c[0] for c in coords) / len(coords)
+                    avg_lat = sum(c[1] for c in coords) / len(coords)
+                    el["__geometry"] = Point(avg_lon, avg_lat).buffer(1e-6)  # tiny polygon
+                    named_ways.append(el)
 
         elif el["type"] == "relation" and "members" in el:
             outer_polys = []
@@ -74,13 +85,14 @@ def identify_best_poi(lat, lon):
                 named_relations.append(el)
 
     point = Point(lon, lat)
+    candidates = []
 
-    # Check containment
-    containing_ways = []
-    for way in named_ways:
-        if way["__geometry"].contains(point):
-            area = way["__geometry"].area
-            containing_ways.append((way["__name"], area))
+    # --- Containment check ---
+    containing_ways = [
+        (way["__name"], way["__geometry"].area, "at")
+        for way in named_ways
+        if way["__geometry"].contains(point)
+    ]
 
     containing_rels = []
     for rel in named_relations:
@@ -88,44 +100,43 @@ def identify_best_poi(lat, lon):
         is_within_hole = any(poly.contains(point) for poly in rel["__geometry_inner"])
         if is_contained and not is_within_hole:
             area = sum(p.area for p in rel["__geometry_outer"]) - sum(p.area for p in rel["__geometry_inner"])
-            containing_rels.append((rel["__name"], area))
+            containing_rels.append((rel["__name"], area, "at"))
 
-    # Pick largest containing POI
-    best_contain = None
-    biggest_rel = max(containing_rels, key=lambda x: x[1], default=None)
-    biggest_way = max(containing_ways, key=lambda x: x[1], default=None)
-    if biggest_rel and biggest_way:
-        best_contain = max([biggest_rel, biggest_way], key=lambda x: x[1]) + ("at",)
-    elif biggest_rel:
-        best_contain = biggest_rel + ("at",)
-    elif biggest_way:
-        best_contain = biggest_way + ("at",)
+    if containing_ways or containing_rels:
+        biggest_rel = max(containing_rels, key=lambda x: x[1], default=None)
+        biggest_way = max(containing_ways, key=lambda x: x[1], default=None)
+        if biggest_rel and biggest_way:
+            best = max([biggest_rel, biggest_way], key=lambda x: x[1])
+        else:
+            best = biggest_rel or biggest_way
+        candidates.append(best)
 
-    if best_contain:
-        print("[OSM] Chose containing POI:", best_contain[0])
-        return best_contain[0], best_contain[2]
+    # --- Distance fallback if nothing contains ---
+    if not candidates:
+        for node in named_nodes:
+            dist = haversine(lat, lon, node["lat"], node["lon"])
+            candidates.append((node["__name"], dist, "near"))
 
-    # No containing POIs; fallback to closest
-    candidates = []
+        for way in named_ways:
+            dist = way["__geometry"].distance(point) * 111320  # meters approx
+            candidates.append((way["__name"], dist, "near"))
 
-    for node in named_nodes:
-        dist = haversine(lat, lon, node["lat"], node["lon"])
-        candidates.append((node["__name"], dist, "near"))
+        for rel in named_relations:
+            all_polys = rel["__geometry_outer"] + rel["__geometry_inner"]
+            dists = [poly.distance(point) * 111320 for poly in all_polys]
+            if dists:
+                candidates.append((rel["__name"], min(dists), "near"))
 
-    for way in named_ways:
-        dist = way["__geometry"].distance(point) * 111320  # approx meters/degree
-        candidates.append((way["__name"], dist, "near"))
+        if candidates:
+            best = min(candidates, key=lambda x: x[1])
+            print(f"[OSM] Chose closest POI: {best[0]}")
+            return best[0], best[2]
 
-    for rel in named_relations:
-        all_polys = rel["__geometry_outer"] + rel["__geometry_inner"]
-        dists = [poly.exterior.distance(point) * 111320 for poly in all_polys if poly.exterior]
-        if dists:
-            candidates.append((rel["__name"], min(dists), "near"))
-
+    # --- If containment was found ---
     if candidates:
-        closest = min(candidates, key=lambda x: x[1])
-        print("[OSM] Chose closest POI:", closest[0])
-        return closest[0], closest[2]
+        best = candidates[0]
+        print(f"[OSM] Chose containing POI: {best[0]}")
+        return best[0], best[2]
 
-    print("[OSM] No POIs found within radius")
+    print("[OSM] No POIs found at all")
     return None, None
