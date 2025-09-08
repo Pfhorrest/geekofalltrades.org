@@ -126,7 +126,7 @@ def process_photos():
                                 return f"{year}", "year"
 
                     except Exception as e:
-                        print(f"Error generating date text for {subset}: {e}")
+                        print(f"Error generating date for {path}: {e}")
                         continue
 
             return None, "whatever"
