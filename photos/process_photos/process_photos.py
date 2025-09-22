@@ -23,6 +23,7 @@ def process_photos():
 
     for dirpath, _, filenames in walk_data:
         dirpath = Path(dirpath) # Convert to Path for easier handling
+        relpath = dirpath.relative_to(base_dir)
 
 
         # -- MAKE THUMBNAILS --
@@ -131,7 +132,7 @@ def process_photos():
 
             return None, "whatever"
 
-        date_text, date_granularity = extract_date_text(dirpath)
+        date_text, date_granularity = extract_date_text(relpath)
         title_text = f"{date_text + ' ' if date_text else ''}Photography"
 
         if date_granularity != "whatever":
