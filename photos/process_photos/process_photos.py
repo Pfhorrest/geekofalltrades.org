@@ -4,13 +4,14 @@ import json
 from pathlib import Path
 from datetime import datetime
 from PIL import Image
+from tqdm import tqdm
 from .config import image_extensions, THUMB_SUFFIX, THUMB_SIZE, base_dir, package_dir, subimage_threshold
 from .parse_images_from_php import parse_images_from_php
 from .generate_gallery import generate_gallery
 from .extract_exif_data import extract_exif_data
 
 def process_photos():
-    
+
     # Gather (dirpath, dirs, filenames) from os.walk
     walk_data = [
         (d, dirs, files)
@@ -22,46 +23,43 @@ def process_photos():
     # Sort by depth (deepest first)
     walk_data.sort(key=lambda x: len(Path(x[0]).parts), reverse=True)
 
-    for dirpath, _, filenames in walk_data:
-        dirpath = Path(dirpath) # Convert to Path for easier handling
+    for dirpath, _, filenames in tqdm(walk_data, desc="Processing folders", unit="folder"):
+        dirpath = Path(dirpath)
         relpath = dirpath.relative_to(base_dir)
 
-
         # -- MAKE THUMBNAILS --
-    
-        for filename in filenames:
+        for filename in tqdm(filenames, desc=f"Thumbnails in {relpath}", unit="file", leave=False):
             filename = Path(filename)
             filepath = dirpath / filename
             relfile = filepath.relative_to(base_dir)
             name = filename.stem
             ext = filename.suffix
-    
-            # Skip if it's not an image file
+
             if ext.lower() not in image_extensions:
                 continue
-    
-            # Delete malformed thumbnails (with underscored/multiple suffixes)
+
+            # Delete malformed thumbnails
             if f"_{THUMB_SUFFIX}" in name or name.replace('_', '-').split('-').count(THUMB_SUFFIX) > 1:
-                print(f"Deleting malformed thumbnail: {relfile}")
+                tqdm.write(f"Deleting malformed thumbnail: {relfile}")
                 try:
                     os.remove(filepath)
                 except Exception as e:
-                    print(f"Error deleting {relfile}: {e}")
+                    tqdm.write(f"Error deleting {relfile}: {e}")
                 continue
-    
+
             # Delete thumbnails with no originals
             original_filename = (name[:-len(f"-{THUMB_SUFFIX}")] + ext if name.endswith(f"-{THUMB_SUFFIX}") else None)
             original_path = dirpath / original_filename if original_filename else None
 
             if original_path and not original_path.exists():
-                print(f"Deleting orphan thumbnail: {relfile}")
+                tqdm.write(f"Deleting orphan thumbnail: {relfile}")
                 try:
                     os.remove(filepath)
                 except Exception as e:
-                    print(f"Error deleting {relfile}: {e}")
+                    tqdm.write(f"Error deleting {relfile}: {e}")
                 continue
-    
-            # Skip over remaining existing thumbnails
+
+            # Skip remaining existing thumbnails
             if filename.stem.endswith(f"-{THUMB_SUFFIX}"):
                 continue
     
@@ -75,22 +73,21 @@ def process_photos():
                     with Image.open(thumb_path) as thumb_img:
                         w, h = thumb_img.size
                         if not (w >= THUMB_SIZE or h >= THUMB_SIZE):
-                            print(f"Deleting undersized existing thumbnail: {relthumb}")
+                            tqdm.write(f"Deleting undersized existing thumbnail: {relthumb}")
                             os.remove(thumb_path)
                         else:
                             continue
                 except Exception as e:
-                    print(f"Error checking existing thumb {relthumb}: {e}")
-    
-            # Otherwise, create thumbnail!
+                    tqdm.write(f"Error checking existing thumb {relthumb}: {e}")
+
+            # Create thumbnail
             try:
                 with Image.open(filepath) as img:
                     img.thumbnail((THUMB_SIZE, THUMB_SIZE))
                     img.save(thumb_path)
-                    print(f"Created thumbnail: {relthumb}")
+                    tqdm.write(f"Created thumbnail: {relthumb}")
             except Exception as e:
-                print(f"Error creating thumbnail for {relfile}: {e}")
-
+                tqdm.write(f"Error creating thumbnail for {relfile}: {e}")
 
         # -- MAKE GALLERIES --
     
@@ -107,13 +104,9 @@ def process_photos():
             parts = path.parts
             if not parts:
                 return None, "whatever"
-
-            # Reject folders with extra non-numeric parts
             for p in parts:
                 if not p.isdigit():
                     return None, "whatever"
-
-            # Convert parts to integers
             nums = list(map(int, parts))
             if len(nums) == 1:
                 year = nums[0]
@@ -134,7 +127,6 @@ def process_photos():
                 def ordinal(n):
                     return f"{n}{'th' if 11 <= n % 100 <= 13 else {1:'st',2:'nd',3:'rd'}.get(n%10,'th')}"
                 return f"{ordinal(day)} of {date.strftime('%B')} {year}", "day"
-
             return None, "whatever"
 
         date_text, date_granularity = extract_date_text(relpath)
@@ -148,9 +140,9 @@ def process_photos():
                 head_content = f'<?php $title = "{title_text} by Forrest Cameranesi" ?>\n'
                 with open(head_path, 'w') as f:
                     f.write(head_content)
-                print(f"Created: {head_path.relative_to(base_dir)}")
-        
             # Make __main.php if necessary
+                tqdm.write(f"Created: {head_path.relative_to(base_dir)}")
+
             main_path = dirpath / "__main.php"
             relmain = main_path.relative_to(base_dir)
             if not main_path.exists():
@@ -161,26 +153,19 @@ def process_photos():
                 needs_images = not re.search(r'\$images\s*=\s*array\s*\(', existing_content)
 
             if needs_images:
-                # Generate gallery
                 images = generate_gallery(dirpath)
-
                 if not images:
                     # Try to build from children if month/year folder
                     subimages = []
-                    print(f"Building gallery from children of {relpath}:")
-                    for sub in sorted(dirpath.iterdir()):
-                        if not sub.is_dir():
+                    tqdm.write(f"Building gallery from children of {relpath}:")
+                    for sub in tqdm(sorted(dirpath.iterdir()), desc=f"Child folders in {relpath}", unit="folder", leave=False):
+                        if not sub.is_dir() or not sub.name.isdigit():
                             continue
-
-                        # Only accept numeric subfolders
-                        if not sub.name.isdigit():
-                            continue
-
                         sub_main = sub / "__main.php"
                         if sub_main.exists():
-                            print(f"  Found child __main.php: {sub_main.relative_to(base_dir)}")
+                            tqdm.write(f"  Found child __main.php: {sub_main.relative_to(base_dir)}")
                             child_images = parse_images_from_php(sub_main)
-                            print(f"    Parsed child images: {child_images}")
+                            tqdm.write(f"    Parsed child images: {child_images}")
                             if child_images:
                                 # Always include the first image
                                 first_img = child_images[0].copy()
@@ -198,7 +183,7 @@ def process_photos():
                                         month_name = datetime(2000, int(sub.name), 1).strftime('%B')
                                         first_img['moretext'] = f"More from {month_name}"
                                 subimages.append(first_img)
-                                print(f"    Using first image: {child_images[0]}")
+                                tqdm.write(f"    Using first image: {child_images[0]}")
 
                                 # If the gallery has fewer than threshold images, include them all
                                 # Otherwise, just include the first image (with "more" link)
@@ -208,17 +193,16 @@ def process_photos():
                                         if 'filename' in next_img:
                                             next_img['filename'] = f"{sub.name}/{next_img['filename']}"
                                         subimages.append(next_img)
-                                        print(f"     And image {n+1}: {child_images[n]}")
+                                        tqdm.write(f"     And image {n+1}: {child_images[n]}")
                     if subimages:
                         images = subimages
-
 
                 php_array_str = ""
                 if images:
                     php_array_str = "$images = array(\n"
                     def php_escape(s):
                         return json.dumps(s)[1:-1].replace('"', '\\"').replace("'", "\\'")
-                    for img in images:
+                    for img in tqdm(images, desc=f"Writing images array for {relmain}", unit="img", leave=False):
                         php_array_str += "\t\t\tarray(\n"
                         for key, val in img.items():
                             php_array_str += f"\t\t\t\t'{key}' => '{php_escape(val)}',\n"
@@ -226,7 +210,6 @@ def process_photos():
                     php_array_str += "\t\t);\n\n"
 
                 if not main_path.exists():
-                    # Write a fresh file
                     main_content = f"""\
                         <section>
                         \t<h2>{title_text}</h2>
@@ -242,9 +225,8 @@ def process_photos():
                     main_content = "\n".join(line.lstrip(" ") for line in main_content.splitlines())
                     with open(main_path, 'w', encoding="utf-8") as f:
                         f.write(main_content)
-                    print(f"Created: {relmain}")
+                    tqdm.write(f"Created: {relmain}")
                 else:
-                    # Insert $images array right above first require line
                     lines = existing_content.splitlines()
                     new_lines = []
                     inserted = False
@@ -255,30 +237,26 @@ def process_photos():
                             inserted = True
                         new_lines.append(line)
                     updated_content = "\n".join(new_lines)
-
                     with open(main_path, 'w', encoding="utf-8") as f:
                         f.write(updated_content)
-                    print(f"Updated: {relmain} with $images array")
+                    tqdm.write(f"Updated: {relmain} with $images array")
 
             else:
                 # If $images array already exists, ensure it is sorted reverse-chronologically
 
                 def resort_images(images):
                     sort_data = []
-
-                    for img in images:
+                    for img in tqdm(images, desc=f"Resorting images in {relpath}", unit="img", leave=False):
                         fn = img.get("filename", "")
                         path_parts = fn.split("/")
-
-                        # Keep folder parts as-is
                         path_key = []
                         for part in path_parts:
                             try:
-                                path_key.append((0, int(part)))  # numeric part
+                                path_key.append((0, int(part)))
                             except ValueError:
-                                path_key.append((1, part))       # non-numeric part
 
                         # Compute or fetch timestamp
+                                path_key.append((1, part))
                         ts = img.get("_sort_timestamp")
                         if not ts:
                             filepath = dirpath / Path(fn)
@@ -287,8 +265,7 @@ def process_photos():
                                     exif = extract_exif_data(filepath)
                                     ts = exif.get("timestamp")
                                 except Exception as e:
-                                    print(f"Warning: could not extract EXIF from {fn}: {e}")
-
+                                    tqdm.write(f"Warning: could not extract EXIF from {fn}: {e}")
                         if not ts:
                             desc = img.get("description", "")
                             m = re.search(r"\d{4}-\d{2}-\d{2}", desc)
@@ -306,10 +283,7 @@ def process_photos():
                                     dt = datetime.min
                         else:
                             dt = datetime.min
-
                         sort_data.append((path_key, dt, img))
-
-                    # Single sorted() call: reverse=True gives descending folders + newest-first timestamps
                     sorted_images = [
                         img for path_key, dt, img in sorted(
                             sort_data,
@@ -317,19 +291,16 @@ def process_photos():
                             reverse=True
                         )
                     ]
-
                     return sorted_images
-
 
                 existing_images = parse_images_from_php(main_path)
                 if existing_images:
                     sorted_images = resort_images(existing_images)
                     if sorted_images != existing_images:
-                        # print(f"Resorting existing $images in {relmain}")
                         php_array_str = "$images = array(\n"
                         def php_escape(s):
                             return json.dumps(s)[1:-1].replace('"', '\\"').replace("'", "\\'")
-                        for img in sorted_images:
+                        for img in tqdm(sorted_images, desc=f"Writing sorted images for {relmain}", unit="img", leave=False):
                             php_array_str += "\t\t\tarray(\n"
                             for key, val in img.items():
                                 php_array_str += f"\t\t\t\t'{key}' => '{php_escape(val)}',\n"
@@ -345,4 +316,4 @@ def process_photos():
 
                         with open(main_path, 'w', encoding="utf-8") as f:
                             f.write(updated_content)
-                        print(f"Updated: {relmain} (re-sorted)")
+                        tqdm.write(f"Updated: {relmain} (re-sorted)")
