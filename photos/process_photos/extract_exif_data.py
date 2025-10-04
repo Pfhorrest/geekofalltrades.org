@@ -9,8 +9,8 @@ def extract_exif_data(image_path):
     if not isinstance(image_path, Path):
         image_path = Path(image_path)
     image_path = Path(*[p.strip() for p in image_path.parts])
-    if not image_path.exists():
-        raise FileNotFoundError(f"File does not exist: {image_path}")
+    if not image_path.is_file():
+        raise FileNotFoundError(f"File does not exist or is not a file: {image_path}")
 
     relpath = image_path.relative_to(base_dir)
     strpath = str(image_path)
@@ -79,6 +79,4 @@ def extract_exif_data(image_path):
 
     except Exception as e:
         print(f"Error reading EXIF from {relpath}: {e}")
-        if image_path.exists():
-            print(f"({relpath} does actually exist)")
         return {}
