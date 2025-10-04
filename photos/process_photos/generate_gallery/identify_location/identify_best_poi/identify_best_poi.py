@@ -1,6 +1,7 @@
 import time
 import requests
 from shapely import Point
+from tqdm import tqdm
 from .haversine import haversine
 from .safe_polygon_from_coords import safe_polygon_from_coords
 
@@ -30,7 +31,7 @@ def identify_best_poi(lat, lon):
         response.raise_for_status()
         data = response.json()
     except Exception as e:
-        print(f"[OSM] OVERPASS ERROR: {e}")
+        tqdm.write(f"[OSM] OVERPASS ERROR: {e}")
         return None, None
 
     elements = data.get("elements", [])
@@ -45,7 +46,7 @@ def identify_best_poi(lat, lon):
         if not name:
             continue
 
-        print(f"[OSM] {el['type']} {name}")
+        tqdm.write(f"[OSM] {el['type']} {name}")
         el["__name"] = name
         el["__tags"] = tags
 
@@ -129,14 +130,14 @@ def identify_best_poi(lat, lon):
 
         if candidates:
             best = min(candidates, key=lambda x: x[1])
-            print(f"[OSM] Chose closest POI: {best[0]}")
+            tqdm.write(f"[OSM] Chose closest POI: {best[0]}")
             return best[0], best[2]
 
     # --- If containment was found ---
     if candidates:
         best = candidates[0]
-        print(f"[OSM] Chose containing POI: {best[0]}")
+        tqdm.write(f"[OSM] Chose containing POI: {best[0]}")
         return best[0], best[2]
 
-    print("[OSM] No POIs found at all")
+    tqdm.write("[OSM] No POIs found at all")
     return None, None

@@ -1,4 +1,5 @@
 from pathlib import Path
+from tqdm import tqdm
 from ..config import image_extensions, THUMB_SUFFIX
 from ..extract_exif_data import extract_exif_data
 from .identify_subject import identify_subject
@@ -72,7 +73,7 @@ def generate_gallery(path):
             })
 
         except Exception as e:
-            print(f"Warning: Skipping file {filepath} due to error: {e}")
+            tqdm.write(f"Warning: Skipping file {filepath} due to error: {e}")
 
     # SORT: sort by _sort_timestamp (None last)
     images.sort(

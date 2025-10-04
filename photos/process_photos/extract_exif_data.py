@@ -2,6 +2,7 @@ import piexif
 from pathlib import Path
 from PIL import Image
 from datetime import datetime
+from tqdm import tqdm
 from .config import base_dir
 
 def extract_exif_data(image_path):
@@ -78,5 +79,5 @@ def extract_exif_data(image_path):
         }
 
     except Exception as e:
-        print(f"Error reading EXIF from {relpath}: {e}")
+        tqdm.write(f"Error reading EXIF from {relpath}: {e}")
         return {}

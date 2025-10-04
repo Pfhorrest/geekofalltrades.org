@@ -2,6 +2,7 @@ import json
 import requests
 from pathlib import Path
 from shapely.geometry import Point
+from tqdm import tqdm
 from ...config import LOCATION_CACHE_FILE
 from .identify_best_poi import identify_best_poi
 
@@ -50,22 +51,22 @@ def identify_location(lat, lon):
                 prefix = "in"
                 break
     except Exception as e:
-        print(f"[OSM] NOMINATIM ERROR: {e}")
+        tqdm.write(f"[OSM] NOMINATIM ERROR: {e}")
 
     # Step 2: Overpass query
     best_poi = identify_best_poi(lat, lon)
 
     if best_poi and best_poi[0]:
         selected_name, selected_prefix = best_poi
-        print(f"[OSM] Using POI: {selected_name}")
+        tqdm.write(f"[OSM] Using POI: {selected_name}")
     elif location:
         selected_name = location
         selected_prefix = prefix
-        print(f"[OSM] Falling back to Nominatim: {selected_name}")
+        tqdm.write(f"[OSM] Falling back to Nominatim: {selected_name}")
     else:
         selected_name = None
         selected_prefix = None
-        print(f"[OSM] No POI or Nominatim location found")
+        tqdm.write(f"[OSM] No POI or Nominatim location found")
 
     # Save to cache
     if selected_name and selected_prefix:

@@ -1,3 +1,4 @@
+from tqdm import tqdm
 from ..config import base_dir
 from transformers import AutoImageProcessor, AutoModelForImageClassification
 from PIL import Image
@@ -45,7 +46,7 @@ def identify_subject(image_path):
             all_labels.extend(labels)
 
         except Exception as e:
-            print(f"[WARN] {model_name} failed: {e}")
+            tqdm.write(f"[WARN] {model_name} failed: {e}")
 
     # Count occurrences of each label
     label_counts = Counter(all_labels)
@@ -60,5 +61,5 @@ def identify_subject(image_path):
             sorted_labels.append(label)
 
     output = " ? ".join(sorted_labels) + (" ??" if len(sorted_labels) > 1 else "")
-    print(f"Identified subject for {image_path.relative_to(base_dir)}: {output}")
+    tqdm.write(f"Identified subject for {image_path.relative_to(base_dir)}: {output}")
     return output

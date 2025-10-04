@@ -1,4 +1,5 @@
 import re
+from tqdm import tqdm
 
 def parse_images_from_php(main_php_path):
     images = []
@@ -28,6 +29,6 @@ def parse_images_from_php(main_php_path):
             if img:
                 images.append(img)
     except Exception as e:
-        print(f"Error parsing {main_php_path}: {e}")
+        tqdm.write(f"Error parsing {main_php_path}: {e}")
 
     return images
