@@ -384,7 +384,7 @@ header {
   /* Layout */
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 10;
   display: flex;
   flex-flow: column;
   /* Sizing */
@@ -2576,7 +2576,7 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
 .lightbox {
   /* Layout */
   position: fixed;
-  z-index: 3;
+  z-index: 100;
   inset: 0;
   display: flex;
   flex-flow: column nowrap;
@@ -2598,6 +2598,7 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
   /* If the lightbox is modal, hide it by default */
   /* Image */
   /* Caption and navigation common styles*/
+  /* Caption style details */
   /* Navigation style details */
 }
 .lightbox.modal {
@@ -2623,7 +2624,7 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
   top: 0;
   display: flex;
   align-items: center;
-  z-index: 4;
+  z-index: 1;
   width: auto;
   max-height: 1em;
   padding: 1em;
@@ -2633,6 +2634,9 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
   color: grey;
   font-size: 2em;
   line-height: 1em;
+}
+.lightbox #caption span {
+  white-space: normal;
 }
 .lightbox nav {
   top: auto;

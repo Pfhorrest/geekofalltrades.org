@@ -51,7 +51,7 @@ export const showSlide = (index: number): void => {
     return;
   }
   // Set the caption text
-  captionElement.innerHTML = captionText || "";
+  captionElement.getElementsByTagName("span")[0].innerHTML = captionText || "";
   // Get the image element
   const imageElement =
     document.querySelector<HTMLImageElement>("#lightboxImage");

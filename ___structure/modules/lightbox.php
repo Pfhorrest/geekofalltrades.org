@@ -53,7 +53,7 @@
             : $images[($item_id + 1)];
     }
     echo '<div id="lightbox" class="lightbox">
-        <h2 id="caption">'.$_GET["title"].'</h2>
+        <h2 id="caption"><span>'.$_GET["title"].'</span></h2>
         <img id="lightboxImage" src="'.$imagepath.'" alt="" />
         <nav class="displayControls">'
             .(

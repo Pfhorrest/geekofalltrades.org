@@ -50,7 +50,7 @@ export const showSlide = (index) => {
         return;
     }
     // Set the caption text
-    captionElement.innerHTML = captionText || "";
+    captionElement.getElementsByTagName("span")[0].innerHTML = captionText || "";
     // Get the image element
     const imageElement = document.querySelector("#lightboxImage");
     // Handle the case where there is no image element
