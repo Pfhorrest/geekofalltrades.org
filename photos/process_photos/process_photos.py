@@ -1,12 +1,13 @@
 import os
 import re
 import json
-import textwrap
 from pathlib import Path
 from datetime import datetime
 from PIL import Image
 from .config import image_extensions, THUMB_SUFFIX, THUMB_SIZE, base_dir, package_dir, subimage_threshold
+from .parse_images_from_php import parse_images_from_php
 from .generate_gallery import generate_gallery
+from .extract_exif_data import extract_exif_data
 
 def process_photos():
     
@@ -31,6 +32,7 @@ def process_photos():
         for filename in filenames:
             filename = Path(filename)
             filepath = dirpath / filename
+            relfile = filepath.relative_to(base_dir)
             name = filename.stem
             ext = filename.suffix
     
@@ -40,11 +42,11 @@ def process_photos():
     
             # Delete malformed thumbnails (with underscored/multiple suffixes)
             if f"_{THUMB_SUFFIX}" in name or name.replace('_', '-').split('-').count(THUMB_SUFFIX) > 1:
-                print(f"Deleting malformed thumbnail: {filepath}")
+                print(f"Deleting malformed thumbnail: {relfile}")
                 try:
                     os.remove(filepath)
                 except Exception as e:
-                    print(f"Error deleting {filepath}: {e}")
+                    print(f"Error deleting {relfile}: {e}")
                 continue
     
             # Delete thumbnails with no originals
@@ -52,11 +54,11 @@ def process_photos():
             original_path = dirpath / original_filename if original_filename else None
 
             if original_path and not original_path.exists():
-                print(f"Deleting orphan thumbnail: {filepath}")
+                print(f"Deleting orphan thumbnail: {relfile}")
                 try:
                     os.remove(filepath)
                 except Exception as e:
-                    print(f"Error deleting {filepath}: {e}")
+                    print(f"Error deleting {relfile}: {e}")
                 continue
     
             # Skip over remaining existing thumbnails
@@ -66,69 +68,72 @@ def process_photos():
             # Skip if thumbnail exists and is valid size
             thumb_filename = f"{name}-{THUMB_SUFFIX}{ext}"
             thumb_path = dirpath / thumb_filename
+            relthumb = thumb_path.relative_to(base_dir)
 
             if thumb_path.exists():
                 try:
                     with Image.open(thumb_path) as thumb_img:
                         w, h = thumb_img.size
                         if not (w >= THUMB_SIZE or h >= THUMB_SIZE):
-                            print(f"Deleting undersized existing thumbnail: {thumb_path}")
+                            print(f"Deleting undersized existing thumbnail: {relthumb}")
                             os.remove(thumb_path)
                         else:
                             continue
                 except Exception as e:
-                    print(f"Error checking existing thumb {thumb_path}: {e}")
+                    print(f"Error checking existing thumb {relthumb}: {e}")
     
             # Otherwise, create thumbnail!
             try:
                 with Image.open(filepath) as img:
                     img.thumbnail((THUMB_SIZE, THUMB_SIZE))
                     img.save(thumb_path)
-                    print(f"Created thumbnail: {thumb_path}")
+                    print(f"Created thumbnail: {relthumb}")
             except Exception as e:
-                print(f"Error creating thumbnail for {filepath}: {e}")
+                print(f"Error creating thumbnail for {relfile}: {e}")
 
 
         # -- MAKE GALLERIES --
     
         # Generate title of gallery
         def extract_date_text(path: Path):
-            parts = path.parts[-3:]
+            """
+            Returns (text, granularity) or (None, "whatever") if invalid.
+            Only allows:
+                base_dir/YYYY/
+                base_dir/YYYY/MM/
+                base_dir/YYYY/MM/DD/
+            """
 
-            # Require the folder itself to be numeric
-            if not path.name.isdigit():
-                print(f"Skipping non-date folder: {path}")
+            parts = path.parts
+            if not parts:
                 return None, "whatever"
 
-            numeric_parts = [p for p in parts if p.isdigit()]
+            # Reject folders with extra non-numeric parts
+            for p in parts:
+                if not p.isdigit():
+                    return None, "whatever"
 
-            for i in range(3, 0, -1):
-                if len(numeric_parts) >= i:
-                    try:
-                        subset = numeric_parts[-i:]
-                        subset = list(map(int, subset))
-                        if i == 3:
-                            year, month, day = subset
-                            date = datetime(year, month, day)
+            # Convert parts to integers
+            nums = list(map(int, parts))
+            if len(nums) == 1:
+                year = nums[0]
+                if 1000 <= year <= 9999:
+                    return f"{year}", "year"
+            elif len(nums) == 2:
+                year, month = nums
+                if 1 <= month <= 12:
+                    date = datetime(year, month, 1)
+                    return f"{date.strftime('%B')} {year}", "month"
+            elif len(nums) == 3:
+                year, month, day = nums
+                try:
+                    date = datetime(year, month, day)
+                except ValueError:
+                    return None, "whatever"
 
-                            def ordinal(n):
-                                return f"{n}{'th' if 11<=n%100<=13 else {1:'st',2:'nd',3:'rd'}.get(n%10, 'th')}"
-
-                            return f"{ordinal(day)} of {date.strftime('%B')} {year}", "day"
-
-                        elif i == 2:
-                            year, month = subset
-                            date = datetime(year, month, 1)
-                            return f"{date.strftime('%B')} {year}", "month"
-
-                        elif i == 1:
-                            year = subset[0]
-                            if 1000 <= year <= 9999:
-                                return f"{year}", "year"
-
-                    except Exception as e:
-                        print(f"Error generating date for {path}: {e}")
-                        continue
+                def ordinal(n):
+                    return f"{n}{'th' if 11 <= n % 100 <= 13 else {1:'st',2:'nd',3:'rd'}.get(n%10,'th')}"
+                return f"{ordinal(day)} of {date.strftime('%B')} {year}", "day"
 
             return None, "whatever"
 
@@ -143,10 +148,11 @@ def process_photos():
                 head_content = f'<?php $title = "{title_text} by Forrest Cameranesi" ?>\n'
                 with open(head_path, 'w') as f:
                     f.write(head_content)
-                print(f"Created: {head_path}")
+                print(f"Created: {head_path.relative_to(base_dir)}")
         
             # Make __main.php if necessary
             main_path = dirpath / "__main.php"
+            relmain = main_path.relative_to(base_dir)
             if not main_path.exists():
                 needs_images = True
             else:
@@ -160,42 +166,8 @@ def process_photos():
 
                 if not images:
                     # Try to build from children if month/year folder
-
-                    def parse_images_from_php(main_php_path):
-                        images = []
-                        try:
-                            with open(main_php_path, 'r', encoding='utf-8') as f:
-                                content = f.read()
-
-                            # Use regex with DOTALL to capture everything inside the array(...)
-                            match = re.search(r'\$images\s*=\s*array\s*\((.*?)\);\s*', content, re.DOTALL)
-                            if not match:
-                                return images
-
-                            array_content = match.group(1)
-
-                            # Split by "array(" to get individual image blocks
-                            # Each image array starts with 'array(' and ends with '),'
-                            image_blocks = re.findall(r'array\s*\((.*?)\),', array_content, re.DOTALL)
-                            
-                            for block in image_blocks:
-                                img = {}
-                                # Extract each key => 'value' pair inside the array block
-                                for line in block.splitlines():
-                                    line = line.strip().rstrip(',')
-                                    m = re.match(r"'([^']+)'\s*=>\s*'([^']*)'", line)
-                                    if m:
-                                        key, val = m.groups()
-                                        img[key] = val
-                                if img:
-                                    images.append(img)
-                        except Exception as e:
-                            print(f"Error parsing {main_php_path}: {e}")
-
-                        return images
-
                     subimages = []
-                    print(f"Building gallery from children of {dirpath}:")
+                    print(f"Building gallery from children of {relpath}:")
                     for sub in sorted(dirpath.iterdir()):
                         if not sub.is_dir():
                             continue
@@ -206,7 +178,7 @@ def process_photos():
 
                         sub_main = sub / "__main.php"
                         if sub_main.exists():
-                            print(f"  Found child __main.php: {sub_main}")
+                            print(f"  Found child __main.php: {sub_main.relative_to(base_dir)}")
                             child_images = parse_images_from_php(sub_main)
                             print(f"    Parsed child images: {child_images}")
                             if child_images:
@@ -270,7 +242,7 @@ def process_photos():
                     main_content = "\n".join(line.lstrip(" ") for line in main_content.splitlines())
                     with open(main_path, 'w', encoding="utf-8") as f:
                         f.write(main_content)
-                    print(f"Created: {main_path}")
+                    print(f"Created: {relmain}")
                 else:
                     # Insert $images array right above first require line
                     lines = existing_content.splitlines()
@@ -286,4 +258,80 @@ def process_photos():
 
                     with open(main_path, 'w', encoding="utf-8") as f:
                         f.write(updated_content)
-                    print(f"Updated: {main_path} with $images array")
+                    print(f"Updated: {relmain} with $images array")
+
+            else:
+                # If $images array already exists, ensure it is sorted reverse-chronologically
+
+                def resort_images(images):
+                    sort_data = []
+
+                    for img in images:
+                        # 1️⃣ Compute hierarchical path key
+                        fn = img.get("filename", "")
+                        path_parts = fn.split("/")
+                        path_key = []
+                        for part in path_parts:
+                            try:
+                                # Negate numeric parts for descending sort
+                                path_key.append(-int(part))
+                            except ValueError:
+                                path_key.append(part)
+
+                        # 2️⃣ Compute timestamp key
+                        ts = img.get("_sort_timestamp")
+                        if not ts:
+                            filepath = dirpath / Path(fn)
+                            if filepath.exists():
+                                try:
+                                    exif = extract_exif_data(filepath)
+                                    ts = exif.get("timestamp")
+                                except Exception as e:
+                                    print(f"Warning: could not extract EXIF from {fn}: {e}")
+
+                        if not ts:
+                            desc = img.get("description", "")
+                            m = re.search(r"\d{4}-\d{2}-\d{2}", desc)
+                            if m:
+                                ts = m.group(0)
+
+                        # None timestamps sort last
+                        ts_key = (ts is None, ts)
+
+                        sort_data.append((path_key, ts_key, img))
+
+                    # 3️⃣ Sort: by path hierarchy (descending numeric), then timestamp
+                    sorted_images = [
+                        img for path_key, ts_key, img in sorted(
+                            sort_data,
+                            key=lambda x: (x[0], x[1])
+                        )
+                    ]
+
+                    return sorted_images
+
+                existing_images = parse_images_from_php(main_path)
+                if existing_images:
+                    sorted_images = resort_images(existing_images)
+                    if sorted_images != existing_images:
+                        # print(f"Resorting existing $images in {relmain}")
+                        php_array_str = "$images = array(\n"
+                        def php_escape(s):
+                            return json.dumps(s)[1:-1].replace('"', '\\"').replace("'", "\\'")
+                        for img in sorted_images:
+                            php_array_str += "\t\t\tarray(\n"
+                            for key, val in img.items():
+                                php_array_str += f"\t\t\t\t'{key}' => '{php_escape(val)}',\n"
+                            php_array_str += "\t\t\t),\n"
+                        php_array_str += "\t\t);\n\n"
+
+                        updated_content = re.sub(
+                            r'\$images\s*=\s*array\s*\(.*?\);\s*',
+                            lambda m: php_array_str,
+                            existing_content,
+                            flags=re.DOTALL
+                        )
+
+                        with open(main_path, 'w', encoding="utf-8") as f:
+                            f.write(updated_content)
+                        print(f"Updated: {relmain} (re-sorted)")

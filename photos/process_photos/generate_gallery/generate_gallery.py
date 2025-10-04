@@ -1,6 +1,6 @@
 from pathlib import Path
 from ..config import image_extensions, THUMB_SUFFIX
-from .extract_exif_data import extract_exif_data
+from ..extract_exif_data import extract_exif_data
 from .identify_subject import identify_subject
 from .identify_location import identify_location
 
@@ -75,7 +75,10 @@ def generate_gallery(path):
             print(f"Warning: Skipping file {filepath} due to error: {e}")
 
     # SORT: sort by _sort_timestamp (None last)
-    images.sort(key=lambda img: (img["_sort_timestamp"] is None, img["_sort_timestamp"]))
+    images.sort(
+        key=lambda img: (img["_sort_timestamp"] is None, img["_sort_timestamp"]),
+        reverse=True
+    )
 
     # REMOVE _sort_timestamp before returning
     for img in images:
