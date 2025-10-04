@@ -267,22 +267,22 @@ def process_photos():
                     sort_data = []
 
                     for img in images:
-                        # 1️⃣ Compute hierarchical path key
                         fn = img.get("filename", "")
                         path_parts = fn.split("/")
+
+                        # Keep folder parts as-is
                         path_key = []
                         for part in path_parts:
                             try:
-                                # Negate numeric parts for descending sort
-                                path_key.append(-int(part))
+                                path_key.append((0, int(part)))  # numeric part
                             except ValueError:
-                                path_key.append(part)
+                                path_key.append((1, part))       # non-numeric part
 
-                        # 2️⃣ Compute timestamp key
+                        # Compute or fetch timestamp
                         ts = img.get("_sort_timestamp")
                         if not ts:
                             filepath = dirpath / Path(fn)
-                            if filepath.exists():
+                            if filepath.is_file():
                                 try:
                                     exif = extract_exif_data(filepath)
                                     ts = exif.get("timestamp")
@@ -295,20 +295,31 @@ def process_photos():
                             if m:
                                 ts = m.group(0)
 
-                        # None timestamps sort last
-                        ts_key = (ts is None, ts)
+                        # Normalize timestamp
+                        if ts:
+                            try:
+                                dt = datetime.fromisoformat(ts)
+                            except ValueError:
+                                try:
+                                    dt = datetime.strptime(ts, "%Y-%m-%d")
+                                except ValueError:
+                                    dt = datetime.min
+                        else:
+                            dt = datetime.min
 
-                        sort_data.append((path_key, ts_key, img))
+                        sort_data.append((path_key, dt, img))
 
-                    # 3️⃣ Sort: by path hierarchy (descending numeric), then timestamp
+                    # Single sorted() call: reverse=True gives descending folders + newest-first timestamps
                     sorted_images = [
-                        img for path_key, ts_key, img in sorted(
+                        img for path_key, dt, img in sorted(
                             sort_data,
-                            key=lambda x: (x[0], x[1])
+                            key=lambda x: (x[0], x[1]),
+                            reverse=True
                         )
                     ]
 
                     return sorted_images
+
 
                 existing_images = parse_images_from_php(main_path)
                 if existing_images:
