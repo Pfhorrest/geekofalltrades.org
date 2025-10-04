@@ -13,13 +13,18 @@ else:
     location_cache = {}
 
 def save_location_cache():
+    """Save the location cache to a JSON file."""
     with open(LOCATION_CACHE_FILE, "w") as f:
         json.dump(location_cache, f, indent=2)
 
 def identify_location(lat, lon):
-    """
-    Returns a (location, prefix) tuple for the given GPS coordinates.
-    Uses Overpass and Nominatim, caches results, and prints debug info.
+    """Identify the location and prefix for given GPS coordinates.
+
+    Args:
+        lat (float): Latitude of the location.
+        lon (float): Longitude of the location.
+    Returns:
+        tuple: A tuple containing the location name and prefix.
     """
     point = Point(lon, lat)
     latlon_key = f"{round(lat, 5)},{round(lon, 5)}"

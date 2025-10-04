@@ -2,6 +2,14 @@ import re
 from tqdm import tqdm
 
 def parse_images_from_php(main_php_path):
+    """Parse image metadata from a PHP file defining an array of images.
+
+    Args:
+        main_php_path (str or Path): Path to the PHP file containing image definitions.
+
+    Returns:
+        list: A list of dictionaries, each representing an image and its metadata.
+    """
     images = []
     try:
         with open(main_php_path, 'r', encoding='utf-8') as f:

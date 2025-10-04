@@ -11,7 +11,11 @@ from .generate_gallery import generate_gallery
 from .extract_exif_data import extract_exif_data
 
 def process_photos():
+    """Process photos in the base directory, generating thumbnails and galleries.
 
+    Returns:
+        None
+    """
     # Gather (dirpath, dirs, filenames) from os.walk
     walk_data = [
         (d, dirs, files)
@@ -93,13 +97,18 @@ def process_photos():
     
         # Generate title of gallery
         def extract_date_text(path: Path):
-            """
-            Returns (text, granularity) or (None, "whatever") if invalid.
-            Only allows:
-                base_dir/YYYY/
-                base_dir/YYYY/MM/
-                base_dir/YYYY/MM/DD/
-            """
+            """Extract a human-readable date text from a path.
+                Only allows:
+                    base_dir/YYYY/
+                    base_dir/YYYY/MM/
+                    base_dir/YYYY/MM/DD/
+
+            Args:
+                path (Path): Path object representing the directory.
+
+            Returns:
+                tuple: A tuple containing the human-readable date text and its granularity.
+            """            
 
             parts = path.parts
             if not parts:
@@ -125,6 +134,14 @@ def process_photos():
                     return None, "whatever"
 
                 def ordinal(n):
+                    """Convert a number to an ordinal string.
+
+                    Args:
+                        n (int): The number to convert.
+
+                    Returns:
+                        str: The ordinal string representation of the number.
+                    """
                     return f"{n}{'th' if 11 <= n % 100 <= 13 else {1:'st',2:'nd',3:'rd'}.get(n%10,'th')}"
                 return f"{ordinal(day)} of {date.strftime('%B')} {year}", "day"
             return None, "whatever"
@@ -151,6 +168,17 @@ def process_photos():
                 with open(main_path, "r", encoding="utf-8") as f:
                     existing_content = f.read()
                 needs_images = not re.search(r'\$images\s*=\s*array\s*\(', existing_content)
+
+            def php_escape(s):
+                """Escape a string for use in a PHP string.
+
+                Args:
+                    s (str): The string to escape.
+
+                Returns:
+                    str: The escaped string.
+                """
+                return json.dumps(s)[1:-1].replace('"', '\\"').replace("'", "\\'")
 
             if needs_images:
                 images = generate_gallery(dirpath)
@@ -200,8 +228,6 @@ def process_photos():
                 php_array_str = ""
                 if images:
                     php_array_str = "$images = array(\n"
-                    def php_escape(s):
-                        return json.dumps(s)[1:-1].replace('"', '\\"').replace("'", "\\'")
                     for img in tqdm(images, desc=f"Writing images array for {relmain}", unit="img", leave=False):
                         php_array_str += "\t\t\tarray(\n"
                         for key, val in img.items():
@@ -245,6 +271,14 @@ def process_photos():
                 # If $images array already exists, ensure it is sorted reverse-chronologically
 
                 def resort_images(images):
+                    """Sort images in reverse-chronological order.
+
+                    Args:
+                        images (list): List of image dictionaries.
+
+                    Returns:
+                        list: Sorted list of image dictionaries.
+                    """
                     sort_data = []
                     for img in tqdm(images, desc=f"Resorting images in {relpath}", unit="img", leave=False):
                         fn = img.get("filename", "")
@@ -298,8 +332,6 @@ def process_photos():
                     sorted_images = resort_images(existing_images)
                     if sorted_images != existing_images:
                         php_array_str = "$images = array(\n"
-                        def php_escape(s):
-                            return json.dumps(s)[1:-1].replace('"', '\\"').replace("'", "\\'")
                         for img in tqdm(sorted_images, desc=f"Writing sorted images for {relmain}", unit="img", leave=False):
                             php_array_str += "\t\t\tarray(\n"
                             for key, val in img.items():

@@ -6,6 +6,18 @@ from tqdm import tqdm
 from .config import base_dir
 
 def extract_exif_data(image_path):
+    """Extract EXIF data from an image file.
+
+    Args:
+        image_path (Path or str): Path to the image file.
+
+    Raises:
+        FileNotFoundError: If the file does not exist or is not a file.
+
+    Returns:
+        dict: A dictionary containing extracted EXIF data, including camera model, date taken, GPS coordinates, and full timestamp.
+    """
+
     # Sanitize the incoming path
     if not isinstance(image_path, Path):
         image_path = Path(image_path)
@@ -48,6 +60,14 @@ def extract_exif_data(image_path):
         gps = None
         if gps_data:
             def to_degrees(value):
+                """Convert GPS coordinates in EXIF format to decimal degrees.
+
+                Args:
+                    value (tuple): GPS coordinates in EXIF format.
+
+                Returns:
+                    float: Decimal degrees representation of the GPS coordinates.
+                """
                 try:
                     d, m, s = value
                     return d[0]/d[1] + m[0]/m[1]/60 + s[0]/s[1]/3600

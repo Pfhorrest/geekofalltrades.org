@@ -20,6 +20,14 @@ MODEL_NAMES = [
 MODEL_CACHE = {}
 
 def load_model(model_name):
+    """Load a model and its processor, caching them for future use.
+
+    Args:
+        model_name (str): The name of the model to load.
+
+    Returns:
+        tuple: A tuple containing the processor and model.
+    """
     if model_name not in MODEL_CACHE:
         processor = AutoImageProcessor.from_pretrained(model_name)
         model = AutoModelForImageClassification.from_pretrained(model_name)
@@ -27,6 +35,14 @@ def load_model(model_name):
     return MODEL_CACHE[model_name]
 
 def identify_subject(image_path):
+    """Identify the subject of an image using multiple pre-trained models.
+
+    Args:
+        image_path (Path or str): Path to the image file.
+
+    Returns:
+        str: A string describing the identified subject(s) of the image.
+    """
     image = Image.open(image_path).convert("RGB")
     all_labels = []
 

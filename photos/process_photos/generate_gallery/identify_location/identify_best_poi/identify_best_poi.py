@@ -6,6 +6,15 @@ from .haversine import haversine
 from .safe_polygon_from_coords import safe_polygon_from_coords
 
 def identify_best_poi(lat, lon):
+    """Identify the best point of interest (POI) near given GPS coordinates.
+
+    Args:
+        lat (float): Latitude of the location.
+        lon (float): Longitude of the location.
+
+    Returns:
+        tuple: A tuple containing the best POI name and prefix.
+    """
     overpass_url = "https://overpass-api.de/api/interpreter"
     features = [
         "education", "geological", "historic", "leisure",

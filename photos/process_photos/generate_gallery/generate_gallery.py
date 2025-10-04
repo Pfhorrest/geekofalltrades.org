@@ -6,6 +6,15 @@ from .identify_subject import identify_subject
 from .identify_location import identify_location
 
 def generate_gallery(path):
+    """Generate a gallery of images from a directory.
+
+    Args:
+        path (Path or str): Path to the directory containing images.
+
+    Returns:
+        list: A list of dictionaries, each representing an image and its metadata.
+        Returns None if no valid images are found.
+    """
     images = []
     for filepath in path.iterdir():
         if not filepath.is_file():
@@ -42,6 +51,14 @@ def generate_gallery(path):
 
             # Capitalize all words except short prepositions, unless first word
             def smart_title_case(text):
+                """Convert a string to title case, ignoring certain short words.
+
+                Args:
+                    text (str): The string to convert.
+
+                Returns:
+                    str: The title-cased string.
+                """
                 skip_words = {"at", "in", "on", "to", "for", "by", "of", "and", "but", "or", "nor", "a", "an", "the", "near"}
                 words = text.split()
                 if not words:
