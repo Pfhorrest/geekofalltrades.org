@@ -1991,6 +1991,12 @@ main section .gallery .item p.title, main section .gallery .item p.more {
   font-family: "Nunito", sans-serif;
   font-size: 1em;
 }
+main section .gallery .item p.title .maybe {
+  display: block;
+  font-size: 0.5em;
+  opacity: 0.5;
+  margin-top: 0.25em;
+}
 main section .gallery .item p a {
   position: relative;
   z-index: 1;
