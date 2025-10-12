@@ -77,6 +77,45 @@
 
     echo '<div class="gallery expansive">';
 
+    /**
+     * Recursively count all images in a subgallery.
+     *
+     * @param string $subdir Path to the subgallery directory or __main.php file.
+     * @return int Total number of images found (including nested subgalleries).
+     */
+    function get_subgallery_image_count($subdir) {
+        if (is_dir($subdir)) {
+            $mainfile = rtrim($subdir, '/').'/__main.php';
+        } else {
+            $mainfile = $subdir.'/__main.php';
+        }
+
+        if (!is_file($mainfile)) {
+            return 0;
+        }
+
+        // Load the PHP file in an isolated scope to avoid polluting the global namespace
+        $images = [];
+        try {
+            include $mainfile;
+        } catch (Throwable $e) {
+            return 0;
+        }
+
+        if (!isset($images) || !is_array($images)) {
+            return 0;
+        }
+
+        $count = 0;
+        foreach ($images as $img) {
+            $count++;
+            if (!empty($img['morelink'])) {
+                $count += get_subgallery_image_count(dirname($mainfile).'/'.$img['morelink']);
+            }
+        }
+        return $count;
+    }
+
     foreach ($images as $key => $image) {
         /**
          * Path to the file specified in $images array.
@@ -171,35 +210,55 @@
         */
 
         echo '
-            <div class=item id="item'.$key.'">
-                <p class=title>'.$image['title'].'</p>
-                <img src="'.$thumbpath.'"
-                    alt="">
-                <p class=description>
-                    '.$image['description'].'
-                </p>'
-                .(
-                    $image['moretext']
-                    ?   '<p class=more>
-                            <a'.(
-                                ($image['morelink'])
-                                ? ' href="'.$_SERVER['REQUEST_URI'].$image['morelink'].'"'
-                                : ''
-                            ).'>'
-                                .$image['moretext'].
+            <div class="item" id="item'.$key.'">
+                <p class="title">'.
+                    (!empty($image['title'])
+                        ? htmlspecialchars($image['title'])
+                        : 'Untitled' .
+                            (!empty($image['maybe'])
+                                ? '<span class="maybe">(Maybe: '.htmlspecialchars($image['maybe']).')</span>'
+                                : '')
+                    ).
+                '</p>
+                <img src="'.$thumbpath.'" alt="">
+                <p class="description">'.
+                    (!empty($image['description'])
+                        ? htmlspecialchars($image['description'])
+                        : 'No description.'
+                    ).
+                '</p>';
+                
+                // Handle "more" link logic
+                if (!empty($image['morelink'])) {
+                    $count = get_subgallery_image_count($rootpath . $image['morelink']);
+                    if ($count > 1) {
+                        $count_text = ($count - 1) . ' more';
+                        $from_text = (!empty($image['moretext'])) ? ' from ' . htmlspecialchars($image['moretext']) : '';
+                        echo '
+                        <p class="more">
+                            <a href="'.$_SERVER['REQUEST_URI'].$image['morelink'].'">'
+                                .$count_text.$from_text.
                             '</a>
-                        </p>'
-                    : ''
-                ).'
-                <a class=cover
-                    href="'.(($image['altlink'])
+                        </p>';
+                    } elseif ($count === 0) {
+                        // No images found in subgallery
+                        echo '
+                        <p class="more">
+                            <a href="'.$_SERVER['REQUEST_URI'].$image['morelink'].'">More'.
+                                (!empty($image['moretext']) ? ' from ' . htmlspecialchars($image['moretext']) : '').
+                            '</a>
+                        </p>';
+                    }
+                    // If exactly one item, skip (erroneous)
+                }
+
+                echo '
+                <a class="cover" href="'.(
+                    !empty($image['altlink'])
                         ? ($path.$altpath.'" rel="external"')
-                        : (
-                            '?display='.$image['filename']
-                            .'&title='.urlencode($image['title'])
-                            .'"')
-                    ).'>
-                    View '.$image['title'].'
+                        : ('?display='.$image['filename'].'&title='.urlencode($image['title']).'"')
+                ).'>
+                    View '.(!empty($image['title']) ? htmlspecialchars($image['title']) : 'Untitled').'
                 </a>
             </div>
         ';
