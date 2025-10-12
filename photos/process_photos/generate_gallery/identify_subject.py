@@ -11,7 +11,7 @@ MODEL_NAMES = [
     "microsoft/swin-large-patch4-window12-384-in22k",
 
     # Domain-specific
-    "Sisigoks/FloraSense",  # plants / flowers
+    # "Sisigoks/FloraSense",  # plants / flowers
     # "prithivMLmods/Bird-Species-Classifier-526",  # birds
     # "mmgyorke/vit-world-landmarks",  # world landmarks
 ]
@@ -76,6 +76,6 @@ def identify_subject(image_path):
             seen.add(label)
             sorted_labels.append(label)
 
-    output = " ? ".join(sorted_labels) + (" ??" if len(sorted_labels) > 1 else "")
+    output = ", ".join(sorted_labels)
     tqdm.write(f"Identified subject for {image_path.relative_to(base_dir)}: {output}")
     return output

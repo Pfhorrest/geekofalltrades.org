@@ -32,7 +32,8 @@ def generate_gallery(path):
             exif = extract_exif_data(filepath)
 
             # Get subject name
-            subject = identify_subject(filepath)
+            subjects = identify_subject(filepath) # Comma-separated string of possible subjects
+            subject = subjects.split(",")[0].strip() if subjects else None # Most likely subject
 
             # Get location name
             location, prefix = (None, None)
@@ -47,7 +48,7 @@ def generate_gallery(path):
             elif location:
                 title = location
             else:
-                title = "Untitled"
+                title = None
 
             # Capitalize all words except short prepositions, unless first word
             def smart_title_case(text):
@@ -79,13 +80,14 @@ def generate_gallery(path):
                 desc_parts.append(exif["camera"])
             if exif.get("date"):
                 desc_parts.append(exif["date"])
-            description = ", ".join(desc_parts) if desc_parts else "No description"
+            description = ", ".join(desc_parts) if desc_parts else None
 
             # Add to array
             images.append({
-                "title": title,
+                **({"maybe": title} if title is not None else {}),
+                **({"alternatives": subjects} if subjects is not None else {}),
+                **({"description": description} if description is not None else {}),
                 "filename": filepath.name,
-                "description": description,
                 "_sort_timestamp": exif.get("timestamp")  # ISO 8601 expected
             })
 
