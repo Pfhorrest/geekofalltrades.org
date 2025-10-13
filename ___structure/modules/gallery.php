@@ -94,13 +94,16 @@
             return 0;
         }
 
-        // Load the PHP file in an isolated scope to avoid polluting the global namespace
+        // Capture and discard any output the file might generate
+        ob_start();
         $images = [];
         try {
             include $mainfile;
         } catch (Throwable $e) {
+            ob_end_clean();
             return 0;
         }
+        ob_end_clean(); // discard output
 
         if (!isset($images) || !is_array($images)) {
             return 0;
