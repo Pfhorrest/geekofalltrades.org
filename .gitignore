@@ -3,3 +3,4 @@ photos/*
 photos/process_photos/_keys/
 photos/process_photos/_caches/
 **/__pycache__/
+/photos-backups
