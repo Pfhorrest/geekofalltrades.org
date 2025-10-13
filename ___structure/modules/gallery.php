@@ -1,6 +1,6 @@
 <?php
 
-    /* If no imagess are provided, search for images in the rootpath. */
+    /* If no images are provided, search for images in the rootpath. */
     if (!isset($images)) {
         $images = [];
     }
@@ -64,7 +64,8 @@
                 }
                 if ($image['filename']) {
                     if ($subfiles_image_count > 1) {
-                        $image['moretext'] = ($subfiles_image_count - 1) . ' more from ' . $segments[array_key_last($segments)] . '/' . $file;
+                        $image['morecount'] = ($subfiles_image_count - 1);
+                        $image['moretext'] = $segments[array_key_last($segments)] . '/' . $file;
                         $image['morelink'] = $file;
                     }
                     $images[] = $image;
@@ -84,40 +85,52 @@
      * @return int Total number of images found (including nested subgalleries).
      */
     function get_subgallery_image_count($subdir) {
-        if (is_dir($subdir)) {
-            $mainfile = rtrim($subdir, '/').'/__main.php';
-        } else {
-            $mainfile = $subdir.'/__main.php';
-        }
+        $mainfile = rtrim($subdir, '/').'/__main.php';
+        if (!is_file($mainfile)) return 0;
 
-        if (!is_file($mainfile)) {
-            return 0;
-        }
+        $content = file_get_contents($mainfile);
+        if (!$content) return 0;
 
-        // Capture and discard any output the file might generate
-        ob_start();
         $images = [];
-        try {
-            include $mainfile;
-        } catch (Throwable $e) {
-            ob_end_clean();
-            return 0;
-        }
-        ob_end_clean(); // discard output
 
-        if (!isset($images) || !is_array($images)) {
-            return 0;
+        // Match $images = array(...);
+        if (preg_match('/\$images\s*=\s*array\s*\((.*)\);\s*/sU', $content, $matches)) {
+            $arrayContent = $matches[1];
+
+            // Match all individual image arrays: array(...)
+            preg_match_all('/array\s*\((.*?)\),/s', $arrayContent, $imageBlocks);
+
+            foreach ($imageBlocks[1] as $block) {
+                $img = [];
+
+                // Match key => value pairs with single quotes, handling escaped quotes
+                preg_match_all("/'((?:\\\\'|[^'])+)'\s*=>\s*'((?:\\\\'|[^'])*)'/", $block, $kvMatches, PREG_SET_ORDER);
+
+                foreach ($kvMatches as $kv) {
+                    $key = str_replace("\\'", "'", $kv[1]);
+                    $val = str_replace("\\'", "'", $kv[2]);
+                    $img[$key] = $val;
+                }
+
+                if ($img) {
+                    $images[] = $img;
+                }
+            }
         }
 
+        // Count images, recursively counting nested subgallery 'morelink's
         $count = 0;
         foreach ($images as $img) {
             $count++;
             if (!empty($img['morelink'])) {
-                $count += get_subgallery_image_count(dirname($mainfile).'/'.$img['morelink']);
+                $nestedPath = rtrim($subdir, '/').'/'.$img['morelink'];
+                $count += get_subgallery_image_count($nestedPath);
             }
         }
+
         return $count;
     }
+
 
     foreach ($images as $key => $image) {
         /**
@@ -233,10 +246,10 @@
                 
                 // Handle "more" link logic
                 if (!empty($image['morelink'])) {
-                    $count = get_subgallery_image_count($rootpath . $image['morelink']);
+                    $count = get_subgallery_image_count($rootpath . $image['morelink']) ?: $image['morecount'];
                     if ($count > 1) {
                         $count_text = ($count - 1) . ' more';
-                        $from_text = (!empty($image['moretext'])) ? ' from ' . htmlspecialchars($image['moretext']) : '';
+                        $from_text = (!empty($image['moretext'])) ? ' from ' . htmlspecialchars($image['moretext']) : '' ;
                         echo '
                         <p class="more">
                             <a href="'.$_SERVER['REQUEST_URI'].$image['morelink'].'">'
