@@ -72,6 +72,8 @@
                 }
             }
         }
+        // Reverse order and reindex
+        $images = array_values(array_reverse($images));
     }
 
     // print_r($images);
