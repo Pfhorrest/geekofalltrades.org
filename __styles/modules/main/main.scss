@@ -1,5 +1,6 @@
 @use "../root/layout/breakpoints.scss" as *;
 @use "../root/typography.scss" as *;
+@use "../root/optional-motion.scss" as *;
 @use "./headings.scss" as *;
 @use "./main-elements.scss" as *;
 @use "./section/section.scss" as *;
@@ -72,10 +73,13 @@
 
     /* All children transitions */
     * {
-      transition: all var(--dur), opacity var(--dur) linear,
-        transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75)
-          calc(var(--delA) + var(--delB));
-      --dur: 1s; // Transition duration
+      --dur: 0.01s;
+      @include optional-motion() {
+        transition: all var(--dur), opacity var(--dur) linear,
+          transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75)
+            calc(var(--delA) + var(--delB));
+        --dur: 1s; // Transition duration
+      }
       --delA: 0s; // Primary transition delay (varies by nesting)
       --delB: 0s; // Secondary transition delay (varies by column)
       /* Children of children have longer delays so they transition in in sequence */

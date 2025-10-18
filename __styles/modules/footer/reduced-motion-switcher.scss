@@ -1,8 +1,10 @@
 @use "../root/layout/breakpoints.scss" as *;
+@use "../root/optional-motion.scss" as *;
 
 /// Styles for the reduced-motion-switcher controls
 /// @group main
 /// @require {Length} $bp2 - Second breakpoint value
+/// @require {mixin} optional-motion - DRY optional motion helper
 /// @see {mixin} colors - General color variable styles
 
 @mixin reduced-motion-switcher {
@@ -15,7 +17,9 @@
     width: 100%;
     max-width: $bp2;
     gap: var(--spacing);
-    --dur: 0.5s;
+    @include optional-motion() {
+      --dur: 0.5s;
+    }
 
     /* The individual buttons */
     a {
@@ -46,19 +50,20 @@
 
       /* Reduced motion switchers */
       &.moreMotion {
-        @at-root html[data-reduced-motion^=no] & {
+        @at-root html[data-reduced-motion^="no"] & {
           opacity: 1;
           outline: 1px solid var(--black);
         }
       }
       &.autoMotion {
-        @at-root html:not([data-reduced-motion]) &, html[data-reduced-motion$=auto] & {
+        @at-root html:not([data-reduced-motion]) &,
+          html[data-reduced-motion$="auto"] & {
           opacity: 1;
           outline: 1px solid var(--black);
         }
       }
       &.lessMotion {
-        @at-root html[data-reduced-motion^=yes] & {
+        @at-root html[data-reduced-motion^="yes"] & {
           opacity: 1;
           outline: 1px solid var(--black);
         }

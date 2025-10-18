@@ -20,6 +20,6 @@ export const fadeOut = (element, duration = getDuration(element)) => {
         element.style.display = "none";
         // console.log("fadeOut completed");
         // console.groupEnd();
-    }, duration);
+    }, Math.max(10, duration));
 };
 //# sourceMappingURL=fadeOut.js.map

@@ -42,8 +42,10 @@
         /* Delay their appearance when the section transitions into view */
         &::before,
         &::after {
-          --dur: 1s;
-          transition: all var(--dur), opacity var(--dur) var(--dur);
+          @include optional-motion() {
+            --dur: 1s;
+            transition: all var(--dur), opacity var(--dur) var(--dur);
+          }
         }
 
         &.off-screen {

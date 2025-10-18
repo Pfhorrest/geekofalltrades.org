@@ -1,8 +1,10 @@
 @use "../root/layout/breakpoints.scss" as *;
+@use "../root/optional-motion.scss" as *;
 
 /// Styles for the color-scheme-switcher controls
 /// @group main
 /// @require {Length} $bp2 - Second breakpoint value
+/// @require {mixin} optional-motion - DRY optional motion helper
 /// @see {mixin} colors - General color variable styles
 
 @mixin color-scheme-switcher {
@@ -21,7 +23,9 @@
     width: 100%;
     max-width: $bp2;
     gap: var(--spacing);
-    --dur: 0.5s;
+    @include optional-motion() {
+      --dur: 0.5s;
+    }
 
     /* The individual buttons */
     a {
@@ -52,53 +56,54 @@
 
       /* Light and dark mode switchers */
       &.lightMode {
-        @at-root html[data-color-scheme=light] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
+        @at-root html[data-color-scheme="light"] & {
+          opacity: 1;
+          outline: 1px solid var(--black);
         }
       }
       &.autoMode {
         @at-root html:not([data-color-scheme]) & {
-            opacity: 1;
-            outline: 1px solid var(--black);
+          opacity: 1;
+          outline: 1px solid var(--black);
         }
       }
       &.darkMode {
-        @at-root html[data-color-scheme=dark] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
+        @at-root html[data-color-scheme="dark"] & {
+          opacity: 1;
+          outline: 1px solid var(--black);
         }
       }
 
       /* Custom theme switchers */
       &.grays-theme {
-        @at-root html[data-theme=grays] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
+        @at-root html[data-theme="grays"] & {
+          opacity: 1;
+          outline: 1px solid var(--black);
         }
       }
       &.warmer-theme {
-        @at-root html[data-theme=warmer] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
+        @at-root html[data-theme="warmer"] & {
+          opacity: 1;
+          outline: 1px solid var(--black);
         }
       }
       &.natural-theme {
-        @at-root html:not([data-theme]) &, html[data-theme=natural] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
+        @at-root html:not([data-theme]) &,
+          html[data-theme="natural"] & {
+          opacity: 1;
+          outline: 1px solid var(--black);
         }
       }
       &.cooler-theme {
-        @at-root html[data-theme=cooler] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
+        @at-root html[data-theme="cooler"] & {
+          opacity: 1;
+          outline: 1px solid var(--black);
         }
       }
       &.alien-theme {
-        @at-root html[data-theme=alien] & {
-            opacity: 1;
-            outline: 1px solid var(--black);
+        @at-root html[data-theme="alien"] & {
+          opacity: 1;
+          outline: 1px solid var(--black);
         }
       }
     }

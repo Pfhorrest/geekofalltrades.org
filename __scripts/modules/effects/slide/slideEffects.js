@@ -25,6 +25,6 @@ export const slideToggle = (element, duration = getDuration(element)) => {
     // console.log(`duration = ${duration}`);
     // console.groupEnd();
     // Call the chosen animation function
-    animationFunction(element, duration);
+    animationFunction(element, Math.max(10, duration));
 };
 //# sourceMappingURL=slideEffects.js.map

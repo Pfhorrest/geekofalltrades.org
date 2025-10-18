@@ -1,8 +1,10 @@
 @use "../../root/layout/breakpoints.scss" as *;
+@use "../../root/optional-motion.scss" as *;
 
 /// Styles for the toggle-all-sections controls
 /// @group main
 /// @require {Length} $bp2 - Second breakpoint value
+/// @require {mixin} optional-motion - DRY optional motion helper
 /// @see {mixin} section - General styles for sections
 /// @see {mixin} section-toggleable - Styles for sections that can be toggled
 /// @see {mixin} main - General styles for the main section
@@ -20,7 +22,9 @@
     width: 100%;
     max-width: calc(80ch - 2 * var(--spacing));
     gap: var(--spacing);
-    --dur: 0.5s;
+    @include optional-motion() {
+      --dur: 0.5s;
+    }
 
     /* The individual buttons */
     a {

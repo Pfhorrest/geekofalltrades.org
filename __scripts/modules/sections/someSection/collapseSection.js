@@ -44,10 +44,10 @@ export const collapseSection = (element) => {
         setTimeout(() => {
             // console.log("removing section min-height property");
             section.style.removeProperty("min-height");
-        }, duration);
+        }, Math.max(10, duration));
         // Toggle the state of the toggle buttons
         toggleToggleButtons();
-    }, duration);
+    }, Math.max(10, duration));
     // console.groupEnd();
 };
 //# sourceMappingURL=collapseSection.js.map

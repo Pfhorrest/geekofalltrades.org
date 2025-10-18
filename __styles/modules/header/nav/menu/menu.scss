@@ -1,10 +1,12 @@
 @use "../../../root/layout/breakpoints.scss" as *;
+@use "../../../root/optional-motion.scss" as *;
 @use "./menu-item/menu-item.scss" as *;
 
 /// Styles for menus
 /// @group header
 /// @require {Length} $bp2 - Second breakpoint value
 /// @require {mixin} menu-item - Styles for menu items
+/// @require {mixin} optional-motion - DRY optional motion helper
 /// @see {mixin} breadcrumb - Styles for breadcrumbs
 /// @see {mixin} nav - General styles for navigation
 
@@ -46,7 +48,9 @@
     line-height: 2.5;
 
     /* Effects */
-    transition: all 0.25s;
+    @include optional-motion() {
+      transition: all 0.25s;
+    }
     will-change: height, padding-top, padding-bottom, row-gap;
 
     /* At large viewport widths... */
@@ -69,7 +73,7 @@
     /* Styles for menu items */
     @include menu-item-styles;
   }
-  
+
   /* Show the menu associated with the last breadcrumb by default */
   > a:last-of-type + ul {
     display: flex;

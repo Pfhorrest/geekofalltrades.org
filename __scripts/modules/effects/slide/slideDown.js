@@ -145,7 +145,7 @@ export const slideDown = (element, duration = getDuration(element)) => {
                                 element.style.removeProperty("row-gap");
                                 element.style.removeProperty("padding-bottom");
                                 element.style.removeProperty("overflow");
-                            }, duration);
+                            }, Math.max(10, duration));
                         }, 10);
                     }, 10);
                 }, 10);

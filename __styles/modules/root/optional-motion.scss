@@ -2,12 +2,11 @@
 
 /// Helper mixin that sets animations and transitions to apply
 /// only when the browser is not set to reduced motion
-/// and the viewport is at least $bp2
 /// and the data-reduced-motion attribute is not set to yes
 /// in either the html or the element,
 /// but always when the data-reduced-motion attribute is set to no
 /// in either the html or the element
-/// regardless browser preference or viewport size,
+/// regardless of browser preference,
 /// without having to duplicate code.
 /// @require {Length} $bp2 - Second breakpoint value
 

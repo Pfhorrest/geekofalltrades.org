@@ -1,3 +1,4 @@
+@use "../../root/optional-motion.scss" as *;
 @use "./section-toggleable.scss" as *;
 @use "./section-animation.scss" as *;
 @use "./figure.scss" as *;
@@ -11,6 +12,7 @@
 /// @require {mixin} figure - Styles for figures
 /// @require {mixin} duo - Styles for duos of sections side by side when possible
 /// @require {mixin} gallery - Styles for galleries
+/// @require {mixin} optional-motion - DRY optional motion helper
 
 @mixin section {
   section {
@@ -71,17 +73,21 @@
     text-shadow: 0 0 0.5em var(--cbi);
 
     /* Effects */
-    transition: all 0.5s;
+    @include optional-motion() {
+      transition: all 0.5s;
+    }
     /* Deeper nested subsections transition more slowly */
-    --dur: 0.5s;
-    section {
-      --dur: 0.25s;
+    @include optional-motion() {
+      --dur: 0.5s;
       section {
-        --dur: 0.5s;
+        --dur: 0.25s;
         section {
-          --dur: 0.75s;
+          --dur: 0.5s;
           section {
-            --dur: 1s;
+            --dur: 0.75s;
+            section {
+              --dur: 1s;
+            }
           }
         }
       }

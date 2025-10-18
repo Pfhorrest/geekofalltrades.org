@@ -1,4 +1,5 @@
 @use "../../../../root/layout/breakpoints.scss" as *;
+@use "../../../../root/optional-motion.scss" as *;
 @use "./menu-item-current.scss" as *;
 @use "./submenu/menu-item-with-submenu.scss" as *;
 
@@ -7,10 +8,11 @@
 /// @require {Length} $bp2 - Second breakpoint value
 /// @require {mixin} menu-item-current - Styles for active menu items
 /// @require {mixin} menu-item-with-submenu - Styles for menu items with submenus
+/// @require {mixin} optional-motion - DRY optional motion helper
 /// @see {mixin} menu - General styles for menus
 
 @mixin menu-item-styles {
-li {
+  li {
     /* Layout */
     position: relative;
     display: inline-block;
@@ -40,7 +42,6 @@ li {
       /* No line wrapping */
       white-space: nowrap;
     }
-
 
     /* Menu item link */
     a {
@@ -91,7 +92,9 @@ li {
       /* Effects */
 
       /* Skeuomorphisms on all interaction*/
-      transition: all 1s;
+      @include optional-motion() {
+        transition: all 1s;
+      }
       &:hover,
       &:focus,
       &:active {

@@ -17,7 +17,9 @@
     width: 100%;
     max-width: 100%;
     margin: var(--spacing) auto;
-    --dur: 0.5s;
+    @include optional-motion() {
+      --dur: 0.5s;
+    }
 
     /* Figure images */
     img {
@@ -140,7 +142,9 @@
         margin-left: var(--fms);
         margin-right: var(--fms);
         transform-origin: center;
-        transition-duration: calc(2 * var(--dur));
+        @include optional-motion() {
+          transition-duration: calc(2 * var(--dur));
+        }
       }
 
       /* The rest of them... */
@@ -198,8 +202,10 @@
       }
 
       /* And to transition in with different timing than other section content */
-      transition-duration: calc(4 * var(--dur)), 0.5s;
-      transition-property: transform, all;
+      @include optional-motion() {
+        transition-duration: calc(4 * var(--dur)), 0.5s;
+        transition-property: transform, all;
+      }
 
       img {
         /* Images transition in immediately with their figures now */

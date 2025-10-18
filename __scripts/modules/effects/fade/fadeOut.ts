@@ -26,5 +26,5 @@ export const fadeOut = (
     element.style.display = "none";
     // console.log("fadeOut completed");
     // console.groupEnd();
-  }, duration);
+  }, Math.max(10,duration));
 };

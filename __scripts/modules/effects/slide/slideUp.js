@@ -27,7 +27,7 @@ export const slideUp = (element, duration = getDuration(element)) => {
         element.style.paddingTop = "0";
         element.style.rowGap = "0";
         element.style.paddingBottom = "0";
-    }, 10);
+    }, 100);
     // Wait for the animation to complete, then remove all the styles
     setTimeout(() => {
         // console.log("setting element's display to none");
@@ -38,7 +38,7 @@ export const slideUp = (element, duration = getDuration(element)) => {
         element.style.removeProperty("padding-bottom");
         element.style.removeProperty("overflow");
         element.style.removeProperty("transition");
-    }, duration);
+    }, Math.max(10, duration));
     // console.groupEnd();
 };
 //# sourceMappingURL=slideUp.js.map

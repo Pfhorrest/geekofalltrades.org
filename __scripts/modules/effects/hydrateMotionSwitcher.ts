@@ -20,10 +20,10 @@ export const hydrateMotionSwitcher = () => {
 
     // Measure FPS and set reduced-motion attribute if necessary
 
-    // Initialize time, frame count, and fps
-    let fpsTimer: number = 1;
+    // Initialize time, frame count, fps, etc
+    let fpsTimer: number = 10;
     // console.log("fpsTimer:", fpsTimer);
-    let fpsTimerDelay: number = 0;
+    let fpsTimerDelay: number = fpsTimer ;
     // console.log("fpsTimerDelay:", fpsTimerDelay);
     let fpsTimestamp: number = performance.now();
     // console.log("fpsTimestamp:", fpsTimestamp);
@@ -35,6 +35,8 @@ export const hydrateMotionSwitcher = () => {
     // console.log("frameCount:", frameCount);
     let fps: number = 0;
     // console.log("fps:", fps);
+
+    const html: HTMLElement = document.documentElement;
 
     // Function to measure the frames per second
     const measureFPS = () => {
@@ -65,7 +67,6 @@ export const hydrateMotionSwitcher = () => {
         // console.log("fpsTimestamp:", fpsTimestamp);
 
         // Based on the fps, set the data-reduced-motion attribute
-        const html: HTMLElement = document.documentElement;
         const reducedMotion: string =
           html.getAttribute("data-reduced-motion") || "";
         // Only do this if reduced-motion is auto
@@ -75,36 +76,36 @@ export const hydrateMotionSwitcher = () => {
             // Upon failure...
             // console.log("fps < 30, setting reduced-motion to yes-auto");
             html.setAttribute("data-reduced-motion", "yes-auto");
-            // document.cookie =
-            // "reduced-motion=yes-auto; expires=" +
-            // new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            // "; path=/";
+            document.cookie =
+            "reduced-motion=yes-auto; expires=" +
+            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
+            "; path=/";
             // Increase delay *geometrically* on failure
             // so if we fail a lot we retry much more slowly.
             // Minimum of 3 to ensure increase at the threshold of oscillation,
             // because that, minus 1, times 2, is still greater than that.
-            // fpsTimerDelay = Math.max(3, (fpsTimerDelay * 2));
+            fpsTimerDelay = Math.max(3, (fpsTimerDelay * 2));
             // console.log("fpsTimerDelay:", fpsTimerDelay);
             // Delayed cycle after failure
-            // fpsTimer = Math.max(1, fpsTimerDelay);
+            fpsTimer = Math.max(1, fpsTimerDelay);
             // console.log("fpsTimer:", fpsTimer);
-          // } else if (fps >= 30) {
-          //   // Upon pass...
-          //   console.log("fps >= 30, setting reduced-motion to no-auto");
-          //   html.setAttribute("data-reduced-motion", "no-auto");
-          //   document.cookie =
-          //   "reduced-motion=no-auto; expires=" +
-          //   new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-          //   "; path=/";
-          //   // Decrease delay *linearly* on pass
-          //   // so if we pass a lot we retry gradually more quickly.
-          //   // Minimum of 2 to ensure increase at the threshold of oscillation,
-          //   // because that, times 2, minus 1, is still greater than that.
-          //   fpsTimerDelay = Math.max(2, (fpsTimerDelay - 1));
-          //   console.log("fpsTimerDelay:", fpsTimerDelay);
-          //   // Rapid cycle after pass
-          //   fpsTimer = 1;
-          //   console.log("fpsTimer:", fpsTimer);
+          } else if (fps >= 30) {
+            // Upon pass...
+            // console.log("fps >= 30, setting reduced-motion to no-auto");
+            html.setAttribute("data-reduced-motion", "no-auto");
+            document.cookie =
+            "reduced-motion=no-auto; expires=" +
+            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
+            "; path=/";
+            // Decrease delay *linearly* on pass
+            // so if we pass a lot we retry gradually more quickly.
+            // Minimum of 2 to ensure increase at the threshold of oscillation,
+            // because that, times 2, minus 1, is still greater than that.
+            fpsTimerDelay = Math.max(2, (fpsTimerDelay - 1));
+            // console.log("fpsTimerDelay:", fpsTimerDelay);
+            // Rapid cycle after pass
+            fpsTimer = 1;
+            // console.log("fpsTimer:", fpsTimer);
           }
         }
       }
@@ -114,9 +115,14 @@ export const hydrateMotionSwitcher = () => {
       requestAnimationFrame(measureFPS);
     };
 
-    // Start the loop
-    // console.log("starting fps counter...");
-    measureFPS();
+    // Default to reduced-motion
+    html.setAttribute("data-reduced-motion", "yes-auto");
+    // and wait before tentatively switching to enhanced-motion
+    // setTimeout(()=>{
+        // Start the loop
+        // console.log("starting fps counter...");
+        measureFPS();
+    // }, fpsTimer * 1000);
 
     // Get the footer element
     const footer = document.querySelector("footer");

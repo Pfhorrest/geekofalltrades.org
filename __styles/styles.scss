@@ -1,5 +1,7 @@
 @use "./modules/root/root.scss" as *;
 
+@use "./modules/root/optional-motion.scss" as *;
+
 @use "./modules/header/header.scss" as *;
 @use "./modules/main/main.scss" as *;
 @use "./modules/footer/footer.scss" as *;
@@ -9,7 +11,10 @@
 @include root;
 
 * {
-  transition: all 0.5s;
+  transition: all 0.01s;
+  @include optional-motion() {
+    transition: all 0.5s;
+  }
 }
 
 html {

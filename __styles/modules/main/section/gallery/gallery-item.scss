@@ -62,7 +62,9 @@
       max-height: calc(var(--gim) - 2 * var(--spacing));
       margin: auto;
       background: white;
-      transition: all var(--dur) calc(var(--delA) + var(--delB));
+      @include optional-motion() {
+        transition: all var(--dur) calc(var(--delA) + var(--delB));
+      }
     }
     /* Styles for when the images are off-screen waiting to transition in */
     &.off-screen {

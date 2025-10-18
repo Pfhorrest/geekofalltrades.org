@@ -329,6 +329,14 @@
 }
 
 * {
+  transition: all 0.01s;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) *:not([data-reduced-motion^=yes]) {
+    transition: all 0.5s;
+  }
+}
+*[data-reduced-motion^=no], html[data-reduced-motion^=no] * {
   transition: all 0.5s;
 }
 
@@ -727,13 +735,20 @@ header nav > ul {
   text-align: center;
   line-height: 2.5;
   /* Effects */
-  transition: all 0.25s;
   will-change: height, padding-top, padding-bottom, row-gap;
   /* At large viewport widths... */
   /* Styles for menu items */
 }
 header nav > ul * {
   --display: ;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) header nav > ul:not([data-reduced-motion^=yes]) {
+    transition: all 0.25s;
+  }
+}
+header nav > ul[data-reduced-motion^=no], html[data-reduced-motion^=no] header nav > ul {
+  transition: all 0.25s;
 }
 @media (min-width: 40rem) {
   header nav > ul {
@@ -809,11 +824,18 @@ header nav > ul li a {
   /* Text color should be ordinary text color in all circumstances */
   /* Effects */
   /* Skeuomorphisms on all interaction*/
-  transition: all 1s;
   /* Different colors for hover and active states */
 }
 header nav > ul li a, header nav > ul li a:active, header nav > ul li a:hover, header nav > ul li a:focus, header nav > ul li a:link, header nav > ul li a:visited {
   color: var(--ct);
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) header nav > ul li a:not([data-reduced-motion^=yes]) {
+    transition: all 1s;
+  }
+}
+header nav > ul li a[data-reduced-motion^=no], html[data-reduced-motion^=no] header nav > ul li a {
+  transition: all 1s;
 }
 header nav > ul li a:hover, header nav > ul li a:focus, header nav > ul li a:active {
   box-shadow: 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade), 0 0 0 1pt transparent inset;
@@ -1021,12 +1043,21 @@ main > * {
   flex: 0 1 auto;
 }
 main * {
-  transition: all var(--dur), opacity var(--dur) linear, transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75) calc(var(--delA) + var(--delB));
-  --dur: 1s;
+  --dur: 0.01s;
   --delA: 0s;
   --delB: 0s;
   /* Children of children have longer delays so they transition in in sequence */
   /* Styles for off-screen elements to transition back in from when they enter */
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) main *:not([data-reduced-motion^=yes]) {
+    transition: all var(--dur), opacity var(--dur) linear, transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75) calc(var(--delA) + var(--delB));
+    --dur: 1s;
+  }
+}
+main *[data-reduced-motion^=no], html[data-reduced-motion^=no] main * {
+  transition: all var(--dur), opacity var(--dur) linear, transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75) calc(var(--delA) + var(--delB));
+  --dur: 1s;
 }
 main *.off-screen > * {
   --delA: calc(1s / 32);
@@ -1261,9 +1292,7 @@ main section {
   /* Typography */
   text-shadow: 0 0 0.5em var(--cbi);
   /* Effects */
-  transition: all 0.5s;
   /* Deeper nested subsections transition more slowly */
-  --dur: 0.5s;
   /* Clear fix so floating figures don't extend beyond their sections */
   /* Get rid of padding on print */
   /* Styles for section animations */
@@ -1294,16 +1323,44 @@ main section section section section section {
 main section:hover, main section:focus, main section:active {
   box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
 }
-main section section {
-  --dur: 0.25s;
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) {
+    transition: all 0.5s;
+  }
 }
-main section section section {
+main section[data-reduced-motion^=no], html[data-reduced-motion^=no] main section {
+  transition: all 0.5s;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) {
+    --dur: 0.5s;
+  }
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section {
+    --dur: 0.25s;
+  }
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section {
+    --dur: 0.5s;
+  }
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section {
+    --dur: 0.75s;
+  }
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section section {
+    --dur: 1s;
+  }
+}
+main section[data-reduced-motion^=no], html[data-reduced-motion^=no] main section {
   --dur: 0.5s;
 }
-main section section section section {
+main section[data-reduced-motion^=no] section, html[data-reduced-motion^=no] main section section {
+  --dur: 0.25s;
+}
+main section[data-reduced-motion^=no] section section, html[data-reduced-motion^=no] main section section section {
+  --dur: 0.5s;
+}
+main section[data-reduced-motion^=no] section section section, html[data-reduced-motion^=no] main section section section section {
   --dur: 0.75s;
 }
-main section section section section section {
+main section[data-reduced-motion^=no] section section section section, html[data-reduced-motion^=no] main section section section section section {
   --dur: 1s;
 }
 main section:after {
@@ -1585,7 +1642,15 @@ main section.toggleable {
   main section.toggleable > h2::after, main section.toggleable > h3::after, main section.toggleable > h4::after, main section.toggleable > h5::after, main section.toggleable > h6::after {
     right: 0;
   }
-  main section.toggleable > h2::before, main section.toggleable > h2::after, main section.toggleable > h3::before, main section.toggleable > h3::after, main section.toggleable > h4::before, main section.toggleable > h4::after, main section.toggleable > h5::before, main section.toggleable > h5::after, main section.toggleable > h6::before, main section.toggleable > h6::after {
+}
+@media only screen and (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) main section.toggleable > h2::before:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h2::after:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h3::before:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h3::after:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h4::before:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h4::after:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h5::before:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h5::after:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h6::before:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h6::after:not([data-reduced-motion^=yes]) {
+    --dur: 1s;
+    transition: all var(--dur), opacity var(--dur) var(--dur);
+  }
+}
+@media only screen {
+  main section.toggleable > h2::before[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h2::before, main section.toggleable > h2::after[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h2::after, main section.toggleable > h3::before[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h3::before, main section.toggleable > h3::after[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h3::after, main section.toggleable > h4::before[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h4::before, main section.toggleable > h4::after[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h4::after, main section.toggleable > h5::before[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h5::before, main section.toggleable > h5::after[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h5::after, main section.toggleable > h6::before[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h6::before, main section.toggleable > h6::after[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h6::after {
     --dur: 1s;
     transition: all var(--dur), opacity var(--dur) var(--dur);
   }
@@ -1635,7 +1700,6 @@ main section figure {
   width: 100%;
   max-width: 100%;
   margin: var(--spacing) auto;
-  --dur: 0.5s;
   /* Figure images */
   /* To transform in and out as they enter or exit the viewport */
   /* Figures that can be inverted with light and dark mode */
@@ -1643,6 +1707,14 @@ main section figure {
      are contained within definite borders with backgrounds */
   /* At larger viewports, float figures alternately left or right */
   /* At even larger viewports, float figures even outside of their sections */
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) main section figure:not([data-reduced-motion^=yes]) {
+    --dur: 0.5s;
+  }
+}
+main section figure[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure {
+  --dur: 0.5s;
 }
 main section figure img {
   display: block;
@@ -1748,8 +1820,6 @@ main section figure.contained.off-screen img {
     border-radius: calc(2 * var(--spacing));
     box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
     /* And to transition in with different timing than other section content */
-    transition-duration: calc(4 * var(--dur)), 0.5s;
-    transition-property: transform, all;
   }
   main section figure.solo {
     width: 100vw;
@@ -1757,8 +1827,19 @@ main section figure.contained.off-screen img {
     margin-left: var(--fms);
     margin-right: var(--fms);
     transform-origin: center;
+  }
+}
+@media (min-width: 60rem) and (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) main section figure.solo:not([data-reduced-motion^=yes]) {
     transition-duration: calc(2 * var(--dur));
   }
+}
+@media (min-width: 60rem) {
+  main section figure.solo[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure.solo {
+    transition-duration: calc(2 * var(--dur));
+  }
+}
+@media (min-width: 60rem) {
   main section figure:not(.solo) {
     max-width: var(--fmw);
     /* These need to be applied to those in alternating sections too */
@@ -1783,10 +1864,13 @@ main section figure.contained.off-screen img {
     margin-right: var(--spacing);
     transform-origin: right;
   }
-
+}
+@media (min-width: 60rem) {
   main section figure:hover, main section figure:focus, main section figure:active {
     box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
   }
+}
+@media (min-width: 60rem) {
   main section figure, main section figure.contained {
     border: none;
     background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
@@ -1802,6 +1886,18 @@ main section figure.contained.off-screen img {
   main section figure[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure, main section figure.contained[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure.contained {
     animation-name: mainLighting;
     animation-duration: 5s;
+  }
+}
+@media (min-width: 60rem) and (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) main section figure:not([data-reduced-motion^=yes]) {
+    transition-duration: calc(4 * var(--dur)), 0.5s;
+    transition-property: transform, all;
+  }
+}
+@media (min-width: 60rem) {
+  main section figure[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure {
+    transition-duration: calc(4 * var(--dur)), 0.5s;
+    transition-property: transform, all;
   }
 }
 @media (min-width: 60rem) {
@@ -1956,6 +2052,13 @@ main section .gallery .item img {
   max-height: calc(var(--gim) - 2 * var(--spacing));
   margin: auto;
   background: white;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) main section .gallery .item img:not([data-reduced-motion^=yes]) {
+    transition: all var(--dur) calc(var(--delA) + var(--delB));
+  }
+}
+main section .gallery .item img[data-reduced-motion^=no], html[data-reduced-motion^=no] main section .gallery .item img {
   transition: all var(--dur) calc(var(--delA) + var(--delB));
 }
 main section .gallery .item.off-screen {
@@ -2214,7 +2317,6 @@ main .toggleAllControls {
   width: 100%;
   max-width: calc(80ch - 2 * var(--spacing));
   gap: var(--spacing);
-  --dur: 0.5s;
   /* The individual buttons */
   /* Don't show any of this in print */
 }
@@ -2222,6 +2324,14 @@ main .toggleAllControls {
   main .toggleAllControls {
     flex-wrap: nowrap;
   }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) main .toggleAllControls:not([data-reduced-motion^=yes]) {
+    --dur: 0.5s;
+  }
+}
+main .toggleAllControls[data-reduced-motion^=no], html[data-reduced-motion^=no] main .toggleAllControls {
+  --dur: 0.5s;
 }
 main .toggleAllControls a {
   /* Layout */
@@ -2438,7 +2548,6 @@ footer a {
   width: 100%;
   max-width: 40rem;
   gap: var(--spacing);
-  --dur: 0.5s;
   /* The individual buttons */
   /* Don't show any of this in print */
 }
@@ -2449,6 +2558,14 @@ footer a {
   .color-scheme-switcher#themeSwitcher {
     flex-wrap: nowrap;
   }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) .color-scheme-switcher:not([data-reduced-motion^=yes]) {
+    --dur: 0.5s;
+  }
+}
+.color-scheme-switcher[data-reduced-motion^=no], html[data-reduced-motion^=no] .color-scheme-switcher {
+  --dur: 0.5s;
 }
 .color-scheme-switcher a {
   /* Layout */
@@ -2530,9 +2647,16 @@ html[data-theme=alien] .color-scheme-switcher a.alien-theme {
   width: 100%;
   max-width: 40rem;
   gap: var(--spacing);
-  --dur: 0.5s;
   /* The individual buttons */
   /* Don't show any of this in print */
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-reduced-motion^=yes]) .reduced-motion-switcher:not([data-reduced-motion^=yes]) {
+    --dur: 0.5s;
+  }
+}
+.reduced-motion-switcher[data-reduced-motion^=no], html[data-reduced-motion^=no] .reduced-motion-switcher {
+  --dur: 0.5s;
 }
 .reduced-motion-switcher a {
   /* Layout */

@@ -65,7 +65,7 @@ export const expandSection = (element) => {
             });
             // Toggle the state of the toggle buttons
             toggleToggleButtons();
-        }, duration);
+        }, Math.max(10, duration));
     });
     // console.groupEnd();
 };
