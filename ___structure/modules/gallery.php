@@ -249,7 +249,7 @@
                 // Handle "more" link logic
                 if (!empty($image['morelink'])) {
                     $count = get_subgallery_image_count($rootpath . $image['morelink']) ?: $image['morecount'];
-                    if ($count > 1) {
+                    if ($count > 0) {
                         $count_text = ($count - 1) . ' more';
                         $from_text = (!empty($image['moretext'])) ? ' from ' . htmlspecialchars($image['moretext']) : '' ;
                         echo '
@@ -258,7 +258,7 @@
                                 .$count_text.$from_text.
                             '</a>
                         </p>';
-                    } elseif ($count === 0) {
+                    } else {
                         // No images found in subgallery
                         echo '
                         <p class="more">
