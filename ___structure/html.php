@@ -15,7 +15,11 @@
 	 * 
 	 * @var string
 	*/
-	$root = $_SERVER['DOCUMENT_ROOT'];
+	$root = (php_sapi_name() === 'cli-server')
+		// Running under PHP built-in server
+		 ? realpath(__DIR__ . '/../') // Project root
+		// Running under Apache / production
+		: $root = $_SERVER['DOCUMENT_ROOT'];
 
 	/**  
 	 * External path of the requested document relative to the host.
@@ -103,14 +107,12 @@
 		<!--  Set title to whatever the deepest head file declared -->
 		<title>
 			<?php
-				if ($_GET["title"]) {
-					$title = $_GET["title"] . " by Forrest Cameranesi";
-				}
-				echo $title;
+			$title = $_GET['title'] ?? ($title ?? "Untitled");
+			echo $title . " by Forrest Cameranesi";
 			?>
 		</title>
 		<!--  Set description to whatever the deepest head file declared -->
-		<meta name="description" content="<?php echo $description ?>" />
+		<meta name="description" content="<?php echo htmlspecialchars($description ?? '', ENT_QUOTES); ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<?php
@@ -122,7 +124,7 @@
 					sizes="'.$size.'x'.$size.'" />';
 			}
 		?>
-  	</head>
+	</head>
 	<body>
 		<header>
 			<?php

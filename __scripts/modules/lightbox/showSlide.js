@@ -7,6 +7,7 @@ import { slides } from "./lightboxState";
  * @returns {void}
  */
 export const showSlide = (index) => {
+    var _a;
     // console.groupCollapsed("Showing slide:", index);
     // Get the list of slides
     const slidesList = slides();
@@ -40,7 +41,7 @@ export const showSlide = (index) => {
     }
     // console.log("parentItem:", parentItem);
     // Get the caption text
-    const captionText = parentItem.querySelector(".title, h3")?.innerHTML;
+    const captionText = (_a = parentItem.querySelector(".title, h3")) === null || _a === void 0 ? void 0 : _a.innerHTML;
     // console.log("captionText:", captionText);
     // Get the caption element
     const captionElement = document.getElementById("caption");
@@ -77,7 +78,8 @@ export const showSlide = (index) => {
     // Check if an image exists at the src URL
     fetch(srcUrl)
         .then((res) => {
-        if (res.ok && res.headers.get("Content-Type")?.startsWith("image/")) {
+        var _a;
+        if (res.ok && ((_a = res.headers.get("Content-Type")) === null || _a === void 0 ? void 0 : _a.startsWith("image/"))) {
             // console.log("Setting image source to:", srcUrl);
             imageElement.src = srcUrl;
         }
@@ -92,7 +94,7 @@ export const showSlide = (index) => {
         imageElement.src = "_media/images/" + srcUrl;
     });
     // Set the image alt attribute to the caption text
-    imageElement.alt = captionElement?.textContent || "";
+    imageElement.alt = (captionElement === null || captionElement === void 0 ? void 0 : captionElement.textContent) || "";
     // console.groupEnd();
 };
 //# sourceMappingURL=showSlide.js.map

@@ -17,7 +17,8 @@ export const collapseSections = (id) => {
     // console.log("anchor:", anchor);
     // Collapse all sections that don't contain the anchor
     headings.forEach((heading) => {
-        if (!heading.closest("section")?.contains(anchor)) {
+        var _a;
+        if (!((_a = heading.closest("section")) === null || _a === void 0 ? void 0 : _a.contains(anchor))) {
             // console.log("collapsing section", heading.innerText);
             collapseSection(heading);
         }

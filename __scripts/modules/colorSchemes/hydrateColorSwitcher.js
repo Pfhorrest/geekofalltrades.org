@@ -10,11 +10,14 @@ export const hydrateColorSwitcher = () => {
         // Only run if it exists
         if (footer) {
             // Reusable function to create a control with the given class and text
-            const createControl = (container, className, text) => document.getElementById(container)?.appendChild(Object.assign(document.createElement("a"), {
-                className,
-                innerText: text,
-                role: "button",
-            }));
+            const createControl = (container, className, text) => {
+                var _a;
+                return (_a = document.getElementById(container)) === null || _a === void 0 ? void 0 : _a.appendChild(Object.assign(document.createElement("a"), {
+                    className,
+                    innerText: text,
+                    role: "button",
+                }));
+            };
             // Set up the color-scheme-switcher container
             const lightOrDarkSwitcher = footer.appendChild(document.createElement("div"));
             lightOrDarkSwitcher.id = "lightOrDarkSwitcher";

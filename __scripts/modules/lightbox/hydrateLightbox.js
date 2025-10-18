@@ -11,19 +11,21 @@ import { slides, slideDuration } from "./lightboxState";
 export const hydrateLightbox = () => {
     // console.groupCollapsed("hydrateLightbox");
     document.addEventListener("DOMContentLoaded", () => {
+        var _a, _b;
         //Gathers all the slides into a collection
         slides(document.querySelectorAll(".gallery a[href*='display=']"));
         // console.log(`${slides()?.length} slides found`);
-        if (slides()?.length !== 0) {
+        if (((_a = slides()) === null || _a === void 0 ? void 0 : _a.length) !== 0) {
             //Adds onclick event to every slide link to open lightbox
-            slides()?.forEach((element, index) => {
+            (_b = slides()) === null || _b === void 0 ? void 0 : _b.forEach((element, index) => {
                 // console.log("Adding onclick event to slide link", index);
                 element.addEventListener("click", (e) => {
+                    var _a;
                     // console.log("Slide link clicked", index);
                     e.preventDefault();
                     // console.log("About to set slide:", index);
                     setSlide(index);
-                    document.querySelectorAll("#lightbox")?.forEach((el) => {
+                    (_a = document.querySelectorAll("#lightbox")) === null || _a === void 0 ? void 0 : _a.forEach((el) => {
                         // console.log("Got the lightbox, now to fade it in...");
                         fadeIn(el, slideDuration());
                     });
@@ -34,6 +36,7 @@ export const hydrateLightbox = () => {
             fetch("/___structure/modules/lightbox.html")
                 .then((res) => res.text())
                 .then((html) => {
+                var _a, _b, _c, _d;
                 // console.log("Got the lightbox html");
                 let theLightbox = new DOMParser()
                     .parseFromString(html, "text/html")
@@ -41,26 +44,23 @@ export const hydrateLightbox = () => {
                 if (theLightbox) {
                     // console.log("Found the lightbox element");
                     //Inset it into the DOM
-                    const lastMainElement = document.querySelector("main")?.lastChild;
+                    const lastMainElement = (_a = document.querySelector("main")) === null || _a === void 0 ? void 0 : _a.lastChild;
                     if (lastMainElement) {
                         // console.log("Inserting lightbox after last main element");
                         lastMainElement.after(theLightbox);
                         //Bind controls
-                        theLightbox
-                            .querySelector(".prev")
-                            ?.addEventListener("click", () => {
+                        (_b = theLightbox
+                            .querySelector(".prev")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => {
                             // console.log("Lightbox previous button clicked");
                             incrementSlide(-1);
                         });
-                        theLightbox
-                            .querySelector(".close")
-                            ?.addEventListener("click", () => {
+                        (_c = theLightbox
+                            .querySelector(".close")) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => {
                             // console.log("Lightbox close button clicked");
                             fadeOut(theLightbox);
                         });
-                        theLightbox
-                            .querySelector(".next")
-                            ?.addEventListener("click", () => {
+                        (_d = theLightbox
+                            .querySelector(".next")) === null || _d === void 0 ? void 0 : _d.addEventListener("click", () => {
                             // console.log("Lightbox next button clicked");
                             incrementSlide(1);
                         });

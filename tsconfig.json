@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "ES6",                // ES6 output, compatible with modern browsers
+        "module": "ESNext",             // Keep modular imports/exports
+        "moduleResolution": "node",     // Resolve modules like Node.js
+        "strict": true,                 // Enable all strict type checks
+        "sourceMap": true,              // Generate source maps for debugging
+        "rootDir": "__scripts",         // Input directory for TypeScript files
+        "skipLibCheck": true,           // Ignore type errors in node_modules
+        "esModuleInterop": true,        // Make default imports from CommonJS modules work
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": ["__scripts/**/*.ts"]
+}

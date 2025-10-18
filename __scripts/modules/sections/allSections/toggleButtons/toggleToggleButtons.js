@@ -28,11 +28,12 @@ export const toggleToggleButtons = () => {
     const anchor = document.querySelector(location.hash || ":not(*)");
     // console.log("anchor", anchor);
     document.querySelectorAll(".anchorTarget").forEach((el) => {
+        var _a;
         // If there's an anchor
         if (anchor) {
             // Set the text content to the text of the anchor
             el.textContent =
-                anchor.querySelector("h2, h3, h4, h5, h6")?.textContent || "";
+                ((_a = anchor.querySelector("h2, h3, h4, h5, h6")) === null || _a === void 0 ? void 0 : _a.textContent) || "";
             if (
             // If any collapsed section contains the anchor
             sections.some((section) => section.classList.contains("collapsed") && section.contains(anchor)) ||

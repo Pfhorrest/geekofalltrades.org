@@ -10,7 +10,8 @@ const hydrateH1 = () => {
     const h1 = document.querySelector("header > h1");
     if (h1) {
         h1.addEventListener("click", () => {
-            document.querySelectorAll("header > nav")?.forEach((el) => {
+            var _a;
+            (_a = document.querySelectorAll("header > nav")) === null || _a === void 0 ? void 0 : _a.forEach((el) => {
                 slideToggle(el);
             });
         });

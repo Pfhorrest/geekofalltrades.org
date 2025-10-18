@@ -17,7 +17,8 @@ export const expandSections = (id) => {
     // console.log("anchor:", anchor);
     // Expand sections that contain the anchor or are parents of the anchor
     headings.forEach((heading) => {
-        if (!anchor || heading?.closest("section")?.contains(anchor)) {
+        var _a;
+        if (!anchor || ((_a = heading === null || heading === void 0 ? void 0 : heading.closest("section")) === null || _a === void 0 ? void 0 : _a.contains(anchor))) {
             // console.log("expanding section", heading.innerText);
             expandSection(heading);
         }

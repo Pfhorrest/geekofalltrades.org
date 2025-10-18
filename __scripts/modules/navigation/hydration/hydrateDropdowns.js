@@ -70,8 +70,9 @@ export const hydrateDropdowns = () => {
     });
     // Listen for clicks outside of a dropdown
     document.body.addEventListener("click", (e) => {
+        var _a;
         if (!(e.target instanceof HTMLElement &&
-            e.target.closest("li")?.classList.contains("submenu"))) {
+            ((_a = e.target.closest("li")) === null || _a === void 0 ? void 0 : _a.classList.contains("submenu")))) {
             // Close all dropdowns if so
             // console.log("click outside of a dropdown, closing all");
             closeDropdowns();
