@@ -5,8 +5,8 @@ import { slideUp, getDuration } from "../../effects/effects";
  */
 export const closeDropdowns = () => {
     const openDropdowns = document.querySelectorAll("header > nav > ul > li > ul");
-    const currentMenuItems = document.querySelectorAll("header > nav > ul > li.current");
-    if (openDropdowns.length > 0 || currentMenuItems.length > 0) {
+    const activeMenuItems = document.querySelectorAll("header > nav > ul > li.active");
+    if (openDropdowns.length > 0 || activeMenuItems.length > 0) {
         // console.groupCollapsed(
         //   `Closing all dropdowns at ${new Date().toISOString()}`
         // );
@@ -22,14 +22,14 @@ export const closeDropdowns = () => {
                 slideUp(dropdown);
             }
         });
-        // Remove 'current' from all menu items, after the slide-up animations are done
-        currentMenuItems.forEach((item) => {
+        // Remove 'active' from all menu items, after the slide-up animations are done
+        activeMenuItems.forEach((item) => {
             // console.log(
             //   `Setting timeout for '${item.querySelector("a")?.innerText}'`
             // );
             setTimeout(() => {
                 // console.log(item);
-                item.classList.remove("current");
+                item.classList.remove("active");
                 const itemLink = item.querySelector("a");
                 if (itemLink) {
                     itemLink.title = "Expand submenu";

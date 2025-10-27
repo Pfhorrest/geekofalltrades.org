@@ -3,7 +3,7 @@
 /// Styles for menu items that have submenus
 /// @group header
 /// @require {mixin} submenu - Styles for submenus
-/// @see {mixin} menu-item-current - Styles for active menu items
+/// @see {mixin} menu-item-active - Styles for active menu items
 /// @see {mixin} menu-item - General styles for menu items
 
 @mixin menu-item-with-submenu {
@@ -40,7 +40,7 @@
       }
     }
     /* But when the menu item is active ... */
-    &.current a {
+    &.active a {
       /* Flip the dropdown menu arrows back to normal */
       &::before,
       &::after {

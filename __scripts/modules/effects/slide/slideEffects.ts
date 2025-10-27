@@ -33,5 +33,5 @@ export const slideToggle = (
   // console.groupEnd();
 
   // Call the chosen animation function
-  animationFunction(element, Math.max(10,duration));
+  animationFunction(element, Math.max(100,duration));
 };

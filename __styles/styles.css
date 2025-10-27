@@ -829,6 +829,14 @@ header nav > ul li {
   }
 }
 header nav > ul li {
+  /* Styles for the current menu item link */
+}
+header nav > ul li.current > a {
+  background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95) 0%, var(--cw75) 100%);
+  background-size: 1000% 1000%;
+  background-position-y: 50%;
+}
+header nav > ul li {
   /* Menu item link */
 }
 header nav > ul li a {
@@ -890,25 +898,25 @@ header nav > ul li a:active {
 header nav > ul li {
   /* Styles for active menu items */
 }
-header nav > ul li.current, header nav > ul li:not(.submenu):has(ul):hover {
+header nav > ul li.active, header nav > ul li:not(.submenu):has(ul):hover {
   /* To pop out in front of other items */
   position: relative;
   z-index: 1;
   /* Menu item link */
 }
-header nav > ul li.current a, header nav > ul li:not(.submenu):has(ul):hover a {
+header nav > ul li.active a, header nav > ul li:not(.submenu):has(ul):hover a {
   background: radial-gradient(transparent, var(--cmg)), linear-gradient(to var(--curve), var(--cm95), var(--cm75));
   background-size: 1000% 1000%;
   /* When hovered */
 }
-header nav > ul li.current a:hover, header nav > ul li:not(.submenu):has(ul):hover a:hover {
+header nav > ul li.active a:hover, header nav > ul li:not(.submenu):has(ul):hover a:hover {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
   background-size: 100% 100%;
 }
-header nav > ul li.current a, header nav > ul li:not(.submenu):has(ul):hover a {
+header nav > ul li.active a, header nav > ul li:not(.submenu):has(ul):hover a {
   /* When active */
 }
-header nav > ul li.current a:active, header nav > ul li:not(.submenu):has(ul):hover a:active {
+header nav > ul li.active a:active, header nav > ul li:not(.submenu):has(ul):hover a:active {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
   background-size: 100% 100%;
 }
@@ -951,16 +959,16 @@ header nav > ul li.submenu > a:hover::before, header nav > ul li:has(ul) > a:hov
 header nav > ul li.submenu, header nav > ul li:has(ul) {
   /* But when the menu item is active ... */
 }
-header nav > ul li.submenu.current a, header nav > ul li:has(ul).current a {
+header nav > ul li.submenu.active a, header nav > ul li:has(ul).active a {
   /* Flip the dropdown menu arrows back to normal */
 }
-header nav > ul li.submenu.current a::before, header nav > ul li.submenu.current a::after, header nav > ul li:has(ul).current a::before, header nav > ul li:has(ul).current a::after {
+header nav > ul li.submenu.active a::before, header nav > ul li.submenu.active a::after, header nav > ul li:has(ul).active a::before, header nav > ul li:has(ul).active a::after {
   transform: rotate(0deg);
 }
-header nav > ul li.submenu.current a, header nav > ul li:has(ul).current a {
+header nav > ul li.submenu.active a, header nav > ul li:has(ul).active a {
   /* Reverse the shadow of the left one back again */
 }
-header nav > ul li.submenu.current a:hover::before, header nav > ul li:has(ul).current a:hover::before {
+header nav > ul li.submenu.active a:hover::before, header nav > ul li:has(ul).active a:hover::before {
   text-shadow: 1pt 1pt 1pt var(--shade);
 }
 header nav > ul li.submenu ul, header nav > ul li:has(ul) ul {

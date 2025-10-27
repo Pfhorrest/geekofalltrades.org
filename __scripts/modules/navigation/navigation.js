@@ -18,11 +18,29 @@ const hydrateH1 = () => {
         h1.style.cursor = "pointer";
     }
 };
+const highlightCurrent = () => {
+    console.log("highlighting current link...");
+    const items = document.querySelectorAll("header > nav > ul > li");
+    items.forEach((item) => {
+        const link = item.querySelector("a");
+        if (link) {
+            const trimmedLocationHref = window.location.href.replace(/\/$/, "");
+            if (trimmedLocationHref.startsWith(link.href)) {
+                console.log(`${trimmedLocationHref} starts with ${link.href}`);
+                item.classList.add("current");
+            }
+            else {
+                console.log(`${trimmedLocationHref} does not start with ${link.href}`);
+            }
+        }
+    });
+};
 export const hydrateNavigation = () => {
     document.addEventListener("DOMContentLoaded", () => {
         hydrateH1();
         hydrateBreadcrumbs();
         hydrateDropdowns();
+        highlightCurrent();
     });
 };
 //# sourceMappingURL=navigation.js.map

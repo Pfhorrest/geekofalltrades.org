@@ -3,8 +3,8 @@
 /// @see {mixin} menu-item - Styles for menu items
 /// @see {mixin} menu-item-with-submenu - Styles for menu items with submenus
 
-@mixin menu-item-current {
-  &.current, &:not(.submenu):has(ul):hover {
+@mixin menu-item-active {
+  &.active, &:not(.submenu):has(ul):hover {
     /* To pop out in front of other items */
     position: relative;
     z-index: 1;

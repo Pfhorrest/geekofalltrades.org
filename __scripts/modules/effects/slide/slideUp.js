@@ -38,7 +38,7 @@ export const slideUp = (element, duration = getDuration(element)) => {
         element.style.removeProperty("padding-bottom");
         element.style.removeProperty("overflow");
         element.style.removeProperty("transition");
-    }, Math.max(10, duration));
+    }, Math.max(100, duration));
     // console.groupEnd();
 };
 //# sourceMappingURL=slideUp.js.map

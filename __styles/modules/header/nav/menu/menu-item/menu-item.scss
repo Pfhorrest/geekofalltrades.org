@@ -1,12 +1,12 @@
 @use "../../../../root/layout/breakpoints.scss" as *;
 @use "../../../../root/optional-motion.scss" as *;
-@use "./menu-item-current.scss" as *;
+@use "./menu-item-active.scss" as *;
 @use "./submenu/menu-item-with-submenu.scss" as *;
 
 /// Styles for menu items
 /// @group header
 /// @require {Length} $bp2 - Second breakpoint value
-/// @require {mixin} menu-item-current - Styles for active menu items
+/// @require {mixin} menu-item-active - Styles for active menu items
 /// @require {mixin} menu-item-with-submenu - Styles for menu items with submenus
 /// @require {mixin} optional-motion - DRY optional motion helper
 /// @see {mixin} menu - General styles for menus
@@ -41,6 +41,14 @@
       flex: 1 0 0%;
       /* No line wrapping */
       white-space: nowrap;
+    }
+
+    /* Styles for the current menu item link */
+    &.current > a {
+      background: radial-gradient(transparent, var(--cwg)),
+        linear-gradient(to var(--curve), var(--cw95) 0%, var(--cw75) 100%);
+      background-size: 1000% 1000%;
+      background-position-y: 50%;
     }
 
     /* Menu item link */
@@ -117,7 +125,7 @@
     }
 
     /* Styles for active menu items */
-    @include menu-item-current;
+    @include menu-item-active;
 
     /* Styles for menu items with submenus */
     @include menu-item-with-submenu;

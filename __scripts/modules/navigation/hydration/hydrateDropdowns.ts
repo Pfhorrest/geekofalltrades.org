@@ -35,26 +35,26 @@ export const hydrateDropdowns = (): void => {
             // console.log(`click event on ${menuItemLink.textContent}`);
             // Save the open/closed state of this dropdown,
             // so we can know if it was open before we closed everything
-            const wasCurrent = menuItem.classList.contains("current");
-            // console.log(`wasCurrent?`, wasCurrent);
+            const wasActive = menuItem.classList.contains("active");
+            // console.log(`wasActive?`, wasActive);
             // If there's any other dropdowns open, close them all
             const anOpenDropdown = document.querySelector<HTMLElement>(
-              "header > nav > ul > li.current"
+              "header > nav > ul > li.active"
             );
             if (anOpenDropdown && anOpenDropdown != menuItem) {
               // console.log(`closing other dropdowns`);
               closeDropdowns();
             }
             // console.log(
-            //   `timouting ${wasCurrent ? "collapse" : "expand"} of self`
+            //   `timouting ${wasActive ? "collapse" : "expand"} of self`
             // );
             // Wait for that if necessary, then...
             setTimeout(
               () => {
-                if (!wasCurrent) {
+                if (!wasActive) {
                   // If the dropdown wasn't open before, expand it
                   // console.log("expanding submenu");
-                  menuItem.classList.add("current");
+                  menuItem.classList.add("active");
                   // console.log("setting title to collapse");
                   menuItemLink.title = "Collapse submenu";
                   menuItemLink.ariaExpanded = "true";
@@ -64,7 +64,7 @@ export const hydrateDropdowns = (): void => {
                   // console.log("collapsing submenu");
                   slideUp(submenu);
                   setTimeout(() => {
-                    menuItem.classList.remove("current");
+                    menuItem.classList.remove("active");
                     // console.log("setting title to expand");
                     menuItemLink.title = "Expand submenu";
                     menuItemLink.ariaExpanded = "false";
