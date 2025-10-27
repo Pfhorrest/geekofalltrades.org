@@ -3,12 +3,69 @@
 :root {
   /* Color variables */
   /* General site-wide color variables */
+}
+:root, :root[data-theme=natural] {
+  --hm: 120;
+  --hs: 60;
+  --sm: 50%;
+  --lmo: 75%;
+}
+:root[data-theme=grays] {
+  --sm: 0%;
+}
+:root[data-theme=warmer] {
+  --hm: 45;
+  --hs: 15;
+}
+:root[data-theme=cooler] {
+  --hm: 195;
+  --hs: 15;
+}
+:root[data-theme=alien] {
+  --hm: 300;
+  --hs: -60;
+}
+:root {
   --hc: calc(var(--hm) + var(--hs));
   --hw: calc(var(--hm) - var(--hs));
   --ss: calc(var(--sm) / 2);
   --sh: calc((2 * var(--sm)));
   --sd: calc(var(--ss) / 4);
   color-scheme: light dark;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --lm: calc(100% - var(--lmo));
+    --lti: calc((100% - var(--lm)) / 10);
+    --lsi: calc((0% - var(--lm)) / 10);
+    --black: black;
+    --white: white;
+  }
+}
+:root[data-color-scheme=light], html[data-color-scheme=light] :root {
+  --lm: calc(100% - var(--lmo));
+  --lti: calc((100% - var(--lm)) / 10);
+  --lsi: calc((0% - var(--lm)) / 10);
+  --black: black;
+  --white: white;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --lm: calc(0% + var(--lmo));
+    --lti: calc((0% - var(--lm)) / 10);
+    --lsi: calc((100% - var(--lm)) / 10);
+    --black: white;
+    --white: black;
+  }
+}
+:root[data-color-scheme=dark], html[data-color-scheme=dark] :root {
+  --lm: calc(0% + var(--lmo));
+  --lti: calc((0% - var(--lm)) / 10);
+  --lsi: calc((100% - var(--lm)) / 10);
+  --black: white;
+  --white: black;
+}
+:root {
   --lt9: calc(var(--lm) + (var(--lti) * 9));
   --lt8: calc(var(--lm) + (var(--lti) * 8));
   --lt7: calc(var(--lm) + (var(--lti) * 7));
@@ -96,100 +153,6 @@
   --ct: hsl(from var(--black) h s l / 75%);
   --cbi: hsl(from var(--white) h s l / 25%);
   --cbo: hsl(from var(--white) h s l / 75%);
-  /* Colors variables for header and footer */
-  --skyHue3: 0;
-  --skyHue2: 30;
-  --skyHue1: 60;
-  --seaHue1: 180;
-  --seaHue2: 210;
-  --seaHue3: 240;
-  /* Layout variables */
-  /* Spacing variables */
-  /* Configurable spacing variables */
-  --spacingFactor: 1;
-  /* Calculated spacing variables */
-  --spacingRel: clamp(0.5rem, calc(100vw / 60), calc(var(--spacingFactor) * 1em));
-  --spacingAbs: clamp(
-    0.5rem,
-    calc(100vw / 60),
-    calc(var(--spacingFactor) * 1rem)
-  );
-  --spacing: var(--spacingRel);
-  /* Rounding variables */
-  /* Configurable spacing variables */
-  --spacingFactor: 1;
-  /* Calculated spacing variables */
-  --spacingRel: clamp(0.5rem, calc(100vw / 60), calc(var(--spacingFactor) * 1em));
-  --spacingAbs: clamp(
-    0.5rem,
-    calc(100vw / 60),
-    calc(var(--spacingFactor) * 1rem)
-  );
-  --spacing: var(--spacingRel);
-  /* Configurable rounding variables */
-  --roundingFactor: 1;
-  /* Calculated rounding variables */
-  --roundingRel: calc(var(--spacingRel) * var(--roundingFactor));
-  --roundingAbs: calc(var(--spacingAbs) * var(--roundingFactor));
-  --rounding: var(--roundingRel);
-  /* Breakpoint variables */
-  --bp1: 20rem;
-  --bp2: 40rem;
-  --bp3: 60rem;
-  --bp4: 80rem;
-}
-:root, :root[data-theme=natural] {
-  --hm: 120;
-  --hs: 60;
-  --sm: 50%;
-  --lmo: 75%;
-}
-:root[data-theme=grays] {
-  --sm: 0%;
-}
-:root[data-theme=warmer] {
-  --hm: 45;
-  --hs: 15;
-}
-:root[data-theme=cooler] {
-  --hm: 195;
-  --hs: 15;
-}
-:root[data-theme=alien] {
-  --hm: 300;
-  --hs: -60;
-}
-@media (prefers-color-scheme: light) {
-  :root {
-    --lm: calc(100% - var(--lmo));
-    --lti: calc((100% - var(--lm)) / 10);
-    --lsi: calc((0% - var(--lm)) / 10);
-    --black: black;
-    --white: white;
-  }
-}
-:root[data-color-scheme=light], html[data-color-scheme=light] :root {
-  --lm: calc(100% - var(--lmo));
-  --lti: calc((100% - var(--lm)) / 10);
-  --lsi: calc((0% - var(--lm)) / 10);
-  --black: black;
-  --white: white;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --lm: calc(0% + var(--lmo));
-    --lti: calc((0% - var(--lm)) / 10);
-    --lsi: calc((100% - var(--lm)) / 10);
-    --black: white;
-    --white: black;
-  }
-}
-:root[data-color-scheme=dark], html[data-color-scheme=dark] :root {
-  --lm: calc(0% + var(--lmo));
-  --lti: calc((0% - var(--lm)) / 10);
-  --lsi: calc((100% - var(--lm)) / 10);
-  --black: white;
-  --white: black;
 }
 @media (prefers-color-scheme: light) {
   :root {
@@ -226,6 +189,15 @@
 }
 :root[data-color-scheme=dark], html[data-color-scheme=dark] :root {
   --curve: top;
+}
+:root {
+  /* Colors variables for header and footer */
+  --skyHue3: 0;
+  --skyHue2: 30;
+  --skyHue1: 60;
+  --seaHue1: 180;
+  --seaHue2: 210;
+  --seaHue3: 240;
 }
 :root[data-theme=warmer] {
   --skyHue3: 30;
@@ -327,6 +299,42 @@
     from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
   );
 }
+:root {
+  /* Layout variables */
+  /* Spacing variables */
+  /* Configurable spacing variables */
+  --spacingFactor: 1;
+  /* Calculated spacing variables */
+  --spacingRel: clamp(0.5rem, calc(100vw / 60), calc(var(--spacingFactor) * 1em));
+  --spacingAbs: clamp(
+    0.5rem,
+    calc(100vw / 60),
+    calc(var(--spacingFactor) * 1rem)
+  );
+  --spacing: var(--spacingRel);
+  /* Rounding variables */
+  /* Configurable spacing variables */
+  --spacingFactor: 1;
+  /* Calculated spacing variables */
+  --spacingRel: clamp(0.5rem, calc(100vw / 60), calc(var(--spacingFactor) * 1em));
+  --spacingAbs: clamp(
+    0.5rem,
+    calc(100vw / 60),
+    calc(var(--spacingFactor) * 1rem)
+  );
+  --spacing: var(--spacingRel);
+  /* Configurable rounding variables */
+  --roundingFactor: 1;
+  /* Calculated rounding variables */
+  --roundingRel: calc(var(--spacingRel) * var(--roundingFactor));
+  --roundingAbs: calc(var(--spacingAbs) * var(--roundingFactor));
+  --rounding: var(--roundingRel);
+  /* Breakpoint variables */
+  --bp1: 20rem;
+  --bp2: 40rem;
+  --bp3: 60rem;
+  --bp4: 80rem;
+}
 
 * {
   transition: all 0.01s;
@@ -406,10 +414,6 @@ header {
   background: black;
   /* Typography */
   text-align: center;
-  /* Don't display in print mode */
-  /* Links have no underlines in the header*/
-  /* Styles for the main heading */
-  /* Styles for navigation */
 }
 @media (min-width: 40rem) {
   header {
@@ -417,13 +421,22 @@ header {
     overflow-y: visible;
   }
 }
+header {
+  /* Don't display in print mode */
+}
 @media only print {
   header {
     display: none;
   }
 }
+header {
+  /* Links have no underlines in the header*/
+}
 header a {
   text-decoration: none;
+}
+header {
+  /* Styles for the main heading */
 }
 header h1 {
   /* Geenral */
@@ -439,8 +452,7 @@ header h1 {
   /* Borders */
   border: 0.25em solid black;
   border-radius: 0.5em;
-  outline: 1pt solid black;
-  /* hides some unsightly glitches at the edges */
+  outline: 1pt solid black; /* hides some unsightly glitches at the edges */
   /* Basic background colors of sky and sea with mist for depth built in
      (will be overridden with fancier layers at large viewport widths) */
   background: linear-gradient(to bottom, var(--skyColor2) 0%, var(--skyColor1) 37.5%, var(--skyMist) 48%, var(--white) 50%, var(--seaMist) 52%, var(--seaColor1) 62.5%, var(--seaColor2) 100%);
@@ -459,19 +471,9 @@ header h1 {
   --sW: calc(1em / 32);
   --sC: hsl(from var(--white) h s l / 50%);
   /* Text shadow also adds a softer touch even when proper stroke is supported */
-  text-shadow: 0.0125em 0.0125em 0.0125em #000, 0.025em 0.025em 0.025em #0008, 0.05em 0.05em 0.05em #0004, 0.1em 0.1em 0.1em #0002, var(--sW) var(--sW) var(--sW) var(--sC), 0 var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) 0 var(--sW) var(--sC), calc(-1 * var(--sW)) calc(-1 * var(--sW)) var(--sW) var(--sC), 0 calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) 0 var(--sW) var(--sC);
+  text-shadow: 0.0125em 0.0125em 0.0125em #000, 0.025em 0.025em 0.025em rgba(0, 0, 0, 0.5333333333), 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2666666667), 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.1333333333), var(--sW) var(--sW) var(--sW) var(--sC), 0 var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) var(--sW) var(--sW) var(--sC), calc(-1 * var(--sW)) 0 var(--sW) var(--sC), calc(-1 * var(--sW)) calc(-1 * var(--sW)) var(--sW) var(--sC), 0 calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) calc(-1 * var(--sW)) var(--sW) var(--sC), var(--sW) 0 var(--sW) var(--sC);
   /* Details for small viewport widths */
   /* Places the logo in a ::before pseudo-element */
-  /* Places a hamburger menu in an ::after pseudo-element */
-  /* In light mode, it's unfiltered
-     (and therefore black against the light background) */
-  /* In dark mode, it's inverted
-      (and therefore white against the dark background) */
-  /* Makes different spans of text all equal sizes as each other */
-  /* Hides the first span
-     (e.g. "Forrest Cameranesi");
-     To be shown only at larger viewport widths */
-  /* Overrides for large viewport widths */
 }
 header h1::before {
   content: "";
@@ -481,6 +483,9 @@ header h1::before {
   background: center/contain no-repeat url(/_media/images/logo.png);
   flex-shrink: 0;
 }
+header h1 {
+  /* Places a hamburger menu in an ::after pseudo-element */
+}
 header h1::after {
   content: "";
   display: inline-block;
@@ -488,6 +493,10 @@ header h1::after {
   height: 1em;
   background: center/contain no-repeat url('data:image/svg+xml,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0.0em" y="0.0em" width="1.0em" height="1.0em" viewBox="0 0 1.0em 1.0em" ><rect x="0.0em" y="0.0em" width="1.0em" height="0.2em" /><rect x="0.0em" y="0.4em" width="1.0em" height="0.2em" /><rect x="0.0em" y="0.8em" width="1.0em" height="0.2em" /></svg>');
   flex-shrink: 0;
+}
+header h1 {
+  /* In light mode, it's unfiltered
+     (and therefore black against the light background) */
 }
 @media (prefers-color-scheme: light) {
   header h1::after {
@@ -497,6 +506,10 @@ header h1::after {
 header h1[data-color-scheme=light]::after, html[data-color-scheme=light] header h1::after {
   filter: none;
 }
+header h1 {
+  /* In dark mode, it's inverted
+      (and therefore white against the dark background) */
+}
 @media (prefers-color-scheme: dark) {
   header h1::after {
     filter: invert(1);
@@ -504,6 +517,9 @@ header h1[data-color-scheme=light]::after, html[data-color-scheme=light] header 
 }
 header h1[data-color-scheme=dark]::after, html[data-color-scheme=dark] header h1::after {
   filter: invert(1);
+}
+header h1 {
+  /* Makes different spans of text all equal sizes as each other */
 }
 header h1 > span {
   flex-grow: 1;
@@ -521,8 +537,16 @@ header h1 > span > span {
     display: inline;
   }
 }
+header h1 {
+  /* Hides the first span
+     (e.g. "Forrest Cameranesi");
+     To be shown only at larger viewport widths */
+}
 header h1 > span:first-of-type {
   display: none;
+}
+header h1 {
+  /* Overrides for large viewport widths */
 }
 @media (min-width: 40rem) {
   header h1 {
@@ -534,7 +558,7 @@ header h1 > span:first-of-type {
     padding: 1vw;
     border: 0.5rem solid black;
     border-radius: 6.25vw 6.25vw 0 0;
-    box-shadow: inset 0 0 0.5vw 0 #0008, inset 0 0 0 0.5vw #000c;
+    box-shadow: inset 0 0 0.5vw 0 rgba(0, 0, 0, 0.5333333333), inset 0 0 0 0.5vw rgba(0, 0, 0, 0.8);
     /* Scale up the logo (previously set in this ::before pseudo-element) */
     /* Hide the hamburger menu (previously set in this ::after pseudo-element) */
     /* Display the first line of text, now that there's room;
@@ -544,12 +568,6 @@ header h1 > span:first-of-type {
 @media (min-width: 40rem) and (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) header h1:not([data-reduced-motion^=yes]) {
     /* Animation */
-    animation-name: windAndWaves;
-    animation-duration: 12s;
-    animation-iteration-count: infinite;
-    animation-direction: normal;
-    /* Custom animation timing function aiming to make loop look seamless */
-    animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
   }
   @keyframes windAndWaves {
     from {
@@ -558,17 +576,19 @@ header h1 > span:first-of-type {
     to {
       background-size: 100%, 100% 200%, auto;
     }
+  }
+  html:not([data-reduced-motion^=yes]) header h1:not([data-reduced-motion^=yes]) {
+    animation-name: windAndWaves;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    /* Custom animation timing function aiming to make loop look seamless */
+    animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
   }
 }
 @media (min-width: 40rem) {
   header h1[data-reduced-motion^=no], html[data-reduced-motion^=no] header h1 {
     /* Animation */
-    animation-name: windAndWaves;
-    animation-duration: 12s;
-    animation-iteration-count: infinite;
-    animation-direction: normal;
-    /* Custom animation timing function aiming to make loop look seamless */
-    animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
   }
   @keyframes windAndWaves {
     from {
@@ -578,23 +598,28 @@ header h1 > span:first-of-type {
       background-size: 100%, 100% 200%, auto;
     }
   }
-}
-@media (min-width: 40rem) {
+  header h1[data-reduced-motion^=no], html[data-reduced-motion^=no] header h1 {
+    animation-name: windAndWaves;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    /* Custom animation timing function aiming to make loop look seamless */
+    animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
+  }
   header h1::before {
     width: 3em;
     height: 3em;
   }
-}
-@media (min-width: 40rem) {
   header h1::after {
     display: none;
   }
-}
-@media (min-width: 40rem) {
   header h1 > span:first-of-type {
     display: inline;
     order: -1;
   }
+}
+header {
+  /* Styles for navigation */
 }
 header nav {
   /* Layout */
@@ -602,6 +627,11 @@ header nav {
   z-index: 1;
   display: none;
   --display: flex;
+}
+header nav * {
+  --display: ;
+}
+header nav {
   flex-flow: column nowrap;
   flex-shrink: 1;
   /* Sizing */
@@ -619,12 +649,6 @@ header nav {
     var(--cc75) calc(6 * 100% / 6)
   );
   /* At larger viewport widths, show fully by default */
-  /* Styles for breadcrumbs */
-  /* Styles for menus */
-  /* Show the menu associated with the last breadcrumb by default */
-}
-header nav * {
-  --display: ;
 }
 @media (min-width: 40rem) {
   header nav {
@@ -635,6 +659,9 @@ header nav * {
     overflow-y: visible;
     background-position-y: 0;
   }
+}
+header nav {
+  /* Styles for breadcrumbs */
 }
 header nav > a {
   /* Layout */
@@ -670,7 +697,6 @@ header nav > a {
   line-height: 2;
   text-overflow: ellipsis;
   /* Fade out opacity from latest to earlier breadcrumbs */
-  /* At larger viewport widths ... */
 }
 header nav > a:nth-last-of-type(1) {
   opacity: 100%;
@@ -686,6 +712,9 @@ header nav > a:nth-last-of-type(4) {
 }
 header nav > a:nth-last-of-type(5) {
   opacity: 50%;
+}
+header nav > a {
+  /* At larger viewport widths ... */
 }
 @media (min-width: 40rem) {
   header nav > a {
@@ -707,11 +736,19 @@ header nav > a:nth-last-of-type(5) {
     opacity: 93.75%;
   }
 }
+header nav {
+  /* Styles for menus */
+}
 header nav > ul {
   /* Layout */
   z-index: 1;
   display: none;
   --display: flex;
+}
+header nav > ul * {
+  --display: ;
+}
+header nav > ul {
   flex-flow: row wrap;
   justify-content: space-between;
   flex-basis: auto;
@@ -735,12 +772,6 @@ header nav > ul {
   text-align: center;
   line-height: 2.5;
   /* Effects */
-  will-change: height, padding-top, padding-bottom, row-gap;
-  /* At large viewport widths... */
-  /* Styles for menu items */
-}
-header nav > ul * {
-  --display: ;
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) header nav > ul:not([data-reduced-motion^=yes]) {
@@ -749,6 +780,10 @@ header nav > ul * {
 }
 header nav > ul[data-reduced-motion^=no], html[data-reduced-motion^=no] header nav > ul {
   transition: all 0.25s;
+}
+header nav > ul {
+  will-change: height, padding-top, padding-bottom, row-gap;
+  /* At large viewport widths... */
 }
 @media (min-width: 40rem) {
   header nav > ul {
@@ -762,6 +797,9 @@ header nav > ul[data-reduced-motion^=no], html[data-reduced-motion^=no] header n
     box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade), 0 -1pt 0 0 transparent inset;
     background-position-y: 100%;
   }
+}
+header nav > ul {
+  /* Styles for menu items */
 }
 header nav > ul li {
   /* Layout */
@@ -781,12 +819,6 @@ header nav > ul li {
   /* Miscelleneous */
   list-style-type: none;
   /* At larger viewpoint widths ... */
-  /* Menu item link */
-  /* Styles for active menu items */
-  /* Styles for menu items with submenus */
-  /* For the dropdown menu arrows */
-  /* Basic dropdown functionality for when no Javascript */
-  /* Hide submenus by default (even if menu item isn't classed ".submenu") */
 }
 @media (min-width: 40rem) {
   header nav > ul li {
@@ -795,6 +827,9 @@ header nav > ul li {
     /* No line wrapping */
     white-space: nowrap;
   }
+}
+header nav > ul li {
+  /* Menu item link */
 }
 header nav > ul li a {
   /* Layout */
@@ -822,12 +857,13 @@ header nav > ul li a {
   overflow-wrap: break-word;
   line-height: 1;
   /* Text color should be ordinary text color in all circumstances */
-  /* Effects */
-  /* Skeuomorphisms on all interaction*/
-  /* Different colors for hover and active states */
 }
 header nav > ul li a, header nav > ul li a:active, header nav > ul li a:hover, header nav > ul li a:focus, header nav > ul li a:link, header nav > ul li a:visited {
   color: var(--ct);
+}
+header nav > ul li a {
+  /* Effects */
+  /* Skeuomorphisms on all interaction*/
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) header nav > ul li a:not([data-reduced-motion^=yes]) {
@@ -842,11 +878,17 @@ header nav > ul li a:hover, header nav > ul li a:focus, header nav > ul li a:act
   /* Scale background back to normal to animate in gradient */
   background-size: 100% 100%;
 }
+header nav > ul li a {
+  /* Different colors for hover and active states */
+}
 header nav > ul li a:hover {
   background: radial-gradient(transparent, var(--cmg)), linear-gradient(to var(--curve), var(--cm95), var(--cm75));
 }
 header nav > ul li a:active {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
+}
+header nav > ul li {
+  /* Styles for active menu items */
 }
 header nav > ul li.current, header nav > ul li:not(.submenu):has(ul):hover {
   /* To pop out in front of other items */
@@ -858,24 +900,21 @@ header nav > ul li.current a, header nav > ul li:not(.submenu):has(ul):hover a {
   background: radial-gradient(transparent, var(--cmg)), linear-gradient(to var(--curve), var(--cm95), var(--cm75));
   background-size: 1000% 1000%;
   /* When hovered */
-  /* When active */
 }
 header nav > ul li.current a:hover, header nav > ul li:not(.submenu):has(ul):hover a:hover {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
   background-size: 100% 100%;
 }
+header nav > ul li.current a, header nav > ul li:not(.submenu):has(ul):hover a {
+  /* When active */
+}
 header nav > ul li.current a:active, header nav > ul li:not(.submenu):has(ul):hover a:active {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95), var(--cw75));
   background-size: 100% 100%;
 }
-header nav > ul li.submenu, header nav > ul li:has(ul) {
-  /* But when the menu item is active ... */
-}
-header nav > ul li.submenu > a, header nav > ul li:has(ul) > a {
-  /* Rotate the left one counter-clockwise by default */
-  /* Rotate the right one clockwise by default */
-  /* Reverse the shadow of the left one
-     since they're in opposite orientations now */
+header nav > ul li {
+  /* Styles for menu items with submenus */
+  /* For the dropdown menu arrows */
 }
 header nav > ul li.submenu > a::before, header nav > ul li.submenu > a::after, header nav > ul li:has(ul) > a::before, header nav > ul li:has(ul) > a::after {
   content: "▼";
@@ -886,25 +925,40 @@ header nav > ul li.submenu > a::before, header nav > ul li.submenu > a::after, h
   vertical-align: middle;
   transform: rotate(0deg);
 }
+header nav > ul li.submenu > a, header nav > ul li:has(ul) > a {
+  /* Rotate the left one counter-clockwise by default */
+}
 header nav > ul li.submenu > a::before, header nav > ul li:has(ul) > a::before {
   left: 0.5em;
   margin-right: 0.5em;
   transform: rotate(-90deg);
+}
+header nav > ul li.submenu > a, header nav > ul li:has(ul) > a {
+  /* Rotate the right one clockwise by default */
 }
 header nav > ul li.submenu > a::after, header nav > ul li:has(ul) > a::after {
   right: 0.5em;
   margin-left: 0.5em;
   transform: rotate(90deg);
 }
+header nav > ul li.submenu > a, header nav > ul li:has(ul) > a {
+  /* Reverse the shadow of the left one
+     since they're in opposite orientations now */
+}
 header nav > ul li.submenu > a:hover::before, header nav > ul li:has(ul) > a:hover::before {
   text-shadow: -1pt 1pt 1pt var(--shade);
 }
+header nav > ul li.submenu, header nav > ul li:has(ul) {
+  /* But when the menu item is active ... */
+}
 header nav > ul li.submenu.current a, header nav > ul li:has(ul).current a {
   /* Flip the dropdown menu arrows back to normal */
-  /* Reverse the shadow of the left one back again */
 }
 header nav > ul li.submenu.current a::before, header nav > ul li.submenu.current a::after, header nav > ul li:has(ul).current a::before, header nav > ul li:has(ul).current a::after {
   transform: rotate(0deg);
+}
+header nav > ul li.submenu.current a, header nav > ul li:has(ul).current a {
+  /* Reverse the shadow of the left one back again */
 }
 header nav > ul li.submenu.current a:hover::before, header nav > ul li:has(ul).current a:hover::before {
   text-shadow: 1pt 1pt 1pt var(--shade);
@@ -929,12 +983,13 @@ header nav > ul li.submenu ul, header nav > ul li:has(ul) ul {
   /* Borders */
   border-radius: calc(0.5 * var(--rounding));
   box-shadow: 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 1pt 1pt 1pt transparent, 0 0 0 1pt var(--shade) inset;
-  /* At larger viewport widths, drop down instead of just expanding in place */
-  /* Submenu items */
 }
 header nav > ul li.submenu ul:hover, header nav > ul li.submenu ul:focus, header nav > ul li.submenu ul:active, header nav > ul li:has(ul) ul:hover, header nav > ul li:has(ul) ul:focus, header nav > ul li:has(ul) ul:active {
   box-shadow: 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade), 0 0 0 1pt transparent inset;
   background-size: 100% 100%;
+}
+header nav > ul li.submenu ul, header nav > ul li:has(ul) ul {
+  /* At larger viewport widths, drop down instead of just expanding in place */
 }
 @media (min-width: 40rem) {
   header nav > ul li.submenu ul, header nav > ul li:has(ul) ul {
@@ -945,6 +1000,9 @@ header nav > ul li.submenu ul:hover, header nav > ul li.submenu ul:focus, header
     margin: 0 -0.5em;
     padding: 2em 0 0;
   }
+}
+header nav > ul li.submenu ul, header nav > ul li:has(ul) ul {
+  /* Submenu items */
 }
 header nav > ul li.submenu ul li, header nav > ul li:has(ul) ul li {
   display: block;
@@ -957,11 +1015,20 @@ header nav > ul li.submenu ul li a, header nav > ul li:has(ul) ul li a {
   box-sizing: border-box;
   padding: 0.5em 1em;
 }
+header nav > ul li {
+  /* Basic dropdown functionality for when no Javascript */
+}
 header nav > ul li:not(.submenu):has(ul):hover > ul {
   display: block;
 }
+header nav > ul li {
+  /* Hide submenus by default (even if menu item isn't classed ".submenu") */
+}
 header nav > ul li > ul {
   display: none;
+}
+header nav {
+  /* Show the menu associated with the last breadcrumb by default */
 }
 header nav > a:last-of-type + ul {
   display: flex;
@@ -989,30 +1056,10 @@ main {
   /* Typography */
   font-size: clamp(1rem, 1rem + (100vw - 20rem) * 0.25 / 60, 1.25rem);
   line-height: 1.5;
-  /* Direct children layout */
-  /* All children transitions */
-  /* Give some selected elements zero transition delay
-  so they just appear immediately with their parents */
-  /* Styles for headings */
-  /* Scale all sizes from one-and-a-fraction rem at the first breakpoint up to
-     one-to-three-times the main font size (mfs) at the fourth breakpoint */
-  /* Styles for other elements */
-  /* Paragraphs */
-  /* Lists */
-  /* Blockquotes */
-  /* Horizontal rules */
-  /* Tables */
-  /* Styles for sections */
-  /* Styles for the toggle-all-sections controls */
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) main:not([data-reduced-motion^=yes]) {
     /* Animation */
-    animation-name: mainLighting;
-    animation-duration: 44s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    transition-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
   }
   @keyframes mainLighting {
     from {
@@ -1022,14 +1069,16 @@ main {
       background-size: 400% 200%;
     }
   }
+  html:not([data-reduced-motion^=yes]) main:not([data-reduced-motion^=yes]) {
+    animation-name: mainLighting;
+    animation-duration: 44s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transition-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
+  }
 }
 main[data-reduced-motion^=no], html[data-reduced-motion^=no] main {
   /* Animation */
-  animation-name: mainLighting;
-  animation-duration: 44s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  transition-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
 }
 @keyframes mainLighting {
   from {
@@ -1039,15 +1088,24 @@ main[data-reduced-motion^=no], html[data-reduced-motion^=no] main {
     background-size: 400% 200%;
   }
 }
+main[data-reduced-motion^=no], html[data-reduced-motion^=no] main {
+  animation-name: mainLighting;
+  animation-duration: 44s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transition-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
+}
+main {
+  /* Direct children layout */
+}
 main > * {
   flex: 0 1 auto;
 }
+main {
+  /* All children transitions */
+}
 main * {
   --dur: 0.01s;
-  --delA: 0s;
-  --delB: 0s;
-  /* Children of children have longer delays so they transition in in sequence */
-  /* Styles for off-screen elements to transition back in from when they enter */
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) main *:not([data-reduced-motion^=yes]) {
@@ -1058,6 +1116,11 @@ main * {
 main *[data-reduced-motion^=no], html[data-reduced-motion^=no] main * {
   transition: all var(--dur), opacity var(--dur) linear, transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75) calc(var(--delA) + var(--delB));
   --dur: 1s;
+}
+main * {
+  --delA: 0s;
+  --delB: 0s;
+  /* Children of children have longer delays so they transition in in sequence */
 }
 main *.off-screen > * {
   --delA: calc(1s / 32);
@@ -1071,9 +1134,8 @@ main *.off-screen > *.off-screen > *.off-screen > * {
 main *.off-screen > *.off-screen > *.off-screen > *.off-screen > * {
   --delA: calc(4s / 32);
 }
-main *.off-screen {
-  transition-delay: 0s;
-  --dur: 0s;
+main * {
+  /* Styles for off-screen elements to transition back in from when they enter */
 }
 @media only screen and (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) main *.off-screen:not([data-reduced-motion^=yes]) {
@@ -1087,6 +1149,14 @@ main *.off-screen {
     transform: rotateY(0.25turn);
   }
 }
+main *.off-screen {
+  transition-delay: 0s;
+  --dur: 0s;
+}
+main {
+  /* Give some selected elements zero transition delay
+  so they just appear immediately with their parents */
+}
 main a,
 main em,
 main strong,
@@ -1094,6 +1164,9 @@ main i,
 main b,
 main span {
   --dur: 0s;
+}
+main {
+  /* Styles for headings */
 }
 main h2,
 main h3,
@@ -1107,17 +1180,6 @@ main h6 {
   /* Spacing */
   margin: 0 auto;
   padding: 0 var(--spacing);
-  /* Borders */
-  border: none;
-  outline: none;
-  /* Typography */
-  color: var(--cm);
-  font-family: "Itim", "Nunito", sans-serif;
-  font-weight: normal;
-  text-align: center;
-  line-height: 1.25;
-  text-shadow: 0.0625em 0.0625em 0.0625em transparent;
-  /* To allow for select non-wrapping text with spans */
 }
 main h2:not(:has(+ .description)),
 main h3:not(:has(+ .description)),
@@ -1128,6 +1190,22 @@ main h6:not(:has(+ .description)) {
   border-bottom: 1pt groove var(--cw75);
   border-radius: var(--rounding);
   margin-bottom: var(--spacing);
+}
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+  /* Borders */
+  border: none;
+  outline: none;
+  /* Typography */
+  color: var(--cm);
+  font-family: "Itim", "Nunito", sans-serif;
+  font-weight: normal;
+  text-align: center;
+  line-height: 1.25;
+  text-shadow: 0.0625em 0.0625em 0.0625em transparent;
 }
 main h2:hover, main h2:focus, main h2:active, *:hover > main h2, *:focus > main h2, *:active > main h2,
 main h3:hover,
@@ -1156,12 +1234,23 @@ main h6:active,
 *:active > main h6 {
   text-shadow: 0.0625em 0.0625em 0.0625em var(--shade);
 }
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+  /* To allow for select non-wrapping text with spans */
+}
 main h2 span,
 main h3 span,
 main h4 span,
 main h5 span,
 main h6 span {
   white-space: nowrap;
+}
+main {
+  /* Scale all sizes from one-and-a-fraction rem at the first breakpoint up to
+     one-to-three-times the main font size (mfs) at the fourth breakpoint */
 }
 main h2 {
   font-size: clamp(1.5rem, 1.5rem + (100vw - 20rem) * 2.25 / 60, 3.75rem);
@@ -1178,6 +1267,10 @@ main h5 {
 main h6 {
   font-size: clamp(1.1rem, 1.1rem + (100vw - 20rem) * 0.30625 / 60, 1.40625rem);
 }
+main {
+  /* Styles for other elements */
+  /* Paragraphs */
+}
 main p {
   text-indent: 2em;
   /* Special description paragraphs for below section headiings */
@@ -1192,6 +1285,9 @@ main p.description {
   text-align: center;
   text-indent: 0;
 }
+main {
+  /* Lists */
+}
 main ul,
 main ol {
   overflow: hidden;
@@ -1204,6 +1300,9 @@ main ul li,
 main ol li {
   margin: var(--spacing) 0;
   padding: 0;
+}
+main {
+  /* Blockquotes */
 }
 main blockquote {
   position: relative;
@@ -1235,6 +1334,9 @@ main blockquote:after {
   font-size: 2em;
   text-align: right;
 }
+main {
+  /* Horizontal rules */
+}
 main hr {
   content: url(/_media/images/hr-vine.svg);
   clear: both;
@@ -1245,6 +1347,9 @@ main hr {
   outline: 0;
   filter: drop-shadow(0 2pt 1pt var(--shade));
 }
+main {
+  /* Tables */
+}
 main table {
   width: 100%;
   box-sizing: border-box;
@@ -1253,8 +1358,6 @@ main table {
   margin: var(--spacing) auto auto auto;
   background: #ccc;
   /* Head and data cell common styles */
-  /* Head cell specific styles */
-  /* Data cell specific styles */
 }
 main table th,
 main table td {
@@ -1262,12 +1365,21 @@ main table td {
   border: 1pt solid black;
   text-align: center;
 }
+main table {
+  /* Head cell specific styles */
+}
 main table th {
   background: var(--cm95);
   text-align: center;
 }
+main table {
+  /* Data cell specific styles */
+}
 main table td {
   background: var(--white);
+}
+main {
+  /* Styles for sections */
 }
 main section {
   /* Layout */
@@ -1279,27 +1391,6 @@ main section {
   max-width: calc(80ch + 2 * var(--spacing));
   margin: 0 auto;
   /* First-order sections have flex gap between them, so no vertical margins */
-  padding: var(--spacing);
-  /* Borders */
-  border: 0;
-  outline: 0;
-  /* Deeper nested subsections get less rounded */
-  border-radius: calc(2 * var(--rounding));
-  box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--gloss) inset;
-  /* Background */
-  background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
-  background-position: center;
-  /* Typography */
-  text-shadow: 0 0 0.5em var(--cbi);
-  /* Effects */
-  /* Deeper nested subsections transition more slowly */
-  /* Clear fix so floating figures don't extend beyond their sections */
-  /* Get rid of padding on print */
-  /* Styles for section animations */
-  /* Styles for sections that can be toggled */
-  /* Styles for figures */
-  /* Styles for duos of sections side by side when possible */
-  /* Styles for galleries */
 }
 main section section:not(:last-child) {
   /* But sections within sections do get bottom margins, unless they're last */
@@ -1307,6 +1398,14 @@ main section section:not(:last-child) {
 }
 main section > *:last-child {
   margin-bottom: 0;
+}
+main section {
+  padding: var(--spacing);
+  /* Borders */
+  border: 0;
+  outline: 0;
+  /* Deeper nested subsections get less rounded */
+  border-radius: calc(2 * var(--rounding));
 }
 main section section {
   border-radius: calc(1.75 * var(--rounding));
@@ -1320,8 +1419,19 @@ main section section section section {
 main section section section section section {
   border-radius: calc(1 * var(--rounding));
 }
+main section {
+  box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--gloss) inset;
+}
 main section:hover, main section:focus, main section:active {
   box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
+}
+main section {
+  /* Background */
+  background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+  background-position: center;
+  /* Typography */
+  text-shadow: 0 0 0.5em var(--cbi);
+  /* Effects */
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) {
@@ -1330,6 +1440,9 @@ main section:hover, main section:focus, main section:active {
 }
 main section[data-reduced-motion^=no], html[data-reduced-motion^=no] main section {
   transition: all 0.5s;
+}
+main section {
+  /* Deeper nested subsections transition more slowly */
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) {
@@ -1363,17 +1476,26 @@ main section[data-reduced-motion^=no] section section section, html[data-reduced
 main section[data-reduced-motion^=no] section section section section, html[data-reduced-motion^=no] main section section section section section {
   --dur: 1s;
 }
+main section {
+  /* Clear fix so floating figures don't extend beyond their sections */
+}
 main section:after {
   content: "";
   display: block;
   height: 0;
   clear: both;
 }
+main section {
+  /* Get rid of padding on print */
+}
 @media only print {
   main section {
     padding-left: 0;
     padding-right: 0;
   }
+}
+main section {
+  /* Styles for section animations */
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) {
@@ -1386,7 +1508,6 @@ main section:after {
     to make the animation look more varied */
     /* First level (5s loop over 10 sections) */
     animation-duration: 5s;
-    /* Second level (4s loop over 8 sections) */
   }
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 1) {
     animation-delay: 0s;
@@ -1418,9 +1539,11 @@ main section:after {
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 0) {
     animation-delay: 4.5s;
   }
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) {
+    /* Second level (4s loop over 8 sections) */
+  }
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section {
     animation-duration: 4s;
-    /* Third level (3s loop over 6 sections) */
   }
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 1) {
     animation-delay: 0s;
@@ -1446,9 +1569,11 @@ main section:after {
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 0) {
     animation-delay: 3.5s;
   }
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section {
+    /* Third level (3s loop over 6 sections) */
+  }
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section {
     animation-duration: 3s;
-    /* Fourth level (2s loop over 4 sections) */
   }
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 1) {
     animation-delay: 0s;
@@ -1468,9 +1593,11 @@ main section:after {
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 0) {
     animation-delay: 2.5s;
   }
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section {
+    /* Fourth level (2s loop over 4 sections) */
+  }
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section {
     animation-duration: 2s;
-    /* Fifth level (1s loop over 2 sections) */
   }
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section:nth-of-type(4n + 1) {
     animation-delay: 0s;
@@ -1483,6 +1610,9 @@ main section:after {
   }
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section:nth-of-type(4n + 0) {
     animation-delay: 1.5s;
+  }
+  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section {
+    /* Fifth level (1s loop over 2 sections) */
   }
   html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section section {
     animation-duration: 1s;
@@ -1504,7 +1634,6 @@ main section[data-reduced-motion^=no], html[data-reduced-motion^=no] main sectio
   to make the animation look more varied */
   /* First level (5s loop over 10 sections) */
   animation-duration: 5s;
-  /* Second level (4s loop over 8 sections) */
 }
 main section[data-reduced-motion^=no]:nth-of-type(10n + 1), html[data-reduced-motion^=no] main section:nth-of-type(10n + 1) {
   animation-delay: 0s;
@@ -1536,9 +1665,11 @@ main section[data-reduced-motion^=no]:nth-of-type(10n + 9), html[data-reduced-mo
 main section[data-reduced-motion^=no]:nth-of-type(10n + 0), html[data-reduced-motion^=no] main section:nth-of-type(10n + 0) {
   animation-delay: 4.5s;
 }
+main section[data-reduced-motion^=no], html[data-reduced-motion^=no] main section {
+  /* Second level (4s loop over 8 sections) */
+}
 main section[data-reduced-motion^=no] section, html[data-reduced-motion^=no] main section section {
   animation-duration: 4s;
-  /* Third level (3s loop over 6 sections) */
 }
 main section[data-reduced-motion^=no] section:nth-of-type(8n + 1), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 1) {
   animation-delay: 0s;
@@ -1564,9 +1695,11 @@ main section[data-reduced-motion^=no] section:nth-of-type(8n + 7), html[data-red
 main section[data-reduced-motion^=no] section:nth-of-type(8n + 0), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 0) {
   animation-delay: 3.5s;
 }
+main section[data-reduced-motion^=no] section, html[data-reduced-motion^=no] main section section {
+  /* Third level (3s loop over 6 sections) */
+}
 main section[data-reduced-motion^=no] section section, html[data-reduced-motion^=no] main section section section {
   animation-duration: 3s;
-  /* Fourth level (2s loop over 4 sections) */
 }
 main section[data-reduced-motion^=no] section section:nth-of-type(6n + 1), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 1) {
   animation-delay: 0s;
@@ -1586,9 +1719,11 @@ main section[data-reduced-motion^=no] section section:nth-of-type(6n + 5), html[
 main section[data-reduced-motion^=no] section section:nth-of-type(6n + 0), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 0) {
   animation-delay: 2.5s;
 }
+main section[data-reduced-motion^=no] section section, html[data-reduced-motion^=no] main section section section {
+  /* Fourth level (2s loop over 4 sections) */
+}
 main section[data-reduced-motion^=no] section section section, html[data-reduced-motion^=no] main section section section section {
   animation-duration: 2s;
-  /* Fifth level (1s loop over 2 sections) */
 }
 main section[data-reduced-motion^=no] section section section:nth-of-type(4n + 1), html[data-reduced-motion^=no] main section section section section:nth-of-type(4n + 1) {
   animation-delay: 0s;
@@ -1602,6 +1737,9 @@ main section[data-reduced-motion^=no] section section section:nth-of-type(4n + 3
 main section[data-reduced-motion^=no] section section section:nth-of-type(4n + 0), html[data-reduced-motion^=no] main section section section section:nth-of-type(4n + 0) {
   animation-delay: 1.5s;
 }
+main section[data-reduced-motion^=no] section section section, html[data-reduced-motion^=no] main section section section section {
+  /* Fifth level (1s loop over 2 sections) */
+}
 main section[data-reduced-motion^=no] section section section section, html[data-reduced-motion^=no] main section section section section section {
   animation-duration: 1s;
 }
@@ -1610,6 +1748,9 @@ main section[data-reduced-motion^=no] section section section section:nth-of-typ
 }
 main section[data-reduced-motion^=no] section section section section:nth-of-type(2n + 2), html[data-reduced-motion^=no] main section section section section section:nth-of-type(2n + 2) {
   animation-delay: 0.5s;
+}
+main section {
+  /* Styles for sections that can be toggled */
 }
 main section.toggleable {
   /* Only on screens so as not to mess up printing */
@@ -1623,9 +1764,6 @@ main section.toggleable {
     padding-left: 1em;
     padding-right: 1em;
     /* Create the toggle controls in ::before and ::after pseudo-elements */
-    /* Align them to the left and right */
-    /* Delay their appearance when the section transitions into view */
-    /* Make them more opaque on hover */
   }
   main section.toggleable > h2::before, main section.toggleable > h2::after, main section.toggleable > h3::before, main section.toggleable > h3::after, main section.toggleable > h4::before, main section.toggleable > h4::after, main section.toggleable > h5::before, main section.toggleable > h5::after, main section.toggleable > h6::before, main section.toggleable > h6::after {
     content: "▼";
@@ -1636,11 +1774,20 @@ main section.toggleable {
     display: flex;
     align-items: center;
   }
+  main section.toggleable > h2, main section.toggleable > h3, main section.toggleable > h4, main section.toggleable > h5, main section.toggleable > h6 {
+    /* Align them to the left and right */
+  }
   main section.toggleable > h2::before, main section.toggleable > h3::before, main section.toggleable > h4::before, main section.toggleable > h5::before, main section.toggleable > h6::before {
     left: 0;
   }
   main section.toggleable > h2::after, main section.toggleable > h3::after, main section.toggleable > h4::after, main section.toggleable > h5::after, main section.toggleable > h6::after {
     right: 0;
+  }
+  main section.toggleable > h2, main section.toggleable > h3, main section.toggleable > h4, main section.toggleable > h5, main section.toggleable > h6 {
+    /* Delay their appearance when the section transitions into view */
+  }
+  main section.toggleable > h2, main section.toggleable > h3, main section.toggleable > h4, main section.toggleable > h5, main section.toggleable > h6 {
+    /* Make them more opaque on hover */
   }
 }
 @media only screen and (prefers-reduced-motion: no-preference) {
@@ -1666,15 +1813,12 @@ main section.toggleable {
     opacity: 0;
     transition-delay: 0s;
   }
-}
-@media only screen {
   main section.toggleable > h2:hover::before, main section.toggleable > h2:hover::after, main section.toggleable > h3:hover::before, main section.toggleable > h3:hover::after, main section.toggleable > h4:hover::before, main section.toggleable > h4:hover::after, main section.toggleable > h5:hover::before, main section.toggleable > h5:hover::after, main section.toggleable > h6:hover::before, main section.toggleable > h6:hover::after {
     opacity: 0.25;
   }
 }
 main section.collapsed {
   /* When the sections are collapsed ... */
-  /* Don't hide contents of collapsed sections on print */
 }
 main section.collapsed > h1, main section.collapsed > h2, main section.collapsed > h3, main section.collapsed > h4, main section.collapsed > h5, main section.collapsed > h6 {
   /* Rotate the toggle controls inward */
@@ -1687,6 +1831,9 @@ main section.collapsed > h1::after, main section.collapsed > h2::after, main sec
   transform: rotate(90deg);
   opacity: 0.25;
 }
+main section.collapsed {
+  /* Don't hide contents of collapsed sections on print */
+}
 @media only print {
   main section.collapsed > *:not(h2, h3, h4, h5, h6, .description) {
     display: initial !important;
@@ -1694,19 +1841,15 @@ main section.collapsed > h1::after, main section.collapsed > h2::after, main sec
     height: initial !important;
   }
 }
+main section {
+  /* Styles for figures */
+}
 main section figure {
   float: none;
   display: block;
   width: 100%;
   max-width: 100%;
   margin: var(--spacing) auto;
-  /* Figure images */
-  /* To transform in and out as they enter or exit the viewport */
-  /* Figures that can be inverted with light and dark mode */
-  /* Figures that aren't freeform within sections but rather 
-     are contained within definite borders with backgrounds */
-  /* At larger viewports, float figures alternately left or right */
-  /* At even larger viewports, float figures even outside of their sections */
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) main section figure:not([data-reduced-motion^=yes]) {
@@ -1716,10 +1859,16 @@ main section figure {
 main section figure[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure {
   --dur: 0.5s;
 }
+main section figure {
+  /* Figure images */
+}
 main section figure img {
   display: block;
   max-width: 100%;
   margin: auto;
+}
+main section figure {
+  /* To transform in and out as they enter or exit the viewport */
 }
 main section figure.off-screen {
   /* But only on screen so as not to mess up printing */
@@ -1733,6 +1882,9 @@ main section figure.off-screen {
   main section figure.off-screen[data-reduced-motion^=no] img, html[data-reduced-motion^=no] main section figure.off-screen img {
     transform: scale(0);
   }
+}
+main section figure {
+  /* Figures that can be inverted with light and dark mode */
 }
 @media (prefers-color-scheme: light) {
   main section figure.invertible img {
@@ -1750,19 +1902,28 @@ main section figure.invertible[data-color-scheme=light] img, html[data-color-sch
 main section figure.invertible[data-color-scheme=dark] img, html[data-color-scheme=dark] main section figure.invertible img {
   filter: invert(1) hue-rotate(0.5turn);
 }
+main section figure {
+  /* Figures that aren't freeform within sections but rather 
+     are contained within definite borders with backgrounds */
+}
 main section figure.contained {
   overflow: hidden;
   border: 1pt solid var(--cw75);
   border-radius: var(--rounding);
   box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
-  background: var(--cw75);
-  /* Don't do separate transitions on their images when entering viewport */
 }
 main section figure.contained:hover, main section figure.contained:focus, main section figure.contained:active {
   box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
 }
+main section figure.contained {
+  background: var(--cw75);
+  /* Don't do separate transitions on their images when entering viewport */
+}
 main section figure.contained.off-screen img {
   transform: none;
+}
+main section figure {
+  /* At larger viewports, float figures alternately left or right */
 }
 @media (min-width: 40rem) {
   main section figure {
@@ -1771,13 +1932,14 @@ main section figure.contained.off-screen img {
     margin-top: 0;
     margin-bottom: var(--spacing);
     /* Unless they're classed "solo" */
-    /* Otherwise ... */
-    /* Imperfect hack to continue alternation across multiple sections */
   }
   main section figure.solo {
     float: none;
     transform-origin: center;
     max-width: 100%;
+  }
+  main section figure {
+    /* Otherwise ... */
   }
   main section figure:not(.solo):nth-of-type(odd) {
     float: left;
@@ -1791,6 +1953,9 @@ main section figure.contained.off-screen img {
     margin-left: var(--spacing);
     margin-right: 0;
   }
+  main section figure {
+    /* Imperfect hack to continue alternation across multiple sections */
+  }
   main section:nth-of-type(even) figure:not(.solo):nth-of-type(odd) {
     float: right;
     transform-origin: right;
@@ -1803,6 +1968,9 @@ main section figure.contained.off-screen img {
     margin-right: var(--spacing);
     margin-left: 0;
   }
+}
+main section figure {
+  /* At even larger viewports, float figures even outside of their sections */
 }
 @media (min-width: 60rem) {
   main section figure {
@@ -1814,12 +1982,6 @@ main section figure.contained.off-screen img {
       calc(var(--fw) - 0.5 * var(--fms))
     );
     /* Those classed as "solo" extent out beyond both sides of their sections */
-    /* The rest of them... */
-    /* They need a section-like padding, borders and backgrounds to look nice */
-    padding: var(--spacing);
-    border-radius: calc(2 * var(--spacing));
-    box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
-    /* And to transition in with different timing than other section content */
   }
   main section figure.solo {
     width: 100vw;
@@ -1827,6 +1989,14 @@ main section figure.contained.off-screen img {
     margin-left: var(--fms);
     margin-right: var(--fms);
     transform-origin: center;
+  }
+  main section figure {
+    /* The rest of them... */
+    /* They need a section-like padding, borders and backgrounds to look nice */
+    padding: var(--spacing);
+    border-radius: calc(2 * var(--spacing));
+    box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
+    /* And to transition in with different timing than other section content */
   }
 }
 @media (min-width: 60rem) and (prefers-reduced-motion: no-preference) {
@@ -1838,11 +2008,8 @@ main section figure.contained.off-screen img {
   main section figure.solo[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure.solo {
     transition-duration: calc(2 * var(--dur));
   }
-}
-@media (min-width: 60rem) {
   main section figure:not(.solo) {
     max-width: var(--fmw);
-    /* These need to be applied to those in alternating sections too */
   }
   main section figure:not(.solo):nth-of-type(odd) {
     margin-left: var(--fms);
@@ -1854,6 +2021,9 @@ main section figure.contained.off-screen img {
     margin-left: var(--spacing);
     transform-origin: left;
   }
+  main section figure:not(.solo) {
+    /* These need to be applied to those in alternating sections too */
+  }
   main section:nth-of-type(even) figure:not(.solo):nth-of-type(odd) {
     margin-right: var(--fms);
     margin-left: var(--spacing);
@@ -1864,13 +2034,9 @@ main section figure.contained.off-screen img {
     margin-right: var(--spacing);
     transform-origin: right;
   }
-}
-@media (min-width: 60rem) {
   main section figure:hover, main section figure:focus, main section figure:active {
     box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
   }
-}
-@media (min-width: 60rem) {
   main section figure, main section figure.contained {
     border: none;
     background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
@@ -1899,8 +2065,6 @@ main section figure.contained.off-screen img {
     transition-duration: calc(4 * var(--dur)), 0.5s;
     transition-property: transform, all;
   }
-}
-@media (min-width: 60rem) {
   main section figure img {
     /* Images transition in immediately with their figures now */
     transition-duration: 0s;
@@ -1909,6 +2073,9 @@ main section figure.contained.off-screen img {
     max-height: calc(100vh - 10rem);
     object-fit: contain;
   }
+}
+main section {
+  /* Styles for duos of sections side by side when possible */
 }
 main section .duo {
   display: flex;
@@ -1930,6 +2097,9 @@ main section .duo > section {
   margin: 0;
   vertical-align: top;
 }
+main section {
+  /* Styles for galleries */
+}
 main section .gallery {
   /* Layout */
   display: flex;
@@ -1946,19 +2116,20 @@ main section .gallery {
   border: 0;
   outline: 0 solid black;
   border-radius: 0;
-  /* Background */
-  /* Typography */
-  text-align: center;
-  box-shadow: none;
-  /* Gallery item fitting*/
-  /* Style details for gallery items */
-  /* Styles for galleries that expand beyond the main section width */
 }
 main section .gallery, main section .gallery:hover, main section .gallery:active, main section .gallery:focus {
   box-shadow: none;
+}
+main section .gallery {
+  /* Background */
 }
 main section .gallery, main section .gallery:hover, main section .gallery:active, main section .gallery:focus {
   background: none;
+}
+main section .gallery {
+  /* Typography */
+  text-align: center;
+  box-shadow: none;
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) main section .gallery:not([data-reduced-motion^=yes]) {
@@ -1971,6 +2142,9 @@ main section .gallery[data-reduced-motion^=no], html[data-reduced-motion^=no] ma
   /* Animation */
   animation-name: mainLighting;
   animation-duration: 5s;
+}
+main section .gallery {
+  /* Gallery item fitting*/
 }
 main section .gallery > .item {
   /* Gallery item number (how many columns should there be)
@@ -1987,7 +2161,6 @@ main section .gallery > .item {
   flex: 1 0 var(--gim);
   box-sizing: border-box;
   /* Make two-column gallery items transition in with appropriate timing */
-  /* Make three-column gallery items transition in with appropriate timing */
 }
 @media (min-width: 34rem) {
   main section .gallery > .item:nth-of-type(2n + 1), main section .gallery > .item:nth-of-type(2n + 1) * {
@@ -1996,6 +2169,9 @@ main section .gallery > .item {
   main section .gallery > .item:nth-of-type(2n + 0), main section .gallery > .item:nth-of-type(2n + 0) * {
     --delB: calc(2s / 2);
   }
+}
+main section .gallery > .item {
+  /* Make three-column gallery items transition in with appropriate timing */
 }
 @media (min-width: 53rem) {
   main section .gallery > .item:nth-of-type(3n + 1), main section .gallery > .item:nth-of-type(3n + 1) * {
@@ -2007,6 +2183,9 @@ main section .gallery > .item {
   main section .gallery > .item:nth-of-type(3n + 0), main section .gallery > .item:nth-of-type(3n + 0) * {
     --delB: calc(3s / 3);
   }
+}
+main section .gallery {
+  /* Style details for gallery items */
 }
 main section .gallery .item {
   /* Layout */
@@ -2025,26 +2204,23 @@ main section .gallery .item {
   border: 0pt solid var(--cw75);
   border-radius: var(--rounding);
   box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--gloss) inset, 0 0 0 1pt var(--shade);
+}
+main section .gallery .item:hover, main section .gallery .item:focus, main section .gallery .item:active {
+  box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset, 0 0 0 1pt transparent;
+}
+main section .gallery .item {
   /* Background */
-  background-color: white;
+  background-color: var(--white);
   /* Typography */
   text-align: center;
   vertical-align: top;
   color: var(--ct);
-  /* Reset text color since these backgrounds are always white */
-  --ct: hsl(from black h s l / 75%);
   /* Transitions */
   transition-timing-function: cubic-bezier(0.75, 1.75, 0.75, 0.75), ease;
   transition-property: transform, all;
   /* Miscellaneous */
   list-style: none;
   /* Images */
-  /* Styles for when the images are off-screen waiting to transition in */
-  /* Text */
-  /* Links in general */
-}
-main section .gallery .item:hover, main section .gallery .item:focus, main section .gallery .item:active {
-  box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset, 0 0 0 1pt transparent;
 }
 main section .gallery .item img {
   display: inline-block;
@@ -2052,6 +2228,7 @@ main section .gallery .item img {
   max-height: calc(var(--gim) - 2 * var(--spacing));
   margin: auto;
   background: white;
+  outline: 0.125em solid white;
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) main section .gallery .item img:not([data-reduced-motion^=yes]) {
@@ -2060,6 +2237,9 @@ main section .gallery .item img {
 }
 main section .gallery .item img[data-reduced-motion^=no], html[data-reduced-motion^=no] main section .gallery .item img {
   transition: all var(--dur) calc(var(--delA) + var(--delB));
+}
+main section .gallery .item {
+  /* Styles for when the images are off-screen waiting to transition in */
 }
 main section .gallery .item.off-screen {
   /* Only apply these on screens, so that printing doesn't get messsed up */
@@ -2078,6 +2258,9 @@ main section .gallery .item.off-screen {
     transition-delay: 0s;
   }
 }
+main section .gallery .item {
+  /* Text */
+}
 main section .gallery .item p {
   margin: 0 auto;
   padding: 0;
@@ -2086,9 +2269,8 @@ main section .gallery .item p {
   text-indent: 0;
   text-align: center;
   line-height: 1.5;
-  color: black;
+  color: var(--black);
   /* Titles and 'More' links */
-  /* Links within text element*/
 }
 main section .gallery .item p.title, main section .gallery .item p.more {
   font-family: "Nunito", sans-serif;
@@ -2099,6 +2281,9 @@ main section .gallery .item p.title .maybe {
   font-size: 0.5em;
   opacity: 0.5;
   margin-top: 0.25em;
+}
+main section .gallery .item p {
+  /* Links within text element*/
 }
 main section .gallery .item p a {
   position: relative;
@@ -2114,14 +2299,19 @@ main section .gallery .item p a {
 main section .gallery .item p a[data-color-scheme=dark], html[data-color-scheme=dark] main section .gallery .item p a {
   color: var(--cm75);
 }
+main section .gallery .item {
+  /* Links in general */
+}
 main section .gallery .item a {
   margin: auto 0;
   color: var(--ct);
   text-decoration: none;
-  /* Links that cover the entire gallery item, making it clickable as a whole */
 }
 main section .gallery .item a, main section .gallery .item a:hover, main section .gallery .item a:focus, main section .gallery .item a:active {
   text-shadow: none;
+}
+main section .gallery .item a {
+  /* Links that cover the entire gallery item, making it clickable as a whole */
 }
 main section .gallery .item a.cover {
   position: absolute;
@@ -2132,6 +2322,9 @@ main section .gallery .item a.cover {
 }
 main section .gallery .item a.cover, main section .gallery .item a.cover:hover, main section .gallery .item a.cover:focus, main section .gallery .item a.cover:active {
   color: transparent;
+}
+main section .gallery {
+  /* Styles for galleries that expand beyond the main section width */
 }
 main section .gallery.expansive {
   /* Only applies at larger viewport widths */
@@ -2150,13 +2343,15 @@ main section .gallery.expansive {
     /* Borders */
     border-radius: calc(2 * var(--rounding));
     box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
+  }
+  main section .gallery.expansive:hover, main section .gallery.expansive:focus, main section .gallery.expansive:active {
+    box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
+  }
+  main section .gallery.expansive {
     /* Background */
     background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
     /* Gallery item max-width sides multiple, used in max-width below */
     --gimwsm: 2;
-  }
-  main section .gallery.expansive:hover, main section .gallery.expansive:focus, main section .gallery.expansive:active {
-    box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
   }
   main section .gallery.expansive section {
     --gimwsm: 4;
@@ -2174,11 +2369,6 @@ main section .gallery.expansive {
     /* Make the last item in a gallery looks contained in the parent section */
     max-width: calc(80ch - var(--gimwsm) * var(--spacing));
     /* Make four-column gallery items transition in with appropriate timing */
-    /* Make five-column gallery items transition in with appropriate timing */
-    /* Make six-column gallery items transition in with appropriate timing */
-    /* Make seven-column gallery items transition in with appropriate timing */
-    /* Make eight-column gallery items transition in with appropriate timing */
-    /* Make nine-column gallery items transition in with appropriate timing */
   }
   main section .gallery.expansive > .item:nth-of-type(4n + 1), main section .gallery.expansive > .item:nth-of-type(4n + 1) * {
     --delB: calc(1s / 4);
@@ -2191,6 +2381,13 @@ main section .gallery.expansive {
   }
   main section .gallery.expansive > .item:nth-of-type(4n + 0), main section .gallery.expansive > .item:nth-of-type(4n + 0) * {
     --delB: calc(4s / 4);
+  }
+  main section .gallery.expansive > .item {
+    /* Make five-column gallery items transition in with appropriate timing */
+    /* Make six-column gallery items transition in with appropriate timing */
+    /* Make seven-column gallery items transition in with appropriate timing */
+    /* Make eight-column gallery items transition in with appropriate timing */
+    /* Make nine-column gallery items transition in with appropriate timing */
   }
 }
 @media (min-width: 60rem) and (min-width: 91rem) {
@@ -2308,22 +2505,25 @@ main section .gallery.expansive {
     --delB: calc(9s / 9);
   }
 }
+main {
+  /* Styles for the toggle-all-sections controls */
+}
 main .toggleAllControls {
   /* The container */
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
-  align-items: stretch;
-  width: 100%;
-  max-width: calc(80ch - 2 * var(--spacing));
-  gap: var(--spacing);
-  /* The individual buttons */
-  /* Don't show any of this in print */
 }
 @media (min-width: 40rem) {
   main .toggleAllControls {
     flex-wrap: nowrap;
   }
+}
+main .toggleAllControls {
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  max-width: calc(80ch - 2 * var(--spacing));
+  gap: var(--spacing);
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) main .toggleAllControls:not([data-reduced-motion^=yes]) {
@@ -2332,6 +2532,9 @@ main .toggleAllControls {
 }
 main .toggleAllControls[data-reduced-motion^=no], html[data-reduced-motion^=no] main .toggleAllControls {
   --dur: 0.5s;
+}
+main .toggleAllControls {
+  /* The individual buttons */
 }
 main .toggleAllControls a {
   /* Layout */
@@ -2355,7 +2558,6 @@ main .toggleAllControls a {
   text-align: center;
   letter-spacing: 0.125ch;
   /* Toggle direction indicators */
-  /* All disabled buttons fade out and don't react to pointer */
 }
 main .toggleAllControls a.expandAll, main .toggleAllControls a.collapseAll {
   /* Same basics for both expand and collapse */
@@ -2393,13 +2595,14 @@ main .toggleAllControls a.anchorTarget {
   border-right-width: 0;
   border-radius: 0;
   order: 3;
-  /* Different indicators to illustrate its unique function */
-  /* Hide indicators when disabled */
 }
 @media (min-width: 40rem) {
   main .toggleAllControls a.anchorTarget {
     order: unset;
   }
+}
+main .toggleAllControls a.anchorTarget {
+  /* Different indicators to illustrate its unique function */
 }
 main .toggleAllControls a.anchorTarget::before, main .toggleAllControls a.anchorTarget::after {
   content: "↴";
@@ -2411,11 +2614,17 @@ main .toggleAllControls a.anchorTarget::before {
 main .toggleAllControls a.anchorTarget::after {
   margin-left: 1ch;
 }
+main .toggleAllControls a.anchorTarget {
+  /* Hide indicators when disabled */
+}
 main .toggleAllControls a.anchorTarget.disabled {
   opacity: 0.125;
 }
 main .toggleAllControls a.anchorTarget.disabled::before, main .toggleAllControls a.anchorTarget.disabled::after {
   display: none;
+}
+main .toggleAllControls a {
+  /* All disabled buttons fade out and don't react to pointer */
 }
 main .toggleAllControls a.disabled {
   pointer-events: none;
@@ -2429,12 +2638,14 @@ main .toggleAllControls a.disabled {
 }
 main .toggleAllControls:last-of-type .anchorTarget {
   order: -1;
-  /* Indicators get spun around to point up instead of down */
 }
 @media (min-width: 40rem) {
   main .toggleAllControls:last-of-type .anchorTarget {
     order: unset;
   }
+}
+main .toggleAllControls:last-of-type .anchorTarget {
+  /* Indicators get spun around to point up instead of down */
 }
 main .toggleAllControls:last-of-type .anchorTarget::before {
   transform: rotate(-90deg);
@@ -2447,6 +2658,9 @@ main .toggleAllControls:last-of-type .anchorTarget:hover::before {
 }
 main .toggleAllControls:last-of-type .anchorTarget:hover::after {
   text-shadow: 1pt -1pt 1pt var(--shade);
+}
+main .toggleAllControls {
+  /* Don't show any of this in print */
 }
 @media only print {
   main .toggleAllControls {
@@ -2475,22 +2689,10 @@ footer {
   background: linear-gradient(to bottom, transparent, var(--seaShadow)), linear-gradient(to bottom, transparent 0%, transparent 3.125%, var(--swellLight) 3.90625%, var(--swellColor) 4.6875%, transparent 6.25%, var(--swellLight) 7.8125%, var(--swellColor) 9.375%, transparent 12.5%, var(--swellLight) 15.625%, var(--swellColor) 18.75%, transparent 25%, var(--swellLight) 31.25%, var(--swellColor) 37.5%, transparent 50%, var(--swellLight) 62.5%, var(--swellColor) 75%, transparent 100%), linear-gradient(to bottom, var(--seaColor1) 0%, var(--seaColor2) 50%, var(--seaColor3) 100%);
   background-size: 100% 100%, auto;
   background-position: center, top, center;
-  /* Typography */
-  font-family: "Itim", "Nunito", sans-serif;
-  color: var(--cw25);
-  text-align: center;
-  /* Paragraphs */
-  /* Links */
-  /* Hide whoel footer on print */
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) footer:not([data-reduced-motion^=yes]) {
     /* Animation */
-    animation-name: waves;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    animation-direction: normal;
-    animation-timing-function: linear;
   }
   @keyframes waves {
     from {
@@ -2500,14 +2702,16 @@ footer {
       background-size: 100%, 100% 200%, auto;
     }
   }
+  html:not([data-reduced-motion^=yes]) footer:not([data-reduced-motion^=yes]) {
+    animation-name: waves;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+  }
 }
 footer[data-reduced-motion^=no], html[data-reduced-motion^=no] footer {
   /* Animation */
-  animation-name: waves;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
-  animation-direction: normal;
-  animation-timing-function: linear;
 }
 @keyframes waves {
   from {
@@ -2516,6 +2720,20 @@ footer[data-reduced-motion^=no], html[data-reduced-motion^=no] footer {
   to {
     background-size: 100%, 100% 200%, auto;
   }
+}
+footer[data-reduced-motion^=no], html[data-reduced-motion^=no] footer {
+  animation-name: waves;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: linear;
+}
+footer {
+  /* Typography */
+  font-family: "Itim", "Nunito", sans-serif;
+  color: var(--cw25);
+  text-align: center;
+  /* Paragraphs */
 }
 footer p {
   margin: 0;
@@ -2526,11 +2744,17 @@ footer p {
   -webkit-text-fill-color: white;
   -webkit-text-stroke: 0.0625em black;
   paint-order: stroke fill;
-  text-shadow: 0.0125em 0.0125em 0.0125em #000, 0.025em 0.025em 0.025em #0008, 0.05em 0.05em 0.05em #0004, 0.1em 0.1em 0.1em #0002;
+  text-shadow: 0.0125em 0.0125em 0.0125em #000, 0.025em 0.025em 0.025em rgba(0, 0, 0, 0.5333333333), 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2666666667), 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.1333333333);
+}
+footer {
+  /* Links */
 }
 footer a {
   text-decoration: none;
   text-shadow: inherit;
+}
+footer {
+  /* Hide whoel footer on print */
 }
 @media only print {
   footer {
@@ -2543,13 +2767,6 @@ footer a {
   /* The container */
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
-  align-items: stretch;
-  width: 100%;
-  max-width: 40rem;
-  gap: var(--spacing);
-  /* The individual buttons */
-  /* Don't show any of this in print */
 }
 .color-scheme-switcher#themeSwitcher {
   flex-wrap: wrap;
@@ -2559,6 +2776,13 @@ footer a {
     flex-wrap: nowrap;
   }
 }
+.color-scheme-switcher {
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  max-width: 40rem;
+  gap: var(--spacing);
+}
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) .color-scheme-switcher:not([data-reduced-motion^=yes]) {
     --dur: 0.5s;
@@ -2566,6 +2790,9 @@ footer a {
 }
 .color-scheme-switcher[data-reduced-motion^=no], html[data-reduced-motion^=no] .color-scheme-switcher {
   --dur: 0.5s;
+}
+.color-scheme-switcher {
+  /* The individual buttons */
 }
 .color-scheme-switcher a {
   /* Layout */
@@ -2589,7 +2816,6 @@ footer a {
   text-align: center;
   letter-spacing: 0.125ch;
   /* Light and dark mode switchers */
-  /* Custom theme switchers */
 }
 html[data-color-scheme=light] .color-scheme-switcher a.lightMode {
   opacity: 1;
@@ -2606,6 +2832,9 @@ html[data-color-scheme=dark] .color-scheme-switcher a.darkMode {
   outline: 1px solid var(--black);
 }
 
+.color-scheme-switcher a {
+  /* Custom theme switchers */
+}
 html[data-theme=grays] .color-scheme-switcher a.grays-theme {
   opacity: 1;
   outline: 1px solid var(--black);
@@ -2631,6 +2860,9 @@ html[data-theme=alien] .color-scheme-switcher a.alien-theme {
   outline: 1px solid var(--black);
 }
 
+.color-scheme-switcher {
+  /* Don't show any of this in print */
+}
 @media only print {
   .color-scheme-switcher {
     display: none;
@@ -2647,8 +2879,6 @@ html[data-theme=alien] .color-scheme-switcher a.alien-theme {
   width: 100%;
   max-width: 40rem;
   gap: var(--spacing);
-  /* The individual buttons */
-  /* Don't show any of this in print */
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) .reduced-motion-switcher:not([data-reduced-motion^=yes]) {
@@ -2657,6 +2887,9 @@ html[data-theme=alien] .color-scheme-switcher a.alien-theme {
 }
 .reduced-motion-switcher[data-reduced-motion^=no], html[data-reduced-motion^=no] .reduced-motion-switcher {
   --dur: 0.5s;
+}
+.reduced-motion-switcher {
+  /* The individual buttons */
 }
 .reduced-motion-switcher a {
   /* Layout */
@@ -2696,6 +2929,9 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
   outline: 1px solid var(--black);
 }
 
+.reduced-motion-switcher {
+  /* Don't show any of this in print */
+}
 @media only print {
   .reduced-motion-switcher {
     display: none;
@@ -2720,19 +2956,18 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
   padding: 0;
   gap: var(--spacing);
   /* Background */
-  background: radial-gradient(black, rgba(0, 0, 0, 0.9375));
+  background: radial-gradient(black, hsla(0, 0%, 0%, 0.9375));
   /* Typography */
   color: grey;
   font-size: calc(1rem + 1vmin);
   text-align: center;
   /* If the lightbox is modal, hide it by default */
-  /* Image */
-  /* Caption and navigation common styles*/
-  /* Caption style details */
-  /* Navigation style details */
 }
 .lightbox.modal {
   opacity: 0;
+}
+.lightbox {
+  /* Image */
 }
 .lightbox img {
   position: absolute;
@@ -2747,6 +2982,9 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
   border: 1vh solid white;
   box-shadow: 0 0 3em 3em black;
   background: white;
+}
+.lightbox {
+  /* Caption and navigation common styles*/
 }
 .lightbox #caption,
 .lightbox nav {
@@ -2765,8 +3003,14 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
   font-size: 2em;
   line-height: 1em;
 }
+.lightbox {
+  /* Caption style details */
+}
 .lightbox #caption span {
   white-space: normal;
+}
+.lightbox {
+  /* Navigation style details */
 }
 .lightbox nav {
   top: auto;
@@ -2785,11 +3029,13 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
   font-weight: bold;
   text-decoration: none;
   text-shadow: 0 0 0.125em transparent;
-  user-select: none;
-  cursor: pointer;
 }
 .lightbox nav a:hover, .lightbox nav a:focus, .lightbox nav a:active {
   text-shadow: 0 0 0.125em black;
+}
+.lightbox nav a {
+  user-select: none;
+  cursor: pointer;
 }
 .lightbox nav a:hover, .lightbox nav a:focus {
   color: white;

@@ -39,14 +39,13 @@
     }
 
     /* Background */
-    background-color: white;
+    background-color: var(--white);
+    
 
     /* Typography */
     text-align: center;
     vertical-align: top;
     color: var(--ct);
-    /* Reset text color since these backgrounds are always white */
-    --ct: hsl(from black h s l / 75%);
 
     /* Transitions */
     transition-timing-function: cubic-bezier(0.75, 1.75, 0.75, 0.75), ease;
@@ -62,6 +61,7 @@
       max-height: calc(var(--gim) - 2 * var(--spacing));
       margin: auto;
       background: white;
+      outline: 0.125em solid white;
       @include optional-motion() {
         transition: all var(--dur) calc(var(--delA) + var(--delB));
       }
@@ -91,7 +91,7 @@
         align: center;
       }
       line-height: 1.5;
-      color: black;
+      color: var(--black);
       /* Titles and 'More' links */
       &.title,
       &.more {
