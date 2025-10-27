@@ -237,17 +237,17 @@
                 <!-- morecount: '.($image['morecount']).' -->
                 <p class="title">'.
                     (!empty($image['title'])
-                        ? htmlspecialchars($image['title'])
+                        ? $image['title']
                         : 'Untitled' .
                             (!empty($image['maybe'])
-                                ? '<span class="maybe">(Maybe: '.htmlspecialchars($image['maybe']).')</span>'
+                                ? '<span class="maybe">(Maybe: '.$image['maybe'].')</span>'
                                 : '')
                     ).
                 '</p>
                 <img src="'.$thumbpath.'" alt="">
                 <p class="description">'.
                     (!empty($image['description'])
-                        ? htmlspecialchars($image['description'])
+                        ? $image['description']
                         : 'No description.'
                     ).
                 '</p>';
@@ -257,7 +257,7 @@
                     $count = get_subgallery_image_count($rootpath . $image['morelink']) ?: $image['morecount'];
                     if ($count > 0) {
                         $count_text = ($count - 1) . ' more';
-                        $from_text = (!empty($image['moretext'])) ? ' from ' . htmlspecialchars($image['moretext']) : '' ;
+                        $from_text = (!empty($image['moretext'])) ? ' from ' . $image['moretext'] : '' ;
                         echo '
                         <p class="more">
                             <a href="'.$_SERVER['REQUEST_URI'].$image['morelink'].'">'
@@ -269,7 +269,7 @@
                         echo '
                         <p class="more">
                             <a href="'.$_SERVER['REQUEST_URI'].$image['morelink'].'">More'.
-                                (!empty($image['moretext']) ? ' from ' . htmlspecialchars($image['moretext']) : '').
+                                (!empty($image['moretext']) ? ' from ' . $image['moretext'] : '').
                             '</a>
                         </p>';
                     }
@@ -282,7 +282,7 @@
                         ? ($path.$altpath.'" rel="external"')
                         : ('?display='.$image['filename'].'&title='.urlencode($image['title']).'"')
                 ).'>
-                    View '.(!empty($image['title']) ? htmlspecialchars($image['title']) : 'Untitled').'
+                    View '.(!empty($image['title']) ? $image['title'] : 'Untitled').'
                 </a>
             </div>
         ';
