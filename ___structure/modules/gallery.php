@@ -25,7 +25,8 @@
                     foreach (scandir($rootpath.$file) as $subfile) {
                         if (
                             !str_starts_with($subfile, '.') &&
-                            !str_starts_with($subfile, '_')
+                            !str_starts_with($subfile, '_') &&
+                            !preg_match('/-thumb(?=\.[^.]+$)/', $subfile)
                         ) {
                             // echo '<p>-- '.$file.'/'.$subfile.':
                             //     is_file? ('.is_file($rootpath.$file.'/'.$subfile).')
@@ -35,6 +36,7 @@
                             if (
                                 exif_imagetype($rootpath.$file.'/'.$subfile)
                             ) {
+                                // echo "<!-- counted $rootpath$file/$subfile -->";
                                 $subfiles_image_count++;
                                 if (!$image['filename']) {
                                     $image['filename'] = $file.'/'.$subfile;
@@ -43,7 +45,8 @@
                                 foreach (scandir($rootpath.$file.'/'.$subfile) as $grandfile) {
                                     if (
                                         !str_starts_with($grandfile, '.') &&
-                                        !str_starts_with($grandfile, '_')
+                                        !str_starts_with($grandfile, '_') &&
+                                        !preg_match('/-thumb(?=\.[^.]+$)/', $grandfile)
                                     ) {
                                         // echo '<p>-- -- '.$file.'/'.$subfile.'/'.$grandfile.':
                                         //     is_file? ('.is_file($rootpath.$file.'/'.$subfile.'/'.$grandfile).')
@@ -51,6 +54,7 @@
                                         //     is_dir? ('.is_dir($rootpath.$file.'/'.$subfile.'/'.$grandfile).')
                                         //     </p>';
                                         if (exif_imagetype($rootpath.$file.'/'.$subfile.'/'.$grandfile)) {
+                                            // echo "<!-- counted $rootpath$file/$subfile/$grandfile -->";
                                             $subfiles_image_count++;
                                             if (!$image['filename']) {
                                                 $image['filename'] = $file.'/'.$subfile.'/'.$grandfile;
@@ -64,10 +68,11 @@
                 }
                 if ($image['filename']) {
                     if ($subfiles_image_count > 1) {
-                        $image['morecount'] = ($subfiles_image_count - 1);
+                        $image['morecount'] = ($subfiles_image_count);
                         $image['moretext'] = $segments[array_key_last($segments)] . '/' . $file;
                         $image['morelink'] = $file;
                     }
+                    // echo "<!-- adding image for $rootpath$file -->";
                     $images[] = $image;
                 }
             }
@@ -229,6 +234,7 @@
 
         echo '
             <div class="item" id="item'.$key.'">
+                <!-- morecount: '.($image['morecount']).' -->
                 <p class="title">'.
                     (!empty($image['title'])
                         ? htmlspecialchars($image['title'])
