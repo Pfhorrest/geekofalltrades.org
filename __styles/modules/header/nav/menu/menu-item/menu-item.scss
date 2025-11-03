@@ -43,8 +43,8 @@
       white-space: nowrap;
     }
 
-    /* Styles for the current menu item link */
-    &.current > a {
+    /* Styles for current menu item links */
+    &.current > a, &.active > ul > .current > a{
       background: radial-gradient(transparent, var(--cwg)),
         linear-gradient(to var(--curve), var(--cw95) 0%, var(--cw75) 100%);
       background-size: 1000% 1000%;

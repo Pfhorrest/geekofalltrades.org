@@ -829,9 +829,9 @@ header nav > ul li {
   }
 }
 header nav > ul li {
-  /* Styles for the current menu item link */
+  /* Styles for current menu item links */
 }
-header nav > ul li.current > a {
+header nav > ul li.current > a, header nav > ul li.active > ul > .current > a {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95) 0%, var(--cw75) 100%);
   background-size: 1000% 1000%;
   background-position-y: 50%;
