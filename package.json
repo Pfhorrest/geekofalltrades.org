@@ -5,13 +5,13 @@
   "devDependencies": {
     "concurrently": "latest",
     "sass": "latest",
-    "typescript": "latest",
-    "browser-sync": "latest"
+    "typescript": "latest"
   },
   "scripts": {
     "sass-watch": "sass --watch __styles/styles.scss:__styles/styles.css",
     "ts-watch": "tsc --watch",
-    "bs": "browser-sync start --proxy 'http://geekofalltrades.local:8000' --host 'geekofalltrades.local' --files '__scripts/**/*.js,__styles/**/*.css,**/*.php' --no-notify --reload-delay 50 --inject-changes --open 'http://geekofalltrades.local:3000'",
-    "dev": "concurrently -k -n SASS,TS,PHP,BS -c magenta,yellow,blue,green, \"npm run sass-watch\" \"npm run ts-watch\" \"npm run php-server\" \"npm run bs\""
+    "php-server": "php -S geekofalltrades.local:8000 -t . ___structure/http.php",
+    "load-tab": "bash -c 'while ! nc -z geekofalltrades.local 8000; do sleep 0.5; done; open \"http://geekofalltrades.local:8000\"; while true; do fswatch -1 __styles __scripts *.php; done'",
+    "dev": "concurrently -k -n SASS,TS,PHP,LOAD -c magenta,yellow,blue,green, \"npm run sass-watch\" \"npm run ts-watch\" \"npm run php-server\" \"npm run load-tab\""
   }
 }
