@@ -8,6 +8,16 @@ $root = realpath(__DIR__ . '/../'); // Project root
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $requestedPath = $root . $requestUri;
 
+// Suppress warnings and notices
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+
+// If the requested path is a directory and the URL lacks a trailing slash,
+// redirect to the slash version (like Apache does).
+if (is_dir($requestedPath) && substr($requestUri, -1) !== '/') {
+    header('Location: ' . $requestUri . '/');
+    exit;
+}
+
 // Serve static files if they exist
 if (is_file($requestedPath)) {
     return false;
@@ -24,4 +34,5 @@ if (preg_match('#^/__scripts/.+#', $requestUri) && !is_file($requestedPath)) {
 }
 
 // Otherwise, route everything else to html.php
-require $root . '/___structure/html.php';
+chdir($root.'/___structure');
+require 'html.php';
