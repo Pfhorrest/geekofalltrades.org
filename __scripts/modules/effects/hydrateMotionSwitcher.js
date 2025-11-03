@@ -11,9 +11,19 @@ export const hydrateMotionSwitcher = () => {
             .forEach((cookie) => {
             cookie = cookie.trim();
             if (cookie.startsWith("reduced-motion")) {
+                // console.log("cookie:", cookie);
                 document.documentElement.setAttribute("data-reduced-motion", cookie.split("=")[1]);
+                // console.log(
+                //   "data-reduced-motion:",
+                //   document.documentElement.getAttribute("data-reduced-motion")
+                // );
             }
         });
+        const html = document.documentElement;
+        // Default to reduced-motion if there is no attribute already set
+        if (!html.hasAttribute("data-reduced-motion")) {
+            html.setAttribute("data-reduced-motion", "yes-auto");
+        }
         // Measure FPS and set reduced-motion attribute if necessary
         // Initialize time, frame count, fps, etc
         let fpsTimer = 10;
@@ -30,7 +40,6 @@ export const hydrateMotionSwitcher = () => {
         // console.log("frameCount:", frameCount);
         let fps = 0;
         // console.log("fps:", fps);
-        const html = document.documentElement;
         // Function to measure the frames per second
         const measureFPS = () => {
             // Every loop, get the current time and increment the frame count
@@ -50,7 +59,7 @@ export const hydrateMotionSwitcher = () => {
                 fpsTimeSinceInitial = fpsTimestamp - fpsTimeStampInitial;
                 // console.log("fpsTimeSinceInitial:", fpsTimeSinceInitial);
                 // fps = frameCount / fpsTimeSinceInitial * 1000;
-                fps = frameCount / (now - fpsTimestamp) * 1000;
+                fps = (frameCount / (now - fpsTimestamp)) * 1000;
                 // console.log("fps:", fps);
                 frameCount = 0;
                 // console.log("frameCount:", frameCount);
@@ -73,7 +82,7 @@ export const hydrateMotionSwitcher = () => {
                         // so if we fail a lot we retry much more slowly.
                         // Minimum of 3 to ensure increase at the threshold of oscillation,
                         // because that, minus 1, times 2, is still greater than that.
-                        fpsTimerDelay = Math.max(3, (fpsTimerDelay * 2));
+                        fpsTimerDelay = Math.max(3, fpsTimerDelay * 2);
                         // console.log("fpsTimerDelay:", fpsTimerDelay);
                         // Delayed cycle after failure
                         fpsTimer = Math.max(1, fpsTimerDelay);
@@ -91,7 +100,7 @@ export const hydrateMotionSwitcher = () => {
                         // so if we pass a lot we retry gradually more quickly.
                         // Minimum of 2 to ensure increase at the threshold of oscillation,
                         // because that, times 2, minus 1, is still greater than that.
-                        fpsTimerDelay = Math.max(2, (fpsTimerDelay - 1));
+                        fpsTimerDelay = Math.max(2, fpsTimerDelay - 1);
                         // console.log("fpsTimerDelay:", fpsTimerDelay);
                         // Rapid cycle after pass
                         fpsTimer = 1;
@@ -103,14 +112,9 @@ export const hydrateMotionSwitcher = () => {
             // console.log("looping fps counter...");
             requestAnimationFrame(measureFPS);
         };
-        // Default to reduced-motion
-        html.setAttribute("data-reduced-motion", "yes-auto");
-        // and wait before tentatively switching to enhanced-motion
-        // setTimeout(()=>{
         // Start the loop
         // console.log("starting fps counter...");
         measureFPS();
-        // }, fpsTimer * 1000);
         // Get the footer element
         const footer = document.querySelector("footer");
         // Only run if it exists
