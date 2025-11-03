@@ -3,6 +3,7 @@
         "target": "ES6",                // ES6 output, compatible with modern browsers
         "module": "ESNext",             // Keep modular imports/exports
         "moduleResolution": "node",     // Resolve modules like Node.js
+        "lib": ["ES2016", "DOM"],       // Include ES2016 and DOM libraries
         "strict": true,                 // Enable all strict type checks
         "sourceMap": true,              // Generate source maps for debugging
         "rootDir": "__scripts",         // Input directory for TypeScript files
