@@ -13,6 +13,6 @@
     "ts-watch": "tsc --watch",
     "php-server": "php -S geekofalltrades.local:8000 ___structure/dev-router.php",
     "bs": "browser-sync start --proxy 'http://geekofalltrades.local:8000' --host 'geekofalltrades.local' --files '__scripts/**/*.js,__styles/**/*.css,**/*.php' --no-notify --reload-delay 50 --inject-changes --open 'http://geekofalltrades.local:3000'",
-    "dev": "concurrently -k -n SASS,TS,PHP,BS -c magentayellow,blue,green, \"npm run sass-watch\" \"npm run ts-watch\" \"npm run php-server\" \"npm run bs\""
+    "dev": "concurrently -k -n SASS,TS,PHP,BS -c magenta,yellow,blue,green, \"npm run sass-watch\" \"npm run ts-watch\" \"npm run php-server\" \"npm run bs\""
   }
 }
