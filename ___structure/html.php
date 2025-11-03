@@ -146,37 +146,35 @@
 				 * @var string
 				*/
 				$mainpath = $rootpath . "__main.php";
-				switch (true) {
-					case is_file($mainpath):
-						/* If there is such a thing, include it */
-						include $mainpath;
-						/* If there is a 'display' parameter,
-						   include the lightbox too */
-						if ($display = $_GET["display"]) {
-							include "modules/lightbox.php";
-						}
-						break;
-					case is_dir($rootpath):
-						/* If the requested directory has an index.php,
-						   just redirect to that */
-						if (is_file($rootpath . "index.php")) {
-							echo '<meta http-equiv="refresh"
-								content="0;url='.$path.'index.php">';
-							break;
-						/* Or else if it has an index.html,
-						   just redirect to that instead */
-						} elseif (is_file($rootpath . "index.html")) {
-							echo '<meta http-equiv="refresh"
-								content="0;url='.$path.'index.html">';
-							break;
-						} elseif ($indexes) {
-							/* Otherwise just show a directory listing */
-							include "modules/directory.php";
-							break;
-						}
-					default:
-						/* If all else fails, show an error */
-						include "modules/error.php";
+				if (is_file($mainpath)) {
+					/* If there is such a thing, include it */
+					include $mainpath;
+					/* If there is a 'display' parameter,
+						include the lightbox too */
+					if ($display = $_GET["display"]) {
+						include "modules/lightbox.php";
+					}
+				} elseif (is_dir($rootpath)) {
+					/* If the requested directory has an index.php,
+						just redirect to that */
+					if (is_file($rootpath . "index.php")) {
+						header("Location: $requestUri/index.php");
+						exit;
+					}
+					/* Or else if it has an index.html,
+						just redirect to that instead */
+					elseif (is_file($rootpath . "index.html")) {
+						header("Location: $requestUri/index.html");
+						exit;
+					}
+					/* Otherwise just show a directory listing */
+					elseif ($indexes) {
+						include "modules/directory.php";
+					}
+				}
+				/* If all else fails, show an error */
+				else {
+					include "modules/error.php";
 				}
 			?>
 		</main>
