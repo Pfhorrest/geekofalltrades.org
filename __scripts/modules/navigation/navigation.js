@@ -19,18 +19,22 @@ const hydrateH1 = () => {
     }
 };
 const highlightCurrent = () => {
-    console.log("highlighting current link...");
+    // console.log("highlighting current link...");
     const items = document.querySelectorAll("header > nav > ul > li");
     items.forEach((item) => {
         const link = item.querySelector("a");
         if (link) {
             const trimmedLocationHref = window.location.href.replace(/\/$/, "");
             if (trimmedLocationHref.startsWith(link.href)) {
-                console.log(`${trimmedLocationHref} starts with ${link.href}`);
+                // console.log(
+                //   `${trimmedLocationHref} starts with ${link.href}`
+                // );
                 item.classList.add("current");
             }
             else {
-                console.log(`${trimmedLocationHref} does not start with ${link.href}`);
+                // console.log(
+                //   `${trimmedLocationHref} does not start with ${link.href}`
+                // );
             }
         }
     });
