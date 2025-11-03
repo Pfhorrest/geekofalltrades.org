@@ -5,7 +5,7 @@ import { getDuration } from "../helpers/getDuration";
  *
  * @param {HTMLElement} element - The element to slide down
  * @param {number} [duration] - The animation duration in milliseconds. Defaults to the element's transition-duration.
- * 
+ *
  * @returns {void}
  */
 export const slideDown = (
@@ -109,59 +109,51 @@ export const slideDown = (
       }
     }
 
-    // This cascade of timeouts is necessary to prevent layout thrashing
-    // Wait for the next frame to be rendered, then...
-    setTimeout(() => {
-      // Set its display appropriately
-      // console.log("setting display appropriately non-none");
-      element.style.display =
-        inherentDisplay != "none"
-          ? inherentDisplay
-          : displayVar && displayVar != "none"
-          ? displayVar
-          : "block";
-      // console.log("element.style.display is now", element.style.display);
-      // Wait for the next frame to be rendered, then...
-      setTimeout(() => {
-        // console.log("setting paddingTop to its inherent value");
-        element.style.paddingTop = `${inherentPaddingTop}px`;
-        // console.log(
-        //   "element.style.paddingTop is now",
-        //   element.style.paddingTop
-        // );
-        // Wait for the next frame to be rendered, then...
-        setTimeout(() => {
-          // console.log("setting rowGap to its inherent value");
-          element.style.rowGap = `${inherentRowGap}px`;
-          // console.log("element.style.rowGap is now", element.style.rowGap);
-          // Wait for the next frame to be rendered, then...
-          setTimeout(() => {
-            // console.log("setting paddingBottom to its inherent value");
-            element.style.paddingBottom = `${inherentPaddingBottom}px`;
-            // console.log(
-            //   "element.style.paddingBottom is now",
-            //   element.style.paddingBottom
-            // );
-            // Wait for the next frame to be rendered, then...
-            setTimeout(() => {
-              // console.log("setting height to its inherent value");
-              element.style.height = `${inherentHeight}px`;
-              // console.log("element.style.height is now", element.style.height);
+    // Force a reflow so the starting state is applied
+    void element.offsetHeight;
 
-              // Wait for the animation to complete, then reset the element's styles
-              setTimeout(() => {
-                // console.log("resetting element styles");
-                element.style.removeProperty("height");
-                element.style.removeProperty("padding-top");
-                element.style.removeProperty("row-gap");
-                element.style.removeProperty("padding-bottom");
-                element.style.removeProperty("overflow");
-              }, Math.max(100,duration));
-            }, 100);
-          }, 100);
-        }, 100);
-      }, 100);
-    }, 100);
+    // Set display appropriately
+    // console.log("setting display appropriately non-none");
+    element.style.display =
+      inherentDisplay != "none"
+        ? inherentDisplay
+        : displayVar && displayVar != "none"
+        ? displayVar
+        : "block";
+    // console.log("element.style.display is now", element.style.display);
+    // console.log("setting paddingTop to its inherent value");
+    element.style.paddingTop = `${inherentPaddingTop}px`;
+    // console.log(
+    //   "element.style.paddingTop is now",
+    //   element.style.paddingTop
+    // );
+    // console.log("setting rowGap to its inherent value");
+    element.style.rowGap = `${inherentRowGap}px`;
+    // console.log("element.style.rowGap is now", element.style.rowGap);
+    // console.log("setting paddingBottom to its inherent value");
+    element.style.paddingBottom = `${inherentPaddingBottom}px`;
+    // console.log(
+    //   "element.style.paddingBottom is now",
+    //   element.style.paddingBottom
+    // );
+    // console.log("setting height to its inherent value");
+    element.style.height = `${inherentHeight}px`;
+    // console.log("element.style.height is now", element.style.height);
+
+    // Cleanup after transition or fallback timeout
+    const cleanup = () => {
+      element.style.removeProperty("height");
+      element.style.removeProperty("padding-top");
+      element.style.removeProperty("row-gap");
+      element.style.removeProperty("padding-bottom");
+      element.style.removeProperty("overflow");
+      element.style.removeProperty("transition");
+    };
+
+    element.addEventListener("transitionend", cleanup, { once: true });
+
+    // Fallback in case transitionend doesn't fire
+    setTimeout(() => cleanup(), duration + 16);
   }
 
   // console.groupEnd();

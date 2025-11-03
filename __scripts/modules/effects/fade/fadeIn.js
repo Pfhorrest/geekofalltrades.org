@@ -30,12 +30,11 @@ export const fadeIn = (element, duration = getDuration(element)) => {
             element.style.display = "block";
         }
     }
-    // Wait for the next frame to be rendered, then set the element's opacity to the initial opacity
-    setTimeout(() => {
-        // console.log("fadeIn resetting opacity");
-        element.style.opacity = `${initialOpacity}`;
-        // console.log("fadeIn completed with opacity:", initialOpacity);
-        // console.groupEnd();
-    }, 10);
+    // Force a reflow, then set the element's display to none
+    void element.style.display;
+    // console.log("fadeIn resetting opacity");
+    element.style.opacity = `${initialOpacity}`;
+    // console.log("fadeIn completed with opacity:", initialOpacity);
+    // console.groupEnd();
 };
 //# sourceMappingURL=fadeIn.js.map

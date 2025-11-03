@@ -14,12 +14,11 @@ export const fadeOut = (element, duration = getDuration(element)) => {
     // console.log("fadeOut called with duration:", duration);
     // Set the element's opacity to 0
     element.style.opacity = "0";
-    // Wait for the animation duration, then set the element's display to none
-    setTimeout(() => {
-        // console.log("fadeOut setting display to none");
-        element.style.display = "none";
-        // console.log("fadeOut completed");
-        // console.groupEnd();
-    }, Math.max(100, duration));
+    // Force a reflow, then set the element's display to none
+    void element.style.display;
+    // console.log("fadeOut setting display to none");
+    element.style.display = "none";
+    // console.log("fadeOut completed");
+    // console.groupEnd();
 };
 //# sourceMappingURL=fadeOut.js.map

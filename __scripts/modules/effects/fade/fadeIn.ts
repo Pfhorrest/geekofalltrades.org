@@ -5,7 +5,7 @@ import { getDuration } from "../helpers/getDuration";
  *
  * @param {HTMLElement} element - The element to fade in
  * @param {number} [duration] - The animation duration in milliseconds (defaults to the element's transition-duration)
- * 
+ *
  * @returns {void}
  */
 export const fadeIn = (
@@ -38,11 +38,10 @@ export const fadeIn = (
     }
   }
 
-  // Wait for the next frame to be rendered, then set the element's opacity to the initial opacity
-  setTimeout(() => {
-    // console.log("fadeIn resetting opacity");
-    element.style.opacity = `${initialOpacity}`;
-    // console.log("fadeIn completed with opacity:", initialOpacity);
-    // console.groupEnd();
-  }, 10);
+  // Force a reflow, then set the element's display to none
+  void element.style.display;
+  // console.log("fadeIn resetting opacity");
+  element.style.opacity = `${initialOpacity}`;
+  // console.log("fadeIn completed with opacity:", initialOpacity);
+  // console.groupEnd();
 };
