@@ -25,15 +25,15 @@ export const hydrateMotionSwitcher = () => {
 
     const html: HTMLElement = document.documentElement;
 
-    // Default to reduced-motion if there is no attribute already set
-    if (!html.hasAttribute("data-reduced-motion")) {
-      html.setAttribute("data-reduced-motion", "yes-auto");
-    }
+    // // Default to reduced-motion if there is no attribute already set
+    // if (!html.hasAttribute("data-reduced-motion")) {
+    //   html.setAttribute("data-reduced-motion", "yes-auto");
+    // }
 
     // Measure FPS and set reduced-motion attribute if necessary
 
     // Initialize time, frame count, fps, etc
-    let fpsTimer: number = 10;
+    let fpsTimer: number = 1;
     // console.log("fpsTimer:", fpsTimer);
     let fpsTimerDelay: number = fpsTimer;
     // console.log("fpsTimerDelay:", fpsTimerDelay);
@@ -47,6 +47,8 @@ export const hydrateMotionSwitcher = () => {
     // console.log("frameCount:", frameCount);
     let fps: number = 0;
     // console.log("fps:", fps);
+    let fpsThreshold: number = 15;
+    // console.log("fpsThreshold:", fpsThreshold);
 
     // Function to measure the frames per second
     const measureFPS = () => {
@@ -82,7 +84,7 @@ export const hydrateMotionSwitcher = () => {
         // Only do this if reduced-motion is auto
         if (!["yes", "no"].includes(reducedMotion)) {
           // console.log("reduced-motion is auto, checking fps...");
-          if (fps < 30) {
+          if (fps < fpsThreshold) {
             // Upon failure...
             // console.log("fps < 30, setting reduced-motion to yes-auto");
             html.setAttribute("data-reduced-motion", "yes-auto");
@@ -99,7 +101,7 @@ export const hydrateMotionSwitcher = () => {
             // Delayed cycle after failure
             fpsTimer = Math.max(1, fpsTimerDelay);
             // console.log("fpsTimer:", fpsTimer);
-          } else if (fps >= 30) {
+          } else if (fps >= fpsThreshold) {
             // Upon pass...
             // console.log("fps >= 30, setting reduced-motion to no-auto");
             html.setAttribute("data-reduced-motion", "no-auto");
