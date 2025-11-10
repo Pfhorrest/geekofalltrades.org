@@ -19,7 +19,7 @@ export const initLazyLoading = () => {
                 img.loading = "lazy";
         }
         // Detect if image is already visible
-        const rect = img.getBoundingClientRect();
+        const rect = el.getBoundingClientRect();
         const inViewport = rect.top < window.innerHeight &&
             rect.bottom > 0 &&
             rect.left < window.innerWidth &&
