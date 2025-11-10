@@ -1,3 +1,5 @@
+import { initLazyLoading } from "./modules/lazyLoading/lazyLoading";
+initLazyLoading();
 import { hydrateNavigation } from "./modules/navigation/navigation";
 hydrateNavigation();
 import { hydrateSections } from "./modules/sections/sections";

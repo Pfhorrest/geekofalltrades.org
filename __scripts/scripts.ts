@@ -1,3 +1,6 @@
+import { initLazyLoading } from "./modules/lazyLoading/lazyLoading";
+initLazyLoading();
+
 import { hydrateNavigation } from "./modules/navigation/navigation";
 hydrateNavigation();
 
@@ -18,3 +21,4 @@ hydrateColorSwitcher();
 
 import { hydrateMotionSwitcher } from "./modules/effects/hydrateMotionSwitcher";
 hydrateMotionSwitcher();
+
