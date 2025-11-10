@@ -27,11 +27,14 @@ const highlightCurrent = () => {
             const trimmedLocationHref = window.location.href.replace(/\/$/, "");
             const trimmedLinkHref = link.href.replace(/\/$/, "");
             if (trimmedLocationHref.startsWith(trimmedLinkHref)) {
-                console.log(`${trimmedLocationHref} starts with ${trimmedLinkHref}`);
+                // console.log(
+                //   `${trimmedLocationHref} starts with ${trimmedLinkHref}`
+                // );
                 item.classList.add("current");
-            }
-            else {
-                console.log(`${trimmedLocationHref} does not start with ${trimmedLinkHref}`);
+                // } else {
+                //   console.log(
+                //     `${trimmedLocationHref} does not start with ${trimmedLinkHref}`
+                //   );
             }
         }
     });
