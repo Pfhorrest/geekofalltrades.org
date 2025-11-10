@@ -203,7 +203,7 @@
          * @uses $filenameBase
          * @uses $filenameSuffix
          */
-        $thumbname = $filenameBase.'-thumb'.$filenameSuffix;
+        $thumbname = $filenameBase.'-thumb.'.$filenameSuffix;
 
         /**
          * Path to the thumbnail.
