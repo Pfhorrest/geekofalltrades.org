@@ -20,7 +20,7 @@ const hydrateH1 = (): void => {
 };
 
 const highlightCurrent = (): void => {
-  console.log("highlighting current link...");
+  // console.log("highlighting current link...");
   const items = document.querySelectorAll<HTMLElement>(
     "header > nav ul > li"
   );

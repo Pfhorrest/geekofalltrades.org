@@ -19,7 +19,7 @@ const hydrateH1 = () => {
     }
 };
 const highlightCurrent = () => {
-    console.log("highlighting current link...");
+    // console.log("highlighting current link...");
     const items = document.querySelectorAll("header > nav ul > li");
     items.forEach((item) => {
         const link = item.querySelector("a");
