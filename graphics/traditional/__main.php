@@ -3,7 +3,7 @@
 	<p class="description">Examples of more traditional art, in assorted media.</p>
 	<?php
 		require "modules/gallery.php";
-		render_gallery($images = array(
+		echo render_gallery($images = array(
 			array(
 				'title' => 'Pen Tree',
 				'filename' => 'pentree_finished.jpg',

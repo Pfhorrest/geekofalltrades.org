@@ -3,7 +3,7 @@
 	<p class="description">Examples of my other design for screen.</p>
 	<?php
 		require "modules/gallery.php";
-		render_gallery($images = array(
+		echo render_gallery($images = array(
 			array(
 				'title' => 'Sample project for <i>DSG</i>',
 				'filename' => 'dsg-anim.jpg',

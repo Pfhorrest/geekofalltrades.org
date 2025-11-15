@@ -3,7 +3,7 @@
 	<p class="description">Examples of my logos and branding.</p>
 	<?php
 		require "modules/gallery.php";
-		render_gallery($images = array(
+		echo render_gallery($images = array(
 			array(
 				'title' => '<i>Codex Quaerentis</i> logo',
 				'filename' => 'codex.jpg',

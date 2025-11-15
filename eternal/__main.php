@@ -59,7 +59,7 @@
 	</p>
 	<?php
 		require "modules/gallery.php";
-		render_gallery($images = array(
+		echo render_gallery($images = array(
 			array(
 				'title' => '<i>Eternal</i> prologue screenshot 1',
 				'filename' => 'screenshots/00-01.jpg',

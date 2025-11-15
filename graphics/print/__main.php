@@ -3,7 +3,7 @@
 	<p class="description">Examples of my design for print.</p>
 	<?php
 		require "modules/gallery.php";
-		render_gallery($images = array(
+		echo render_gallery($images = array(
 			array(
 				'title' => 'My resume',
 				'filename' => 'resume-thumb.png',

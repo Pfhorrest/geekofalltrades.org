@@ -3,7 +3,7 @@
 	<p class="description">Examples of my infographic and data visualization design.</p>
 	<?php
 		require "modules/gallery.php";
-		render_gallery($images = array(
+		echo render_gallery($images = array(
 			array(
 				'title' => '<i>Codex</i> moods',
 				'filename' => '../../codex/_media/images/moods.png',
