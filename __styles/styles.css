@@ -1955,26 +1955,93 @@ main section figure {
     margin-right: var(--spacing);
     margin-left: 0;
   }
+}
+@media (min-width: 40rem) and (min-width: 60rem) {
+  main section figure:not(.solo):nth-of-type(odd) {
+    max-width: var(--fmw);
+    margin-left: var(--fms);
+    margin-right: var(--spacing);
+    transform-origin: right;
+  }
+}
+@media (min-width: 40rem) {
   main section figure:not(.solo):nth-of-type(even) {
     float: right;
     transform-origin: right;
     margin-left: var(--spacing);
     margin-right: 0;
   }
-  main section figure {
-    /* Imperfect hack to continue alternation across multiple sections */
+}
+@media (min-width: 40rem) and (min-width: 60rem) {
+  main section figure:not(.solo):nth-of-type(even) {
+    max-width: var(--fmw);
+    margin-right: var(--fms);
+    margin-left: var(--spacing);
+    transform-origin: left;
   }
+}
+@media (min-width: 40rem) {
   main section:nth-of-type(even) figure:not(.solo):nth-of-type(odd) {
     float: right;
     transform-origin: right;
     margin-left: var(--spacing);
     margin-right: 0;
   }
+}
+@media (min-width: 40rem) and (min-width: 60rem) {
+  main section:nth-of-type(even) figure:not(.solo):nth-of-type(odd) {
+    max-width: var(--fmw);
+    margin-right: var(--fms);
+    margin-left: var(--spacing);
+    transform-origin: left;
+  }
+}
+@media (min-width: 40rem) {
   main section:nth-of-type(even) figure:not(.solo):nth-of-type(even) {
     float: left;
     transform-origin: left;
     margin-right: var(--spacing);
     margin-left: 0;
+  }
+}
+@media (min-width: 40rem) and (min-width: 60rem) {
+  main section:nth-of-type(even) figure:not(.solo):nth-of-type(even) {
+    max-width: var(--fmw);
+    margin-left: var(--fms);
+    margin-right: var(--spacing);
+    transform-origin: right;
+  }
+}
+@media (min-width: 40rem) {
+  main section:nth-of-type(n) > figure:not(.solo)[style*="--fig-index: 0"]:nth-of-type(n) {
+    float: left;
+    transform-origin: left;
+    margin-right: var(--spacing);
+    margin-left: 0;
+  }
+}
+@media (min-width: 40rem) and (min-width: 60rem) {
+  main section:nth-of-type(n) > figure:not(.solo)[style*="--fig-index: 0"]:nth-of-type(n) {
+    max-width: var(--fmw);
+    margin-left: var(--fms);
+    margin-right: var(--spacing);
+    transform-origin: right;
+  }
+}
+@media (min-width: 40rem) {
+  main section:nth-of-type(n) > figure:not(.solo)[style*="--fig-index: 1"]:nth-of-type(n) {
+    float: right;
+    transform-origin: right;
+    margin-left: var(--spacing);
+    margin-right: 0;
+  }
+}
+@media (min-width: 40rem) and (min-width: 60rem) {
+  main section:nth-of-type(n) > figure:not(.solo)[style*="--fig-index: 1"]:nth-of-type(n) {
+    max-width: var(--fmw);
+    margin-right: var(--fms);
+    margin-left: var(--spacing);
+    transform-origin: left;
   }
 }
 main section figure {
@@ -1999,7 +2066,7 @@ main section figure {
     transform-origin: center;
   }
   main section figure {
-    /* The rest of them... */
+    /* The rest of them are handled by mixins above */
     /* They need a section-like padding, borders and backgrounds to look nice */
     padding: var(--spacing);
     border-radius: calc(2 * var(--spacing));
@@ -2015,32 +2082,6 @@ main section figure {
 @media (min-width: 60rem) {
   main section figure.solo[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure.solo {
     transition-duration: calc(2 * var(--dur));
-  }
-  main section figure:not(.solo) {
-    max-width: var(--fmw);
-  }
-  main section figure:not(.solo):nth-of-type(odd) {
-    margin-left: var(--fms);
-    margin-right: var(--spacing);
-    transform-origin: right;
-  }
-  main section figure:not(.solo):nth-of-type(even) {
-    margin-right: var(--fms);
-    margin-left: var(--spacing);
-    transform-origin: left;
-  }
-  main section figure:not(.solo) {
-    /* These need to be applied to those in alternating sections too */
-  }
-  main section:nth-of-type(even) figure:not(.solo):nth-of-type(odd) {
-    margin-right: var(--fms);
-    margin-left: var(--spacing);
-    transform-origin: left;
-  }
-  main section:nth-of-type(even) figure:not(.solo):nth-of-type(even) {
-    margin-left: var(--fms);
-    margin-right: var(--spacing);
-    transform-origin: right;
   }
   main section figure:hover, main section figure:focus, main section figure:active {
     box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;

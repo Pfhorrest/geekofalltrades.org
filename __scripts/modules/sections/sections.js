@@ -2,6 +2,7 @@ import { toggleSection } from "./someSection/someSection";
 import { hydrateToggleButtons } from "./allSections/toggleButtons/hydrateToggleButtons";
 import { expandAnchorSectionCollapseOthers } from "./allSections/allSections";
 import { toggleToggleButtons } from "./allSections/toggleButtons/toggleToggleButtons";
+import { alternateFigures } from "./figures";
 /**
  * Initializse toggling sections by clicking their headings
  *
@@ -47,6 +48,7 @@ export const hydrateSections = () => {
         hydrateSectionHeadings();
         hydrateToggleButtons();
         expandAnchorSectionCollapseOthers();
+        alternateFigures();
     });
     window.addEventListener("hashchange", () => {
         toggleToggleButtons();

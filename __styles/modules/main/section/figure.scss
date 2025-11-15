@@ -10,6 +10,32 @@
 /// @require {mixin} optional-motion - DRY optional motion helper
 /// @see {mixing} section - General styles for sections
 
+@mixin figure-left {
+  float: left;
+  transform-origin: left;
+  margin-right: var(--spacing);
+  margin-left: 0;
+  @media (min-width: $bp3) {
+    max-width: var(--fmw);
+    margin-left: var(--fms);
+    margin-right: var(--spacing);
+    transform-origin: right;
+  }
+}
+
+@mixin figure-right {
+  float: right;
+  transform-origin: right;
+  margin-left: var(--spacing);
+  margin-right: 0;
+  @media (min-width: $bp3) {
+    max-width: var(--fmw);
+    margin-right: var(--fms);
+    margin-left: var(--spacing);
+    transform-origin: left;
+  }
+}
+
 @mixin figure {
   figure {
     float: none; // Default for smaller viewports, overridden at larger viewports
@@ -93,35 +119,37 @@
       }
 
       /* Otherwise ... */
+      // Apply to figures within current context
       &:not(.solo) {
         &:nth-of-type(odd) {
-          float: left;
-          transform-origin: left;
-          margin-right: var(--spacing);
-          margin-left: 0;
+          @include figure-left;
         }
         &:nth-of-type(even) {
-          float: right;
-          transform-origin: right;
-          margin-left: var(--spacing);
-          margin-right: 0;
+          @include figure-right;
         }
       }
-      /* Imperfect hack to continue alternation across multiple sections */
+
+      // Imperfect hack to continue alternation across multiple sections
       @at-root main section:nth-of-type(even) figure:not(.solo) {
         &:nth-of-type(odd) {
-          float: right;
-          transform-origin: right;
-          margin-left: var(--spacing);
-          margin-right: 0;
+          @include figure-right;
         }
-
         &:nth-of-type(even) {
-          float: left;
-          transform-origin: left;
-          margin-right: var(--spacing);
-          margin-left: 0;
+          @include figure-left;
         }
+      }
+
+      // Progressive enhancement with JavaScript-added custom properties
+      @at-root main
+          section:nth-of-type(n)
+          > figure:not(.solo)[style*="--fig-index: 0"]:nth-of-type(n) {
+        @include figure-left;
+      }
+
+      @at-root main
+          section:nth-of-type(n)
+          > figure:not(.solo)[style*="--fig-index: 1"]:nth-of-type(n) {
+        @include figure-right;
       }
     }
 
@@ -146,37 +174,7 @@
           transition-duration: calc(2 * var(--dur));
         }
       }
-
-      /* The rest of them... */
-      &:not(.solo) {
-        max-width: var(--fmw);
-
-        &:nth-of-type(odd) {
-          margin-left: var(--fms);
-          margin-right: var(--spacing);
-          transform-origin: right;
-        }
-        &:nth-of-type(even) {
-          margin-right: var(--fms);
-          margin-left: var(--spacing);
-          transform-origin: left;
-        }
-
-        /* These need to be applied to those in alternating sections too */
-        @at-root main section:nth-of-type(even) figure:not(.solo) {
-          &:nth-of-type(odd) {
-            margin-right: var(--fms);
-            margin-left: var(--spacing);
-            transform-origin: left;
-          }
-
-          &:nth-of-type(even) {
-            margin-left: var(--fms);
-            margin-right: var(--spacing);
-            transform-origin: right;
-          }
-        }
-      }
+      /* The rest of them are handled by mixins above */
 
       /* They need a section-like padding, borders and backgrounds to look nice */
       padding: var(--spacing);
