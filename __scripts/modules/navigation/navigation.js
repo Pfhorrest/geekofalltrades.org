@@ -1,6 +1,7 @@
 import { hydrateBreadcrumbs } from "./hydration/hydrateBreadcrumbs";
 import { hydrateDropdowns } from "./hydration/hydrateDropdowns";
 import { slideToggle } from "../effects/effects";
+import { enableFlexBalancing } from "../flexBalance/flexBalance";
 /**
  *  Adds event listener to toggle the nav when the h1 is clicked
  *
@@ -41,10 +42,11 @@ const highlightCurrent = () => {
 };
 export const hydrateNavigation = () => {
     document.addEventListener("DOMContentLoaded", () => {
+        enableFlexBalancing("nav > ul");
+        highlightCurrent();
         hydrateH1();
         hydrateBreadcrumbs();
         hydrateDropdowns();
-        highlightCurrent();
     });
 };
 //# sourceMappingURL=navigation.js.map

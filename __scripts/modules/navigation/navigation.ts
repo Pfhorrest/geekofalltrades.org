@@ -1,6 +1,7 @@
 import { hydrateBreadcrumbs } from "./hydration/hydrateBreadcrumbs";
 import { hydrateDropdowns } from "./hydration/hydrateDropdowns";
 import { slideToggle } from "../effects/effects";
+import { enableFlexBalancing } from "../flexBalance/flexBalance";
 
 /**
  *  Adds event listener to toggle the nav when the h1 is clicked
@@ -21,9 +22,7 @@ const hydrateH1 = (): void => {
 
 const highlightCurrent = (): void => {
   // console.log("highlighting current link...");
-  const items = document.querySelectorAll<HTMLElement>(
-    "header > nav ul > li"
-  );
+  const items = document.querySelectorAll<HTMLElement>("header > nav ul > li");
   items.forEach((item) => {
     const link = item.querySelector<HTMLAnchorElement>("a");
     if (link) {
@@ -34,10 +33,10 @@ const highlightCurrent = (): void => {
         //   `${trimmedLocationHref} starts with ${trimmedLinkHref}`
         // );
         item.classList.add("current");
-      // } else {
-      //   console.log(
-      //     `${trimmedLocationHref} does not start with ${trimmedLinkHref}`
-      //   );
+        // } else {
+        //   console.log(
+        //     `${trimmedLocationHref} does not start with ${trimmedLinkHref}`
+        //   );
       }
     }
   });
@@ -45,9 +44,10 @@ const highlightCurrent = (): void => {
 
 export const hydrateNavigation = () => {
   document.addEventListener("DOMContentLoaded", () => {
+    enableFlexBalancing("nav > ul");
+    highlightCurrent();
     hydrateH1();
     hydrateBreadcrumbs();
     hydrateDropdowns();
-    highlightCurrent();
   });
 };
