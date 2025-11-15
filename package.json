@@ -15,6 +15,9 @@
     "dev": "concurrently -k -n SASS,TS,PHP,LOAD -c magenta,yellow,blue,green, \"npm run sass-watch\" \"npm run ts-watch\" \"npm run php-server\" \"npm run load-tab\"",
     "stage-code": "ssh forrestjc@dev.geekofalltrades.org \"cd ~/dev.geekofalltrades.org && git pull origin main\"",
     "stage-photos": "rsync -avzh --progress --partial --delete photos/ forrestjc@dev.geekofalltrades.org:~/dev.geekofalltrades.org/photos/",
-    "stage": "npm run stage-code && npm run stage-photos"
+    "stage": "npm run stage-code && npm run stage-photos",
+    "deploy-code": "ssh forrestjc@geekofalltrades.org \"cd ~/geekofalltrades.org && git pull origin main\"",
+    "deploy-photos": "rsync -avzh --progress --partial --delete photos/ forrestjc@geekofalltrades.org:~/geekofalltrades.org/photos/",
+    "deploy": "npm run deploy-code && npm run deploy-photos"
   }
 }
