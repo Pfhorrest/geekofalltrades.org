@@ -2,7 +2,8 @@
 	<h2>Digital Arts</h2>
 	<p class="description">Examples of my other design for screen.</p>
 	<?php
-		$images = array(
+		require "modules/gallery.php";
+		render_gallery($images = array(
 			array(
 				'title' => 'Sample project for <i>DSG</i>',
 				'filename' => 'dsg-anim.jpg',
@@ -44,7 +45,6 @@
 				'filename' => 'kayla.jpg',
 				'description' => 'Photoshop, 2004.'
 			),
-		);
-		require "modules/gallery.php";
+		));
 	?>
 </section>

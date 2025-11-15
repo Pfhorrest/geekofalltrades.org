@@ -2,7 +2,8 @@
 	<h2>Logo Design</h2>
 	<p class="description">Examples of my logos and branding.</p>
 	<?php
-		$images = array(
+		require "modules/gallery.php";
+		render_gallery($images = array(
 			array(
 				'title' => '<i>Codex Quaerentis</i> logo',
 				'filename' => 'codex.jpg',
@@ -115,7 +116,6 @@
 				'filename' => 'breathingstone.png',
 				'description' => 'Photoshop, 2001.'
 			),
-		);
-		require "modules/gallery.php";
+		));
 	?>
 </section>

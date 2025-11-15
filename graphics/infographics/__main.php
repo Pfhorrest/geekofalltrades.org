@@ -2,7 +2,8 @@
 	<h2>Infographic Design</h2>
 	<p class="description">Examples of my infographic and data visualization design.</p>
 	<?php
-		$images = array(
+		require "modules/gallery.php";
+		render_gallery($images = array(
 			array(
 				'title' => '<i>Codex</i> moods',
 				'filename' => '../../codex/_media/images/moods.png',
@@ -93,7 +94,6 @@
 				'filename' => '../../essays/reconstructinggender/_media/images/reconstructinggender.png',
 				'description' => 'Illustrator, 2013.'
 			),
-		);
-		require "modules/gallery.php";
+		));
 	?>
 </section>

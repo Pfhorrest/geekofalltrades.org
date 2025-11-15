@@ -2,7 +2,8 @@
 	<h2>Traditional Arts</h2>
 	<p class="description">Examples of more traditional art, in assorted media.</p>
 	<?php
-		$images = array(
+		require "modules/gallery.php";
+		render_gallery($images = array(
 			array(
 				'title' => 'Pen Tree',
 				'filename' => 'pentree_finished.jpg',
@@ -28,7 +29,6 @@
 				'filename' => 'IrradiantInk.png',
 				'description' => 'India ink pen, 2002.'
 			),
-		);
-		require "modules/gallery.php";
+		));
 	?>
 </section>

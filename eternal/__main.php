@@ -58,7 +58,8 @@
 		Below is a gallery of screenshots mixed with a selection of the original images of various art assets that I've created for <i>Eternal</i>.
 	</p>
 	<?php
-		$images = array(
+		require "modules/gallery.php";
+		render_gallery($images = array(
 			array(
 				'title' => '<i>Eternal</i> prologue screenshot 1',
 				'filename' => 'screenshots/00-01.jpg',
@@ -860,7 +861,6 @@
 				'filename' => 'eternal-end-credits.jpg',
 				'description' => 'Illustrator, 2013.'
 			),
-		);
-		require "modules/gallery.php";
+		));
 	?>
 </section>

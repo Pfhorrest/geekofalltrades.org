@@ -243,8 +243,8 @@ def process_photos():
                         \t\tBest of the {date_granularity}
                         \t</p>
                         \t<?php
-                        \t\t{php_array_str.rstrip()}
                         \t\trequire "modules/gallery.php";
+                        \t\trender_gallery({php_array_str.rstrip()});
                         \t?>
                         </section>
                     """

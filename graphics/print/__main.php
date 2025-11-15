@@ -2,7 +2,8 @@
 	<h2>Print Design</h2>
 	<p class="description">Examples of my design for print.</p>
 	<?php
-		$images = array(
+		require "modules/gallery.php";
+		render_gallery($images = array(
 			array(
 				'title' => 'My resume',
 				'filename' => 'resume-thumb.png',
@@ -124,7 +125,6 @@
 				'filename' => 'LIVE_5EX_cover.png',
 				'description' => 'Photoshop, 2001.'
 			),
-		);
-		require "modules/gallery.php";
+		));
 	?>
 </section>
