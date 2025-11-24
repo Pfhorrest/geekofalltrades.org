@@ -281,7 +281,7 @@
                     <a class="cover" href="'.(
                         !empty($image['altlink'])
                             ? ($path.$altpath.'" rel="external"')
-                            : ('?display='.$image['filename'].'&title='.urlencode($image['title']).'"')
+                            : ('?display='.$image['filename'].'&title='.urlencode((string)($image['title'] ?? "Maybe: ".$image['maybe'])).'"')
                     ).'>
                         View '.(!empty($image['title']) ? $image['title'] : 'Untitled').'
                     </a>
