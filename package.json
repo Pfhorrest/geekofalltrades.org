@@ -13,9 +13,13 @@
     "php-server": "php -S geekofalltrades.local:8000 -t . ___structure/http.php",
     "load-tab": "bash -c 'while ! nc -z geekofalltrades.local 8000; do sleep 0.5; done; open \"http://geekofalltrades.local:8000\"; while true; do fswatch -1 __styles __scripts *.php; done'",
     "dev": "concurrently -k -n SASS,TS,PHP,LOAD -c magenta,yellow,blue,green, \"npm run sass-watch\" \"npm run ts-watch\" \"npm run php-server\" \"npm run load-tab\"",
-    "stage-code": "ssh goat \"cd ~/dev.geekofalltrades.org && git pull origin main\"",
-    "stage-photos": "rsync -avzh --progress --partial --delete photos/ goat:~/dev.geekofalltrades.org/photos/",
-    "stage": "npm run stage-code && npm run stage-photos",
-    "deploy": "ssh goat \"rsync -avzh --progress ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\""
+    "deploy:stage:code": "ssh goat \"cd ~/dev.geekofalltrades.org && git pull origin main\"",
+    "deploy:stage:photos": "rsync -avzh --progress --partial --delete photos/ goat:~/dev.geekofalltrades.org/photos/",
+    "deploy:stage": "npm run deploy:stage:code && npm run deploy:stage:photos",
+    "deploy": "ssh goat \"rsync -avzh --progress ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\"",
+    "document:php": "phpdoc -d ___structure -t _docs/php",
+    "document:sass": "sassdoc __styles -d _docs/sass",
+    "document:ts": "npx typedoc __scripts --out _docs/ts",
+    "document": "npm run document:php && npm run document:sass && npm run document:ts"
   }
 }
