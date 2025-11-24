@@ -5,6 +5,8 @@
   "devDependencies": {
     "concurrently": "latest",
     "sass": "latest",
+    "sassdoc": "^2.7.4",
+    "typedoc": "^0.28.14",
     "typescript": "latest"
   },
   "scripts": {
