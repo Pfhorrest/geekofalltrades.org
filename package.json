@@ -18,7 +18,7 @@
     "deploy:stage:code": "ssh goat \"cd ~/dev.geekofalltrades.org && git pull origin main\"",
     "deploy:stage:photos": "rsync -avzh --progress --partial --delete photos/ goat:~/dev.geekofalltrades.org/photos/",
     "deploy:stage": "npm run deploy:stage:code && npm run deploy:stage:photos",
-    "deploy": "ssh goat \"rsync -avzh --progress ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\"",
+    "deploy:prod": "ssh goat \"rsync -avzh --progress ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\"",
     "document:php": "phpdoc -d ___structure -t _docs/php",
     "document:sass": "sassdoc __styles -d _docs/sass",
     "document:ts": "npx typedoc __scripts/scripts.ts --out _docs/ts",
