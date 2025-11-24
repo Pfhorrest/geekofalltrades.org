@@ -63,6 +63,7 @@ geekofalltrades.org/
 ├── ___structure/          # PHP structural components (PrevHP)
 │   ├── html.php           # PrevHP core: cascading layout system
 │   ├── http.php           # Dev router (replicates .htaccess)
+│   ├── config.php         # Site-wide configuration variables
 │   └── modules/           # Reusable PHP modules
 ├── __scripts/             # TypeScript/JavaScript files
 │   ├── modules/           # Script modules

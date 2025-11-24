@@ -61,6 +61,7 @@
 		$crumbs[] = $this_crumb . (is_dir($root.$this_crumb) ? "/" : "");
 	}
 ?>
+<?php include_once("config.php") /* Import site-wide config variables */ ?> 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -108,7 +109,7 @@
 		<title>
 			<?php
 			$title = $_GET['title'] ?? ($title ?? "Untitled");
-			echo $title . " by Forrest Cameranesi";
+			echo $title . " " . $site_tagline_suffix;
 			?>
 		</title>
 		<!--  Set description to whatever the deepest head file declared -->
