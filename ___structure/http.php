@@ -1,6 +1,5 @@
 <?php
 /**
- * dev-router.php (inside ___structure)
  * Router script for PHP built-in server to emulate Apache .htaccess rewrites.
  */
 
