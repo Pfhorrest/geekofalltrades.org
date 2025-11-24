@@ -507,12 +507,16 @@ The generated documentation will be created in the `_docs/` directory and can be
 ## npm Scripts Reference
 
 ```bash
-npm run sass-watch   # Watch and compile SCSS only
-npm run ts-watch     # Watch and compile TypeScript only
-npm run php-server   # Start PHP development server only
-npm run dev          # Start all development watchers and open browser
-npm run deploy:stage # Deploy from local to staging server
-npm run deploy:prod  # Deploy from staging to production server
+npm run sass-watch    # Watch and compile SCSS only
+npm run ts-watch      # Watch and compile TypeScript only
+npm run php-server    # Start PHP development server only
+npm run dev           # Start all development watchers and open browser
+npm run deploy:stage  # Deploy from local to staging server
+npm run deploy:prod   # Deploy from staging to production server
+npm run document:php  # Generate PHP documentation
+npm run document:sass # Gemerate SASS documentation
+npm run document:ts   # Generate TypeScript documentation
+npm run document      # Generate all documentation
 ```
 
 ## Contact
