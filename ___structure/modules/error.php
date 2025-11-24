@@ -1,7 +1,7 @@
 <?php
     /** 
      * Segments of the external request path minus the last one
-     * (to use for link back to "parent director" in error message).
+     * (to use for link back to "parent directory" in error message).
      * 
      * @var array
      * @uses $segments
@@ -11,7 +11,7 @@
 
     /** 
      * Path to parent directory of requested file *or* directory
-     * (to use for link back to "parent director" in error message).
+     * (to use for link back to "parent directory" in error message).
      * 
      * @var string
      * @uses $parentSegments
