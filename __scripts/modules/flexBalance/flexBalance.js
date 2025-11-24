@@ -8,8 +8,6 @@ const balanceFlexRows = (container) => {
     if (items.length < 2)
         return;
     items.forEach((item) => {
-        // Hide items to prevent visible reflow during measurement
-        item.style.visibility = "hidden";
         // Clear existing min-widths
         item.style.minWidth = "auto";
     });
@@ -25,8 +23,6 @@ const balanceFlexRows = (container) => {
     items.forEach((item) => {
         // Set min-width to enforce distribution
         item.style.minWidth = `${100 / perRow}%`;
-        // Show items again
-        item.style.visibility = "visible";
     });
 };
 /**
