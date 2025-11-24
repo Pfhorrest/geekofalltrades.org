@@ -64,8 +64,8 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<?php include_once("modules/analytics.php") ?>
-		<?php include_once("modules/color-scheme.php") ?>
+		<?php include_once("modules/analytics.html") ?>
+		<?php include_once("modules/color-scheme.html") ?>
 		<?php
 			foreach ($crumbs as $crumb) {
 				/* Relative path to the styles file from the crumb root */
