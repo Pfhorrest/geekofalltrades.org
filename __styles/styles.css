@@ -3058,6 +3058,11 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
 .lightbox #caption span {
   white-space: normal;
 }
+.lightbox #caption span .maybe {
+  display: block;
+  font-size: 0.5em;
+  opacity: 0.5;
+}
 .lightbox {
   /* Navigation style details */
 }
