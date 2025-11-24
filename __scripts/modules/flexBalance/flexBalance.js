@@ -21,7 +21,7 @@ const balanceFlexRows = (container) => {
         return;
     // Calculate balanced distribution
     const perRow = Math.ceil(items.length / rowCount) + 1; // +1 to account for gaps
-    console.log(`Balancing ${items.length} items into ${rowCount} rows of up to ${perRow - 1} items each.`);
+    // console.log(`Balancing ${items.length} items into ${rowCount} rows of up to ${perRow - 1} items each.`);
     items.forEach((item) => {
         // Set min-width to enforce distribution
         item.style.minWidth = `${100 / perRow}%`;
