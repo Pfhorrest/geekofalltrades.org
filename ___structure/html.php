@@ -19,7 +19,7 @@
 		// Running under PHP built-in server
 		 ? realpath(__DIR__ . '/../') // Project root
 		// Running under Apache / production
-		: $root = $_SERVER['DOCUMENT_ROOT'];
+		: $_SERVER['DOCUMENT_ROOT'];
 
 	/**  
 	 * External path of the requested document relative to the host.
