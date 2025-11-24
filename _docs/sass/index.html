@@ -1,0 +1,2856 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Geekofalltrades - v1.0.0</title><link rel="stylesheet" href="assets/css/main.css"><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css"><meta name="viewport" content="width=device-width"><meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"><!-- Open Graph tags --><meta property="og:title" content="Geekofalltrades - SassDoc"><meta property="og:type" content="website"><meta property="og:description" content="Release the docs!"><!-- Thanks to Sass-lang.com for the icons --><link href="assets/images/favicon.png" rel="shortcut icon"></head><body><aside class="sidebar" role="nav"><div class="sidebar__header"><h1 class="sidebar__title">Geekofalltrades - 1.0.0</h1></div><div class="sidebar__body"><button type="button" class="btn-toggle js-btn-toggle" data-alt="Open all">Close all</button><p class="sidebar__item sidebar__item--heading" data-slug="colors"><a href="#colors">colors</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="colors-mixin"><a href="#colors-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="colors" data-name="colors-calc" data-type="mixin"><a href="#colors-mixin-colors-calc">colors-calc</a></li><li class="sidebar__item sassdoc__item" data-group="colors" data-name="colors-config" data-type="mixin"><a href="#colors-mixin-colors-config">colors-config</a></li><li class="sidebar__item sassdoc__item" data-group="colors" data-name="colors-header-footer" data-type="mixin"><a href="#colors-mixin-colors-header-footer">colors-header-footer</a></li><li class="sidebar__item sassdoc__item" data-group="colors" data-name="colors" data-type="mixin"><a href="#colors-mixin-colors">colors</a></li><li class="sidebar__item sassdoc__item" data-group="colors" data-name="prefers-color-scheme" data-type="mixin"><a href="#colors-mixin-prefers-color-scheme">prefers-color-scheme</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="header"><a href="#header">header</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="header-mixin"><a href="#header-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="header" data-name="h1-large" data-type="mixin"><a href="#header-mixin-h1-large">h1-large</a></li><li class="sidebar__item sassdoc__item" data-group="header" data-name="h1-small" data-type="mixin"><a href="#header-mixin-h1-small">h1-small</a></li><li class="sidebar__item sassdoc__item" data-group="header" data-name="h1" data-type="mixin"><a href="#header-mixin-h1">h1</a></li><li class="sidebar__item sassdoc__item" data-group="header" data-name="header" data-type="mixin"><a href="#header-mixin-header">header</a></li><li class="sidebar__item sassdoc__item" data-group="header" data-name="breadcrumb" data-type="mixin"><a href="#header-mixin-breadcrumb">breadcrumb</a></li><li class="sidebar__item sassdoc__item" data-group="header" data-name="menu-item-active" data-type="mixin"><a href="#header-mixin-menu-item-active">menu-item-active</a></li><li class="sidebar__item sassdoc__item" data-group="header" data-name="menu-item-styles" data-type="mixin"><a href="#header-mixin-menu-item-styles">menu-item-styles</a></li><li class="sidebar__item sassdoc__item" data-group="header" data-name="menu-item-with-submenu" data-type="mixin"><a href="#header-mixin-menu-item-with-submenu">menu-item-with-submenu</a></li><li class="sidebar__item sassdoc__item" data-group="header" data-name="submenu" data-type="mixin"><a href="#header-mixin-submenu">submenu</a></li><li class="sidebar__item sassdoc__item" data-group="header" data-name="menu" data-type="mixin"><a href="#header-mixin-menu">menu</a></li><li class="sidebar__item sassdoc__item" data-group="header" data-name="nav" data-type="mixin"><a href="#header-mixin-nav">nav</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="layout"><a href="#layout">layout</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="layout-variable"><a href="#layout-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="layout" data-name="bp1" data-type="variable"><a href="#layout-variable-bp1">bp1</a></li><li class="sidebar__item sassdoc__item" data-group="layout" data-name="bp2" data-type="variable"><a href="#layout-variable-bp2">bp2</a></li><li class="sidebar__item sassdoc__item" data-group="layout" data-name="bp3" data-type="variable"><a href="#layout-variable-bp3">bp3</a></li><li class="sidebar__item sassdoc__item" data-group="layout" data-name="bp4" data-type="variable"><a href="#layout-variable-bp4">bp4</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="layout-mixin"><a href="#layout-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="layout" data-name="breakpoints" data-type="mixin"><a href="#layout-mixin-breakpoints">breakpoints</a></li><li class="sidebar__item sassdoc__item" data-group="layout" data-name="layout" data-type="mixin"><a href="#layout-mixin-layout">layout</a></li><li class="sidebar__item sassdoc__item" data-group="layout" data-name="rounding" data-type="mixin"><a href="#layout-mixin-rounding">rounding</a></li><li class="sidebar__item sassdoc__item" data-group="layout" data-name="spacing" data-type="mixin"><a href="#layout-mixin-spacing">spacing</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="main"><a href="#main">main</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="main-mixin"><a href="#main-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="main" data-name="color-scheme-switcher" data-type="mixin"><a href="#main-mixin-color-scheme-switcher">color-scheme-switcher</a></li><li class="sidebar__item sassdoc__item" data-group="main" data-name="reduced-motion-switcher" data-type="mixin"><a href="#main-mixin-reduced-motion-switcher">reduced-motion-switcher</a></li><li class="sidebar__item sassdoc__item" data-group="main" data-name="headings" data-type="mixin"><a href="#main-mixin-headings">headings</a></li><li class="sidebar__item sassdoc__item" data-group="main" data-name="main-elements" data-type="mixin"><a href="#main-mixin-main-elements">main-elements</a></li><li class="sidebar__item sassdoc__item" data-group="main" data-name="main" data-type="mixin"><a href="#main-mixin-main">main</a></li><li class="sidebar__item sassdoc__item" data-group="main" data-name="duo" data-type="mixin"><a href="#main-mixin-duo">duo</a></li><li class="sidebar__item sassdoc__item" data-group="main" data-name="figure-left" data-type="mixin"><a href="#main-mixin-figure-left">figure-left</a></li><li class="sidebar__item sassdoc__item" data-group="main" data-name="gallery-expansive" data-type="mixin"><a href="#main-mixin-gallery-expansive">gallery-expansive</a></li><li class="sidebar__item sassdoc__item" data-group="main" data-name="gallery-item" data-type="mixin"><a href="#main-mixin-gallery-item">gallery-item</a></li><li class="sidebar__item sassdoc__item" data-group="main" data-name="gallery" data-type="mixin"><a href="#main-mixin-gallery">gallery</a></li><li class="sidebar__item sassdoc__item" data-group="main" data-name="section-animation" data-type="mixin"><a href="#main-mixin-section-animation">section-animation</a></li><li class="sidebar__item sassdoc__item" data-group="main" data-name="section-toggleable" data-type="mixin"><a href="#main-mixin-section-toggleable">section-toggleable</a></li><li class="sidebar__item sassdoc__item" data-group="main" data-name="section" data-type="mixin"><a href="#main-mixin-section">section</a></li><li class="sidebar__item sassdoc__item" data-group="main" data-name="toggle-all-sections-controls" data-type="mixin"><a href="#main-mixin-toggle-all-sections-controls">toggle-all-sections-controls</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="typography"><a href="#typography">typography</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="typography-function"><a href="#typography-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="typography" data-name="su" data-type="function"><a href="#typography-function-su">su</a></li><li class="sidebar__item sassdoc__item" data-group="typography" data-name="rfs" data-type="function"><a href="#typography-function-rfs">rfs</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="typography-variable"><a href="#typography-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="typography" data-name="mfs" data-type="variable"><a href="#typography-variable-mfs">mfs</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="undefined"><a href="#undefined">General</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-mixin"><a href="#undefined-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="footer" data-type="mixin"><a href="#undefined-mixin-footer">footer</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="lightbox" data-type="mixin"><a href="#undefined-mixin-lightbox">lightbox</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="optional-motion" data-type="mixin"><a href="#undefined-mixin-optional-motion">optional-motion</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="root" data-type="mixin"><a href="#undefined-mixin-root">root</a></li></ul></div></div></aside><article class="main" role="main"><header class="header" role="banner"><div class="container"><div class="sassdoc__searchbar searchbar"><label for="js-search-input" class="visually-hidden">Search</label><div class="searchbar__form" id="js-search"><input name="search" type="search" class="searchbar__field" autocomplete="off" autofocus id="js-search-input" placeholder="Search"><ul class="searchbar__suggestions" id="js-search-suggestions"></ul></div></div></div></header><section class="main__section"><h1 class="main__heading" id="colors"><div class="container">colors</div></h1><section class="main__sub-section" id="colors-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="colors-mixin-colors-calc"><h3 class="item__heading"><a class="item__name" href="#colors-mixin-colors-calc">colors-calc</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin colors-calc() { 
+  @include colors-config;
+
+  // Hue
+  --hc: calc(var(--hm) + var(--hs)); // Cooler hue
+  --hw: calc(var(--hm) - var(--hs)); // Warmer hue
+
+  // Saturation
+  --ss: calc(var(--sm) / 2); // Secondary saturation
+  --sh: calc((2 * var(--sm))); // Highlight saturation
+  --sd: calc(var(--ss) / 4); // Disabled saturation
+
+  color-scheme: light dark;
+
+  @include prefers-color-scheme(&quot;light&quot;) {
+    --lm: calc(100% - var(--lmo)); // Main lightness
+    --lti: calc((100% - var(--lm)) / 10); // Lightness tint increment
+    --lsi: calc((0% - var(--lm)) / 10); // Lightness shade increment
+    --black: black; // Variable black to invert for dark mode
+    --white: white; // Variable white to invert for dark mode
+  }
+  @include prefers-color-scheme(&quot;dark&quot;) {
+    // Inverted for dark mode
+    --lm: calc(0% + var(--lmo)); // Main lightness
+    --lti: calc((0% - var(--lm)) / 10); // Lightness &quot;shade&quot; increment
+    --lsi: calc((100% - var(--lm)) / 10); // Lightness &quot;tint&quot; increment
+    --black: white; // Variable black inverted for dark mode
+    --white: black; // Variable white inverted for dark mode
+  }
+
+  --lt9: calc(var(--lm) + (var(--lti) * 9)); // Lightness tint 9
+  --lt8: calc(var(--lm) + (var(--lti) * 8)); // Lightness tint 8
+  --lt7: calc(var(--lm) + (var(--lti) * 7)); // Lightness tint 7
+  --lt6: calc(var(--lm) + (var(--lti) * 6)); // Lightness tint 6
+  --lt5: calc(var(--lm) + (var(--lti) * 5)); // Lightness tint 5
+  --lt4: calc(var(--lm) + (var(--lti) * 4)); // Lightness tint 4
+  --lt3: calc(var(--lm) + (var(--lti) * 3)); // Lightness tint 3
+  --lt2: calc(var(--lm) + (var(--lti) * 2)); // Lightness tint 2
+  --lt1: calc(var(--lm) + (var(--lti) * 1)); // Lightness tint 1
+
+  --ls1: calc(var(--lm) + (var(--lsi) * 1)); // Lightness shade 1
+  --ls2: calc(var(--lm) + (var(--lsi) * 2)); // Lightness shade 2
+  --ls3: calc(var(--lm) + (var(--lsi) * 3)); // Lightness shade 3
+  --ls4: calc(var(--lm) + (var(--lsi) * 4)); // Lightness shade 4
+  --ls5: calc(var(--lm) + (var(--lsi) * 5)); // Lightness shade 5
+  --ls6: calc(var(--lm) + (var(--lsi) * 6)); // Lightness shade 6
+  --ls7: calc(var(--lm) + (var(--lsi) * 7)); // Lightness shade 7
+  --ls8: calc(var(--lm) + (var(--lsi) * 8)); // Lightness shade 8
+  --ls9: calc(var(--lm) + (var(--lsi) * 9)); // Lightness shade 9
+
+  // Basic colors
+  --cm: hsl(var(--hm) var(--sm) var(--lm)); // Main color
+  --cc: hsl(var(--hc) var(--ss) var(--lm)); // Cooler color
+  --cw: hsl(var(--hw) var(--ss) var(--lm)); // Warmer color
+
+  // Highlight glazes
+  --cmg: hsl(var(--hm) var(--sh) calc(100% / 2) / 25%); // Main glaze
+  --ccg: hsl(var(--hc) var(--sh) calc(100% / 2) / 25%); // Cooler glaze
+  --cwg: hsl(var(--hw) var(--sh) calc(100% / 2) / 25%); // Warmer glaze
+
+  // Disabled glazes
+  --cmd: hsl(var(--hm) var(--sd) var(--lm) / 25%); // Main disabled
+  --ccd: hsl(var(--hc) var(--sd) var(--lm) / 25%); // Cooler disabled
+  --cwd: hsl(var(--hw) var(--sd) var(--lm) / 25%); // Warmer disabled
+
+  // Main color ramp
+  --cm95: hsl(var(--hm) var(--sm) var(--lt9)); // Main color tint 9
+  --cm90: hsl(var(--hm) var(--sm) var(--lt8)); // Main color tint 8
+  --cm85: hsl(var(--hm) var(--sm) var(--lt7)); // Main color tint 7
+  --cm80: hsl(var(--hm) var(--sm) var(--lt6)); // Main color tint 6
+  --cm75: hsl(var(--hm) var(--sm) var(--lt5)); // Main color tint 5
+  --cm70: hsl(var(--hm) var(--sm) var(--lt4)); // Main color tint 4
+  --cm65: hsl(var(--hm) var(--sm) var(--lt3)); // Main color tint 3
+  --cm60: hsl(var(--hm) var(--sm) var(--lt2)); // Main color tint 2
+  --cm55: hsl(var(--hm) var(--sm) var(--lt1)); // Main color tint 1
+  --cm50: var(--cm); // Main color
+  --cm45: hsl(var(--hm) var(--sm) var(--ls1)); // Main color shade 1
+  --cm40: hsl(var(--hm) var(--sm) var(--ls2)); // Main color shade 2
+  --cm35: hsl(var(--hm) var(--sm) var(--ls3)); // Main color shade 3
+  --cm30: hsl(var(--hm) var(--sm) var(--ls4)); // Main color shade 4
+  --cm25: hsl(var(--hm) var(--sm) var(--ls5)); // Main color shade 5
+  --cm20: hsl(var(--hm) var(--sm) var(--ls6)); // Main color shade 6
+  --cm15: hsl(var(--hm) var(--sm) var(--ls7)); // Main color shade 7
+  --cm10: hsl(var(--hm) var(--sm) var(--ls8)); // Main color shade 8
+  --cm05: hsl(var(--hm) var(--sm) var(--ls9)); // Main color shade 9
+
+  // Cooler color ramp
+  --cc95: hsl(var(--hc) var(--ss) var(--lt9)); // Cooler color tint 9
+  --cc90: hsl(var(--hc) var(--ss) var(--lt8)); // Cooler color tint 8
+  --cc85: hsl(var(--hc) var(--ss) var(--lt7)); // Cooler color tint 7
+  --cc80: hsl(var(--hc) var(--ss) var(--lt6)); // Cooler color tint 6
+  --cc75: hsl(var(--hc) var(--ss) var(--lt5)); // Cooler color tint 5
+  --cc70: hsl(var(--hc) var(--ss) var(--lt4)); // Cooler color tint 4
+  --cc65: hsl(var(--hc) var(--ss) var(--lt3)); // Cooler color tint 3
+  --cc60: hsl(var(--hc) var(--ss) var(--lt2)); // Cooler color tint 2
+  --cc55: hsl(var(--hc) var(--ss) var(--lt1)); // Cooler color tint 1
+  --cc50: var(--cc); // Cooler color
+  --cc45: hsl(var(--hc) var(--ss) var(--ls1)); // Cooler color shade 1
+  --cc40: hsl(var(--hc) var(--ss) var(--ls2)); // Cooler color shade 2
+  --cc35: hsl(var(--hc) var(--ss) var(--ls3)); // Cooler color shade 3
+  --cc30: hsl(var(--hc) var(--ss) var(--ls4)); // Cooler color shade 4
+  --cc25: hsl(var(--hc) var(--ss) var(--ls5)); // Cooler color shade 5
+  --cc20: hsl(var(--hc) var(--ss) var(--ls6)); // Cooler color shade 6
+  --cc15: hsl(var(--hc) var(--ss) var(--ls7)); // Cooler color shade 7
+  --cc10: hsl(var(--hc) var(--ss) var(--ls8)); // Cooler color shade 8
+  --cc05: hsl(var(--hc) var(--ss) var(--ls9)); // Cooler color shade 9
+
+  // Warmer color ramp
+  --cw95: hsl(var(--hw) var(--ss) var(--lt9)); // Warmer color tint 9
+  --cw90: hsl(var(--hw) var(--ss) var(--lt8)); // Warmer color tint 8
+  --cw85: hsl(var(--hw) var(--ss) var(--lt7)); // Warmer color tint 7
+  --cw80: hsl(var(--hw) var(--ss) var(--lt6)); // Warmer color tint 6
+  --cw75: hsl(var(--hw) var(--ss) var(--lt5)); // Warmer color tint 5
+  --cw70: hsl(var(--hw) var(--ss) var(--lt4)); // Warmer color tint 4
+  --cw65: hsl(var(--hw) var(--ss) var(--lt3)); // Warmer color tint 3
+  --cw60: hsl(var(--hw) var(--ss) var(--lt2)); // Warmer color tint 2
+  --cw55: hsl(var(--hw) var(--ss) var(--lt1)); // Warmer color tint 1
+  --cw50: var(--cw); // Warmer color
+  --cw45: hsl(var(--hw) var(--ss) var(--ls1)); // Warmer color shade 1
+  --cw40: hsl(var(--hw) var(--ss) var(--ls2)); // Warmer color shade 2
+  --cw35: hsl(var(--hw) var(--ss) var(--ls3)); // Warmer color shade 3
+  --cw30: hsl(var(--hw) var(--ss) var(--ls4)); // Warmer color shade 4
+  --cw25: hsl(var(--hw) var(--ss) var(--ls5)); // Warmer color shade 5
+  --cw20: hsl(var(--hw) var(--ss) var(--ls6)); // Warmer color shade 6
+  --cw15: hsl(var(--hw) var(--ss) var(--ls7)); // Warmer color shade 7
+  --cw10: hsl(var(--hw) var(--ss) var(--ls8)); // Warmer color shade 8
+  --cw05: hsl(var(--hw) var(--ss) var(--ls9)); // Warmer color shade 9
+
+  --ct: hsl(from var(--black) h s l / 75%); // Main text color
+  --cbi: hsl(from var(--white) h s l / 25%); // Background inner color
+  --cbo: hsl(from var(--white) h s l / 75%); // Background outer color
+
+  @include prefers-color-scheme(&quot;light&quot;) {
+    --shade: #0001;
+    --gloss: #fffc;
+  }
+  @include prefers-color-scheme(&quot;dark&quot;) {
+    --shade: #000c;
+    --gloss: #fff1;
+  }
+
+  // Gradient curve direction
+  @include prefers-color-scheme(&quot;light&quot;) {
+    --curve: bottom;
+  }
+  @include prefers-color-scheme(&quot;dark&quot;) {
+    --curve: top;
+  }
+ }" data-collapsed="@mixin colors-calc() { ... }"><code>@mixin colors-calc() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Calculated secondary color variables</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-colors-config"><code>colors-config</code></a> &mdash; Configurable primary color variables</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-prefers-color-scheme"><code>prefers-color-scheme</code></a> &mdash; DRY color scheme helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-colors"><code>colors</code></a></li></ul></section><section class="main__item container item" id="colors-mixin-colors-config"><h3 class="item__heading"><a class="item__name" href="#colors-mixin-colors-config">colors-config</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin colors-config() { 
+  &amp;,
+  &amp;[data-theme=&quot;natural&quot;] {
+    // Hue
+    --hm: 120; // Main hue
+    --hs: 60; // Hue separation
+
+    // Saturation
+    --sm: 50%; // Main saturation
+
+    // Lightness
+    --lmo: 75%; // Main lightness offset; contrast from background
+  }
+
+  &amp;[data-theme=&quot;grays&quot;] {
+    // Saturation
+    --sm: 0%; // Main saturation
+  }
+
+  &amp;[data-theme=&quot;warmer&quot;] {
+    // Hue
+    --hm: 45; // Main hue
+    --hs: 15; // Hue separation
+  }
+
+  &amp;[data-theme=&quot;cooler&quot;] {
+    // Hue
+    --hm: 195; // Main hue
+    --hs: 15; // Hue separation
+  }
+
+  &amp;[data-theme=&quot;alien&quot;] {
+    // Hue
+    --hm: 300; // Main hue
+    --hs: -60; // Hue separation
+  }
+ }" data-collapsed="@mixin colors-config() { ... }"><code>@mixin colors-config() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Configurable primary color variables</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-colors-calc"><code>colors-calc</code></a></li></ul></section><section class="main__item container item" id="colors-mixin-colors-header-footer"><h3 class="item__heading"><a class="item__name" href="#colors-mixin-colors-header-footer">colors-header-footer</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin colors-header-footer() { 
+  --skyHue3: 0;
+  --skyHue2: 30;
+  --skyHue1: 60;
+  --seaHue1: 180;
+  --seaHue2: 210;
+  --seaHue3: 240;
+
+  &amp;[data-theme=&quot;warmer&quot;] {
+    --skyHue3: 30;
+    --skyHue2: 45;
+    --skyHue1: 60;
+    --seaHue1: 30;
+    --seaHue2: 15;
+    --seaHue3: 00;
+  }
+  &amp;[data-theme=&quot;cooler&quot;] {
+    --skyHue3: 210;
+    --skyHue2: 195;
+    --skyHue1: 180;
+    --seaHue1: 210;
+    --seaHue2: 225;
+    --seaHue3: 240;
+  }
+  &amp;[data-theme=&quot;alien&quot;] {
+    --skyHue3: 0;
+    --skyHue2: 330;
+    --skyHue1: 345;
+    --seaHue1: 285;
+    --seaHue2: 270;
+    --seaHue3: 240;
+  }
+
+  @include prefers-color-scheme(&quot;light&quot;) {
+    --cloudLight: hsl(
+      from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+    );
+    --cloudColor: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(100% / 2) / 25%);
+    --skyColor3: hsl(var(--skyHue3) calc(var(--sm) * 2) calc(50% / 2));
+    --skyColor2: hsl(var(--skyHue2) calc(var(--sm) * 2) calc(75% / 2));
+    --skyColor1: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(100% / 2));
+    --skyMist: hsl(var(--skyHue1) calc(var(--sm) * 2) 87.5%);
+    --seaMist: hsl(var(--seaHue1) calc(var(--sm) * 2) 87.5%);
+    --seaColor1: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(100% / 2));
+    --seaColor2: hsl(var(--seaHue2) calc(var(--sm) * 2) calc(75% / 2));
+    --seaColor3: hsl(var(--seaHue3) calc(var(--sm) * 2) calc(50% / 2));
+    --swellColor: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(100% / 2) / 25%);
+    --swellLight: hsl(
+      from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+    );
+  }
+
+  @include prefers-color-scheme(&quot;dark&quot;) {
+    --cloudLight: hsl(
+      from var(--cloudColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+    );
+    --cloudColor: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(75% / 2) / 25%);
+    --skyColor3: hsl(var(--skyHue3) calc(var(--sm) * 2) calc(50% / 2));
+    --skyColor2: hsl(var(--skyHue2) calc(var(--sm) * 2) calc(25% / 2));
+    --skyColor1: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(12.5% / 2));
+    --skyMist: hsl(var(--skyHue1) calc(var(--sm) * 2) calc(6.25% / 2));
+    --seaMist: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(6.25% / 2));
+    --seaColor1: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(12.5% / 2));
+    --seaColor2: hsl(var(--seaHue2) calc(var(--sm) * 2) calc(25% / 2));
+    --seaColor3: hsl(var(--seaHue3) calc(var(--sm) * 2) calc(50% / 2));
+    --swellColor: hsl(var(--seaHue1) calc(var(--sm) * 2) calc(75% / 2) / 25%);
+    --swellLight: hsl(
+      from var(--swellColor) h calc(var(--sm) * 2) calc(100% / 2) / 50%
+    );
+  }
+ }" data-collapsed="@mixin colors-header-footer() { ... }"><code>@mixin colors-header-footer() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Colors variables for header and footer</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-prefers-color-scheme"><code>prefers-color-scheme</code></a> &mdash; DRY color scheme helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-colors"><code>colors</code></a></li></ul></section><section class="main__item container item" id="colors-mixin-colors"><h3 class="item__heading"><a class="item__name" href="#colors-mixin-colors">colors</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin colors() { 
+  /* General site-wide color variables */
+  @include colors-calc;
+
+  /* Colors variables for header and footer */
+  @include colors-header-footer;
+ }" data-collapsed="@mixin colors() { ... }"><code>@mixin colors() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Color variables</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-colors-calc"><code>colors-calc</code></a> &mdash; Calculated secondary color variables</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-colors-header-footer"><code>colors-header-footer</code></a> &mdash; Color variables for the header and footer</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-root"><code>root</code></a></li></ul></section><section class="main__item container item" id="colors-mixin-prefers-color-scheme"><h3 class="item__heading"><a class="item__name" href="#colors-mixin-prefers-color-scheme">prefers-color-scheme</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin prefers-color-scheme() { 
+  @media (prefers-color-scheme: $mode) {
+    @content;
+  }
+  &amp;[data-color-scheme=#{$mode}],
+  html[data-color-scheme=#{$mode}] &amp; {
+    @content;
+  }
+ }" data-collapsed="@mixin prefers-color-scheme() { ... }"><code>@mixin prefers-color-scheme() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Helper mixin that sets color scheme styles to both a @media (prefers-color-scheme: whatever) {...} block and an html[data-color-scheme=whatever] {...} block without having to duplicate code.</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-colors-calc"><code>colors-calc</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-colors-header-footer"><code>colors-header-footer</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-h1-small"><code>h1-small</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-figure-left"><code>figure-left</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-gallery-item"><code>gallery-item</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="header"><div class="container">header</div></h1><section class="main__sub-section" id="header-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="header-mixin-h1-large"><h3 class="item__heading"><a class="item__name" href="#header-mixin-h1-large">h1-large</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin h1-large() { 
+  @media (min-width: $bp2) {
+    /* Wind and waves background */
+    background:
+      /* Mist in the distance creating depth */ linear-gradient(
+        transparent calc(50% - 1em),
+        var(--skyMist) 50%,
+        var(--seaMist) 50%,
+        transparent calc(50% + 1em)
+      ),
+      /* Clouds in the sky and swells in the sea */
+        linear-gradient(
+          to bottom,
+          transparent 0%,
+          var(--cloudColor) calc(50% - 1.25 * 50% / 2),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 2),
+          transparent calc(50% - 1 * 50% / 2),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 4),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 4),
+          transparent calc(50% - 1 * 50% / 4),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 8),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 8),
+          transparent calc(50% - 1 * 50% / 8),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 16),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 16),
+          transparent calc(50% - 1 * 50% / 16),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 32),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 32),
+          transparent calc(50% - 1 * 50% / 32),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 64),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 64),
+          transparent calc(50% - 1 * 50% / 64),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 128),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 128),
+          transparent calc(50% - 1 * 50% / 128),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 256),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 256),
+          transparent calc(50% - 1 * 50% / 256),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 512),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 512),
+          transparent calc(50% - 1 * 50% / 512),
+          var(--cloudColor) calc(50% - 1.25 * 50% / 1024),
+          var(--cloudLight) calc(50% - 1.125 * 50% / 1024),
+          transparent calc(50% - 1 * 50% / 1024),
+          transparent calc(50% + 1 * 50% / 1024),
+          var(--swellLight) calc(50% + 1.625 * 50% / 1024),
+          var(--swellColor) calc(50% + 1.75 * 50% / 1024),
+          transparent calc(50% + 1 * 50% / 512),
+          var(--swellLight) calc(50% + 1.625 * 50% / 512),
+          var(--swellColor) calc(50% + 1.75 * 50% / 512),
+          transparent calc(50% + 1 * 50% / 256),
+          var(--swellLight) calc(50% + 1.625 * 50% / 256),
+          var(--swellColor) calc(50% + 1.75 * 50% / 256),
+          transparent calc(50% + 1 * 50% / 128),
+          var(--swellLight) calc(50% + 1.625 * 50% / 128),
+          var(--swellColor) calc(50% + 1.75 * 50% / 128),
+          transparent calc(50% + 1 * 50% / 64),
+          var(--swellLight) calc(50% + 1.625 * 50% / 64),
+          var(--swellColor) calc(50% + 1.75 * 50% / 64),
+          transparent calc(50% + 1 * 50% / 32),
+          var(--swellLight) calc(50% + 1.625 * 50% / 32),
+          var(--swellColor) calc(50% + 1.75 * 50% / 32),
+          transparent calc(50% + 1 * 50% / 16),
+          var(--swellLight) calc(50% + 1.625 * 50% / 16),
+          var(--swellColor) calc(50% + 1.75 * 50% / 16),
+          transparent calc(50% + 1 * 50% / 8),
+          var(--swellLight) calc(50% + 1.625 * 50% / 8),
+          var(--swellColor) calc(50% + 1.75 * 50% / 8),
+          transparent calc(50% + 1 * 50% / 4),
+          var(--swellLight) calc(50% + 1.625 * 50% / 4),
+          var(--swellColor) calc(50% + 1.75 * 50% / 4),
+          transparent calc(50% + 1 * 50% / 2),
+          var(--swellLight) calc(50% + 1.625 * 50% / 2),
+          var(--swellColor) calc(50% + 1.75 * 50% / 2),
+          transparent 100%
+        ),
+      /* Basic colors of sky and sea */
+        linear-gradient(
+          to bottom,
+          var(--skyColor3) 0%,
+          var(--skyColor2) 37.5%,
+          var(--skyColor1) 48%,
+          var(--skyMist) 50%,
+          var(--seaMist) 50%,
+          var(--seaColor1) 52%,
+          var(--seaColor2) 62.5%,
+          var(--seaColor3) 100%
+        );
+    background-size: 100%, 100% 100%, auto;
+    background-position: center, center, center;
+
+    @include optional-motion() {
+      /* Animation */
+      @keyframes windAndWaves {
+        from {
+          background-size: 100%, 100% 100%, auto;
+        }
+        to {
+          background-size: 100%, 100% 200%, auto;
+        }
+      }
+      animation-name: windAndWaves;
+      animation-duration: 12s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+      /* Custom animation timing function aiming to make loop look seamless */
+      animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
+    }
+    /* Borders and shadows to create windowframe effect */
+    padding: 1vw;
+    border: 0.5rem solid black;
+    border-radius: 6.25vw 6.25vw 0 0;
+    box-shadow: inset 0 0 0.5vw 0 #0008, inset 0 0 0 0.5vw #000c;
+
+    /* Scale up the logo (previously set in this ::before pseudo-element) */
+    &amp;::before {
+      width: 3em;
+      height: 3em;
+    }
+
+    /* Hide the hamburger menu (previously set in this ::after pseudo-element) */
+    &amp;::after {
+      display: none;
+    }
+
+    /* Display the first line of text, now that there&#39;s room;
+       and sort it before the logo */
+    &gt; span:first-of-type {
+      display: inline;
+      order: -1;
+    }
+  }
+ }" data-collapsed="@mixin h1-large() { ... }"><code>@mixin h1-large() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Style overrides for the main heading at larger viewport widths (Assumes details for smaller viewports are already defined)</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a> &mdash; Second breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-h1"><code>h1</code></a></li></ul></section><section class="main__item container item" id="header-mixin-h1-small"><h3 class="item__heading"><a class="item__name" href="#header-mixin-h1-small">h1-small</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin h1-small() { 
+  /* Places the logo in a ::before pseudo-element */
+  &amp;::before {
+    content: &quot;&quot;;
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    background: center / contain no-repeat url(/_media/images/logo.png);
+    flex-shrink: 0;
+  }
+
+  /* Places a hamburger menu in an ::after pseudo-element */
+  &amp;::after {
+    content: &quot;&quot;;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background: center / contain no-repeat
+      url(&#39;data:image/svg+xml,&lt;svg version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; x=&quot;0.0em&quot; y=&quot;0.0em&quot; width=&quot;1.0em&quot; height=&quot;1.0em&quot; viewBox=&quot;0 0 1.0em 1.0em&quot; &gt;&lt;rect x=&quot;0.0em&quot; y=&quot;0.0em&quot; width=&quot;1.0em&quot; height=&quot;0.2em&quot; /&gt;&lt;rect x=&quot;0.0em&quot; y=&quot;0.4em&quot; width=&quot;1.0em&quot; height=&quot;0.2em&quot; /&gt;&lt;rect x=&quot;0.0em&quot; y=&quot;0.8em&quot; width=&quot;1.0em&quot; height=&quot;0.2em&quot; /&gt;&lt;/svg&gt;&#39;);
+    flex-shrink: 0;
+  }
+  /* In light mode, it&#39;s unfiltered
+     (and therefore black against the light background) */
+  @include prefers-color-scheme(&quot;light&quot;) {
+    &amp;::after {
+      filter: none;
+    }
+  }
+  /* In dark mode, it&#39;s inverted
+      (and therefore white against the dark background) */
+  @include prefers-color-scheme(&quot;dark&quot;) {
+    &amp;::after {
+      filter: invert(1);
+    }
+  }
+
+  /* Makes different spans of text all equal sizes as each other */
+  &gt; span {
+    flex-grow: 1;
+    flex-basis: 100%;
+
+    /* Hides sub-spans at smallest viewport widths,
+       to collapse phrases down to acronyms
+       (e.g. &quot;Geek of all Trades&quot; =&gt; &quot;GoaT&quot;) */
+    &gt; span {
+      display: none;
+
+      /* Shows sub-spans again at slightly larger viewport widths */
+      @media (min-width: $bp1) {
+        display: inline;
+      }
+    }
+  }
+
+  /* Hides the first span
+     (e.g. &quot;Forrest Cameranesi&quot;);
+     To be shown only at larger viewport widths */
+  &gt; span:first-of-type {
+    display: none;
+  }
+ }" data-collapsed="@mixin h1-small() { ... }"><code>@mixin h1-small() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styling details for the main heading at small viewport widths</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp1"><code>bp1</code></a> &mdash; Fist breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-prefers-color-scheme"><code>prefers-color-scheme</code></a> &mdash; DRY color scheme helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-h1"><code>h1</code></a></li></ul></section><section class="main__item container item" id="header-mixin-h1"><h3 class="item__heading"><a class="item__name" href="#header-mixin-h1">h1</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin h1() { 
+  h1 {
+    /* Geenral */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Sizing */
+    box-sizing: border-box;
+    width: 100%;
+
+    /* Spacing */
+    margin: 0 auto;
+    padding: 1vw 3vw;
+
+    /* Borders */
+    border: 0.25em solid black;
+    border-radius: 0.5em;
+    outline: 1pt solid black; /* hides some unsightly glitches at the edges */
+
+    /* Basic background colors of sky and sea with mist for depth built in
+       (will be overridden with fancier layers at large viewport widths) */
+    background: linear-gradient(
+      to bottom,
+      var(--skyColor2) 0%,
+      var(--skyColor1) 37.5%,
+      var(--skyMist) 48%,
+      var(--white) 50%,
+      var(--seaMist) 52%,
+      var(--seaColor1) 62.5%,
+      var(--seaColor2) 100%
+    );
+
+    /* Typography */
+    font-family: &quot;Princess Sofia&quot;, &quot;Itim&quot;, &quot;Nunito&quot;, sans-serif;
+    font-size: max(1.5rem, 4vw);
+    white-space: nowrap;
+    letter-spacing: 0.1em;
+    line-height: 2;
+
+    /* Proper fill and stroke when supported */
+    -webkit-text-fill-color: var(--cm);
+    -webkit-text-stroke: calc(1em / 32) black;
+    paint-order: stroke fill;
+    /* Basic color fill and text-shadow to fake strokes otherwise */
+    color: var(--cm);
+    --sW: calc(1em / 32); // stroke width
+    --sC: hsl(from var(--white) h s l / 50%); // stroke color
+    /* Text shadow also adds a softer touch even when proper stroke is supported */
+    text-shadow:
+      // Four layers from thin and dark to slightly wider and lighter:
+      // - Fully opaque, eighth of 0.1em
+      0.0125em 0.0125em 0.0125em #000,
+      // - Half opaque, quarter of 0.1em
+      0.025em 0.025em 0.025em #0008,
+      // - Quarter opaque, half of 0.1em
+      0.05em 0.05em 0.05em #0004,
+      // - Eighth opaque, full 0.1em
+      0.1em 0.1em 0.1em #0002,
+      // Eight layers of the same width and color to fake a stroke:
+      // - Bottom right
+      var(--sW) var(--sW) var(--sW) var(--sC),
+      // - Bottom center
+      0 var(--sW) var(--sW) var(--sC),
+      // - Bottom left
+      calc(-1 * var(--sW)) var(--sW) var(--sW) var(--sC),
+      // - Center left
+      calc(-1 * var(--sW)) 0 var(--sW) var(--sC),
+      // - Top left
+      calc(-1 * var(--sW)) calc(-1 * var(--sW)) var(--sW) var(--sC),
+      // - Top center
+      0 calc(-1 * var(--sW)) var(--sW) var(--sC),
+      // - Top right
+      var(--sW) calc(-1 * var(--sW)) var(--sW) var(--sC),
+      // - Center right
+      var(--sW) 0 var(--sW) var(--sC);
+
+    /* Details for small viewport widths */
+    @include h1-small;
+
+    /* Overrides for large viewport widths */
+    @include h1-large;
+  }
+ }" data-collapsed="@mixin h1() { ... }"><code>@mixin h1() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for the main heading</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-h1-small"><code>h1-small</code></a> &mdash; Details for small viewport widths</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-h1-large"><code>h1-large</code></a> &mdash; Overrides for large viewport widths</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-header"><code>header</code></a></li></ul></section><section class="main__item container item" id="header-mixin-header"><h3 class="item__heading"><a class="item__name" href="#header-mixin-header">header</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin header() { 
+  header {
+    /* Layout */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-flow: column;
+
+    /* Sizing */
+    max-height: 100vh;
+    overflow-y: hidden;
+
+    /* Spacing */
+    padding: 0;
+
+    /* Borders */
+    border: 0;
+
+    /* Background */
+    background: black;
+
+    /* Typography */
+    text-align: center;
+
+    @media (min-width: $bp2) {
+      top: calc(-1 * (3 * max(1.5rem, 4vw) + 2vw + 0.5rem));
+      overflow-y: visible;
+    }
+
+    /* Don&#39;t display in print mode */
+    @media only print {
+      display: none;
+    }
+
+    /* Links have no underlines in the header*/
+    a {
+      text-decoration: none;
+    }
+
+    /* Styles for the main heading */
+    @include h1;
+
+    /* Styles for navigation */
+    @include nav;
+  }
+ }" data-collapsed="@mixin header() { ... }"><code>@mixin header() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for the header</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a> &mdash; Second breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-h1"><code>h1</code></a> &mdash; Styles for the main heading</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-nav"><code>nav</code></a> &mdash; Styles for navigation</li></ul></section><section class="main__item container item" id="header-mixin-breadcrumb"><h3 class="item__heading"><a class="item__name" href="#header-mixin-breadcrumb">breadcrumb</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin breadcrumb() { 
+  &gt; a {
+    /* Layout */
+    display: block;
+    float: left;
+    z-index: 1;
+    flex: 1 1 auto;
+    order: -1;
+    opacity: 50%;
+
+    /* Sizing */
+    min-height: 2em;
+    overflow: hidden;
+
+    /* Spacing */
+    margin: 0;
+    margin-bottom: -2em;
+    padding: 0 1em;
+    padding-bottom: 2em;
+
+    /* Background */
+    background: var(--nav-grad);
+    background-size: 100% 300%;
+    background-position-y: 50%;
+
+    /* Borders */
+    border: none;
+    border-top: 0pt solid white;
+    outline: none;
+    border-top-left-radius: calc(0.5 * var(--rounding));
+    border-top-right-radius: calc(0.5 * var(--rounding));
+    box-shadow: 1pt 1pt 0pt transparent inset, -1pt 0pt 0pt transparent inset,
+      1pt 1pt 0 0 var(--shade) inset;
+
+    /* Typography */
+    color: var(--ct);
+    text: {
+      align: center;
+      decoration: none;
+    }
+    line-height: 2;
+    text-overflow: ellipsis;
+
+    /* Fade out opacity from latest to earlier breadcrumbs */
+    &amp;:nth-last-of-type(1) {
+      opacity: 100%;
+    }
+    &amp;:nth-last-of-type(2) {
+      opacity: 87.5%;
+    }
+    &amp;:nth-last-of-type(3) {
+      opacity: 75%;
+    }
+    &amp;:nth-last-of-type(4) {
+      opacity: 62.5%;
+    }
+    &amp;:nth-last-of-type(5) {
+      opacity: 50%;
+    }
+
+    /* At larger viewport widths ... */
+    @media (min-width: $bp2) {
+      /* No gap between breadcrumbs and menus */
+      margin-bottom: 0;
+      padding-bottom: 0;
+      /* On interaction... */
+      &amp;:hover,
+      &amp;:focus,
+      &amp;:active,
+      &amp;.current {
+        /* Get skeueomorphic */
+        box-shadow: 1pt 1pt 0pt var(--gloss) inset,
+          -1pt 0pt 0pt var(--shade) inset, 1pt 1pt 0 0 transparent inset;
+        /* Shift background gradient to top (for highlight effect) */
+        background-position-y: 0%;
+        /* Come to full opacity */
+        opacity: 100%;
+        /* If it&#39;s not the last one, dim the last one a little in comparison */
+        &amp; ~ a:last-of-type {
+          opacity: 93.75%;
+        }
+      }
+    }
+  }
+ }" data-collapsed="@mixin breadcrumb() { ... }"><code>@mixin breadcrumb() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for breadcrumbs</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a> &mdash; Second breakpoint value</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-nav"><code>nav</code></a></li></ul></section><section class="main__item container item" id="header-mixin-menu-item-active"><h3 class="item__heading"><a class="item__name" href="#header-mixin-menu-item-active">menu-item-active</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin menu-item-active() { 
+  &amp;.active, &amp;:not(.submenu):has(ul):hover {
+    /* To pop out in front of other items */
+    position: relative;
+    z-index: 1;
+
+    /* Menu item link */
+    a {
+      background: radial-gradient(transparent, var(--cmg)),
+        linear-gradient(to var(--curve), var(--cm95), var(--cm75));
+      background-size: 1000% 1000%;
+      /* When hovered */
+      &amp;:hover {
+        background: radial-gradient(transparent, var(--cwg)),
+          linear-gradient(to var(--curve), var(--cw95), var(--cw75));
+        background-size: 100% 100%;
+      }
+      /* When active */
+      &amp;:active {
+        background: radial-gradient(transparent, var(--cwg)),
+          linear-gradient(to var(--curve), var(--cw95), var(--cw75));
+        background-size: 100% 100%;
+      }
+
+    }
+  }
+ }" data-collapsed="@mixin menu-item-active() { ... }"><code>@mixin menu-item-active() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for active menu items</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu-item-styles"><code>menu-item-styles</code></a></li></ul></section><section class="main__item container item" id="header-mixin-menu-item-styles"><h3 class="item__heading"><a class="item__name" href="#header-mixin-menu-item-styles">menu-item-styles</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin menu-item-styles() { 
+  li {
+    /* Layout */
+    position: relative;
+    display: inline-block;
+    flex: 1 1 100%;
+
+    /* Sizing */
+    height: auto;
+
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+
+    /* Borders */
+    border-radius: calc(0.5 * var(--rounding));
+
+    /* Typography */
+    line-height: 1;
+    white-space: normal;
+
+    /* Miscelleneous */
+    list-style-type: none;
+
+    /* At larger viewpoint widths ... */
+    @media (min-width: $bp2) {
+      /* Accommodate content but no more */
+      flex: 1 0 0%;
+      /* No line wrapping */
+      white-space: nowrap;
+    }
+
+    /* Styles for current menu item links */
+    &amp;.current &gt; a, &amp;.active &gt; ul &gt; .current &gt; a{
+      background: radial-gradient(transparent, var(--cwg)),
+        linear-gradient(to var(--curve), var(--cw95) 0%, var(--cw75) 100%);
+      background-size: 1000% 1000%;
+      background-position-y: 50%;
+    }
+
+    /* Menu item link */
+    a {
+      /* Layout */
+      display: inline-block;
+
+      /* Sizing */
+      width: 100%;
+      box-sizing: border-box;
+
+      /* Spacing */
+      margin: 0;
+      padding: 0.5em 2em;
+
+      /* Background */
+      background: radial-gradient(transparent, var(--ccg)),
+        linear-gradient(to var(--curve), var(--cc95) 0%, var(--cc75) 100%);
+      /* Background is scaled up and centered to create illusory flatness
+         that can then be scaled back down to animate in skeuomorphism */
+      background-size: 1000% 1000%;
+      background-position-y: 50%;
+
+      /* Borders */
+      border: none;
+      border-radius: calc(0.5 * var(--rounding));
+      box-shadow: 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+        1pt 1pt 1pt transparent, 0 0 0 1pt var(--shade) inset;
+
+      /* Typography */
+      font-weight: normal;
+      text: {
+        transform: none;
+        decoration: none;
+      }
+      overflow-wrap: break-word;
+      line-height: 1;
+
+      /* Text color should be ordinary text color in all circumstances */
+      &amp;,
+      &amp;:active,
+      &amp;:hover,
+      &amp;:focus,
+      &amp;:link,
+      &amp;:visited {
+        color: var(--ct);
+      }
+
+      /* Effects */
+
+      /* Skeuomorphisms on all interaction*/
+      @include optional-motion() {
+        transition: all 1s;
+      }
+      &amp;:hover,
+      &amp;:focus,
+      &amp;:active {
+        box-shadow: 1pt 1pt 0pt var(--gloss) inset,
+          -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade),
+          0 0 0 1pt transparent inset;
+        /* Scale background back to normal to animate in gradient */
+        background-size: 100% 100%;
+      }
+
+      /* Different colors for hover and active states */
+      &amp;:hover {
+        background: radial-gradient(transparent, var(--cmg)),
+          linear-gradient(to var(--curve), var(--cm95), var(--cm75));
+      }
+      &amp;:active {
+        background: radial-gradient(transparent, var(--cwg)),
+          linear-gradient(to var(--curve), var(--cw95), var(--cw75));
+      }
+    }
+
+    /* Styles for active menu items */
+    @include menu-item-active;
+
+    /* Styles for menu items with submenus */
+    @include menu-item-with-submenu;
+
+    /* Hide submenus by default (even if menu item isn&#39;t classed &quot;.submenu&quot;) */
+    &gt; ul {
+      display: none;
+    }
+  }
+ }" data-collapsed="@mixin menu-item-styles() { ... }"><code>@mixin menu-item-styles() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for menu items</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a> &mdash; Second breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu-item-active"><code>menu-item-active</code></a> &mdash; Styles for active menu items</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu-item-with-submenu"><code>menu-item-with-submenu</code></a> &mdash; Styles for menu items with submenus</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu"><code>menu</code></a></li></ul></section><section class="main__item container item" id="header-mixin-menu-item-with-submenu"><h3 class="item__heading"><a class="item__name" href="#header-mixin-menu-item-with-submenu">menu-item-with-submenu</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin menu-item-with-submenu() { 
+  /* For the dropdown menu arrows */
+  &amp;.submenu, &amp;:has(ul) {
+    &gt; a {
+      &amp;::before,
+      &amp;::after {
+        content: &quot;▼&quot;;
+        position: absolute;
+        display: inline-block;
+        top: 0.5em;
+        opacity: 0.25;
+        vertical-align: middle;
+        transform: rotate(0deg);
+      }
+
+      /* Rotate the left one counter-clockwise by default */
+      &amp;::before {
+        left: 0.5em;
+        margin-right: 0.5em;
+        transform: rotate(-90deg);
+      }
+      /* Rotate the right one clockwise by default */
+      &amp;::after {
+        right: 0.5em;
+        margin-left: 0.5em;
+        transform: rotate(90deg);
+      }
+      /* Reverse the shadow of the left one
+         since they&#39;re in opposite orientations now */
+      &amp;:hover::before {
+        text-shadow: -1pt 1pt 1pt var(--shade);
+      }
+    }
+    /* But when the menu item is active ... */
+    &amp;.active a {
+      /* Flip the dropdown menu arrows back to normal */
+      &amp;::before,
+      &amp;::after {
+        transform: rotate(0deg);
+      }
+      /* Reverse the shadow of the left one back again */
+      &amp;:hover::before {
+        text-shadow: 1pt 1pt 1pt var(--shade);
+      }
+    }
+    @include submenu;
+  }
+  /* Basic dropdown functionality for when no Javascript */
+  &amp;:not(.submenu):has(ul):hover {
+   &gt; ul {
+     display: block;
+   }
+  }
+ }" data-collapsed="@mixin menu-item-with-submenu() { ... }"><code>@mixin menu-item-with-submenu() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for menu items that have submenus</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-submenu"><code>submenu</code></a> &mdash; Styles for submenus</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu-item-styles"><code>menu-item-styles</code></a></li></ul></section><section class="main__item container item" id="header-mixin-submenu"><h3 class="item__heading"><a class="item__name" href="#header-mixin-submenu">submenu</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin submenu() { 
+  ul {
+    /* Layout */
+    position: static;
+    display: none;
+    z-index: -1;
+    top: 0;
+    left: 0.5em;
+    overflow-y: auto;
+
+    /* Sizing */
+    width: 100%;
+
+    /* Spacing */
+    padding: 0.125em 0;
+    margin: 0;
+
+    /* Background */
+    background: linear-gradient(
+      to right,
+      var(--cm70),
+      var(--cm80),
+      var(--cm70)
+    );
+    background-size: 1000% 1000%;
+    background-position-x: 50%;
+
+    /* Borders */
+    border-radius: calc(0.5 * var(--rounding));
+    box-shadow: 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+      1pt 1pt 1pt transparent, 0 0 0 1pt var(--shade) inset;
+    &amp;:hover,
+    &amp;:focus,
+    &amp;:active {
+      box-shadow: 1pt 1pt 0pt var(--gloss) inset,
+        -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade),
+        0 0 0 1pt transparent inset;
+      background-size: 100% 100%;
+    }
+
+    /* At larger viewport widths, drop down instead of just expanding in place */
+    @media (min-width: $bp2) {
+      position: absolute;
+      width: 100%;
+      box-sizing: border-box;
+      max-height: calc(100vh - 10em);
+      margin: 0 -0.5em;
+      padding: 2em 0 0;
+    }
+
+    /* Submenu items */
+    li {
+      display: block;
+      margin: 0.5em;
+      white-space: normal;
+
+      /* Item links */
+      a {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.5em 1em;
+      }
+    }
+  }
+ }" data-collapsed="@mixin submenu() { ... }"><code>@mixin submenu() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for dropdown submenus</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a> &mdash; Second breakpoint value</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu-item-with-submenu"><code>menu-item-with-submenu</code></a></li></ul></section><section class="main__item container item" id="header-mixin-menu"><h3 class="item__heading"><a class="item__name" href="#header-mixin-menu">menu</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin menu() { 
+  &gt; ul {
+    /* Layout */
+    z-index: 1;
+    display: none; // Actual initial display value
+    --display: flex; // Intended display value once made visible
+    &amp; * {
+      --display: ; // Cleared so children don&#39;t inherit it
+    }
+    flex-flow: row wrap;
+    justify-content: space-between;
+    flex-basis: auto; // Do what it needs to do at small viewport widths
+    flex-shrink: 1; // Including shrinking if necessary
+    clear: both;
+
+    /* Sizing */
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    /* Spacing */
+    margin: 0 -0.5em;
+    padding: 0.5em;
+    gap: 0.5em;
+
+    /* Background */
+    background: var(--nav-grad);
+    background-size: 100% 300%;
+    background-position-y: 50%;
+
+    /* Borders */
+    border: 0;
+    box-shadow: 0pt -1pt 0 0 var(--shade);
+
+    /* Typography */
+    text-align: center;
+    line-height: 2.5;
+
+    /* Effects */
+    @include optional-motion() {
+      transition: all 0.25s;
+    }
+    will-change: height, padding-top, padding-bottom, row-gap;
+
+    /* At large viewport widths... */
+    @media (min-width: $bp2) {
+      /* Go full width and grow tall as needed */
+      flex-basis: 100vw;
+      overflow-y: visible;
+      /* Get skeueomorphic on interaction */
+      box-shadow: 0pt -1pt 0pt transparent inset, 0pt 1pt 1pt transparent,
+        0 -1pt 0 0 var(--shade) inset;
+      &amp;:hover,
+      &amp;:focus,
+      &amp;:active {
+        box-shadow: 0pt -1pt 0pt var(--shade) inset, 0pt 1pt 1pt var(--shade),
+          0 -1pt 0 0 transparent inset;
+        background-position-y: 100%;
+      }
+    }
+
+    /* Styles for menu items */
+    @include menu-item-styles;
+  }
+
+  /* Show the menu associated with the last breadcrumb by default */
+  &gt; a:last-of-type + ul {
+    display: flex;
+  }
+ }" data-collapsed="@mixin menu() { ... }"><code>@mixin menu() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for menus</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a> &mdash; Second breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu-item-styles"><code>menu-item-styles</code></a> &mdash; Styles for menu items</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-nav"><code>nav</code></a></li></ul></section><section class="main__item container item" id="header-mixin-nav"><h3 class="item__heading"><a class="item__name" href="#header-mixin-nav">nav</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin nav() { 
+  nav {
+    /* Layout */
+    position: relative;
+    z-index: 1;
+    display: none; // Actual initial display value at small viewport widths
+    --display: flex; // Intended display value once made visible
+    &amp; * {
+      --display: ; // Cleared so children don&#39;t inherit it
+    }
+    flex-flow: column nowrap;
+    flex-shrink: 1;
+
+    /* Sizing */
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    /* Spacing */
+    padding: 0 0.5em;
+    gap: 0 0.5em;
+
+    /* Background gradient used throughout child elements */
+    --nav-grad: linear-gradient(
+      to var(--curve),
+      var(--cc95) calc(0 * 100% / 6),
+      var(--cc85) calc(1 * 100% / 6),
+      var(--cc85) calc(5 * 100% / 6),
+      var(--cc75) calc(6 * 100% / 6)
+    );
+
+    /* At larger viewport widths, show fully by default */
+    @media (min-width: $bp2) {
+      display: flex;
+      flex-flow: row wrap;
+      min-height: auto;
+      overflow-x: visible;
+      overflow-y: visible;
+      background-position-y: 0;
+    }
+
+    /* Styles for breadcrumbs */
+    @include breadcrumb;
+
+    /* Styles for menus */
+    @include menu;
+  }
+ }" data-collapsed="@mixin nav() { ... }"><code>@mixin nav() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for navigation</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a> &mdash; Second breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-breadcrumb"><code>breadcrumb</code></a> &mdash; Styles for breadcrumbs</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu"><code>menu</code></a> &mdash; Styles for menus</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-header"><code>header</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="layout"><div class="container">layout</div></h1><section class="main__sub-section" id="layout-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="layout-variable-bp1"><h3 class="item__heading"><a class="item__name" href="#layout-variable-bp1">bp1</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$bp1: 20rem;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>First breakpoint value</p></div><h3 class="item__sub-heading">Type</h3><p><code>Length</code></p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-h1-small"><code>h1-small</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#layout-mixin-breakpoints"><code>breakpoints</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-headings"><code>headings</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-main"><code>main</code></a></li></ul></section><section class="main__item container item" id="layout-variable-bp2"><h3 class="item__heading"><a class="item__name" href="#layout-variable-bp2">bp2</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$bp2: 40rem;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Second breakpoint value</p></div><h3 class="item__sub-heading">Type</h3><p><code>Length</code></p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-h1-large"><code>h1-large</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-header"><code>header</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-breadcrumb"><code>breadcrumb</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu-item-styles"><code>menu-item-styles</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-submenu"><code>submenu</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu"><code>menu</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-nav"><code>nav</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#layout-mixin-breakpoints"><code>breakpoints</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-color-scheme-switcher"><code>color-scheme-switcher</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-reduced-motion-switcher"><code>reduced-motion-switcher</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-figure-left"><code>figure-left</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-toggle-all-sections-controls"><code>toggle-all-sections-controls</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a></li></ul></section><section class="main__item container item" id="layout-variable-bp3"><h3 class="item__heading"><a class="item__name" href="#layout-variable-bp3">bp3</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$bp3: 60rem;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Third breakpoint value</p></div><h3 class="item__sub-heading">Type</h3><p><code>Length</code></p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#layout-mixin-breakpoints"><code>breakpoints</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-figure-left"><code>figure-left</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-gallery-expansive"><code>gallery-expansive</code></a></li></ul></section><section class="main__item container item" id="layout-variable-bp4"><h3 class="item__heading"><a class="item__name" href="#layout-variable-bp4">bp4</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$bp4: 80rem;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Fourth breakpoint value</p></div><h3 class="item__sub-heading">Type</h3><p><code>Length</code></p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#layout-mixin-breakpoints"><code>breakpoints</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-headings"><code>headings</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-main"><code>main</code></a></li></ul></section></section><section class="main__sub-section" id="layout-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="layout-mixin-breakpoints"><h3 class="item__heading"><a class="item__name" href="#layout-mixin-breakpoints">breakpoints</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin breakpoints() { 
+  --bp1: #{$bp1};
+  --bp2: #{$bp2};
+  --bp3: #{$bp3};
+  --bp4: #{$bp4};
+ }" data-collapsed="@mixin breakpoints() { ... }"><code>@mixin breakpoints() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>CSS variables for breakpoints, to include in root element</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp1"><code>bp1</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp3"><code>bp3</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp4"><code>bp4</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#layout-mixin-layout"><code>layout</code></a></li></ul></section><section class="main__item container item" id="layout-mixin-layout"><h3 class="item__heading"><a class="item__name" href="#layout-mixin-layout">layout</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin layout() { 
+    /* Spacing variables */
+    @include spacing;
+
+    /* Rounding variables */
+    @include rounding;
+
+    /* Breakpoint variables */
+    @include breakpoints;
+ }" data-collapsed="@mixin layout() { ... }"><code>@mixin layout() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Layout variables</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#layout-mixin-spacing"><code>spacing</code></a> &mdash; Spacing variables</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#layout-mixin-rounding"><code>rounding</code></a> &mdash; Rounding variables</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#layout-mixin-breakpoints"><code>breakpoints</code></a> &mdash; Breakpoint variables</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-root"><code>root</code></a></li></ul></section><section class="main__item container item" id="layout-mixin-rounding"><h3 class="item__heading"><a class="item__name" href="#layout-mixin-rounding">rounding</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin rounding() { 
+  @include spacing;
+
+  /* Configurable rounding variables */
+  --roundingFactor: 1; // Multiple of font size
+  $roundingType: &quot;Rel&quot;; // Default to local font size (Rel) or root (Abs)
+
+  /* Calculated rounding variables */
+  --roundingRel: calc(var(--spacingRel) * var(--roundingFactor));
+  --roundingAbs: calc(var(--spacingAbs) * var(--roundingFactor));
+  $roundingCalc: if($roundingType == &quot;Rel&quot;, --roundingRel, --roundingAbs);
+  --rounding: var(#{$roundingCalc});
+ }" data-collapsed="@mixin rounding() { ... }"><code>@mixin rounding() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Rounding variables</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#layout-mixin-spacing"><code>spacing</code></a> &mdash; Spacing variables</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#layout-mixin-layout"><code>layout</code></a></li></ul></section><section class="main__item container item" id="layout-mixin-spacing"><h3 class="item__heading"><a class="item__name" href="#layout-mixin-spacing">spacing</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin spacing() { 
+  /* Configurable spacing variables */
+  --spacingFactor: 1; // Multiple of font size
+  $spacingType: &quot;Rel&quot;; // Default to local font size (Rel) or root (Abs)
+
+  /* Calculated spacing variables */
+  --spacingRel: clamp(0.5rem, calc(100vw / 60), calc(var(--spacingFactor) * 1em));
+  --spacingAbs: clamp(
+    0.5rem,
+    calc(100vw / 60),
+    calc(var(--spacingFactor) * 1rem)
+  );
+  $spacingCalc: if($spacingType == &quot;Rel&quot;, --spacingRel, --spacingAbs);
+  --spacing: var(#{$spacingCalc});
+ }" data-collapsed="@mixin spacing() { ... }"><code>@mixin spacing() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Spacing variables</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#layout-mixin-layout"><code>layout</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#layout-mixin-rounding"><code>rounding</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="main"><div class="container">main</div></h1><section class="main__sub-section" id="main-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="main-mixin-color-scheme-switcher"><h3 class="item__heading"><a class="item__name" href="#main-mixin-color-scheme-switcher">color-scheme-switcher</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin color-scheme-switcher() { 
+  .color-scheme-switcher {
+    /* The container */
+    display: flex;
+    flex-flow: row nowrap;
+    &amp;#themeSwitcher {
+      flex-wrap: wrap;
+      @media (min-width: $bp2) {
+        flex-wrap: nowrap;
+      }
+    }
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: $bp2;
+    gap: var(--spacing);
+    @include optional-motion() {
+      --dur: 0.5s;
+    }
+
+    /* The individual buttons */
+    a {
+      /* Layout */
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1 1 100%;
+
+      /* Spacing */
+      padding: 0.25em 2em;
+
+      /* Borders */
+      border: 1pt solid var(--gloss);
+      border-radius: calc(0.5 * var(--rounding));
+
+      /* Background */
+      background: var(--white);
+      opacity: 0.75;
+
+      /* Typography */
+      font-size: 0.75rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.125ch;
+
+      /* Light and dark mode switchers */
+      &amp;.lightMode {
+        @at-root html[data-color-scheme=&quot;light&quot;] &amp; {
+          opacity: 1;
+          outline: 1px solid var(--black);
+        }
+      }
+      &amp;.autoMode {
+        @at-root html:not([data-color-scheme]) &amp; {
+          opacity: 1;
+          outline: 1px solid var(--black);
+        }
+      }
+      &amp;.darkMode {
+        @at-root html[data-color-scheme=&quot;dark&quot;] &amp; {
+          opacity: 1;
+          outline: 1px solid var(--black);
+        }
+      }
+
+      /* Custom theme switchers */
+      &amp;.grays-theme {
+        @at-root html[data-theme=&quot;grays&quot;] &amp; {
+          opacity: 1;
+          outline: 1px solid var(--black);
+        }
+      }
+      &amp;.warmer-theme {
+        @at-root html[data-theme=&quot;warmer&quot;] &amp; {
+          opacity: 1;
+          outline: 1px solid var(--black);
+        }
+      }
+      &amp;.natural-theme {
+        @at-root html:not([data-theme]) &amp;,
+          html[data-theme=&quot;natural&quot;] &amp; {
+          opacity: 1;
+          outline: 1px solid var(--black);
+        }
+      }
+      &amp;.cooler-theme {
+        @at-root html[data-theme=&quot;cooler&quot;] &amp; {
+          opacity: 1;
+          outline: 1px solid var(--black);
+        }
+      }
+      &amp;.alien-theme {
+        @at-root html[data-theme=&quot;alien&quot;] &amp; {
+          opacity: 1;
+          outline: 1px solid var(--black);
+        }
+      }
+    }
+
+    /* Don&#39;t show any of this in print */
+    @media only print {
+      display: none;
+    }
+  }
+ }" data-collapsed="@mixin color-scheme-switcher() { ... }"><code>@mixin color-scheme-switcher() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for the color-scheme-switcher controls</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a> &mdash; Second breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-footer"><code>footer</code></a></li></ul></section><section class="main__item container item" id="main-mixin-reduced-motion-switcher"><h3 class="item__heading"><a class="item__name" href="#main-mixin-reduced-motion-switcher">reduced-motion-switcher</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin reduced-motion-switcher() { 
+  .reduced-motion-switcher {
+    /* The container */
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: $bp2;
+    gap: var(--spacing);
+    @include optional-motion() {
+      --dur: 0.5s;
+    }
+
+    /* The individual buttons */
+    a {
+      /* Layout */
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1 1 100%;
+
+      /* Spacing */
+      padding: 0.25em 2em;
+
+      /* Borders */
+      border: 1pt solid var(--gloss);
+      border-radius: calc(0.5 * var(--rounding));
+
+      /* Background */
+      background: var(--white);
+      opacity: 0.75;
+
+      /* Typography */
+      font-size: 0.75rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.125ch;
+
+      /* Reduced motion switchers */
+      &amp;.moreMotion {
+        @at-root html[data-reduced-motion^=&quot;no&quot;] &amp; {
+          opacity: 1;
+          outline: 1px solid var(--black);
+        }
+      }
+      &amp;.autoMotion {
+        @at-root html:not([data-reduced-motion]) &amp;,
+          html[data-reduced-motion$=&quot;auto&quot;] &amp; {
+          opacity: 1;
+          outline: 1px solid var(--black);
+        }
+      }
+      &amp;.lessMotion {
+        @at-root html[data-reduced-motion^=&quot;yes&quot;] &amp; {
+          opacity: 1;
+          outline: 1px solid var(--black);
+        }
+      }
+    }
+
+    /* Don&#39;t show any of this in print */
+    @media only print {
+      display: none;
+    }
+  }
+ }" data-collapsed="@mixin reduced-motion-switcher() { ... }"><code>@mixin reduced-motion-switcher() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for the reduced-motion-switcher controls</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a> &mdash; Second breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-footer"><code>footer</code></a></li></ul></section><section class="main__item container item" id="main-mixin-headings"><h3 class="item__heading"><a class="item__name" href="#main-mixin-headings">headings</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin headings() { 
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    /* Layout */
+    position: relative;
+
+    /* Sizing */
+    overflow-wrap: anywhere;
+
+    /* Spacing */
+    margin: 0 auto;
+    padding: 0 var(--spacing);
+    &amp;:not(:has(+ .description)) {
+      padding-bottom: calc(2 * var(--spacing));
+      border-bottom: 1pt groove var(--cw75);
+      border-radius: var(--rounding);
+      margin-bottom: var(--spacing);
+    }
+
+    /* Borders */
+    border: none;
+    outline: none;
+
+    /* Typography */
+    color: var(--cm);
+    font: {
+      family: &quot;Itim&quot;, &quot;Nunito&quot;, sans-serif;
+      weight: normal;
+    }
+    text-align: center;
+    line-height: 1.25;
+    text-shadow: 0.0625em 0.0625em 0.0625em transparent;
+    &amp;:hover,
+    &amp;:focus,
+    &amp;:active,
+    *:hover &gt; &amp;,
+    *:focus &gt; &amp;,
+    *:active &gt; &amp; {
+      text-shadow: 0.0625em 0.0625em 0.0625em var(--shade);
+    }
+
+    /* To allow for select non-wrapping text with spans */
+    span {
+      white-space: nowrap;
+    }
+  }
+
+  /* Scale all sizes from one-and-a-fraction rem at the first breakpoint up to
+     one-to-three-times the main font size (mfs) at the fourth breakpoint */
+  h2 {
+    font-size: rfs(1.5rem, $bp1, (1 + 2) * $mfs, $bp4);
+  }
+  h3 {
+    font-size: rfs(1.4rem, $bp1, (1 + 1) * $mfs, $bp4);
+  }
+  h4 {
+    font-size: rfs(1.3rem, $bp1, (1 + 0.5) * $mfs, $bp4);
+  }
+  h5 {
+    font-size: rfs(1.2rem, $bp1, (1 + 0.25) * $mfs, $bp4);
+  }
+  h6 {
+    font-size: rfs(1.1rem, $bp1, (1 + 0.125) * $mfs, $bp4);
+  }
+ }" data-collapsed="@mixin headings() { ... }"><code>@mixin headings() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for headings</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#typography-function-rfs"><code>rfs</code></a> &mdash; Responsive font size generator</li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#typography-variable-mfs"><code>mfs</code></a> &mdash; Main font size</li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp1"><code>bp1</code></a> &mdash; First breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp4"><code>bp4</code></a> &mdash; Fourth breakpoint value</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-main"><code>main</code></a></li></ul></section><section class="main__item container item" id="main-mixin-main-elements"><h3 class="item__heading"><a class="item__name" href="#main-mixin-main-elements">main-elements</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin main-elements() { 
+  /* Paragraphs */
+  p {
+    text-indent: 2em;
+
+    /* Special description paragraphs for below section headiings */
+    &amp;.description {
+      padding: var(--spacing);
+      padding-top: 0;
+      border-radius: var(--rounding);
+      border: none;
+      border-bottom: 1pt groove var(--cw75);
+      color: var(--cm50);
+      text: {
+        align: center;
+        indent: 0;
+      }
+    }
+  }
+
+  /* Lists */
+  ul,
+  ol {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    padding-left: 1.5ch;
+
+    /* List items */
+    li {
+      margin: var(--spacing) 0;
+      padding: 0;
+    }
+  }
+
+  /* Blockquotes */
+  blockquote {
+    position: relative;
+    margin: 0 auto;
+    padding: var(--spacing) calc(2 * var(--spacing));
+    border: 1pt dashed var(--cw75);
+    border-radius: calc(0.5 * var(--rounding));
+
+    /* Decorative quotation marks */
+    &amp;:before {
+      content: &quot;“&quot;;
+      position: absolute;
+      top: 0;
+      left: 1rem;
+      display: block;
+      width: 1em;
+      height: 1em;
+      font-size: 2em;
+      text-align: left;
+    }
+    &amp;:after {
+      content: &quot;”&quot;;
+      position: absolute;
+      bottom: 0;
+      right: 1rem;
+      display: block;
+      width: 1em;
+      height: 1em;
+      font-size: 2em;
+      text-align: right;
+    }
+  }
+
+  /* Horizontal rules */
+  hr {
+    content: url(/_media/images/hr-vine.svg);
+    clear: both;
+    width: 100%;
+    margin: var(--spacing) auto;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    filter: drop-shadow(0 2pt 1pt var(--shade));
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1em;
+    border: 1pt solid black;
+    margin: var(--spacing) auto auto auto;
+    background: #ccc;
+    /* Head and data cell common styles */
+    th,
+    td {
+      padding: var(--spacing);
+      border: 1pt solid black;
+      text-align: center;
+    }
+    /* Head cell specific styles */
+    th {
+      background: var(--cm95);
+      text-align: center;
+    }
+    /* Data cell specific styles */
+    td {
+      background: var(--white);
+    }
+  }
+ }" data-collapsed="@mixin main-elements() { ... }"><code>@mixin main-elements() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for general elements of the main section</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-main"><code>main</code></a></li></ul></section><section class="main__item container item" id="main-mixin-main"><h3 class="item__heading"><a class="item__name" href="#main-mixin-main">main</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin main() { 
+  main {
+    /* Layout */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 1 auto;
+
+    /* Sizing */
+    margin: 0;
+    padding: var(--spacingAbs);
+    gap: var(--spacingAbs);
+
+    /* Borders */
+    border: 0;
+    outline: 0;
+
+    /* Background */
+    background: radial-gradient(
+      farthest-corner,
+      var(--cw75) 0%,
+      var(--cw95) 100%
+    );
+    background-position: center;
+    background-size: 100% 100%;
+
+    /* Typography */
+    font-size: rfs(1rem, $bp1, $mfs, $bp4);
+    line-height: 1.5;
+
+    @include optional-motion() {
+      /* Animation */
+      @keyframes mainLighting {
+        from {
+          background-size: 100% 100%;
+        }
+        to {
+          background-size: 400% 200%;
+        }
+      }
+      animation-name: mainLighting;
+      animation-duration: 44s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      transition-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
+    }
+    /* Direct children layout */
+    &gt; * {
+      flex: 0 1 auto;
+    }
+
+    /* All children transitions */
+    * {
+      --dur: 0.01s;
+      @include optional-motion() {
+        transition: all var(--dur), opacity var(--dur) linear,
+          transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75)
+            calc(var(--delA) + var(--delB));
+        --dur: 1s; // Transition duration
+      }
+      --delA: 0s; // Primary transition delay (varies by nesting)
+      --delB: 0s; // Secondary transition delay (varies by column)
+      /* Children of children have longer delays so they transition in in sequence */
+      &amp;.off-screen &gt; * {
+        --delA: calc(1s / 32);
+        &amp;.off-screen &gt; * {
+          --delA: calc(2s / 32);
+          &amp;.off-screen &gt; * {
+            --delA: calc(3s / 32);
+            &amp;.off-screen &gt; * {
+              --delA: calc(4s / 32);
+            }
+          }
+        }
+      }
+      /* Styles for off-screen elements to transition back in from when they enter */
+      &amp;.off-screen {
+        @media only screen {
+          @include optional-motion() {
+            opacity: 0;
+            transform: rotateY(0.25turn);
+          }
+        }
+        transition-delay: 0s;
+        --dur: 0s;
+      }
+    }
+
+    /* Give some selected elements zero transition delay
+    so they just appear immediately with their parents */
+    a,
+    em,
+    strong,
+    i,
+    b,
+    span {
+      --dur: 0s;
+    }
+
+    /* Styles for headings */
+    @include headings;
+
+    /* Styles for other elements */
+    @include main-elements;
+
+    /* Styles for sections */
+    @include section;
+
+    /* Styles for the toggle-all-sections controls */
+    @include toggle-all-sections-controls;
+  }
+ }" data-collapsed="@mixin main() { ... }"><code>@mixin main() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for the main section</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp1"><code>bp1</code></a> &mdash; First breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp4"><code>bp4</code></a> &mdash; Fourth breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#typography-variable-mfs"><code>mfs</code></a> &mdash; Main font size</li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#typography-function-rfs"><code>rfs</code></a> &mdash; Function for responsive font sizing</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-headings"><code>headings</code></a> &mdash; Styles for headings</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-main-elements"><code>main-elements</code></a> &mdash; Styles for other elements</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section"><code>section</code></a> &mdash; Styles for sections</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-toggle-all-sections-controls"><code>toggle-all-sections-controls</code></a> &mdash; Styles for the toggle-all-sections controls</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul></section><section class="main__item container item" id="main-mixin-duo"><h3 class="item__heading"><a class="item__name" href="#main-mixin-duo">duo</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin duo() { 
+  .duo {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    text-align: left;
+    gap: var(--spacing);
+
+    /* Child elements */
+    &gt; section {
+      display: inline-block;
+      float: none;
+      flex: 1 1 20ch;
+      width: 36em;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: var(--spacing);
+      margin: 0;
+      vertical-align: top;
+    }
+  }
+ }" data-collapsed="@mixin duo() { ... }"><code>@mixin duo() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for duos of sections side by side when possible</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section"><code>section</code></a></li></ul></section><section class="main__item container item" id="main-mixin-figure-left"><h3 class="item__heading"><a class="item__name" href="#main-mixin-figure-left">figure-left</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin figure-left() { 
+  float: left;
+  transform-origin: left;
+  margin-right: var(--spacing);
+  margin-left: 0;
+  @media (min-width: $bp3) {
+    max-width: var(--fmw);
+    margin-left: var(--fms);
+    margin-right: var(--spacing);
+    transform-origin: right;
+  }
+ }" data-collapsed="@mixin figure-left() { ... }"><code>@mixin figure-left() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for figures</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a> &mdash; Second breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp3"><code>bp3</code></a> &mdash; Third breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-prefers-color-scheme"><code>prefers-color-scheme</code></a> &mdash; DRY color scheme helper</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul></section><section class="main__item container item" id="main-mixin-gallery-expansive"><h3 class="item__heading"><a class="item__name" href="#main-mixin-gallery-expansive">gallery-expansive</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin gallery-expansive() { 
+  &amp;.expansive {
+    /* Only applies at larger viewport widths */
+    @media (min-width: $bp3) {
+      /* Layout */
+      justify-content: center;
+
+      /* Sizing */
+      box-sizing: border-box;
+      width: 100vw;
+      max-width: calc(100vw - (2 * var(--spacingAbs)) - (2 * var(--spacing)));
+
+      /* Spacing */
+      margin-left: calc(50% - 50vw + var(--spacingAbs) + var(--spacing));
+      padding: var(--spacing);
+
+      /* Borders */
+      border-radius: calc(2 * var(--rounding));
+      box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
+        1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+        0 0 0 1pt var(--shade) inset;
+      &amp;:hover,
+      &amp;:focus,
+      &amp;:active {
+        box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss),
+          1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+          0 0 0 1pt transparent inset;
+      }
+
+      /* Background */
+      background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+
+      /* Gallery item max-width sides multiple, used in max-width below */
+      --gimwsm: 2;
+      section {
+        --gimwsm: 4;
+        section {
+          --gimwsm: 6;
+          section {
+            --gimwsm: 8;
+            section {
+              --gimwsm: 10;
+            }
+          }
+        }
+      }
+
+      &gt; .item {
+        /* Make the last item in a gallery looks contained in the parent section */
+        max-width: calc(80ch - var(--gimwsm) * var(--spacing));
+
+        /* Make four-column gallery items transition in with appropriate timing */
+        &amp;:nth-of-type(4n + 1) {
+          &amp;,
+          &amp; * {
+            --delB: calc(1s / 4);
+          }
+        }
+        &amp;:nth-of-type(4n + 2) {
+          &amp;,
+          &amp; * {
+            --delB: calc(2s / 4);
+          }
+        }
+        &amp;:nth-of-type(4n + 3) {
+          &amp;,
+          &amp; * {
+            --delB: calc(3s / 4);
+          }
+        }
+        &amp;:nth-of-type(4n + 0) {
+          &amp;,
+          &amp; * {
+            --delB: calc(4s / 4);
+          }
+        }
+        /* Make five-column gallery items transition in with appropriate timing */
+        @media (min-width: 91rem) {
+          &amp;:nth-of-type(5n + 1) {
+            &amp;,
+            &amp; * {
+              --delB: calc(1s / 5);
+            }
+          }
+          &amp;:nth-of-type(5n + 2) {
+            &amp;,
+            &amp; * {
+              --delB: calc(2s / 5);
+            }
+          }
+          &amp;:nth-of-type(5n + 3) {
+            &amp;,
+            &amp; * {
+              --delB: calc(3s / 5);
+            }
+          }
+          &amp;:nth-of-type(5n + 4) {
+            &amp;,
+            &amp; * {
+              --delB: calc(4s / 5);
+            }
+          }
+          &amp;:nth-of-type(5n + 0) {
+            &amp;,
+            &amp; * {
+              --delB: calc(5s / 5);
+            }
+          }
+        }
+        /* Make six-column gallery items transition in with appropriate timing */
+        @media (min-width: 106rem) {
+          &amp;:nth-of-type(6n + 1) {
+            &amp;,
+            &amp; * {
+              --delB: calc(1s / 6);
+            }
+          }
+          &amp;:nth-of-type(6n + 2) {
+            &amp;,
+            &amp; * {
+              --delB: calc(2s / 6);
+            }
+          }
+          &amp;:nth-of-type(6n + 3) {
+            &amp;,
+            &amp; * {
+              --delB: calc(3s / 6);
+            }
+          }
+          &amp;:nth-of-type(6n + 4) {
+            &amp;,
+            &amp; * {
+              --delB: calc(4s / 6);
+            }
+          }
+          &amp;:nth-of-type(6n + 5) {
+            &amp;,
+            &amp; * {
+              --delB: calc(5s / 6);
+            }
+          }
+          &amp;:nth-of-type(6n + 0) {
+            &amp;,
+            &amp; * {
+              --delB: calc(6s / 6);
+            }
+          }
+        }
+        /* Make seven-column gallery items transition in with appropriate timing */
+        @media (min-width: 120rem) {
+          &amp;:nth-of-type(7n + 1) {
+            &amp;,
+            &amp; * {
+              --delB: calc(1s / 7);
+            }
+          }
+          &amp;:nth-of-type(7n + 2) {
+            &amp;,
+            &amp; * {
+              --delB: calc(2s / 7);
+            }
+          }
+          &amp;:nth-of-type(7n + 3) {
+            &amp;,
+            &amp; * {
+              --delB: calc(3s / 7);
+            }
+          }
+          &amp;:nth-of-type(7n + 4) {
+            &amp;,
+            &amp; * {
+              --delB: calc(4s / 7);
+            }
+          }
+          &amp;:nth-of-type(7n + 5) {
+            &amp;,
+            &amp; * {
+              --delB: calc(5s / 7);
+            }
+          }
+          &amp;:nth-of-type(7n + 6) {
+            &amp;,
+            &amp; * {
+              --delB: calc(6s / 7);
+            }
+          }
+          &amp;:nth-of-type(7n + 0) {
+            &amp;,
+            &amp; * {
+              --delB: calc(7s / 7);
+            }
+          }
+        }
+        /* Make eight-column gallery items transition in with appropriate timing */
+        @media (min-width: 137rem) {
+          &amp;:nth-of-type(8n + 1) {
+            &amp;,
+            &amp; * {
+              --delB: calc(1s / 8);
+            }
+          }
+          &amp;:nth-of-type(8n + 2) {
+            &amp;,
+            &amp; * {
+              --delB: calc(2s / 8);
+            }
+          }
+          &amp;:nth-of-type(8n + 3) {
+            &amp;,
+            &amp; * {
+              --delB: calc(3s / 8);
+            }
+          }
+          &amp;:nth-of-type(8n + 4) {
+            &amp;,
+            &amp; * {
+              --delB: calc(4s / 8);
+            }
+          }
+          &amp;:nth-of-type(8n + 5) {
+            &amp;,
+            &amp; * {
+              --delB: calc(5s / 8);
+            }
+          }
+          &amp;:nth-of-type(8n + 6) {
+            &amp;,
+            &amp; * {
+              --delB: calc(6s / 8);
+            }
+          }
+          &amp;:nth-of-type(8n + 7) {
+            &amp;,
+            &amp; * {
+              --delB: calc(7s / 8);
+            }
+          }
+          &amp;:nth-of-type(8n + 0) {
+            &amp;,
+            &amp; * {
+              --delB: calc(8s / 8);
+            }
+          }
+        }
+        /* Make nine-column gallery items transition in with appropriate timing */
+        @media (min-width: 152rem) {
+          &amp;:nth-of-type(9n + 1) {
+            &amp;,
+            &amp; * {
+              --delB: calc(1s / 9);
+            }
+          }
+          &amp;:nth-of-type(9n + 2) {
+            &amp;,
+            &amp; * {
+              --delB: calc(2s / 9);
+            }
+          }
+          &amp;:nth-of-type(9n + 3) {
+            &amp;,
+            &amp; * {
+              --delB: calc(3s / 9);
+            }
+          }
+          &amp;:nth-of-type(9n + 4) {
+            &amp;,
+            &amp; * {
+              --delB: calc(4s / 9);
+            }
+          }
+          &amp;:nth-of-type(9n + 5) {
+            &amp;,
+            &amp; * {
+              --delB: calc(5s / 9);
+            }
+          }
+          &amp;:nth-of-type(9n + 6) {
+            &amp;,
+            &amp; * {
+              --delB: calc(6s / 9);
+            }
+          }
+          &amp;:nth-of-type(9n + 7) {
+            &amp;,
+            &amp; * {
+              --delB: calc(7s / 9);
+            }
+          }
+          &amp;:nth-of-type(9n + 8) {
+            &amp;,
+            &amp; * {
+              --delB: calc(8s / 9);
+            }
+          }
+          &amp;:nth-of-type(9n + 0) {
+            &amp;,
+            &amp; * {
+              --delB: calc(9s / 9);
+            }
+          }
+        }
+      }
+    }
+  }
+ }" data-collapsed="@mixin gallery-expansive() { ... }"><code>@mixin gallery-expansive() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for galleries that expand beyond the main section width</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp3"><code>bp3</code></a> &mdash; Third breakpoint value</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-gallery"><code>gallery</code></a></li></ul></section><section class="main__item container item" id="main-mixin-gallery-item"><h3 class="item__heading"><a class="item__name" href="#main-mixin-gallery-item">gallery-item</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin gallery-item() { 
+  .item {
+    /* Layout */
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+
+    /* Sizing */
+    max-width: 80ch;
+    overflow: hidden;
+
+    /* Spacing */
+    margin: 1pt;
+    padding: var(--spacing);
+    gap: var(--spacing);
+
+    /* Borders */
+    border: 0pt solid var(--cw75);
+    border-radius: var(--rounding);
+    box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent,
+      1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+      0 0 0 1pt var(--gloss) inset, 0 0 0 1pt var(--shade);
+    &amp;:hover,
+    &amp;:focus,
+    &amp;:active {
+      box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss),
+        1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+        0 0 0 1pt transparent inset, 0 0 0 1pt transparent;
+    }
+
+    /* Background */
+    background-color: var(--white);
+    
+
+    /* Typography */
+    text-align: center;
+    vertical-align: top;
+    color: var(--ct);
+
+    /* Transitions */
+    transition-timing-function: cubic-bezier(0.75, 1.75, 0.75, 0.75), ease;
+    transition-property: transform, all;
+
+    /* Miscellaneous */
+    list-style: none;
+
+    /* Images */
+    img {
+      display: inline-block;
+      max-width: calc(var(--gim) - 2 * var(--spacing));
+      max-height: calc(var(--gim) - 2 * var(--spacing));
+      margin: auto;
+      background: white;
+      outline: 0.125em solid white;
+      @include optional-motion() {
+        transition: all var(--dur) calc(var(--delA) + var(--delB));
+      }
+    }
+    /* Styles for when the images are off-screen waiting to transition in */
+    &amp;.off-screen {
+      /* Only apply these on screens, so that printing doesn&#39;t get messsed up */
+      @media only screen {
+        @include optional-motion() {
+          img {
+            transform: scale(0);
+            border-radius: 100%;
+            transition-delay: 0s;
+          }
+        }
+      }
+    }
+
+    /* Text */
+    p {
+      margin: 0 auto;
+      padding: 0;
+      border: 0;
+      font-size: 1rem;
+      text: {
+        indent: 0;
+        align: center;
+      }
+      line-height: 1.5;
+      color: var(--black);
+      /* Titles and &#39;More&#39; links */
+      &amp;.title,
+      &amp;.more {
+        font: {
+          family: &quot;Nunito&quot;, sans-serif;
+          size: 1em;
+        }
+      }
+      &amp;.title {
+        .maybe {
+          display: block;
+          font-size: 0.5em;
+          opacity: 0.5;
+          margin-top: 0.25em;
+        }
+      }
+      /* Links within text element*/
+      a {
+        position: relative;
+        z-index: 1; // So they&#39;re independently clickable despite any cover links
+        text-decoration: underline;
+        color: var(--cm25);
+        @include prefers-color-scheme(&quot;dark&quot;) {
+          color: var(--cm75);
+        }
+      }
+    }
+    /* Links in general */
+    a {
+      margin: auto 0;
+      color: var(--ct);
+      text-decoration: none;
+      &amp;,
+      &amp;:hover,
+      &amp;:focus,
+      &amp;:active {
+        text-shadow: none;
+      }
+      /* Links that cover the entire gallery item, making it clickable as a whole */
+      &amp;.cover {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &amp;,
+        &amp;:hover,
+        &amp;:focus,
+        &amp;:active {
+          color: transparent;
+        }
+      }
+    }
+  }
+ }" data-collapsed="@mixin gallery-item() { ... }"><code>@mixin gallery-item() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for gallery items</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-prefers-color-scheme"><code>prefers-color-scheme</code></a> &mdash; DRY color scheme helper</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-gallery"><code>gallery</code></a></li></ul></section><section class="main__item container item" id="main-mixin-gallery"><h3 class="item__heading"><a class="item__name" href="#main-mixin-gallery">gallery</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin gallery() { 
+  .gallery {
+    /* Layout */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch;
+
+    /* Sizing */
+    max-width: 100%;
+
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+    gap: var(--spacing);
+
+    /* Borders */
+    border: 0;
+    outline: 0 solid black;
+    border-radius: 0;
+    &amp;,
+    &amp;:hover,
+    &amp;:active,
+    &amp;:focus {
+      box-shadow: none;
+    }
+
+    /* Background */
+    &amp;,
+    &amp;:hover,
+    &amp;:active,
+    &amp;:focus {
+      background: none;
+    }
+
+    /* Typography */
+    text-align: center;
+    box-shadow: none;
+
+    @include optional-motion() {
+      /* Animation */
+      animation-name: mainLighting;
+      animation-duration: 5s;
+    }
+
+    /* Gallery item fitting*/
+    &gt; .item {
+      /* Gallery item number (how many columns should there be)
+        assuming the gallery is within an 80ch wide section */
+      --gin: 3;
+
+      /* Gallery item measurement (to make them fit those columns) */
+      --gim: calc(
+        (
+            80ch - (var(--gin) - 1 + 2 * 5) * var(--spacing) - var(--gin) * 2 *
+              1pt - 1pt
+          ) / var(--gin)
+      ); // The extra 1pt is a fudge for a problem of unknown origin
+
+      /* Assuming one column by default at smallest viewport widths */
+
+      flex: 1 0 var(--gim);
+      box-sizing: border-box;
+
+      /* Make two-column gallery items transition in with appropriate timing */
+      @media (min-width: 34rem) {
+        &amp;:nth-of-type(2n + 1) {
+          &amp;,
+          &amp; * {
+            --delB: calc(1s / 2);
+          }
+        }
+        &amp;:nth-of-type(2n + 0) {
+          &amp;,
+          &amp; * {
+            --delB: calc(2s / 2);
+          }
+        }
+      }
+      /* Make three-column gallery items transition in with appropriate timing */
+      @media (min-width: 53rem) {
+        &amp;:nth-of-type(3n + 1) {
+          &amp;,
+          &amp; * {
+            --delB: calc(1s / 3);
+          }
+        }
+        &amp;:nth-of-type(3n + 2) {
+          &amp;,
+          &amp; * {
+            --delB: calc(2s / 3);
+          }
+        }
+        &amp;:nth-of-type(3n + 0) {
+          &amp;,
+          &amp; * {
+            --delB: calc(3s / 3);
+          }
+        }
+      }
+    }
+
+    /* Style details for gallery items */
+    @include gallery-item;
+
+    /* Styles for galleries that expand beyond the main section width */
+    @include gallery-expansive;
+  }
+ }" data-collapsed="@mixin gallery() { ... }"><code>@mixin gallery() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for galleries</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-gallery-item"><code>gallery-item</code></a> &mdash; Styles for gallery items</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-gallery-expansive"><code>gallery-expansive</code></a> &mdash; Styles for galleries that expand beyond the main section width</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section"><code>section</code></a></li></ul></section><section class="main__item container item" id="main-mixin-section-animation"><h3 class="item__heading"><a class="item__name" href="#main-mixin-section-animation">section-animation</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin section-animation() { 
+  @include optional-motion() {
+    animation-name: mainLighting;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
+
+    /* Different delays for different level of section nesting,
+    faster and shorter cycles at deeper nesting levels,
+    to make the animation look more varied */
+
+    /* First level (5s loop over 10 sections) */
+    animation-duration: 5s;
+    &amp;:nth-of-type(10n + 1) {
+      animation-delay: 0s;
+    }
+    &amp;:nth-of-type(10n + 2) {
+      animation-delay: 0.5s;
+    }
+    &amp;:nth-of-type(10n + 3) {
+      animation-delay: 1s;
+    }
+    &amp;:nth-of-type(10n + 4) {
+      animation-delay: 1.5s;
+    }
+    &amp;:nth-of-type(10n + 5) {
+      animation-delay: 2s;
+    }
+    &amp;:nth-of-type(10n + 6) {
+      animation-delay: 2.5s;
+    }
+    &amp;:nth-of-type(10n + 7) {
+      animation-delay: 3s;
+    }
+    &amp;:nth-of-type(10n + 8) {
+      animation-delay: 3.5s;
+    }
+    &amp;:nth-of-type(10n + 9) {
+      animation-delay: 4s;
+    }
+    &amp;:nth-of-type(10n + 0) {
+      animation-delay: 4.5s;
+    }
+    /* Second level (4s loop over 8 sections) */
+    section {
+      animation-duration: 4s;
+      &amp;:nth-of-type(8n + 1) {
+        animation-delay: 0s;
+      }
+      &amp;:nth-of-type(8n + 2) {
+        animation-delay: 0.5s;
+      }
+      &amp;:nth-of-type(8n + 3) {
+        animation-delay: 1s;
+      }
+      &amp;:nth-of-type(8n + 4) {
+        animation-delay: 1.5s;
+      }
+      &amp;:nth-of-type(8n + 5) {
+        animation-delay: 2s;
+      }
+      &amp;:nth-of-type(8n + 6) {
+        animation-delay: 2.5s;
+      }
+      &amp;:nth-of-type(8n + 7) {
+        animation-delay: 3s;
+      }
+      &amp;:nth-of-type(8n + 0) {
+        animation-delay: 3.5s;
+      }
+      /* Third level (3s loop over 6 sections) */
+      section {
+        animation-duration: 3s;
+        &amp;:nth-of-type(6n + 1) {
+          animation-delay: 0s;
+        }
+        &amp;:nth-of-type(6n + 2) {
+          animation-delay: 1.5s;
+        }
+        &amp;:nth-of-type(6n + 3) {
+          animation-delay: 1s;
+        }
+        &amp;:nth-of-type(6n + 4) {
+          animation-delay: 1.5s;
+        }
+        &amp;:nth-of-type(6n + 5) {
+          animation-delay: 2s;
+        }
+        &amp;:nth-of-type(6n + 0) {
+          animation-delay: 2.5s;
+        }
+        /* Fourth level (2s loop over 4 sections) */
+        section {
+          animation-duration: 2s;
+          &amp;:nth-of-type(4n + 1) {
+            animation-delay: 0s;
+          }
+          &amp;:nth-of-type(4n + 2) {
+            animation-delay: 0.5s;
+          }
+          &amp;:nth-of-type(4n + 3) {
+            animation-delay: 1s;
+          }
+          &amp;:nth-of-type(4n + 0) {
+            animation-delay: 1.5s;
+          }
+          /* Fifth level (1s loop over 2 sections) */
+          section {
+            animation-duration: 1s;
+            &amp;:nth-of-type(2n + 1) {
+              animation-delay: 0s;
+            }
+            &amp;:nth-of-type(2n + 2) {
+              animation-delay: 0.5s;
+            }
+          }
+        }
+      }
+    }
+  }
+ }" data-collapsed="@mixin section-animation() { ... }"><code>@mixin section-animation() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for section animations</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section"><code>section</code></a></li></ul></section><section class="main__item container item" id="main-mixin-section-toggleable"><h3 class="item__heading"><a class="item__name" href="#main-mixin-section-toggleable">section-toggleable</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin section-toggleable() { 
+  &amp;.toggleable {
+    /* Only on screens so as not to mess up printing */
+    @media only screen {
+      /* For all their headings ... */
+      &amp; &gt; h2,
+      &amp; &gt; h3,
+      &amp; &gt; h4,
+      &amp; &gt; h5,
+      &amp; &gt; h6 {
+        /* Make space for the toggle controls */
+        padding-left: 1em;
+        padding-right: 1em;
+
+        /* Create the toggle controls in ::before and ::after pseudo-elements */
+        &amp;::before,
+        &amp;::after {
+          content: &quot;▼&quot;;
+          opacity: 0.0625;
+          position: absolute;
+          top: 0;
+          bottom: auto;
+          display: flex;
+          align-items: center;
+        }
+
+        /* Align them to the left and right */
+        &amp;::before {
+          left: 0;
+        }
+        &amp;::after {
+          right: 0;
+        }
+
+        /* Delay their appearance when the section transitions into view */
+        &amp;::before,
+        &amp;::after {
+          @include optional-motion() {
+            --dur: 1s;
+            transition: all var(--dur), opacity var(--dur) var(--dur);
+          }
+        }
+
+        &amp;.off-screen {
+          @include optional-motion() {
+            &amp;::before,
+            &amp;::after {
+              opacity: 0;
+              transition-delay: 0s;
+            }
+          }
+        }
+
+        /* Make them more opaque on hover */
+        &amp;:hover {
+          &amp;::before,
+          &amp;::after {
+            opacity: 0.25;
+          }
+        }
+      }
+    }
+  }
+  &amp;.collapsed {
+    /* When the sections are collapsed ... */
+    &amp; &gt; h1,
+    &amp; &gt; h2,
+    &amp; &gt; h3,
+    &amp; &gt; h4,
+    &amp; &gt; h5,
+    &amp; &gt; h6 {
+      /* Rotate the toggle controls inward */
+      &amp;::before {
+        transform: rotate(-90deg);
+        opacity: 0.25;
+      }
+      &amp;::after {
+        transform: rotate(90deg);
+        opacity: 0.25;
+      }
+    }
+    /* Don&#39;t hide contents of collapsed sections on print */
+    &gt; *:not(h2, h3, h4, h5, h6, .description) {
+      @media only print {
+        display: initial !important;
+        opacity: initial !important;
+        height: initial !important;
+      }
+    }
+  }
+ }" data-collapsed="@mixin section-toggleable() { ... }"><code>@mixin section-toggleable() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for sections that can be toggled (collapsed and expanded)</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section"><code>section</code></a></li></ul></section><section class="main__item container item" id="main-mixin-section"><h3 class="item__heading"><a class="item__name" href="#main-mixin-section">section</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin section() { 
+  section {
+    /* Layout */
+    clear: both;
+
+    /* Sizing */
+    width: 100%;
+    box-sizing: border-box;
+
+    /* Spacing */
+    max-width: calc(80ch + 2 * var(--spacing));
+    margin: 0 auto;
+    /* First-order sections have flex gap between them, so no vertical margins */
+    section:not(:last-child) {
+      /* But sections within sections do get bottom margins, unless they&#39;re last */
+      margin-bottom: var(--spacing);
+    }
+    &gt; *:last-child {
+      margin-bottom: 0;
+    }
+
+    padding: var(--spacing);
+
+    /* Borders */
+    border: 0;
+    outline: 0;
+    /* Deeper nested subsections get less rounded */
+    border-radius: calc(2 * var(--rounding));
+    section {
+      border-radius: calc(1.75 * var(--rounding));
+      section {
+        border-radius: calc(1.5 * var(--rounding));
+        section {
+          border-radius: calc(1.25 * var(--rounding));
+          section {
+            border-radius: calc(1 * var(--rounding));
+          }
+        }
+      }
+    }
+    box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
+      1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+      0 0 0 1pt var(--gloss) inset;
+    &amp;:hover,
+    &amp;:focus,
+    &amp;:active {
+      box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss),
+        1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+        0 0 0 1pt transparent inset;
+    }
+
+    /* Background */
+    background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
+    background-position: center;
+
+    /* Typography */
+    text-shadow: 0 0 0.5em var(--cbi);
+
+    /* Effects */
+    @include optional-motion() {
+      transition: all 0.5s;
+    }
+    /* Deeper nested subsections transition more slowly */
+    @include optional-motion() {
+      --dur: 0.5s;
+      section {
+        --dur: 0.25s;
+        section {
+          --dur: 0.5s;
+          section {
+            --dur: 0.75s;
+            section {
+              --dur: 1s;
+            }
+          }
+        }
+      }
+    }
+
+    /* Clear fix so floating figures don&#39;t extend beyond their sections */
+    &amp;:after {
+      content: &quot;&quot;;
+      display: block;
+      height: 0;
+      clear: both;
+    }
+
+    /* Get rid of padding on print */
+    @media only print {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    /* Styles for section animations */
+    @include section-animation;
+
+    /* Styles for sections that can be toggled */
+    @include section-toggleable;
+
+    /* Styles for figures */
+    @include figure;
+
+    /* Styles for duos of sections side by side when possible */
+    @include duo;
+
+    /* Styles for galleries */
+    @include gallery;
+  }
+ }" data-collapsed="@mixin section() { ... }"><code>@mixin section() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for sections</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section-toggleable"><code>section-toggleable</code></a> &mdash; Styles for sections that can be toggled</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section-animation"><code>section-animation</code></a> &mdash; Styles for section animations</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-duo"><code>duo</code></a> &mdash; Styles for duos of sections side by side when possible</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-gallery"><code>gallery</code></a> &mdash; Styles for galleries</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-main"><code>main</code></a></li></ul></section><section class="main__item container item" id="main-mixin-toggle-all-sections-controls"><h3 class="item__heading"><a class="item__name" href="#main-mixin-toggle-all-sections-controls">toggle-all-sections-controls</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin toggle-all-sections-controls() { 
+  .toggleAllControls {
+    /* The container */
+    display: flex;
+    flex-flow: row wrap; // Wrap at smallest viewport widths
+    @media (min-width: $bp2) {
+      flex-wrap: nowrap; // Not at larger ones
+    }
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: calc(80ch - 2 * var(--spacing));
+    gap: var(--spacing);
+    @include optional-motion() {
+      --dur: 0.5s;
+    }
+
+    /* The individual buttons */
+    a {
+      /* Layout */
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1 1 100%;
+
+      /* Spacing */
+      padding: 0.25em 2em;
+
+      /* Borders */
+      border: 1pt solid var(--gloss);
+      border-radius: calc(0.5 * var(--rounding));
+
+      /* Background */
+      background: var(--white);
+      opacity: 0.75;
+
+      /* Typography */
+      font-size: 0.75rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.125ch;
+
+      /* Toggle direction indicators */
+      &amp;.expandAll,
+      &amp;.collapseAll {
+        /* Same basics for both expand and collapse */
+        &amp;::before,
+        &amp;::after {
+          content: &quot;▼&quot;;
+          opacity: 0.25;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          display: flex;
+          align-items: center;
+        }
+        &amp;::before {
+          left: 0.5em;
+        }
+        &amp;::after {
+          right: 0.5em;
+        }
+      }
+      &amp;.collapseAll {
+        /* Collapse has them pointing inward */
+        &amp;::before {
+          transform: rotate(-90deg);
+        }
+        &amp;::after {
+          transform: rotate(90deg);
+        }
+        &amp;:hover::before {
+          text-shadow: -1pt 1pt 1pt var(--shade);
+        }
+      }
+
+      &amp;.anchorTarget {
+        /* Anchor target gets its own unique styling */
+        border-left-width: 0;
+        border-right-width: 0;
+        border-radius: 0;
+
+        order: 3; // Last in order at smallest viewport widths
+        @media (min-width: $bp2) {
+          order: unset; // Naturally in the middle at larger ones
+        }
+
+        /* Different indicators to illustrate its unique function */
+        &amp;::before,
+        &amp;::after {
+          content: &quot;↴&quot;;
+        }
+        &amp;::before {
+          margin-right: 1ch;
+          transform: scaleY(-1) rotate(-90deg);
+        }
+        &amp;::after {
+          margin-left: 1ch;
+        }
+
+        /* Hide indicators when disabled */
+        &amp;.disabled {
+          opacity: 0.125;
+          &amp;::before,
+          &amp;::after {
+            display: none;
+          }
+        }
+      }
+
+      /* All disabled buttons fade out and don&#39;t react to pointer */
+      &amp;.disabled {
+        pointer-events: none;
+        opacity: 0.25;
+        display: none; // Hide completely at smallest viewport widths
+        @media (min-width: $bp2) {
+          display: block; // But not at larger ones
+        }
+      }
+    }
+    &amp;:last-of-type .anchorTarget {
+      order: -1; // At the bottom, first in order at smallest viewport widths
+      @media (min-width: $bp2) {
+        order: unset; // Still naturally in the middle at larger ones
+      }
+      /* Indicators get spun around to point up instead of down */
+      &amp;::before {
+        transform: rotate(-90deg);
+      }
+      &amp;::after {
+        transform: scaleY(-1);
+      }
+      &amp;:hover::before {
+        text-shadow: -1pt 1pt 1pt var(--shade);
+      }
+      &amp;:hover::after {
+        text-shadow: 1pt -1pt 1pt var(--shade);
+      }
+    }
+
+    /* Don&#39;t show any of this in print */
+    @media only print {
+      display: none;
+    }
+  }
+ }" data-collapsed="@mixin toggle-all-sections-controls() { ... }"><code>@mixin toggle-all-sections-controls() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for the toggle-all-sections controls</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a> &mdash; Second breakpoint value</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-main"><code>main</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="typography"><div class="container">typography</div></h1><section class="main__sub-section" id="typography-function"><h2 class="main__heading--secondary"><div class="container">functions</div></h2><section class="main__item container item" id="typography-function-su"><h3 class="item__heading"><a class="item__name" href="#typography-function-su">su</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function su($length) { 
+  @return math.div($length, ($length * 0 + 1));
+ }" data-collapsed="@function su($length) { ... }"><code>@function su($length) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Helper function to strip unit from a length</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$length</code></th><td data-label="desc"><p>Number to strip unit from</p></td><td data-label="type"><code>Length</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>Number</code> &mdash;<p>Number with unit removed</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#typography-function-rfs"><code>rfs</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#typography-function-rfs"><code>rfs</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#typography-function-rfs"><code>rfs</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#typography-function-rfs"><code>rfs</code></a></li></ul></section><section class="main__item container item" id="typography-function-rfs"><h3 class="item__heading"><a class="item__name" href="#typography-function-rfs">rfs</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function rfs($minValue, $minWidth, $maxValue, $maxWidth) { 
+  @return clamp(
+    $minValue,
+    calc(
+      $minValue + (100vw - $minWidth) * (su($maxValue) - su($minValue)) /
+        (su($maxWidth) - su($minWidth))
+    ),
+    $maxValue
+  );
+ }" data-collapsed="@function rfs($minValue, $minWidth, $maxValue, $maxWidth) { ... }"><code>@function rfs($minValue, $minWidth, $maxValue, $maxWidth) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Function to calculate responsive font sizes</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$minValue</code></th><td data-label="desc"><p>Minimum font size</p></td><td data-label="type"><code>Length</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$minWidth</code></th><td data-label="desc"><p>Minimum viewport width</p></td><td data-label="type"><code>Length</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$maxValue</code></th><td data-label="desc"><p>Maximum font size</p></td><td data-label="type"><code>Length</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$maxWidth</code></th><td data-label="desc"><p>Maximum viewport width</p></td><td data-label="type"><code>Length</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>Calc</code> &mdash;<p>CSS clamp() function for responsive font-size value</p></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#typography-function-su"><code>su</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#typography-function-su"><code>su</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#typography-function-su"><code>su</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#typography-function-su"><code>su</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-headings"><code>headings</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-main"><code>main</code></a></li></ul></section></section><section class="main__sub-section" id="typography-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="typography-variable-mfs"><h3 class="item__heading"><a class="item__name" href="#typography-variable-mfs">mfs</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$mfs: 1.25rem;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Main font size at largest viewport widths</p></div><h3 class="item__sub-heading">Type</h3><p><code>Length</code></p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-headings"><code>headings</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-main"><code>main</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="undefined"><div class="container">General</div></h1><section class="main__sub-section" id="undefined-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="undefined-mixin-footer"><h3 class="item__heading"><a class="item__name" href="#undefined-mixin-footer">footer</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin footer() { 
+  footer {
+    /* Layout */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    /* Spacing */
+    margin: 0;
+    padding: calc(2 * var(--spacing));
+    gap: calc(2 * var(--spacing));
+
+    /* Borders */
+    border: 0;
+    border-top: 3pt ridge var(--cw75);
+    outline: 0;
+    box-shadow: 0 0.5em 0.5em var(--shade) inset;
+
+    /* Background */
+    --seaShadow: hsla(from var(--seaColor1) h 100% 0% / 100%);
+    background:
+    /* Shadow the foreground */ linear-gradient(
+        to bottom,
+        transparent,
+        var(--seaShadow)
+      ),
+      /* Swells in the sea */
+        linear-gradient(
+          to bottom,
+          transparent 0%,
+          transparent calc(1 * 100% / 32),
+          var(--swellLight) calc(1.25 * 100% / 32),
+          var(--swellColor) calc(1.5 * 100% / 32),
+          transparent calc(1 * 100% / 16),
+          var(--swellLight) calc(1.25 * 100% / 16),
+          var(--swellColor) calc(1.5 * 100% / 16),
+          transparent calc(1 * 100% / 8),
+          var(--swellLight) calc(1.25 * 100% / 8),
+          var(--swellColor) calc(1.5 * 100% / 8),
+          transparent calc(1 * 100% / 4),
+          var(--swellLight) calc(1.25 * 100% / 4),
+          var(--swellColor) calc(1.5 * 100% / 4),
+          transparent calc(1 * 100% / 2),
+          var(--swellLight) calc(1.25 * 100% / 2),
+          var(--swellColor) calc(1.5 * 100% / 2),
+          transparent 100%
+        ),
+      /* Basic colors of sea */
+        linear-gradient(
+          to bottom,
+          var(--seaColor1) 0%,
+          var(--seaColor2) 50%,
+          var(--seaColor3) 100%
+        );
+    background-size: 100% 100%, auto;
+    background-position: center, top, center;
+
+    @include optional-motion() {
+      /* Animation */
+      @keyframes waves {
+        from {
+          background-size: 100%, 100% 100%, auto;
+        }
+        to {
+          background-size: 100%, 100% 200%, auto;
+        }
+      }
+      animation-name: waves;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+      animation-timing-function: linear;
+    }
+
+    /* Typography */
+    font-family: &quot;Itim&quot;, &quot;Nunito&quot;, sans-serif;
+    color: var(--cw25);
+    text-align: center;
+
+    /* Paragraphs */
+    p {
+      margin: 0;
+      padding: 0;
+      font-size: min(2rem, 4vw);
+      letter-spacing: 0.5ch;
+      color: white;
+      -webkit-text-fill-color: white;
+      -webkit-text-stroke: calc(1em / 16) black;
+      paint-order: stroke fill;
+      text-shadow: 0.0125em 0.0125em 0.0125em #000,
+        0.025em 0.025em 0.025em #0008, 0.05em 0.05em 0.05em #0004,
+        0.1em 0.1em 0.1em #0002;
+    }
+
+    /* Links */
+    a {
+      text-decoration: none;
+      text-shadow: inherit;
+    }
+
+    /* Hide whoel footer on print */
+    @media only print {
+      display: none;
+    }
+  }
+
+  /* Color scheme switcher */
+  @include color-scheme-switcher;
+
+  /* Reduced motion switcher */
+  @include reduced-motion-switcher;
+ }" data-collapsed="@mixin footer() { ... }"><code>@mixin footer() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for the footer</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-color-scheme-switcher"><code>color-scheme-switcher</code></a> &mdash; Color scheme switcher</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-reduced-motion-switcher"><code>reduced-motion-switcher</code></a> &mdash; Reduced motion switcher</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul></section><section class="main__item container item" id="undefined-mixin-lightbox"><h3 class="item__heading"><a class="item__name" href="#undefined-mixin-lightbox">lightbox</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin lightbox() { 
+  .lightbox {
+    /* Layout */
+    position: fixed;
+    z-index: 100;
+    inset: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    float: none;
+
+    /* Sizing */
+    overflow: hidden;
+
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+    gap: var(--spacing);
+
+    /* Background */
+    background: radial-gradient(black, hsla(0deg 0% 0% / 93.75%));
+
+    /* Typography */
+    color: grey;
+    font-size: calc(1rem + 1vmin);
+    text-align: center;
+
+    /* If the lightbox is modal, hide it by default */
+    &amp;.modal {
+      opacity: 0;
+    }
+
+    /* Image */
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      max-width: calc(100vw - 2 * 1em);
+      max-height: calc(100vh - 2 * 6em);
+      box-sizing: border-box;
+      object-fit: scale-down;
+      transform: translate(-50%, -50%);
+      margin: 0 auto;
+      border: 1vh solid white;
+      box-shadow: 0 0 3em 3em black;
+      background: white;
+    }
+
+    /* Caption and navigation common styles*/
+    #caption,
+    nav {
+      position: absolute;
+      top: 0;
+      display: flex;
+      align-items: center;
+      z-index: 1;
+      width: auto;
+      max-height: 1em;
+      padding: 1em;
+      gap: 0.5ch;
+      border: none;
+      border-bottom: none;
+      color: grey;
+      font-size: 2em;
+      line-height: 1em;
+    }
+
+    /* Caption style details */
+    #caption {
+      span {
+        white-space: normal;
+        .maybe {
+          display: block;
+          font-size: 0.5em;
+          opacity: 0.5;
+        }
+      }
+    }
+
+    /* Navigation style details */
+    nav {
+      top: auto;
+      bottom: 0;
+      background: none;
+
+      /* Navigation buttons */
+      a {
+        display: inline-block;
+        width: 1em;
+        margin: 0 1em;
+        padding: 0;
+        border-radius: var(--rounding);
+        background: none;
+        color: grey;
+        font-weight: bold;
+        text-decoration: none;
+        text-shadow: 0 0 0.125em transparent;
+        &amp;:hover,
+        &amp;:focus,
+        &amp;:active {
+          text-shadow: 0 0 0.125em black;
+        }
+        user-select: none;
+        cursor: pointer;
+
+        &amp;:hover,
+        &amp;:focus {
+          color: white;
+        }
+      }
+    }
+  }
+ }" data-collapsed="@mixin lightbox() { ... }"><code>@mixin lightbox() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for lightbox</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p></section><section class="main__item container item" id="undefined-mixin-optional-motion"><h3 class="item__heading"><a class="item__name" href="#undefined-mixin-optional-motion">optional-motion</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin optional-motion() { 
+  @media (prefers-reduced-motion: no-preference) {
+    html:not([data-reduced-motion^=yes]) &amp;:not([data-reduced-motion^=yes]) {
+      @content;
+    }
+  }
+  &amp;[data-reduced-motion^=no],
+  html[data-reduced-motion^=no] &amp; {
+    @content;
+  }
+ }" data-collapsed="@mixin optional-motion() { ... }"><code>@mixin optional-motion() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Helper mixin that sets animations and transitions to apply only when the browser is not set to reduced motion and the data-reduced-motion attribute is not set to yes in either the html or the element, but always when the data-reduced-motion attribute is set to no in either the html or the element regardless of browser preference, without having to duplicate code.</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a> &mdash; Second breakpoint value</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-h1-large"><code>h1-large</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu-item-styles"><code>menu-item-styles</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu"><code>menu</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-color-scheme-switcher"><code>color-scheme-switcher</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-reduced-motion-switcher"><code>reduced-motion-switcher</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-main"><code>main</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-figure-left"><code>figure-left</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-gallery-item"><code>gallery-item</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-gallery"><code>gallery</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section-animation"><code>section-animation</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section-toggleable"><code>section-toggleable</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section"><code>section</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-toggle-all-sections-controls"><code>toggle-all-sections-controls</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-footer"><code>footer</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-root"><h3 class="item__heading"><a class="item__name" href="#undefined-mixin-root">root</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin root() { 
+  :root {
+    /* Color variables */
+    @include colors;
+
+    /* Layout variables */
+    @include layout;
+  }
+ }" data-collapsed="@mixin root() { ... }"><code>@mixin root() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Root styles for the site</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-colors"><code>colors</code></a> &mdash; Color variables</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#layout-mixin-layout"><code>layout</code></a> &mdash; Layout variables</li></ul></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --> <span class="project-info__name">Geekofalltrades</span><!-- Version --> <span class="project-info__version">- v1.0.0</span><!-- License --></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>

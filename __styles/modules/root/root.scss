@@ -4,7 +4,8 @@
 /// Root styles for the site
 /// @require {mixin} colors - Color variables
 /// @require {mixin} layout - Layout variables
-/// @require {mixin} typography - Typography variables
+/// @require {function} su - Strip unit from a length
+/// @require {function} rfs - Calculate responsive font sizes
 
 @mixin root {
   :root {

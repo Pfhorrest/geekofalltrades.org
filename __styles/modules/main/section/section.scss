@@ -111,7 +111,7 @@
     @include section-animation;
 
     /* Styles for sections that can be toggled */
-    @include toggleable;
+    @include section-toggleable;
 
     /* Styles for figures */
     @include figure;

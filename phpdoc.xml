@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor
+    configVersion="3"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://www.phpdoc.org"
+    xsi:schemaLocation="https://www.phpdoc.org https://raw.githubusercontent.com/phpDocumentor/phpDocumentor/master/data/xsd/phpdoc.xsd"
+>
+    <title>PrevHP Documentation</title>
+    <paths>
+        <output>_docs/php</output>
+    </paths>
+    <version number="1.0.0">
+        <folder>___structure</folder>
+    </version>
+    <setting name="project.name" value="geekofalltrades/prevhp"/>
+</phpdocumentor>

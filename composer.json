@@ -1,0 +1,9 @@
+{
+    "name": "forrestcameranesi/geekofalltrades",
+    "description": "Portfolio of Forrest Cameranesi",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=7.4"
+    }
+}

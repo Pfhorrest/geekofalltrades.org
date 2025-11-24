@@ -9,7 +9,7 @@
 /// @see {mixin} section-toggleable - Styles for sections that can be toggled
 /// @see {mixin} main - General styles for the main section
 
-@mixin toggle-all-section-controls {
+@mixin toggle-all-sections-controls {
   .toggleAllControls {
     /* The container */
     display: flex;

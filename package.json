@@ -5,7 +5,7 @@
   "devDependencies": {
     "concurrently": "latest",
     "sass": "latest",
-    "sassdoc": "^2.7.4",
+    "sassdoc": "^1.10.12",
     "typedoc": "^0.28.14",
     "typescript": "latest"
   },
@@ -21,7 +21,7 @@
     "deploy": "ssh goat \"rsync -avzh --progress ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\"",
     "document:php": "phpdoc -d ___structure -t _docs/php",
     "document:sass": "sassdoc __styles -d _docs/sass",
-    "document:ts": "npx typedoc __scripts --out _docs/ts",
+    "document:ts": "npx typedoc __scripts/scripts.ts --out _docs/ts",
     "document": "npm run document:php && npm run document:sass && npm run document:ts"
   }
 }

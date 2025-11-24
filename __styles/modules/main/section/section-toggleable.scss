@@ -5,7 +5,7 @@
 /// @see {mixin} section - General styles for sections
 /// @require {mixin} optional-motion - DRY optional motion helper
 
-@mixin toggleable {
+@mixin section-toggleable {
   &.toggleable {
     /* Only on screens so as not to mess up printing */
     @media only screen {
