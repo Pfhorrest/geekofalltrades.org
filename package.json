@@ -22,6 +22,6 @@
     "document:php": "phpdoc -d ___structure -t _docs/php",
     "document:sass": "sassdoc __styles -d _docs/sass",
     "document:ts": "npx typedoc __scripts/scripts.ts --out _docs/ts",
-    "document": "npm run document:php && npm run document:sass && npm run document:ts"
+    "document": "npm run document:sass && npm run document:ts && npm run document:php"
   }
 }
