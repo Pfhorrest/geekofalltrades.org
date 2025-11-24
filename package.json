@@ -16,8 +16,6 @@
     "stage-code": "ssh goat \"cd ~/dev.geekofalltrades.org && git pull origin main\"",
     "stage-photos": "rsync -avzh --progress --partial --delete photos/ goat:~/dev.geekofalltrades.org/photos/",
     "stage": "npm run stage-code && npm run stage-photos",
-    "deploy-code": "ssh goat \"cd ~/geekofalltrades.org && git pull origin main\"",
-    "deploy-photos": "rsync -avzh --progress --partial --delete photos/ goat:~/geekofalltrades.org/photos/",
-    "deploy": "npm run deploy-code && npm run deploy-photos"
+    "deploy": "ssh goat \"rsync -avzh --progress ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\""
   }
 }
