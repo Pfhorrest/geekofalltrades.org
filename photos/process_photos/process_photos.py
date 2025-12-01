@@ -244,7 +244,7 @@ def process_photos():
                         \t</p>
                         \t<?php
                         \t\trequire "modules/gallery.php";
-                        \t\trender_gallery({php_array_str.rstrip()});
+                        \t\techo render_gallery({php_array_str.rstrip()});
                         \t?>
                         </section>
                     """
