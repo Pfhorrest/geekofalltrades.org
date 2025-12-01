@@ -242,4 +242,5 @@
 			</ul>
 		</li>
 	</ul>
+	<p>More about this site can be found in its <a href="readme.md" rel="external">README.md</a></p>.
 </section>
