@@ -9,6 +9,8 @@
 	 * 
 	*/
 
+	/* Prevent caching of any pages */
+	header("Cache-Control: no-cache, must-revalidate");
 
 	/**  
 	 * Internal path to the root directory of the site on the server.
