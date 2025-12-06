@@ -233,7 +233,7 @@ def process_photos():
                         for key, val in img.items():
                             php_array_str += f"\t\t\t\t'{key}' => '{php_escape(val)}',\n"
                         php_array_str += "\t\t\t),\n"
-                    php_array_str += "\t\t);\n\n"
+                    php_array_str += "\t\t)\n\n"
 
                 if not main_path.exists():
                     main_content = f"""\
