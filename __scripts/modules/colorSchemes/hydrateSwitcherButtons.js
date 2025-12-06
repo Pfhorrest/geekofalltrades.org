@@ -38,7 +38,7 @@ export const hydrateSwitcherButtons = () => {
                     document.cookie =
                         "color-scheme=light; expires=" +
                             new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-                            "; path=/";
+                            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
                 });
             });
             document.querySelectorAll(".autoMode").forEach((control) => {
@@ -49,7 +49,7 @@ export const hydrateSwitcherButtons = () => {
                     document.cookie =
                         "color-scheme=light; expires=" +
                             new Date(new Date().setFullYear(new Date().getFullYear() - 1)) +
-                            "; path=/";
+                            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
                 });
             });
             document.querySelectorAll(".darkMode").forEach((control) => {
@@ -60,7 +60,7 @@ export const hydrateSwitcherButtons = () => {
                     document.cookie =
                         "color-scheme=dark; expires=" +
                             new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-                            "; path=/";
+                            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
                 });
             });
             // Set up the color-scheme-switcher container

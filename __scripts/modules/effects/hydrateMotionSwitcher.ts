@@ -91,7 +91,7 @@ export const hydrateMotionSwitcher = () => {
             document.cookie =
               "reduced-motion=yes-auto; expires=" +
               new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-              "; path=/";
+              "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
             // Increase delay *geometrically* on failure
             // so if we fail a lot we retry much more slowly.
             // Minimum of 3 to ensure increase at the threshold of oscillation,
@@ -108,7 +108,7 @@ export const hydrateMotionSwitcher = () => {
             document.cookie =
               "reduced-motion=no-auto; expires=" +
               new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-              "; path=/";
+              "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
             // Decrease delay *linearly* on pass
             // so if we pass a lot we retry gradually more quickly.
             // Minimum of 2 to ensure increase at the threshold of oscillation,
@@ -183,7 +183,7 @@ export const hydrateMotionSwitcher = () => {
           document.cookie =
             "reduced-motion=no; expires=" +
             new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            "; path=/";
+            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
         });
       });
       document.querySelectorAll(".autoMotion").forEach((control) => {
@@ -194,7 +194,7 @@ export const hydrateMotionSwitcher = () => {
           document.cookie =
             "reduced-motion=no; expires=" +
             new Date(new Date().setFullYear(new Date().getFullYear() - 1)) +
-            "; path=/";
+            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
         });
       });
       document.querySelectorAll(".lessMotion").forEach((control) => {
@@ -205,7 +205,7 @@ export const hydrateMotionSwitcher = () => {
           document.cookie =
             "reduced-motion=yes; expires=" +
             new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            "; path=/";
+            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
         });
       });
     }

@@ -59,7 +59,7 @@ export const hydrateSwitcherButtons = () => {
           document.cookie =
             "color-scheme=light; expires=" +
             new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            "; path=/";
+            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
         });
       });
       document.querySelectorAll(".autoMode").forEach((control) => {
@@ -70,7 +70,7 @@ export const hydrateSwitcherButtons = () => {
           document.cookie =
             "color-scheme=light; expires=" +
             new Date(new Date().setFullYear(new Date().getFullYear() - 1)) +
-            "; path=/";
+            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
         });
       });
       document.querySelectorAll(".darkMode").forEach((control) => {
@@ -81,7 +81,7 @@ export const hydrateSwitcherButtons = () => {
           document.cookie =
             "color-scheme=dark; expires=" +
             new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            "; path=/";
+            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
         });
       });
 
@@ -95,7 +95,11 @@ export const hydrateSwitcherButtons = () => {
       // console.log("created Grays:", grays);
       const warmer = createControl("themeSwitcher", "warmer-theme", "Warmer");
       // console.log("created Warmer:", warmer);
-      const natural = createControl("themeSwitcher", "natural-theme", "Natural");
+      const natural = createControl(
+        "themeSwitcher",
+        "natural-theme",
+        "Natural"
+      );
       // console.log("created Natural:", natural);
       const cooler = createControl("themeSwitcher", "cooler-theme", "Cooler");
       // console.log("created Cooler:", cooler);
