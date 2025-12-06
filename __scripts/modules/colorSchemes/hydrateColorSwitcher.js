@@ -1,3 +1,4 @@
+import { setCookie, deleteCookie } from "../helpers/cookies.js";
 /**
  * Creates color-scheme-switcher buttons and adds event listeners to control them
  *
@@ -36,10 +37,7 @@ export const hydrateColorSwitcher = () => {
                 control.addEventListener("click", () => {
                     // console.log("Switch to light mode");
                     document.documentElement.setAttribute("data-color-scheme", "light");
-                    document.cookie =
-                        "color-scheme=light; expires=" +
-                            oneYearFromNow +
-                            "; path=/; SameSite=Lax; Secure";
+                    setCookie("color-scheme", "light");
                 });
             });
             document.querySelectorAll(".autoMode").forEach((control) => {
@@ -47,10 +45,7 @@ export const hydrateColorSwitcher = () => {
                 control.addEventListener("click", () => {
                     // console.log("Revert to automatic mode");
                     document.documentElement.removeAttribute("data-color-scheme");
-                    document.cookie =
-                        "color-scheme=light; expires=" +
-                            oneYearFromNow +
-                            "; path=/; SameSite=Lax; Secure";
+                    deleteCookie("color-scheme");
                 });
             });
             document.querySelectorAll(".darkMode").forEach((control) => {
@@ -58,10 +53,7 @@ export const hydrateColorSwitcher = () => {
                 control.addEventListener("click", () => {
                     // console.log("Switch to dark mode");
                     document.documentElement.setAttribute("data-color-scheme", "dark");
-                    document.cookie =
-                        "color-scheme=dark; expires=" +
-                            oneYearFromNow +
-                            "; path=/; SameSite=Lax; Secure";
+                    setCookie("color-scheme", "dark");
                 });
             });
             // Set up the color-scheme-switcher container
@@ -85,10 +77,7 @@ export const hydrateColorSwitcher = () => {
                 control.addEventListener("click", () => {
                     // console.log("Switch to grays theme");
                     document.documentElement.setAttribute("data-theme", "grays");
-                    document.cookie =
-                        "theme=grays; expires=" +
-                            oneYearFromNow +
-                            "; path=/; SameSite=Lax; Secure";
+                    setCookie("theme", "grays");
                 });
             });
             document.querySelectorAll(".warmer-theme").forEach((control) => {
@@ -96,10 +85,7 @@ export const hydrateColorSwitcher = () => {
                 control.addEventListener("click", () => {
                     // console.log("Switch to warmer theme");
                     document.documentElement.setAttribute("data-theme", "warmer");
-                    document.cookie =
-                        "theme=warmer; expires=" +
-                            oneYearFromNow +
-                            "; path=/; SameSite=Lax; Secure";
+                    setCookie("theme", "warmer");
                 });
             });
             document.querySelectorAll(".natural-theme").forEach((control) => {
@@ -107,10 +93,7 @@ export const hydrateColorSwitcher = () => {
                 control.addEventListener("click", () => {
                     // console.log("Switch to natural theme");
                     document.documentElement.setAttribute("data-theme", "natural");
-                    document.cookie =
-                        "theme=natural; expires=" +
-                            oneYearFromNow +
-                            "; path=/; SameSite=Lax; Secure";
+                    setCookie("theme", "natural");
                 });
             });
             document.querySelectorAll(".cooler-theme").forEach((control) => {
@@ -118,10 +101,7 @@ export const hydrateColorSwitcher = () => {
                 control.addEventListener("click", () => {
                     // console.log("Switch to cooler theme");
                     document.documentElement.setAttribute("data-theme", "cooler");
-                    document.cookie =
-                        "theme=cooler; expires=" +
-                            oneYearFromNow +
-                            "; path=/; SameSite=Lax; Secure";
+                    setCookie("theme", "cooler");
                 });
             });
             document.querySelectorAll(".alien-theme").forEach((control) => {
@@ -129,10 +109,7 @@ export const hydrateColorSwitcher = () => {
                 control.addEventListener("click", () => {
                     // console.log("Switch to alien theme");
                     document.documentElement.setAttribute("data-theme", "alien");
-                    document.cookie =
-                        "theme=alien; expires=" +
-                            oneYearFromNow +
-                            "; path=/; SameSite=Lax; Secure";
+                    setCookie("theme", "alien");
                 });
             });
         }
