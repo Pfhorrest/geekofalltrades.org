@@ -51,6 +51,10 @@ export const hydrateSwitcherButtons = () => {
       // console.log("created darkMode:", darkMode);
 
       // Add event listeners
+      const oneYearFromNow = new Date(
+        new Date().setFullYear(new Date().getFullYear() + 1)
+      ).toUTCString();
+
       document.querySelectorAll(".lightMode").forEach((control) => {
         // console.log("Setting up event listener on", control);
         control.addEventListener("click", () => {
@@ -58,8 +62,8 @@ export const hydrateSwitcherButtons = () => {
           document.documentElement.setAttribute("data-color-scheme", "light");
           document.cookie =
             "color-scheme=light; expires=" +
-            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
+            oneYearFromNow +
+            "; path=/; SameSite=Lax; Secure";
         });
       });
       document.querySelectorAll(".autoMode").forEach((control) => {
@@ -69,8 +73,8 @@ export const hydrateSwitcherButtons = () => {
           document.documentElement.removeAttribute("data-color-scheme");
           document.cookie =
             "color-scheme=light; expires=" +
-            new Date(new Date().setFullYear(new Date().getFullYear() - 1)) +
-            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
+            oneYearFromNow +
+            "; path=/; SameSite=Lax; Secure";
         });
       });
       document.querySelectorAll(".darkMode").forEach((control) => {
@@ -80,8 +84,8 @@ export const hydrateSwitcherButtons = () => {
           document.documentElement.setAttribute("data-color-scheme", "dark");
           document.cookie =
             "color-scheme=dark; expires=" +
-            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
+            oneYearFromNow +
+            "; path=/; SameSite=Lax; Secure";
         });
       });
 
@@ -114,8 +118,8 @@ export const hydrateSwitcherButtons = () => {
           document.documentElement.setAttribute("data-theme", "grays");
           document.cookie =
             "theme=grays; expires=" +
-            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            "; path=/";
+            oneYearFromNow +
+            "; path=/; SameSite=Lax; Secure";
         });
       });
       document.querySelectorAll(".warmer-theme").forEach((control) => {
@@ -125,8 +129,8 @@ export const hydrateSwitcherButtons = () => {
           document.documentElement.setAttribute("data-theme", "warmer");
           document.cookie =
             "theme=warmer; expires=" +
-            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            "; path=/";
+            oneYearFromNow +
+            "; path=/; SameSite=Lax; Secure";
         });
       });
       document.querySelectorAll(".natural-theme").forEach((control) => {
@@ -136,8 +140,8 @@ export const hydrateSwitcherButtons = () => {
           document.documentElement.setAttribute("data-theme", "natural");
           document.cookie =
             "theme=natural; expires=" +
-            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            "; path=/";
+            oneYearFromNow +
+            "; path=/; SameSite=Lax; Secure";
         });
       });
       document.querySelectorAll(".cooler-theme").forEach((control) => {
@@ -147,8 +151,8 @@ export const hydrateSwitcherButtons = () => {
           document.documentElement.setAttribute("data-theme", "cooler");
           document.cookie =
             "theme=cooler; expires=" +
-            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            "; path=/";
+            oneYearFromNow +
+            "; path=/; SameSite=Lax; Secure";
         });
       });
       document.querySelectorAll(".alien-theme").forEach((control) => {
@@ -158,8 +162,8 @@ export const hydrateSwitcherButtons = () => {
           document.documentElement.setAttribute("data-theme", "alien");
           document.cookie =
             "theme=alien; expires=" +
-            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            "; path=/";
+            oneYearFromNow +
+            "; path=/; SameSite=Lax; Secure";
         });
       });
     }
