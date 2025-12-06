@@ -1,3 +1,6 @@
+import { setPreference } from "../preferences/setPreference.js";
+import { deletePreference } from "..//preferences/deletePreference.js";
+
 /**
  * Creates reduced-motion-switcher buttons and adds event listeners to control them
  *
@@ -5,23 +8,6 @@
  */
 export const hydrateMotionSwitcher = () => {
   document.addEventListener("DOMContentLoaded", () => {
-    // Read the cookie and set the data-reduced-motion attribute from it
-    decodeURIComponent(document.cookie)
-      .split(";")
-      .forEach((cookie) => {
-        cookie = cookie.trim();
-        if (cookie.startsWith("reduced-motion")) {
-          // console.log("cookie:", cookie);
-          document.documentElement.setAttribute(
-            "data-reduced-motion",
-            cookie.split("=")[1]
-          );
-          // console.log(
-          //   "data-reduced-motion:",
-          //   document.documentElement.getAttribute("data-reduced-motion")
-          // );
-        }
-      });
 
     const html: HTMLElement = document.documentElement;
 
@@ -88,10 +74,7 @@ export const hydrateMotionSwitcher = () => {
             // Upon failure...
             // console.log("fps < 30, setting reduced-motion to yes-auto");
             html.setAttribute("data-reduced-motion", "yes-auto");
-            document.cookie =
-              "reduced-motion=yes-auto; expires=" +
-              new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-              "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
+            setPreference("reduced-motion", "yes-auto");
             // Increase delay *geometrically* on failure
             // so if we fail a lot we retry much more slowly.
             // Minimum of 3 to ensure increase at the threshold of oscillation,
@@ -105,10 +88,7 @@ export const hydrateMotionSwitcher = () => {
             // Upon pass...
             // console.log("fps >= 30, setting reduced-motion to no-auto");
             html.setAttribute("data-reduced-motion", "no-auto");
-            document.cookie =
-              "reduced-motion=no-auto; expires=" +
-              new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-              "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
+            setPreference("reduced-motion", "no-auto");
             // Decrease delay *linearly* on pass
             // so if we pass a lot we retry gradually more quickly.
             // Minimum of 2 to ensure increase at the threshold of oscillation,
@@ -180,10 +160,7 @@ export const hydrateMotionSwitcher = () => {
         control.addEventListener("click", () => {
           // console.log("Switch to more motion");
           document.documentElement.setAttribute("data-reduced-motion", "no");
-          document.cookie =
-            "reduced-motion=no; expires=" +
-            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
+          setPreference("reduced-motion", "no");
         });
       });
       document.querySelectorAll(".autoMotion").forEach((control) => {
@@ -191,10 +168,7 @@ export const hydrateMotionSwitcher = () => {
         control.addEventListener("click", () => {
           // console.log("Revert to automatic motion");
           document.documentElement.removeAttribute("data-reduced-motion");
-          document.cookie =
-            "reduced-motion=no; expires=" +
-            new Date(new Date().setFullYear(new Date().getFullYear() - 1)) +
-            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
+          deletePreference("reduced-motion");
         });
       });
       document.querySelectorAll(".lessMotion").forEach((control) => {
@@ -202,10 +176,7 @@ export const hydrateMotionSwitcher = () => {
         control.addEventListener("click", () => {
           // console.log("Switch to less motion");
           document.documentElement.setAttribute("data-reduced-motion", "yes");
-          document.cookie =
-            "reduced-motion=yes; expires=" +
-            new Date(new Date().setFullYear(new Date().getFullYear() + 1)) +
-            "; Max-Age=31536000; path=/;SameSite=Lax; Secure";
+          setPreference("reduced-motion", "yes");
         });
       });
     }

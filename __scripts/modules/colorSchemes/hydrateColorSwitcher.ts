@@ -1,4 +1,5 @@
-import {setCookie, deleteCookie} from "../helpers/cookies.js";
+import {setPreference} from "../preferences/setPreference.js";
+import { deletePreference } from "../preferences/deletePreference.js";
 
 /**
  * Creates color-scheme-switcher buttons and adds event listeners to control them
@@ -62,7 +63,7 @@ export const hydrateColorSwitcher = () => {
         control.addEventListener("click", () => {
           // console.log("Switch to light mode");
           document.documentElement.setAttribute("data-color-scheme", "light");
-          setCookie("color-scheme", "light");
+          setPreference("color-scheme", "light");
         });
       });
       document.querySelectorAll(".autoMode").forEach((control) => {
@@ -70,7 +71,7 @@ export const hydrateColorSwitcher = () => {
         control.addEventListener("click", () => {
           // console.log("Revert to automatic mode");
           document.documentElement.removeAttribute("data-color-scheme");
-          deleteCookie("color-scheme");
+          deletePreference("color-scheme");
         });
       });
       document.querySelectorAll(".darkMode").forEach((control) => {
@@ -78,7 +79,7 @@ export const hydrateColorSwitcher = () => {
         control.addEventListener("click", () => {
           // console.log("Switch to dark mode");
           document.documentElement.setAttribute("data-color-scheme", "dark");
-          setCookie("color-scheme", "dark");
+          setPreference("color-scheme", "dark");
         });
       });
 
@@ -109,7 +110,7 @@ export const hydrateColorSwitcher = () => {
         control.addEventListener("click", () => {
           // console.log("Switch to grays theme");
           document.documentElement.setAttribute("data-theme", "grays");
-          setCookie("theme", "grays");
+          setPreference("theme", "grays");
         });
       });
       document.querySelectorAll(".warmer-theme").forEach((control) => {
@@ -117,7 +118,7 @@ export const hydrateColorSwitcher = () => {
         control.addEventListener("click", () => {
           // console.log("Switch to warmer theme");
           document.documentElement.setAttribute("data-theme", "warmer");
-          setCookie("theme", "warmer");
+          setPreference("theme", "warmer");
         });
       });
       document.querySelectorAll(".natural-theme").forEach((control) => {
@@ -125,7 +126,7 @@ export const hydrateColorSwitcher = () => {
         control.addEventListener("click", () => {
           // console.log("Switch to natural theme");
           document.documentElement.setAttribute("data-theme", "natural");
-          setCookie("theme", "natural");
+          setPreference("theme", "natural");
         });
       });
       document.querySelectorAll(".cooler-theme").forEach((control) => {
@@ -133,7 +134,7 @@ export const hydrateColorSwitcher = () => {
         control.addEventListener("click", () => {
           // console.log("Switch to cooler theme");
           document.documentElement.setAttribute("data-theme", "cooler");
-          setCookie("theme", "cooler");
+          setPreference("theme", "cooler");
         });
       });
       document.querySelectorAll(".alien-theme").forEach((control) => {
@@ -141,7 +142,7 @@ export const hydrateColorSwitcher = () => {
         control.addEventListener("click", () => {
           // console.log("Switch to alien theme");
           document.documentElement.setAttribute("data-theme", "alien");
-          setCookie("theme", "alien");
+          setPreference("theme", "alien");
         });
       });
     }
