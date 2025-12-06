@@ -1,13 +1,13 @@
 <!-- Preference setter has to load ASAP to prevent FOUC -->
 <script>
   try {
-    const cs = localStorage.getItem("color-scheme");
-    if (cs) document.documentElement.dataset.colorScheme = cs;
+    const colorScheme = localStorage.getItem("color-scheme");
+    if (colorScheme) document.documentElement.dataset.colorScheme = colorScheme;
 
     const theme = localStorage.getItem("theme");
     if (theme) document.documentElement.dataset.theme = theme;
 
-    const motion = localStorage.getItem("motion");
-    if (motion) document.documentElement.dataset.motion = motion;
+    const reducedMotion = localStorage.getItem("reduced-motion");
+    if (reducedMotion) document.documentElement.dataset.reducedMotion = reducedMotion;
   } catch (e) {}
 </script>
