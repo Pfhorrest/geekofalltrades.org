@@ -19,7 +19,7 @@ export const hydrateMotionSwitcher = () => {
     // Measure FPS and set reduced-motion attribute if necessary
 
     // Initialize time, frame count, fps, etc
-    let fpsTimer: number = 1;
+    let fpsTimer: number = 30;
     // console.log("fpsTimer:", fpsTimer);
     let fpsTimerDelay: number = fpsTimer;
     // console.log("fpsTimerDelay:", fpsTimerDelay);
@@ -33,7 +33,7 @@ export const hydrateMotionSwitcher = () => {
     // console.log("frameCount:", frameCount);
     let fps: number = 0;
     // console.log("fps:", fps);
-    let fpsThreshold: number = 15;
+    let fpsThreshold: number = 30;
     // console.log("fpsThreshold:", fpsThreshold);
 
     // Function to measure the frames per second
@@ -69,6 +69,7 @@ export const hydrateMotionSwitcher = () => {
           html.getAttribute("data-reduced-motion") || "";
         // Only do this if reduced-motion is auto
         if (!["yes", "no"].includes(reducedMotion)) {
+          setPreference("reduced-motion", "yes-auto");
           // console.log("reduced-motion is auto, checking fps...");
           if (fps < fpsThreshold) {
             // Upon failure...
