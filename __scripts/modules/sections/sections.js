@@ -3,6 +3,7 @@ import { hydrateToggleButtons } from "./allSections/toggleButtons/hydrateToggleB
 import { expandAnchorSectionCollapseOthers } from "./allSections/allSections";
 import { toggleToggleButtons } from "./allSections/toggleButtons/toggleToggleButtons";
 import { alternateFigures } from "./figures";
+import { enableFlexBalancing } from "../flexBalance/flexBalance";
 /**
  * Initializse toggling sections by clicking their headings
  *
@@ -45,6 +46,7 @@ const hydrateSectionHeadings = () => {
 };
 export const hydrateSections = () => {
     document.addEventListener("DOMContentLoaded", () => {
+        enableFlexBalancing(".gallery");
         hydrateSectionHeadings();
         hydrateToggleButtons();
         expandAnchorSectionCollapseOthers();
