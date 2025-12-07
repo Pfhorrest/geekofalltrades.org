@@ -5,8 +5,6 @@
     <li><a href="/graphics">
         Graphic Design</a>
         <ul>
-            <li><a href="/graphics">All</a></li>
-            <li>&nbsp;</li>
             <li><a href="/graphics/emblematic/">Emblematic Jewelry</a></li>
             <li><a href="/graphics/infographics/">Infographics</a></li>
             <li><a href="/graphics/logos/">Logo Design</a></li>
@@ -19,8 +17,6 @@
     <li>
         <a href="/photos">Photography</a>
         <ul>
-            <li><a href="/photos">All</a></li>
-            <li>&nbsp;</li>
             <li><a href="/photos/2025/">2025</a></li>
             <li><a href="/photos/2024/">2024</a></li>
             <li><a href="/photos/2023/">2023</a></li>

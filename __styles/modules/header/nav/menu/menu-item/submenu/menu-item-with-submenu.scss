@@ -8,55 +8,68 @@
 
 @mixin menu-item-with-submenu {
   /* For the dropdown menu arrows */
-  &.submenu, &:has(ul) {
-    > a {
-      &::before,
-      &::after {
-        content: "▼";
-        position: absolute;
-        display: inline-block;
-        top: 0.5em;
-        opacity: 0.25;
-        vertical-align: middle;
-        transform: rotate(0deg);
-      }
 
-      /* Rotate the left one counter-clockwise by default */
-      &::before {
-        left: 0.5em;
-        margin-right: 0.5em;
-        transform: rotate(-90deg);
-      }
-      /* Rotate the right one clockwise by default */
-      &::after {
-        right: 0.5em;
-        margin-left: 0.5em;
-        transform: rotate(90deg);
-      }
-      /* Reverse the shadow of the left one
-         since they're in opposite orientations now */
-      &:hover::before {
-        text-shadow: -1pt 1pt 1pt var(--shade);
-      }
+  %dropdown-arrow {
+    content: "▼";
+    position: absolute;
+    display: inline-block;
+    top: 0.5em;
+    opacity: 0.25;
+    vertical-align: middle;
+    transform: rotate(0deg);
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &:has(ul) {
+    /* Rotate the left one counter-clockwise by default */
+    &:not(.submenu) > a::before,
+    &.submenu > a > .submenu-toggle:first-child {
+      @extend %dropdown-arrow;
+      left: 0.5em;
+      margin-right: 0.5em;
+      transform: rotate(-90deg);
+    }
+    /* Rotate the right one clockwise by default */
+    &:not(.submenu) > a::after,
+    &.submenu > a > .submenu-toggle:last-child {
+      @extend %dropdown-arrow;
+      right: 0.5em;
+      margin-left: 0.5em;
+      transform: rotate(90deg);
+    }
+    /* Reverse the shadow of the left one
+        since they're in opposite orientations now */
+    &:not(.submenu) > a:hover::before,
+    &.submenu > a > .submenu-toggle:first-child:hover {
+      text-shadow: -1pt 1pt 1pt var(--shade);
     }
     /* But when the menu item is active ... */
-    &.active a {
-      /* Flip the dropdown menu arrows back to normal */
-      &::before,
-      &::after {
-        transform: rotate(0deg);
-      }
-      /* Reverse the shadow of the left one back again */
-      &:hover::before {
-        text-shadow: 1pt 1pt 1pt var(--shade);
+    &:not(.submenu),
+    &.submenu {
+      &.active > a {
+        /* Flip the dropdown menu arrows back to normal */
+        &::before,
+        &::after,
+        > .submenu-toggle {
+          transform: rotate(0deg);
+        }
+        /* Reverse the shadow of the left one back again */
+        &:hover {
+          &::before,
+          .submenu-toggle:first-child {
+            text-shadow: 1pt 1pt 1pt var(--shade);
+          }
+        }
       }
     }
     @include submenu;
   }
   /* Basic dropdown functionality for when no Javascript */
   &:not(.submenu):has(ul):hover {
-   > ul {
-     display: block;
-   }
+    > ul {
+      display: block;
+    }
   }
 }

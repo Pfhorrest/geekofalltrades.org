@@ -11,6 +11,7 @@ export const hydrateDropdowns = () => {
     document
         .querySelectorAll("header > nav > ul > li")
         .forEach((menuItem) => {
+        var _a;
         // Get the submenu within it, if any
         const submenu = menuItem.querySelector("ul");
         if (submenu) {
@@ -19,12 +20,20 @@ export const hydrateDropdowns = () => {
             // Get the link within the menu
             const menuItemLink = menuItem.querySelector("a");
             if (menuItemLink) {
-                // Mark link as a button
-                menuItemLink.role = "button";
-                // Add title attribute to the menu link
-                menuItemLink.title = "Expand submenu";
+                // Create the toggle element
+                const toggle = document.createElement("span");
+                toggle.className = "submenu-toggle";
+                toggle.setAttribute("aria-hidden", "true");
+                toggle.innerHTML = "▼";
+                // Mark toggle as a button
+                toggle.role = "button";
+                // Add title attribute to the toggle
+                toggle.title = "Expand submenu";
+                menuItemLink.prepend(toggle);
+                menuItemLink.append(toggle.cloneNode(true));
                 // Add event listener to the menu link
-                menuItemLink.addEventListener("click", (e) => {
+                (_a = menuItemLink
+                    .querySelectorAll(".submenu-toggle")) === null || _a === void 0 ? void 0 : _a.forEach((toggle) => toggle.addEventListener("click", (e) => {
                     e.preventDefault();
                     // console.log(`click event on ${menuItemLink.textContent}`);
                     // Save the open/closed state of this dropdown,
@@ -42,13 +51,17 @@ export const hydrateDropdowns = () => {
                     // );
                     // Wait for that if necessary, then...
                     setTimeout(() => {
+                        var _a;
                         if (!wasActive) {
                             // If the dropdown wasn't open before, expand it
                             // console.log("expanding submenu");
                             menuItem.classList.add("active");
                             // console.log("setting title to collapse");
-                            menuItemLink.title = "Collapse submenu";
-                            menuItemLink.ariaExpanded = "true";
+                            (_a = menuItemLink
+                                .querySelectorAll(".submenu-toggle")) === null || _a === void 0 ? void 0 : _a.forEach((toggle) => {
+                                toggle.title = "Collapse submenu";
+                                toggle.ariaExpanded = "true";
+                            });
                             slideDown(submenu);
                         }
                         else {
@@ -56,15 +69,19 @@ export const hydrateDropdowns = () => {
                             // console.log("collapsing submenu");
                             slideUp(submenu);
                             setTimeout(() => {
+                                var _a;
                                 menuItem.classList.remove("active");
                                 // console.log("setting title to expand");
-                                menuItemLink.title = "Expand submenu";
-                                menuItemLink.ariaExpanded = "false";
+                                (_a = menuItemLink
+                                    .querySelectorAll(".submenu-toggle")) === null || _a === void 0 ? void 0 : _a.forEach((toggle) => {
+                                    toggle.title = "Expand submenu";
+                                    toggle.ariaExpanded = "false";
+                                });
                             }, getDuration(submenu));
                         }
                     }, anOpenDropdown ? getDuration(anOpenDropdown) : 10);
                     return false;
-                });
+                }));
             }
         }
     });
