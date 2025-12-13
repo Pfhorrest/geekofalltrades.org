@@ -92,7 +92,7 @@ export const hydrateBreadcrumbs = (): void => {
             // console.log("...into something other than its subnav, so....");
             // Check if any dropdowns are open
             const anOpenDropdown = document.querySelector<HTMLElement>(
-              "header > nav > ul > li.current"
+              "header > nav > ul > li.active"
             );
             setTimeout(() => {
               if (

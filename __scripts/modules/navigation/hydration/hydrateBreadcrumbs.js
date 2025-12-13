@@ -74,7 +74,7 @@ export const hydrateBreadcrumbs = () => {
                     // If it's to something other than its subnav, revert to last subnav
                     // console.log("...into something other than its subnav, so....");
                     // Check if any dropdowns are open
-                    const anOpenDropdown = document.querySelector("header > nav > ul > li.current");
+                    const anOpenDropdown = document.querySelector("header > nav > ul > li.active");
                     setTimeout(() => {
                         if (!breadcrumb.mouseIn &&
                             !thisSubnav.mouseIn &&
