@@ -85,11 +85,11 @@ export const hydrateDropdowns = (): void => {
                           ?.forEach((toggle) => {
                             toggle.title = "Expand submenu";
                             toggle.ariaExpanded = "false";
-                          })
+                          });
                       }, getDuration(submenu));
                     }
                   },
-                  anOpenDropdown ? getDuration(anOpenDropdown) : 10
+                  anOpenDropdown ? getDuration(anOpenDropdown) : 0
                 );
                 return false;
               })
@@ -103,7 +103,7 @@ export const hydrateDropdowns = (): void => {
     if (
       !(
         e.target instanceof HTMLElement &&
-        e.target.closest("li")?.classList.contains("submenu")
+        e.target.classList.contains("submenu-toggle")
       )
     ) {
       // Close all dropdowns if so

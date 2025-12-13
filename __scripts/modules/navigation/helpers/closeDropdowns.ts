@@ -19,7 +19,7 @@ export const closeDropdowns = () => {
     // Slide up all open dropdowns
     openDropdowns.forEach((dropdown) => {
       // Only if they're visible
-      if (dropdown.style.display != "none") {
+      if (getComputedStyle(dropdown).display !== "none") {
         // console.log(
         //   `Sliding up '${
         //     dropdown.parentElement?.querySelector("a")?.innerText
@@ -45,6 +45,6 @@ export const closeDropdowns = () => {
       }, getDuration(item));
     });
 
-    console.groupEnd();
+    // console.groupEnd();
   }
 };
