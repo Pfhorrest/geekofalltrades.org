@@ -20,16 +20,23 @@ export const hydrateBreadcrumbs = () => {
     const hoverDelayDuration = 2 * transitionDuration;
     // Resuable function to switch subnavs
     let switchSubnav = (targetSubnav) => {
-        // Remove 'current' from all subnavs
         // Slide up any open subnavs
         Array.from(document.querySelectorAll("header > nav > a + ul"))
             .filter((subnav) => subnav != targetSubnav)
             .forEach((subnav) => {
-            // console.log("about to slide up subnav", subnav);
+            const subnavLink = subnav.previousElementSibling;
+            // console.log(
+            //   "about to slide up subnav",
+            //   `'${subnavLink.innerText}'` || subnav
+            // );
             slideUp(subnav);
         });
         // Wait the transition duration and then show the target subnav
-        // console.log("about to slide down subnav:", targetSubnav);
+        const targetSubnavLink = targetSubnav.previousElementSibling;
+        // console.log(
+        //   "about to slide down subnav:",
+        //   `'${targetSubnavLink.innerText}'` || targetSubnav
+        // );
         setTimeout(() => {
             // (if necessary)
             if (getComputedStyle(targetSubnav).display == "none") {
@@ -71,7 +78,7 @@ export const hydrateBreadcrumbs = () => {
                 if (window.innerWidth >= breakpoint &&
                     e.relatedTarget instanceof HTMLElement &&
                     e.relatedTarget.closest("ul") != thisSubnav) {
-                    // If it's to something other than its subnav, revert to last subnav
+                    // If it's to something other than its subnav, remove 'current' class
                     // console.log("...into something other than its subnav, so....");
                     // Check if any dropdowns are open
                     const anOpenDropdown = document.querySelector("header > nav > ul > li.active");
@@ -79,10 +86,16 @@ export const hydrateBreadcrumbs = () => {
                         if (!breadcrumb.mouseIn &&
                             !thisSubnav.mouseIn &&
                             !anOpenDropdown) {
-                            // console.log("removing 'current' class from subnav");
+                            // console.log(
+                            //   "removing 'current' class from breadcrumb",
+                            //   `'${breadcrumb.innerText}'`
+                            // );
                             breadcrumb.classList.remove("current");
-                            // console.log("Reverting to last subnav");
-                            switchSubnav(lastSubnav);
+                            // And if the mouse isn't in any breadcrumb now, revert to last subnav
+                            if (!Array.from(document.querySelectorAll("header > nav > a")).some((breadcrumb) => breadcrumb.mouseIn)) {
+                                // console.log("Reverting to last subnav");
+                                switchSubnav(lastSubnav);
+                            }
                         }
                     }, hoverDelayDuration);
                 }
@@ -94,14 +107,17 @@ export const hydrateBreadcrumbs = () => {
                 if (window.innerWidth >= breakpoint &&
                     e.relatedTarget != breadcrumb) {
                     // If it's to something other than its breadcrumb, revert to last subnav
-                    // console.log("...into something other than its breadcrumb, so....");
+                    // console.log("...into something other than a breadcrumb, so....");
                     // Check if any dropdowns are open
                     const anOpenDropdown = document.querySelector("header > nav > ul > li.active");
                     setTimeout(() => {
-                        if (!breadcrumb.mouseIn &&
+                        if (!Array.from(document.querySelectorAll("header > nav > a")).some((breadcrumb) => breadcrumb.mouseIn) &&
                             !thisSubnav.mouseIn &&
                             !anOpenDropdown) {
-                            // console.log("removing 'current' class from subnav");
+                            // console.log(
+                            //   "removing 'current' class from breadcrumb",
+                            //   `'${breadcrumb.innerText}'`
+                            // );
                             breadcrumb.classList.remove("current");
                             // console.log("Reverting to last subnav");
                             switchSubnav(lastSubnav);
