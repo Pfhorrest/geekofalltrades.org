@@ -1,0 +1,8 @@
+Pillow
+tqdm
+piexif
+transformers
+torch
+numpy<2
+shapely
+pytest

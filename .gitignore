@@ -1,8 +1,11 @@
 photos/*
+/photos-backups
 !photos/process_photos/
 photos/process_photos/_keys/
 photos/process_photos/_caches/
 **/__pycache__/
-/photos-backups
 /node_modules
 .vscode/settings.json
+/photos/process_photos/.venv
+/vendor
+*.cache

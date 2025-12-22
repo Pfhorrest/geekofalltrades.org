@@ -454,7 +454,7 @@ The project uses TypeScript and SCSS for better development experience:
 
 Both compiled outputs (`.js` and `.css` files) are committed to the repository for direct browser use and easier deployment.
 
-### Documentation
+## Documentation
 
 All code is self-documenting using standard documentation formats:
 
@@ -505,19 +505,150 @@ npm run document
 
 The generated documentation will be created in the `_docs/` directory and can be viewed by opening the `index.html` file in each subdirectory.
 
+## Testing Setup
+
+This project includes testing setups for **PHP**, **JavaScript**, and **Python**.
+
+### PHP
+
+- **Test runner:** `phpunit`
+- **Test location:** `___structure/tests/`
+- **Dummy test:** `DummyTest.php`
+
+```php
+<?php
+use PHPUnit\Framework\TestCase;
+
+class DummyTest extends TestCase
+{
+    public function testAlwaysPasses(): void
+    {
+        $this->assertTrue(true);
+    }
+}
+```
+
+Run PHP tests:
+
+```bash
+phpunit --configuration phpunit.xml
+```
+
+This vacuous test ensures PHPUnit runs and exits cleanly.
+
+### JavaScript / TypeScript
+
+- **Test runner:** `Vitest`
+- **Test location:** `__scripts/`
+- **Dummy test:** `dummy.test.ts`
+
+```typescript
+import { describe, it, expect } from 'vitest'
+
+describe('dummy test suite', () => {
+  it('always passes', () => {
+    expect(true).toBe(true)
+  })
+})
+```
+
+Run JS/TS tests:
+
+```bash
+npm run test:js
+```
+
+Ensure the `package.json` script uses non-watch mode:
+
+```json
+"scripts": {
+  "test:js": "vitest --run"
+}
+```
+
+This ensures Vitest runs once and exits immediately, even with no real tests.
+
+### Python
+
+- **Test runner:** `pytest`  
+- **Test location:** `process_photos/tests/`  
+- **Dummy test:** `test_dummy.py`
+
+```python
+import process_photos
+
+def test_dummy():
+    """Vacuous test to ensure pytest runs and exits cleanly."""
+    assert True
+```
+
+Run Python tests:
+
+```bash
+source .venv/bin/activate
+pytest process_photos/tests
+```
+
+This ensures the test runner exits immediately, even without real tests.
+
+### How to Add New Tests
+
+#### PHP
+
+Add new classes extending `PHPUnit\Framework\TestCase` in `__structure/tests/`. Each test method should start with `test`. Example:
+
+```php
+class MyFeatureTest extends TestCase
+{
+    public function testSomething(): void
+    {
+        $this->assertEquals(42, my_function());
+    }
+}
+```
+
+#### JavaScript/TypeScript
+
+Add new `.test.ts` or `.test.js` files in `__scripts/`. Use `describe` and `it` blocks:
+
+```typescript
+import { describe, it, expect } from 'vitest'
+
+describe('my feature', () => {
+  it('should do something', () => {
+    expect(myFunction()).toBe(42)
+  })
+})
+```
+
+#### Python
+
+Add new `.py` files in `process_photos/tests/`. Each file should contain functions starting with `test_`. Example:
+
+```python
+def test_my_function():
+    result = my_function()
+    assert result == expected_value
+```
+
+
 ## npm Scripts Reference
 
 ```bash
-npm run sass-watch    # Watch and compile SCSS only
-npm run ts-watch      # Watch and compile TypeScript only
-npm run php-server    # Start PHP development server only
-npm run dev           # Start all development watchers and open browser
-npm run deploy:stage  # Deploy from local to staging server
-npm run deploy:prod   # Deploy from staging to production server
-npm run document:php  # Generate PHP documentation
-npm run document:sass # Gemerate SASS documentation
-npm run document:ts   # Generate TypeScript documentation
-npm run document      # Generate all documentation
+npm run dev:sass-watch    # Watch and compile SCSS only
+npm run dev:ts-watch      # Watch and compile TypeScript only
+npm run dev:php-server    # Start PHP development server only
+npm run dev:dev           # Start all development watchers and open browser
+npm run test:php          # Run PHP tests with PHPUnit
+npm run test:js           # Run TypeScript tests with vitest
+npm run test:py           # Run Python tests with pytest
+npm run test              # Run all tests
+npm run document:php      # Generate PHP documentation
+npm run document:sass     # Gemerate SASS documentation
+npm run document:ts       # Generate TypeScript documentation
+npm run document          # Generate all documentation
+npm run deploy:stage      # Deploy from local to staging server
+npm run deploy:prod       # Deploy from staging to production server
 ```
 
 ## Contact

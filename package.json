@@ -3,25 +3,32 @@
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
+    "@vitest/coverage-v8": "^4.0.15",
     "concurrently": "latest",
+    "npm-run-all": "^4.1.5",
     "sass": "latest",
     "sassdoc": "^1.10.12",
     "typedoc": "^0.28.14",
-    "typescript": "latest"
+    "typescript": "latest",
+    "vitest": "^4.0.15"
   },
   "scripts": {
-    "sass-watch": "sass --watch __styles/styles.scss:__styles/styles.css",
-    "ts-watch": "tsc --watch",
-    "php-server": "php -S geekofalltrades.local:8000 -t . ___structure/http.php",
-    "load-tab": "bash -c 'while ! nc -z geekofalltrades.local 8000; do sleep 0.5; done; open \"http://geekofalltrades.local:8000\"; while true; do fswatch -1 __styles __scripts *.php; done'",
-    "dev": "concurrently -k -n SASS,TS,PHP,LOAD -c magenta,yellow,blue,green, \"npm run sass-watch\" \"npm run ts-watch\" \"npm run php-server\" \"npm run load-tab\"",
-    "deploy:stage:code": "ssh goat \"cd ~/dev.geekofalltrades.org && git pull origin main\"",
-    "deploy:stage:photos": "rsync -avzh --progress --partial --delete --exclude 'process_photos/' photos/ goat:~/dev.geekofalltrades.org/photos/",
-    "deploy:stage": "npm run deploy:stage:code && npm run deploy:stage:photos",
-    "deploy:prod": "ssh goat \"rsync -avzh --progress ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\"",
+    "dev:sass-watch": "sass --watch __styles/styles.scss:__styles/styles.css",
+    "dev:ts-watch": "tsc --watch",
+    "dev:php-server": "php -S geekofalltrades.local:8000 -t . ___structure/http.php",
+    "dev:load-tab": "bash -c 'while ! nc -z geekofalltrades.local 8000; do sleep 0.5; done; open \"http://geekofalltrades.local:8000\"; while true; do fswatch -1 __styles __scripts *.php; done'",
+    "dev": "concurrently -k -n SASS,TS,PHP,LOAD -c magenta,yellow,blue,green, \"npm run dev:sass-watch\" \"npm run dev:ts-watch\" \"npm run dev:php-server\" \"npm run dev:load-tab\"",
+    "test:php": "php vendor/bin/phpunit",
+    "test:js": "vitest --run",
+    "test:py": "cd photos && . process_photos/.venv/bin/activate && PYTHONPATH=. pytest process_photos/tests",
+    "test": "npm-run-all --parallel test:js test:php test:py",
     "document:php": "phpdoc -d ___structure -t _docs/php",
     "document:sass": "sassdoc __styles -d _docs/sass",
     "document:ts": "npx typedoc __scripts/scripts.ts --out _docs/ts",
-    "document": "npm run document:sass && npm run document:ts && npm run document:php"
+    "document": "npm run document:sass && npm run document:ts && npm run document:php",
+    "deploy:stage:code": "ssh goat \"cd ~/dev.geekofalltrades.org && git pull origin main\"",
+    "deploy:stage:photos": "rsync -avzh --progress --partial --delete --exclude 'process_photos/' photos/ goat:~/dev.geekofalltrades.org/photos/",
+    "deploy:stage": "npm run deploy:stage:code && npm run deploy:stage:photos",
+    "deploy:prod": "ssh goat \"rsync -avzh --progress ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\""
   }
 }
