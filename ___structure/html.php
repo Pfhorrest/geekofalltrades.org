@@ -9,6 +9,9 @@
 	 * 
 	*/
 
+	/* Bootstrap controllers */
+	require_once __DIR__ . '/modules/controllers/_bootstrap.php';
+
 	/* Prevent caching of any pages */
 	header("Cache-Control: no-cache, must-revalidate");
 
@@ -28,7 +31,7 @@
 	 * 
 	 * @var string
 	*/
-	$path = array_filter(explode("?",$_SERVER['REQUEST_URI']))[0];
+	$path = parse_request_path($_SERVER['REQUEST_URI']);
 
 	/**  
 	 * Internal path to the requested document on the server.
@@ -45,7 +48,7 @@
 	 * @var array
 	 * @uses $path to generate the array.
 	*/
-	$segments = array_filter(explode("/",$path));
+	$segments = path_to_segments($path);
 
 	/**  
 	 * External paths up to each of those segments ("breadcrumbs"),
@@ -154,7 +157,7 @@
 					include $mainpath;
 					/* If there is a 'display' parameter,
 						include the lightbox too */
-					if ($display = $_GET["display"]) {
+					if (should_display_lightbox($_GET)) {
 						include "modules/lightbox.php";
 					}
 				} elseif (is_dir($rootpath)) {
