@@ -58,15 +58,8 @@
 	 * 
 	 * @var array
 	 * @uses $segments
-	 * @uses $root
 	*/
-	$crumbs = ["/"];
-	foreach ($segments as $segment) {
-		/* Take the last crumb and append the next segment to it. */
-		$this_crumb = $crumbs[array_key_last($crumbs)] . $segment;
-		/* Add that combo as the next crumb, plus a "/" for directories. */
-		$crumbs[] = $this_crumb . (is_dir($root.$this_crumb) ? "/" : "");
-	}
+	$crumbs = crumbs_from_segments($segments);
 ?>
 <?php include_once("config.php") /* Import site-wide config variables */ ?> 
 <!DOCTYPE html>
