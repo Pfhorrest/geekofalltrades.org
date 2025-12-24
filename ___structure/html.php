@@ -9,8 +9,8 @@
 	 * 
 	*/
 
-	/* Bootstrap controllers */
-	require_once __DIR__ . '/modules/controllers/_bootstrap.php';
+	/* Bootstrap modules */
+	require_once __DIR__ . '/modules/_bootstrap.php';
 
 	/* Prevent caching of any pages */
 	header("Cache-Control: no-cache, must-revalidate");
@@ -31,7 +31,7 @@
 	 * 
 	 * @var string
 	*/
-	$path = parse_request_path($_SERVER['REQUEST_URI']);
+	$path = path_from_url($_SERVER['REQUEST_URI']);
 
 	/**  
 	 * Internal path to the requested document on the server.
@@ -48,7 +48,7 @@
 	 * @var array
 	 * @uses $path to generate the array.
 	*/
-	$segments = path_to_segments($path);
+	$segments = segments_from_path($path);
 
 	/**  
 	 * External paths up to each of those segments ("breadcrumbs"),
@@ -110,12 +110,15 @@
 				}
 			}
 		?>
-		<!--  Set title to whatever the deepest head file declared -->
+		<!--  Set title -->
 		<title>
-			<?php
-			$title = $_GET['title'] ?? ($title ?? "Untitled");
-			echo $title . " " . $site_tagline_suffix;
-			?>
+			<?= title_resolution(
+				$_SERVER['HTTP_HOST'],
+				$segments,
+				$title ?? null,
+				$_GET,
+				$site_tagline_suffix
+			) ?>
 		</title>
 		<!--  Set description to whatever the deepest head file declared -->
 		<meta name="description" content="<?php echo htmlspecialchars($description ?? '', ENT_QUOTES); ?>" />

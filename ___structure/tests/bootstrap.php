@@ -7,9 +7,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 // Project root
 define('PROJECT_ROOT', realpath(__DIR__ . '/..'));
 
-// Manually load app code (for now)
-require_once PROJECT_ROOT . '/modules/controllers/path.php';
-require_once PROJECT_ROOT . '/modules/controllers/segments.php';
-require_once PROJECT_ROOT . '/modules/controllers/lightbox.php';
+// Load app code
+require_once PROJECT_ROOT . '/modules/_bootstrap.php';
 
 ?>
