@@ -9,10 +9,6 @@
 	 * 
 	*/
 
-	ini_set('display_errors', '1');
-	ini_set('display_startup_errors', '1');
-	error_reporting(E_ALL);
-
 	/* Bootstrap modules */
 	require_once __DIR__ . '/modules/_bootstrap.php';
 
@@ -26,19 +22,11 @@
 	*/
 
 	/* Determine root based on SAPI */
-	$root = (php_sapi_name() === 'cli-server')
-	// Running under PHP built-in server
-		? realpath(__DIR__ . '/../') // Project root
-	// Running under Apache / production
-	: $_SERVER['DOCUMENT_ROOT'];
-
-	// $root = root_determination(
-	// 	php_sapi_name(),
-	// 	$_SERVER['DOCUMENT_ROOT'] ?? '',
-	// 	__DIR__
-	// );
-
-	// $root = realpath(__DIR__ . '/../');
+	$root = root_determination(
+		php_sapi_name(),
+		$_SERVER['DOCUMENT_ROOT'] ?? '',
+		__DIR__
+	);
 
 	/**  
 	 * External path of the requested document relative to the host.
