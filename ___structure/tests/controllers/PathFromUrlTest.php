@@ -2,18 +2,18 @@
 
 use PHPUnit\Framework\TestCase;
 
-final class PathTest extends TestCase
+final class PathFromUrlTest extends TestCase
 {
     public function test_root_path(): void
     {
-        $this->assertSame('/', parse_request_path('/'));
+        $this->assertSame('/', path_from_url('/'));
     }
 
     public function test_strips_query_string(): void
     {
         $this->assertSame(
             '/photos/2019/03/',
-            parse_request_path('/photos/2019/03/?foo=bar')
+            path_from_url('/photos/2019/03/?foo=bar')
         );
     }
 
@@ -21,7 +21,7 @@ final class PathTest extends TestCase
     {
         $this->assertSame(
             '/index.php',
-            parse_request_path('/index.php?x=1')
+            path_from_url('/index.php?x=1')
         );
     }
 
@@ -29,7 +29,7 @@ final class PathTest extends TestCase
     {
         $this->assertSame(
             '/about/',
-            parse_request_path('/about/')
+            path_from_url('/about/')
         );
     }
 
@@ -37,8 +37,10 @@ final class PathTest extends TestCase
     {
         $this->assertSame(
             '/',
-            parse_request_path('/?')
+            path_from_url('/?')
         );
     }
 
 }
+
+?>

@@ -14,7 +14,7 @@
  *
  */
 
-function path_to_segments(string $path): array
+function segments_from_path(string $path): array
 {
     return array_values(
         array_filter(

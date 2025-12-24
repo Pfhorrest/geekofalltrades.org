@@ -7,7 +7,7 @@
  * @return bool True if the lightbox should be displayed, false otherwise.
  */
 
-function should_display_lightbox(array $query): bool
+function lightbox_should_display(array $query): bool
 {
     if (!array_key_exists('display', $query)) {
         return false;

@@ -12,7 +12,7 @@
  *
  */
 
-function parse_request_path(string $requestUri): string
+function path_from_url(string $requestUri): string
 {
     $path = parse_url($requestUri, PHP_URL_PATH);
     return $path === '' ? '/' : $path;

@@ -2,23 +2,23 @@
 
 use PHPUnit\Framework\TestCase;
 
-final class SegmentsTest extends TestCase
+final class SegmentsFromPathTest extends TestCase
 {
     public function test_root_path_has_no_segments(): void
     {
-        $this->assertSame([], path_to_segments('/'));
+        $this->assertSame([], segments_from_path('/'));
     }
 
     public function test_single_segment(): void
     {
-        $this->assertSame(['photos'], path_to_segments('/photos'));
+        $this->assertSame(['photos'], segments_from_path('/photos'));
     }
 
     public function test_multiple_segments(): void
     {
         $this->assertSame(
             ['photos', '2019', '03'],
-            path_to_segments('/photos/2019/03/')
+            segments_from_path('/photos/2019/03/')
         );
     }
 
@@ -26,12 +26,14 @@ final class SegmentsTest extends TestCase
     {
         $this->assertSame(
             ['a', 'b', 'c'],
-            path_to_segments('/a//b///c/')
+            segments_from_path('/a//b///c/')
         );
     }
 
     public function test_empty_string(): void
     {
-        $this->assertSame([], path_to_segments(''));
+        $this->assertSame([], segments_from_path(''));
     }
 }
+
+?>
