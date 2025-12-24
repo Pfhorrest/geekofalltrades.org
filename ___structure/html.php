@@ -20,11 +20,13 @@
 	 * 
 	 * @var string
 	*/
-	$root = (php_sapi_name() === 'cli-server')
-		// Running under PHP built-in server
-		 ? realpath(__DIR__ . '/../') // Project root
-		// Running under Apache / production
-		: $_SERVER['DOCUMENT_ROOT'];
+
+	/* Determine root based on SAPI */
+	$root = root_determination(
+		php_sapi_name(),
+		$_SERVER['DOCUMENT_ROOT'] ?? '',
+		__DIR__
+	);
 
 	/**  
 	 * External path of the requested document relative to the host.
