@@ -162,7 +162,7 @@
 					include $mainpath;
 					/* If there is a 'display' parameter,
 						include the lightbox too */
-					if (should_display_lightbox($_GET)) {
+					if (lightbox_should_display($_GET)) {
 						include "modules/lightbox.php";
 					}
 				} elseif (is_dir($rootpath)) {
