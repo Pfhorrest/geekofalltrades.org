@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-final class PathFromUrlTest extends TestCase
+final class PathFromURLTest extends TestCase
 {
     public function test_root_path(): void
     {
