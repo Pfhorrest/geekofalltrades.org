@@ -69,40 +69,13 @@
 		<?php include_once("modules/preferences.html") ?>
 		<?php
 			foreach ($crumbs as $crumb) {
-				/* Relative path to the styles file from the crumb root */
-				$stylepath = $crumb . "__styles/styles.css" ;
-				/* Absolute path to the styles file on the server */
-				$stylefile = $root . $stylepath;
-				if (is_file($stylefile)) {
-					/* Put modified date of styles file in link href
-					   to prevent excessive cacheing */
-					$styledated = $stylepath . '?v=' . filemtime($stylefile);
-					/* Preload the styles file to prevent
-					   a flash of unstyled content */
-					echo '<link href="' . $styledated . '" 
-							rel="preload" as="style" />'
-							.
-							'<link href="' . $styledated . '" 
-							rel="stylesheet" />';
-				}
-
-				/* Relative path to the scripts file from the crumb root */
-				$scriptpath = $crumb . "__scripts/scripts.js";
-				/* Absolute path to the scripts file on the server */
-				$scriptfile = $root . $scriptpath ;
-				if (is_file($scriptfile)) {
-					/* Put modified date of scripts file in script src
-					   to prevent excessive cacheing */
-					$scriptdated = $scriptpath . '?v=' . filemtime($scriptfile);
-					echo '<script src="' . $scriptdated . '"
-						type="module"></script>' ;
-				}
-
-				/* Absolute path to the head file (for meta-data) on the server */
-				$headpath = $root . $crumb . "__head.php";
-				if (is_file($headpath)) {
-					include $headpath;
-				}
+				/* Render styles for each crumb */
+				echo render_styles_for_crumb($root, $crumb);
+				/* Render scripts for each crumb */
+				echo render_scripts_for_crumb($root, $crumb);
+				/* Include head files for each crumb if they exist */
+				$headpath = head_path_for_crumb($root, $crumb);
+				if ($headpath) { include $headpath; }
 			}
 		?>
 		<!--  Set title -->
