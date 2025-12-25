@@ -1,1 +1,1 @@
-<?php $title = "The Codex Quaerentis: On Logic and Mathematics &ndash; by Forrest Cameranesi" ?>
+<?php $title = "The Codex Quaerentis: On Logic and Mathematics" ?>

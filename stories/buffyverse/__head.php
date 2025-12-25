@@ -1,1 +1,1 @@
-<?php $title = "A Buffyverse Spin-Off &ndash; by Forrest Cameranesi" ?>
+<?php $title = "A Buffyverse Spin-Off" ?>

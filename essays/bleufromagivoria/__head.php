@@ -1,1 +1,1 @@
-<?php $title = "Bleufromagivoria: Nature or Nurture? &ndash; by Forrest Cameranesi" ?>
+<?php $title = "Bleufromagivoria: Nature or Nurture?" ?>

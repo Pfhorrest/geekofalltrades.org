@@ -1,1 +1,1 @@
-<?php $title = "The Chronicles of Quelouva: The War of Antiquity &ndash; by Forrest Cameranesi" ?>
+<?php $title = "The Chronicles of Quelouva: The War of Antiquity" ?>

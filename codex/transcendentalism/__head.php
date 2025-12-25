@@ -1,1 +1,1 @@
-<?php $title = "The Codex Quaerentis: Against Transcendentalism &ndash; by Forrest Cameranesi" ?>
+<?php $title = "The Codex Quaerentis: Against Transcendentalism" ?>

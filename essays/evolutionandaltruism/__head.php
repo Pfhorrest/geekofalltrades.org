@@ -1,1 +1,1 @@
-<?php $title = "Evolution and Altruism &ndash; by Forrest Cameranesi" ?>
+<?php $title = "Evolution and Altruism" ?>

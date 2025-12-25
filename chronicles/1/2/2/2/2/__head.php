@@ -1,1 +1,1 @@
-<?php $title = "The Chronicles of Quelouva (1x02): Darak Meij: Part 2, Episode 2 &ndash; by Forrest Cameranesi" ?>
+<?php $title = "The Chronicles of Quelouva (1x02): Darak Meij: Part 2, Episode 2" ?>

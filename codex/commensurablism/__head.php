@@ -1,1 +1,1 @@
-<?php $title = "The Codex Quaerentis: The Philosophy of Commensurablism &ndash; by Forrest Cameranesi" ?>
+<?php $title = "The Codex Quaerentis: The Philosophy of Commensurablism" ?>

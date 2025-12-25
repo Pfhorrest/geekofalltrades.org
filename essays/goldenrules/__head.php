@@ -1,1 +1,1 @@
-<?php $title = "The Golden Rules of Kant and Mill &ndash; by Forrest Cameranesi" ?>
+<?php $title = "The Golden Rules of Kant and Mill" ?>

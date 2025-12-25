@@ -1,1 +1,1 @@
-<?php $title = "Surfing the Cosmic Cataclysm &ndash; by Forrest Cameranesi" ?>
+<?php $title = "Surfing the Cosmic Cataclysm" ?>

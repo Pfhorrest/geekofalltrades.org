@@ -1,1 +1,1 @@
-<?php $title = "Architecting Governware &ndash; by Forrest Cameranesi" ?>
+<?php $title = "Architecting Governware" ?>

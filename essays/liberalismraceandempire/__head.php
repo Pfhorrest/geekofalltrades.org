@@ -1,1 +1,1 @@
-<?php $title = "Liberalism, Race, and Empire &ndash; by Forrest Cameranesi" ?>
+<?php $title = "Liberalism, Race, and Empire" ?>

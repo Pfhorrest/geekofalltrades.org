@@ -1,1 +1,1 @@
-<?php $title = "Inconceivable &ndash; by Forrest Cameranesi" ?>
+<?php $title = "Inconceivable" ?>

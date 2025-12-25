@@ -1,1 +1,1 @@
-<?php $title = "The Codex Quaerentis: On Ontology, Existence, and the Objects of Reality &ndash; by Forrest Cameranesi" ?>
+<?php $title = "The Codex Quaerentis: On Ontology, Existence, and the Objects of Reality" ?>

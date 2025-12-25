@@ -1,1 +1,1 @@
-<?php $title = "Moral Foundations &ndash; by Forrest Cameranesi" ?>
+<?php $title = "Moral Foundations" ?>

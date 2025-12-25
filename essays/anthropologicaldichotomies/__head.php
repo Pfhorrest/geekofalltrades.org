@@ -1,1 +1,1 @@
-<?php $title = "A Survey of Anthropological Dichotomies &ndash; by Forrest Cameranesi" ?>
+<?php $title = "A Survey of Anthropological Dichotomies" ?>

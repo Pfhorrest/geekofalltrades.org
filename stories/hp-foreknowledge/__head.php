@@ -1,1 +1,1 @@
-<?php $title = "Harry Potter Foreknowledge &ndash; by Forrest Cameranesi" ?>
+<?php $title = "Harry Potter Foreknowledge" ?>

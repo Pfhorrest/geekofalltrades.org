@@ -1,1 +1,1 @@
-<?php $title = "An Argument for Philosophical Anarchism &ndash; by Forrest Cameranesi" ?>
+<?php $title = "An Argument for Philosophical Anarchism" ?>

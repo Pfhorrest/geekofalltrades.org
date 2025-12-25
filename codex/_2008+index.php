@@ -1,4 +1,4 @@
-<?php $title = "The Codex Quaerentis &ndash; by Forrest Cameranesi" ?>				<h2>The Codex Quaerentis</h2>
+<?php $title = "The Codex Quaerentis" ?>				<h2>The Codex Quaerentis</h2>
 				
 				<div class="section">
 

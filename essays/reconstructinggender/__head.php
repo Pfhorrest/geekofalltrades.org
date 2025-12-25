@@ -1,1 +1,1 @@
-<?php $title = "Reconstructing Gender &ndash; by Forrest Cameranesi" ?>
+<?php $title = "Reconstructing Gender" ?>
