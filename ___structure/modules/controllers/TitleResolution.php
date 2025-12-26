@@ -21,7 +21,7 @@
 function title_resolution(
     string $domain_name = '',
     array $segments = [],
-    ?string $meta_title = '',
+    string $meta_title = '',
     array $query = [],
     string $tagline_suffix = ''
 ): string {

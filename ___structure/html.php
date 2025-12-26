@@ -83,7 +83,7 @@
 			<?= title_resolution(
 				$_SERVER['HTTP_HOST'],
 				$segments,
-				$title ?? null,
+				$title ?? '',
 				$_GET,
 				$site_tagline_suffix
 			) ?>
