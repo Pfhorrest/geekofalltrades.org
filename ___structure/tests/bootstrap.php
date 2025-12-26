@@ -10,4 +10,7 @@ define('PROJECT_ROOT', realpath(__DIR__ . '/..'));
 // Load app code
 require_once PROJECT_ROOT . '/modules/_bootstrap.php';
 
+// Base test case with common utilities
+require_once __DIR__ . '/TestCaseWithTmpRoot.php';
+
 ?>

@@ -2,28 +2,12 @@
 
 use PHPUnit\Framework\TestCase;
 
-final class RenderStylesForCrumbTest extends TestCase
+final class RenderStylesForCrumbTest extends TestCaseWithTmpRoot
 {
-    private string $tmpRoot;
-
     protected function setUp(): void
     {
-        $this->tmpRoot = sys_get_temp_dir() . '/test_root_' . uniqid();
-        mkdir($this->tmpRoot . '/photos/2025/12/__styles', 0777, true);
-        file_put_contents($this->tmpRoot . '/photos/2025/12/__styles/styles.css', 'body{}');
-    }
-
-    protected function tearDown(): void
-    {
-        // Clean up temp files
-        $files = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($this->tmpRoot, RecursiveDirectoryIterator::SKIP_DOTS),
-            RecursiveIteratorIterator::CHILD_FIRST
-        );
-        foreach ($files as $fileinfo) {
-            $fileinfo->isDir() ? rmdir($fileinfo->getRealPath()) : unlink($fileinfo->getRealPath());
-        }
-        rmdir($this->tmpRoot);
+        parent::setUp();
+        $this->createTmpFile('/photos/2025/12/__styles/styles.css', 'body{}');
     }
 
     public function test_returns_empty_when_no_file(): void
