@@ -68,14 +68,14 @@
 		<?php include_once("modules/analytics.html") ?>
 		<?php include_once("modules/preferences.html") ?>
 		<?php
+			$head = [];
 			foreach ($crumbs as $crumb) {
 				/* Render styles for each crumb */
 				echo render_styles_for_crumb($root, $crumb);
 				/* Render scripts for each crumb */
 				echo render_scripts_for_crumb($root, $crumb);
 				/* Include head files for each crumb if they exist */
-				$headpath = head_path_for_crumb($root, $crumb);
-				if ($headpath) { include $headpath; }
+				$head = array_merge($head, head_for_crumb($root, $crumb));
 			}
 		?>
 		<!--  Set title -->
@@ -83,13 +83,13 @@
 			<?= title_resolution(
 				$_SERVER['HTTP_HOST'],
 				$segments,
-				$title ?? '',
+				$head['title'] ?? '',
 				$_GET,
 				$site_tagline_suffix
 			) ?>
 		</title>
 		<!--  Set description to whatever the deepest head file declared -->
-		<meta name="description" content="<?php echo htmlspecialchars($description ?? '', ENT_QUOTES); ?>" />
+		<meta name="description" content="<?php echo htmlspecialchars($head['description'] ?? '', ENT_QUOTES); ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<?php

@@ -12,7 +12,7 @@ require_once __DIR__ . '/controllers/SegmentsFromPath.php';
 require_once __DIR__ . '/controllers/CrumbsFromSegments.php';
 require_once __DIR__ . '/controllers/TitleResolution.php';
 require_once __DIR__ . '/controllers/LightboxShouldDisplay.php';
-require_once __DIR__ . '/controllers/HeadPathForCrumb.php';
+require_once __DIR__ . '/controllers/HeadForCrumb.php';
 
 /* Model modules */
 /* TBD */
