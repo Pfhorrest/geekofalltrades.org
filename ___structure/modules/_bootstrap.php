@@ -15,7 +15,7 @@ require_once __DIR__ . '/controllers/LightboxShouldDisplay.php';
 require_once __DIR__ . '/controllers/HeadForCrumb.php';
 
 /* Model modules */
-/* TBD */
+require_once __DIR__ . '/models/MainResolution.php';
 
 /* View modules */
 require_once __DIR__ . '/views/RenderStylesForCrumb.php';

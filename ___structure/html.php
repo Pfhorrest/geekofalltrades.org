@@ -60,8 +60,10 @@
 	 * @uses $segments
 	*/
 	$crumbs = crumbs_from_segments($segments);
+
+	/* Import site-wide config variables */
+	include_once("config.php")
 ?>
-<?php include_once("config.php") /* Import site-wide config variables */ ?> 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -116,42 +118,33 @@
 		</header>
 		<main>
 			<?php
-				/**  
-				 * Internal path to the main content of the requested document
-				 * on the server.
-				 * 
-				 * @var string
-				*/
-				$mainpath = $rootpath . "__main.php";
-				if (is_file($mainpath)) {
-					/* If there is such a thing, include it */
-					include $mainpath;
-					/* If there is a 'display' parameter,
-						include the lightbox too */
-					if (lightbox_should_display($_GET)) {
-						include "modules/lightbox.php";
-					}
-				} elseif (is_dir($rootpath)) {
-					/* If the requested directory has an index.php,
-						just redirect to that */
-					if (is_file($rootpath . "index.php")) {
-						header("Location: $requestUri/index.php");
+				/* Determine main action for this request */
+				$action = main_resolution($rootpath, $meta['indexes'] ?? false);
+
+				switch ($action['type']) {
+					/* Main content inclusion */
+					case 'main':
+						include $rootpath . '__main.php';
+						/* Lightbox inclusion if requested */
+						if (lightbox_should_display($_GET)) {
+							include 'modules/lightbox.php';
+						}
+						break;
+
+					case 'redirect':
+						/* Redirect to index file */
+						header("Location: $requestUri/" . $action['target']);
 						exit;
-					}
-					/* Or else if it has an index.html,
-						just redirect to that instead */
-					elseif (is_file($rootpath . "index.html")) {
-						header("Location: $requestUri/index.html");
-						exit;
-					}
-					/* Otherwise just show a directory listing */
-					elseif ($indexes) {
-						include "modules/directory.php";
-					}
-				}
-				/* If all else fails, show an error */
-				else {
-					include "modules/error.php";
+
+					case 'directory':
+						/* Directory listing */
+						include 'modules/directory.php';
+						break;
+
+					case 'error':
+						/* Error page */
+						include 'modules/error.php';
+						break;
 				}
 			?>
 		</main>
