@@ -16,14 +16,14 @@
      * @var string
      * @uses $parentSegments
      */
-    $parentPath = implode("/", $parentSegments);
+    $parentPath = '/' . implode('/', $parentSegments);
     echo '<section>
         <h2>File Not Found</h2>
-        <p class="description">No such file as '.$path.'</p>
+        <p class="description">No such file as '.htmlspecialchars($path, ENT_QUOTES).'</p>
         <p>
-            You can try going <a href="javascript:history.back()">back</a>,
+            You can try going <a href="#" onclick="history.back(); return false;">back</a>,
             or see if you can find what you\'re looking for in the
-            <a href="/'.$parentPath.'">parent directory</a>.
+            <a href="'.$parentPath.'">parent directory</a>.
         </p>
     </section>';
 ?>
