@@ -30,7 +30,7 @@ function title_resolution(
 
     // 1. Query string override
     if (!empty($query['title'])) {
-        $title = trim($query['title']);
+        $title = trim(htmlspecialchars($query['title'], ENT_QUOTES));
     }
     // 2. Title set by __head.php cascade
     elseif (!empty($meta_title)) {
