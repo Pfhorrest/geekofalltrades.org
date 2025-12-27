@@ -18,10 +18,8 @@
 	/**  
 	 * Internal path to the root directory of the site on the server.
 	 * 
-	 * @var string
+	 * @var string $root
 	*/
-
-	/* Determine root based on SAPI */
 	$root = root_determination(
 		php_sapi_name(),
 		$_SERVER['DOCUMENT_ROOT'] ?? '',
@@ -31,14 +29,14 @@
 	/**  
 	 * External path of the requested document relative to the host.
 	 * 
-	 * @var string
+	 * @var string $path
 	*/
 	$path = path_from_url($_SERVER['REQUEST_URI']);
 
 	/**  
 	 * Internal path to the requested document on the server.
 	 * 
-	 * @var string
+	 * @var string $rootpath
 	 * @uses $root to build the full path
 	 * @uses $path to build the full path
 	*/
@@ -47,7 +45,7 @@
 	/**  
 	 * Segments of the external request path, directory-by-directory.
 	 * 
-	 * @var array
+	 * @var array $segments
 	 * @uses $path to generate the array.
 	*/
 	$segments = segments_from_path($path);
@@ -56,7 +54,7 @@
 	 * External paths up to each of those segments ("breadcrumbs"),
 	 * initialized with the bare root of the host ("/").
 	 * 
-	 * @var array
+	 * @var array $crumbs
 	 * @uses $segments
 	*/
 	$crumbs = crumbs_from_segments($segments);
@@ -128,7 +126,7 @@
 					case 'main':
 						include_once $rootpath . '__main.php';
 						/* Lightbox inclusion if requested */
-						if (lightbox_should_display($_GET)) {
+						if (array_key_exists('display', $_GET)) {
 							include_once 'modules/views/partials/lightbox.php';
 						}
 						break;

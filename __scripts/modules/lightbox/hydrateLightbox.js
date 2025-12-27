@@ -33,7 +33,7 @@ export const hydrateLightbox = () => {
             });
             //Gets the lightbox from an external file and appends it after the (last) main element
             // console.log("Fetching the lightbox html");
-            fetch("/___structure/modules/lightbox.html")
+            fetch("/___structure/modules/views/partials/lightbox.html")
                 .then((res) => res.text())
                 .then((html) => {
                 var _a, _b, _c, _d;

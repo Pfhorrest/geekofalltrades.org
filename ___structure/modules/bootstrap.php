@@ -17,7 +17,7 @@ require_once __DIR__ . '/resolvers/ScriptsForCrumb.php';
 require_once __DIR__ . '/resolvers/HeadForCrumb.php';
 require_once __DIR__ . '/resolvers/TitleResolution.php';
 require_once __DIR__ . '/resolvers/MainResolution.php';
-require_once __DIR__ . '/resolvers/LightboxShouldDisplay.php';
+require_once __DIR__ . '/resolvers/LightboxNavigation.php';
 
 /* View modules */
 require_once __DIR__ . '/views/RenderGallery.php';
