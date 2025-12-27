@@ -298,7 +298,7 @@ A powerful image gallery generator with automatic discovery and nested gallery s
 ```php
 <?php
 // Option 1: Explicit array of images
-$images = [
+echo render_gallery($images = [
     [
         'filename' => 'image.jpg',
         'title' => 'Image Title',
@@ -309,8 +309,7 @@ $images = [
         'morecount' => 5,                  // Optional manual count
     ],
     // ... more images
-];
-echo render_gallery($images);
+]);
 
 // Option 2: Automatic discovery (scans current directory)
 echo render_gallery();
@@ -351,7 +350,7 @@ echo render_gallery();
 - For directories, uses first found image as thumbnail
 - Automatically counts nested images for "more" links
 
-### Lightbox (`___structure/modules/lightbox.php`)
+### Lightbox (`___structure/modules/views/partials/lightbox.php`)
 Progressive enhancement: works as regular links without JavaScript, enhanced with overlay and keyboard navigation when JavaScript is enabled. Activated via `?display=filename.jpg` URL parameter.
 
 ### Color Scheme System

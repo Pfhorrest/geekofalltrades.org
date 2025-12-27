@@ -2,7 +2,6 @@
 	<h2>Traditional Arts</h2>
 	<p class="description">Examples of more traditional art, in assorted media.</p>
 	<?php
-		require "modules/gallery.php";
 		echo render_gallery($images = array(
 			array(
 				'title' => 'Pen Tree',

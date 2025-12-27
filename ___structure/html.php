@@ -10,7 +10,7 @@
 	*/
 
 	/* Bootstrap modules */
-	require_once __DIR__ . '/modules/_bootstrap.php';
+	require_once __DIR__ . '/modules/bootstrap.php';
 
 	/* Prevent caching of any pages */
 	header("Cache-Control: no-cache, must-revalidate");
@@ -67,15 +67,15 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<?php include_once("modules/analytics.html") ?>
-		<?php include_once("modules/preferences.html") ?>
+		<?php include_once("modules/views/partials/analytics.html") ?>
+		<?php include_once("modules/views/partials/preferences.html") ?>
 		<?php
 			$head = [];
 			foreach ($crumbs as $crumb) {
 				/* Render styles for each crumb */
-				echo render_styles_for_crumb($root, $crumb);
+				echo styles_for_crumb($root, $crumb);
 				/* Render scripts for each crumb */
-				echo render_scripts_for_crumb($root, $crumb);
+				echo scripts_for_crumb($root, $crumb);
 				/* Include head files for each crumb if they exist */
 				$head = array_merge($head, head_for_crumb($root, $crumb));
 			}
@@ -91,7 +91,9 @@
 			) ?>
 		</title>
 		<!--  Set description to whatever the deepest head file declared -->
-		<meta name="description" content="<?php echo htmlspecialchars($head['description'] ?? '', ENT_QUOTES); ?>" />
+		<meta name="description" content="<?php
+			echo htmlspecialchars($head['description'] ?? '', ENT_QUOTES);
+		?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<?php
@@ -127,7 +129,7 @@
 						include $rootpath . '__main.php';
 						/* Lightbox inclusion if requested */
 						if (lightbox_should_display($_GET)) {
-							include 'modules/lightbox.php';
+							include 'modules/views/partials/lightbox.php';
 						}
 						break;
 
@@ -138,12 +140,12 @@
 
 					case 'directory':
 						/* Directory listing */
-						include 'modules/directory.php';
+						include 'modules/views/partials/directory.php';
 						break;
 
 					case 'error':
 						/* Error page */
-						include 'modules/error.php';
+						include 'modules/views/partials/error.php';
 						break;
 				}
 			?>

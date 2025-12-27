@@ -2,7 +2,6 @@
 	<h2>Infographic Design</h2>
 	<p class="description">Examples of my infographic and data visualization design.</p>
 	<?php
-		require "modules/gallery.php";
 		echo render_gallery($images = array(
 			array(
 				'title' => '<i>Codex</i> moods',

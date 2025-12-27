@@ -11,7 +11,7 @@
  *                if no stylesheet exists for the crumb.
  */
 
-function render_styles_for_crumb(string $root, string $crumb): string {
+function styles_for_crumb(string $root, string $crumb): string {
     /* Relative path to the styles file from the crumb root */
     $stylepath = $crumb . "__styles/styles.css";
     /* Absolute path to the styles file on the server */

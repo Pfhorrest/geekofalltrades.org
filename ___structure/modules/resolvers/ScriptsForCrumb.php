@@ -11,7 +11,7 @@
  *                if no stylesheet exists for the crumb.
  */
 
-function render_scripts_for_crumb(string $root, string $crumb): string {
+function scripts_for_crumb(string $root, string $crumb): string {
     /* Relative path to the scripts file from the crumb root */
     $scriptpath = $crumb . "__scripts/scripts.js";
     /* Absolute path to the scripts file on the server */

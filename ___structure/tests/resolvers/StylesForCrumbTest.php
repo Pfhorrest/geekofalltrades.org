@@ -13,13 +13,13 @@ final class RenderStylesForCrumbTest extends TestCaseWithTmpRoot
     public function test_returns_empty_when_no_file(): void
     {
         $crumb = '/nonexistent/';
-        $this->assertSame('', render_styles_for_crumb($this->tmpRoot, $crumb));
+        $this->assertSame('', styles_for_crumb($this->tmpRoot, $crumb));
     }
 
     public function test_returns_link_tags_for_existing_file(): void
     {
         $crumb = '/photos/2025/12/';
-        $output = render_styles_for_crumb($this->tmpRoot, $crumb);
+        $output = styles_for_crumb($this->tmpRoot, $crumb);
 
         $this->assertStringContainsString('<link href="/photos/2025/12/__styles/styles.css?v=', $output);
         $this->assertStringContainsString('rel="preload"', $output);

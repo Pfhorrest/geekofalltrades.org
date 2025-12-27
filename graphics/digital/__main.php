@@ -2,7 +2,6 @@
 	<h2>Digital Arts</h2>
 	<p class="description">Examples of my other design for screen.</p>
 	<?php
-		require "modules/gallery.php";
 		echo render_gallery($images = array(
 			array(
 				'title' => 'Sample project for <i>DSG</i>',

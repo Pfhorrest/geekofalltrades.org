@@ -2,7 +2,6 @@
 	<h2>Emblematic Jewelry</h2>
 	<p class="description">Examples of graphic arts for manufacture as products like custom pins, coins, and other emblematic jewelry.</p>
 	<?php
-		require "modules/gallery.php";
 		echo render_gallery($images = array(
 			array(
 				'title' => 'UFO cat pin',

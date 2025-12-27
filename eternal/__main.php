@@ -58,7 +58,6 @@
 		Below is a gallery of screenshots mixed with a selection of the original images of various art assets that I've created for <i>Eternal</i>.
 	</p>
 	<?php
-		require "modules/gallery.php";
 		echo render_gallery($images = array(
 			array(
 				'title' => '<i>Eternal</i> prologue screenshot 1',

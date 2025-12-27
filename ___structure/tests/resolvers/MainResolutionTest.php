@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 final class MainResolutionTest extends TestCaseWithTmpRoot
 {
-    public function test_main_file_takes_precedence(): void
+    public function test_main_php_file_takes_precedence(): void
     {
         mkdir($this->tmpRoot . '/page', 0777, true);
         file_put_contents($this->tmpRoot . '/page/__main.php', '<?php');
@@ -15,7 +15,7 @@ final class MainResolutionTest extends TestCaseWithTmpRoot
         );
 
         $this->assertSame(
-            ['type' => 'main'],
+            ['type' => 'main', 'format' => 'php'],
             $result
         );
     }
@@ -94,7 +94,7 @@ final class MainResolutionTest extends TestCaseWithTmpRoot
             $result
         );
     }
-    public function test_main_overrides_index_files(): void
+    public function test_main_php_overrides_index_files(): void
     {
         mkdir($this->tmpRoot . '/page', 0777, true);
 
@@ -108,7 +108,7 @@ final class MainResolutionTest extends TestCaseWithTmpRoot
         );
 
         $this->assertSame(
-            ['type' => 'main'],
+            ['type' => 'main', 'format' => 'php'],
             $result
         );
     }

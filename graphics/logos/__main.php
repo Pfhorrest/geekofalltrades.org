@@ -2,7 +2,6 @@
 	<h2>Logo Design</h2>
 	<p class="description">Examples of my logos and branding.</p>
 	<?php
-		require "modules/gallery.php";
 		echo render_gallery($images = array(
 			array(
 				'title' => '<i>Codex Quaerentis</i> logo',

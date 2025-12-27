@@ -243,7 +243,6 @@ def process_photos():
                         \t\tBest of the {date_granularity}
                         \t</p>
                         \t<?php
-                        \t\trequire "modules/gallery.php";
                         \t\techo render_gallery({php_array_str.rstrip()});
                         \t?>
                         </section>
@@ -257,7 +256,7 @@ def process_photos():
                     new_lines = []
                     inserted = False
                     for line in lines:
-                        if not inserted and 'require "modules/gallery.php"' in line:
+                        if not inserted and 'render_gallery' in line:
                             if php_array_str:
                                 new_lines.append("\t\t" + php_array_str.rstrip())
                             inserted = True
