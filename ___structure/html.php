@@ -72,11 +72,11 @@
 		<?php
 			$head = [];
 			foreach ($crumbs as $crumb) {
-				/* Render styles for each crumb */
+				/* Link styles for each crumb */
 				echo styles_for_crumb($root, $crumb);
-				/* Render scripts for each crumb */
+				/* Link scripts for each crumb */
 				echo scripts_for_crumb($root, $crumb);
-				/* Include head files for each crumb if they exist */
+				/* Merge head data from each crumb */
 				$head = array_merge($head, head_for_crumb($root, $crumb));
 			}
 		?>
@@ -113,7 +113,7 @@
 				foreach ($crumbs as $crumb) {
 					$headerpath = $root . $crumb . "__header.php";
 					if (is_file($headerpath)) {
-						include $headerpath;
+						include_once $headerpath;
 					}
 				}
 			?>
@@ -121,31 +121,31 @@
 		<main>
 			<?php
 				/* Determine main action for this request */
-				$action = main_resolution($rootpath, $meta['indexes'] ?? false);
+				$action = main_resolution($rootpath, $head['indexes'] ?? false);
 
 				switch ($action['type']) {
 					/* Main content inclusion */
 					case 'main':
-						include $rootpath . '__main.php';
+						include_once $rootpath . '__main.php';
 						/* Lightbox inclusion if requested */
 						if (lightbox_should_display($_GET)) {
-							include 'modules/views/partials/lightbox.php';
+							include_once 'modules/views/partials/lightbox.php';
 						}
 						break;
 
 					case 'redirect':
 						/* Redirect to index file */
-						header("Location: $requestUri/" . $action['target']);
+						header("Location: $_SERVER[REQUEST_URI]/" . $action['target']);
 						exit;
 
 					case 'directory':
 						/* Directory listing */
-						include 'modules/views/partials/directory.php';
+						include_once 'modules/views/partials/directory.php';
 						break;
 
 					case 'error':
 						/* Error page */
-						include 'modules/views/partials/error.php';
+						include_once 'modules/views/partials/error.php';
 						break;
 				}
 			?>
@@ -156,7 +156,7 @@
 				foreach (array_reverse($crumbs) as $crumb) {
 					$footerpath = $root . $crumb . "__footer.php";
 					if (is_file($footerpath)) {
-						include $footerpath;
+						include_once $footerpath;
 					}
 				}
 			?>
