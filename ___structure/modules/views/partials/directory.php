@@ -1,6 +1,8 @@
 <?php
+    $safePath = rtrim($path, '/') . '/';
+    $escapedPath = htmlspecialchars($safePath, ENT_QUOTES);
     echo '<section>
-        <h2>'.$path.'</h2>
+        <h2>'.$escapedPath.'</h2>
         <p class="description">Directory Listing</p>
         <ul>';
         /** 
@@ -9,11 +11,12 @@
          * @var array
          * @uses $rootpath
          */
-        $files = scandir($rootpath);
+        $files = array_diff(scandir($rootpath), ['.']);
         foreach ($files as $file) {
+            $escapedFile = htmlspecialchars($file, ENT_QUOTES);
             echo '<li>
-                <a href="'.$path.$file.'">'
-                .$file.
+                <a href="'.$safePath.$escapedFile.'">'
+                .$escapedFile.
                 '</a>
             </li>';
         }
