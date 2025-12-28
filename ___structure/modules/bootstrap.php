@@ -5,21 +5,23 @@
  *
  */
 
-/* Controller modules */
-require_once __DIR__ . '/controllers/RootDetermination.php';
-require_once __DIR__ . '/controllers/PathFromURL.php';
-require_once __DIR__ . '/controllers/SegmentsFromPath.php';
-require_once __DIR__ . '/controllers/CrumbsFromSegments.php';
+$modules = new RecursiveIteratorIterator(
+    new RecursiveDirectoryIterator(
+        new DirectoryIterator(__DIR__),
+    )
+);
 
-/* Resolver modules */
-require_once __DIR__ . '/resolvers/StylesForCrumb.php';
-require_once __DIR__ . '/resolvers/ScriptsForCrumb.php';
-require_once __DIR__ . '/resolvers/HeadForCrumb.php';
-require_once __DIR__ . '/resolvers/TitleResolution.php';
-require_once __DIR__ . '/resolvers/MainResolution.php';
-require_once __DIR__ . '/resolvers/LightboxNavigation.php';
-
-/* View modules */
-require_once __DIR__ . '/views/RenderGallery.php';
+foreach ($modules as $module) {
+    if (
+            strpos($module->getPathname(), '.php') !== false
+            &&
+            strpos($module->getPathname(), '/modules/') !== false
+            &&
+            strpos($module->getPathname(), 'partials') === false
+        )
+    {
+        require_once $module->getPathname();
+    }
+}
 
 ?>
