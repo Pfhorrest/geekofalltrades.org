@@ -1,4 +1,17 @@
 <?php
+
+echo "<pre>";
+echo "REQUEST_URI = " . ($_SERVER['REQUEST_URI'] ?? 'UNSET') . "\n";
+echo "ROOTPATH    = " . ($GLOBALS['rootpath'] ?? 'UNSET') . "\n";
+echo "CWD         = " . getcwd() . "\n";
+
+$expected = rtrim($GLOBALS['rootpath'] ?? '', '/') . '/__main.php';
+echo "__main.php exists? ";
+var_dump(is_file($expected));
+echo "</pre>";
+exit;
+
+
 	/**  
 	 * The core of the PrevHP system, that loops through every subdirectory to
 	 * the requested URL and loads any styles, scripts, and meta-data found in
