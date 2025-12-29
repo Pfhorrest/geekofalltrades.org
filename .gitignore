@@ -9,3 +9,4 @@ photos/process_photos/_caches/
 /photos/process_photos/.venv
 /vendor
 *.cache
+/_misc
