@@ -1,15 +1,5 @@
 <?php
 
-echo "<pre>";
-echo "REQUEST_URI = " . ($_SERVER['REQUEST_URI'] ?? 'UNSET') . "\n";
-echo "ROOTPATH    = " . ($GLOBALS['rootpath'] ?? 'UNSET') . "\n";
-echo "CWD         = " . getcwd() . "\n";
-
-$expected = rtrim($GLOBALS['rootpath'] ?? '', '/') . '/__main.php';
-echo "__main.php exists? ";
-var_dump(is_file($expected));
-echo "</pre>";
-exit;
 
 
 	/**  
@@ -73,7 +63,17 @@ exit;
 	$crumbs = crumbs_from_segments($segments);
 
 	/* Import site-wide config variables */
-	include_once("config.php")
+	include_once("config.php");
+echo "<pre>";
+echo "REQUEST_URI = " . ($_SERVER['REQUEST_URI'] ?? 'UNSET') . "\n";
+echo "ROOTPATH    = " . ($GLOBALS['rootpath'] ?? 'UNSET') . "\n";
+echo "CWD         = " . getcwd() . "\n";
+
+$expected = rtrim($GLOBALS['rootpath'] ?? '', '/') . '/__main.php';
+echo "__main.php exists? ";
+var_dump(is_file($expected));
+echo "</pre>";
+exit;
 ?>
 <!DOCTYPE html>
 <html lang="en">
