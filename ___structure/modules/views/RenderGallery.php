@@ -1,23 +1,29 @@
 <?php
     function render_gallery(array $images = []): string {
-        $rootpath = dirname($caller);
-        if (is_dir($rootpath) && substr($rootpath, -1) !== '/') $rootpath .= '/';
+        $rootpath = rtrim($GLOBALS['rootpath'], '/') . '/';
+        $path = trim($GLOBALS['path'], '/') . '/';
         $html = '';
         /* If no images are provided, search for images in the rootpath. */
         if(empty($images)) {
+            if (!function_exists('is_image_file')) {
+                function is_image_file(string $path): bool
+                {
+                    return is_file($path) && is_readable($path) && @exif_imagetype($path);
+                }
+            }
             foreach (scandir($rootpath) as $file) {
                 if (!str_starts_with($file, '.') && !str_starts_with($file, '_') && !preg_match('/-thumb(?=\.[^.]+$)/', $file)) {
                     // $html .= '<p>'.$file.':
                     //     is_file? ('.is_file($rootpath.$file).')
-                    //     exif_imagetype: ['.exif_imagetype($rootpath.$file).']
+                    //     is_image_file?: ['.is_image_file($rootpath.$file).']
                     //     is_dir? ('.is_dir($rootpath.$file).')
                     //     </p>';
                     $image = [
                         'title' => 'Untitled',
                         'description' => 'No description.'
                     ];
-                    if (exif_imagetype($rootpath.$file)) {
-                        if (!$image['filename']) {
+                    if (is_image_file($rootpath.$file)) {
+                        if (empty($image['filename'])) {
                             $image['filename'] = $file;
                         }
                     } elseif (is_dir($rootpath.$file)) {
@@ -30,15 +36,15 @@
                             ) {
                                 // $html .= '<p>-- '.$file.'/'.$subfile.':
                                 //     is_file? ('.is_file($rootpath.$file.'/'.$subfile).')
-                                //     exif_imagetype: ['.exif_imagetype($rootpath.$file.'/'.$subfile).']
+                                //     is_image_file?: ['.is_image_file($rootpath.$file.'/'.$subfile).']
                                 //     is_dir? ('.is_dir($rootpath.$file.'/'.$subfile).')
                                 //     </p>';
                                 if (
-                                    exif_imagetype($rootpath.$file.'/'.$subfile)
+                                    is_image_file($rootpath.$file.'/'.$subfile)
                                 ) {
                                     // $html .= "<!-- counted $rootpath$file/$subfile -->";
                                     $subfiles_image_count++;
-                                    if (!$image['filename']) {
+                                    if (empty($image['filename'])) {
                                         $image['filename'] = $file.'/'.$subfile;
                                     }
                                 } elseif (is_dir($rootpath.$file.'/'.$subfile)) {
@@ -50,13 +56,13 @@
                                         ) {
                                             // $html .= '<p>-- -- '.$file.'/'.$subfile.'/'.$grandfile.':
                                             //     is_file? ('.is_file($rootpath.$file.'/'.$subfile.'/'.$grandfile).')
-                                            //     exif_imagetype: ['.exif_imagetype($rootpath.$file.'/'.$subfile.'/'.$grandfile).']
+                                            //     is_image_file?: ['.is_image_file($rootpath.$file.'/'.$subfile.'/'.$grandfile).']
                                             //     is_dir? ('.is_dir($rootpath.$file.'/'.$subfile.'/'.$grandfile).')
                                             //     </p>';
-                                            if (exif_imagetype($rootpath.$file.'/'.$subfile.'/'.$grandfile)) {
+                                            if (is_image_file($rootpath.$file.'/'.$subfile.'/'.$grandfile)) {
                                                 // $html .= "<!-- counted $rootpath$file/$subfile/$grandfile -->";
                                                 $subfiles_image_count++;
-                                                if (!$image['filename']) {
+                                                if (empty($image['filename'])) {
                                                     $image['filename'] = $file.'/'.$subfile.'/'.$grandfile;
                                                 }
                                             }
@@ -66,7 +72,7 @@
                             }
                         }
                     }
-                    if ($image['filename']) {
+                    if (!empty($image['filename'])) {
                         if ($subfiles_image_count > 1) {
                             $image['morecount'] = ($subfiles_image_count);
                             $image['moretext'] = $segments[array_key_last($segments)] . '/' . $file;
@@ -91,51 +97,54 @@
          * @param string $subdir Path to the subgallery directory or __main.php file.
          * @return int Total number of images found (including nested subgalleries).
          */
-        function get_subgallery_image_count($subdir) {
-            $mainfile = rtrim($subdir, '/').'/__main.php';
-            if (!is_file($mainfile)) return 0;
 
-            $content = file_get_contents($mainfile);
-            if (!$content) return 0;
+        if (!function_exists('get_subgallery_image_count')) {
+            function get_subgallery_image_count($subdir) {
+                $mainfile = rtrim($subdir, '/').'/__main.php';
+                if (!is_file($mainfile)) return 0;
 
-            $images = [];
+                $content = file_get_contents($mainfile);
+                if (!$content) return 0;
 
-            // Match render_gallery($images = array(...);
-            if (preg_match('/\$images\s*=\s*array\s*\((.*)\);\s*/sU', $content, $matches)) {
-                $arrayContent = $matches[1];
+                $images = [];
 
-                // Match all individual image arrays: array(...)
-                preg_match_all('/array\s*\((.*?)\),/s', $arrayContent, $imageBlocks);
+                // Match render_gallery($images = array(...);
+                if (preg_match('/\$images\s*=\s*array\s*\((.*)\);\s*/sU', $content, $matches)) {
+                    $arrayContent = $matches[1];
 
-                foreach ($imageBlocks[1] as $block) {
-                    $img = [];
+                    // Match all individual image arrays: array(...)
+                    preg_match_all('/array\s*\((.*?)\),/s', $arrayContent, $imageBlocks);
 
-                    // Match key => value pairs with single quotes, handling escaped quotes
-                    preg_match_all("/'((?:\\\\'|[^'])+)'\s*=>\s*'((?:\\\\'|[^'])*)'/", $block, $kvMatches, PREG_SET_ORDER);
+                    foreach ($imageBlocks[1] as $block) {
+                        $img = [];
 
-                    foreach ($kvMatches as $kv) {
-                        $key = str_replace("\\'", "'", $kv[1]);
-                        $val = str_replace("\\'", "'", $kv[2]);
-                        $img[$key] = $val;
-                    }
+                        // Match key => value pairs with single quotes, handling escaped quotes
+                        preg_match_all("/'((?:\\\\'|[^'])+)'\s*=>\s*'((?:\\\\'|[^'])*)'/", $block, $kvMatches, PREG_SET_ORDER);
 
-                    if ($img) {
-                        $images[] = $img;
+                        foreach ($kvMatches as $kv) {
+                            $key = str_replace("\\'", "'", $kv[1]);
+                            $val = str_replace("\\'", "'", $kv[2]);
+                            $img[$key] = $val;
+                        }
+
+                        if ($img) {
+                            $images[] = $img;
+                        }
                     }
                 }
-            }
 
-            // Count images, recursively counting nested subgallery 'morelink's
-            $count = 0;
-            foreach ($images as $img) {
-                $count++;
-                if (!empty($img['morelink'])) {
-                    $nestedPath = rtrim($subdir, '/').'/'.$img['morelink'];
-                    $count += get_subgallery_image_count($nestedPath);
+                // Count images, recursively counting nested subgallery 'morelink's
+                $count = 0;
+                foreach ($images as $img) {
+                    $count++;
+                    if (!empty($img['morelink'])) {
+                        $nestedPath = rtrim($subdir, '/').'/'.$img['morelink'];
+                        $count += get_subgallery_image_count($nestedPath);
+                    }
                 }
-            }
 
-            return $count;
+                return $count;
+            }
         }
 
 
@@ -150,6 +159,9 @@
              * @uses $rootpath
              * @uses $images
              */
+            if (!isset($image['filename'])) {
+                $image['filename'] = '';
+            }
             $filepath = (is_file($rootpath.$image['filename']))
                 ? $image['filename']
                 : '_media/images/'.$image['filename'] ;
@@ -164,6 +176,9 @@
              * @uses $rootpath
              * @uses $images
              */
+            if (!isset($image['altlink'])) {
+                $image['altlink'] = '';
+            }
             $altpath = (is_file($rootpath.$image['altlink']))
                 ? $image['altlink']
                 : '_media/images/'.$image['altlink'] ;
@@ -234,7 +249,6 @@
 
             $html .= '
                 <div class="item" id="item'.$key.'">
-                    <!-- morecount: '.($image['morecount']).' -->
                     <p class="title">'.
                         (!empty($image['title'])
                             ? $image['title']
@@ -254,13 +268,13 @@
                     
                     // Handle "more" link logic
                     if (!empty($image['morelink'])) {
-                        $count = get_subgallery_image_count($rootpath . $image['morelink']) ?: $image['morecount'];
+                        $count = get_subgallery_image_count($rootpath . $image['morelink']) ?: $image['morecount'] ?? 0;
                         if ($count > 0) {
                             $count_text = ($count - 1) . ' more';
                             $from_text = (!empty($image['moretext'])) ? ' from ' . $image['moretext'] : '' ;
                             $html .= '
                             <p class="more">
-                                <a href="'.$_SERVER['REQUEST_URI'].$image['morelink'].'">'
+                                <a href="/'.$path.$image['morelink'].'">'
                                     .$count_text.$from_text.
                                 '</a>
                             </p>';
@@ -268,7 +282,7 @@
                             // No images found in subgallery
                             $html .= '
                             <p class="more">
-                                <a href="'.$_SERVER['REQUEST_URI'].$image['morelink'].'">More'.
+                                <a href="/'.$path.$image['morelink'].'">More'.
                                     (!empty($image['moretext']) ? ' from ' . $image['moretext'] : '').
                                 '</a>
                             </p>';

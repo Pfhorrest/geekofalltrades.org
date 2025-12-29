@@ -4,11 +4,17 @@ use PHPUnit\Framework\TestCase;
 
 abstract class TestCaseWithTmpRoot extends TestCase
 {
+
+    protected array $originalGlobals = [];
+
     protected string $tmpRoot;
 
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->originalGlobals['rootpath'] = $GLOBALS['rootpath'] ?? null;
+        $this->originalGlobals['path'] = $GLOBALS['path'] ?? null;
 
         $this->tmpRoot = sys_get_temp_dir() . '/test_root_' . uniqid();
         mkdir($this->tmpRoot, 0777, true);
@@ -37,6 +43,18 @@ abstract class TestCaseWithTmpRoot extends TestCase
         }
 
         rmdir($this->tmpRoot);
+
+        if ($this->originalGlobals['path'] === null) {
+            unset($GLOBALS['path']);
+        } else {
+            $GLOBALS['path'] = $this->originalGlobals['path'];
+        }
+
+        if ($this->originalGlobals['rootpath'] === null) {
+            unset($GLOBALS['rootpath']);
+        } else {
+            $GLOBALS['rootpath'] = $this->originalGlobals['rootpath'];
+        }
 
         parent::tearDown();
     }
