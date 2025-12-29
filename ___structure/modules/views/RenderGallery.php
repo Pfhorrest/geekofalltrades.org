@@ -1,6 +1,5 @@
 <?php
     function render_gallery(array $images = []): string {
-        $caller = debug_backtrace()[0]['file']; // file that called this function
         $rootpath = dirname($caller);
         if (is_dir($rootpath) && substr($rootpath, -1) !== '/') $rootpath .= '/';
         $html = '';
