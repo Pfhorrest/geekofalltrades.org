@@ -30,11 +30,11 @@
     "deploy:stage:photos": "rsync -azh --progress --partial --delete --exclude 'process_photos/' photos/ goat:~/dev.geekofalltrades.org/photos/",
     "deploy:stage": "npm run deploy:stage:code && npm run deploy:stage:photos",
     "deploy:prod:health": "curl -fsS --max-time 10 https://geekofalltrades.org/ | perl -0777 -ne 'exit 1 unless /(?=.*<header)(?=.*<h1)(?=.*<nav)(?=.*<main)(?=.*<footer)/s'",
-    "deploy:prod:snapshot": "ssh goat \"set -e; TS=\\$(date +%F-%H%M%S); SNAP=\\$HOME/snapshots/\\$TS; SRC=\\$HOME/geekofalltrades.org; mkdir -p \\\"\\$SNAP\\\" && rsync -ah --omit-dir-times --info=NAME --exclude=.dh-diag --link-dest=\\$SRC \\$SRC/ \\$SNAP/ && ln -sfn \\$SNAP \\$HOME/snapshots/latest\"",
-    "deploy:prod:rollback": "ssh goat \"rsync -ah --omit-dir-times --info=NAME --exclude=.dh-diag --delete ~/snapshots/latest/ ~/geekofalltrades.org/\"",
-    "deploy:prod:clean": "ssh goat \"rsync -ah --omit-dir-times --info=NAME --exclude=.dh-diag --exclude=.git --exclude=.venv --exclude=node_modules --delete ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\"",
-    "deploy:prod:update": "ssh goat \"rsync -ah --omit-dir-times --info=NAME --exclude=.dh-diag --exclude=.git --exclude=.venv --exclude=node_modules ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\"",
-    "deploy:prod:legacy": "ssh goat \"rsync -ah --omit-dir-times --info=NAME --exclude=.dh-diag --ignore-existing --exclude='/___structure/' ~/old.geekofalltrades.org/ ~/geekofalltrades.org/\"",
+    "deploy:prod:snapshot": "ssh goat \"set -e; TS=\\$(date +%F-%H%M%S); SNAP=\\$HOME/snapshots/\\$TS; SRC=\\$HOME/geekofalltrades.org; mkdir -p \\\"\\$SNAP\\\" && rsync -ah --omit-dir-times --itemize-changes --exclude=.dh-diag --link-dest=\\$SRC \\$SRC/ \\$SNAP/ && ln -sfn \\$SNAP \\$HOME/snapshots/latest\"",
+    "deploy:prod:rollback": "ssh goat \"rsync -ah --omit-dir-times --itemize-changes --exclude=.dh-diag --delete ~/snapshots/latest/ ~/geekofalltrades.org/\"",
+    "deploy:prod:clean": "ssh goat \"rsync -ah --omit-dir-times --itemize-changes --exclude=.dh-diag --exclude=.git --exclude=.venv --exclude=node_modules --delete ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\"",
+    "deploy:prod:update": "ssh goat \"rsync -ah --omit-dir-times --itemize-changes --exclude=.dh-diag --exclude=.git --exclude=.venv --exclude=node_modules ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\"",
+    "deploy:prod:legacy": "ssh goat \"rsync -ah --omit-dir-times --itemize-changes --exclude=.dh-diag --ignore-existing --exclude='/___structure/' ~/old.geekofalltrades.org/ ~/geekofalltrades.org/\"",
     "deploy:prod": "npm run deploy:prod:health && npm run deploy:prod:snapshot && npm run deploy:prod:update && npm run deploy:prod:health && npm run deploy:prod:legacy && npm run deploy:prod:health && echo 'Deploy OK' || (echo 'Deploy FAILED — rolling back' && npm run deploy:prod:rollback)"
   }
 }
