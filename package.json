@@ -29,6 +29,9 @@
     "deploy:stage:code": "ssh goat \"cd ~/dev.geekofalltrades.org && git pull origin main\"",
     "deploy:stage:photos": "rsync -avzh --progress --partial --delete --exclude 'process_photos/' photos/ goat:~/dev.geekofalltrades.org/photos/",
     "deploy:stage": "npm run deploy:stage:code && npm run deploy:stage:photos",
-    "deploy:prod": "ssh goat \"rsync -avzh --progress --exclude='.git' --exclude='.venv' --exclude='node_modules' ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\""
+    "deploy:prod:clean": "ssh goat \"rsync -avh --progress --delete --exclude='.git' --exclude='.venv' --exclude='node_modules' ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\"",
+    "deploy:prod:update": "ssh goat \"rsync -avh --progress --exclude='.git' --exclude='.venv' --exclude='node_modules' ~/dev.geekofalltrades.org/ ~/geekofalltrades.org/\"",
+    "deploy:prod:legacy": "ssh goat \"rsync -avh --progress --ignore-existing --dry-run --exclude='/___structure/' ~/old.geekofalltrades.org/ ~/geekofalltrades.org/\"",
+    "deploy:prod": "npm run deploy:prod:update && npm run deploy:prod:legacy"
   }
 }
