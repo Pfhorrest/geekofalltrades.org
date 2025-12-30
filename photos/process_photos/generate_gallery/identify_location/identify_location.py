@@ -1,4 +1,5 @@
 import json
+import time
 import requests
 from pathlib import Path
 from shapely.geometry import Point
@@ -40,6 +41,7 @@ def identify_location(lat, lon):
     # Step 1: Nominatim reverse geocode
     nominatim_url = "https://nominatim.openstreetmap.org/reverse"
     try:
+        time.sleep(2)  # prevent rate-limiting
         r = requests.get(nominatim_url, params={
             "format": "json",
             "lat": lat,

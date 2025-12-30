@@ -35,7 +35,7 @@ def identify_best_poi(lat, lon):
     """
 
     try:
-        time.sleep(1)  # prevent rate-limiting
+        time.sleep(2)  # prevent rate-limiting
         response = requests.post(overpass_url, data={"data": query})
         response.raise_for_status()
         data = response.json()
