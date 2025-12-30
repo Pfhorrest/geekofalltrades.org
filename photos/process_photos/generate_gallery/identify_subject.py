@@ -5,6 +5,17 @@ from PIL import Image
 import torch
 from collections import Counter
 
+print(torch.__version__)
+
+# Fix for Intel iMacs on older PyTorch (2.2.2)
+if not hasattr(torch, "compiler"):
+    class MockCompiler:
+        def is_compiling(self): return False
+    torch.compiler = MockCompiler()
+elif not hasattr(torch.compiler, "is_compiling"):
+    torch.compiler.is_compiling = lambda: False
+
+from transformers import AutoModel, AutoImageProcessor
 # List of models to use
 MODEL_NAMES = [
     # General-purpose
@@ -29,8 +40,8 @@ def load_model(model_name):
         tuple: A tuple containing the processor and model.
     """
     if model_name not in MODEL_CACHE:
-        processor = AutoImageProcessor.from_pretrained(model_name)
-        model = AutoModelForImageClassification.from_pretrained(model_name)
+        processor = AutoImageProcessor.from_pretrained(model_name, use_fast=True)
+        model = AutoModelForImageClassification.from_pretrained(model_name, use_safetensors=True)
         MODEL_CACHE[model_name] = (processor, model)
     return MODEL_CACHE[model_name]
 
