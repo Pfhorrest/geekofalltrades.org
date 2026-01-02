@@ -637,25 +637,38 @@ def test_my_function():
 npm run dev:sass-watch        # Watch and compile SCSS only
 npm run dev:ts-watch          # Watch and compile TypeScript only
 npm run dev:php-server        # Start PHP development server only
+
 npm run dev:dev               # Start all development watchers and open browser
+
+
 npm run test:php              # Run PHP tests with PHPUnit
 npm run test:js               # Run TypeScript tests with vitest
 npm run test:py               # Run Python tests with pytest
+
 npm run test                  # Run all tests
+
+
 npm run document:php          # Generate PHP documentation
 npm run document:sass         # Gemerate SASS documentation
 npm run document:ts           # Generate TypeScript documentation
+
 npm run document              # Generate all documentation
+
+
 npm run deploy:stage:code     # Deploy code to staging server via git
 npm run deploy:stage:photos   # Deploy photos to staging server via rsync
+
 npm run deploy:stage          # Deploy all to staging server via prior scripts
+
+
 npm run deploy:prod:health    # Check health of production deployment via curl and grep
 npm run deploy:prod:snapshot  # Create snapshot of production deployment vis ssh rsync
 npm run deploy:prod:rollback  # Restore production deployment to latest snapshot via ssh rsync 
 npm run deploy:prod:clean     # Overwrite production deployment with staging via ssh rsync
 npm run deploy:prod:update    # Update production deployment from staging via ssh rsync
 npm run deploy:prod:legacy    # Safely repopulate production deployment from legacy archive via ssh rsync
-npm run deploy:prod           # Run snapshot, update, and legacy between health checks, rollback if fail
+
+npm run deploy:prod           # Run snapshot, update, and legacy, between health checks; rollback if fail
 ```
 
 ## Contact
