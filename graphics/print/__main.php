@@ -80,7 +80,7 @@
 
 			array(
 				'title' => '<i>Chronicles of Quelouva</i> cover',
-				'filename' => '../../../chronicles/chronicles-cover.jpg',
+				'filename' => '../../../../chronicles/_media/images/chronicles-cover.jpg',
 				'description' => 'Illustrator and Photoshop, 2009.'
 			),
 
