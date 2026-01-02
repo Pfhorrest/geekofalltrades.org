@@ -634,6 +634,8 @@ def test_my_function():
 ## npm Scripts Reference
 
 ```bash
+npm run process:photos        # Run photo-processing script in a venv in /photos
+
 npm run dev:sass-watch        # Watch and compile SCSS only
 npm run dev:ts-watch          # Watch and compile TypeScript only
 npm run dev:php-server        # Start PHP development server only

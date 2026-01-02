@@ -13,6 +13,7 @@
     "vitest": "^4.0.15"
   },
   "scripts": {
+    "process:photos": "cd photos && . process_photos/.venv/bin/activate && python3 -m process_photos && deactivate && cd ..",
     "dev:sass-watch": "sass --watch __styles/styles.scss:__styles/styles.css",
     "dev:ts-watch": "tsc --watch",
     "dev:php-server": "php -S geekofalltrades.local:8000 -t . ___structure/http.php",
