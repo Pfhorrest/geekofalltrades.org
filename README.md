@@ -641,7 +641,7 @@ npm run dev:sass-watch        # Watch and compile SCSS only
 npm run dev:ts-watch          # Watch and compile TypeScript only
 npm run dev:php-server        # Start PHP development server only
 
-npm run dev:dev               # Start all development watchers and open browser
+npm run dev                   # Start all development watchers and open browser
 
 
 npm run test:php              # Run PHP tests with PHPUnit
