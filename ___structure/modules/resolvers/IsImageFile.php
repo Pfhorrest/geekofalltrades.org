@@ -7,8 +7,6 @@
  */
 function is_image_file(string $path): bool
 {
-    $rootpath = rtrim($GLOBALS['rootpath'], '/') . '/';
-    $fullpath = $rootpath . ltrim($path, '/');
-    return is_file($fullpath) && is_readable($fullpath) && @exif_imagetype($fullpath);
+    return is_file($path) && is_readable($path) && @exif_imagetype($path);
 }
 ?>

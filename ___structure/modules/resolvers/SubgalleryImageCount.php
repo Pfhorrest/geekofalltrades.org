@@ -2,12 +2,12 @@
 /**
  * Recursively count all images in a subgallery.
  *
- * @param string $subdir Path to the subgallery directory.
+ * @param string $path Path to the subgallery directory.
  * @return int Total number of images found (including nested subgalleries).
  */
-function subgallery_image_count($subdir): int
+function subgallery_image_count($path): int
 {
-    $mainfile = rtrim($subdir, '/').'/__main.php';
+    $mainfile = rtrim($path, '/').'/__main.php';
     if (!is_file($mainfile)) return 0;
 
     $content = file_get_contents($mainfile);
@@ -45,8 +45,8 @@ function subgallery_image_count($subdir): int
     foreach ($images as $img) {
         $count++;
         if (!empty($img['morelink'])) {
-            $nestedPath = rtrim($subdir, '/').'/'.$img['morelink'];
-            $count += subgallery_image_count($nestedPath);
+            $nestedPath = rtrim($path, '/').'/'.$img['morelink'];
+            $count += subgallery_image_count($nestedPath) - 1; // Subtract 1 to avoid double-counting the first image
         }
     }
 
