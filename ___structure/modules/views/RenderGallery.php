@@ -49,7 +49,7 @@
                     
                     // Handle "more" link logic
                     if (!empty($image['morelink'])) {
-                        $count = subgallery_image_count($rootpath . $image['morelink']) ?? $image['morecount'] ?? 0;
+                        $count = subgallery_image_count($rootpath . $image['morelink']) ?: $image['morecount'] ?? 0;
                         if ($count > 0) {
                             $count_text = ($count - 1) . ' more';
                             $from_text = (!empty($image['moretext'])) ? ' from ' . $image['moretext'] : '' ;

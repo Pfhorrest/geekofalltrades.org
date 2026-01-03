@@ -54,8 +54,9 @@ function images_discovered(string $path): array
                 }
 
                 $result['images'][] = $image;
-                $result['count'] += $sub['count'];}
+                $result['count'] += $sub['count'];
             }
+        }
     }
     // Reverse order and reindex
     $result['images'] = array_values(array_reverse($result['images']));

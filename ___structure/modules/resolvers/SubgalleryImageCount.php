@@ -2,7 +2,7 @@
 /**
  * Recursively count all images in a subgallery.
  *
- * @param string $path Path to the subgallery directory.
+ * @param string $subdir Path to the subgallery directory.
  * @return int Total number of images found (including nested subgalleries).
  */
 function subgallery_image_count($path): int

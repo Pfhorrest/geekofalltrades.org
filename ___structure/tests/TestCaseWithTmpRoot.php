@@ -79,4 +79,30 @@ abstract class TestCaseWithTmpRoot extends TestCase
 
         return $fullPath;
     }
+    /**
+     * Creates a minimal PNG image file under tmpRoot, creating intermediate directories as needed.
+     *
+     * @param string $relativePath Path relative to tmpRoot
+     * @return string Absolute path to the created image file
+     */
+    protected function createTmpImage(string $relativePath): string
+    {
+        $fullPath = $this->tmpRoot . '/' . ltrim($relativePath, '/');
+        $dir = dirname($fullPath);
+
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+
+        // Create a 1x1 truecolor image
+        $img = imagecreatetruecolor(1, 1);
+        imagesavealpha($img, true);
+        $transparent = imagecolorallocatealpha($img, 0, 0, 0, 127);
+        imagefill($img, 0, 0, $transparent);
+
+        imagepng($img, $fullPath);
+        imagedestroy($img);
+
+        return $fullPath;
+    }
 }
