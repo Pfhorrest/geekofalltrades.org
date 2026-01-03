@@ -9,9 +9,7 @@
  * 
  * @param string $requestUri The full request URL.
  * @return string The normalized path portion of the URL.
- *
  */
-
 function path_from_url(string $requestURL): string
 {
     $path = parse_url($requestURL, PHP_URL_PATH);

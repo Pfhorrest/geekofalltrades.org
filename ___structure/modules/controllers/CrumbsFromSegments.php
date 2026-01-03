@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Generate an array of crumbs from path segments
+ *
+ * @param array $segments The path segments
+ * @return array The array of crumbs
+ */
 function crumbs_from_segments(array $segments): array {
     $crumbs = ['/'];
 
@@ -11,3 +16,4 @@ function crumbs_from_segments(array $segments): array {
 
     return $crumbs;
 }
+?>

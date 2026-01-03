@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Resolve the main type for a given route.
+ * 
+ * @param string $rootpath The route to resolve main type for.
+ * @param bool $indexes Whether directory indexes are allowed.
+ * @return array An associative array describing the main type.
+ */
 function main_resolution(string $rootpath, bool $indexes): array
 {
     if (is_file($rootpath . '__main.md')) {
@@ -31,5 +37,4 @@ function main_resolution(string $rootpath, bool $indexes): array
 
     return ['type' => 'error'];
 }
-
 ?>

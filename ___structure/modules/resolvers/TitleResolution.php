@@ -1,7 +1,6 @@
 <?php
-
 /**
- * Determine the page title based on various inputs.
+ * Resolve the page title based on various inputs.
  *
  * Priority:
  * 1. Query string 'title' parameter
@@ -17,7 +16,6 @@
  * @param string $tagline_suffix An optional tagline suffix to append.
  * @return string The resolved page title.
  */
-
 function title_resolution(
     string $domain_name = '',
     array $segments = [],
@@ -25,7 +23,6 @@ function title_resolution(
     array $query = [],
     string $tagline_suffix = ''
 ): string {
-
     $title = '';
 
     // 1. Query string override
@@ -51,5 +48,5 @@ function title_resolution(
     }
 
     return trim($title . ' ' . $tagline_suffix);
-
 }
+?>

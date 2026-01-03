@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Determine the project root directory based on the server API.
  *
@@ -7,9 +6,7 @@
  * @param string $document_root The document root from the server environment.
  * @param string $current_dir The current directory of the calling script.
  * @return string The determined project root directory.
- *
  */
-
 function root_determination(
     string $sapi_name,
     string $document_root,
@@ -21,5 +18,4 @@ function root_determination(
 
     return $document_root;
 }
-
 ?>

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Convert a path string into an array of its segments.
  *
@@ -11,9 +10,7 @@
  * 
  * @param string $path The path string to convert.
  * @return array An array of path segments.
- *
  */
-
 function segments_from_path(string $path): array
 {
     return array_values(
@@ -23,3 +20,4 @@ function segments_from_path(string $path): array
         )
     );
 }
+?>

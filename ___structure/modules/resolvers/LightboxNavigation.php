@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Determine the navigation (previous and next images) for a lightbox.
  *
@@ -7,7 +6,6 @@
  * @param string $display The filename of the currently displayed image.
  * @return array An associative array with keys 'index', 'prev', and 'next'.
  */
-
 function lightbox_navigation(?array $images, string $display): array
 {
     $lightbox_navigation = ['index' => null, 'prev' => null, 'next' => null];
@@ -34,5 +32,5 @@ function lightbox_navigation(?array $images, string $display): array
     }
 
     return $lightbox_navigation;
-
 }
+?>
