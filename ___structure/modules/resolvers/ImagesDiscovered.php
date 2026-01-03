@@ -8,8 +8,8 @@
  */
 function images_discovered(string $path): array
 {
+    $segments = array_filter(explode('/', $path));
     $path = rtrim($path, '/') . '/';
-    $segments = $GLOBALS['segments'];
 
     $result = [
         'images' => [],
