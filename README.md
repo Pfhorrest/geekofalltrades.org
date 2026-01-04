@@ -645,7 +645,7 @@ npm run dev                            # Start all development watchers and open
 
 
 npm run test:php                       # Run PHP tests with PHPUnit
-npm run test:js                        # Run TypeScript tests with vitest
+npm run test:ts                        # Run TypeScript tests with vitest
 npm run test:py                        # Run Python tests with pytest
 
 npm run test                           # Run all tests

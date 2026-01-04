@@ -44,20 +44,9 @@ export const initLazyLoading = () => {
             source.removeAttribute("srcset");
           }
         });
-
-        if (img) {
-          if (img.src) {
-            img.dataset.src = img.src;
-            img.src = placeholder;
-          }
-          if (img.srcset) {
-            img.dataset.srcset = img.srcset;
-            img.removeAttribute("srcset");
-          }
-        }
       }
 
-      // Handle standalone <img> elements
+      // Handle <img> elements
       else if (el instanceof HTMLImageElement) {
         if (el.src) {
           el.dataset.src = el.src;
