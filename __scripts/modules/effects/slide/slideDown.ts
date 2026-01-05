@@ -71,9 +71,11 @@ export const slideDown = (
     // Set the element's overflow to hidden to contain the animation
     // console.log("setting element's overflow to hidden");
     element.style.overflow = "hidden";
+    // console.log("element.style.overflow is now:", element.style.overflow);
     // Set the element's transition to ease-in-out
     // console.log("setting element's transition to ease-in-out");
     element.style.transition = `all ${duration}ms ease-in-out`;
+    // console.log("element.style.transition is now:", element.style.transition);
     // Set its height to its initial height no matter what
     // console.log(
     //   "setting element.style.height to initial height:",
@@ -123,10 +125,7 @@ export const slideDown = (
     // console.log("element.style.display is now", element.style.display);
     // console.log("setting paddingTop to its inherent value");
     element.style.paddingTop = `${inherentPaddingTop}px`;
-    // console.log(
-    //   "element.style.paddingTop is now",
-    //   element.style.paddingTop
-    // );
+    // console.log("element.style.paddingTop is now", element.style.paddingTop);
     // console.log("setting rowGap to its inherent value");
     element.style.rowGap = `${inherentRowGap}px`;
     // console.log("element.style.rowGap is now", element.style.rowGap);
@@ -136,7 +135,14 @@ export const slideDown = (
     //   "element.style.paddingBottom is now",
     //   element.style.paddingBottom
     // );
-    // console.log("setting height to its inherent value");
+
+    // Force a second reflow so the browser commits the start height
+    // before transitioning to the expanded height.
+    // Without this, height changes may be coalesced and skip the transition.
+    // console.log("forcing reflow");
+    void element.offsetHeight;
+
+    // console.log("setting height to its inherent value:", inherentHeight);
     element.style.height = `${inherentHeight}px`;
     // console.log("element.style.height is now", element.style.height);
 
@@ -150,10 +156,20 @@ export const slideDown = (
       element.style.removeProperty("transition");
     };
 
-    element.addEventListener("transitionend", cleanup, { once: true });
+    element.addEventListener(
+      "transitionend",
+      () => {
+        // console.log("transitionend fired");
+        cleanup();
+      },
+      { once: true }
+    );
 
     // Fallback in case transitionend doesn't fire
-    setTimeout(() => cleanup(), duration + 16);
+    setTimeout(() => {
+      // console.log("fallback timeout fired");
+      cleanup();
+    }, duration + 16);
   }
 
   // console.groupEnd();

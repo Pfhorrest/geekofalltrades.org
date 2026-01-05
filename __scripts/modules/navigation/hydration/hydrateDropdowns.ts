@@ -55,13 +55,13 @@ export const hydrateDropdowns = (): void => {
                   // console.log(`closing other dropdowns`);
                   closeDropdowns();
                 }
-                // console.log(
-                //   `timouting ${wasActive ? "collapse" : "expand"} of self`
-                // );
-                // Wait for that if necessary, then...
-                setTimeout(
-                  () => {
-                    if (!wasActive) {
+                if (!wasActive) {
+                  // console.log(
+                  //   `timouting ${wasActive ? "collapse" : "expand"} of self`
+                  // );
+                  // Wait for that if necessary, then...
+                  setTimeout(
+                    () => {
                       // If the dropdown wasn't open before, expand it
                       // console.log("expanding submenu");
                       menuItem.classList.add("active");
@@ -73,24 +73,24 @@ export const hydrateDropdowns = (): void => {
                           toggle.ariaExpanded = "true";
                         });
                       slideDown(submenu);
-                    } else {
-                      // Otherwise, collapse it
-                      // console.log("collapsing submenu");
-                      slideUp(submenu);
-                      setTimeout(() => {
-                        menuItem.classList.remove("active");
-                        // console.log("setting title to expand");
-                        menuItemLink
-                          .querySelectorAll<HTMLElement>(".submenu-toggle")
-                          ?.forEach((toggle) => {
-                            toggle.title = "Expand submenu";
-                            toggle.ariaExpanded = "false";
-                          });
-                      }, getDuration(submenu));
-                    }
-                  },
-                  anOpenDropdown ? getDuration(anOpenDropdown) : 0
-                );
+                    },
+                    anOpenDropdown ? getDuration(anOpenDropdown) : 0
+                  );
+                } else {
+                  // Otherwise, collapse it
+                  // console.log("collapsing submenu");
+                  slideUp(submenu);
+                  setTimeout(() => {
+                    menuItem.classList.remove("active");
+                    // console.log("setting title to expand");
+                    menuItemLink
+                      .querySelectorAll<HTMLElement>(".submenu-toggle")
+                      ?.forEach((toggle) => {
+                        toggle.title = "Expand submenu";
+                        toggle.ariaExpanded = "false";
+                      });
+                  }, getDuration(submenu));
+                }
                 return false;
               })
             );
