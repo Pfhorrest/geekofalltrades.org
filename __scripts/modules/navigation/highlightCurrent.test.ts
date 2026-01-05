@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { highlightCurrent } from "./navigation";
+import { highlightCurrent } from "./highlightCurrent";
 
 describe("highlightCurrent", () => {
   beforeEach(() => {
