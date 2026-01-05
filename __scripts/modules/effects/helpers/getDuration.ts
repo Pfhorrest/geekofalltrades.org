@@ -33,7 +33,7 @@ export const getDuration = (element: HTMLElement): number => {
   //   style.getPropertyValue("transition-duration")
   // );
   // console.log(`trimmed duration`, duration);
-  const parsedDuration = parseFloat(duration);
+  const parsedDuration = parseFloat(duration) || 0;
   // console.log(`parsed duration`, parsedDuration);
   const isMs = duration.endsWith("ms");
   // console.log(`isMs`, isMs);
