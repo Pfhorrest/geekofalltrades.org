@@ -17,6 +17,9 @@ export const fadeOut = (
   // console.log("fadeOut called with element:", element);
   // console.log("fadeOut called with duration:", duration);
 
+  // Set the element's transition duration
+  element.style.transitionDuration = `${duration}ms`;
+
   // Set the element's opacity to 0
   element.style.opacity = "0";
 

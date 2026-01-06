@@ -12,6 +12,8 @@ export const fadeOut = (element, duration = getDuration(element)) => {
     // console.groupCollapsed("fadeOut");
     // console.log("fadeOut called with element:", element);
     // console.log("fadeOut called with duration:", duration);
+    // Set the element's transition duration
+    element.style.transitionDuration = `${duration}ms`;
     // Set the element's opacity to 0
     element.style.opacity = "0";
     // Force a reflow, then set the element's display to none
