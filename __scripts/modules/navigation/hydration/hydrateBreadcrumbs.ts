@@ -4,7 +4,6 @@ import {
   getDuration,
   getBreakpoint,
 } from "../../effects/effects";
-import { closeDropdowns } from "../helpers/closeDropdowns";
 
 /**
  * Adds event listeners to show parent breadcrumbs' subnavs on hover.
