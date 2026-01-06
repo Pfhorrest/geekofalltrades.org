@@ -45,7 +45,7 @@ describe("closeDropdowns", () => {
   });
 
   it("resets title and ariaExpanded on menu links", () => {
-    const link = document.querySelector("li.active a")!;
+    const link: HTMLElement = document.querySelector("li.active a")!;
 
     closeDropdowns();
     vi.advanceTimersByTime(100);
