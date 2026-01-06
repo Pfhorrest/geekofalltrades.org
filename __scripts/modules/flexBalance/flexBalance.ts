@@ -1,18 +1,18 @@
 /**
  * Balances the items in the given container by distributing them evenly across rows.
  * @param {HTMLElement} container - The container element to balance.
+ * 
  * @returns {void}
  */
 const balanceFlexRows = (container: HTMLElement): void => {
     const items = Array.from(container.children) as HTMLElement[];
     if (items.length < 2) return;
 
+    // Clear existing min-widths
     items.forEach((item) => {
-        // Clear existing min-widths
         item.style.minWidth = "auto";
     });
 
-    // Measure natural top offsets using off-DOM clone
     const containerWidth = container.clientWidth;
     const avgItemWidth = items.reduce((sum, item) => sum + item.offsetWidth, 0) / items.length;
 
@@ -20,11 +20,11 @@ const balanceFlexRows = (container: HTMLElement): void => {
     if (rowCount <= 1) return;
 
     // Calculate balanced distribution
-    const perRow = Math.ceil(items.length / rowCount) + 1; // +1 to account for gaps
+    const perRow = Math.ceil(items.length / rowCount) + 0.5; // +0.5 to account for gaps
     // console.log(`Balancing ${items.length} items into ${rowCount} rows of up to ${perRow - 1} items each.`);
 
+    // Set min-width to enforce distribution
     items.forEach((item) => {
-        // Set min-width to enforce distribution
         item.style.minWidth = `${100 / perRow}%`;
     });
 }
