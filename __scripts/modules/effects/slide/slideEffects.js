@@ -10,20 +10,16 @@ export { slideDown, slideUp };
  *
  * @param {HTMLElement} element - The element to toggle the visibility of.
  * @param {number} duration - The animation duration in ms (defaults to element's transition-duration)
- * @param {typeof slideDown} _slideDown - Optional override of slideDown (for testing)
- * @param {typeof slideUp} _slideUp - Optional override of slideUp (for testing)
- * @param {typeof getDuration} _getDuration - Optional override of getDuration (for testing)
+ *
  * @returns {void}
  */
-export const slideToggle = (element, duration, _slideDown = slideDown, _slideUp = slideUp, _getDuration = getDuration) => {
-    // Compute duration inside the function so mock _getDuration is used
-    const computedDuration = duration !== null && duration !== void 0 ? duration : _getDuration(element);
+export const slideToggle = (element, duration = getDuration(element)) => {
     // Get the element's current display
     const isVisible = window.getComputedStyle(element).display !== "none";
     // Choose the animation function based on the current opacity
     // If the element is visible, it should be faded out
     // If the element is hidden, it should be faded in
-    const animationFunction = isVisible ? _slideUp : _slideDown;
+    const animationFunction = isVisible ? slideUp : slideDown;
     // Log the function call with all the parameters
     // console.groupCollapsed("slideToggle");
     // console.log(`isVisible = ${isVisible}`);
@@ -31,6 +27,6 @@ export const slideToggle = (element, duration, _slideDown = slideDown, _slideUp 
     // console.log(`duration = ${duration}`);
     // console.groupEnd();
     // Call the chosen animation function
-    animationFunction(element, computedDuration);
+    animationFunction(element, duration);
 };
 //# sourceMappingURL=slideEffects.js.map
