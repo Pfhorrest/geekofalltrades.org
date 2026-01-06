@@ -1,5 +1,4 @@
 import {
-  slideToggle,
   getDuration,
   slideDown,
   slideUp,
