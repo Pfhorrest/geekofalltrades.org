@@ -40,7 +40,7 @@ export const closeDropdowns = () => {
         const itemLink = item.querySelector<HTMLElement>("a");
         if (itemLink) {
           itemLink.title = "Expand submenu";
-          itemLink.ariaExpanded = "true";
+          itemLink.ariaExpanded = "false";
         }
       }, getDuration(item));
     });
