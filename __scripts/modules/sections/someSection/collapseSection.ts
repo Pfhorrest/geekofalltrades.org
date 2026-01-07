@@ -55,10 +55,10 @@ export const collapseSection = (element: HTMLElement): void => {
     setTimeout(() => {
       // console.log("removing section min-height property");
       section.style.removeProperty("min-height");
-    }, Math.max(100,duration));
+    }, duration);
     // Toggle the state of the toggle buttons
     toggleToggleButtons();
-  }, Math.max(100,duration));
+  }, duration);
 
   // console.groupEnd();
 };
