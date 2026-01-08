@@ -12,15 +12,17 @@ export const toggleSection = (element) => {
     var _a;
     // console.groupCollapsed("toggleSection called with", element);
     const section = element.closest("section");
-    if (section === null || section === void 0 ? void 0 : section.classList.contains("collapsed")) {
-        // If the section is collapsed, expand it
-        // console.log("Section is collapsed, so expanding");
-        expandSection(element);
-    }
-    else {
-        // If the section is expanded, collapse it
-        // console.log("Section is not collapsed, so collapsing");
-        collapseSection(element);
+    if (section) {
+        if (section.classList.contains("collapsed")) {
+            // If the section is collapsed, expand it
+            // console.log("Section is collapsed, so expanding");
+            expandSection(element);
+        }
+        else {
+            // If the section is expanded, collapse it
+            // console.log("Section is not collapsed, so collapsing");
+            collapseSection(element);
+        }
     }
     // Set the URL hash to the id of the section, if there is one
     // console.log(

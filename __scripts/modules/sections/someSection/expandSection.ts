@@ -79,7 +79,7 @@ export const expandSection = (element: HTMLElement): void => {
       });
       // Toggle the state of the toggle buttons
       toggleToggleButtons();
-    }, Math.max(100,duration));
+    }, duration);
   });
   // console.groupEnd();
 };
