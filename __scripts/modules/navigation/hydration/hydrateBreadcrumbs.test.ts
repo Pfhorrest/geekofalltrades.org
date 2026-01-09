@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { describe, it, expect, beforeEach, vi, type MockedFunction } from "vitest";
 import { hydrateBreadcrumbs } from "./hydrateBreadcrumbs";
 import {
   slideUp,
@@ -21,8 +21,8 @@ describe("hydrateBreadcrumbs", () => {
     vi.useFakeTimers();
 
     // Default mocks
-    (getBreakpoint as any).mockReturnValue(768);
-    (getDuration as any).mockReturnValue(100);
+    (getBreakpoint as MockedFunction<typeof getBreakpoint>).mockReturnValue(768);
+    (getDuration as MockedFunction<typeof getDuration>).mockReturnValue(100);
 
     Object.defineProperty(window, "innerWidth", {
       value: 1024,

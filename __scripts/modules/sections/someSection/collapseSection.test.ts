@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { describe, it, expect, beforeEach, vi, type MockedFunction } from "vitest";
 import { collapseSection } from "./collapseSection";
 
 // Mock dependencies
@@ -57,7 +57,7 @@ describe("collapseSection", () => {
       configurable: true,
     });
 
-    (getDuration as any).mockReturnValue(200);
+    (getDuration as MockedFunction<typeof getDuration>).mockReturnValue(200);
   });
 
   it("does nothing if element is not inside a section", () => {

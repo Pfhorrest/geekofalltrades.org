@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { describe, it, expect, beforeEach, vi, type MockedFunction } from "vitest";
 import { enableFlexBalancing } from "./flexBalance";
 
 describe("enableFlexBalancing", () => {
@@ -97,8 +97,8 @@ describe("enableFlexBalancing", () => {
     enableFlexBalancing(".balanced-flex");
 
     expect((globalThis as any).resizeSpy).toHaveBeenCalledOnce();
-    expect((ResizeObserver as any).mock.instances[0].observe).toHaveBeenCalled();
+    expect((ResizeObserver as MockedFunction<typeof ResizeObserver>).mock.instances[0].observe).toHaveBeenCalled();
     expect((globalThis as any).mutationSpy).toHaveBeenCalledOnce();
-    expect((MutationObserver as any).mock.instances[0].observe).toHaveBeenCalled();
+    expect((MutationObserver as MockedFunction<typeof MutationObserver>).mock.instances[0].observe).toHaveBeenCalled();
   });
 });
