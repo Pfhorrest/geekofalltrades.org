@@ -1,6 +1,11 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { hydrateToggleButtons } from "./hydrateToggleButtons";
+import { toggleToggleButtons } from "./toggleToggleButtons";
 import { expandSections, collapseSections, expandAnchorSectionCollapseOthers, } from "../allSections";
+// Mock the toggleToggleButtons module
+vi.mock("./toggleToggleButtons", () => ({
+    toggleToggleButtons: vi.fn(),
+}));
 // Mock the allSections module
 vi.mock("../allSections", () => ({
     expandSections: vi.fn(),
@@ -34,18 +39,6 @@ describe("hydrateToggleButtons", () => {
         expect(document.querySelectorAll(".expandAll")).toHaveLength(2);
         expect(document.querySelectorAll(".anchorTarget")).toHaveLength(2);
         expect(document.querySelectorAll(".collapseAll")).toHaveLength(2);
-    });
-    it("sets anchor control text to location.hash", () => {
-        location.hash = "#my-section";
-        document.body.innerHTML = `
-      <main>
-        <section id="my-section"><h2>Test</h2></section>
-      </main>
-    `;
-        hydrateToggleButtons();
-        document.querySelectorAll(".anchorTarget").forEach((el) => {
-            expect(el.textContent).toBe("Test");
-        });
     });
     it("wires expandAll buttons to expandSections()", () => {
         document.body.innerHTML = `
@@ -81,6 +74,16 @@ describe("hydrateToggleButtons", () => {
         button.click();
         expect(collapseSections).toHaveBeenCalledTimes(1);
         expect(collapseSections).toHaveBeenCalledWith();
+    });
+    it("toggles toggle buttons", () => {
+        location.hash = "#my-section";
+        document.body.innerHTML = `
+      <main>
+        <section><h2>Test</h2></section>
+      </main>
+    `;
+        hydrateToggleButtons();
+        expect(toggleToggleButtons).toHaveBeenCalledOnce();
     });
 });
 //# sourceMappingURL=hydrateToggleButtons.test.js.map
