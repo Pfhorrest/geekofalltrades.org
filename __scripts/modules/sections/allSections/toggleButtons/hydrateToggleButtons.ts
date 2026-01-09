@@ -3,6 +3,7 @@ import {
   collapseSections,
   expandAnchorSectionCollapseOthers,
 } from "../allSections";
+import { toggleToggleButtons } from "./toggleToggleButtons";
 
 /**
  * Creates toggle-all-sections buttons and adds event listeners to control them
@@ -60,5 +61,6 @@ export const hydrateToggleButtons = () => {
         collapseSections();
       });
     });
+    toggleToggleButtons();
   }
 };
