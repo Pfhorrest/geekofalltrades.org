@@ -1,6 +1,17 @@
 import { expandSections, collapseSections, expandAnchorSectionCollapseOthers, } from "../allSections";
 import { toggleToggleButtons } from "./toggleToggleButtons";
 /**
+ * Cleans up event listeners for toggle buttons
+ *
+ * @returns {void}
+ */
+const onHashChange = () => {
+    toggleToggleButtons();
+};
+export const cleanupToggleListener = () => {
+    window.removeEventListener("hashchange", onHashChange);
+};
+/**
  * Creates toggle-all-sections buttons and adds event listeners to control them
  *
  * @returns {void}
@@ -50,6 +61,7 @@ export const hydrateToggleButtons = () => {
             });
         });
         toggleToggleButtons();
+        window.addEventListener("hashchange", onHashChange);
     }
 };
 //# sourceMappingURL=hydrateToggleButtons.js.map

@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
-import { hydrateToggleButtons } from "./hydrateToggleButtons";
+import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
+import { hydrateToggleButtons, cleanupToggleListener } from "./hydrateToggleButtons";
 import { toggleToggleButtons } from "./toggleToggleButtons";
 import { expandSections, collapseSections, expandAnchorSectionCollapseOthers, } from "../allSections";
 // Mock the toggleToggleButtons module
@@ -16,7 +16,9 @@ describe("hydrateToggleButtons", () => {
     beforeEach(() => {
         document.body.innerHTML = "";
         vi.clearAllMocks();
-        location.hash = "";
+    });
+    afterEach(() => {
+        cleanupToggleListener();
     });
     it("does nothing if there is no main element", () => {
         hydrateToggleButtons();
@@ -76,7 +78,6 @@ describe("hydrateToggleButtons", () => {
         expect(collapseSections).toHaveBeenCalledWith();
     });
     it("toggles toggle buttons", () => {
-        location.hash = "#my-section";
         document.body.innerHTML = `
       <main>
         <section><h2>Test</h2></section>
@@ -84,6 +85,17 @@ describe("hydrateToggleButtons", () => {
     `;
         hydrateToggleButtons();
         expect(toggleToggleButtons).toHaveBeenCalledOnce();
+    });
+    it("updates toggle buttons on hashchange", () => {
+        document.body.innerHTML = `
+      <main>
+        <section><h2>Test</h2></section>
+      </main>
+    `;
+        hydrateToggleButtons();
+        expect(toggleToggleButtons).toHaveBeenCalledOnce();
+        window.dispatchEvent(new HashChangeEvent("hashchange"));
+        expect(toggleToggleButtons).toHaveBeenCalledTimes(2);
     });
 });
 //# sourceMappingURL=hydrateToggleButtons.test.js.map

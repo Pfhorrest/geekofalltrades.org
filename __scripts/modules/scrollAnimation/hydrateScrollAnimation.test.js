@@ -23,7 +23,6 @@ describe("hydrateScrollAnimation", () => {
       </main>
     `;
         hydrateScrollAnimation();
-        document.dispatchEvent(new Event("DOMContentLoaded"));
         const element = document.querySelector(".test");
         expect(element.classList.contains("off-screen")).toBe(true);
         expect(offScreenObserver.observe).toHaveBeenCalledWith(element);
@@ -36,7 +35,6 @@ describe("hydrateScrollAnimation", () => {
       </main>
     `;
         hydrateScrollAnimation();
-        document.dispatchEvent(new Event("DOMContentLoaded"));
         const element = document.querySelector(".test");
         expect(element.classList.contains("off-screen")).toBe(false);
         expect(offScreenObserver.observe).toHaveBeenCalledWith(element);

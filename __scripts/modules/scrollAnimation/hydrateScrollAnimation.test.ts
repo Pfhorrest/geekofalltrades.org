@@ -29,7 +29,6 @@ describe("hydrateScrollAnimation", () => {
     `;
 
     hydrateScrollAnimation();
-    document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const element = document.querySelector(".test") as HTMLElement;
 
@@ -47,7 +46,6 @@ describe("hydrateScrollAnimation", () => {
     `;
 
     hydrateScrollAnimation();
-    document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const element = document.querySelector(".test") as HTMLElement;
 
