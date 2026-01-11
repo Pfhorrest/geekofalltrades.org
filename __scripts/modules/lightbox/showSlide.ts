@@ -1,4 +1,4 @@
-import { slides, slideIndex } from "./lightboxState";
+import { slides } from "./lightboxState";
 
 /**
  * Populates the lightbox with the data of the specified slide
