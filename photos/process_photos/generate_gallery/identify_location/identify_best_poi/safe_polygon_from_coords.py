@@ -1,3 +1,5 @@
+from shapely import Polygon
+
 def safe_polygon_from_coords(coords):
     """Create a valid Shapely Polygon from a list of (lon, lat) coordinates.
 
