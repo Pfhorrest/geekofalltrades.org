@@ -44,7 +44,6 @@ This website represents decades of evolution while maintaining core web principl
 - **Build Tools**: 
   - Sass compiler
   - TypeScript compiler (`tsc`)
-  - fswatch (for live reload)
   - Concurrently (for running multiple watch processes)
 - **Deployment**: SSH, Git, rsync
 - **Hosting**: Dreamhost
