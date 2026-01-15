@@ -7,18 +7,19 @@ from tqdm import tqdm
 from ...config import LOCATION_CACHE_FILE
 from .identify_best_poi import identify_best_poi
 
-if Path(LOCATION_CACHE_FILE).exists():
-    with open(LOCATION_CACHE_FILE, "r") as f:
-        location_cache = json.load(f)
-else:
-    location_cache = {}
 
-def save_location_cache():
+def load_location_cache(cache_file=LOCATION_CACHE_FILE):
+    if cache_file.exists():
+        with open(cache_file) as f:
+            return json.load(f)
+    return {}
+
+def save_location_cache(location_cache=None):
     """Save the location cache to a JSON file."""
     with open(LOCATION_CACHE_FILE, "w") as f:
         json.dump(location_cache, f, indent=2)
 
-def identify_location(lat, lon):
+def identify_location(lat, lon, *, location_cache=None):
     """Identify the location and prefix for given GPS coordinates.
 
     Args:
@@ -27,13 +28,15 @@ def identify_location(lat, lon):
     Returns:
         tuple: A tuple containing the location name and prefix.
     """
-    point = Point(lon, lat)
-    latlon_key = f"{round(lat, 5)},{round(lon, 5)}"
 
     # Return cached result if available
-    if latlon_key in location_cache:
-        location, prefix = location_cache[latlon_key]
-        return location, prefix
+    if location_cache is None:
+            location_cache = load_location_cache()
+
+    key = f"{lat:.5f},{lon:.5f}"
+
+    if key in location_cache:
+        return location_cache[key]
 
     headers = {"User-Agent": "Photo Metadata Script (forrest@geekofalltrades.org)"}
     location, prefix = None, None
@@ -54,7 +57,7 @@ def identify_location(lat, lon):
         address = data.get("address", {})
         for field in ("neighbourhood", "suburb", "hamlet", "village", "town", "city", "county", "state", "country"):
             if field in address:
-                location = location = address[field].split("(", 1)[1].split(")", 1)[0].strip() if "(" in address[field] and ")" in address[field] else address[field]
+                location = address[field].split("(", 1)[1].split(")", 1)[0].strip() if "(" in address[field] and ")" in address[field] else address[field]
                 prefix = "in"
                 break
     except Exception as e:
@@ -77,7 +80,7 @@ def identify_location(lat, lon):
 
     # Save to cache
     if selected_name and selected_prefix:
-        location_cache[latlon_key] = (selected_name, selected_prefix)
-        save_location_cache()
+        location_cache[key] = (selected_name, selected_prefix)
+        save_location_cache(location_cache)
 
     return selected_name, selected_prefix
