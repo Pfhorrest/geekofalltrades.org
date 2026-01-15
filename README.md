@@ -87,8 +87,12 @@ geekofalltrades.org/
 ├── __main.php             # Root page content
 ├── __footer.php           # Root footer content
 ├── .htaccess              # Apache configuration for routing
+├── composer.json          # composer configuration and scripts
 ├── package.json           # npm configuration and scripts
-└── tsconfig.json          # TypeScript configuration
+├── phpdoc.xml             # PHPDoc configuration
+├── phpunit.xml            # PHPUnit configuration
+├── tsconfig.json          # TypeScript configuration
+└── vitest.config.js       # Vitest configuration
 ```
 
 ## Local Development Setup
@@ -233,9 +237,7 @@ The project includes npm scripts for deploying to both staging and production en
 npm run stage
 ```
 
-This runs two sub-commands:
-- `stage-code`: SSH to `dev.geekofalltrades.org` and `git pull`
-- `stage-photos`: rsync photos directory (photos are not in git due to size)
+This runs two sub-commands that SSH to `dev.geekofalltrades.org` and `git pull`, then rsync the photos directory (photos are not in git due to size).
 
 ### Deploy to Production
 
@@ -243,7 +245,7 @@ This runs two sub-commands:
 npm run deploy
 ```
 
-This runs rsync over ssh to update `geekofalltrades.org` from `dev.geekofalltrades.org`
+This runs several sub-commands in sequence to generate a snapshot of the production site, safely update `geekofalltrades.org` from `dev.geekofalltrades.org` via two further sub-commands, and safely repopulate scattered files from a legacy archive, with health checks at each stage, rolling back to the snapshot upon failure.
 
 ## Photo Processing System
 
@@ -529,7 +531,7 @@ class DummyTest extends TestCase
 Run PHP tests:
 
 ```bash
-phpunit --configuration phpunit.xml
+npm run test:php
 ```
 
 This vacuous test ensures PHPUnit runs and exits cleanly.
@@ -583,8 +585,7 @@ def test_dummy():
 Run Python tests:
 
 ```bash
-source .venv/bin/activate
-pytest process_photos/tests
+npm run test:py
 ```
 
 This ensures the test runner exits immediately, even without real tests.
