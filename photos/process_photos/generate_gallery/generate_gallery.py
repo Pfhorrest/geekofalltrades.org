@@ -72,7 +72,7 @@ def generate_gallery(path):
                         titled.append(word.capitalize())
                 return " ".join(titled)
 
-            title = smart_title_case(title)
+            title = smart_title_case(title) if title else None
 
             # Compose description
             desc_parts = []
