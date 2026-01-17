@@ -1,1 +1,1 @@
-<?php $title = "Logo Design by Forrest Cameranesi" ?>
+<?php $title = "Logo Design" ?>

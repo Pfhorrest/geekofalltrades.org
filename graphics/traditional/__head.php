@@ -1,1 +1,1 @@
-<?php $title = "Traditional Arts by Forrest Cameranesi" ?>
+<?php $title = "Traditional Arts" ?>

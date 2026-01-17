@@ -154,7 +154,7 @@ def process_photos():
             # Make __head.php if necessary
             head_path = dirpath / "__head.php"
             if not head_path.exists():
-                head_content = f'<?php $title = "{title_text} by Forrest Cameranesi" ?>\n'
+                head_content = f'<?php $title = "{title_text}" ?>\n'
                 with open(head_path, 'w') as f:
                     f.write(head_content)
             # Make __main.php if necessary
