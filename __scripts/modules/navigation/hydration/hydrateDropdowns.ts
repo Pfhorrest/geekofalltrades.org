@@ -1,3 +1,4 @@
+import { a } from "vitest/dist/chunks/suite.d.BJWk38HB";
 import {
   getDuration,
   slideDown,
@@ -25,16 +26,16 @@ export const hydrateDropdowns = (): void => {
         const menuItemLink = menuItem.querySelector<HTMLElement>("a");
         if (menuItemLink) {
           // Create the toggle element
-          const toggle = document.createElement("span");
+          const toggle = document.createElement("button");
           toggle.className = "submenu-toggle";
-          toggle.setAttribute("aria-hidden", "true");
           toggle.innerHTML = "▼";
-          // Mark toggle as a button
-          toggle.role = "button";
           // Add title attribute to the toggle
           toggle.title = "Expand submenu";
+          const toggleClone = toggle.cloneNode(true) as HTMLElement;
+          toggleClone.setAttribute("aria-hidden", "true");
+          toggleClone.setAttribute("tabindex", "-1");
           menuItemLink.prepend(toggle);
-          menuItemLink.append(toggle.cloneNode(true) as HTMLElement);
+          menuItemLink.append(toggleClone);
           // Add event listener to the menu link
           menuItemLink
             .querySelectorAll<HTMLElement>(".submenu-toggle")

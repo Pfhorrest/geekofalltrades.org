@@ -21,16 +21,16 @@ export const hydrateDropdowns = () => {
             const menuItemLink = menuItem.querySelector("a");
             if (menuItemLink) {
                 // Create the toggle element
-                const toggle = document.createElement("span");
+                const toggle = document.createElement("button");
                 toggle.className = "submenu-toggle";
-                toggle.setAttribute("aria-hidden", "true");
                 toggle.innerHTML = "▼";
-                // Mark toggle as a button
-                toggle.role = "button";
                 // Add title attribute to the toggle
                 toggle.title = "Expand submenu";
+                const toggleClone = toggle.cloneNode(true);
+                toggleClone.setAttribute("aria-hidden", "true");
+                toggleClone.setAttribute("tabindex", "-1");
                 menuItemLink.prepend(toggle);
-                menuItemLink.append(toggle.cloneNode(true));
+                menuItemLink.append(toggleClone);
                 // Add event listener to the menu link
                 (_a = menuItemLink
                     .querySelectorAll(".submenu-toggle")) === null || _a === void 0 ? void 0 : _a.forEach((toggle) => toggle.addEventListener("click", (e) => {

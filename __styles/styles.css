@@ -930,6 +930,8 @@ header nav > ul li:has(ul):not(.submenu) > a::after, header nav > ul li:has(ul).
   top: 0.5em;
   opacity: 0.25;
   vertical-align: middle;
+  background: none;
+  border: none;
   transform: rotate(0deg);
 }
 header nav > ul li:has(ul):not(.submenu) > a:hover::after, header nav > ul li:has(ul).submenu > a > .submenu-toggle:hover:last-child, header nav > ul li:has(ul):not(.submenu) > a:hover::before, header nav > ul li:has(ul).submenu > a > .submenu-toggle:hover:first-child {
