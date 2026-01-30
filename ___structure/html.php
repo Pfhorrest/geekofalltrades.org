@@ -130,7 +130,7 @@
 						include_once $rootpath . '__main.php';
 						/* Lightbox inclusion if requested */
 						if (array_key_exists('display', $_GET)) {
-							include_once 'modules/views/partials/lightbox.php';
+							include_once $root . '/___structure/modules/views/partials/lightbox.php';
 						}
 						break;
 
@@ -141,12 +141,12 @@
 
 					case 'directory':
 						/* Directory listing */
-						include_once 'modules/views/partials/directory.php';
+						include_once $root . '/___structure/modules/views/partials/directory.php';
 						break;
 
 					case 'error':
 						/* Error page */
-						include_once 'modules/views/partials/error.php';
+						include_once $root . '/___structure/modules/views/partials/error.php';
 						break;
 				}
 			?>
