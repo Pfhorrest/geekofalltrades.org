@@ -349,7 +349,7 @@
 														<li>
 															The actual restricts potential inputs
 															(we, the present, restrict the past):
-															it <em>lets</em> us to be this way
+															it <em>lets</em> us be this way
 														</li>
 														<li>
 															If our model and the world don't match,
