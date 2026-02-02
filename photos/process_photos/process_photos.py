@@ -206,10 +206,10 @@ def process_photos():
                                     if date_granularity == "month":
                                         day_num = int(sub.name)
                                         suffix = 'th' if 11<=day_num%100<=13 else {1:'st',2:'nd',3:'rd'}.get(day_num%10, 'th')
-                                        first_img['moretext'] = f"More from the {day_num}{suffix}"
+                                        first_img['moretext'] = f"the {day_num}{suffix}"
                                     elif date_granularity == "year":
                                         month_name = datetime(2000, int(sub.name), 1).strftime('%B')
-                                        first_img['moretext'] = f"More from {month_name}"
+                                        first_img['moretext'] = f"{month_name}"
                                 subimages.append(first_img)
                                 tqdm.write(f"    Using first image: {child_images[0]}")
 
