@@ -1,5 +1,5 @@
 /**
- *  Lazy-load <img> and <picture> elements using IntersectionObserver.
+ *  Lazy-load img and picture elements using IntersectionObserver.
  *  Keeps above-the-fold images visible immediately.
  *
  *  @returns {void}
