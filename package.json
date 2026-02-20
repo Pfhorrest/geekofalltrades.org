@@ -24,7 +24,7 @@
     "test:ts": "vitest --run",
     "test:py": "cd photos && . process_photos/.venv/bin/activate && PYTHONPATH=. pytest process_photos/tests",
     "test": "npm-run-all --parallel test:ts test:php test:py",
-    "document:php": "phpdoc -d ___structure -t _docs/php",
+    "document:php": "./phpDocumentor.phar",
     "document:sass": "sassdoc __styles -d _docs/sass",
     "document:ts": "npx typedoc __scripts/scripts.ts --out _docs/ts",
     "document": "npm run document:sass && npm run document:ts && npm run document:php",

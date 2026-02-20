@@ -10,3 +10,4 @@ photos/process_photos/_caches/
 /vendor
 *.cache
 /_misc
+/.phpdoc
