@@ -234,7 +234,7 @@ The project includes npm scripts for deploying to both staging and production en
 ### Deploy to Staging
 
 ```bash
-npm run stage
+npm run deploy:stage
 ```
 
 This runs two sub-commands that SSH to `dev.geekofalltrades.org` and `git pull`, then rsync the photos directory (photos are not in git due to size).
@@ -242,7 +242,7 @@ This runs two sub-commands that SSH to `dev.geekofalltrades.org` and `git pull`,
 ### Deploy to Production
 
 ```bash
-npm run deploy
+npm run deploy:prod
 ```
 
 This runs several sub-commands in sequence to generate a snapshot of the production site, safely update `geekofalltrades.org` from `dev.geekofalltrades.org` via two further sub-commands, and safely repopulate scattered files from a legacy archive, with health checks at each stage, rolling back to the snapshot upon failure.
@@ -470,8 +470,7 @@ To generate HTML documentation from the inline comments:
 
 **For PHP (using phpDocumentor):**
 ```bash
-# Install phpDocumentor globally
-composer global require phpdocumentor/phpdocumentor
+# phpDocumentor is already bundled locally
 
 # Generate docs
 npm run document:php
@@ -479,8 +478,7 @@ npm run document:php
 
 **For SCSS (using SassDoc):**
 ```bash
-# Install SassDoc
-npm install --save-dev sassdoc
+# SassDoc is run via npx; agree (y) to installing it when first running
 
 # Generate docs
 npm run document:sass
@@ -488,8 +486,7 @@ npm run document:sass
 
 **For TypeScript (using TypeDoc):**
 ```bash
-# Install TypeDoc
-npm install --save-dev typedoc
+# TypeDoc is run via npx; agree (y) to installing it when first running
 
 # Generate docs
 npm run document:ts
@@ -497,8 +494,6 @@ npm run document:ts
 
 **For all at once:**
 ```bash
-# After installing all as above
-
 # Generate all docs
 npm run document
 ```
