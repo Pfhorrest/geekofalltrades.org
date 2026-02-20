@@ -60,7 +60,7 @@ export const showSlide = (index: number): void => {
     console.error("No image element found");
     return;
   }
-  console.log("imageElement:", imageElement);
+  // console.log("imageElement:", imageElement);
   // Get the src URL from the slide's href attribute
   const srcUrl = new URL(
     location.href.split("#")[0] + slide.getAttribute("href") || ""
