@@ -16,7 +16,7 @@
 /// @see {mixin} menu
 ///  - General styles for menus
 
-@mixin menu-item-styles {
+@mixin menu-item {
   li {
     /* Layout */
     position: relative;

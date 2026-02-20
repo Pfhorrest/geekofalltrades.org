@@ -6,7 +6,7 @@
 /// @group header
 /// @require {Length} $bp2
 ///  - Second breakpoint value
-/// @require {mixin} menu-item-styles
+/// @require {mixin} menu-item
 ///  - Styles for menu items
 /// @require {mixin} optional-motion
 ///  - DRY optional motion helper
@@ -76,7 +76,7 @@
     }
 
     /* Styles for menu items */
-    @include menu-item-styles;
+    @include menu-item;
   }
 
   /* Show the menu associated with the last breadcrumb by default */

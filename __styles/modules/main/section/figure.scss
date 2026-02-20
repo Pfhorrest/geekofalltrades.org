@@ -12,34 +12,12 @@
 ///  - DRY color scheme helper
 /// @require {mixin} optional-motion
 ///  - DRY optional motion helper
-/// @see {mixing} section
+/// @require {mixin} figure-left
+///  - Styles for left-aligned figures
+/// @require {mixin} figure-right
+///  - Styles for right-aligned figures
+/// @see {mixin} section
 ///  - General styles for sections
-
-@mixin figure-left {
-  float: left;
-  transform-origin: left;
-  margin-right: var(--spacing);
-  margin-left: 0;
-  @media (min-width: $bp3) {
-    max-width: var(--fmw);
-    margin-left: var(--fms);
-    margin-right: var(--spacing);
-    transform-origin: right;
-  }
-}
-
-@mixin figure-right {
-  float: right;
-  transform-origin: right;
-  margin-left: var(--spacing);
-  margin-right: 0;
-  @media (min-width: $bp3) {
-    max-width: var(--fmw);
-    margin-right: var(--fms);
-    margin-left: var(--spacing);
-    transform-origin: left;
-  }
-}
 
 @mixin figure {
   figure {
@@ -221,3 +199,40 @@
     }
   }
 }
+
+/// Styles for left-aligned figures
+/// @group main
+/// @see {mixin} figure
+///  - General styles for figures
+
+@mixin figure-left {
+  float: left;
+  transform-origin: left;
+  margin-right: var(--spacing);
+  margin-left: 0;
+  @media (min-width: $bp3) {
+    max-width: var(--fmw);
+    margin-left: var(--fms);
+    margin-right: var(--spacing);
+    transform-origin: right;
+  }
+}
+
+/// Styles for right-aligned figures
+/// @group main
+/// @see {mixin} figure
+///  - General styles for figures
+
+@mixin figure-right {
+  float: right;
+  transform-origin: right;
+  margin-left: var(--spacing);
+  margin-right: 0;
+  @media (min-width: $bp3) {
+    max-width: var(--fmw);
+    margin-right: var(--fms);
+    margin-left: var(--spacing);
+    transform-origin: left;
+  }
+}
+

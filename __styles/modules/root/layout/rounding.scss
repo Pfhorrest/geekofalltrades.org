@@ -15,6 +15,6 @@
   /* Calculated rounding variables */
   --roundingRel: calc(var(--spacingRel) * var(--roundingFactor));
   --roundingAbs: calc(var(--spacingAbs) * var(--roundingFactor));
-  $roundingCalc: if($roundingType == "Rel", --roundingRel, --roundingAbs);
+  $roundingCalc: if(sass($roundingType == "Rel"): --roundingRel; else: --roundingAbs);
   --rounding: var(#{$roundingCalc});
 }

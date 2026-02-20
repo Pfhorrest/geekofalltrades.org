@@ -15,6 +15,6 @@
     calc(100vw / 60),
     calc(var(--spacingFactor) * 1rem)
   );
-  $spacingCalc: if($spacingType == "Rel", --spacingRel, --spacingAbs);
+  $spacingCalc: if(sass($spacingType == "Rel"): --spacingRel; else: --spacingAbs);
   --spacing: var(#{$spacingCalc});
 }
