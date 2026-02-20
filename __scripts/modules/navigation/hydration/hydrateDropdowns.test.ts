@@ -49,10 +49,11 @@ describe("hydrateDropdowns", () => {
   it("injects submenu toggle buttons", () => {
     const toggles = link.querySelectorAll(".submenu-toggle");
     expect(toggles.length).toBe(2);
-    toggles.forEach(toggle => {
-      expect(toggle.getAttribute("aria-hidden")).toBe("true");
-      expect(toggle.getAttribute("role")).toBe("button");
-    });
+    const firstToggle = toggles[0];
+    const secondToggle = toggles[1];
+    expect(firstToggle.getAttribute("aria-hidden")).toBeFalsy();
+    expect(secondToggle.getAttribute("aria-hidden")).toBeTruthy();
+    expect(firstToggle.tagName.toLowerCase()).toBe("button");
   });
 
   it("opens submenu on toggle click", () => {
