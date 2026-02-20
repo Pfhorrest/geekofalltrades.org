@@ -1,0 +1,20 @@
+
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["__scripts/modules"],
+  "entryPointStrategy": "expand",
+  "out": "_docs/ts",
+  "exclude": ["**/*.js", "**/*.d.ts", "**/*.test.ts"],
+  "readme": "none",
+  "highlightLanguages": [
+    "apache",
+    "php",
+    "scss",
+    "python",
+    "typescript",
+    "javascript",
+    "bash",
+    "css",
+    "json"
+  ],
+}

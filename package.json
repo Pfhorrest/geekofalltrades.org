@@ -23,7 +23,7 @@
     "test": "npx npm-run-all --parallel test:*",
     "document:php": "./phpDocumentor.phar",
     "document:sass": "npx sassdoc __styles -d _docs/sass",
-    "document:ts": "npx typedoc __scripts/scripts.ts --out _docs/ts",
+    "document:ts": "npx typedoc",
     "document": "npm run document:sass && npm run document:ts && npm run document:php",
     "deploy:stage:code": "ssh goat \"cd ~/dev.geekofalltrades.org && git pull origin main\"",
     "deploy:stage:photos": "rsync -azh --progress --partial --delete --exclude 'process_photos/' photos/ goat:~/dev.geekofalltrades.org/photos/",
