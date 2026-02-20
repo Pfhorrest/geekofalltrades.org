@@ -3,10 +3,14 @@
 
 /// Styling details for the main heading at small viewport widths
 /// @group header
-/// @require {Length} $bp1 - Fist breakpoint value
-/// @require {mixin} prefers-color-scheme - DRY color scheme helper
-/// @see {mixin} h1 - General styles for the main heading
-/// @see {mixin} h1-large - Overrides for larger viewport widths
+/// @require {Length} $bp1
+///  - Fist breakpoint value
+/// @require {mixin} prefers-color-scheme
+///  - DRY color scheme helper
+/// @see {mixin} h1
+///  - General styles for the main heading
+/// @see {mixin} h1-large
+///  - Overrides for larger viewport widths
 
 @mixin h1-small {
   /* Places the logo in a ::before pseudo-element */

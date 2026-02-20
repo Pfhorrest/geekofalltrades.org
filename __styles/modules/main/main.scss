@@ -9,15 +9,24 @@
 
 /// Styles for the main section
 /// @group main
-/// @require {Length} $bp1 - First breakpoint value
-/// @require {Length} $bp4 - Fourth breakpoint value
-/// @require {Calc} $mfs - Main font size
-/// @require {function} rfs - Function for responsive font sizing
-/// @require {mixin} headings - Styles for headings
-/// @require {mixin} main-elements - Styles for other elements
-/// @require {mixin} section - Styles for sections
-/// @require {mixin} toggle-all-sections-controls - Styles for the toggle-all-sections controls
-/// @require {mixin} optional-motion - DRY optional motion helper
+/// @require {Length} $bp1
+///  - First breakpoint value
+/// @require {Length} $bp4
+///  - Fourth breakpoint value
+/// @require {Calc} $mfs
+///  - Main font size
+/// @require {function} rfs
+///  - Function for responsive font sizing
+/// @require {mixin} headings
+///  - Styles for headings
+/// @require {mixin} main-elements
+///  - Styles for other elements
+/// @require {mixin} section
+///  - Styles for sections
+/// @require {mixin} toggle-all-sections-controls
+///  - Styles for the toggle-all-sections controls
+/// @require {mixin} optional-motion
+///  - DRY optional motion helper
 
 @mixin main {
   main {

@@ -2,9 +2,12 @@
 
 /// Styles for dropdown submenus
 /// @group header
-/// @require $bp2 - Second breakpoint value
-/// @see {mixin} menu-item-with-submenu - Styles for menu items with submenus
-/// @see {mixin} menu-item - General styles for menu items
+/// @require $bp2
+///  - Second breakpoint value
+/// @see {mixin} menu-item-with-submenu
+///  - Styles for menu items with submenus
+/// @see {mixin} menu-item
+///  - General styles for menu items
 
 @mixin submenu {
   ul {

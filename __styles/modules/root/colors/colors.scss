@@ -3,9 +3,12 @@
 
 /// Color variables
 /// @group colors
-/// @require {mixin} colors-calc - Calculated secondary color variables
-/// @require {mixin} colors-header-footer - Color variables for the header and footer
-/// @see {mixin} colors-config - Configurable primary color variables
+/// @require {mixin} colors-calc
+///  - Calculated secondary color variables
+/// @require {mixin} colors-header-footer
+///  - Color variables for the header and footer
+/// @see {mixin} colors-config
+///  - Configurable primary color variables
 
 @mixin colors {
   /* General site-wide color variables */

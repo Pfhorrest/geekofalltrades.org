@@ -2,9 +2,12 @@
 
 /// Styles for menu items that have submenus
 /// @group header
-/// @require {mixin} submenu - Styles for submenus
-/// @see {mixin} menu-item-active - Styles for active menu items
-/// @see {mixin} menu-item - General styles for menu items
+/// @require {mixin} submenu
+///  - Styles for submenus
+/// @see {mixin} menu-item-active
+///  - Styles for active menu items
+/// @see {mixin} menu-item
+///  - General styles for menu items
 
 @mixin menu-item-with-submenu {
   /* For the dropdown menu arrows */

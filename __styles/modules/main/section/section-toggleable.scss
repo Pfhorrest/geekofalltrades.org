@@ -2,8 +2,10 @@
 
 /// Styles for sections that can be toggled (collapsed and expanded)
 /// @group main
-/// @see {mixin} section - General styles for sections
-/// @require {mixin} optional-motion - DRY optional motion helper
+/// @see {mixin} section
+///  - General styles for sections
+/// @require {mixin} optional-motion
+///  - DRY optional motion helper
 
 @mixin section-toggleable {
   &.toggleable {

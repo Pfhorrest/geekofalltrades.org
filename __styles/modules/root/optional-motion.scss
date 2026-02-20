@@ -8,7 +8,8 @@
 /// in either the html or the element
 /// regardless of browser preference,
 /// without having to duplicate code.
-/// @require {Length} $bp2 - Second breakpoint value
+/// @require {Length} $bp2
+///  - Second breakpoint value
 
 @mixin optional-motion() {
   @media (prefers-reduced-motion: no-preference) {

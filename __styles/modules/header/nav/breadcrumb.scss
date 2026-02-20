@@ -2,9 +2,12 @@
 
 /// Styles for breadcrumbs
 /// @group header
-/// @require {Length} $bp2 - Second breakpoint value
-/// @see {mixin} menu - Styles for menus
-/// @see {mixin} nav - General styles for navigation
+/// @require {Length} $bp2
+///  - Second breakpoint value
+/// @see {mixin} menu
+///  - Styles for menus
+/// @see {mixin} nav
+///  - General styles for navigation
 
 @mixin breadcrumb {
   > a {

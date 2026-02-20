@@ -3,9 +3,12 @@
 
 /// Styles for gallery items
 /// @group main
-/// @require {mixin} prefers-color-scheme - DRY color scheme helper
-/// @require {mixin} optional-motion - DRY optional motion helper
-/// @see {mixin} gallery - General styles for galleries
+/// @require {mixin} prefers-color-scheme
+///  - DRY color scheme helper
+/// @require {mixin} optional-motion
+///  - DRY optional motion helper
+/// @see {mixin} gallery
+///  - General styles for galleries
 
 @mixin gallery-item {
   .item {

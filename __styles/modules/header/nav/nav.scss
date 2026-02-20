@@ -4,9 +4,12 @@
 
 /// Styles for navigation
 /// @group header
-/// @require {Length} $bp2 - Second breakpoint value
-/// @require {mixin} breadcrumb - Styles for breadcrumbs
-/// @require {mixin} menu - Styles for menus
+/// @require {Length} $bp2
+///  - Second breakpoint value
+/// @require {mixin} breadcrumb
+///  - Styles for breadcrumbs
+/// @require {mixin} menu
+///  - Styles for menus
 
 @mixin nav {
   nav {

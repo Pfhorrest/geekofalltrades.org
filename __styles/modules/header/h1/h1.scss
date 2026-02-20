@@ -3,9 +3,12 @@
 
 /// Styles for the main heading
 /// @group header
-/// @require {mixin} h1-small - Details for small viewport widths
-/// @require {mixin} h1-large - Overrides for large viewport widths
-/// @see {mixin} colors-header-footer - Color variables for the header and footer
+/// @require {mixin} h1-small
+///  - Details for small viewport widths
+/// @require {mixin} h1-large
+///  - Overrides for large viewport widths
+/// @see {mixin} colors-header-footer
+///  - Color variables for the header and footer
 
 @mixin h1 {
   h1 {

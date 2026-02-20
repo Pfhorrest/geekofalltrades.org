@@ -4,11 +4,16 @@
 
 /// Styles for figures
 /// @group main
-/// @require {Length} $bp2 - Second breakpoint value
-/// @require {Length} $bp3 - Third breakpoint value
-/// @require {mixin} prefers-color-scheme - DRY color scheme helper
-/// @require {mixin} optional-motion - DRY optional motion helper
-/// @see {mixing} section - General styles for sections
+/// @require {Length} $bp2
+///  - Second breakpoint value
+/// @require {Length} $bp3
+///  - Third breakpoint value
+/// @require {mixin} prefers-color-scheme
+///  - DRY color scheme helper
+/// @require {mixin} optional-motion
+///  - DRY optional motion helper
+/// @see {mixing} section
+///  - General styles for sections
 
 @mixin figure-left {
   float: left;

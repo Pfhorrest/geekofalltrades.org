@@ -4,9 +4,12 @@
 
 /// Styles for the header
 /// @group header
-/// @require {Length} $bp2 - Second breakpoint value
-/// @require {mixin} h1 - Styles for the main heading
-/// @require {mixin} nav - Styles for navigation
+/// @require {Length} $bp2
+///  - Second breakpoint value
+/// @require {mixin} h1
+///  - Styles for the main heading
+/// @require {mixin} nav
+///  - Styles for navigation
 
 @mixin header {
   header {

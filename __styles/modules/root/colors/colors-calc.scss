@@ -3,10 +3,14 @@
 
 /// Calculated secondary color variables
 /// @group colors
-/// @require {mixin} colors-config - Configurable primary color variables
-/// @require {mixin} prefers-color-scheme - DRY color scheme helper
-/// @see {mixin} colors-header-footer - Color variables for the header and footer
-/// @see {mixin} colors - General color variable styles
+/// @require {mixin} colors-config
+///  - Configurable primary color variables
+/// @require {mixin} prefers-color-scheme
+///  - DRY color scheme helper
+/// @see {mixin} colors-header-footer
+///  - Color variables for the header and footer
+/// @see {mixin} colors
+///  - General color variable styles
 
 @mixin colors-calc {
   @include colors-config;

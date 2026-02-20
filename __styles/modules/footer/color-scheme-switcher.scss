@@ -3,9 +3,12 @@
 
 /// Styles for the color-scheme-switcher controls
 /// @group main
-/// @require {Length} $bp2 - Second breakpoint value
-/// @require {mixin} optional-motion - DRY optional motion helper
-/// @see {mixin} colors - General color variable styles
+/// @require {Length} $bp2
+///  - Second breakpoint value
+/// @require {mixin} optional-motion
+///  - DRY optional motion helper
+/// @see {mixin} colors
+///  - General color variable styles
 
 @mixin color-scheme-switcher {
   .color-scheme-switcher {

@@ -3,11 +3,16 @@
 
 /// Styles for the toggle-all-sections controls
 /// @group main
-/// @require {Length} $bp2 - Second breakpoint value
-/// @require {mixin} optional-motion - DRY optional motion helper
-/// @see {mixin} section - General styles for sections
-/// @see {mixin} section-toggleable - Styles for sections that can be toggled
-/// @see {mixin} main - General styles for the main section
+/// @require {Length} $bp2
+///  - Second breakpoint value
+/// @require {mixin} optional-motion
+///  - DRY optional motion helper
+/// @see {mixin} section
+///  - General styles for sections
+/// @see {mixin} section-toggleable
+///  - Styles for sections that can be toggled
+/// @see {mixin} main
+///  - General styles for the main section
 
 @mixin toggle-all-sections-controls {
   .toggleAllControls {

@@ -2,12 +2,18 @@
 
 /// Colors variables for header and footer
 /// @group colors
-/// @require {mixin} prefers-color-scheme - DRY color scheme helper
-/// @see {mixin} h1 - Styles for h1 in header
-/// @see {mixin} footer - Styles for footer
-/// @see {mixin} colors-config - Configurable primary color variables
-/// @see {mixin} colors-calc - Calculated secondary color variables
-/// @see {mixin} colors - General color variable styles
+/// @require {mixin} prefers-color-scheme
+///  - DRY color scheme helper
+/// @see {mixin} h1
+///  - Styles for h1 in header
+/// @see {mixin} footer
+///  - Styles for footer
+/// @see {mixin} colors-config
+///  - Configurable primary color variables
+/// @see {mixin} colors-calc
+///  - Calculated secondary color variables
+/// @see {mixin} colors
+///  - General color variable styles
 
 @mixin colors-header-footer {
   --skyHue3: 0;

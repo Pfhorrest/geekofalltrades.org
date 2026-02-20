@@ -7,12 +7,18 @@
 
 /// Styles for sections
 /// @group main
-/// @require {mixin} section-toggleable - Styles for sections that can be toggled
-/// @require {mixin} section-animation - Styles for section animations
-/// @require {mixin} figure - Styles for figures
-/// @require {mixin} duo - Styles for duos of sections side by side when possible
-/// @require {mixin} gallery - Styles for galleries
-/// @require {mixin} optional-motion - DRY optional motion helper
+/// @require {mixin} section-toggleable
+///  - Styles for sections that can be toggled
+/// @require {mixin} section-animation
+///  - Styles for section animations
+/// @require {mixin} figure
+///  - Styles for figures
+/// @require {mixin} duo
+///  - Styles for duos of sections side by side when possible
+/// @require {mixin} gallery
+///  - Styles for galleries
+/// @require {mixin} optional-motion
+///  - DRY optional motion helper
 
 @mixin section {
   section {

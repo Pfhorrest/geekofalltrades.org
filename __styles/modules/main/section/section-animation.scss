@@ -2,8 +2,10 @@
 
 /// Styles for section animations
 /// @group main
-/// @require {mixin} optional-motion - DRY optional motion helper
-/// @see {mixin} section - General styles for sections
+/// @require {mixin} optional-motion
+///  - DRY optional motion helper
+/// @see {mixin} section
+///  - General styles for sections
 
 @mixin section-animation {
   @include optional-motion() {

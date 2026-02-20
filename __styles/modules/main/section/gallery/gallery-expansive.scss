@@ -2,8 +2,10 @@
 
 /// Styles for galleries that expand beyond the main section width
 /// @group main
-/// @require {Length} $bp3 - Third breakpoint value
-/// @see {mixin} gallery - General styles for galleries
+/// @require {Length} $bp3
+///  - Third breakpoint value
+/// @see {mixin} gallery
+///  - General styles for galleries
 
 @mixin gallery-expansive {
   &.expansive {

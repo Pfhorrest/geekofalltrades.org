@@ -3,13 +3,20 @@
 
 /// Styles for headings
 /// @group main
-/// @require {function} rfs - Responsive font size generator
-/// @require {Calc}$mfs - Main font size
-/// @require {Length} $bp1 - First breakpoint value
-/// @require {Length} $bp4 - Fourth breakpoint value
-/// @see {mixin} main-elements - Styles for other elements
-/// @see {mixin} section - Styles for sections
-/// @see {mixin} main - General styles for main
+/// @require {function} rfs
+///  - Responsive font size generator
+/// @require {Calc}$mfs
+///  - Main font size
+/// @require {Length} $bp1
+///  - First breakpoint value
+/// @require {Length} $bp4
+///  - Fourth breakpoint value
+/// @see {mixin} main-elements
+///  - Styles for other elements
+/// @see {mixin} section
+///  - Styles for sections
+/// @see {mixin} main
+///  - General styles for main
 
 @mixin headings {
   h2,

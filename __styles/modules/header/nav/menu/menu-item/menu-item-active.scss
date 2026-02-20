@@ -1,7 +1,9 @@
 /// Styles for active menu items
 /// @group header
-/// @see {mixin} menu-item - Styles for menu items
-/// @see {mixin} menu-item-with-submenu - Styles for menu items with submenus
+/// @see {mixin} menu-item
+///  - Styles for menu items
+/// @see {mixin} menu-item-with-submenu
+///  - Styles for menu items with submenus
 
 @mixin menu-item-active {
   &.active, &:not(.submenu):has(ul):hover {
