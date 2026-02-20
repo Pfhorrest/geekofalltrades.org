@@ -1,6 +1,5 @@
 import { slideUp, getDuration } from "../../effects/effects";
 /**
- * @description
  * Closes all dropdown menus.
  */
 export const closeDropdowns = () => {
