@@ -2,6 +2,11 @@
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests for styles_for_crumb
+ * @covers styles_for_crumb
+ */
+
 final class RenderStylesForCrumbTest extends TestCaseWithTmpRoot
 {
     protected function setUp(): void

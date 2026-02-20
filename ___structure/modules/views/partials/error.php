@@ -4,7 +4,6 @@
      * (to use for link back to "parent directory" in error message).
      * 
      * @var array
-     * @uses $segments
      */
     $parentSegments = $segments;
     array_pop($parentSegments);

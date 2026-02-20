@@ -2,6 +2,11 @@
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests for title_resolution
+ * @covers title_resolution
+ */
+
 final class TitleResolutionTest extends TestCase
 {
     public function test_query_string_wins(): void

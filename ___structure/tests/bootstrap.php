@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Always load Composer autoloader first
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-// Project root
+/**
+ * The root of the project
+ * @var string
+ */
 define('PROJECT_ROOT', realpath(__DIR__ . '/..'));
 
 // Load app code

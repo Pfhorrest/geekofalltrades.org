@@ -1,6 +1,11 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests for images_discovered
+ * @covers images_discovered
+ */
+
 final class ImagesDiscoveredTest extends TestCaseWithTmpRoot
 {
     protected function setUp(): void

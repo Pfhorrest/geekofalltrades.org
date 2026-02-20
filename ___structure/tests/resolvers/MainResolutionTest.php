@@ -2,6 +2,11 @@
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests for main_resolution
+ * @covers main_resolution
+ */
+
 final class MainResolutionTest extends TestCaseWithTmpRoot
 {
     public function test_main_php_file_takes_precedence(): void

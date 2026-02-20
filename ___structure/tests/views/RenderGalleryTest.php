@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
-
+/**
+ * Tests for render_gallery
+ * @covers render_gallery
+ */
 
 final class RenderGalleryTest extends TestCaseWithTmpRoot
 {

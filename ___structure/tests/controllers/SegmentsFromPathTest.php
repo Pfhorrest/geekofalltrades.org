@@ -2,6 +2,11 @@
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests for segments_from_path
+ * @covers segments_from_path
+ */
+
 final class SegmentsFromPathTest extends TestCase
 {
     public function test_root_path_has_no_segments(): void

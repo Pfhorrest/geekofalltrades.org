@@ -2,6 +2,11 @@
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests for path_from_url
+ * @covers path_from_url
+ */
+
 final class PathFromURLTest extends TestCase
 {
     public function test_root_path(): void

@@ -2,6 +2,11 @@
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests for head_for_crumb
+ * @covers head_for_crumb
+ */
+
 final class HeadForCrumbTest extends TestCaseWithTmpRoot
 {
     public function test_returns_empty_array_when_head_missing(): void

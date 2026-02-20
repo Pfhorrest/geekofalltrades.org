@@ -2,6 +2,10 @@
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests for lightbox
+ */
+
 class TestLightbox extends TestCase
 {
     private function renderLightbox(array $vars): string

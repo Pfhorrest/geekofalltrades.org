@@ -2,6 +2,11 @@
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests for root_determination
+ * @covers root_determination
+ */
+
 final class RootDeterminationTest extends TestCase
 {
     public function test_cli_server_uses_parent_directory(): void

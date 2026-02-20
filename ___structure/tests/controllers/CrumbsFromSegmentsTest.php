@@ -2,6 +2,11 @@
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests for crumbs_from_segments
+ * @covers crumbs_from_segments
+ */
+
 final class CrumbsFromSegmentsTest extends TestCase
 {
     public function test_simple_segments(): void

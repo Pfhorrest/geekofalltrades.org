@@ -2,6 +2,10 @@
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Extends PHPUnit's TestCase to set up a temporary root directory for testing
+ */
+
 abstract class TestCaseWithTmpRoot extends TestCase
 {
 
