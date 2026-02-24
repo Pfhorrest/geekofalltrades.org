@@ -315,6 +315,9 @@
 											Fact-norm distinction
 											<br />
 											<br />
+											Two different, orthogonal orderings on the state space: what state will come after what other, the arrow of time; and what state should come after what other, the arrow of progress.
+											<br />
+											<br />
 											Plato's demiurge/phytourge, "artificial"/"natural", distinction.
 											"It was made to do this" vs "it did this on its own".
 											<ul>
