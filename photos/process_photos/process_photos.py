@@ -186,7 +186,7 @@ def process_photos():
                     # Try to build from children if month/year folder
                     subimages = []
                     tqdm.write(f"Building gallery from children of {relpath}:")
-                    for sub in tqdm(sorted(dirpath.iterdir()), desc=f"Child folders in {relpath}", unit="folder", leave=False):
+                    for sub in tqdm(sorted(dirpath.iterdir(), reverse=True), desc=f"Child folders in {relpath}", unit="folder", leave=False):
                         if not sub.is_dir() or not sub.name.isdigit():
                             continue
                         sub_main = sub / "__main.php"
