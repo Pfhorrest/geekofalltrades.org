@@ -39,9 +39,13 @@ def load_model(model_name):
     Returns:
         tuple: A tuple containing the processor and model.
     """
+    # Silence the 'Could not find image processor' log message
+    from transformers import logging as transformers_logging
+    transformers_logging.set_verbosity_error()
+
     if model_name not in MODEL_CACHE:
         processor = AutoImageProcessor.from_pretrained(model_name, use_fast=True)
-        model = AutoModelForImageClassification.from_pretrained(model_name, use_safetensors=True)
+        model = AutoModelForImageClassification.from_pretrained(model_name)
         MODEL_CACHE[model_name] = (processor, model)
     return MODEL_CACHE[model_name]
 

@@ -1,8 +1,13 @@
 Pillow
 tqdm
 piexif
-transformers
-torch
 numpy<2
 shapely
 pytest
+requests
+
+# Use 4.40.2 globally to ensure compatibility with Torch 2.2.2 on Intel Macs
+# while still working perfectly on Apple Silicon/Linux
+transformers==4.40.2
+torch==2.2.2; sys_platform == 'darwin' and platform_machine == 'x86_64'
+torch>=2.2.2; sys_platform != 'darwin' or platform_machine != 'x86_64'

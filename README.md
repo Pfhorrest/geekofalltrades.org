@@ -276,6 +276,11 @@ The `/photos/` directory includes an automated photo gallery generation system (
 cd photos/process_photos
 python -m process_photos
 ```
+or for short
+```bash
+npm run process:photos
+```
+
 
 The script:
 1. Creates thumbnails for all images (configurable size)
@@ -288,6 +293,22 @@ The script:
 - `THUMB_SIZE`: Thumbnail dimensions
 - `subimage_threshold`: Minimum images before creating "more" links
 - Image extensions and processing options
+
+**Setup:**
+It is recommended to use a venv to locally contain the exact Python version and dependences needed for the photo-processing script:
+
+```bash
+cd photos/process_photos
+rm -rf .venv # If a venv is already set up and may be broken
+python3.11 -m venv .venv
+. .venv/bin/activate
+pip install --upgrade pip
+pip install -r ./requirements.txt
+```
+or for short
+```bash
+npm run process:photos:setup
+```
 
 ## Key Modules
 
@@ -629,6 +650,7 @@ def test_my_function():
 ## npm Scripts Reference
 
 ```bash
+npm run process:photos:setup           # Sets up venv and dependencies for photo-processing script
 npm run process:photos                 # Run photo-processing script in a venv in /photos
 
 
