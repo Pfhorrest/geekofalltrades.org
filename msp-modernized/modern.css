@@ -4,17 +4,15 @@
  * Companion to modern.js. Add to index.html <head>:
  *   <link rel="stylesheet" href="modern.css" />
  *
- * All rules are scoped to #msp-* IDs or [data-msp-*] attributes to avoid
- * touching the frameset layout on desktop.
+ * All rules are scoped to #msp-* IDs or [data-msp-*] attributes so they
+ * cannot bleed into the frameset layout on desktop.
  */
 
-/* ─── x-frameset: needs display:block so display:none can hide it ─────────── */
+/* ── x-frameset needs display:block so display:none can hide it ───────────── */
 
-x-frameset {
-  display: block;
-}
+x-frameset { display: block; }
 
-/* ─── Shell layout ─────────────────────────────────────────────────────────── */
+/* ── Shell layout ─────────────────────────────────────────────────────────── */
 
 #msp-body {
   margin: 0;
@@ -25,13 +23,11 @@ x-frameset {
   box-sizing: border-box;
 }
 
-#msp-body *,
-#msp-body *::before,
-#msp-body *::after {
+#msp-body *, #msp-body *::before, #msp-body *::after {
   box-sizing: inherit;
 }
 
-/* ─── Header ───────────────────────────────────────────────────────────────── */
+/* ── Header ───────────────────────────────────────────────────────────────── */
 
 #msp-header {
   position: sticky;
@@ -55,10 +51,9 @@ x-frameset {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-right: .75em;
 }
 
-/* ─── Hamburger button (right side, green) ─────────────────────────────────── */
+/* ── Hamburger button (right side, green) ─────────────────────────────────── */
 
 #msp-hamburger {
   flex-shrink: 0;
@@ -68,10 +63,10 @@ x-frameset {
   width: 2em;
   height: 1.4em;
   padding: 0;
+  margin-left: .75em;
   background: none;
   border: none;
   cursor: pointer;
-  margin-left: .75em;
 }
 
 #msp-hamburger span {
@@ -93,30 +88,30 @@ x-frameset {
   transform: translateY(calc(-0.7em + 1px)) rotate(-45deg);
 }
 
-/* ─── Nav drawer — full width, drops down from behind header ──────────────── */
+/* ── Nav drawer — full width, drops down from behind the header ───────────── */
 
 #msp-nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  padding-top: 2.8em;      /* sit below the sticky header */
+  padding-top: 2.8em;       /* clear the sticky header */
   max-height: 100vh;
-  background: #000;
-  border-bottom: 1px solid #333;
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 90;             /* behind header (z-index:100) */
+  -webkit-overflow-scrolling: touch;
+  background: #000;
+  border-bottom: 1px solid #333;
+  z-index: 90;              /* behind header at z-index:100 */
   transform: translateY(-100%);
   transition: transform .25s cubic-bezier(.4,0,.2,1);
-  -webkit-overflow-scrolling: touch;
 }
 
 #msp-nav.msp-nav--open {
   transform: translateY(0);
 }
 
-/* Dim content behind open nav */
+/* Dim content behind the open nav */
 #msp-nav.msp-nav--open ~ #msp-main::before {
   content: "";
   position: fixed;
@@ -126,17 +121,11 @@ x-frameset {
   pointer-events: none;
 }
 
-/* ─── Nav content — minimal intervention ───────────────────────────────────── */
-/*
- * Let the fetched nav page's own styles render as-is. The browser's UA
- * stylesheet will apply its default link colors (the same ones the live site
- * shows) as long as we don't impose anything that overrides them.
- * We only enforce overflow safety.
- */
+/* ── Nav content — minimal intervention, let the page's own styles show ───── */
 
 #msp-nav-content {
   padding: 8px 8px 1em; /* mirror the browser's default 8px body margin */
-  /* background and color set dynamically from page's <body> attributes */
+  /* background, color, --msp-link, --msp-vlink set dynamically from page's <body> attrs */
 }
 
 #msp-nav-content img {
@@ -144,7 +133,7 @@ x-frameset {
   height: auto;
 }
 
-/* ─── Main content area ────────────────────────────────────────────────────── */
+/* ── Main content area ────────────────────────────────────────────────────── */
 
 #msp-main {
   flex: 1;
@@ -157,40 +146,53 @@ x-frameset {
   max-width: 100%;
   overflow-x: hidden;
   padding: 8px; /* mirror the browser's default 8px body margin */
-  /* background and color set dynamically from page's <body> attributes */
+  /* background, color, --msp-link, --msp-vlink set dynamically from page's <body> attrs */
 }
 
-/* ─── Content from fetched pages ([data-msp-frame] wrapper) ───────────────── */
-
-/*
- * Core principle: respect the site's own styling. Intervene only where
- * necessary to prevent horizontal overflow on narrow viewports.
- */
+/* ── Fetched page content ─────────────────────────────────────────────────── */
 
 [data-msp-frame] {
   max-width: 100%;
   overflow-x: hidden;
 }
 
-/*
- * Tables scroll horizontally inside their wrapper div rather than blowing
- * out the viewport. We expand percentage-width tables to fill the available
- * width — on the live site a 60%-wide table inside a 75%-wide frame looks
- * fine, but in our full-width container it looks too narrow, so we treat
- * the container as the new 100% reference.
- */
+/* Scrollable table wrapper */
 [data-msp-scroll] {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   max-width: 100%;
 }
 
+/* Expand percentage-width tables to fill our container — on the live site
+ * they sit inside a 75%-wide frame column, so their % is relative to that;
+ * in our full-width container we override to use the full available width. */
 [data-msp-scroll] table {
-  width: 100% !important;  /* override percentage widths relative to old frame */
+  width: 100% !important;
   max-width: 100%;
 }
 
-/* Media elements: cap at container width, preserve aspect ratio */
+/* Blockquotes inside tables have decorative margins that can push pre/code
+ * blocks wider than the scroll wrapper. Remove them. */
+[data-msp-scroll] blockquote {
+  margin-inline: 0;
+}
+
+/* Pre blocks inside tables contribute their natural width to the table's
+ * intrinsic width calculation, blowing out the layout even when overflow
+ * is set. width:0 removes them from that calculation entirely; min-width:100%
+ * then stretches them back to fill available space after layout is resolved.
+ * The pre scrolls horizontally as intended, without forcing the table wider. */
+[data-msp-scroll] pre,
+[data-msp-scroll] xmp,
+[data-msp-scroll] [data-msp-pre] {
+  width: 0;
+  min-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+  box-sizing: border-box;
+}
+
+/* Media: cap at container width, preserve aspect ratio */
 [data-msp-frame] img,
 [data-msp-frame] video,
 [data-msp-frame] iframe,
@@ -203,7 +205,7 @@ x-frameset {
   height: auto;
 }
 
-/* Pre / xmp: horizontal scroll, preserve whitespace, don't force block */
+/* Pre / xmp: horizontal scroll */
 [data-msp-pre],
 [data-msp-frame] pre {
   overflow-x: auto;
@@ -211,56 +213,29 @@ x-frameset {
   max-width: 100%;
 }
 
-/*
- * <code> elements: the live site uses inline <code> with nested <img> and <a>.
- * Do NOT force display:block or any layout change — leave code inline.
- * The live site also does not set link colors on these, so we don't either.
- */
-
-/*
- * Link color fix: the browser's UA stylesheet default for unvisited links is
- * roughly rgb(0,0,238) and for visited rgb(85,0,85), but some browsers inherit
- * color from the parent when a color is set on an ancestor, overriding the UA
- * default. We reset to the UA-equivalent values only on the fetched content
- * wrapper so links look like they do on the live site without a stylesheet.
- *
- * These values match what major browsers use as their default link colors and
- * correspond to what the MSP nav shows in normal browsing.
- */
-/* Link colors: use values from the page's own link/vlink body attributes
- * (lifted to CSS custom properties by fetchPage), with sensible fallbacks. */
+/* Link colors: use values lifted from the page's own <body link/vlink> attrs
+ * (set as CSS custom properties by applyBodyStyles), with fallbacks matching
+ * what the MSP nav uses on the live site. */
 [data-msp-frame] a:link    { color: var(--msp-link,  #000055); }
 [data-msp-frame] a:visited { color: var(--msp-vlink, #550000); }
 [data-msp-frame] a          { text-decoration: none; }
+[data-msp-frame] a *        { text-decoration: none; }
 
-/*
- * table color:inherit fix — some browsers don't inherit body text color into
- * table cells by default (historical quirk). Force inheritance so dark-bg
- * pages don't end up with black text on black table cells.
- */
+/* Table cells don't inherit color by default in quirks mode — force it
+ * so dark-background pages don't get black text on black table cells. */
 [data-msp-frame] table,
 [data-msp-frame] td,
 [data-msp-frame] th {
   color: inherit;
 }
 
-/* Prevent text-decoration propagating into inline children of anchors */
-[data-msp-frame] a * {
-  text-decoration: none;
-}
-
-/* ─── Scrollbar styling ─────────────────────────────────────────────────────── */
+/* ── Scrollbars ───────────────────────────────────────────────────────────── */
 
 #msp-nav::-webkit-scrollbar,
-#msp-main::-webkit-scrollbar {
-  width: 4px;
-}
+#msp-main::-webkit-scrollbar { width: 4px; }
+
 #msp-nav::-webkit-scrollbar-track,
-#msp-main::-webkit-scrollbar-track {
-  background: #000;
-}
+#msp-main::-webkit-scrollbar-track { background: #000; }
+
 #msp-nav::-webkit-scrollbar-thumb,
-#msp-main::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 2px;
-}
+#msp-main::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }

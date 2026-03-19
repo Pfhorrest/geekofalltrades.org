@@ -2,17 +2,18 @@
 /**
  * msp-proxy.php — CORS proxy for MSP staging
  *
- * REMOVE THIS FILE before deploying to the live MSP site (or just leave it,
- * it's harmless there since modern.js only calls it when MSP_CONTENT_ROOT
- * is set, which is only in the staging config).
+ * STAGING ONLY — remove this file (or just the script tag in msp-staging-config.js)
+ * before deploying to the live MSP site. On the live server, modern.js makes
+ * only same-origin requests and needs no proxy.
  *
- * Usage (set in msp-staging-config.js):
- *   window.MSP_PROXY = "/msp-modernized/msp-proxy.php";
- *
+ * Usage: set window.MSP_PROXY = "/msp-modernized/msp-proxy.php" in msp-staging-config.js.
  * Requests arrive as: msp-proxy.php?url=mainpage.html
- * The proxy prepends MSP_ORIGIN and fetches it server-side, returning the
- * response body with the correct Content-Type so fetch() in modern.js can
- * read it without CORS errors.
+ *
+ * The proxy fetches from MSP_ORIGIN server-side so fetch() in modern.js
+ * can read the response without hitting CORS restrictions.
+ *
+ * Binary media (video, audio) is redirected directly to the upstream URL
+ * rather than being streamed through PHP.
  */
 
 define("MSP_ORIGIN", "https://marathon.bungie.org/story/");
@@ -20,21 +21,14 @@ define("MSP_ORIGIN", "https://marathon.bungie.org/story/");
 // ── Validate the requested path ───────────────────────────────────────────────
 
 $path = isset($_GET["url"]) ? $_GET["url"] : "";
-
-// Strip any leading slashes or attempts to escape the story directory
 $path = ltrim($path, "/");
 
-// Strip full MSP origin prefix if the client sent an absolute URL —
-// rewriteFrameDoc may pass absolute URLs that proxyHref didn't fully reduce.
-$origin = MSP_ORIGIN;
-if (strpos($path, $origin) === 0) {
-    $path = substr($path, strlen($origin));
-}
-
-// Also handle https://marathon.bungie.org/ without the /story/ path
-$host = "https://marathon.bungie.org/";
-if (strpos($path, $host) === 0) {
-    $path = substr($path, strlen($host));
+// Strip absolute URL prefixes if the client sent one
+foreach ([MSP_ORIGIN, "https://marathon.bungie.org/"] as $prefix) {
+    if (strpos($path, $prefix) === 0) {
+        $path = substr($path, strlen($prefix));
+        break;
+    }
 }
 
 // Reject remaining absolute URLs, empty paths, and traversal attempts
@@ -47,10 +41,9 @@ if (empty($path) || preg_match('/^https?:\/\//i', $path) || strpos($path, "..") 
 $upstream = MSP_ORIGIN . $path;
 
 // ── Redirect binary media directly to upstream ────────────────────────────────
-// Proxying large binary files (video, audio) through PHP is wasteful and likely
-// to hit memory limits. The browser can load these cross-origin directly — only
-// JS fetch() is blocked by CORS. So for media file extensions, issue a redirect
-// to the live URL and let the browser fetch it natively.
+// The browser can load media cross-origin natively; only JS fetch() is blocked.
+// Redirecting avoids streaming large files through PHP.
+
 $media_exts = ["mp4","webm","ogv","ogg","mp3","wav","flac","mov","avi","mkv"];
 $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
 if (in_array($ext, $media_exts)) {
@@ -72,8 +65,8 @@ $ctx = stream_context_create([
         ]),
     ],
     "ssl" => [
-        // Some local PHP installs don't have CA bundles configured.
-        // For a local dev proxy this is acceptable; remove for production use.
+        // Local PHP installs often lack CA bundle config; disable verification
+        // for this dev-only proxy (do not use this in production).
         "verify_peer"      => false,
         "verify_peer_name" => false,
     ],
@@ -82,7 +75,6 @@ $ctx = stream_context_create([
 $body = @file_get_contents($upstream, false, $ctx);
 
 if ($body === false) {
-    // Provide a more informative error for debugging
     $err = error_get_last();
     http_response_code(502);
     header("Content-Type: text/plain");

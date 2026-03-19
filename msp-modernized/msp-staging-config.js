@@ -1,15 +1,20 @@
-/* msp-staging-config.js
+/* msp-staging-config.js — STAGING ONLY
  *
  * REMOVE THIS SCRIPT TAG before deploying to the live MSP site.
  *
- * Tells modern.js to fetch all frame content from the live MSP origin
- * instead of the current (staging/dev) origin, so you can test the
- * modernization shim without mirroring the entire site locally.
+ * Loads this script BEFORE modern.js in index.html:
+ *   <script src="msp-staging-config.js"></script>
+ *   <script src="modern.js"></script>
  *
- * Must be loaded BEFORE modern.js in the <head>.
+ * Tells modern.js to pull content from the live MSP server rather than
+ * the local/staging origin, so you can demo the modernization shim without
+ * mirroring the entire MSP site locally.
+ *
+ * Your staging index.html <frame src> attributes should point directly at
+ * the live MSP pages (e.g. src="https://marathon.bungie.org/story/mainpage.html")
+ * so that desktop mode loads frames from the right place. Do NOT point frame
+ * srcs at msp-proxy.php — the proxy is only for fetch() calls from modern.js
+ * in mobile mode.
  */
 window.MSP_CONTENT_ROOT = "https://marathon.bungie.org/story/";
-
-// Server-side CORS proxy for mobile mode (fetch() can't reach cross-origin).
-// Point this at msp-proxy.php on your staging server.
-window.MSP_PROXY = "/msp-modernized/msp-proxy.php";
+window.MSP_PROXY        = "/msp-modernized/msp-proxy.php";
