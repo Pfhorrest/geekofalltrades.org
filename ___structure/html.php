@@ -136,8 +136,9 @@
 
 					case 'redirect':
 						/* Redirect to index file */
-						header("Location: $_SERVER[REQUEST_URI]/" . $action['target']);
-						exit;
+						echo '<p>Redirecting to <a href="' . $path . $action['target'] . '">' . $action['target'] . '</a>...</p>';
+						echo '<script type="text/javascript">window.location.href="' . $path . $action['target'] . '";</script>';
+						exit();
 
 					case 'directory':
 						/* Directory listing */
