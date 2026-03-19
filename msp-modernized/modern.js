@@ -248,6 +248,8 @@
 
       wrapper.querySelectorAll("a[href]").forEach(el => absolutize(el, "href"));
       wrapper.querySelectorAll("img[src]").forEach(el => absolutize(el, "src"));
+      wrapper.querySelectorAll("video[src]").forEach(el => absolutize(el, "src"));
+      wrapper.querySelectorAll("video source[src]").forEach(el => absolutize(el, "src"));
       wrapper.querySelectorAll("link[href]").forEach(el => absolutize(el, "href"));
       wrapper.querySelectorAll("script[src]").forEach(el => absolutize(el, "src"));
       // Legacy presentational attribute used on some 90s pages
@@ -400,6 +402,19 @@
 
       frameDoc.querySelectorAll("a[href]").forEach(el => fixAttr(el, "href"));
       frameDoc.querySelectorAll("img[src]").forEach(el => fixAttr(el, "src"));
+      // Video needs explicit reload after src rewrite since the browser
+      // fetches it at parse time before our load listener can intercept it.
+      frameDoc.querySelectorAll("video[src]").forEach(el => {
+        fixAttr(el, "src");
+        el.load(); // force reload with the corrected src
+      });
+      frameDoc.querySelectorAll("source[src]").forEach(el => {
+        fixAttr(el, "src");
+        // If the source is inside a video, reload the parent video element
+        if (el.parentElement && el.parentElement.tagName.toLowerCase() === "video") {
+          el.parentElement.load();
+        }
+      });
       frameDoc.querySelectorAll("[background]").forEach(el => fixAttr(el, "background"));
       } catch (_) {}
     }

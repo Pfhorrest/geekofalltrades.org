@@ -46,6 +46,18 @@ if (empty($path) || preg_match('/^https?:\/\//i', $path) || strpos($path, "..") 
 
 $upstream = MSP_ORIGIN . $path;
 
+// ── Redirect binary media directly to upstream ────────────────────────────────
+// Proxying large binary files (video, audio) through PHP is wasteful and likely
+// to hit memory limits. The browser can load these cross-origin directly — only
+// JS fetch() is blocked by CORS. So for media file extensions, issue a redirect
+// to the live URL and let the browser fetch it natively.
+$media_exts = ["mp4","webm","ogv","ogg","mp3","wav","flac","mov","avi","mkv"];
+$ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+if (in_array($ext, $media_exts)) {
+    header("Location: " . $upstream);
+    exit;
+}
+
 // ── Fetch from upstream ───────────────────────────────────────────────────────
 
 $ctx = stream_context_create([
