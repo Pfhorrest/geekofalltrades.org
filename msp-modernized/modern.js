@@ -277,6 +277,55 @@
     }
   }
 
+  // ─── Link wiring ─────────────────────────────────────────────────────────────
+
+  /**
+   * Attempt to wire a single <a> element to navigateTo.
+   * Returns true if the link was wired, false if it should be left alone
+   * (external link, _blank, _top escape, already wired, etc).
+   *
+   * For _top links pointing to a specific MSP page: restores the absolute
+   * MSP URL on the element (undoing any relative rewrite) and returns false
+   * so the browser follows it normally — navigating the whole window to the
+   * live site, which is the intended behaviour for these frameset-escape links.
+   */
+  function wireLink(a) {
+    if (a.dataset.mspWired) return false;
+    const href = a.getAttribute("href");
+    if (!href || /^(mailto:|javascript:|#)/.test(href)) return false;
+
+    const aTarget = (a.getAttribute("target") || "").toLowerCase();
+    if (aTarget === "_blank") return false; // open in new tab normally
+
+    if (aTarget === "_top") {
+      const path = contentPath(resolveUrl(href));
+      if (path !== "") {
+        // Specific page with _top — intentional frameset escape.
+        // Restore absolute MSP URL so the browser goes to the live site.
+        if (CONTENT_ROOT) a.setAttribute("href", resolveUrl(path));
+        return false;
+      }
+      // _top to content root — treat as "go home", intercept below
+    }
+
+    a.dataset.mspWired = "1";
+    a.addEventListener("click", e => {
+      const h = a.getAttribute("href");
+      if (!h || /^(mailto:|javascript:|#)/.test(h)) return;
+      e.preventDefault();
+      navigateTo(contentPath(resolveUrl(h)));
+    });
+    return true;
+  }
+
+  /**
+   * Wire all links in a container. selector filters which links to attempt;
+   * wireLink handles all the per-link decisions internally.
+   */
+  function wireLinks(container, selector) {
+    container.querySelectorAll(selector).forEach(wireLink);
+  }
+
   // ─── fetchPage ───────────────────────────────────────────────────────────────
 
   /**
@@ -368,35 +417,7 @@
           if (video?.tagName.toLowerCase() === "video") video.load();
         });
 
-        // Intercept all link clicks — route through navigateTo so the param
-        // is always updated and proxy fetches are used when needed
-        frameDoc.querySelectorAll("a[href]").forEach(a => {
-          if (a.dataset.mspWired) return;
-          const href = a.getAttribute("href");
-          if (!href || /^(mailto:|javascript:|#)/.test(href)) return;
-          const aTarget = (a.getAttribute("target") || "").toLowerCase();
-          if (aTarget === "_blank") return; // open in new tab normally
-          if (aTarget === "_top") {
-            // _top links intentionally escape the frameset — let them navigate
-            // the whole window, UNLESS they point to the content root itself
-            // (which just means "go back to the start", handled in-place)
-            const path = contentPath(resolveUrl(a.getAttribute("href") || ""));
-            if (path !== "") {
-              // Restore absolute MSP URL so the browser navigates to the live
-              // site rather than a non-existent path on the staging server
-              if (CONTENT_ROOT) a.setAttribute("href", resolveUrl(path));
-              return;
-            }
-            // Root link — fall through to intercept as home navigation
-          }
-          a.dataset.mspWired = "1";
-          a.addEventListener("click", e => {
-            const h = a.getAttribute("href");
-            if (!h || /^(mailto:|javascript:|#)/.test(h)) return;
-            e.preventDefault();
-            navigateTo(contentPath(resolveUrl(h)));
-          });
-        });
+        wireLinks(frameDoc, "a[href]");
       } catch (_) {}
     }
 
@@ -492,7 +513,7 @@
         const page = await fetchPage(path);
         mainContent.innerHTML = page.html;
         applyBodyStyles(mainContent, page);
-        wireLinks(mainContent, /* interceptAll= */ true);
+        wireLinks(mainContent, "a[href]");
         mainEl.scrollTo(0, 0);
         window.scrollTo(0, 0);
       } catch (err) {
@@ -507,52 +528,14 @@
     // Register the mobile navigate function
     _navigateToMobile = loadMain;
 
-    // Intercept link clicks and route through navigateTo
-    function wireLinks(container, interceptAll) {
-      const selector = interceptAll ? "a[href]" : 'a[target="main"]';
-      container.querySelectorAll(selector).forEach(a => {
-        if (a.dataset.mspWired) return;
-        const href = a.getAttribute("href");
-        if (!href || /^(mailto:|javascript:|#)/.test(href)) return;
-        const aTarget = (a.getAttribute("target") || "").toLowerCase();
-        if (aTarget === "_blank") return; // open in new tab normally
-        if (aTarget === "_top") {
-          // _top links intentionally escape the frameset — let them navigate
-          // the whole window, UNLESS they point to the content root itself
-          const path = contentPath(resolveUrl(a.getAttribute("href") || ""));
-          if (path !== "") {
-            if (CONTENT_ROOT) a.setAttribute("href", resolveUrl(path));
-            return;
-          }
-          // Root link — fall through to intercept as home navigation
-        }
-        a.dataset.mspWired = "1";
-        a.addEventListener("click", e => {
-          const h = a.getAttribute("href");
-          if (!h || /^(mailto:|javascript:|#)/.test(h)) return;
-          e.preventDefault();
-          navigateTo(contentPath(resolveUrl(h)));
-        });
-      });
-    }
+    // wireLinks and wireLink are module-level — available here directly
 
     // Load nav content
     try {
       const navPage = await fetchPage(navSrc);
       navContent.innerHTML = navPage.html;
       applyBodyStyles(navContent, navPage);
-      // target="main" links are the explicit nav links
-      wireLinks(navContent, /* interceptAll= */ false);
-      // Also wire any plain links in the nav that have no target attribute
-      navContent.querySelectorAll("a:not([data-msp-wired])").forEach(a => {
-        const href = a.getAttribute("href");
-        if (!href || /^(mailto:|javascript:|#)/.test(href)) return;
-        a.dataset.mspWired = "1";
-        a.addEventListener("click", e => {
-          e.preventDefault();
-          navigateTo(contentPath(resolveUrl(a.getAttribute("href"))));
-        });
-      });
+      wireLinks(navContent, "a[href]");
     } catch (err) {
       navContent.innerHTML = `<p style="padding:1em;color:#f66">Nav failed to load. <a href="${resolveUrl(navSrc)}">Open ↗</a></p>`;
     }
