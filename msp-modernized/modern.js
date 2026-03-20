@@ -7,24 +7,31 @@
  *   <link rel="stylesheet" href="modern.css" />
  *   <script src="modern.js"></script>
  *
+ * Staging: also load msp-staging-config.js before this script and deploy
+ * msp-proxy.php alongside it. See those files for details.
+ *
  * What this does:
  *
  *  ALL viewports:
- *    - Pushes ?~=page.html to the URL on frame navigation so any page is
- *      deep-linkable. Honours an incoming ?~= param on load.
- *    - On desktop, injects JS into same-origin frames to rewrite links/images
- *      through the proxy (staging only; no-op on the live server).
+ *    Deep-links — every navigation pushes ?~=page.html to the URL so any
+ *    page can be bookmarked or shared. An incoming ?~= param is honoured
+ *    on load. All link clicks are intercepted and routed through navigateTo()
+ *    so the param is always in sync with the displayed page.
  *
- *  MOBILE (viewport width < MOBILE_THRESHOLD):
- *    - Renames <frameset> to <x-frameset> so CSS can hide it (browsers ignore
- *      display:none on real framesets).
- *    - Builds a real <body> with a drop-down hamburger nav and a <main>.
- *    - Fetches both frame sources, sanitizes, and injects their content.
- *    - Wires all navigation and handles browser back/forward.
+ *  DESKTOP (viewport >= MOBILE_THRESHOLD):
+ *    The <frameset> renders normally — the antique experience is preserved.
+ *    When PROXY_URL is set (staging only), frame content is reloaded through
+ *    the proxy so links and media resolve against the correct origin.
+ *
+ *  MOBILE (viewport < MOBILE_THRESHOLD):
+ *    <frameset> is renamed to <x-frameset> so CSS can hide it (browsers
+ *    ignore display:none on real framesets). A proper <body> is built with
+ *    a drop-down hamburger nav and a <main>. Frame content is fetched,
+ *    sanitized, and injected. Navigation and back/forward are fully wired.
  *
  *  RESIZE:
- *    - Crossing the threshold swaps between frameset and mobile UI without
- *      re-fetching content.
+ *    Crossing the threshold swaps between frameset and mobile UI, restoring
+ *    whatever page was last shown via the deep-link param.
  */
 
 (function () {
@@ -41,68 +48,103 @@
   /**
    * Optional content root for staging/dev.
    * Set window.MSP_CONTENT_ROOT = "https://marathon.bungie.org/story/" in
-   * msp-staging-config.js (loaded before this script). Leave unset on the
-   * live MSP server.
+   * msp-staging-config.js (loaded before this script). Leave unset on the live server.
    */
   const CONTENT_ROOT = (window.MSP_CONTENT_ROOT || "").replace(/\/?$/, "/");
 
   /**
    * Optional server-side proxy URL for staging, e.g. "/msp-modernized/msp-proxy.php".
-   * Allows fetch() to retrieve cross-origin MSP pages without CORS errors.
    * Set window.MSP_PROXY in msp-staging-config.js. Leave unset on the live server.
    */
   const PROXY_URL = window.MSP_PROXY || null;
 
-  // ─── Utilities ───────────────────────────────────────────────────────────────
+  // ─── URL primitives ──────────────────────────────────────────────────────────
 
-  /** Resolve a path against CONTENT_ROOT; leave absolute URLs alone. */
+  /** File extensions treated as media — loaded directly by the browser, not proxied. */
+  const MEDIA_EXTS = /\.(mp4|webm|ogv|ogg|mp3|wav|flac|mov|avi|mkv|jpg|jpeg|gif|png|webp|svg|ico)$/i;
+
+  /** Prepend CONTENT_ROOT to a relative path; leave absolute URLs alone. */
   function resolveUrl(path) {
-    if (!CONTENT_ROOT) return path;
+    if (!path || !CONTENT_ROOT) return path || "";
     if (/^https?:\/\//.test(path)) return path;
     return CONTENT_ROOT + path.replace(/^\//, "");
   }
 
-  /** Read the ?~= deep-link param from the current URL, or null. */
-  function getDeepLink() {
-    return new URLSearchParams(location.search).get(DEEP_LINK_KEY);
-  }
-
-  /** Push (or replace) the ?~= param in the browser history. */
-  function pushDeepLink(page, replace = false) {
-    const url = new URL(location.href);
-    if (page) {
-      url.searchParams.set(DEEP_LINK_KEY, page);
-    } else {
-      url.searchParams.delete(DEEP_LINK_KEY);
-    }
-    if (replace) {
-      history.replaceState(null, "", url);
-    } else {
-      history.pushState(null, "", url);
-    }
+  /**
+   * Reduce any URL form to a bare MSP-content-relative path.
+   *   "https://marathon.bungie.org/story/_images/foo.jpg" -> "_images/foo.jpg"
+   *   "http://localhost:8000/msp-modernized/_images/foo.jpg" -> "_images/foo.jpg"
+   *   "mainpage.html" -> "mainpage.html"
+   *   "https://marathon.bungie.org/story/" -> "" (content root = home page)
+   */
+  function contentPath(src) {
+    if (!src) return "";
+    if (!/^https?:\/\//.test(src)) return src.replace(/^\//, "");
+    try {
+      const u = new URL(src);
+      const storyPath = CONTENT_ROOT ? new URL(CONTENT_ROOT).pathname : "/story/";
+      if (u.pathname.startsWith(storyPath)) return u.pathname.slice(storyPath.length);
+      const pageDir = location.pathname.replace(/[^/]*$/, "");
+      if (u.pathname.startsWith(pageDir)) return u.pathname.slice(pageDir.length);
+      return u.pathname.replace(/^\//, "");
+    } catch (_) { return src; }
   }
 
   /**
-   * Strip any proxy prefix from a frame src attribute so we get the bare
-   * content path regardless of how the src was written in index.html.
-   * e.g. "msp-proxy.php?url=mainpage.html" -> "mainpage.html"
+   * URL to use for actual network requests (fetch / frame src).
+   *   Staging: HTML through the proxy; media directly to MSP (browser allows cross-origin).
+   *   Live:    bare relative path.
+   */
+  function fetchHref(path) {
+    if (!path || !PROXY_URL) return path || "";
+    if (MEDIA_EXTS.test(path)) return resolveUrl(path);
+    return `${PROXY_URL}?url=${encodeURIComponent(path)}`;
+  }
+
+  /**
+   * URL to write into href/src attributes — looks correct on hover/inspect.
+   *   HTML links: bare relative path (click interception handles the actual fetch).
+   *   Media:      absolute MSP URL (browser loads cross-origin natively).
+   */
+  function displayHref(path) {
+    if (!path) return "";
+    if (MEDIA_EXTS.test(path)) return resolveUrl(path);
+    return path;
+  }
+
+  /**
+   * Strip any proxy prefix from a frame src attribute value so we get the
+   * bare content path regardless of how the src was written in index.html.
+   * "msp-proxy.php?url=mainpage.html" -> "mainpage.html"
    */
   function stripProxyPrefix(frameSrc) {
-    if (!frameSrc || !PROXY_URL) return frameSrc;
+    if (!frameSrc || !PROXY_URL) return frameSrc || "";
     const proxyFile = PROXY_URL.replace(/^.*\//, "");
     const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const pattern = new RegExp(
-      "^(?:" + esc(proxyFile) + "|" + esc(PROXY_URL) + ")\\?url=", "i"
-    );
+    const pattern = new RegExp("^(?:" + esc(proxyFile) + "|" + esc(PROXY_URL) + ")\\?url=", "i");
     const match = frameSrc.match(pattern);
     if (match) {
-      try { return decodeURIComponent(frameSrc.slice(match[0].length)); }
+      try   { return decodeURIComponent(frameSrc.slice(match[0].length)); }
       catch (_) { return frameSrc.slice(match[0].length); }
     }
     return frameSrc;
   }
 
-  // ─── Frameset rename ─────────────────────────────────────────────────────────
+  // ─── Deep-link param ─────────────────────────────────────────────────────────
+
+  function getDeepLink() {
+    return new URLSearchParams(location.search).get(DEEP_LINK_KEY) || null;
+  }
+
+  function pushDeepLink(page, replace = false) {
+    const url = new URL(location.href);
+    if (page) url.searchParams.set(DEEP_LINK_KEY, page);
+    else      url.searchParams.delete(DEEP_LINK_KEY);
+    if (replace) history.replaceState(null, "", url);
+    else         history.pushState(null, "", url);
+  }
+
+  // ─── Frameset rename/unrename ─────────────────────────────────────────────────
 
   /**
    * Rename <frameset> -> <x-frameset> (and <frame> -> <x-frame>) so that
@@ -112,20 +154,14 @@
   function renameFrameset() {
     const existing = document.querySelector("x-frameset");
     if (existing) return existing;
-
     const frameset = document.querySelector("frameset");
     if (!frameset) return null;
-
     const xFrameset = document.createElement("x-frameset");
-    for (const attr of frameset.attributes) {
-      xFrameset.setAttribute(attr.name, attr.value);
-    }
+    for (const attr of frameset.attributes) xFrameset.setAttribute(attr.name, attr.value);
     for (const child of frameset.children) {
       if (child.tagName.toLowerCase() === "frame") {
         const xFrame = document.createElement("x-frame");
-        for (const attr of child.attributes) {
-          xFrame.setAttribute(attr.name, attr.value);
-        }
+        for (const attr of child.attributes) xFrame.setAttribute(attr.name, attr.value);
         xFrameset.appendChild(xFrame);
       }
     }
@@ -133,84 +169,142 @@
     return xFrameset;
   }
 
-  /**
-   * Reverse renameFrameset: restore <x-frameset> -> <frameset> so the browser
-   * treats it as a real frameset and reloads the frames.
-   * Idempotent: no-op if already a real <frameset>.
-   */
+  /** Reverse renameFrameset so the browser re-parses it as a real frameset. */
   function unrenameFrameset() {
     const xFrameset = document.querySelector("x-frameset");
     if (!xFrameset) return;
-
     const frameset = document.createElement("frameset");
-    for (const attr of xFrameset.attributes) {
-      frameset.setAttribute(attr.name, attr.value);
-    }
+    for (const attr of xFrameset.attributes) frameset.setAttribute(attr.name, attr.value);
     for (const child of xFrameset.children) {
       if (child.tagName.toLowerCase() === "x-frame") {
         const frame = document.createElement("frame");
-        for (const attr of child.attributes) {
-          frame.setAttribute(attr.name, attr.value);
-        }
+        for (const attr of child.attributes) frame.setAttribute(attr.name, attr.value);
         frameset.appendChild(frame);
       }
     }
     xFrameset.replaceWith(frameset);
   }
 
+  // ─── URL rewriting ───────────────────────────────────────────────────────────
+
+  /**
+   * Rewrite all URL attributes in a subtree so they resolve correctly in the
+   * current environment (staging or live).
+   *
+   * linkHref controls how <a href> is written:
+   *   displayHref — bare relative path (used by both mobile and desktop)
+   * All media attributes use resolveUrl (absolute MSP URL).
+   */
+  function rewriteUrls(root, baseUri, linkHref) {
+    linkHref = linkHref || displayHref;
+
+    function rewriteAttr(el, attr, hrefFn) {
+      const val = el.getAttribute(attr);
+      if (!val || /^(mailto:|javascript:|#|data:)/.test(val)) return;
+      if (PROXY_URL && (val.startsWith(PROXY_URL) || val.includes("msp-proxy.php"))) return;
+      // For absolute URLs, only rewrite those belonging to the MSP origin
+      if (/^https?:/.test(val)) {
+        try {
+          const contentOrigin = CONTENT_ROOT ? new URL(CONTENT_ROOT).origin : null;
+          if (!contentOrigin || new URL(val).origin !== contentOrigin) return;
+        } catch (_) { return; }
+      }
+      try {
+        const absolute = baseUri ? new URL(val, baseUri).href : resolveUrl(val);
+        const path = contentPath(absolute);
+        if (attr === "href" && path === "") {
+          // Content root link — rewrite to the local page URL (no query string)
+          el.setAttribute(attr, location.href.replace(/\?.*$/, ""));
+          return;
+        }
+        el.setAttribute(attr, hrefFn(path));
+      } catch (_) {}
+    }
+
+    root.querySelectorAll("a[href]").forEach(el => rewriteAttr(el, "href", linkHref));
+    root.querySelectorAll("img[src]").forEach(el => rewriteAttr(el, "src", resolveUrl));
+    root.querySelectorAll("video[src]").forEach(el => rewriteAttr(el, "src", resolveUrl));
+    root.querySelectorAll("source[src]").forEach(el => rewriteAttr(el, "src", resolveUrl));
+    root.querySelectorAll("[background]").forEach(el => rewriteAttr(el, "background", resolveUrl));
+    root.querySelectorAll("link[href]").forEach(el => rewriteAttr(el, "href", resolveUrl));
+    root.querySelectorAll("script[src]").forEach(el => rewriteAttr(el, "src", resolveUrl));
+    root.querySelectorAll("img[srcset]").forEach(el => {
+      const rewritten = el.getAttribute("srcset").split(",").map(part => {
+        const t = part.trim(), sp = t.search(/\s/);
+        const rawUrl = sp === -1 ? t : t.slice(0, sp);
+        const desc   = sp === -1 ? "" : t.slice(sp);
+        try {
+          const abs = baseUri ? new URL(rawUrl, baseUri).href : resolveUrl(rawUrl);
+          return resolveUrl(contentPath(abs)) + desc;
+        } catch (_) { return part; }
+      });
+      el.setAttribute("srcset", rewritten.join(", "));
+    });
+  }
+
+  // ─── Central navigation ───────────────────────────────────────────────────────
+
+  let _navigateToMobile  = null; // set by initMobileMode
+  let _navigateToDesktop = null; // set by setupDesktopFrames
+
+  // Cached home page path — computed once from the original <frame> src attribute
+  // before any proxy loading mutates it.
+  let _homePath = null;
+
+  function getHomePath() {
+    if (_homePath !== null) return _homePath;
+    const frameEl = document.querySelector('frame[name="main"], x-frame[name="main"]');
+    _homePath = contentPath(resolveUrl(stripProxyPrefix(frameEl?.getAttribute("src") || "")));
+    return _homePath;
+  }
+
+  /**
+   * Universal navigation entry point — called by initial load, resize, link
+   * clicks, and popstate. Sets the deep-link param then delegates to whichever
+   * mode is currently active.
+   *
+   * path: bare content-relative path, e.g. "newmar26.html". Pass "" or null
+   *       to navigate to the home page (clears the param).
+   */
+  function navigateTo(path, replace = false) {
+    const homePath = getHomePath();
+    const isHome   = !path || path === homePath;
+    pushDeepLink(isHome ? null : path, replace);
+    if (_navigateToMobile && document.getElementById("msp-body")?.style.display !== "none") {
+      _navigateToMobile(isHome ? homePath : path);
+    } else if (_navigateToDesktop) {
+      _navigateToDesktop(isHome ? homePath : path);
+    }
+  }
+
   // ─── fetchPage ───────────────────────────────────────────────────────────────
 
   /**
-   * Fetch an MSP page and return sanitized content ready for injection.
-   * Routes through PROXY_URL when set to avoid CORS errors in staging.
+   * Fetch an MSP page and return sanitized content ready for injection into
+   * the mobile UI. Routes through PROXY_URL when set.
    *
-   * Returns { html, bgcolor, text, link, vlink } so the caller can apply
-   * the page's own body styles to the container element.
+   * Returns { html, bgcolor, text, link, vlink } so the caller can apply the
+   * page's own body styles to the container element.
    */
   async function fetchPage(src) {
-    const resolved = resolveUrl(src);
-
-    // Build the fetch URL — proxy or direct
-    let url;
-    if (PROXY_URL) {
-      let proxyPath = src;
-      try {
-        const u = new URL(src);
-        const storyPath = CONTENT_ROOT ? new URL(CONTENT_ROOT).pathname : "";
-        proxyPath = storyPath && u.pathname.startsWith(storyPath)
-          ? u.pathname.slice(storyPath.length)
-          : u.pathname + u.search + u.hash;
-      } catch (_) {}
-      proxyPath = proxyPath.replace(/^\//, "");
-      url = `${PROXY_URL}?url=${encodeURIComponent(proxyPath)}`;
-    } else {
-      url = resolved;
-    }
-
-    const resp = await fetch(url);
-    if (!resp.ok) throw new Error(`HTTP ${resp.status} fetching ${resolved}`);
-    const raw = await resp.text();
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(raw, "text/html");
+    const path = contentPath(resolveUrl(src));
+    const resp = await fetch(fetchHref(path));
+    if (!resp.ok) throw new Error(`HTTP ${resp.status} fetching ${path}`);
+    const doc  = new DOMParser().parseFromString(await resp.text(), "text/html");
     const body = doc.body;
 
-    // Lift bgcolor/text to inline CSS on the wrapper div
+    // Lift bgcolor/text to inline style on the wrapper div
     const styleProps = [];
     if (body.getAttribute("bgcolor")) styleProps.push(`background-color:${body.getAttribute("bgcolor")}`);
     if (body.getAttribute("text"))    styleProps.push(`color:${body.getAttribute("text")}`);
 
-    const linkColor  = body.getAttribute("link")  || "";
-    const vlinkColor = body.getAttribute("vlink") || "";
-
-    // Build scoped wrapper
     const wrapper = doc.createElement("div");
     wrapper.setAttribute("data-msp-frame", "");
     if (styleProps.length) wrapper.style.cssText = styleProps.join(";");
     while (body.firstChild) wrapper.appendChild(body.firstChild);
 
     // Wrap tables for horizontal scroll
-    wrapper.querySelectorAll("table").forEach((table) => {
+    wrapper.querySelectorAll("table").forEach(table => {
       if (table.closest("[data-msp-scroll]")) return;
       const scroll = doc.createElement("div");
       scroll.setAttribute("data-msp-scroll", "");
@@ -219,238 +313,92 @@
     });
 
     // Mark pre/xmp for CSS overflow handling
-    wrapper.querySelectorAll("pre, xmp").forEach((pre) => {
-      pre.setAttribute("data-msp-pre", "");
-    });
+    wrapper.querySelectorAll("pre, xmp").forEach(pre => pre.setAttribute("data-msp-pre", ""));
 
-    // Absolutize relative URLs so they resolve against the MSP server,
-    // not the staging origin
-    if (CONTENT_ROOT) {
-      const absolutize = (el, attr) => {
-        const val = el.getAttribute(attr);
-        if (!val || /^(https?:|mailto:|javascript:|#|data:)/.test(val)) return;
-        try { el.setAttribute(attr, new URL(val, CONTENT_ROOT).href); }
-        catch (_) {}
-      };
-
-      wrapper.querySelectorAll("a[href]").forEach(el => absolutize(el, "href"));
-      wrapper.querySelectorAll("img[src]").forEach(el => absolutize(el, "src"));
-      wrapper.querySelectorAll("video[src]").forEach(el => absolutize(el, "src"));
-      wrapper.querySelectorAll("video source[src]").forEach(el => absolutize(el, "src"));
-      wrapper.querySelectorAll("link[href]").forEach(el => absolutize(el, "href"));
-      wrapper.querySelectorAll("script[src]").forEach(el => absolutize(el, "src"));
-      wrapper.querySelectorAll("[background]").forEach(el => absolutize(el, "background"));
-      wrapper.querySelectorAll("img[srcset]").forEach(el => {
-        const rewritten = el.getAttribute("srcset").split(",").map(part => {
-          const trimmed = part.trim();
-          const space = trimmed.search(/\s/);
-          const rawUrl = space === -1 ? trimmed : trimmed.slice(0, space);
-          const descriptor = space === -1 ? "" : trimmed.slice(space);
-          try { return new URL(rawUrl, CONTENT_ROOT).href + descriptor; }
-          catch (_) { return part; }
-        });
-        el.setAttribute("srcset", rewritten.join(", "));
-      });
-    }
+    rewriteUrls(wrapper, CONTENT_ROOT || undefined, displayHref);
 
     const tmp = doc.createElement("div");
     tmp.appendChild(wrapper);
-
     return {
       html:    tmp.innerHTML,
       bgcolor: body.getAttribute("bgcolor") || "",
       text:    body.getAttribute("text")    || "",
-      link:    linkColor,
-      vlink:   vlinkColor,
+      link:    body.getAttribute("link")    || "",
+      vlink:   body.getAttribute("vlink")   || "",
     };
   }
 
   // ─── Desktop mode ────────────────────────────────────────────────────────────
 
-  // Guard: the one-time window load listener is registered only once
   let frameDeepLinkingReady = false;
 
   /**
-   * Navigate the main frame to the current deep-link page if one is set.
-   * Safe to call before or after window load.
-   */
-  function applyDesktopDeepLink() {
-    const page = getDeepLink();
-    if (!page) return;
-    const apply = () => {
-      const mainFrameEl = document.querySelector('frame[name="main"]');
-      if (!mainFrameEl) return;
-      mainFrameEl.src = PROXY_URL
-        ? `${PROXY_URL}?url=${encodeURIComponent(page)}`
-        : resolveUrl(page);
-    };
-    if (document.readyState !== "complete") {
-      window.addEventListener("load", apply, { once: true });
-    } else {
-      apply();
-    }
-  }
-
-  /**
-   * Attach per-frame listeners and perform initial proxy load.
-   * Called both on first desktop init (via window load) and on every
-   * resize back to desktop (new <frame> elements need fresh listeners).
+   * Attach per-frame listeners, rewrite frame content, and load initial pages.
+   * Called on first desktop init (via window load) and again on every resize
+   * back to desktop since unrenameFrameset creates fresh <frame> elements that
+   * need new listeners.
    */
   function setupDesktopFrames() {
     const mainFrameEl = document.querySelector('frame[name="main"]');
     if (!mainFrameEl) return;
-
     const navFrameEl = Array.from(document.querySelectorAll("frame"))
       .find(f => f !== mainFrameEl);
 
-    // Build a proxy URL for any content path or absolute URL
-    function proxyHref(src) {
-      if (!PROXY_URL) return src;
-      let path = src;
-      if (CONTENT_ROOT && path.startsWith(CONTENT_ROOT)) {
-        path = path.slice(CONTENT_ROOT.length);
-      } else {
-        try {
-          const u = new URL(src);
-          const storyPath = new URL(CONTENT_ROOT || location.href).pathname;
-          if (u.pathname.startsWith(storyPath)) {
-            path = u.pathname.slice(storyPath.length);
-          } else {
-            const pageDir = location.pathname.replace(/[^/]*$/, "");
-            path = u.pathname.startsWith(pageDir)
-              ? u.pathname.slice(pageDir.length)
-              : u.pathname.replace(/^\//, "");
-          }
-        } catch (_) {}
-      }
-      path = path.replace(/^\//, "");
-      return `${PROXY_URL}?url=${encodeURIComponent(path)}`;
+    const navRaw  = navFrameEl ? (navFrameEl.getAttribute("src") || "") : "";
+    const mainRaw = mainFrameEl.getAttribute("src") || "";
+
+    // Register the desktop navigate function
+    _navigateToDesktop = path => {
+      mainFrameEl.src = fetchHref(contentPath(resolveUrl(path)));
+    };
+
+    function loadFrame(frameEl, src) {
+      frameEl.src = fetchHref(contentPath(resolveUrl(stripProxyPrefix(src))));
     }
 
-    // Rewrite links, images, and video in a frame document through the proxy
+    // Rewrite a frame document's links and media, and attach click interceptors
     function rewriteFrameDoc(frameDoc, frameSrc) {
-      if (!PROXY_URL || !frameDoc) return;
+      if (!frameDoc) return;
       try {
-        const proxyBase = new URL(PROXY_URL, location.href);
-        const contentOrigin = CONTENT_ROOT ? new URL(CONTENT_ROOT).origin : null;
+        rewriteUrls(frameDoc, frameSrc, displayHref);
 
-        function fixAttr(el, attr) {
-          const val = el.getAttribute(attr);
-          if (!val || /^(https?:|mailto:|javascript:|#|data:)/.test(val)) return;
-          if (val.startsWith(PROXY_URL) || val.includes("msp-proxy.php")) return;
-          try {
-            const resolved = new URL(val, frameDoc.baseURI || frameSrc);
-            const isLocal = resolved.origin === proxyBase.origin;
-            const isMsp = contentOrigin && resolved.origin === contentOrigin;
-            if (isLocal || isMsp) el.setAttribute(attr, proxyHref(resolved.href));
-          } catch (_) {}
-        }
-
-        frameDoc.querySelectorAll("a[href]").forEach(el => fixAttr(el, "href"));
-        frameDoc.querySelectorAll("img[src]").forEach(el => fixAttr(el, "src"));
-        frameDoc.querySelectorAll("[background]").forEach(el => fixAttr(el, "background"));
-        // Video must be reloaded explicitly after src is rewritten
-        frameDoc.querySelectorAll("video[src]").forEach(el => {
-          fixAttr(el, "src");
-          el.load();
+        // Video must be explicitly reloaded after its src attribute is rewritten
+        frameDoc.querySelectorAll("video[src], video source[src]").forEach(el => {
+          const video = el.tagName.toLowerCase() === "source" ? el.parentElement : el;
+          if (video?.tagName.toLowerCase() === "video") video.load();
         });
-        frameDoc.querySelectorAll("source[src]").forEach(el => {
-          fixAttr(el, "src");
-          if (el.parentElement?.tagName.toLowerCase() === "video") {
-            el.parentElement.load();
-          }
+
+        // Intercept all link clicks — route through navigateTo so the param
+        // is always updated and proxy fetches are used when needed
+        frameDoc.querySelectorAll("a[href]").forEach(a => {
+          if (a.dataset.mspWired) return;
+          const href = a.getAttribute("href");
+          if (!href || /^(mailto:|javascript:|#)/.test(href)) return;
+          if ((a.getAttribute("target") || "").toLowerCase() === "_blank") return;
+          a.dataset.mspWired = "1";
+          a.addEventListener("click", e => {
+            const h = a.getAttribute("href");
+            if (!h || /^(mailto:|javascript:|#)/.test(h)) return;
+            e.preventDefault();
+            navigateTo(contentPath(resolveUrl(h)));
+          });
         });
       } catch (_) {}
     }
 
-    // Load a frame through the proxy, returning the proxy URL used
-    function loadFrameViaProxy(frameEl, contentSrc) {
-      const url = proxyHref(stripProxyPrefix(contentSrc));
-      frameEl.src = url;
-      return url;
-    }
-
-    // Initial frame load
-    let defaultProxyUrl;
-    if (PROXY_URL) {
-      const initial = getDeepLink();
-      const navRaw  = navFrameEl ? (navFrameEl.getAttribute("src") || "") : "";
-      const mainRaw = mainFrameEl.getAttribute("src") || "";
-      if (navFrameEl) loadFrameViaProxy(navFrameEl, navRaw);
-      defaultProxyUrl = loadFrameViaProxy(mainFrameEl, initial || mainRaw);
-    } else {
-      const initial = getDeepLink();
-      if (initial) mainFrameEl.src = resolveUrl(initial);
-      defaultProxyUrl = new URL(mainFrameEl.getAttribute("src") || "", location.href).href;
-    }
-
-    const defaultResolved = defaultProxyUrl;
-
-    // Attach load listener to a frame to rewrite its doc after each navigation
+    // Rewrite each frame's content as soon as it loads
     function watchFrame(frameEl) {
       frameEl.addEventListener("load", () => {
-        try {
-          rewriteFrameDoc(frameEl.contentDocument, frameEl.contentWindow.location.href);
-        } catch (_) {}
+        try { rewriteFrameDoc(frameEl.contentDocument, frameEl.contentWindow.location.href); }
+        catch (_) {}
       });
     }
     if (navFrameEl) watchFrame(navFrameEl);
     watchFrame(mainFrameEl);
 
-    // Track main frame navigations and update the ?~= deep-link param
-    mainFrameEl.addEventListener("load", () => {
-      let href;
-      try {
-        href = mainFrameEl.contentWindow.location.href;
-      } catch (_) {
-        return; // cross-origin (staging without proxy): silently skip
-      }
-      if (!href) return;
-
-      // Reduce the frame URL to a bare content-relative page name.
-      // Three possible forms when in staging:
-      //   (a) Via proxy:  http://local/msp-proxy.php?url=foo.html
-      //   (b) MSP direct: https://marathon.bungie.org/story/foo.html
-      //   (c) Local bare: http://local/msp-modernized/foo.html (fallback)
-      let page = null;
-
-      if (PROXY_URL) {
-        try {
-          const frameUrl = new URL(href);
-          const proxyUrl = new URL(PROXY_URL, location.href);
-          if (frameUrl.origin === proxyUrl.origin &&
-              frameUrl.pathname === proxyUrl.pathname) {
-            // (a) extract ?url= param
-            const urlParam = frameUrl.searchParams.get("url");
-            if (urlParam) page = decodeURIComponent(urlParam);
-          } else if (frameUrl.origin === proxyUrl.origin) {
-            // (c) bare local path — extract filename
-            page = frameUrl.pathname.replace(/^.*\//, "");
-          }
-        } catch (_) {}
-      }
-
-      if (page === null) {
-        // (b) strip CONTENT_ROOT or current-page directory
-        const base = CONTENT_ROOT
-          || (location.origin + location.pathname.replace(/[^/]*$/, ""));
-        page = href.startsWith(base) ? href.slice(base.length) : href;
-      }
-
-      // Strip any remaining CONTENT_ROOT prefix
-      if (CONTENT_ROOT && page.startsWith(CONTENT_ROOT)) {
-        page = page.slice(CONTENT_ROOT.length);
-      }
-
-      // Clear the param when back at the default page; push it otherwise
-      const rawDefault = mainFrameEl.getAttribute("src") || "";
-      const defaultPage = rawDefault.replace(/^.*\//, "").replace(/\?.*$/, "");
-      if (page === defaultPage || page === rawDefault || href === defaultResolved) {
-        pushDeepLink(null, /* replace= */ true);
-      } else {
-        pushDeepLink(page);
-      }
-    });
+    // Load both frames — main gets the deep-link page if one is set
+    if (navFrameEl) loadFrame(navFrameEl, navRaw);
+    loadFrame(mainFrameEl, getDeepLink() || mainRaw);
   }
 
   function initFramesetDeepLinking() {
@@ -491,26 +439,25 @@
     `;
     document.documentElement.appendChild(body);
 
-    const hamburger  = body.querySelector("#msp-hamburger");
-    const nav        = body.querySelector("#msp-nav");
-    const navContent = body.querySelector("#msp-nav-content");
-    const mainEl     = body.querySelector("#msp-main");
+    const hamburger   = body.querySelector("#msp-hamburger");
+    const nav         = body.querySelector("#msp-nav");
+    const navContent  = body.querySelector("#msp-nav-content");
+    const mainEl      = body.querySelector("#msp-main");
     const mainContent = body.querySelector("#msp-main-content");
 
     hamburger.addEventListener("click", () => {
       const open = nav.classList.toggle("msp-nav--open");
       hamburger.setAttribute("aria-expanded", String(open));
     });
-
-    nav.addEventListener("focusout", (e) => {
+    nav.addEventListener("focusout", e => {
       if (!nav.contains(e.relatedTarget)) {
         nav.classList.remove("msp-nav--open");
         hamburger.setAttribute("aria-expanded", "false");
       }
     });
 
-    // Apply <body> presentation attributes to the container so that
-    // bgcolor/text/link/vlink cover the padding area too
+    // Apply <body> presentation attributes to the container so bgcolor/text/
+    // link/vlink cover the padding area as well as the content
     function applyBodyStyles(container, page) {
       if (page.bgcolor) container.style.backgroundColor = page.bgcolor;
       if (page.text)    container.style.color = page.text;
@@ -523,92 +470,74 @@
       hamburger.setAttribute("aria-expanded", "false");
     }
 
-    // Intercept link clicks and load via fetchPage instead of navigating away.
-    // In nav: only intercept target="main" links (they navigate the main frame).
-    // In main content: intercept all MSP links (plain links navigate the frame
-    // on the live site; in our mobile view they must be handled by loadMain).
-    const contentOrigin = CONTENT_ROOT ? new URL(CONTENT_ROOT).origin : null;
-
-    function isMspLink(href) {
-      if (!href || /^(mailto:|javascript:|#)/.test(href)) return false;
-      if (!/^https?:\/\//.test(href)) return true; // relative
-      return href.startsWith(location.origin)
-          || (contentOrigin && href.startsWith(contentOrigin));
-    }
-
-    function wireMainLinks(container, interceptAllMspLinks = false) {
-      const selector = interceptAllMspLinks ? "a[href]" : 'a[target="main"]';
-      container.querySelectorAll(selector).forEach((a) => {
-        if (a.dataset.mspWired) return;
-        if (!isMspLink(a.getAttribute("href"))) return;
-        a.dataset.mspWired = "1";
-        a.addEventListener("click", (e) => {
-          const href = a.getAttribute("href");
-          if (!isMspLink(href)) return;
-          e.preventDefault();
-          loadMain(href);
-        });
-      });
-    }
-
-    async function loadMain(src, pushHistory = true) {
+    // Fetch and display a page in the main content area
+    async function loadMain(path) {
       mainContent.innerHTML = `<p style="padding:1em;opacity:.5">Loading…</p>`;
       closeNav();
       try {
-        const page = await fetchPage(src);
+        const page = await fetchPage(path);
         mainContent.innerHTML = page.html;
         applyBodyStyles(mainContent, page);
-        wireMainLinks(mainContent, /* interceptAllMspLinks= */ true);
-        if (pushHistory) {
-          let deepLinkPage = src;
-          if (CONTENT_ROOT && deepLinkPage.startsWith(CONTENT_ROOT)) {
-            deepLinkPage = deepLinkPage.slice(CONTENT_ROOT.length);
-          }
-          pushDeepLink(deepLinkPage);
-        }
+        wireLinks(mainContent, /* interceptAll= */ true);
         mainEl.scrollTo(0, 0);
         window.scrollTo(0, 0);
       } catch (err) {
         mainContent.innerHTML = `
           <p style="padding:1em;color:#f66">
-            Could not load <code>${src}</code>: ${err.message}.<br>
-            <a href="${src}" target="_blank">Open directly ↗</a>
+            Could not load <code>${path}</code>: ${err.message}.<br>
+            <a href="${resolveUrl(path)}" target="_blank">Open directly ↗</a>
           </p>`;
       }
     }
 
-    // Load nav
+    // Register the mobile navigate function
+    _navigateToMobile = loadMain;
+
+    // Intercept link clicks and route through navigateTo
+    function wireLinks(container, interceptAll) {
+      const selector = interceptAll ? "a[href]" : 'a[target="main"]';
+      container.querySelectorAll(selector).forEach(a => {
+        if (a.dataset.mspWired) return;
+        const href = a.getAttribute("href");
+        if (!href || /^(mailto:|javascript:|#)/.test(href)) return;
+        if ((a.getAttribute("target") || "").toLowerCase() === "_blank") return;
+        a.dataset.mspWired = "1";
+        a.addEventListener("click", e => {
+          const h = a.getAttribute("href");
+          if (!h || /^(mailto:|javascript:|#)/.test(h)) return;
+          e.preventDefault();
+          navigateTo(contentPath(resolveUrl(h)));
+        });
+      });
+    }
+
+    // Load nav content
     try {
       const navPage = await fetchPage(navSrc);
       navContent.innerHTML = navPage.html;
       applyBodyStyles(navContent, navPage);
-      wireMainLinks(navContent, /* interceptAllMspLinks= */ false);
-
-      const contentOrigin = CONTENT_ROOT ? new URL(CONTENT_ROOT).origin : null;
-      navContent.querySelectorAll("a:not([data-msp-wired])").forEach((a) => {
+      // target="main" links are the explicit nav links
+      wireLinks(navContent, /* interceptAll= */ false);
+      // Also wire any plain links in the nav that have no target attribute
+      navContent.querySelectorAll("a:not([data-msp-wired])").forEach(a => {
         const href = a.getAttribute("href");
         if (!href || /^(mailto:|javascript:|#)/.test(href)) return;
-        if (/^https?:\/\//.test(href)
-            && !href.startsWith(location.origin)
-            && !(contentOrigin && href.startsWith(contentOrigin))) return;
         a.dataset.mspWired = "1";
-        a.addEventListener("click", (e) => {
+        a.addEventListener("click", e => {
           e.preventDefault();
-          loadMain(href);
+          navigateTo(contentPath(resolveUrl(a.getAttribute("href"))));
         });
       });
     } catch (err) {
-      navContent.innerHTML = `<p style="padding:1em;color:#f66">Nav failed to load. <a href="${navSrc}">Open ↗</a></p>`;
+      navContent.innerHTML = `<p style="padding:1em;color:#f66">Nav failed to load. <a href="${resolveUrl(navSrc)}">Open ↗</a></p>`;
     }
 
-    // Load main (honour incoming deep-link)
-    const deepLink = getDeepLink();
-    await loadMain(deepLink || mainSrc, false);
-    if (deepLink) pushDeepLink(deepLink, true);
+    // Load main — honour incoming deep-link if present
+    await loadMain(getDeepLink() || mainSrc);
 
     // Browser back/forward
     window.addEventListener("popstate", () => {
-      loadMain(getDeepLink() || mainSrc, false);
+      loadMain(getDeepLink() || mainSrc);
     });
 
     mobileReady = true;
@@ -617,19 +546,21 @@
   // ─── Mode switching ──────────────────────────────────────────────────────────
 
   function applyMode(isMobile) {
+    document.querySelectorAll("noframes").forEach(el => el.style.display = "none");
     const mspBody = document.getElementById("msp-body");
+
     if (isMobile) {
       const xFrameset = renameFrameset();
       if (xFrameset) xFrameset.style.display = "none";
-      document.querySelectorAll("noframes").forEach(el => el.style.display = "none");
       if (mspBody) {
         mspBody.style.display = "";
+        // Re-load with the current deep-link (may have changed while in desktop mode)
+        navigateTo(getDeepLink() || "", /* replace= */ true);
       } else if (!mobileReady) {
         initMobileMode(xFrameset);
       }
     } else {
       if (mspBody) mspBody.style.display = "none";
-      document.querySelectorAll("noframes").forEach(el => el.style.display = "none");
       unrenameFrameset();
     }
   }
@@ -637,14 +568,13 @@
   // ─── Entry point ─────────────────────────────────────────────────────────────
 
   function init() {
+    document.querySelectorAll("noframes").forEach(el => el.style.display = "none");
     const isMobile = window.innerWidth < MOBILE_THRESHOLD;
 
     if (isMobile) {
       applyMode(true);
     } else {
-      document.querySelectorAll("noframes").forEach(el => el.style.display = "none");
-      initFramesetDeepLinking();
-      applyDesktopDeepLink();
+      initFramesetDeepLinking(); // registers setupDesktopFrames on window load
     }
 
     let lastMobile = isMobile;
@@ -654,8 +584,8 @@
       lastMobile = nowMobile;
       applyMode(nowMobile);
       if (!nowMobile) {
-        initFramesetDeepLinking();
-        setupDesktopFrames();
+        initFramesetDeepLinking(); // no-op after first call; guard prevents double-registration
+        setupDesktopFrames();      // re-attach listeners to the fresh <frame> elements
       }
     });
   }
