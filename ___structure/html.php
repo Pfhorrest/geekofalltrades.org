@@ -1,7 +1,4 @@
 <?php
-
-
-
 	/**  
 	 * The core of the PrevHP system, that loops through every subdirectory to
 	 * the requested URL and loads any styles, scripts, and meta-data found in
@@ -11,6 +8,9 @@
 	 * directory listings, and errors.
 	 * 
 	*/
+
+	/* Start output buffering */
+	ob_start();
 
 	/* Bootstrap modules */
 	require_once __DIR__ . '/modules/bootstrap.php';
@@ -136,10 +136,9 @@
 
 					case 'redirect':
 						/* Redirect to index file */
-						echo '<p>Redirecting to <a href="' . $path . $action['target'] . '">' . $action['target'] . '</a>...</p>';
-						echo '<script type="text/javascript">window.location.href="' . $path . $action['target'] . '";</script>';
+						ob_end_clean();
+						include $rootpath . $action['target'];
 						exit();
-
 					case 'directory':
 						/* Directory listing */
 						include_once $root . '/___structure/modules/views/partials/directory.php';
