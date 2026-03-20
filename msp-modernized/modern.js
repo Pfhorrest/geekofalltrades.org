@@ -374,7 +374,21 @@
           if (a.dataset.mspWired) return;
           const href = a.getAttribute("href");
           if (!href || /^(mailto:|javascript:|#)/.test(href)) return;
-          if ((a.getAttribute("target") || "").toLowerCase() === "_blank") return;
+          const aTarget = (a.getAttribute("target") || "").toLowerCase();
+          if (aTarget === "_blank") return; // open in new tab normally
+          if (aTarget === "_top") {
+            // _top links intentionally escape the frameset — let them navigate
+            // the whole window, UNLESS they point to the content root itself
+            // (which just means "go back to the start", handled in-place)
+            const path = contentPath(resolveUrl(a.getAttribute("href") || ""));
+            if (path !== "") {
+              // Restore absolute MSP URL so the browser navigates to the live
+              // site rather than a non-existent path on the staging server
+              if (CONTENT_ROOT) a.setAttribute("href", resolveUrl(path));
+              return;
+            }
+            // Root link — fall through to intercept as home navigation
+          }
           a.dataset.mspWired = "1";
           a.addEventListener("click", e => {
             const h = a.getAttribute("href");
@@ -500,7 +514,18 @@
         if (a.dataset.mspWired) return;
         const href = a.getAttribute("href");
         if (!href || /^(mailto:|javascript:|#)/.test(href)) return;
-        if ((a.getAttribute("target") || "").toLowerCase() === "_blank") return;
+        const aTarget = (a.getAttribute("target") || "").toLowerCase();
+        if (aTarget === "_blank") return; // open in new tab normally
+        if (aTarget === "_top") {
+          // _top links intentionally escape the frameset — let them navigate
+          // the whole window, UNLESS they point to the content root itself
+          const path = contentPath(resolveUrl(a.getAttribute("href") || ""));
+          if (path !== "") {
+            if (CONTENT_ROOT) a.setAttribute("href", resolveUrl(path));
+            return;
+          }
+          // Root link — fall through to intercept as home navigation
+        }
         a.dataset.mspWired = "1";
         a.addEventListener("click", e => {
           const h = a.getAttribute("href");
