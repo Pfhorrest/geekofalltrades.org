@@ -297,15 +297,23 @@
     const aTarget = (a.getAttribute("target") || "").toLowerCase();
     if (aTarget === "_blank") return false; // open in new tab normally
 
+    // Truly external link (different origin from MSP) — always let through
+    if (/^https?:\/\//.test(href)) {
+      try {
+        const contentOrigin = CONTENT_ROOT ? new URL(CONTENT_ROOT).origin : null;
+        if (!contentOrigin || new URL(href).origin !== contentOrigin) return false;
+      } catch (_) { return false; }
+    }
+
     if (aTarget === "_top") {
       const path = contentPath(resolveUrl(href));
       if (path !== "") {
-        // Specific page with _top — intentional frameset escape.
+        // Specific MSP page with _top — intentional frameset escape.
         // Restore absolute MSP URL so the browser goes to the live site.
         if (CONTENT_ROOT) a.setAttribute("href", resolveUrl(path));
         return false;
       }
-      // _top to content root — treat as "go home", intercept below
+      // _top to MSP content root — treat as "go home", intercept below
     }
 
     a.dataset.mspWired = "1";
@@ -393,8 +401,13 @@
     const navFrameEl = Array.from(document.querySelectorAll("frame"))
       .find(f => f !== mainFrameEl);
 
-    const navRaw  = navFrameEl ? (navFrameEl.getAttribute("src") || "") : "";
-    const mainRaw = mainFrameEl.getAttribute("src") || "";
+    // Read the original frame srcs from the x-frame attributes, which are
+    // never mutated by proxy loading. The live <frame> src changes as frames
+    // navigate, so reading it here would give a stale value on re-entry.
+    const xMainFrame = document.querySelector('x-frame[name="main"]');
+    const xNavFrame  = document.querySelector('x-frame:not([name="main"])');
+    const mainRaw = stripProxyPrefix(xMainFrame?.getAttribute("src") || mainFrameEl.getAttribute("src") || "");
+    const navRaw  = stripProxyPrefix(xNavFrame?.getAttribute("src")  || (navFrameEl ? navFrameEl.getAttribute("src") : "") || "");
 
     // Register the desktop navigate function
     _navigateToDesktop = path => {
@@ -431,9 +444,12 @@
     if (navFrameEl) watchFrame(navFrameEl);
     watchFrame(mainFrameEl);
 
-    // Load both frames — main gets the deep-link page if one is set
+    // Load both frames — main gets the deep-link page if one is set,
+    // otherwise the home page. getHomePath() is used as the fallback rather
+    // than mainRaw because mainRaw may contain a stale proxy URL if the frame
+    // src was mutated during a previous desktop session before mobile renamed it.
     if (navFrameEl) loadFrame(navFrameEl, navRaw);
-    loadFrame(mainFrameEl, getDeepLink() || mainRaw);
+    loadFrame(mainFrameEl, getDeepLink() || getHomePath());
   }
 
   function initFramesetDeepLinking() {
