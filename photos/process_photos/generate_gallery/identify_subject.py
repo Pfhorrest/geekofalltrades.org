@@ -7,7 +7,7 @@ from collections import Counter
 
 print(torch.__version__)
 
-# Fix for Intel iMacs on older PyTorch (2.2.2)
+# Fix for Intel Macs on older PyTorch (2.2.2)
 if not hasattr(torch, "compiler"):
     class MockCompiler:
         def is_compiling(self): return False
@@ -75,7 +75,7 @@ def identify_subject(image_path):
 
             # Get top-k predictions
             top_k = 3
-            top_indices = torch.topk(logits, k=top_k, dim=-1).indices[0].tolist()
+            top_indices = torch.topk(logits, k=min(top_k, logits.shape[-1]), dim=-1).indices[0].tolist()
             labels = [model.config.id2label.get(idx, str(idx)).replace("_", " ").strip() for idx in top_indices]
 
             all_labels.extend(labels)

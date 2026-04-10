@@ -40,7 +40,7 @@ def test_single_image_full_metadata(
     assert result == [
         {
             "maybe": "Moon Jelly at Mission Canyon",
-            "alternatives": "moon jelly",
+            "subjects": "moon jelly",
             "description": "Canon EOS, 2024-01-01",
             "filename": "photo.jpg",
         }
