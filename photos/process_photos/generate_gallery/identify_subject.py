@@ -20,8 +20,12 @@ from transformers import AutoModel, AutoImageProcessor
 MODEL_NAMES = [
     # General-purpose
     "microsoft/swin-large-patch4-window12-384-in22k",
+    "google/vit-large-patch16-224",
+    "microsoft/beit-large-patch16-224-pt22k-ft22k",
+    "facebook/convnext-large-224-22k",
 
     # Domain-specific
+    # "google/efficientnet-b7", # animals
     # "Sisigoks/FloraSense",  # plants / flowers
     # "prithivMLmods/Bird-Species-Classifier-526",  # birds
     # "mmgyorke/vit-world-landmarks",  # world landmarks
@@ -70,7 +74,7 @@ def identify_subject(image_path):
                 logits = model(**inputs).logits
 
             # Get top-k predictions
-            top_k = 1
+            top_k = 3
             top_indices = torch.topk(logits, k=top_k, dim=-1).indices[0].tolist()
             labels = [model.config.id2label.get(idx, str(idx)).replace("_", " ").strip() for idx in top_indices]
 

@@ -5,6 +5,12 @@ from ..extract_exif_data import extract_exif_data
 from .identify_subject import identify_subject
 from .identify_location import identify_location
 
+# TODO: add more keyword data to the gallery items, such as:
+# - subjects (instead of "alternatives")
+# - locations (more detailed hierarchy than just one name)
+# - times (season of year, time of day, etc)
+# - technicals (like camera make/model, etc)
+
 def generate_gallery(path):
     """Generate a gallery of images from a directory.
 
@@ -82,12 +88,20 @@ def generate_gallery(path):
                 desc_parts.append(exif["date"])
             description = ", ".join(desc_parts) if desc_parts else None
 
+            # Placeholders for future metadata
+            locations = None
+            times = None
+            technicals = None
+
             # Add to array
             images.append({
                 **({"maybe": title} if title is not None else {}),
-                **({"alternatives": subjects} if subjects is not None else {}),
                 **({"description": description} if description is not None else {}),
                 "filename": filepath.name,
+                **({"subjects": subjects} if subjects is not None else {}),
+                **({"locations": locations} if locations is not None else {}),
+                **({"times": times} if times is not None else {}),
+                **({"technicals": technicals} if technicals is not None else {}),
                 "_sort_timestamp": exif.get("timestamp")  # ISO 8601 expected
             })
 

@@ -7,6 +7,15 @@ from tqdm import tqdm
 from ...config import LOCATION_CACHE_FILE
 from .identify_best_poi import identify_best_poi
 
+# TODO: return full detailed location info, not just name and prefix, 
+# to be saved in the gallery array instead of cached in a separate file.
+# This will allow for more detailed location information to be stored and
+# used in the future, without needing to make additional API calls.
+
+# TODO: instead of fixed delay to prevent rate-limiting,
+# implement a more robust strategy that retries after a delay
+# if an error is encountered, and adjusts the delay up and down
+# to discover the optimal delay for the current rate limits.
 
 def load_location_cache(cache_file=LOCATION_CACHE_FILE):
     if cache_file.exists():
