@@ -41,7 +41,7 @@ def load_model(model_name):
         MODEL_CACHE[model_name] = (processor, model)
     return MODEL_CACHE[model_name]
 
-def filter_by_consensus(label_counts, num_models):
+def filter_by_consensus(label_counts):
     """Retain only labels matching the maximum agreement frequency.
 
     Only the most-agreed-upon labels survive. When no models agree (max
@@ -59,7 +59,8 @@ def filter_by_consensus(label_counts, num_models):
     if not label_counts:
         return []
     max_freq = label_counts.most_common(1)[0][1]
-    threshold = max_freq
+    tolerance = 0
+    threshold = min(1, max_freq - tolerance)
     return [(label, count) for label, count in label_counts.most_common()
             if count >= threshold]
 
@@ -81,7 +82,7 @@ def identify_subject_local(image):
             inputs = processor(images=image, return_tensors="pt")
             with torch.no_grad():
                 logits = model(**inputs).logits
-            top_k = 1
+            top_k = 10
             top_indices = torch.topk(logits, k=min(top_k, logits.shape[-1]), dim=-1).indices[0].tolist()
             for idx in top_indices:
                 raw_surface = model.config.id2label.get(idx, str(idx)).replace("_", " ").strip()
