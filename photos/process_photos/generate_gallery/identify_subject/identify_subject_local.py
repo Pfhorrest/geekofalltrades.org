@@ -41,29 +41,6 @@ def load_model(model_name):
         MODEL_CACHE[model_name] = (processor, model)
     return MODEL_CACHE[model_name]
 
-def filter_by_consensus(label_counts):
-    """Retain only labels matching the maximum agreement frequency.
-
-    Only the most-agreed-upon labels survive. When no models agree (max
-    frequency == 1), all labels are retained as a fallback.
-
-    Args:
-        label_counts (Counter): Mapping of canonical label to frequency.
-        num_models (int): Total number of models in the ensemble (reserved
-            for future use in threshold tuning).
-
-    Returns:
-        list of tuples: (label, count) pairs passing the threshold, sorted
-            by descending frequency.
-    """
-    if not label_counts:
-        return []
-    max_freq = label_counts.most_common(1)[0][1]
-    tolerance = 0
-    threshold = min(1, max_freq - tolerance)
-    return [(label, count) for label, count in label_counts.most_common()
-            if count >= threshold]
-
 def identify_subject_local(image):
     """Identify the subject of an image using a local ensemble of pre-trained models.
 
@@ -74,7 +51,7 @@ def identify_subject_local(image):
         list: A list of identified subject labels, filtered to the consensus
             threshold.
     """
-    raw_labels = []  # list of (surface_form, model_name) tuples
+    per_model_labels = []  # list of (surface_form, model_name) tuples
 
     for model_name in MODEL_NAMES:
         try:
@@ -82,16 +59,31 @@ def identify_subject_local(image):
             inputs = processor(images=image, return_tensors="pt")
             with torch.no_grad():
                 logits = model(**inputs).logits
-            top_k = 10
+            top_k = len(MODEL_NAMES)
             top_indices = torch.topk(logits, k=min(top_k, logits.shape[-1]), dim=-1).indices[0].tolist()
+            model_labels = []
             for idx in top_indices:
                 raw_surface = model.config.id2label.get(idx, str(idx)).replace("_", " ").strip()
                 for surface in raw_surface.split(","):
                     surface = surface.strip()
                     if surface:
-                        raw_labels.append((surface, model_name))
+                        model_labels.append((surface, model_name))
+            per_model_labels.append(model_labels)
         except Exception as e:
             tqdm.write(f"[WARN] {model_name} failed: {e}")
+            per_model_labels.append([])
+    
+    raw_labels = [
+        label
+        for rank in range(max((len(m) for m in per_model_labels), default=0))
+        for model_labels in per_model_labels
+        if rank < len(model_labels)
+        for label in [model_labels[rank]]
+    ]
+
+    # DEBUG: show raw labels
+    # short_raw_labels = [f"{s} ({m.split('/')[1].split('-')[0]})" for s, m in raw_labels]
+    # tqdm.write(f"Raw labels: {', '.join(short_raw_labels)}")
 
     # Normalize: group surface forms by their comparison key, sum frequencies
     norm_map = {}  # key -> {forms: list, count: int}
@@ -109,8 +101,12 @@ def identify_subject_local(image):
         canonical_counts[preferred] = data["count"]
 
     # Filter by consensus threshold
-    filtered = filter_by_consensus(canonical_counts, len(MODEL_NAMES))
-    ensemble_labels = [label for label, _ in filtered]
+    max_freq = canonical_counts.most_common(1)[0][1]
+    tolerance = len(MODEL_NAMES) / 2
+    threshold = max(1, max_freq - tolerance)
+    filtered = [(label, count) for label, count in canonical_counts.most_common()
+            if count >= threshold]
+    ensemble_labels = [label for label, _ in filtered[:len(MODEL_NAMES)]]
 
     # DEBUG: show which models contributed each label
     # label_sources = {}
@@ -120,6 +116,6 @@ def identify_subject_local(image):
     #     if preferred in [l for l, _ in filtered]:
     #         label_sources.setdefault(preferred, []).append(model_name.split("/")[1].split("-")[0])
     # debug_labels = [f"{l} ({', '.join(label_sources.get(l, []))})" for l in ensemble_labels]
-    # tqdm.write(f"Ensemble: {', '.join(debug_labels)}")
+    # tqdm.write(f"Consolidated labels: {', '.join(debug_labels)}")
 
     return ensemble_labels

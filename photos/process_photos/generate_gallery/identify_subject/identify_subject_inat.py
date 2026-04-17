@@ -112,6 +112,8 @@ def identify_subject_inat(image):
                 labels.append(common)
             if name and name.lower() != common.lower():
                 labels.append(name)
+        #DEBUG: show raw API results
+        # tqdm.write(f"iNat API labels: {', '.join(labels)}")
         return labels
 
     except Exception as e:
