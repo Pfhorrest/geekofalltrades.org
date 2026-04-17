@@ -95,7 +95,7 @@ def generate_gallery(path):
 
             # Add to array
             images.append({
-                **({"maybe": title} if title is not None else {}),
+                **({"title": title} if title is not None else {}),
                 **({"description": description} if description is not None else {}),
                 "filename": filepath.name,
                 **({"subjects": subjects} if subjects is not None else {}),

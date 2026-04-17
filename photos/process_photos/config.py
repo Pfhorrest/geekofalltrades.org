@@ -10,6 +10,7 @@ base_dir = package_dir.parent
 
 LOCATION_CACHE_FILE = package_dir / "_caches" / "locations.json"
 SUBJECT_CACHE_FILE = package_dir / "_caches" / "subjects.json"
+INAT_TOKEN_CACHE_FILE = package_dir / "_caches" / "inat_token.json"
 
 # Minimum number of images to link to sub-gallery
 # for more instead of just including them all
