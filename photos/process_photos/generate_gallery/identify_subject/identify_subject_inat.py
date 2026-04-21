@@ -52,7 +52,7 @@ def get_inat_token():
             "token": token,
             "timestamp": time.time()
         }))
-        tqdm.write(f"Caching iNat token to {INAT_TOKEN_CACHE_FILE}")
+        # tqdm.write(f"Caching iNat token to {INAT_TOKEN_CACHE_FILE}")
         return token
 
     except Exception as e:
