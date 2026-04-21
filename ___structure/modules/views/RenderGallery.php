@@ -32,27 +32,27 @@
                 <div class="item" id="item'.$key.'">
                     <p class="title">'.
                         (!empty($image['title'])
-                            ? $image['title']
+                            ? json_decode('"' . $image['title'] . '"')
                             : 'Untitled' .
                                 (!empty($image['maybe'])
-                                    ? '<span class="maybe">(Maybe: '.$image['maybe'].')</span>'
+                                    ? '<span class="maybe">(Maybe: '.json_decode('"' . $image['maybe'] . '"').'")</span>'
                                     : '')
                         ).
                     '</p>
                     <img src="'.(is_image_file($rootpath.$thumbpath) ? $thumbpath : $filepath).'" alt="">
                     <p class="description">'.
                         (!empty($image['description'])
-                            ? $image['description']
+                            ? json_decode('"' . $image['description'] . '"')
                             : 'No description.'
                         ).
                     '</p>';
                     
                     // Handle "more" link logic
                     if (!empty($image['morelink'])) {
-                        $count = subgallery_image_count($rootpath . $image['morelink']) ?: $image['morecount'] ?? 0;
+                        $count = subgallery_image_count($rootpath . json_decode('"' . $image['morelink'] . '"')) ?: $image['morecount'] ?? 0;
                         if ($count > 0) {
                             $count_text = ($count - 1) . ' more';
-                            $from_text = (!empty($image['moretext'])) ? ' from ' . $image['moretext'] : '' ;
+                            $from_text = (!empty($image['moretext'])) ? ' from ' . json_decode('"' . $image['moretext'] . '"') : '' ;
                             $html .= '
                             <p class="more">
                                 <a href="/'.$path.$image['morelink'].'">'
@@ -64,7 +64,7 @@
                             $html .= '
                             <p class="more">
                                 <a href="/'.$path.$image['morelink'].'">More'.
-                                    (!empty($image['moretext']) ? ' from ' . $image['moretext'] : '').
+                                    (!empty($image['moretext']) ? ' from ' . json_decode('"' . $image['moretext'] . '"') : '').
                                 '</a>
                             </p>';
                         }
@@ -75,9 +75,9 @@
                     <a class="cover" href="'.(
                         !empty($image['altlink'])
                             ? ($path.$altpath.'" rel="external"')
-                            : ('?display='.$image['filename'].'&title='.urlencode((string)($image['title'] ?? "Maybe: ".$image['maybe'])).'"')
+                            : ('?display='.json_decode('"' . $image['filename'] . '"').'&title='.urlencode((string)(json_decode('"' . $image['title'] . '"') ?? "Maybe: ".json_decode('"' . $image['maybe'] . '"'))).'"')
                     ).'>
-                        View '.(!empty($image['title']) ? $image['title'] : 'Untitled').'
+                        View '.(!empty($image['title']) ? json_decode('"' . $image['title'] . '"') : 'Untitled').'
                     </a>
                 </div>
             ';
