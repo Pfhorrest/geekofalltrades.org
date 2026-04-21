@@ -5,6 +5,57 @@ from tqdm import tqdm
 from .haversine import haversine
 from .safe_polygon_from_coords import safe_polygon_from_coords
 
+def overpass_request(query, max_retries=5):
+    """Submit a query to the Overpass API with adaptive retry on failure.
+
+    Retries on 429 (rate limit), 502 (bad gateway), and other transient
+    errors using exponential backoff. Raises on persistent failure.
+
+    Args:
+        query (str): The Overpass QL query string.
+        max_retries (int): Maximum number of attempts before giving up.
+
+    Returns:
+        dict: Parsed JSON response from the Overpass API.
+
+    Raises:
+        RuntimeError: If all retries are exhausted.
+    """
+    overpass_url = "https://overpass-api.de/api/interpreter"
+    headers = {
+        "User-Agent": "geekofalltrades-photo-gallery/1.0",
+        "Accept": "application/json"
+    }
+    delay = 2  # initial delay in seconds
+
+    for attempt in range(max_retries):
+        try:
+            time.sleep(delay)
+            response = requests.post(
+                overpass_url,
+                data={"data": query},
+                headers=headers,
+                timeout=30
+            )
+            if response.status_code == 429:
+                tqdm.write(f"[OSM] Rate limited (429), retrying in {delay}s...")
+                delay *= 2
+                continue
+            if response.status_code in (502, 503, 504):
+                tqdm.write(f"[OSM] Server error ({response.status_code}), retrying in {delay}s...")
+                delay *= 2
+                continue
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.Timeout:
+            tqdm.write(f"[OSM] Timeout on attempt {attempt + 1}, retrying in {delay}s...")
+            delay *= 2
+        except Exception as e:
+            tqdm.write(f"[OSM] Overpass error on attempt {attempt + 1}: {e}")
+            delay *= 2
+
+    raise RuntimeError(f"Overpass API failed after {max_retries} attempts")
+
 def identify_best_poi(lat, lon):
     """Identify the best point of interest (POI) near given GPS coordinates.
 
@@ -15,7 +66,6 @@ def identify_best_poi(lat, lon):
     Returns:
         tuple: A tuple containing the best POI name and prefix.
     """
-    overpass_url = "https://overpass-api.de/api/interpreter"
     features = [
         "education", "geological", "historic", "leisure",
         "man_made", "military", "natural", "tourism"
@@ -35,11 +85,8 @@ def identify_best_poi(lat, lon):
     """
 
     try:
-        time.sleep(2)  # prevent rate-limiting
-        response = requests.post(overpass_url, data={"data": query})
-        response.raise_for_status()
-        data = response.json()
-    except Exception as e:
+        data = overpass_request(query)
+    except RuntimeError as e:
         tqdm.write(f"[OSM] OVERPASS ERROR: {e}")
         return None, None
 
