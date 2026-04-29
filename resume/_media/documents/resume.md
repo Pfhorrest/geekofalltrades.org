@@ -2,7 +2,7 @@
 
 geekofalltrades.org | linkedin.com/in/forrest-cameranesi | github.com/Pfhorrest
 
-Remote from Ojai, CA | forrest@cameranesi.com | 805-729-4846
+Remote from Ventura County, CA | forrest@cameranesi.com | 805-729-4846
 
 **Full-Stack Web Developer | Extensive Experience | Remote Collaboration Specialist**
 
@@ -12,7 +12,7 @@ Remote from Ojai, CA | forrest@cameranesi.com | 805-729-4846
 
 Full-stack developer with extensive experience across frontend, backend, infrastructure, and design. Delivered 40+ client projects using modern stacks from PHP and WordPress to Next.js and React. Versatile across both legacy systems and cutting-edge frameworks, with proven ability to maintain traditional LAMP/jQuery applications while building modern React/TypeScript solutions.
 
-Actively leverages AI-assisted development tools (ChatGPT, GitHub Copilot, Windsurf) to accelerate development workflows, reduce time-to-delivery, and rapidly adopt new technologies. Recent projects demonstrate over 3x productivity gains through strategic AI tool integration, including automated Python scripting for complex data processing tasks.
+Actively leverages AI-assisted development tools (Claude, Copilot, Windsurf, ChatGPT) to accelerate development workflows, reduce time-to-delivery, and rapidly adopt new technologies. Recent projects demonstrate over 3x productivity gains through strategic AI tool integration, including automated Python scripting for complex data processing tasks.
 
 Proven ability to succeed in fully remote environments, with over a decade of experience working with distributed teams across time zones. Equally comfortable working independently or within cross-functional teams. Recognized for strong problem-solving, rapid learning, and clear communication. Open to roles at all levels, including support positions, and motivated by contribution and growth over title. U.S. Citizen – authorized to work in the U.S. without sponsorship, eligible for security clearance.
 
@@ -20,23 +20,23 @@ Proven ability to succeed in fully remote environments, with over a decade of ex
 
 ## CORE SKILLS
 
-**Frontend:** HTML, CSS/SCSS, JavaScript, TypeScript, React, Next.js, Webpack, jQuery
+**Frontend:** HTML, CSS/SCSS, JavaScript, TypeScript, React, Next.js, Webpack, jQuery, responsive design
 
 **Backend & Server:** PHP, Laravel, Symfony, Node.js, Ruby on Rails, Python, SQL/MySQL
 
-**Infrastructure & Deployment:** AWS EC2, traditional LAMP/Apache servers, SSH, Git/GitHub, FTP, deployment workflows
+**Infrastructure & Deployment:** AWS EC2, traditional LAMP/Apache servers, SSH, Git/GitHub, FTP, deployment workflows, automated testing
 
-**CMS & Platforms:** WordPress, AEM, Sitecore, Webflow, WPEngine, EC Cube, Supabase
+**CMS & Platforms:** WordPress, Divi Builder, WP Engine, Webflow, AEM, Sitecore, EC Cube, Supabase
 
-**Development Tools:** VS Code, Xcode, npm/yarn
+**Development Tools:** VS Code, Xcode, npm/yarn, Figma/Adobe XD to HTML/CSS implementation
 
-**AI-Assisted Development:** ChatGPT (code generation, debugging, learning new frameworks), GitHub Copilot (autocomplete, documentation, commit messages), Windsurf (VS Code extension for inline code generation)
+**AI-Assisted Development:** Copilot (VS Code and GitHub Desktop), Windsurf (VS Code), Claude and ChatGPT (code generation, debugging, learning new frameworks)
 
 **Design:** Photoshop, Illustrator
 
 **Data Formats & APIs:** JSON, REST APIs, EXIF data processing
 
------
+<div class="page" />
 
 ## PROFESSIONAL EXPERIENCE
 
@@ -54,7 +54,7 @@ Proven ability to succeed in fully remote environments, with over a decade of ex
 **Remote from Ojai, CA to Bend, OR | 2012 – 2020**
 
 - Designed thousands of emblematic jewelry and promotional products annually.
-- Managed workflows for a creative team, balancing client requests with production requirements.
+- Managed workflows for a creative team, balancing client requests with production requirements across many concurrent projects.
 - Developed technical artwork for die-cast metals, screen printing, embroidery, and other media.
 
 ### Software Engineer | CVTech
@@ -74,15 +74,15 @@ Proven ability to succeed in fully remote environments, with over a decade of ex
 
 Earlier career history includes professional design and development roles since the early 2000s, with further hobby projects predating that.
 
------
+<div class="page" />
 
 ## RECENT PROJECTS & ACHIEVEMENTS
 
 ### Automated Photo Gallery Generator (2025 – Present)
 
-Developed a Python script leveraging AI and APIs to auto-generate photo galleries with intelligent metadata extraction. The tool processes EXIF data, integrates OpenStreetMap APIs for location information, and uses HuggingFace image classification models to generate descriptive content. Reduced gallery update workflow from hours of manual work to minutes of automated processing. Demonstrates ability to combine traditional development with modern AI/ML tools to solve real-world problems efficiently.
+Developed a Python script leveraging AI and APIs to auto-generate photo galleries with intelligent metadata extraction. The tool processes EXIF data, integrates OpenStreetMap APIs for location information, and uses both local HuggingFace image classification models and the iNaturalist computer vision API to generate descriptive content. Reduced gallery update workflow from hours of manual work to minutes of automated processing. Demonstrates ability to combine traditional development with modern AI/ML tools to solve real-world problems efficiently.
 
-<div style="page-break-before: always;"></div>
+-----
 
 ### Continuous Professional Development & Portfolio Modernization (2024 – Present)
 
@@ -96,6 +96,8 @@ Actively enhancing technical capabilities through sustained professional develop
 - Redesigned and refactored frontend for responsive performance from mobile to ultrawide viewports
 - Integrated modern AI development tools into workflow, achieving over 3x productivity improvements
 - Developed proficiency in Python scripting for automation tasks, transforming day-long manual processes into minutes-long automated solutions
+- Added comprehensive automated tests (PHPUnit, vitest, pytest)
+- Automated building in local development environment and deployment to staging and production environments
 
 Combines deep experience with legacy systems and traditional development practices with enthusiasm for emerging technologies and modern best practices.
 
@@ -109,8 +111,6 @@ Combines deep experience with legacy systems and traditional development practic
 
 - Senior administrator of the largest online philosophy discussion community, managing 40+ volunteer staff and supporting 30,000+ members.
 - Oversaw moderation, staff coordination, and community standards in a distributed remote environment.
-
------
 
 ## EDUCATION
 
