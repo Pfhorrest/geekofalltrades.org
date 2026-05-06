@@ -70,12 +70,18 @@ def generate_gallery(path):
                 words = text.split()
                 if not words:
                     return "Untitled"
-                titled = [words[0].capitalize()]  # Always capitalize the first word
-                for word in words[1:]:
-                    if word.lower() in skip_words:
-                        titled.append(word.lower())
-                    else:
-                        titled.append(word.capitalize())
+                titled = []
+                for i, word in enumerate(words):
+                    dehyphenated = word.split("-")
+                    rehyphenated = []
+                    for j, part in enumerate(dehyphenated):
+                        if i == 0 and j == 0:
+                            rehyphenated.append(part.capitalize())
+                        elif part.lower() in skip_words:
+                            rehyphenated.append(part.lower())
+                        else:
+                            rehyphenated.append(part.capitalize())
+                    titled.append("-".join(rehyphenated))
                 return " ".join(titled)
 
             title = smart_title_case(title) if title else None
