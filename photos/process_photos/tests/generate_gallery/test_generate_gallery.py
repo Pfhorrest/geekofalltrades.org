@@ -39,7 +39,7 @@ def test_single_image_full_metadata(
 
     assert result == [
         {
-            "maybe": "Moon Jelly at Mission Canyon",
+            "title": "Moon Jelly at Mission Canyon",
             "subjects": "moon jelly",
             "description": "Canon EOS, 2024-01-01",
             "filename": "photo.jpg",
@@ -58,7 +58,7 @@ def test_subject_only(mock_exif, mock_subject, tmp_path):
 
     result = generate_gallery(tmp_path)
 
-    assert result[0]["maybe"] == "Oak Tree"
+    assert result[0]["title"] == "Oak Tree"
     assert "description" not in result[0]
 
 @patch("process_photos.generate_gallery.generate_gallery.identify_subject")
@@ -77,7 +77,7 @@ def test_location_only(mock_exif, mock_location, mock_subject, tmp_path):
 
     result = generate_gallery(tmp_path)
 
-    assert result[0]["maybe"] == "Santa Barbara"
+    assert result[0]["title"] == "Santa Barbara"
 
 
 @patch("process_photos.generate_gallery.generate_gallery.identify_subject")

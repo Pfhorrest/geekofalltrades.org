@@ -101,7 +101,7 @@ def identify_subject_local(image):
         canonical_counts[preferred] = data["count"]
 
     # Filter by consensus threshold
-    max_freq = canonical_counts.most_common(1)[0][1]
+    max_freq = canonical_counts.most_common(1)[0][1] if canonical_counts else 1
     tolerance = len(MODEL_NAMES) / 2
     threshold = max(1, max_freq - tolerance)
     filtered = [(label, count) for label, count in canonical_counts.most_common()

@@ -22,5 +22,5 @@ def identify_subject(image_path):
     local_labels = identify_subject_local(image)
     output = ", ".join(inat_labels + local_labels)
 
-    tqdm.write(f"Identified subject for {image_path.relative_to(base_dir)}: {output}")
+    tqdm.write(f"Identified subject for {image_path.relative_to(base_dir) if image_path.is_relative_to(base_dir) else image_path}: {output}")
     return output

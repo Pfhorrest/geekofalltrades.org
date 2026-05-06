@@ -4,6 +4,7 @@ import torch
 from pathlib import Path
 
 import process_photos.generate_gallery.identify_subject as isub
+import process_photos.generate_gallery.identify_subject.identify_subject_local as isub_local
 
 
 # ------------------------
@@ -37,9 +38,9 @@ def fake_load_model_factory(label):
 # TESTS
 # ------------------------
 
-@patch("process_photos.generate_gallery.identify_subject.Image.open")
-@patch("process_photos.generate_gallery.identify_subject.load_model")
-@patch("process_photos.generate_gallery.identify_subject.base_dir", Path("."))
+@patch("process_photos.generate_gallery.identify_subject.identify_subject.Image.open")
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.load_model")
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.base_dir", Path("."))
 def test_single_model_single_label(mock_load_model, mock_image_open):
     mock_image_open.return_value.convert.return_value = Mock()
 
@@ -50,9 +51,9 @@ def test_single_model_single_label(mock_load_model, mock_image_open):
     assert result == "cat"
 
 
-@patch("process_photos.generate_gallery.identify_subject.Image.open")
-@patch("process_photos.generate_gallery.identify_subject.load_model")
-@patch("process_photos.generate_gallery.identify_subject.base_dir", Path("."))
+@patch("process_photos.generate_gallery.identify_subject.identify_subject.Image.open")
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.load_model")
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.base_dir", Path("."))
 def test_multiple_models_aggregate_labels(mock_load_model, mock_image_open):
     mock_image_open.return_value.convert.return_value = Mock()
 
@@ -61,16 +62,16 @@ def test_multiple_models_aggregate_labels(mock_load_model, mock_image_open):
         (FakeProcessor(), FakeModel(["dog"]))
     ]
 
-    isub.MODEL_NAMES[:] = ["model1", "model2"]
+    isub_local.MODEL_NAMES[:] = ["model1", "model2"]
 
     result = isub.identify_subject(Path("fake.jpg"))
 
     assert result == "cat, dog"
 
 
-@patch("process_photos.generate_gallery.identify_subject.Image.open")
-@patch("process_photos.generate_gallery.identify_subject.load_model")
-@patch("process_photos.generate_gallery.identify_subject.base_dir", Path("."))
+@patch("process_photos.generate_gallery.identify_subject.identify_subject.Image.open")
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.load_model")
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.base_dir", Path("."))
 def test_duplicate_labels_deduplicated(mock_load_model, mock_image_open):
     mock_image_open.return_value.convert.return_value = Mock()
 
@@ -79,16 +80,16 @@ def test_duplicate_labels_deduplicated(mock_load_model, mock_image_open):
         (FakeProcessor(), FakeModel(["cat"]))
     ]
 
-    isub.MODEL_NAMES[:] = ["model1", "model2"]
+    isub_local.MODEL_NAMES[:] = ["model1", "model2"]
 
     result = isub.identify_subject(Path("fake.jpg"))
 
     assert result == "cat"
 
 
-@patch("process_photos.generate_gallery.identify_subject.Image.open")
-@patch("process_photos.generate_gallery.identify_subject.load_model")
-@patch("process_photos.generate_gallery.identify_subject.base_dir", Path("."))
+@patch("process_photos.generate_gallery.identify_subject.identify_subject.Image.open")
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.load_model")
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.base_dir", Path("."))
 def test_model_failure_is_skipped(mock_load_model, mock_image_open):
     mock_image_open.return_value.convert.return_value = Mock()
 
@@ -99,22 +100,22 @@ def test_model_failure_is_skipped(mock_load_model, mock_image_open):
 
     mock_load_model.side_effect = side_effect
 
-    isub.MODEL_NAMES[:] = ["bad", "good"]
+    isub_local.MODEL_NAMES[:] = ["bad", "good"]
 
     result = isub.identify_subject(Path("fake.jpg"))
 
     assert result == "cat"
 
 
-@patch("process_photos.generate_gallery.identify_subject.Image.open")
-@patch("process_photos.generate_gallery.identify_subject.load_model")
-@patch("process_photos.generate_gallery.identify_subject.base_dir", Path("."))
+@patch("process_photos.generate_gallery.identify_subject.identify_subject.Image.open")
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.load_model")
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.base_dir", Path("."))
 def test_all_models_fail_returns_empty_string(mock_load_model, mock_image_open):
     mock_image_open.return_value.convert.return_value = Mock()
 
     mock_load_model.side_effect = RuntimeError("boom")
 
-    isub.MODEL_NAMES[:] = ["bad1", "bad2"]
+    isub_local.MODEL_NAMES[:] = ["bad1", "bad2"]
 
     result = isub.identify_subject(Path("fake.jpg"))
 
