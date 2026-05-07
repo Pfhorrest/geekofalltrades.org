@@ -56,15 +56,21 @@ def overpass_request(query, max_retries=5):
 
     raise RuntimeError(f"Overpass API failed after {max_retries} attempts")
 
-def identify_best_poi(lat, lon):
-    """Identify the best point of interest (POI) near given GPS coordinates.
+def identify_pois(lat, lon):
+    """Identify points of interest (POIs) near given GPS coordinates.
+
+    Returns all named POIs found within the search radius, ordered by:
+    containing POIs first (smallest area to largest), then non-containing
+    POIs (nearest to farthest). Each entry is prefixed with "at" for
+    containing POIs and "near" for non-containing POIs.
 
     Args:
         lat (float): Latitude of the location.
         lon (float): Longitude of the location.
 
     Returns:
-        tuple: A tuple containing the best POI name and prefix.
+        list of str: Prefixed location strings e.g. ["at Surfrider Beach",
+            "near Malibu Pier"], or empty list if none found or on error.
     """
     features = [
         "education", "geological", "historic", "leisure",
@@ -88,21 +94,20 @@ def identify_best_poi(lat, lon):
         data = overpass_request(query)
     except RuntimeError as e:
         tqdm.write(f"[OSM] OVERPASS ERROR: {e}")
-        return None, None
+        return []
 
     elements = data.get("elements", [])
     named_nodes = []
     named_ways = []
     named_relations = []
 
-    # --- Parse elements ---
     for el in elements:
         tags = el.get("tags", {})
         name = tags.get("name")
         if not name:
             continue
 
-        tqdm.write(f"[OSM] {el['type']} {name}")
+        # tqdm.write(f"[OSM] {el['type']} {name}")
         el["__name"] = name
         el["__tags"] = tags
 
@@ -116,11 +121,10 @@ def identify_best_poi(lat, lon):
                 el["__geometry"] = poly
                 named_ways.append(el)
             else:
-                # fallback: approximate with centroid of coords
                 if coords:
                     avg_lon = sum(c[0] for c in coords) / len(coords)
                     avg_lat = sum(c[1] for c in coords) / len(coords)
-                    el["__geometry"] = Point(avg_lon, avg_lat).buffer(1e-6)  # tiny polygon
+                    el["__geometry"] = Point(avg_lon, avg_lat).buffer(1e-6)
                     named_ways.append(el)
 
         elif el["type"] == "relation" and "members" in el:
@@ -142,58 +146,45 @@ def identify_best_poi(lat, lon):
                 named_relations.append(el)
 
     point = Point(lon, lat)
-    candidates = []
+    containing = []   # (name, area)
+    non_containing = []  # (name, distance)
 
-    # --- Containment check ---
-    containing_ways = [
-        (way["__name"], way["__geometry"].area, "at")
-        for way in named_ways
-        if way["__geometry"].contains(point)
-    ]
+    # --- Containment check for ways ---
+    for way in named_ways:
+        if way["__geometry"].contains(point):
+            containing.append((way["__name"], way["__geometry"].area))
+        else:
+            dist = way["__geometry"].distance(point) * 111320
+            non_containing.append((way["__name"], dist))
 
-    containing_rels = []
+    # --- Containment check for relations ---
     for rel in named_relations:
         is_contained = any(poly.contains(point) for poly in rel["__geometry_outer"])
         is_within_hole = any(poly.contains(point) for poly in rel["__geometry_inner"])
         if is_contained and not is_within_hole:
             area = sum(p.area for p in rel["__geometry_outer"]) - sum(p.area for p in rel["__geometry_inner"])
-            containing_rels.append((rel["__name"], area, "at"))
-
-    if containing_ways or containing_rels:
-        biggest_rel = max(containing_rels, key=lambda x: x[1], default=None)
-        biggest_way = max(containing_ways, key=lambda x: x[1], default=None)
-        if biggest_rel and biggest_way:
-            best = max([biggest_rel, biggest_way], key=lambda x: x[1])
+            containing.append((rel["__name"], area))
         else:
-            best = biggest_rel or biggest_way
-        candidates.append(best)
-
-    # --- Distance fallback if nothing contains ---
-    if not candidates:
-        for node in named_nodes:
-            dist = haversine(lat, lon, node["lat"], node["lon"])
-            candidates.append((node["__name"], dist, "near"))
-
-        for way in named_ways:
-            dist = way["__geometry"].distance(point) * 111320  # meters approx
-            candidates.append((way["__name"], dist, "near"))
-
-        for rel in named_relations:
             all_polys = rel["__geometry_outer"] + rel["__geometry_inner"]
             dists = [poly.distance(point) * 111320 for poly in all_polys]
             if dists:
-                candidates.append((rel["__name"], min(dists), "near"))
+                non_containing.append((rel["__name"], min(dists)))
 
-        if candidates:
-            best = min(candidates, key=lambda x: x[1])
-            tqdm.write(f"[OSM] Chose closest POI: {best[0]}")
-            return best[0], best[2]
+    # --- Nodes are always non-containing ---
+    for node in named_nodes:
+        dist = haversine(lat, lon, node["lat"], node["lon"])
+        non_containing.append((node["__name"], dist))
 
-    # --- If containment was found ---
-    if candidates:
-        best = candidates[0]
-        tqdm.write(f"[OSM] Chose containing POI: {best[0]}")
-        return best[0], best[2]
+    # --- Sort and prefix ---
+    containing.sort(key=lambda x: x[1])   # smallest area first
+    non_containing.sort(key=lambda x: x[1])  # nearest first
 
-    tqdm.write("[OSM] No POIs found at all")
-    return None, None
+    result = [f"at {name}" for name, _ in containing]
+    result += [f"near {name}" for name, _ in non_containing]
+
+    if result:
+        tqdm.write(f"[OSM] POIs: {', '.join(result)}")
+    else:
+        tqdm.write("[OSM] No POIs found")
+
+    return result

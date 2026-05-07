@@ -23,13 +23,13 @@ def test_cache_hit_skips_network():
     assert result == ("Cached Place", "in")
 
 
-@patch("process_photos.generate_gallery.identify_location.identify_location.identify_best_poi")
+@patch("process_photos.generate_gallery.identify_location.identify_location.identify_pois")
 @patch("process_photos.generate_gallery.identify_location.identify_location.requests.get")
 def test_poi_overrides_nominatim(mock_get, mock_poi):
     cache = {}
 
     mock_get.return_value = mock_nominatim_response({"city": "Santa Barbara"})
-    mock_poi.return_value = ("Mission Canyon", "at")
+    mock_poi.return_value = ["at Mission Canyon"]
 
     name, prefix = il.identify_location(
         34.4, -119.7, location_cache=cache
@@ -42,12 +42,12 @@ def test_poi_overrides_nominatim(mock_get, mock_poi):
     assert cache["34.40000,-119.70000"] == ("Mission Canyon", "at")
 
 
-@patch("process_photos.generate_gallery.identify_location.identify_location.identify_best_poi")
+@patch("process_photos.generate_gallery.identify_location.identify_location.identify_pois")
 @patch("process_photos.generate_gallery.identify_location.identify_location.requests.get")
 def test_nominatim_fallback_when_no_poi(mock_get, mock_poi):
     cache = {}
 
-    mock_poi.return_value = (None, None)
+    mock_poi.return_value = []
     mock_get.return_value = mock_nominatim_response({"city": "Santa Barbara"})
 
     name, prefix = il.identify_location(
@@ -60,12 +60,12 @@ def test_nominatim_fallback_when_no_poi(mock_get, mock_poi):
     assert cache["34.40000,-119.70000"] == ("Santa Barbara", "in")
 
 
-@patch("process_photos.generate_gallery.identify_location.identify_location.identify_best_poi")
+@patch("process_photos.generate_gallery.identify_location.identify_location.identify_pois")
 @patch("process_photos.generate_gallery.identify_location.identify_location.requests.get")
 def test_no_location_found(mock_get, mock_poi):
     cache = {}
 
-    mock_poi.return_value = (None, None)
+    mock_poi.return_value = []
     mock_get.return_value = mock_nominatim_response({})
 
     name, prefix = il.identify_location(
@@ -77,13 +77,13 @@ def test_no_location_found(mock_get, mock_poi):
     assert cache == {}
 
 
-@patch("process_photos.generate_gallery.identify_location.identify_location.identify_best_poi")
+@patch("process_photos.generate_gallery.identify_location.identify_location.identify_pois")
 @patch("process_photos.generate_gallery.identify_location.identify_location.requests.get")
 def test_location_is_cached(mock_get, mock_poi):
     cache = {}
 
     mock_get.return_value = mock_nominatim_response({"city": "Santa Barbara"})
-    mock_poi.return_value = (None, None)
+    mock_poi.return_value = []
 
     il.identify_location(34.4, -119.7, location_cache=cache)
 
@@ -91,12 +91,12 @@ def test_location_is_cached(mock_get, mock_poi):
     assert cache["34.40000,-119.70000"] == ("Santa Barbara", "in")
 
 
-@patch("process_photos.generate_gallery.identify_location.identify_location.identify_best_poi")
+@patch("process_photos.generate_gallery.identify_location.identify_location.identify_pois")
 @patch("process_photos.generate_gallery.identify_location.identify_location.requests.get")
 def test_no_cache_entry_when_no_location(mock_get, mock_poi):
     cache = {}
 
-    mock_poi.return_value = (None, None)
+    mock_poi.return_value = []
     mock_get.return_value = mock_nominatim_response({})
 
     il.identify_location(0.0, 0.0, location_cache=cache)

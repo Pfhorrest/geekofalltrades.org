@@ -1,5 +1,5 @@
 import math
-from process_photos.generate_gallery.identify_location.identify_best_poi.haversine import haversine
+from process_photos.generate_gallery.identify_location.identify_pois.haversine import haversine
 
 
 def test_zero_distance():

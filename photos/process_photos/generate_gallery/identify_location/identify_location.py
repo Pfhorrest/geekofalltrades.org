@@ -5,7 +5,7 @@ from pathlib import Path
 from shapely.geometry import Point
 from tqdm import tqdm
 from ...config import LOCATION_CACHE_FILE
-from .identify_best_poi import identify_best_poi
+from .identify_pois import identify_pois
 
 # TODO: return full detailed location info, not just name and prefix, 
 # to be saved in the gallery array instead of cached in a separate file.
@@ -73,7 +73,8 @@ def identify_location(lat, lon, *, location_cache=None):
         tqdm.write(f"[OSM] NOMINATIM ERROR: {e}")
 
     # Step 2: Overpass query
-    best_poi = identify_best_poi(lat, lon)
+    pois = identify_pois(lat, lon)
+    best_poi = tuple(reversed(pois[0].split(" ", 1))) if pois else None
 
     if best_poi and best_poi[0]:
         selected_name, selected_prefix = best_poi

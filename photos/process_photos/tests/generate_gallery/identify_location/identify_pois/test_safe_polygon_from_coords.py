@@ -1,4 +1,4 @@
-from process_photos.generate_gallery.identify_location.identify_best_poi.safe_polygon_from_coords import safe_polygon_from_coords
+from process_photos.generate_gallery.identify_location.identify_pois.safe_polygon_from_coords import safe_polygon_from_coords
 
 
 def test_empty_coords():
