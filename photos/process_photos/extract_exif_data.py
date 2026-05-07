@@ -91,11 +91,42 @@ def extract_exif_data(image_path):
             if lat is not None and lon is not None:
                 gps = (lat, lon)
 
+        # Parse Exif IFD for technical metadata
+        exif_ifd = exif_data.get("Exif", {})
+
+        def rational_to_float(val):
+            """Convert a piexif rational tuple (numerator, denominator) to float.
+
+            Args:
+                val: A (numerator, denominator) tuple or None.
+
+            Returns:
+                float or None
+            """
+            try:
+                return val[0] / val[1] if val and val[1] else None
+            except Exception:
+                return None
+
+        focal_length = rational_to_float(exif_ifd.get(piexif.ExifIFD.FocalLength))
+        f_number = rational_to_float(exif_ifd.get(piexif.ExifIFD.FNumber))
+        iso = exif_ifd.get(piexif.ExifIFD.ISOSpeedRatings)
+        shutter_rational = exif_ifd.get(piexif.ExifIFD.ExposureTime)
+        shutter = rational_to_float(shutter_rational)
+
+        lens_raw = exif_ifd.get(piexif.ExifIFD.LensModel, b"")
+        lens_model = lens_raw.decode("utf-8", errors="ignore").strip() if isinstance(lens_raw, bytes) else str(lens_raw).strip()
+        
         return {
             "camera": camera_model or None,
             "date": date_taken,
             "gps": gps,
-            "timestamp": full_timestamp
+            "timestamp": full_timestamp,
+            "focal_length": round(focal_length) if focal_length else None,
+            "f_number": f_number,
+            "iso": iso if isinstance(iso, int) else (iso[0] if isinstance(iso, (list, tuple)) and iso else None),
+            "shutter": shutter,
+            "lens": lens_model or None,
         }
 
     except Exception as e:

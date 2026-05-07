@@ -182,9 +182,9 @@ def identify_pois(lat, lon):
     result = [f"at {name}" for name, _ in containing]
     result += [f"near {name}" for name, _ in non_containing]
 
-    if result:
-        tqdm.write(f"[OSM] POIs: {', '.join(result)}")
-    else:
-        tqdm.write("[OSM] No POIs found")
+    # if result:
+    #     tqdm.write(f"[OSM] POIs: {', '.join(result)}")
+    # else:
+    #     tqdm.write("[OSM] No POIs found")
 
     return result

@@ -5,6 +5,8 @@ numpy<2
 shapely
 pytest
 requests
+astral
+timezonefinder
 
 # Use 4.40.2 globally to ensure compatibility with Torch 2.2.2 on Intel Macs
 # while still working perfectly on Apple Silicon/Linux

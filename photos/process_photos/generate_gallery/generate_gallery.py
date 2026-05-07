@@ -1,15 +1,10 @@
 from pathlib import Path
+from datetime import datetime
 from tqdm import tqdm
 from ..config import image_extensions, THUMB_SUFFIX
 from ..extract_exif_data import extract_exif_data
 from .identify_subject import identify_subject
 from .identify_location import identify_location
-
-# TODO: add more keyword data to the gallery items, such as:
-# - subjects (instead of "alternatives")
-# - locations (more detailed hierarchy than just one name)
-# - times (season of year, time of day, etc)
-# - technicals (like camera make/model, etc)
 
 def generate_gallery(path):
     """Generate a gallery of images from a directory.
@@ -42,17 +37,29 @@ def generate_gallery(path):
             subject = subjects.split(",")[0].strip() if subjects else None # Most likely subject
 
             # Get location name
-            location, prefix = (None, None)
+            location = None
+            locations = []
             if exif.get("gps"):
-                location, prefix = identify_location(*exif["gps"])
+                locations = identify_location(*exif["gps"])
+                first_location = locations[0] if locations else None
+                first_in = next((l for l in locations if l.startswith("in ")), None)
+
+                if first_location:
+                    first_location_name = first_location.split(" ", 1)[1]
+                    first_in_name = first_in.split(" ", 1)[1] if first_in else None
+
+                    if first_in and first_in_name.lower() not in first_location_name.lower():
+                        location = f"{first_location} {first_in}"
+                    else:
+                        location = f"{first_location}"
 
             # Compose title
             if subject and location:
-                title = f"{subject} {prefix} {location}"
+                title = f"{subject} {location}"
             elif subject:
                 title = subject
             elif location:
-                title = location
+                title = location.split(" ", 1)[-1]  # Remove "at"/"in"/"on"/etc prefix for title
             else:
                 title = None
 
@@ -94,20 +101,120 @@ def generate_gallery(path):
                 desc_parts.append(exif["date"])
             description = ", ".join(desc_parts) if desc_parts else None
 
-            # Placeholders for future metadata
-            locations = None
+            # Generate times keywords from timestamp
             times = None
+            if exif.get("timestamp"):
+                dt = datetime.fromisoformat(exif["timestamp"])
+                month = dt.month
+
+                if month in (3, 4, 5):
+                    season = "spring"
+                elif month in (6, 7, 8):
+                    season = "summer"
+                elif month in (9, 10, 11):
+                    season = "autumn"
+                else:
+                    season = "winter"
+
+                # Determine time of day using astral if GPS available
+                if exif.get("gps"):
+                    tqdm.write(f"[DEBUG] timestamp={exif.get('timestamp')}, gps={exif.get('gps')}")
+                    try:
+                        from astral import LocationInfo
+                        from astral.sun import sun
+                        import zoneinfo
+
+                        lat, lon = exif["gps"]
+                        loc = LocationInfo(latitude=lat, longitude=lon)
+                        s = sun(loc.observer, date=dt.date())
+
+                        # astral returns UTC-aware datetimes; make dt UTC-aware too
+                        # iPhone timestamps are local time, so we need the local timezone
+                        try:
+                            from timezonefinder import TimezoneFinder
+                            tz_name = TimezoneFinder().timezone_at(lat=lat, lng=lon)
+                            tz = zoneinfo.ZoneInfo(tz_name)
+                        except Exception:
+                            # Fall back to UTC offset from longitude (rough approximation)
+                            import pytz
+                            offset_hours = round(lon / 15)
+                            tz = pytz.FixedOffset(offset_hours * 60)
+
+                        dt_aware = dt.replace(tzinfo=tz)
+
+                        dawn     = s["dawn"]
+                        sunrise  = s["sunrise"]
+                        noon     = s["noon"]
+                        sunset   = s["sunset"]
+                        dusk     = s["dusk"]
+
+                        golden_morning_end = sunrise + (noon - sunrise) * 0.15
+                        golden_evening_start = sunset - (sunset - noon) * 0.15
+
+                        if dt_aware < dawn:
+                            time_of_day = "night"
+                        elif dt_aware < sunrise:
+                            time_of_day = "dawn"
+                        elif dt_aware < golden_morning_end:
+                            time_of_day = "golden hour"
+                        elif dt_aware < noon:
+                            time_of_day = "morning"
+                        elif dt_aware < noon + (sunset - noon) * 0.5:
+                            time_of_day = "midday"
+                        elif dt_aware < golden_evening_start:
+                            time_of_day = "afternoon"
+                        elif dt_aware < sunset:
+                            time_of_day = "golden hour"
+                        elif dt_aware < dusk:
+                            time_of_day = "dusk"
+                        else:
+                            time_of_day = "night"
+
+                    except Exception as e:
+                        tqdm.write(f"[WARN] astral time-of-day failed: {e}")
+                        time_of_day = None
+                else:
+                    time_of_day = None
+
+                times = ", ".join(filter(None, [season, time_of_day]))
+
+            # Generate technicals keywords from EXIF
             technicals = None
+            tech_parts = []
+            if exif.get("camera"):
+                tech_parts.append(exif["camera"])
+            if exif.get("lens") and exif.get("camera"):
+                camera = exif["camera"].lower()
+                lens = exif["lens"].lower()
+                # Skip lens if it just restates the camera name and technical specs we already have
+                if camera not in lens:
+                    tech_parts.append(exif["lens"])
+            if exif.get("focal_length"):
+                tech_parts.append(f"{exif['focal_length']}mm")
+            if exif.get("f_number"):
+                tech_parts.append(f"f/{exif['f_number']:.2f}".rstrip("0").rstrip("."))
+            if exif.get("iso"):
+                tech_parts.append(f"ISO {exif['iso']}")
+            if exif.get("shutter"):
+                shutter_val = exif["shutter"]
+                if shutter_val >= 1:
+                    shutter_str = f"{round(shutter_val)}s"
+                else:
+                    shutter_str = f"1/{round(1/shutter_val)}s"
+                tech_parts.append(shutter_str)
+            tqdm.write(f"[DEBUG] tech_parts: {tech_parts}, exif keys: {list(exif.keys())}, focal={exif.get('focal_length')}, f={exif.get('f_number')}, iso={exif.get('iso')}, shutter={exif.get('shutter')}, lens={exif.get('lens')}")
+            if tech_parts:
+                technicals = ", ".join(tech_parts)
 
             # Add to array
             images.append({
-                **({"title": title} if title is not None else {}),
-                **({"description": description} if description is not None else {}),
+                **({"title": title} if title else {}),
+                **({"description": description} if description else {}),
                 "filename": filepath.name,
-                **({"subjects": subjects} if subjects is not None else {}),
-                **({"locations": locations} if locations is not None else {}),
-                **({"times": times} if times is not None else {}),
-                **({"technicals": technicals} if technicals is not None else {}),
+                **({"subjects": subjects} if subjects else {}),
+                **({"locations": ", ".join(locations)} if locations else {}),
+                **({"times": times} if times else {}),
+                **({"technicals": technicals} if technicals else {}),
                 "_sort_timestamp": exif.get("timestamp")  # ISO 8601 expected
             })
 

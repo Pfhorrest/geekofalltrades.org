@@ -1,59 +1,47 @@
 import json
 import time
 import requests
-from pathlib import Path
-from shapely.geometry import Point
 from tqdm import tqdm
 from ...config import LOCATION_CACHE_FILE
 from .identify_pois import identify_pois
 
-# TODO: return full detailed location info, not just name and prefix, 
-# to be saved in the gallery array instead of cached in a separate file.
-# This will allow for more detailed location information to be stored and
-# used in the future, without needing to make additional API calls.
+NOMINATIM_ADDRESS_FIELDS = [
+    ("road", "on"),
+    ("neighbourhood", "in"),
+    ("suburb", "in"),
+    ("hamlet", "in"),
+    ("village", "in"),
+    ("town", "in"),
+    ("city", "in"),
+    ("county", "in"),
+    ("state", "in"),
+    ("country", "in"),
+]
 
-# TODO: instead of fixed delay to prevent rate-limiting,
-# implement a more robust strategy that retries after a delay
-# if an error is encountered, and adjusts the delay up and down
-# to discover the optimal delay for the current rate limits.
+def identify_location(lat, lon):
+    """Identify a list of prefixed location strings for given GPS coordinates.
 
-def load_location_cache(cache_file=LOCATION_CACHE_FILE):
-    if cache_file.exists():
-        with open(cache_file) as f:
-            return json.load(f)
-    return {}
-
-def save_location_cache(location_cache=None):
-    """Save the location cache to a JSON file."""
-    with open(LOCATION_CACHE_FILE, "w") as f:
-        json.dump(location_cache, f, indent=2)
-
-def identify_location(lat, lon, *, location_cache=None):
-    """Identify the location and prefix for given GPS coordinates.
+    Combines POIs from Overpass (prefixed "at" or "near") with the full
+    address hierarchy from Nominatim (prefixed "in" or "on"), ordered from
+    most to least specific.
 
     Args:
         lat (float): Latitude of the location.
         lon (float): Longitude of the location.
+
     Returns:
-        tuple: A tuple containing the location name and prefix.
+        list of str: Prefixed location strings e.g. ["at Surfrider Beach",
+            "near Malibu Pier", "on Main St", "in Malibu",
+            "in Los Angeles County", "in California"], or empty list if
+            nothing found.
     """
-
-    # Return cached result if available
-    if location_cache is None:
-            location_cache = load_location_cache()
-
-    key = f"{lat:.5f},{lon:.5f}"
-
-    if key in location_cache:
-        return location_cache[key]
-
     headers = {"User-Agent": "Photo Metadata Script (forrest@geekofalltrades.org)"}
-    location, prefix = None, None
 
-    # Step 1: Nominatim reverse geocode
+    # Step 1: Nominatim reverse geocode — collect full address hierarchy
+    nominatim_locations = []
     nominatim_url = "https://nominatim.openstreetmap.org/reverse"
     try:
-        time.sleep(2)  # prevent rate-limiting
+        time.sleep(2)
         r = requests.get(nominatim_url, params={
             "format": "json",
             "lat": lat,
@@ -62,35 +50,22 @@ def identify_location(lat, lon, *, location_cache=None):
             "addressdetails": 1
         }, headers=headers, timeout=10)
         r.raise_for_status()
-        data = r.json()
-        address = data.get("address", {})
-        for field in ("neighbourhood", "suburb", "hamlet", "village", "town", "city", "county", "state", "country"):
+        address = r.json().get("address", {})
+        for field, prefix in NOMINATIM_ADDRESS_FIELDS:
             if field in address:
-                location = address[field].split("(", 1)[1].split(")", 1)[0].strip() if "(" in address[field] and ")" in address[field] else address[field]
-                prefix = "in"
-                break
+                value = address[field]
+                if "(" in value and ")" in value:
+                    value = value.split("(", 1)[1].split(")", 1)[0].strip()
+                nominatim_locations.append(f"{prefix} {value}")
     except Exception as e:
         tqdm.write(f"[OSM] NOMINATIM ERROR: {e}")
 
-    # Step 2: Overpass query
+    # Step 2: Overpass POIs
     pois = identify_pois(lat, lon)
-    best_poi = tuple(reversed(pois[0].split(" ", 1))) if pois else None
 
-    if best_poi and best_poi[0]:
-        selected_name, selected_prefix = best_poi
-        tqdm.write(f"[OSM] Using POI: {selected_name}")
-    elif location:
-        selected_name = location
-        selected_prefix = prefix
-        tqdm.write(f"[OSM] Falling back to Nominatim: {selected_name}")
-    else:
-        selected_name = None
-        selected_prefix = None
-        tqdm.write(f"[OSM] No POI or Nominatim location found")
+    # Combine: POIs first, then Nominatim hierarchy
+    result = pois + nominatim_locations
 
-    # Save to cache
-    if selected_name and selected_prefix:
-        location_cache[key] = (selected_name, selected_prefix)
-        save_location_cache(location_cache)
+    tqdm.write(f"Locations: {', '.join(result) if result else 'None'}")
 
-    return selected_name, selected_prefix
+    return result

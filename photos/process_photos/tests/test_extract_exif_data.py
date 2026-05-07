@@ -52,6 +52,11 @@ def test_image_with_no_exif(tmp_path, monkeypatch):
         "date": None,
         "gps": None,
         "timestamp": None,
+        'f_number': None,
+        'focal_length': None,
+        'iso': None,
+        'lens': None,
+        'shutter': None
     }
 
 
