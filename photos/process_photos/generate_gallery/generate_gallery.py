@@ -118,7 +118,7 @@ def generate_gallery(path):
 
                 # Determine time of day using astral if GPS available
                 if exif.get("gps"):
-                    tqdm.write(f"[DEBUG] timestamp={exif.get('timestamp')}, gps={exif.get('gps')}")
+                    # tqdm.write(f"[DEBUG] timestamp={exif.get('timestamp')}, gps={exif.get('gps')}")
                     try:
                         from astral import LocationInfo
                         from astral.sun import sun
@@ -202,7 +202,7 @@ def generate_gallery(path):
                 else:
                     shutter_str = f"1/{round(1/shutter_val)}s"
                 tech_parts.append(shutter_str)
-            tqdm.write(f"[DEBUG] tech_parts: {tech_parts}, exif keys: {list(exif.keys())}, focal={exif.get('focal_length')}, f={exif.get('f_number')}, iso={exif.get('iso')}, shutter={exif.get('shutter')}, lens={exif.get('lens')}")
+            # tqdm.write(f"[DEBUG] tech_parts: {tech_parts}, exif keys: {list(exif.keys())}, focal={exif.get('focal_length')}, f={exif.get('f_number')}, iso={exif.get('iso')}, shutter={exif.get('shutter')}, lens={exif.get('lens')}")
             if tech_parts:
                 technicals = ", ".join(tech_parts)
 
