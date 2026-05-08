@@ -1,4 +1,4 @@
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta
 from tqdm import tqdm
 from ..config import image_extensions, THUMB_SUFFIX
 from ..extract_exif_data import extract_exif_data
