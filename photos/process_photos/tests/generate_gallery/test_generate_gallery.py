@@ -22,7 +22,7 @@ def test_single_image_full_metadata(mock_exif, mock_subject, mock_location, tmp_
         "camera": "Canon EOS",
         "date": "2024-01-01",
         "gps": (34.4, -119.7),
-        "timestamp": "2024-01-01T12:30:00",
+        "timestamp": "2024-01-01T23:59:59",
         "focal_length": 50,
         "f_number": 1.8,
         "iso": 100,
@@ -37,7 +37,7 @@ def test_single_image_full_metadata(mock_exif, mock_subject, mock_location, tmp_
     assert result[0]["locations"] == "at Mission Canyon"
     assert result[0]["description"] == "Canon EOS, 2024-01-01"
     assert result[0]["filename"] == "photo.jpg"
-    assert result[0]["times"].startswith("winter")
+    assert result[0]["times"] == "winter, night"
     assert result[0]["technicals"] == "Canon EOS, 50mm, f/1.8, ISO 100, 1/500s"
 
 @patch("process_photos.generate_gallery.generate_gallery.identify_subject")

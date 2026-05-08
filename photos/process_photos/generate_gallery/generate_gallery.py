@@ -1,5 +1,4 @@
-from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from tqdm import tqdm
 from ..config import image_extensions, THUMB_SUFFIX
 from ..extract_exif_data import extract_exif_data
@@ -142,11 +141,20 @@ def generate_gallery(path):
 
                         dt_aware = dt.replace(tzinfo=tz)
 
-                        dawn     = s["dawn"]
-                        sunrise  = s["sunrise"]
-                        noon     = s["noon"]
-                        sunset   = s["sunset"]
-                        dusk     = s["dusk"]
+                        sun_times = [
+                            s["dawn"],
+                            s["sunrise"],
+                            s["noon"],
+                            s["sunset"],
+                            s["dusk"],
+                        ]
+
+                        # Normalize: each time must be after the previous one
+                        for i in range(1, len(sun_times)):
+                            while sun_times[i] <= sun_times[i - 1]:
+                                sun_times[i] += timedelta(days=1)
+
+                        dawn, sunrise, noon, sunset, dusk = sun_times
 
                         golden_morning_end = sunrise + (noon - sunrise) * 0.15
                         golden_evening_start = sunset - (sunset - noon) * 0.15
