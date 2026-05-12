@@ -62,25 +62,25 @@
         &:nth-of-type(4n + 1) {
           &,
           & * {
-            --delB: calc(1s / 4);
+            --delB: calc(var(--dur) * 1 / 4);
           }
         }
         &:nth-of-type(4n + 2) {
           &,
           & * {
-            --delB: calc(2s / 4);
+            --delB: calc(var(--dur) * 2 / 4);
           }
         }
         &:nth-of-type(4n + 3) {
           &,
           & * {
-            --delB: calc(3s / 4);
+            --delB: calc(var(--dur) * 3 / 4);
           }
         }
         &:nth-of-type(4n + 0) {
           &,
           & * {
-            --delB: calc(4s / 4);
+            --delB: calc(var(--dur) * 4 / 4);
           }
         }
         /* Make five-column gallery items transition in with appropriate timing */
@@ -88,31 +88,31 @@
           &:nth-of-type(5n + 1) {
             &,
             & * {
-              --delB: calc(1s / 5);
+              --delB: calc(var(--dur) * 1 / 5);
             }
           }
           &:nth-of-type(5n + 2) {
             &,
             & * {
-              --delB: calc(2s / 5);
+              --delB: calc(var(--dur) * 2 / 5);
             }
           }
           &:nth-of-type(5n + 3) {
             &,
             & * {
-              --delB: calc(3s / 5);
+              --delB: calc(var(--dur) * 3 / 5);
             }
           }
           &:nth-of-type(5n + 4) {
             &,
             & * {
-              --delB: calc(4s / 5);
+              --delB: calc(var(--dur) * 5 / 5);
             }
           }
           &:nth-of-type(5n + 0) {
             &,
             & * {
-              --delB: calc(5s / 5);
+              --delB: calc(var(--dur) * 5 / 5);
             }
           }
         }
@@ -121,37 +121,37 @@
           &:nth-of-type(6n + 1) {
             &,
             & * {
-              --delB: calc(1s / 6);
+              --delB: calc(var(--dur) * 1 / 6);
             }
           }
           &:nth-of-type(6n + 2) {
             &,
             & * {
-              --delB: calc(2s / 6);
+              --delB: calc(var(--dur) * 2 / 6);
             }
           }
           &:nth-of-type(6n + 3) {
             &,
             & * {
-              --delB: calc(3s / 6);
+              --delB: calc(var(--dur) * 3 / 6);
             }
           }
           &:nth-of-type(6n + 4) {
             &,
             & * {
-              --delB: calc(4s / 6);
+              --delB: calc(var(--dur) * 4 / 6);
             }
           }
           &:nth-of-type(6n + 5) {
             &,
             & * {
-              --delB: calc(5s / 6);
+              --delB: calc(var(--dur) * 5 / 6);
             }
           }
           &:nth-of-type(6n + 0) {
             &,
             & * {
-              --delB: calc(6s / 6);
+              --delB: calc(var(--dur) * 6 / 6);
             }
           }
         }
@@ -160,43 +160,43 @@
           &:nth-of-type(7n + 1) {
             &,
             & * {
-              --delB: calc(1s / 7);
+              --delB: calc(var(--dur) * 1 / 7);
             }
           }
           &:nth-of-type(7n + 2) {
             &,
             & * {
-              --delB: calc(2s / 7);
+              --delB: calc(var(--dur) * 2 / 7);
             }
           }
           &:nth-of-type(7n + 3) {
             &,
             & * {
-              --delB: calc(3s / 7);
+              --delB: calc(var(--dur) * 3 / 7);
             }
           }
           &:nth-of-type(7n + 4) {
             &,
             & * {
-              --delB: calc(4s / 7);
+              --delB: calc(var(--dur) * 4 / 7);
             }
           }
           &:nth-of-type(7n + 5) {
             &,
             & * {
-              --delB: calc(5s / 7);
+              --delB: calc(var(--dur) * 5 / 7);
             }
           }
           &:nth-of-type(7n + 6) {
             &,
             & * {
-              --delB: calc(6s / 7);
+              --delB: calc(var(--dur) * 6 / 7);
             }
           }
           &:nth-of-type(7n + 0) {
             &,
             & * {
-              --delB: calc(7s / 7);
+              --delB: calc(var(--dur) * 7 / 7);
             }
           }
         }
@@ -205,49 +205,49 @@
           &:nth-of-type(8n + 1) {
             &,
             & * {
-              --delB: calc(1s / 8);
+              --delB: calc(var(--dur) * 1 / 8);
             }
           }
           &:nth-of-type(8n + 2) {
             &,
             & * {
-              --delB: calc(2s / 8);
+              --delB: calc(var(--dur) * 2 / 8);
             }
           }
           &:nth-of-type(8n + 3) {
             &,
             & * {
-              --delB: calc(3s / 8);
+              --delB: calc(var(--dur) * 3 / 8);
             }
           }
           &:nth-of-type(8n + 4) {
             &,
             & * {
-              --delB: calc(4s / 8);
+              --delB: calc(var(--dur) * 4 / 8);
             }
           }
           &:nth-of-type(8n + 5) {
             &,
             & * {
-              --delB: calc(5s / 8);
+              --delB: calc(var(--dur) * 5 / 8);
             }
           }
           &:nth-of-type(8n + 6) {
             &,
             & * {
-              --delB: calc(6s / 8);
+              --delB: calc(var(--dur) * 6 / 8);
             }
           }
           &:nth-of-type(8n + 7) {
             &,
             & * {
-              --delB: calc(7s / 8);
+              --delB: calc(var(--dur) * 7 / 8);
             }
           }
           &:nth-of-type(8n + 0) {
             &,
             & * {
-              --delB: calc(8s / 8);
+              --delB: calc(var(--dur) * 8 / 8);
             }
           }
         }
@@ -256,55 +256,55 @@
           &:nth-of-type(9n + 1) {
             &,
             & * {
-              --delB: calc(1s / 9);
+              --delB: calc(var(--dur) * 1 / 9);
             }
           }
           &:nth-of-type(9n + 2) {
             &,
             & * {
-              --delB: calc(2s / 9);
+              --delB: calc(var(--dur) * 2 / 9);
             }
           }
           &:nth-of-type(9n + 3) {
             &,
             & * {
-              --delB: calc(3s / 9);
+              --delB: calc(var(--dur) * 3 / 9);
             }
           }
           &:nth-of-type(9n + 4) {
             &,
             & * {
-              --delB: calc(4s / 9);
+              --delB: calc(var(--dur) * 4 / 9);
             }
           }
           &:nth-of-type(9n + 5) {
             &,
             & * {
-              --delB: calc(5s / 9);
+              --delB: calc(var(--dur) * 5 / 9);
             }
           }
           &:nth-of-type(9n + 6) {
             &,
             & * {
-              --delB: calc(6s / 9);
+              --delB: calc(var(--dur) * 6 / 9);
             }
           }
           &:nth-of-type(9n + 7) {
             &,
             & * {
-              --delB: calc(7s / 9);
+              --delB: calc(var(--dur) * 7 / 9);
             }
           }
           &:nth-of-type(9n + 8) {
             &,
             & * {
-              --delB: calc(8s / 9);
+              --delB: calc(var(--dur) * 8 / 9);
             }
           }
           &:nth-of-type(9n + 0) {
             &,
             & * {
-              --delB: calc(9s / 9);
+              --delB: calc(var(--dur) * 9 / 9);
             }
           }
         }

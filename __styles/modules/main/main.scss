@@ -87,19 +87,19 @@
         transition: all var(--dur), opacity var(--dur) linear,
           transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75)
             calc(var(--delA) + var(--delB));
-        --dur: 1s; // Transition duration
+        --dur: 0.25s; // Transition duration
       }
       --delA: 0s; // Primary transition delay (varies by nesting)
       --delB: 0s; // Secondary transition delay (varies by column)
       /* Children of children have longer delays so they transition in in sequence */
       &.off-screen > * {
-        --delA: calc(1s / 32);
+        --delA: calc(var(--dur) * 1 / 32);
         &.off-screen > * {
-          --delA: calc(2s / 32);
+          --delA: calc(var(--dur) * 2 / 32);
           &.off-screen > * {
-            --delA: calc(3s / 32);
+            --delA: calc(var(--dur) * 3 / 32);
             &.off-screen > * {
-              --delA: calc(4s / 32);
+              --delA: calc(var(--dur) * 4 / 32);
             }
           }
         }

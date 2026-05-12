@@ -1126,12 +1126,12 @@ main * {
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^=yes]) main *:not([data-reduced-motion^=yes]) {
     transition: all var(--dur), opacity var(--dur) linear, transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75) calc(var(--delA) + var(--delB));
-    --dur: 1s;
+    --dur: 0.25s;
   }
 }
 main *[data-reduced-motion^=no], html[data-reduced-motion^=no] main * {
   transition: all var(--dur), opacity var(--dur) linear, transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75) calc(var(--delA) + var(--delB));
-  --dur: 1s;
+  --dur: 0.25s;
 }
 main * {
   --delA: 0s;
@@ -1139,16 +1139,16 @@ main * {
   /* Children of children have longer delays so they transition in in sequence */
 }
 main *.off-screen > * {
-  --delA: calc(1s / 32);
+  --delA: calc(var(--dur) * 1 / 32);
 }
 main *.off-screen > *.off-screen > * {
-  --delA: calc(2s / 32);
+  --delA: calc(var(--dur) * 2 / 32);
 }
 main *.off-screen > *.off-screen > *.off-screen > * {
-  --delA: calc(3s / 32);
+  --delA: calc(var(--dur) * 3 / 32);
 }
 main *.off-screen > *.off-screen > *.off-screen > *.off-screen > * {
-  --delA: calc(4s / 32);
+  --delA: calc(var(--dur) * 4 / 32);
 }
 main * {
   /* Styles for off-screen elements to transition back in from when they enter */
@@ -2428,16 +2428,16 @@ main section .gallery.expansive {
     /* Make four-column gallery items transition in with appropriate timing */
   }
   main section .gallery.expansive > .item:nth-of-type(4n + 1), main section .gallery.expansive > .item:nth-of-type(4n + 1) * {
-    --delB: calc(1s / 4);
+    --delB: calc(var(--dur) * 1 / 4);
   }
   main section .gallery.expansive > .item:nth-of-type(4n + 2), main section .gallery.expansive > .item:nth-of-type(4n + 2) * {
-    --delB: calc(2s / 4);
+    --delB: calc(var(--dur) * 2 / 4);
   }
   main section .gallery.expansive > .item:nth-of-type(4n + 3), main section .gallery.expansive > .item:nth-of-type(4n + 3) * {
-    --delB: calc(3s / 4);
+    --delB: calc(var(--dur) * 3 / 4);
   }
   main section .gallery.expansive > .item:nth-of-type(4n + 0), main section .gallery.expansive > .item:nth-of-type(4n + 0) * {
-    --delB: calc(4s / 4);
+    --delB: calc(var(--dur) * 4 / 4);
   }
   main section .gallery.expansive > .item {
     /* Make five-column gallery items transition in with appropriate timing */
@@ -2449,117 +2449,117 @@ main section .gallery.expansive {
 }
 @media (min-width: 60rem) and (min-width: 91rem) {
   main section .gallery.expansive > .item:nth-of-type(5n + 1), main section .gallery.expansive > .item:nth-of-type(5n + 1) * {
-    --delB: calc(1s / 5);
+    --delB: calc(var(--dur) * 1 / 5);
   }
   main section .gallery.expansive > .item:nth-of-type(5n + 2), main section .gallery.expansive > .item:nth-of-type(5n + 2) * {
-    --delB: calc(2s / 5);
+    --delB: calc(var(--dur) * 2 / 5);
   }
   main section .gallery.expansive > .item:nth-of-type(5n + 3), main section .gallery.expansive > .item:nth-of-type(5n + 3) * {
-    --delB: calc(3s / 5);
+    --delB: calc(var(--dur) * 3 / 5);
   }
   main section .gallery.expansive > .item:nth-of-type(5n + 4), main section .gallery.expansive > .item:nth-of-type(5n + 4) * {
-    --delB: calc(4s / 5);
+    --delB: calc(var(--dur) * 5 / 5);
   }
   main section .gallery.expansive > .item:nth-of-type(5n + 0), main section .gallery.expansive > .item:nth-of-type(5n + 0) * {
-    --delB: calc(5s / 5);
+    --delB: calc(var(--dur) * 5 / 5);
   }
 }
 @media (min-width: 60rem) and (min-width: 106rem) {
   main section .gallery.expansive > .item:nth-of-type(6n + 1), main section .gallery.expansive > .item:nth-of-type(6n + 1) * {
-    --delB: calc(1s / 6);
+    --delB: calc(var(--dur) * 1 / 6);
   }
   main section .gallery.expansive > .item:nth-of-type(6n + 2), main section .gallery.expansive > .item:nth-of-type(6n + 2) * {
-    --delB: calc(2s / 6);
+    --delB: calc(var(--dur) * 2 / 6);
   }
   main section .gallery.expansive > .item:nth-of-type(6n + 3), main section .gallery.expansive > .item:nth-of-type(6n + 3) * {
-    --delB: calc(3s / 6);
+    --delB: calc(var(--dur) * 3 / 6);
   }
   main section .gallery.expansive > .item:nth-of-type(6n + 4), main section .gallery.expansive > .item:nth-of-type(6n + 4) * {
-    --delB: calc(4s / 6);
+    --delB: calc(var(--dur) * 4 / 6);
   }
   main section .gallery.expansive > .item:nth-of-type(6n + 5), main section .gallery.expansive > .item:nth-of-type(6n + 5) * {
-    --delB: calc(5s / 6);
+    --delB: calc(var(--dur) * 5 / 6);
   }
   main section .gallery.expansive > .item:nth-of-type(6n + 0), main section .gallery.expansive > .item:nth-of-type(6n + 0) * {
-    --delB: calc(6s / 6);
+    --delB: calc(var(--dur) * 6 / 6);
   }
 }
 @media (min-width: 60rem) and (min-width: 120rem) {
   main section .gallery.expansive > .item:nth-of-type(7n + 1), main section .gallery.expansive > .item:nth-of-type(7n + 1) * {
-    --delB: calc(1s / 7);
+    --delB: calc(var(--dur) * 1 / 7);
   }
   main section .gallery.expansive > .item:nth-of-type(7n + 2), main section .gallery.expansive > .item:nth-of-type(7n + 2) * {
-    --delB: calc(2s / 7);
+    --delB: calc(var(--dur) * 2 / 7);
   }
   main section .gallery.expansive > .item:nth-of-type(7n + 3), main section .gallery.expansive > .item:nth-of-type(7n + 3) * {
-    --delB: calc(3s / 7);
+    --delB: calc(var(--dur) * 3 / 7);
   }
   main section .gallery.expansive > .item:nth-of-type(7n + 4), main section .gallery.expansive > .item:nth-of-type(7n + 4) * {
-    --delB: calc(4s / 7);
+    --delB: calc(var(--dur) * 4 / 7);
   }
   main section .gallery.expansive > .item:nth-of-type(7n + 5), main section .gallery.expansive > .item:nth-of-type(7n + 5) * {
-    --delB: calc(5s / 7);
+    --delB: calc(var(--dur) * 5 / 7);
   }
   main section .gallery.expansive > .item:nth-of-type(7n + 6), main section .gallery.expansive > .item:nth-of-type(7n + 6) * {
-    --delB: calc(6s / 7);
+    --delB: calc(var(--dur) * 6 / 7);
   }
   main section .gallery.expansive > .item:nth-of-type(7n + 0), main section .gallery.expansive > .item:nth-of-type(7n + 0) * {
-    --delB: calc(7s / 7);
+    --delB: calc(var(--dur) * 7 / 7);
   }
 }
 @media (min-width: 60rem) and (min-width: 137rem) {
   main section .gallery.expansive > .item:nth-of-type(8n + 1), main section .gallery.expansive > .item:nth-of-type(8n + 1) * {
-    --delB: calc(1s / 8);
+    --delB: calc(var(--dur) * 1 / 8);
   }
   main section .gallery.expansive > .item:nth-of-type(8n + 2), main section .gallery.expansive > .item:nth-of-type(8n + 2) * {
-    --delB: calc(2s / 8);
+    --delB: calc(var(--dur) * 2 / 8);
   }
   main section .gallery.expansive > .item:nth-of-type(8n + 3), main section .gallery.expansive > .item:nth-of-type(8n + 3) * {
-    --delB: calc(3s / 8);
+    --delB: calc(var(--dur) * 3 / 8);
   }
   main section .gallery.expansive > .item:nth-of-type(8n + 4), main section .gallery.expansive > .item:nth-of-type(8n + 4) * {
-    --delB: calc(4s / 8);
+    --delB: calc(var(--dur) * 4 / 8);
   }
   main section .gallery.expansive > .item:nth-of-type(8n + 5), main section .gallery.expansive > .item:nth-of-type(8n + 5) * {
-    --delB: calc(5s / 8);
+    --delB: calc(var(--dur) * 5 / 8);
   }
   main section .gallery.expansive > .item:nth-of-type(8n + 6), main section .gallery.expansive > .item:nth-of-type(8n + 6) * {
-    --delB: calc(6s / 8);
+    --delB: calc(var(--dur) * 6 / 8);
   }
   main section .gallery.expansive > .item:nth-of-type(8n + 7), main section .gallery.expansive > .item:nth-of-type(8n + 7) * {
-    --delB: calc(7s / 8);
+    --delB: calc(var(--dur) * 7 / 8);
   }
   main section .gallery.expansive > .item:nth-of-type(8n + 0), main section .gallery.expansive > .item:nth-of-type(8n + 0) * {
-    --delB: calc(8s / 8);
+    --delB: calc(var(--dur) * 8 / 8);
   }
 }
 @media (min-width: 60rem) and (min-width: 152rem) {
   main section .gallery.expansive > .item:nth-of-type(9n + 1), main section .gallery.expansive > .item:nth-of-type(9n + 1) * {
-    --delB: calc(1s / 9);
+    --delB: calc(var(--dur) * 1 / 9);
   }
   main section .gallery.expansive > .item:nth-of-type(9n + 2), main section .gallery.expansive > .item:nth-of-type(9n + 2) * {
-    --delB: calc(2s / 9);
+    --delB: calc(var(--dur) * 2 / 9);
   }
   main section .gallery.expansive > .item:nth-of-type(9n + 3), main section .gallery.expansive > .item:nth-of-type(9n + 3) * {
-    --delB: calc(3s / 9);
+    --delB: calc(var(--dur) * 3 / 9);
   }
   main section .gallery.expansive > .item:nth-of-type(9n + 4), main section .gallery.expansive > .item:nth-of-type(9n + 4) * {
-    --delB: calc(4s / 9);
+    --delB: calc(var(--dur) * 4 / 9);
   }
   main section .gallery.expansive > .item:nth-of-type(9n + 5), main section .gallery.expansive > .item:nth-of-type(9n + 5) * {
-    --delB: calc(5s / 9);
+    --delB: calc(var(--dur) * 5 / 9);
   }
   main section .gallery.expansive > .item:nth-of-type(9n + 6), main section .gallery.expansive > .item:nth-of-type(9n + 6) * {
-    --delB: calc(6s / 9);
+    --delB: calc(var(--dur) * 6 / 9);
   }
   main section .gallery.expansive > .item:nth-of-type(9n + 7), main section .gallery.expansive > .item:nth-of-type(9n + 7) * {
-    --delB: calc(7s / 9);
+    --delB: calc(var(--dur) * 7 / 9);
   }
   main section .gallery.expansive > .item:nth-of-type(9n + 8), main section .gallery.expansive > .item:nth-of-type(9n + 8) * {
-    --delB: calc(8s / 9);
+    --delB: calc(var(--dur) * 8 / 9);
   }
   main section .gallery.expansive > .item:nth-of-type(9n + 0), main section .gallery.expansive > .item:nth-of-type(9n + 0) * {
-    --delB: calc(9s / 9);
+    --delB: calc(var(--dur) * 9 / 9);
   }
 }
 main {
