@@ -36,7 +36,7 @@
     </li>
     <li><a href="/codex/ethics">A Note on Ethics</a></li>
     <li>
-        <a href="/codex/teleology">Morality &amp; Justice</a>
+        <a href="/codex/axiology">Morality &amp; Justice</a>
         <ul>
             <li><a href="/codex/axiology">On Axiology, Value, and the Objects of Morality</a></li>
             <li><a href="/codex/will">On the Will, Freedom, and the Subjects of Morality</a></li>
@@ -45,7 +45,7 @@
         </ul>
     </li>
     <li>
-        <a href="/codex/teleology">Action</a>
+        <a href="/codex/empowerment">Action</a>
         <ul>
             <li><a href="/codex/empowerment">On Empower&shy;ment, Courage, and Serenity</a></li>
             <li><a href="/codex/enlightenment">On Enlighten&shy;ment, Curiosity, and Impartiality</a></li>
