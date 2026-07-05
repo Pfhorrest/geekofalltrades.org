@@ -9,7 +9,6 @@ NOMINATIM_ADDRESS_FIELDS = [
     ("road", "on"),
     ("neighbourhood", "in"),
     ("suburb", "in"),
-    ("hamlet", "in"),
     ("village", "in"),
     ("town", "in"),
     ("city", "in"),
