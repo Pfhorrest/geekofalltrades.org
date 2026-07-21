@@ -17,6 +17,7 @@ describe("offScreenObserver", () => {
             constructor(callback) {
                 this.root = null;
                 this.rootMargin = "";
+                this.scrollMargin = "";
                 this.thresholds = [];
                 this.observe = vi.fn();
                 this.unobserve = vi.fn();

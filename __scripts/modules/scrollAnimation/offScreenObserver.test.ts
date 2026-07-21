@@ -10,6 +10,7 @@ describe("offScreenObserver", () => {
     class MockIntersectionObserver implements IntersectionObserver {
       root: Element | Document | null = null;
       rootMargin = "";
+      scrollMargin = "";
       thresholds: readonly number[] = [];
 
       constructor(callback: IntersectionObserverCallback) {
