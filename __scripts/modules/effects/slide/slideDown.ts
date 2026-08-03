@@ -148,6 +148,7 @@ export const slideDown = (
 
     // Cleanup after transition or fallback timeout
     const cleanup = () => {
+      // console.log("cleaning up after transition");
       element.style.removeProperty("height");
       element.style.removeProperty("padding-top");
       element.style.removeProperty("row-gap");

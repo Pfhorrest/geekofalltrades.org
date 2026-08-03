@@ -17,7 +17,7 @@ export const hydrateBreadcrumbs = () => {
     // Get the transition duration of the last subnav
     const transitionDuration = getDuration(lastSubnav);
     // Set the hover delay to twice that
-    const hoverDelayDuration = 2 * transitionDuration;
+    const hoverDelayDuration = Math.max(2 * transitionDuration, 100);
     // Resuable function to switch subnavs
     let switchSubnav = (targetSubnav) => {
         // Slide up any open subnavs
@@ -43,11 +43,16 @@ export const hydrateBreadcrumbs = () => {
                 slideDown(targetSubnav);
             }
         }, transitionDuration);
+        setTimeout(() => {
+            // (in case it's still hidden)
+            if (getComputedStyle(targetSubnav).display == "none") {
+                slideDown(targetSubnav);
+            }
+        }, Math.max(transitionDuration, 100));
     };
     // For every breadcrumb
-    document
-        .querySelectorAll("header > nav > a")
-        .forEach((breadcrumb) => {
+    let breadcrumbs = document.querySelectorAll("header > nav > a");
+    breadcrumbs.forEach((breadcrumb) => {
         // If it has a subnav
         const nextSibling = breadcrumb.nextElementSibling;
         if (nextSibling instanceof HTMLElement &&
@@ -57,7 +62,14 @@ export const hydrateBreadcrumbs = () => {
             breadcrumb.addEventListener("mouseenter", (e) => {
                 // Mark that the mouse is in the breadcrumb
                 breadcrumb.mouseIn = true;
+                // Add 'current' class to this breadcrumb
                 breadcrumb.classList.add("current");
+                // Remove 'current' class from other breadcrumbs
+                breadcrumbs.forEach((b) => {
+                    if (b != breadcrumb) {
+                        b.classList.remove("current");
+                    }
+                });
                 // console.log(`Mouse entered breadcrumb '${breadcrumb.innerText}'`);
                 if (window.innerWidth >= breakpoint) {
                     // If we're above the breakpoint, wait the hover delay then...

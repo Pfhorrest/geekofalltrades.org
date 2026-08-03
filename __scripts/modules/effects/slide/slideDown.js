@@ -134,6 +134,7 @@ export const slideDown = (element, duration = getDuration(element)) => {
         // console.log("element.style.height is now", element.style.height);
         // Cleanup after transition or fallback timeout
         const cleanup = () => {
+            // console.log("cleaning up after transition");
             element.style.removeProperty("height");
             element.style.removeProperty("padding-top");
             element.style.removeProperty("row-gap");
