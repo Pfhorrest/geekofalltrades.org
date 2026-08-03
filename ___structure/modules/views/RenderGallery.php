@@ -35,7 +35,7 @@
                             ? json_decode('"' . $image['title'] . '"')
                             : 'Untitled' .
                                 (!empty($image['maybe'])
-                                    ? '<span class="maybe">(Maybe: '.json_decode('"' . $image['maybe'] . '"').'")</span>'
+                                    ? '<span class="maybe">(Maybe: '.json_decode('"' . $image['maybe'] . '"').')</span>'
                                     : '')
                         ).
                     '</p>
