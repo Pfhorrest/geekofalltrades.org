@@ -19,7 +19,7 @@
 		working with distributed teams across time zones. Equally comfortable working independently
 		or within cross-functional teams. Recognized for strong problem-solving, rapid learning, and
 		clear communication. Open to roles at all levels, including support positions, and motivated by
-		contribution and growth over title. U.S. Citizen &ndash authorized to work in the U.S. without
+		contribution and growth over title. U.S. Citizen &ndash; authorized to work in the U.S. without
 		sponsorship, eligible for security clearance.
 	</p>
 	<section id="hard-skills">
