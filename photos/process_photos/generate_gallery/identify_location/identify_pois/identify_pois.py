@@ -38,8 +38,10 @@ def overpass_request(query, max_retries=5):
                 timeout=30
             )
             if response.status_code == 429:
-                tqdm.write(f"[OSM] Rate limited (429), retrying in {delay}s...")
-                delay *= 2
+                # If rate limited, back off significantly to let the slot clear
+                tqdm.write(f"[OSM] Rate limited (429). Sleeping 60s before retry...")
+                time.sleep(60)
+                delay = max(delay * 2, 30)
                 continue
             if response.status_code in (502, 503, 504):
                 tqdm.write(f"[OSM] Server error ({response.status_code}), retrying in {delay}s...")
@@ -72,20 +74,15 @@ def identify_pois(lat, lon):
         list of str: Prefixed location strings e.g. ["at Surfrider Beach",
             "near Malibu Pier"], or empty list if none found or on error.
     """
-    features = [
-        "education", "geological", "historic", "leisure",
-        "man_made", "military", "natural", "tourism"
-    ]
+    features = "education|geological|historic|leisure|man_made|military|natural|tourism"
     radius = 100  # meters
-    feature_block = "\n".join(
-        f'  {t}["{key}"]["name"](around:{radius},{lat},{lon});'
-        for key in features
-        for t in ("node", "way", "relation")
-    )
+    
     query = f"""
     [out:json][timeout:25];
     (
-    {feature_block}
+        node[~"^({features})$"~"."]["name"](around:{radius},{lat},{lon});
+        way[~"^({features})$"~"."]["name"](around:{radius},{lat},{lon});
+        relation[~"^({features})$"~"."]["name"](around:{radius},{lat},{lon});
     );
     out body geom;
     """
