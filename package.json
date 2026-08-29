@@ -39,5 +39,9 @@
     "deploy:prod:update": "npm run deploy:prod:update:structure && npm run deploy:prod:update:content",
     "deploy:prod:legacy": "ssh goat \"rsync -ah --omit-dir-times --itemize-changes --exclude=.dh-diag --ignore-existing --exclude='/___structure/' ~/old.geekofalltrades.org/ ~/geekofalltrades.org/ | grep -v '^.d'; exit \\${PIPESTATUS[0]}\"",
     "deploy:prod": "npm run deploy:prod:health && npm run deploy:prod:snapshot && npm run deploy:prod:update && npm run deploy:prod:health && npm run deploy:prod:tidy && echo 'Deploy OK' || (echo 'Deploy FAILED — rolling back' && npm run deploy:prod:rollback)"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true,
+    "fsevents@2.3.3": true
   }
 }
