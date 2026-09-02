@@ -23,6 +23,30 @@
     /* Background */
     background: radial-gradient(black, hsla(0deg 0% 0% / 93.75%));
 
+    /* Loading spinner */
+    &::after {
+      content: "";
+      position: absolute;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 0.25rem solid transparent;
+      border-left-color: rgba(255, 255, 255, 0.8);
+      border-bottom-color: rgba(255, 255, 255, 0.6);
+      border-right-color: rgba(255, 255, 255, 0.4);
+      border-top-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      z-index: -1;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
     /* Typography */
     color: grey;
     font-size: calc(1rem + 1vmin);
