@@ -3035,7 +3035,7 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
   outline: 0.125rem dotted rgba(255, 255, 255, 0.5);
   outline-offset: 0.5rem;
   opacity: 0.5;
-  animation: spin-and-throb 1s linear infinite;
+  animation: spin-and-throb 2s linear infinite;
   z-index: -1;
 }
 @keyframes spin-and-throb {
@@ -3043,16 +3043,16 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
     transform: rotate(0deg) scale(1);
   }
   25% {
-    transform: rotate(90deg) scale(1.25);
+    transform: rotate(180deg) scale(1.25);
   }
   50% {
-    transform: rotate(180deg) scale(1);
+    transform: rotate(360deg) scale(1);
   }
   75% {
-    transform: rotate(270deg) scale(0.75);
+    transform: rotate(540deg) scale(0.75);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(720deg) scale(1);
   }
 }
 .lightbox {
