@@ -3032,42 +3032,44 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
   background-position-x: center, left, center, right, right, right, center, left, left;
   background-position-y: center, bottom, bottom, bottom, center, top, top, top, center;
   box-shadow: inset 0 0 0 0.375rem black;
-  outline: 0.25rem dotted rgba(255, 255, 255, 0.125);
+  outline: 0.25rem dashed rgba(255, 255, 255, 0.125);
   outline-offset: 0.5rem;
   opacity: 0.5;
-  animation: spin-and-throb 4s linear infinite;
+  animation: spin-and-pulse 4s linear infinite;
   z-index: -1;
 }
-@keyframes spin-and-throb {
+@keyframes spin-and-pulse {
   0% {
     transform: rotate(0deg) scale(1);
-    outline-offset: 2rem;
-    outline-color: rgba(255, 255, 255, 0.125);
-    outline-width: 0.375rem;
+    outline-offset: 0;
+    outline-color: rgba(255, 255, 255, 0);
+    outline-width: 0;
   }
   25% {
-    transform: rotate(180deg) scale(1.25);
-    outline-offset: 0rem;
-    outline-color: rgba(255, 255, 255, 0);
-    outline-width: 0.5rem;
+    transform: rotate(180deg) scale(0.75);
+    outline-offset: 0.25rem;
+    outline-color: rgba(255, 255, 255, 0.125);
+    outline-width: 1rem;
   }
   50% {
     transform: rotate(360deg) scale(1);
-    outline-offset: 2rem;
-    outline-color: rgba(255, 255, 255, 0.125);
-    outline-width: 0.375rem;
+    outline-offset: 35.3553390593vmax;
+    outline-color: rgba(255, 255, 255, 0.03125);
+    outline-width: 0.2rem;
+    outline-style: dotted;
   }
   75% {
-    transform: rotate(540deg) scale(0.75);
-    outline-offset: 4rem;
-    outline-color: rgba(255, 255, 255, 0.25);
-    outline-width: 0.25rem;
+    transform: rotate(540deg) scale(1.25);
+    outline-offset: 70.7106781187vmax;
+    outline-color: rgba(255, 255, 255, 0);
+    outline-width: 0;
   }
   100% {
     transform: rotate(720deg) scale(1);
-    outline-offset: 2rem;
-    outline-color: rgba(255, 255, 255, 0.125);
-    outline-width: 0.375rem;
+    outline-offset: 0;
+    outline-color: rgba(255, 255, 255, 0);
+    outline-width: 0;
+    outline-style: dashed;
   }
 }
 .lightbox {
@@ -3122,6 +3124,11 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
 }
 .lightbox #caption span {
   white-space: normal;
+  max-height: 2em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .lightbox #caption span .maybe {
   display: block;
@@ -3141,6 +3148,14 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
   display: inline-block;
   width: 1em;
   margin: 0 1em;
+}
+.lightbox nav a:first-child {
+  margin-left: 0;
+}
+.lightbox nav a:last-child {
+  margin-right: 0;
+}
+.lightbox nav a {
   padding: 0;
   border-radius: var(--rounding);
   background: none;

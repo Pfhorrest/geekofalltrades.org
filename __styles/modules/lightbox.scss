@@ -198,6 +198,12 @@
     #caption {
       span {
         white-space: normal;
+        max-height: 2em;
+        overflow: hidden;
+        // Special styles for multi-line ellipsis
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
         .maybe {
           display: block;
           font-size: 0.5em;
@@ -217,6 +223,12 @@
         display: inline-block;
         width: 1em;
         margin: 0 1em;
+        &:first-child {
+          margin-left: 0;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
         padding: 0;
         border-radius: var(--rounding);
         background: none;
