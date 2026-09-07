@@ -76,7 +76,7 @@ function runSlideshowLoop(items) {
 }
 /**
  * Sets up the gallery thumbnail slideshow: continuously cycles the
- * thumbnail, and, unless the item is `.custom`, the title and description,
+ * thumbnail, and, if the item has a `.more link`, the title and description,
  * of one `.gallery > .item` at a time through the entries in that item's
  * linked subgallery. Pauses indefinitely whenever reduced motion is
  * preferred, and does nothing if no gallery item links to a subgallery.
@@ -84,7 +84,7 @@ function runSlideshowLoop(items) {
  * @returns Nothing. The slideshow loop runs indefinitely in the background once started.
  */
 export function initializeGallerySlideshows() {
-    const items = Array.from(document.querySelectorAll(".gallery > .item:has(.more)"));
+    const items = Array.from(document.querySelectorAll(".gallery > .item:has(img)"));
     if (items.length === 0) {
         return;
     }

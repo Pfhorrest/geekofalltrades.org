@@ -74,7 +74,7 @@ async function runSlideshowLoop(items: HTMLElement[]): Promise<void> {
 
 /**
  * Sets up the gallery thumbnail slideshow: continuously cycles the
- * thumbnail, and, unless the item is `.custom`, the title and description,
+ * thumbnail, and, if the item has a `.more link`, the title and description,
  * of one `.gallery > .item` at a time through the entries in that item's
  * linked subgallery. Pauses indefinitely whenever reduced motion is
  * preferred, and does nothing if no gallery item links to a subgallery.
@@ -83,7 +83,7 @@ async function runSlideshowLoop(items: HTMLElement[]): Promise<void> {
  */
 export function initializeGallerySlideshows(): void {
   const items = Array.from(
-    document.querySelectorAll<HTMLElement>(".gallery > .item:has(.more)"),
+    document.querySelectorAll<HTMLElement>(".gallery > .item:has(img)"),
   );
   if (items.length === 0) {
     return;

@@ -46,20 +46,24 @@ interface FadingElements {
 /**
  * Finds the elements within an item that the slideshow should fade and
  * change: its thumbnail image always, and its title and description too
- * unless the item is marked `.custom`.
+ * only if the item has its own `.more` link. Items without one are being
+ * cycled via their cover link instead, and keep their existing title and
+ * description untouched.
  *
  * @param item - The `.gallery > .item` element to inspect.
  *
- * @returns The item's image, title, and description elements. Title and description are `null` for `.custom` items, or if genuinely absent.
+ * @returns The item's image, title, and description elements. Title and description are `null` for items with no `.more` link, or if genuinely absent.
  */
 function findFadingElements(item: HTMLElement): FadingElements {
-  const isCustom = item.classList.contains("custom");
+  const hasMoreLink = item.querySelector(":scope > .more > a") !== null;
   return {
     img: item.querySelector<HTMLImageElement>(":scope > img"),
-    title: isCustom ? null : item.querySelector<HTMLElement>(":scope > .title"),
-    description: isCustom
-      ? null
-      : item.querySelector<HTMLElement>(":scope > .description"),
+    title: hasMoreLink
+      ? item.querySelector<HTMLElement>(":scope > .title")
+      : null,
+    description: hasMoreLink
+      ? item.querySelector<HTMLElement>(":scope > .description")
+      : null,
   };
 }
 
@@ -127,8 +131,8 @@ export default async function changeGallerySlide(
     img.src = nextEntry.imgSrc;
     img.alt = nextEntry.imgAlt;
   }
-  if (title) title.textContent = nextEntry.title;
-  if (description) description.textContent = nextEntry.description;
+  if (title) title.innerHTML = nextEntry.title;
+  if (description) description.innerHTML = nextEntry.description;
 
   for (const el of elementsToFade) {
     fadeIn(el, duration, false);
