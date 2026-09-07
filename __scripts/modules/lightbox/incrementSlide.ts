@@ -6,7 +6,7 @@ import { slideDuration, slideIndex } from "./lightboxState";
  * Steps forward through the slideshow (or backward if negative)
  *
  * @param {number} stepCount - The number of slides to step forward (or backward if negative)
- * 
+ *
  * @returns {void}
  */
 export const incrementSlide = (stepCount: number): void => {
@@ -15,6 +15,20 @@ export const incrementSlide = (stepCount: number): void => {
   if (lightboxImage) {
     // Fade out the image
     fadeOut(lightboxImage, slideDuration());
+
+    // Restart loading spinner animation
+    const loadingSpinnerAnimations = document
+      .querySelector<HTMLElement>("#lightbox")
+      ?.getAnimations({ subtree: true })
+      .filter(
+        (anim) =>
+          anim.effect instanceof KeyframeEffect &&
+          anim.effect?.pseudoElement === "::after",
+      );
+    loadingSpinnerAnimations?.forEach((animation) => {
+      animation.cancel();
+      animation.play();
+    });
 
     // Wait until the fade out is complete and remove the src attribute
     setTimeout(() => {
