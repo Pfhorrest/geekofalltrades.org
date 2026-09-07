@@ -7,7 +7,7 @@
 		<div class="item">
 			<p class="title">Emblematic Jewelry</p>
 			<img src="emblematic/_media/images/5326-gear-pin-v1-fancy-thumb.png" alt="thumbnail" />
-			<p class="description">Examples of graphic arts for manufacture as products like custom pins, coins, and other emblematic jewelry.</p>
+			<p class="description">Examples of graphics for manufacture as custom pins, coins, etc.</p>
 			<a class="cover" href="emblematic">View emblematic jewelry portfolio</a>
 		</div>
 		<div class="item">
