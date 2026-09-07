@@ -6,6 +6,7 @@ import { hydrateExternalLinks } from "./modules/externalLinks/hydrateExternalLin
 import { hydrateLightbox } from "./modules/lightbox/hydrateLightbox";
 import { hydrateColorSwitcher } from "./modules/colorSchemes/hydrateColorSwitcher";
 import { hydrateMotionSwitcher } from "./modules/effects/hydrateMotionSwitcher";
+import { initializeGallerySlideshows } from "./modules/gallerySlideshows/initializeGallerySlideshows";
 const onReady = (fn) => {
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", fn);
@@ -23,5 +24,6 @@ onReady(() => {
     hydrateLightbox();
     hydrateColorSwitcher();
     hydrateMotionSwitcher();
+    initializeGallerySlideshows();
 });
 //# sourceMappingURL=scripts.js.map

@@ -18,8 +18,7 @@ export const fadeIn = (element, duration = getDuration(element), manageDisplay =
     // If the element is already visible, use its current opacity as the initial opacity;
     // otherwise, use the value of the --pre-fade-opacity custom property set by fadeOut;
     // or default to 1 if neither is available.
-    const initialOpacity = parseFloat(getComputedStyle(element).opacity) ||
-        parseFloat(element.style.getPropertyValue("--pre-fade-opacity")) ||
+    const initialOpacity = parseFloat(element.style.getPropertyValue("--pre-fade-opacity")) ||
         1;
     element.style.removeProperty("--pre-fade-opacity");
     // console.log("element's restore opacity:", initialOpacity);

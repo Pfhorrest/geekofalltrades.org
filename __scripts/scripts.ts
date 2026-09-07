@@ -6,6 +6,7 @@ import { hydrateExternalLinks } from "./modules/externalLinks/hydrateExternalLin
 import { hydrateLightbox } from "./modules/lightbox/hydrateLightbox";
 import { hydrateColorSwitcher } from "./modules/colorSchemes/hydrateColorSwitcher";
 import { hydrateMotionSwitcher } from "./modules/effects/hydrateMotionSwitcher";
+import { initializeGallerySlideshows } from "./modules/gallerySlideshows/initializeGallerySlideshows";
 
 const onReady = (fn: () => void) => {
   if (document.readyState === "loading") {
@@ -24,4 +25,5 @@ onReady(() => {
   hydrateLightbox();
   hydrateColorSwitcher();
   hydrateMotionSwitcher();
+  initializeGallerySlideshows();
 });
