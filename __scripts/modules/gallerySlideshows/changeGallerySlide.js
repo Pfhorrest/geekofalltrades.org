@@ -81,10 +81,11 @@ function getNextEntry(item, subgalleryEntries) {
     return subgalleryEntries[nextIndex];
 }
 /**
- * Advances one gallery item's thumbnail, and, unless the item is `.custom`,
- * its title and description, to the next entry in its subgallery. Preloads
- * the next entry's image first, then fades the relevant elements out,
- * swaps their content while invisible, and fades them back in.
+ * Advances one gallery item's thumbnail, and, if the item has its own
+ * `.more` link, its title and description, to the next entry in its
+ * subgallery. Preloads the next entry's image first, then fades the
+ * relevant elements out, swaps their content while invisible, waits for
+ * the live image to finish decoding, and fades everything back in.
  *
  * @param item - The `.gallery > .item` element to advance.
  * @param subgalleryEntries - The item's subgallery entries, as returned by getSubgalleryData, in display order.
@@ -120,6 +121,17 @@ export default function changeGallerySlide(item, subgalleryEntries) {
             title.innerHTML = nextEntry.title;
         if (description)
             description.innerHTML = nextEntry.description;
+        if (img) {
+            // Preloading gets the bytes into cache, but assigning a src to *this*
+            // element still requires the browser to decode and composite it for
+            // this specific element, which can take a beat even from cache. decode()
+            // resolves once that's genuinely finished, so waiting for it here is
+            // what actually guarantees the fade-in never catches the element still
+            // showing the previous image. A decode failure (e.g. a broken link)
+            // shouldn't stall the slideshow, so it's swallowed rather than awaited
+            // as a hard requirement.
+            yield img.decode().catch(() => { });
+        }
         for (const el of elementsToFade) {
             fadeIn(el, duration, false);
         }
