@@ -37,7 +37,7 @@ export const incrementSlide = (stepCount: number): void => {
         setTimeout(() => {
           // Stop loading spinner animation
           lightbox?.classList.add("loaded");
-        }, 2*slideDuration());
+        }, 3*slideDuration());
       });
     }, slideDuration());
   }
