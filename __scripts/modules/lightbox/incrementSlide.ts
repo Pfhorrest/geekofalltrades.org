@@ -11,24 +11,15 @@ import { slideDuration, slideIndex } from "./lightboxState";
  */
 export const incrementSlide = (stepCount: number): void => {
   // console.groupCollapsed(`Incrementing slide by ${stepCount}.`);
+
+  // Restart loading spinner animation
+  const lightbox = document.querySelector<HTMLElement>("#lightbox");
+  lightbox?.classList.remove("loaded");
+
   const lightboxImage = document.querySelector<HTMLElement>("#lightboxImage");
   if (lightboxImage) {
     // Fade out the image
     fadeOut(lightboxImage, slideDuration());
-
-    // Restart loading spinner animation
-    const loadingSpinnerAnimations = document
-      .querySelector<HTMLElement>("#lightbox")
-      ?.getAnimations({ subtree: true })
-      .filter(
-        (anim) =>
-          anim.effect instanceof KeyframeEffect &&
-          anim.effect?.pseudoElement === "::after",
-      );
-    loadingSpinnerAnimations?.forEach((animation) => {
-      animation.cancel();
-      animation.play();
-    });
 
     // Wait until the fade out is complete and remove the src attribute
     setTimeout(() => {
@@ -43,6 +34,10 @@ export const incrementSlide = (stepCount: number): void => {
         // Fade in the new image
         // console.log("Image loaded. Fading in.");
         fadeIn(lightboxImage, slideDuration());
+        setTimeout(() => {
+          // Stop loading spinner animation
+          lightbox?.classList.add("loaded");
+        }, 2*slideDuration());
       });
     }, slideDuration());
   }

@@ -148,6 +148,9 @@
         outline-style: dashed;
       }
     }
+    &.loaded::after {
+      display: none;
+    }
 
     /* Typography */
     color: grey;

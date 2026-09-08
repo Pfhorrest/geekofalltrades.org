@@ -13,7 +13,9 @@ export const hydrateLightbox = (): void => {
   // console.groupCollapsed("hydrateLightbox");
   //Gathers all the slides into a collection
   slides(
-    document.querySelectorAll<HTMLAnchorElement>(".gallery a[href*='display=']")
+    document.querySelectorAll<HTMLAnchorElement>(
+      ".gallery a[href*='display=']",
+    ),
   );
   // console.log(`${slides()?.length} slides found`);
 
@@ -26,10 +28,15 @@ export const hydrateLightbox = (): void => {
         e.preventDefault();
         // console.log("About to set slide:", index);
         setSlide(index);
-        document.querySelectorAll<HTMLElement>("#lightbox")?.forEach((el) => {
+        const lightbox = document.querySelector<HTMLElement>("#lightbox");
+        if (lightbox) {
           // console.log("Got the lightbox, now to fade it in...");
-          fadeIn(el, slideDuration());
-        });
+          fadeIn(lightbox, slideDuration());
+          setTimeout(() => {
+            // Stop loading spinner animation
+            lightbox.classList.add("loaded");
+          }, 3*slideDuration());
+        }
       });
     });
 
@@ -46,7 +53,7 @@ export const hydrateLightbox = (): void => {
           // console.log("Found the lightbox element");
           //Inset it into the DOM
           const lastMainElement: HTMLElement | null = document.querySelector(
-            "main"
+            "main",
           )?.lastChild as HTMLElement;
           if (lastMainElement) {
             // console.log("Inserting lightbox after last main element");
@@ -81,19 +88,19 @@ export const hydrateLightbox = (): void => {
             theLightbox.style.display = "none";
           } else {
             console.error(
-              "hydrateLightbox: Could not find the last main element to insert the lightbox after."
+              "hydrateLightbox: Could not find the last main element to insert the lightbox after.",
             );
           }
         } else {
           console.error(
-            "hydrateLightbox: Could not find the lightbox element in the html."
+            "hydrateLightbox: Could not find the lightbox element in the html.",
           );
         }
       })
       .catch((err) => {
         console.error(
           "hydrateLightbox: Error fetching the lightbox html.",
-          err
+          err,
         );
       });
   }

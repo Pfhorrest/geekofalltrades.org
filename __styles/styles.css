@@ -3072,6 +3072,9 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
     outline-style: dashed;
   }
 }
+.lightbox.loaded::after {
+  display: none;
+}
 .lightbox {
   /* Typography */
   color: grey;

@@ -19,15 +19,19 @@ export const hydrateLightbox = () => {
         (_b = slides()) === null || _b === void 0 ? void 0 : _b.forEach((element, index) => {
             // console.log("Adding onclick event to slide link", index);
             element.addEventListener("click", (e) => {
-                var _a;
                 // console.log("Slide link clicked", index);
                 e.preventDefault();
                 // console.log("About to set slide:", index);
                 setSlide(index);
-                (_a = document.querySelectorAll("#lightbox")) === null || _a === void 0 ? void 0 : _a.forEach((el) => {
+                const lightbox = document.querySelector("#lightbox");
+                if (lightbox) {
                     // console.log("Got the lightbox, now to fade it in...");
-                    fadeIn(el, slideDuration());
-                });
+                    fadeIn(lightbox, slideDuration());
+                    setTimeout(() => {
+                        // Stop loading spinner animation
+                        lightbox.classList.add("loaded");
+                    }, 3 * slideDuration());
+                }
             });
         });
         //Gets the lightbox from an external file and appends it after the (last) main element
