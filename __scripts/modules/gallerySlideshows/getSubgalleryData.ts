@@ -9,6 +9,10 @@ export interface SubgalleryEntry {
   description: string;
   imgSrc: string;
   imgAlt: string;
+  /** Absolute URL of the item's full-size image, from its cover link's `display` param — needed to keep a cycled item's own cover link in sync. */
+  fullImageSrc: string;
+  /** Plain-text title from the item's cover link's `title` param — kept separate from `title` above, which is HTML and not suitable for a query string. */
+  coverTitle: string;
 }
 
 /** An item whose subgallery hasn't loaded yet, possibly backing off after a failed attempt. */
@@ -140,7 +144,7 @@ async function fetchSubgalleryEntries(
  * Parses fetched subgallery HTML into entries.
  *
  * @param html - The subgallery page's HTML, as fetched text (never loaded into the live DOM or given a chance to load its own resources).
- * @param baseUrl - The URL the HTML was fetched from, used to resolve any relative image paths it contains.
+ * @param baseUrl - The URL the HTML was fetched from, used to resolve any relative image and cover-link paths it contains.
  *
  * @returns The parsed subgallery entries, in document order.
  */
@@ -164,6 +168,21 @@ function parseSubgalleryEntries(
       ? new URL(img.getAttribute("src") ?? "", directoryUrl).href
       : "";
 
+    // The cover link's "display" param names the full-size image (not the
+    // thumbnail) and its "title" param is the plain-text title, both
+    // needed to keep this item's own cover link in sync once it's cycled
+    // in elsewhere. Read via the raw attribute for the same base-URI
+    // reason as the img src above, not the live-resolved .href/.search.
+    const cover = subItem.querySelector<HTMLAnchorElement>(":scope > a.cover");
+    const coverParams = cover
+      ? new URL(cover.getAttribute("href") ?? "", directoryUrl).searchParams
+      : null;
+    const rawDisplayPath = coverParams?.get("display") ?? "";
+    const fullImageSrc = rawDisplayPath
+      ? new URL(rawDisplayPath, directoryUrl).href
+      : "";
+    const coverTitle = coverParams?.get("title") ?? "";
+
     return {
       // innerHTML, not textContent: a title like `Untitled <span class="maybe">
       // Bee</span>` needs that span to survive so it keeps its
@@ -174,6 +193,8 @@ function parseSubgalleryEntries(
         subItem.querySelector(":scope > .description")?.innerHTML?.trim() ?? "",
       imgSrc,
       imgAlt: img?.getAttribute("alt") ?? "",
+      fullImageSrc,
+      coverTitle,
     };
   });
 }

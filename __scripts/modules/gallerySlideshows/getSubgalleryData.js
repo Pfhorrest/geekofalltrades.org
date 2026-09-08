@@ -108,7 +108,7 @@ function fetchSubgalleryEntries(item) {
  * Parses fetched subgallery HTML into entries.
  *
  * @param html - The subgallery page's HTML, as fetched text (never loaded into the live DOM or given a chance to load its own resources).
- * @param baseUrl - The URL the HTML was fetched from, used to resolve any relative image paths it contains.
+ * @param baseUrl - The URL the HTML was fetched from, used to resolve any relative image and cover-link paths it contains.
  *
  * @returns The parsed subgallery entries, in document order.
  */
@@ -120,7 +120,7 @@ function parseSubgalleryEntries(html, baseUrl) {
     const items = doc.querySelectorAll(".gallery > .item");
     return Array.from(items).map((subItem) => {
         var _a, _b, _c, _d;
-        var _e, _f, _g, _h;
+        var _e, _f, _g, _h, _j, _k, _l;
         const img = subItem.querySelector(":scope > img");
         // A document created by DOMParser keeps *this* page's URL as its base,
         // not the URL it was fetched from, so reading `img.src` directly here
@@ -129,15 +129,31 @@ function parseSubgalleryEntries(html, baseUrl) {
         const imgSrc = img
             ? new URL((_e = img.getAttribute("src")) !== null && _e !== void 0 ? _e : "", directoryUrl).href
             : "";
+        // The cover link's "display" param names the full-size image (not the
+        // thumbnail) and its "title" param is the plain-text title, both
+        // needed to keep this item's own cover link in sync once it's cycled
+        // in elsewhere. Read via the raw attribute for the same base-URI
+        // reason as the img src above, not the live-resolved .href/.search.
+        const cover = subItem.querySelector(":scope > a.cover");
+        const coverParams = cover
+            ? new URL((_f = cover.getAttribute("href")) !== null && _f !== void 0 ? _f : "", directoryUrl).searchParams
+            : null;
+        const rawDisplayPath = (_g = coverParams === null || coverParams === void 0 ? void 0 : coverParams.get("display")) !== null && _g !== void 0 ? _g : "";
+        const fullImageSrc = rawDisplayPath
+            ? new URL(rawDisplayPath, directoryUrl).href
+            : "";
+        const coverTitle = (_h = coverParams === null || coverParams === void 0 ? void 0 : coverParams.get("title")) !== null && _h !== void 0 ? _h : "";
         return {
-            // innerHTML, not textContent: a title like `Untitled <span class="maybe">
-            // Bee</span>` needs that span to survive so it keeps its
+            // innerHTML, not textContent: a title like `Bee <span class="maybe">
+            // (probably)</span>` needs that span to survive so it keeps its
             // styling. This document was never rendered, so innerText (which
             // depends on layout) isn't an option either way.
-            title: (_f = (_b = (_a = subItem.querySelector(":scope > .title")) === null || _a === void 0 ? void 0 : _a.innerHTML) === null || _b === void 0 ? void 0 : _b.trim()) !== null && _f !== void 0 ? _f : "",
-            description: (_g = (_d = (_c = subItem.querySelector(":scope > .description")) === null || _c === void 0 ? void 0 : _c.innerHTML) === null || _d === void 0 ? void 0 : _d.trim()) !== null && _g !== void 0 ? _g : "",
+            title: (_j = (_b = (_a = subItem.querySelector(":scope > .title")) === null || _a === void 0 ? void 0 : _a.innerHTML) === null || _b === void 0 ? void 0 : _b.trim()) !== null && _j !== void 0 ? _j : "",
+            description: (_k = (_d = (_c = subItem.querySelector(":scope > .description")) === null || _c === void 0 ? void 0 : _c.innerHTML) === null || _d === void 0 ? void 0 : _d.trim()) !== null && _k !== void 0 ? _k : "",
             imgSrc,
-            imgAlt: (_h = img === null || img === void 0 ? void 0 : img.getAttribute("alt")) !== null && _h !== void 0 ? _h : "",
+            imgAlt: (_l = img === null || img === void 0 ? void 0 : img.getAttribute("alt")) !== null && _l !== void 0 ? _l : "",
+            fullImageSrc,
+            coverTitle,
         };
     });
 }

@@ -37,24 +37,39 @@ function preloadImage(src: string): Promise<void> {
   });
 }
 
-interface FadingElements {
+/**
+ * Encodes a value for use in the cover link's query string, leaving `/`
+ * unescaped and spaces as `+` (both safe within a URL's query component),
+ * everything else percent-encoded as usual.
+ *
+ * @param value - The raw value to encode.
+ *
+ * @returns The encoded value, ready to appear after a `=` in a query string.
+ */
+function encodeCoverQueryValue(value: string): string {
+  return encodeURIComponent(value).replace(/%2F/g, "/").replace(/%20/g, "+");
+}
+
+interface ItemElements {
   img: HTMLImageElement | null;
   title: HTMLElement | null;
   description: HTMLElement | null;
+  cover: HTMLAnchorElement | null;
 }
 
 /**
- * Finds the elements within an item that the slideshow should fade and
- * change: its thumbnail image always, and its title and description too
- * only if the item has its own `.more` link. Items without one are being
- * cycled via their cover link instead, and keep their existing title and
- * description untouched.
+ * Finds the elements within an item that the slideshow should touch: its
+ * thumbnail image always, and, only if the item has its own `.more` link,
+ * its title, description, and cover link. Items without a `.more` link are
+ * being cycled via their cover link instead (see getSubgalleryData), so
+ * that link is left alone rather than overwritten with lightbox-style
+ * `display`/`title` data it was never meant to hold.
  *
  * @param item - The `.gallery > .item` element to inspect.
  *
- * @returns The item's image, title, and description elements. Title and description are `null` for items with no `.more` link, or if genuinely absent.
+ * @returns The item's image, title, description, and cover elements. Title, description, and cover are `null` for items with no `.more` link, or if genuinely absent.
  */
-function findFadingElements(item: HTMLElement): FadingElements {
+function findItemElements(item: HTMLElement): ItemElements {
   const hasMoreLink = item.querySelector(":scope > .more > a") !== null;
   return {
     img: item.querySelector<HTMLImageElement>(":scope > img"),
@@ -63,6 +78,9 @@ function findFadingElements(item: HTMLElement): FadingElements {
       : null,
     description: hasMoreLink
       ? item.querySelector<HTMLElement>(":scope > .description")
+      : null,
+    cover: hasMoreLink
+      ? item.querySelector<HTMLAnchorElement>(":scope > a.cover")
       : null,
   };
 }
@@ -88,8 +106,8 @@ function getNextEntry(
 
 /**
  * Advances one gallery item's thumbnail, and, if the item has its own
- * `.more` link, its title and description, to the next entry in its
- * subgallery. Preloads the next entry's image first, then fades the
+ * `.more` link, its title, description, and cover link, to the next entry
+ * in its subgallery. Preloads the next entry's image first, then fades the
  * relevant elements out, swaps their content while invisible, waits for
  * the live image to finish decoding, and fades everything back in.
  *
@@ -106,7 +124,7 @@ export default async function changeGallerySlide(
     return;
   }
 
-  const { img, title, description } = findFadingElements(item);
+  const { img, title, description, cover } = findItemElements(item);
   const elementsToFade = [img, title, description].filter(
     (el): el is HTMLElement => el !== null,
   );
@@ -134,6 +152,14 @@ export default async function changeGallerySlide(
   }
   if (title) title.innerHTML = nextEntry.title;
   if (description) description.innerHTML = nextEntry.description;
+  if (cover && nextEntry.fullImageSrc) {
+    // Keep the lightbox link in sync with what's now on screen, so
+    // clicking the thumbnail doesn't open the image/title that used to be
+    // there before the slideshow moved on.
+    const displayValue = encodeCoverQueryValue(nextEntry.fullImageSrc);
+    const titleValue = encodeCoverQueryValue(nextEntry.coverTitle);
+    cover.href = `?display=${displayValue}&title=${titleValue}`;
+  }
 
   if (img) {
     // Preloading gets the bytes into cache, but assigning a src to *this*
