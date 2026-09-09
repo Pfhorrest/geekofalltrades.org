@@ -7,22 +7,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { getDuration } from "../effects/helpers/getDuration";
+import { getDuration, delay } from "../effects/helpers/helpers";
 import { fadeOut, fadeIn } from "../effects/fade/fadeEffects";
 // Which subgallery entry each item most recently displayed, so the next
 // call knows which entry comes next. A WeakMap means an item removed from
 // the DOM won't keep this state (or itself) alive.
 const currentEntryIndices = new WeakMap();
-/**
- * Waits for the given number of milliseconds.
- *
- * @param milliseconds - How long to wait.
- *
- * @returns A promise that resolves after the delay.
- */
-function delay(milliseconds) {
-    return new Promise((resolve) => setTimeout(resolve, milliseconds));
-}
 /**
  * Preloads an image so that swapping an `<img>`'s src to it won't leave it
  * visibly blank or half-loaded while it fades back in. Resolves once

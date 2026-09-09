@@ -1,4 +1,4 @@
-import { getDuration } from "../effects/helpers/getDuration";
+import { getDuration, delay } from "../effects/helpers/helpers";
 import { fadeOut, fadeIn } from "../effects/fade/fadeEffects";
 import type { SubgalleryEntry } from "./getSubgalleryData";
 
@@ -6,17 +6,6 @@ import type { SubgalleryEntry } from "./getSubgalleryData";
 // call knows which entry comes next. A WeakMap means an item removed from
 // the DOM won't keep this state (or itself) alive.
 const currentEntryIndices = new WeakMap<HTMLElement, number>();
-
-/**
- * Waits for the given number of milliseconds.
- *
- * @param milliseconds - How long to wait.
- *
- * @returns A promise that resolves after the delay.
- */
-function delay(milliseconds: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
-}
 
 /**
  * Preloads an image so that swapping an `<img>`'s src to it won't leave it

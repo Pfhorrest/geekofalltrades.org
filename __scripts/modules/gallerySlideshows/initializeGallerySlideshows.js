@@ -7,19 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { getDuration } from "../effects/helpers/getDuration";
+import { getDuration, delay } from "../effects/helpers/helpers";
 import getSubgalleryData from "./getSubgalleryData";
 import changeGallerySlide from "./changeGallerySlide";
-/**
- * Waits for the given number of milliseconds.
- *
- * @param milliseconds - How long to wait.
- *
- * @returns A promise that resolves after the delay.
- */
-function delay(milliseconds) {
-    return new Promise((resolve) => setTimeout(resolve, milliseconds));
-}
 /**
  * Checks whether reduced motion should currently be honored, either because
  * the page has explicitly flagged it or because the browser reports the

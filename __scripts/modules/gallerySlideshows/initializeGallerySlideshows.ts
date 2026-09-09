@@ -1,17 +1,6 @@
-import { getDuration } from "../effects/helpers/getDuration";
+import { getDuration, delay } from "../effects/helpers/helpers";
 import getSubgalleryData from "./getSubgalleryData";
 import changeGallerySlide from "./changeGallerySlide";
-
-/**
- * Waits for the given number of milliseconds.
- *
- * @param milliseconds - How long to wait.
- *
- * @returns A promise that resolves after the delay.
- */
-function delay(milliseconds: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
-}
 
 /**
  * Checks whether reduced motion should currently be honored, either because
