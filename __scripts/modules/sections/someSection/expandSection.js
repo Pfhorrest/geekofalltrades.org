@@ -50,9 +50,10 @@ export const expandSection = (element) => {
         // console.log(`inherentHeight:`, inherentHeight);
         // Restore the display values of the children
         children.forEach((child) => {
-            var _a;
-            child.style.setProperty("display", (_a = child.getAttribute("data-collapsed-display-value")) !== null && _a !== void 0 ? _a : "none");
-            child.removeAttribute("data-collapsed-display-value");
+            if (child.hasAttribute("data-collapsed-display-value")) {
+                child.style.setProperty("display", child.getAttribute("data-collapsed-display-value"));
+                child.removeAttribute("data-collapsed-display-value");
+            }
         });
         // Set the min-height of the section to the inherent height
         section.style.setProperty("min-height", `${inherentHeight}px`);

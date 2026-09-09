@@ -25,7 +25,7 @@ export const expandSection = (element: HTMLElement): void => {
     (section) =>
       section instanceof HTMLElement &&
       section.tagName.toLowerCase() == "section" &&
-      section.classList.contains("toggleable")
+      section.classList.contains("toggleable"),
   );
   // console.log("sections:", sections);
   // Loop through all the ancestor sections
@@ -45,9 +45,9 @@ export const expandSection = (element: HTMLElement): void => {
         child instanceof HTMLElement &&
         !(
           ["h2", "h3", "h4", "h5", "h6"].includes(
-            child.tagName.toLowerCase()
+            child.tagName.toLowerCase(),
           ) || child.classList.contains("description")
-        )
+        ),
     );
 
     let inherentHeight;
@@ -61,11 +61,13 @@ export const expandSection = (element: HTMLElement): void => {
     // console.log(`inherentHeight:`, inherentHeight);
     // Restore the display values of the children
     children.forEach((child) => {
-      child.style.setProperty(
-        "display",
-        child.getAttribute("data-collapsed-display-value") ?? "none"
-      );
-      child.removeAttribute("data-collapsed-display-value");
+      if (child.hasAttribute("data-collapsed-display-value")) {
+        child.style.setProperty(
+          "display",
+          child.getAttribute("data-collapsed-display-value"),
+        );
+        child.removeAttribute("data-collapsed-display-value");
+      }
     });
     // Set the min-height of the section to the inherent height
     section.style.setProperty("min-height", `${inherentHeight}px`);
