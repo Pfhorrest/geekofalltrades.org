@@ -3128,6 +3128,7 @@ html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
 .lightbox #caption span {
   white-space: normal;
   max-height: 2em;
+  padding: 0.5em 0;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
