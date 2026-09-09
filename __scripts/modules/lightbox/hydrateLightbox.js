@@ -1,7 +1,17 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { fadeIn, fadeOut } from "../effects/effects";
 import { setSlide } from "./setSlide";
 import { incrementSlide } from "./incrementSlide";
 import { slides, slideDuration } from "./lightboxState";
+import { delayForEvent } from "../effects/helpers/helpers";
 /**
  * Sets up the structure of the lightbox (all hidden by default)
  * and the events listeners to open and close it
@@ -18,21 +28,26 @@ export const hydrateLightbox = () => {
         //Adds onclick event to every slide link to open lightbox
         (_b = slides()) === null || _b === void 0 ? void 0 : _b.forEach((element, index) => {
             // console.log("Adding onclick event to slide link", index);
-            element.addEventListener("click", (e) => {
+            element.addEventListener("click", (e) => __awaiter(void 0, void 0, void 0, function* () {
                 // console.log("Slide link clicked", index);
                 e.preventDefault();
                 // console.log("About to set slide:", index);
                 setSlide(index);
                 const lightbox = document.querySelector("#lightbox");
-                if (lightbox) {
+                const lightboxImage = document.querySelector("#lightboxImage");
+                if (lightbox && lightboxImage) {
                     // console.log("Got the lightbox, now to fade it in...");
-                    fadeIn(lightbox, slideDuration());
-                    setTimeout(() => {
-                        // Stop loading spinner animation
-                        lightbox.classList.add("loaded");
-                    }, 3 * slideDuration());
+                    yield Promise.all([
+                        // Wait until the fade in is complete
+                        fadeIn(lightbox, slideDuration()),
+                        // Wait for the image to load and decode
+                        delayForEvent(lightboxImage, "load"),
+                        lightboxImage.decode().catch(() => { }),
+                    ]);
+                    // Stop loading spinner animation
+                    lightbox.classList.add("loaded");
                 }
-            });
+            }));
         });
         //Gets the lightbox from an external file and appends it after the (last) main element
         // console.log("Fetching the lightbox html");
@@ -60,7 +75,7 @@ export const hydrateLightbox = () => {
                     (_c = theLightbox
                         .querySelector(".close")) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => {
                         // console.log("Lightbox close button clicked");
-                        fadeOut(theLightbox);
+                        fadeOut(theLightbox, slideDuration());
                     });
                     (_d = theLightbox
                         .querySelector(".next")) === null || _d === void 0 ? void 0 : _d.addEventListener("click", () => {
@@ -71,7 +86,7 @@ export const hydrateLightbox = () => {
                     theLightbox.addEventListener("click", (e) => {
                         if (e.target === theLightbox) {
                             // console.log("Lightbox background clicked");
-                            fadeOut(theLightbox);
+                            fadeOut(theLightbox, slideDuration());
                         }
                     });
                     //Hide it

@@ -2,6 +2,7 @@ import { fadeIn, fadeOut } from "../effects/effects";
 import { setSlide } from "./setSlide";
 import { incrementSlide } from "./incrementSlide";
 import { slides, slideDuration } from "./lightboxState";
+import { delayForEvent } from "../effects/helpers/helpers";
 
 /**
  * Sets up the structure of the lightbox (all hidden by default)
@@ -23,19 +24,25 @@ export const hydrateLightbox = (): void => {
     //Adds onclick event to every slide link to open lightbox
     slides()?.forEach((element: HTMLAnchorElement, index: number) => {
       // console.log("Adding onclick event to slide link", index);
-      element.addEventListener("click", (e: MouseEvent) => {
+      element.addEventListener("click", async (e: MouseEvent) => {
         // console.log("Slide link clicked", index);
         e.preventDefault();
         // console.log("About to set slide:", index);
         setSlide(index);
         const lightbox = document.querySelector<HTMLElement>("#lightbox");
-        if (lightbox) {
+        const lightboxImage =
+          document.querySelector<HTMLImageElement>("#lightboxImage");
+        if (lightbox && lightboxImage) {
           // console.log("Got the lightbox, now to fade it in...");
-          fadeIn(lightbox, slideDuration());
-          setTimeout(() => {
-            // Stop loading spinner animation
-            lightbox.classList.add("loaded");
-          }, 3*slideDuration());
+          await Promise.all([
+            // Wait until the fade in is complete
+            fadeIn(lightbox, slideDuration()),
+            // Wait for the image to load and decode
+            delayForEvent(lightboxImage, "load"),
+            lightboxImage.decode().catch(() => {}),
+          ]);
+          // Stop loading spinner animation
+          lightbox.classList.add("loaded");
         }
       });
     });
@@ -69,7 +76,7 @@ export const hydrateLightbox = (): void => {
               .querySelector<HTMLElement>(".close")
               ?.addEventListener("click", () => {
                 // console.log("Lightbox close button clicked");
-                fadeOut(theLightbox);
+                fadeOut(theLightbox, slideDuration());
               });
             theLightbox
               .querySelector<HTMLElement>(".next")
@@ -81,7 +88,7 @@ export const hydrateLightbox = (): void => {
             theLightbox.addEventListener("click", (e) => {
               if (e.target === theLightbox) {
                 // console.log("Lightbox background clicked");
-                fadeOut(theLightbox);
+                fadeOut(theLightbox, slideDuration());
               }
             });
             //Hide it

@@ -1,4 +1,14 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { getDuration } from "../helpers/getDuration";
+import { delayForEvent } from "../helpers/helpers";
 /**
  * Fades in the specified element over the specified duration.
  *
@@ -8,7 +18,7 @@ import { getDuration } from "../helpers/getDuration";
  *
  * @returns {void}
  */
-export const fadeIn = (element, duration = getDuration(element), manageDisplay = true) => {
+export const fadeIn = (element_1, ...args_1) => __awaiter(void 0, [element_1, ...args_1], void 0, function* (element, duration = getDuration(element), manageDisplay = true) {
     // Log function call with parameters
     // console.groupCollapsed("fadeIn");
     // console.log("fadeIn called with element:", element);
@@ -37,11 +47,13 @@ export const fadeIn = (element, duration = getDuration(element), manageDisplay =
             }
         }
     }
-    // Force a reflow, then set the element's display to none
+    // Force a reflow, then set the element's opacity to its initial value
     void element.style.display;
     // console.log("fadeIn resetting opacity");
     element.style.opacity = `${initialOpacity}`;
+    yield delayForEvent(element, "transitionend", (e) => e.propertyName === "opacity");
     // console.log("fadeIn completed with opacity:", initialOpacity);
     // console.groupEnd();
-};
+    return new Promise((resolve) => { resolve(); });
+});
 //# sourceMappingURL=fadeIn.js.map

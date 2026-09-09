@@ -1,4 +1,5 @@
 import { getDuration } from "../helpers/getDuration";
+import { delayForEvent } from "../helpers/helpers";
 
 /**
  * Fades in the specified element over the specified duration.
@@ -9,11 +10,11 @@ import { getDuration } from "../helpers/getDuration";
  *
  * @returns {void}
  */
-export const fadeIn = (
+export const fadeIn = async (
   element: HTMLElement,
   duration: number = getDuration(element),
   manageDisplay: boolean = true,
-): void => {
+): Promise<void> => {
   // Log function call with parameters
   // console.groupCollapsed("fadeIn");
   // console.log("fadeIn called with element:", element);
@@ -47,10 +48,12 @@ export const fadeIn = (
     }
   }
 
-  // Force a reflow, then set the element's display to none
+  // Force a reflow, then set the element's opacity to its initial value
   void element.style.display;
   // console.log("fadeIn resetting opacity");
   element.style.opacity = `${initialOpacity}`;
+  await delayForEvent(element, "transitionend", (e) => e.propertyName === "opacity");
   // console.log("fadeIn completed with opacity:", initialOpacity);
   // console.groupEnd();
+  return new Promise((resolve) => {resolve()});
 };
