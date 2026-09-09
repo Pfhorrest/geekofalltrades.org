@@ -18,17 +18,17 @@ export function delay(milliseconds) {
  * @returns A promise that resolves when the event is emitted and the condition (if provided) is fulfilled.
  */
 export function delayForEvent(element, eventName, condition) {
-    console.log(`Waiting for ${eventName} event on`, element);
+    // console.log(`Waiting for ${eventName} event on`, element);
     return new Promise((resolve) => {
         function handler(event) {
-            console.log(`Event received: ${eventName}`, event);
+            // console.log(`Event received: ${eventName}`, event);
             if (!condition || condition(event)) {
-                console.log(`Condition met, resolving...`);
+                // console.log(`Condition met, resolving...`);
                 element.removeEventListener(eventName, handler);
                 resolve();
             }
         }
-        console.log(`Adding event listener for ${eventName} on`, element);
+        // console.log(`Adding event listener for ${eventName} on`, element);
         element.addEventListener(eventName, handler);
     });
 }

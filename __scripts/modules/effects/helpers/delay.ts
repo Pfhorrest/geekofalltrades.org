@@ -23,17 +23,17 @@ export function delayForEvent<K extends keyof HTMLElementEventMap>(
   eventName: K,
   condition?: (theEvent: HTMLElementEventMap[K]) => boolean,
 ): Promise<void> {
-  console.log(`Waiting for ${eventName} event on`, element);
+  // console.log(`Waiting for ${eventName} event on`, element);
   return new Promise((resolve) => {
     function handler(event: HTMLElementEventMap[K]) {
-      console.log(`Event received: ${eventName}`, event);
+      // console.log(`Event received: ${eventName}`, event);
       if (!condition || condition(event)) {
-        console.log(`Condition met, resolving...`);
+        // console.log(`Condition met, resolving...`);
         element.removeEventListener(eventName, handler as EventListener);
         resolve();
       }
     }
-    console.log(`Adding event listener for ${eventName} on`, element);
+    // console.log(`Adding event listener for ${eventName} on`, element);
     element.addEventListener(eventName, handler as EventListener);
   });
 }
