@@ -1,8 +1,4 @@
-import {
-  getDuration,
-  slideDown,
-  slideUp,
-} from "../../effects/effects";
+import { getDuration, slideDown, slideUp } from "../../effects/effects";
 import { closeDropdowns } from "../helpers/closeDropdowns";
 
 /**
@@ -39,7 +35,7 @@ export const hydrateDropdowns = (): void => {
           menuItemLink
             .querySelectorAll<HTMLElement>(".submenu-toggle")
             ?.forEach((toggle) =>
-              toggle.addEventListener("click", (e: MouseEvent) => {
+              toggle.addEventListener("click", async (e: MouseEvent) => {
                 e.preventDefault();
                 // console.log(`click event on ${menuItemLink.textContent}`);
                 // Save the open/closed state of this dropdown,
@@ -48,57 +44,46 @@ export const hydrateDropdowns = (): void => {
                 // console.log(`wasActive?`, wasActive);
                 // If there's any other dropdowns open, close them all
                 const anOpenDropdown = document.querySelector<HTMLElement>(
-                  "header > nav > ul > li.active"
+                  "header > nav > ul > li.active",
                 );
                 if (anOpenDropdown && anOpenDropdown != menuItem) {
                   // console.log(`closing other dropdowns`);
-                  closeDropdowns();
+                  await closeDropdowns();
                 }
                 if (!wasActive) {
-                  // console.log(
-                  //   `timouting ${wasActive ? "collapse" : "expand"} of self`
-                  // );
-                  // Wait for that if necessary, then...
-                  setTimeout(
-                    () => {
-                      // If the dropdown wasn't open before, expand it
-                      // console.log("expanding submenu");
-                      menuItem.classList.add("active");
-                      // console.log("setting title to collapse");
-                      menuItemLink
-                        .querySelectorAll<HTMLElement>(".submenu-toggle")
-                        ?.forEach((toggle) => {
-                          toggle.title = "Collapse submenu";
-                          toggle.ariaExpanded = "true";
-                        });
-                      slideDown(submenu);
-                    },
-                    anOpenDropdown ? getDuration(anOpenDropdown) : 0
-                  );
+                  // If the dropdown wasn't open before, expand it
+                  // console.log("expanding submenu");
+                  menuItem.classList.add("active");
+                  // console.log("setting title to collapse");
+                  menuItemLink
+                    .querySelectorAll<HTMLElement>(".submenu-toggle")
+                    ?.forEach((toggle) => {
+                      toggle.title = "Collapse submenu";
+                      toggle.ariaExpanded = "true";
+                    });
+                  await slideDown(submenu);
                 } else {
                   // Otherwise, collapse it
                   // console.log("collapsing submenu");
-                  slideUp(submenu);
-                  setTimeout(() => {
-                    menuItem.classList.remove("active");
-                    // console.log("setting title to expand");
-                    menuItemLink
-                      .querySelectorAll<HTMLElement>(".submenu-toggle")
-                      ?.forEach((toggle) => {
-                        toggle.title = "Expand submenu";
-                        toggle.ariaExpanded = "false";
-                      });
-                  }, getDuration(submenu));
+                  await slideUp(submenu);
+                  menuItem.classList.remove("active");
+                  // console.log("setting title to expand");
+                  menuItemLink
+                    .querySelectorAll<HTMLElement>(".submenu-toggle")
+                    ?.forEach((toggle) => {
+                      toggle.title = "Expand submenu";
+                      toggle.ariaExpanded = "false";
+                    });
                 }
                 return false;
-              })
+              }),
             );
         }
       }
     });
 
   // Listen for clicks outside of a dropdown
-  document.body.addEventListener("click", (e: MouseEvent) => {
+  document.body.addEventListener("click", async (e: MouseEvent) => {
     if (
       !(
         e.target instanceof HTMLElement &&
@@ -107,7 +92,7 @@ export const hydrateDropdowns = (): void => {
     ) {
       // Close all dropdowns if so
       // console.log("click outside of a dropdown, closing all");
-      closeDropdowns();
+      await closeDropdowns();
     }
   });
 };

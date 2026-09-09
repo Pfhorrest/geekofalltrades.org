@@ -1,4 +1,14 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { getDuration } from "../helpers/getDuration";
+import { delayForEvent } from "../helpers/helpers";
 /**
  * Slides the specified element up out of view over the specified duration.
  *
@@ -7,7 +17,7 @@ import { getDuration } from "../helpers/getDuration";
  *
  * @returns {void}
  */
-export const slideUp = (element, duration = getDuration(element)) => {
+export const slideUp = (element_1, ...args_1) => __awaiter(void 0, [element_1, ...args_1], void 0, function* (element, duration = getDuration(element)) {
     // console.groupCollapsed("slideUp");
     // console.log("slideUp called with element:", element);
     // console.log("slideUp called with duration:", duration);
@@ -50,24 +60,12 @@ export const slideUp = (element, duration = getDuration(element)) => {
         element.style.removeProperty("padding-bottom");
         element.style.removeProperty("overflow");
         element.style.removeProperty("transition");
-        element.removeEventListener("transitionend", onTransitionEnd);
     };
-    // Define the handler separately so we can remove it
-    const onTransitionEnd = (event) => {
-        if (event.target === element) {
-            // console.log("transitionend event is for the target element");
-            cleanup();
-        }
-    };
-    element.addEventListener("transitionend", (event) => {
-        // console.log("transitionend event fired");
-        onTransitionEnd(event);
-    }, { once: true });
-    // Fallback in case transitionend doesn't fire
-    setTimeout(() => {
-        // console.log("fallback timeout fired");
-        cleanup();
-    }, duration + 16);
+    yield delayForEvent(element, "transitionend", (e) => e.propertyName === "height");
+    cleanup();
+    return new Promise((resolve) => {
+        resolve();
+    });
     // console.groupEnd();
-};
+});
 //# sourceMappingURL=slideUp.js.map

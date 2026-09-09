@@ -1,4 +1,5 @@
 import { getDuration } from "../helpers/getDuration";
+import { delayForEvent } from "../helpers/helpers";
 
 /**
  * Slides the specified element down into view over the specified duration.
@@ -8,10 +9,10 @@ import { getDuration } from "../helpers/getDuration";
  *
  * @returns {void}
  */
-export const slideDown = (
+export const slideDown = async (
   element: HTMLElement,
-  duration: number = getDuration(element)
-): void => {
+  duration: number = getDuration(element),
+): Promise<void> => {
   // console.groupCollapsed("slideDown");
   // console.log("slideDown called with element:", element);
   // console.log("slideDown called with duration:", duration);
@@ -120,8 +121,8 @@ export const slideDown = (
       inherentDisplay != "none"
         ? inherentDisplay
         : displayVar && displayVar != "none"
-        ? displayVar
-        : "block";
+          ? displayVar
+          : "block";
     // console.log("element.style.display is now", element.style.display);
     // console.log("setting paddingTop to its inherent value");
     element.style.paddingTop = `${inherentPaddingTop}px`;
@@ -157,20 +158,15 @@ export const slideDown = (
       element.style.removeProperty("transition");
     };
 
-    element.addEventListener(
+    await delayForEvent(
+      element,
       "transitionend",
-      () => {
-        // console.log("transitionend fired");
-        cleanup();
-      },
-      { once: true }
+      (e) => e.propertyName === "height",
     );
-
-    // Fallback in case transitionend doesn't fire
-    setTimeout(() => {
-      // console.log("fallback timeout fired");
-      cleanup();
-    }, duration + 16);
+    cleanup();
+    return new Promise((resolve) => {
+      resolve();
+    });
   }
 
   // console.groupEnd();

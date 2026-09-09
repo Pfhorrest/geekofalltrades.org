@@ -42,7 +42,9 @@ export const fadeOut = (element_1, ...args_1) => __awaiter(void 0, [element_1, .
         // console.log("fadeOut setting display to none");
         element.style.display = "none";
     }
-    return new Promise((resolve) => { resolve(); });
+    return new Promise((resolve) => {
+        resolve();
+    });
     // console.log("fadeOut completed");
     // console.groupEnd();
 });

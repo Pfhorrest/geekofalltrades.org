@@ -1,14 +1,15 @@
 import { slideUp, getDuration } from "../../effects/effects";
+import { delayForEvent } from "../../effects/helpers/helpers";
 
 /**
  * Closes all dropdown menus.
  */
-export const closeDropdowns = () => {
+export const closeDropdowns = async () => {
   const openDropdowns = document.querySelectorAll<HTMLElement>(
-    "header > nav > ul > li > ul"
+    "header > nav > ul > li > ul",
   );
   const activeMenuItems = document.querySelectorAll<HTMLElement>(
-    "header > nav > ul > li.active"
+    "header > nav > ul > li.active",
   );
   if (openDropdowns.length > 0 || activeMenuItems.length > 0) {
     // console.groupCollapsed(
@@ -29,21 +30,30 @@ export const closeDropdowns = () => {
     });
 
     // Remove 'active' from all menu items, after the slide-up animations are done
-    activeMenuItems.forEach((item) => {
-      // console.log(
-      //   `Setting timeout for '${item.querySelector("a")?.innerText}'`
-      // );
-      setTimeout(() => {
+    const promisedDeactivations = Array.from(activeMenuItems).map(
+      async (item: HTMLElement) => {
         // console.log(item);
+        const activeDropdown = item.querySelector<HTMLElement>("ul");
+        if (activeDropdown) {
+          await delayForEvent(
+            activeDropdown,
+            "transitionend",
+            (e) => e.propertyName === "height",
+          );
+        }
         item.classList.remove("active");
         const itemLink = item.querySelector<HTMLElement>("a");
         if (itemLink) {
           itemLink.title = "Expand submenu";
           itemLink.ariaExpanded = "false";
         }
-      }, getDuration(item));
-    });
+      },
+    );
 
     // console.groupEnd();
+    await Promise.all(promisedDeactivations);
+    return new Promise<void>((resolve) => {
+      resolve();
+    });
   }
 };

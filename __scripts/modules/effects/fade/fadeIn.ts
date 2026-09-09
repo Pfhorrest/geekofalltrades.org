@@ -26,8 +26,7 @@ export const fadeIn = async (
   // otherwise, use the value of the --pre-fade-opacity custom property set by fadeOut;
   // or default to 1 if neither is available.
   const initialOpacity =
-    parseFloat(element.style.getPropertyValue("--pre-fade-opacity")) ||
-    1;
+    parseFloat(element.style.getPropertyValue("--pre-fade-opacity")) || 1;
   element.style.removeProperty("--pre-fade-opacity");
   // console.log("element's restore opacity:", initialOpacity);
 
@@ -52,8 +51,14 @@ export const fadeIn = async (
   void element.style.display;
   // console.log("fadeIn resetting opacity");
   element.style.opacity = `${initialOpacity}`;
-  await delayForEvent(element, "transitionend", (e) => e.propertyName === "opacity");
+  await delayForEvent(
+    element,
+    "transitionend",
+    (e) => e.propertyName === "opacity",
+  );
   // console.log("fadeIn completed with opacity:", initialOpacity);
   // console.groupEnd();
-  return new Promise((resolve) => {resolve()});
+  return new Promise((resolve) => {
+    resolve();
+  });
 };

@@ -28,8 +28,7 @@ export const fadeIn = (element_1, ...args_1) => __awaiter(void 0, [element_1, ..
     // If the element is already visible, use its current opacity as the initial opacity;
     // otherwise, use the value of the --pre-fade-opacity custom property set by fadeOut;
     // or default to 1 if neither is available.
-    const initialOpacity = parseFloat(element.style.getPropertyValue("--pre-fade-opacity")) ||
-        1;
+    const initialOpacity = parseFloat(element.style.getPropertyValue("--pre-fade-opacity")) || 1;
     element.style.removeProperty("--pre-fade-opacity");
     // console.log("element's restore opacity:", initialOpacity);
     // Set the element's opacity to 0
@@ -54,6 +53,8 @@ export const fadeIn = (element_1, ...args_1) => __awaiter(void 0, [element_1, ..
     yield delayForEvent(element, "transitionend", (e) => e.propertyName === "opacity");
     // console.log("fadeIn completed with opacity:", initialOpacity);
     // console.groupEnd();
-    return new Promise((resolve) => { resolve(); });
+    return new Promise((resolve) => {
+        resolve();
+    });
 });
 //# sourceMappingURL=fadeIn.js.map

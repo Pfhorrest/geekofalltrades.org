@@ -1,4 +1,5 @@
 import { getDuration } from "../helpers/getDuration";
+import { delayForEvent } from "../helpers/helpers";
 
 /**
  * Slides the specified element up out of view over the specified duration.
@@ -8,10 +9,10 @@ import { getDuration } from "../helpers/getDuration";
  *
  * @returns {void}
  */
-export const slideUp = (
+export const slideUp = async (
   element: HTMLElement,
-  duration: number = getDuration(element)
-): void => {
+  duration: number = getDuration(element),
+): Promise<void> => {
   // console.groupCollapsed("slideUp");
   // console.log("slideUp called with element:", element);
   // console.log("slideUp called with duration:", duration);
@@ -59,31 +60,17 @@ export const slideUp = (
     element.style.removeProperty("padding-bottom");
     element.style.removeProperty("overflow");
     element.style.removeProperty("transition");
-    element.removeEventListener("transitionend", onTransitionEnd);
   };
 
-  // Define the handler separately so we can remove it
-  const onTransitionEnd = (event: TransitionEvent) => {
-    if (event.target === element) {
-      // console.log("transitionend event is for the target element");
-      cleanup();
-    }
-  };
-
-  element.addEventListener(
+  await delayForEvent(
+    element,
     "transitionend",
-    (event: TransitionEvent) => {
-      // console.log("transitionend event fired");
-      onTransitionEnd(event);
-    },
-    { once: true }
+    (e) => e.propertyName === "height",
   );
-
-  // Fallback in case transitionend doesn't fire
-  setTimeout(() => {
-    // console.log("fallback timeout fired");
-    cleanup();
-  }, duration + 16);
+  cleanup();
+  return new Promise((resolve) => {
+    resolve();
+  });
 
   // console.groupEnd();
 };

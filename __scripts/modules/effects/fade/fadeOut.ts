@@ -35,14 +35,20 @@ export const fadeOut = async (
   // Set the element's opacity to 0
   element.style.opacity = "0";
 
-    await delayForEvent(element, "transitionend", (e) => e.propertyName === "opacity");
+  await delayForEvent(
+    element,
+    "transitionend",
+    (e) => e.propertyName === "opacity",
+  );
   if (manageDisplay) {
     // Force a reflow, then set the element's display to none
     void element.style.display;
     // console.log("fadeOut setting display to none");
     element.style.display = "none";
   }
-  return new Promise((resolve) => {resolve()});
+  return new Promise((resolve) => {
+    resolve();
+  });
   // console.log("fadeOut completed");
   // console.groupEnd();
 };
