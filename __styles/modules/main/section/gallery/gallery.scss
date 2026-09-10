@@ -52,7 +52,7 @@
     text-align: center;
     box-shadow: none;
 
-    @include optional-motion() {
+    @include optional-motion(-1) {
       /* Animation */
       animation-name: mainLighting;
       animation-duration: 5s;

@@ -9,15 +9,15 @@ import { deletePreference } from "..//preferences/deletePreference.js";
 export const hydrateMotionSwitcher = () => {
   const html: HTMLElement = document.documentElement;
 
-  // // Default to reduced-motion if there is no attribute already set
+  // // Default to 0/auto if there is no attribute already set
   // if (!html.hasAttribute("data-reduced-motion")) {
-  //   html.setAttribute("data-reduced-motion", "yes-auto");
+  //   html.setAttribute("data-reduced-motion", "0/auto");
   // }
 
   // Measure FPS and set reduced-motion attribute if necessary
 
   // Initialize time, frame count, fps, etc
-  let fpsTimer: number = 30;
+  let fpsTimer: number = 1;
   // console.log("fpsTimer:", fpsTimer);
   let fpsTimerDelay: number = fpsTimer;
   // console.log("fpsTimerDelay:", fpsTimerDelay);
@@ -33,6 +33,9 @@ export const hydrateMotionSwitcher = () => {
   // console.log("fps:", fps);
   let fpsThreshold: number = 30;
   // console.log("fpsThreshold:", fpsThreshold);
+
+  const reducedMotionAttribute: string = html.getAttribute("data-reduced-motion") || "";
+  let reducedMotionNumber: number = parseInt(reducedMotionAttribute.split("-")[0]) || 0;
 
   // Function to measure the frames per second
   const measureFPS = () => {
@@ -63,17 +66,19 @@ export const hydrateMotionSwitcher = () => {
       // console.log("fpsTimestamp:", fpsTimestamp);
 
       // Based on the fps, set the data-reduced-motion attribute
-      const reducedMotion: string =
-        html.getAttribute("data-reduced-motion") || "";
       // Only do this if reduced-motion is auto
-      if (!["yes", "no"].includes(reducedMotion)) {
-        setPreference("reduced-motion", "yes-auto");
+      if (!["1", "0", "-1"].includes(reducedMotionAttribute)) {
+        setPreference("reduced-motion", "0/auto");
         // console.log("reduced-motion is auto, checking fps...");
         if (fps < fpsThreshold) {
           // Upon failure...
-          // console.log("fps < 30, setting reduced-motion to yes-auto");
-          html.setAttribute("data-reduced-motion", "yes-auto");
-          setPreference("reduced-motion", "yes-auto");
+          // console.log("fps < 30, increasing reduced-motion +1");
+          reducedMotionNumber = Math.min(1, reducedMotionNumber + 1);
+          html.setAttribute(
+            "data-reduced-motion",
+            `${reducedMotionNumber}/auto`,
+          );
+          setPreference("reduced-motion", `${reducedMotionNumber}/auto`);
           // Increase delay *geometrically* on failure
           // so if we fail a lot we retry much more slowly.
           // Minimum of 3 to ensure increase at the threshold of oscillation,
@@ -85,9 +90,13 @@ export const hydrateMotionSwitcher = () => {
           // console.log("fpsTimer:", fpsTimer);
         } else if (fps >= fpsThreshold) {
           // Upon pass...
-          // console.log("fps >= 30, setting reduced-motion to no-auto");
-          html.setAttribute("data-reduced-motion", "no-auto");
-          setPreference("reduced-motion", "no-auto");
+          // console.log("fps >= 30, decreasing reduced-motion -1");
+          reducedMotionNumber = Math.max(-1, reducedMotionNumber - 1);
+          html.setAttribute(
+            "data-reduced-motion",
+            `${reducedMotionNumber}/auto`,
+          );
+          setPreference("reduced-motion", `${reducedMotionNumber}/auto`);
           // Decrease delay *linearly* on pass
           // so if we pass a lot we retry gradually more quickly.
           // Minimum of 2 to ensure increase at the threshold of oscillation,
@@ -118,14 +127,14 @@ export const hydrateMotionSwitcher = () => {
     const createControl = (
       container: string,
       className: string,
-      text: string
+      text: string,
     ) =>
       document.getElementById(container)?.appendChild(
         Object.assign(document.createElement("a"), {
           className,
           innerText: text,
           role: "button",
-        })
+        }),
       );
 
     // Set up the reduced-motion-switcher container
@@ -137,19 +146,19 @@ export const hydrateMotionSwitcher = () => {
     const moreMotion = createControl(
       "motionSwitcher",
       "moreMotion",
-      "More Motion"
+      "More Motion",
     );
     // console.log("created moreMotion:", moreMotion);
     const autoMotion = createControl(
       "motionSwitcher",
       "autoMotion",
-      "Auto Motion"
+      "Auto Motion",
     );
     // console.log("created autoMotion:", autoMotion);
     const lessMotion = createControl(
       "motionSwitcher",
       "lessMotion",
-      "Less Motion"
+      "Less Motion",
     );
     // console.log("created lessMotion:", lessMotion);
 
@@ -158,8 +167,8 @@ export const hydrateMotionSwitcher = () => {
       // console.log("Setting up event listener on", control);
       control.addEventListener("click", () => {
         // console.log("Switch to more motion");
-        document.documentElement.setAttribute("data-reduced-motion", "no");
-        setPreference("reduced-motion", "no");
+        document.documentElement.setAttribute("data-reduced-motion", "-1");
+        setPreference("reduced-motion", "-1");
       });
     });
     document.querySelectorAll(".autoMotion").forEach((control) => {
@@ -174,8 +183,8 @@ export const hydrateMotionSwitcher = () => {
       // console.log("Setting up event listener on", control);
       control.addEventListener("click", () => {
         // console.log("Switch to less motion");
-        document.documentElement.setAttribute("data-reduced-motion", "yes");
-        setPreference("reduced-motion", "yes");
+        document.documentElement.setAttribute("data-reduced-motion", "1");
+        setPreference("reduced-motion", "1");
       });
     });
   }

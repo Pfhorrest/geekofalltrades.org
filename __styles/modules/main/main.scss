@@ -59,7 +59,7 @@
     font-size: rfs(1rem, $bp1, $mfs, $bp4);
     line-height: 1.5;
 
-    @include optional-motion() {
+    @include optional-motion(-1) {
       /* Animation */
       @keyframes mainLighting {
         from {

@@ -70,7 +70,7 @@
     background-size: 100% 100%, auto;
     background-position: center, top, center;
 
-    @include optional-motion() {
+    @include optional-motion(-1) {
       /* Animation */
       @keyframes waves {
         from {

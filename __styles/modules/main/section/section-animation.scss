@@ -8,7 +8,7 @@
 ///  - General styles for sections
 
 @mixin section-animation {
-  @include optional-motion() {
+  @include optional-motion(-1) {
     animation-name: mainLighting;
     animation-iteration-count: infinite;
     animation-direction: alternate;

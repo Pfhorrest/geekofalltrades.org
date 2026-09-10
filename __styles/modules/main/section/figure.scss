@@ -176,7 +176,7 @@
       &.contained {
         border: none;
         background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
-        @include optional-motion() {
+        @include optional-motion(-1) {
           animation-name: mainLighting;
           animation-duration: 5s;
         }

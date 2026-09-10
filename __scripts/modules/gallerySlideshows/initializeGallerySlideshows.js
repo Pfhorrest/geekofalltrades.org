@@ -18,7 +18,13 @@ import changeGallerySlide from "./changeGallerySlide";
  * @returns True if the slideshow should be paused for reduced motion.
  */
 function isReducedMotionPreferred() {
-    return (document.documentElement.dataset.reducedMotion === "yes" ||
+    var _a;
+    // console.log("reducedMotionAttribute:", document.documentElement.dataset.reducedMotion);
+    const reducedMotion = (_a = document.documentElement.dataset.reducedMotion) === null || _a === void 0 ? void 0 : _a.split("/")[0];
+    // console.log("reducedMotion:", reducedMotion);
+    const reducedMotionNumber = reducedMotion ? parseInt(reducedMotion) : 0;
+    // console.log("reducedMotionNumber:", reducedMotionNumber);
+    return (reducedMotionNumber > 0 ||
         window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 }
 /**

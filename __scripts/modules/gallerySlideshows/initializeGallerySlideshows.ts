@@ -10,8 +10,13 @@ import changeGallerySlide from "./changeGallerySlide";
  * @returns True if the slideshow should be paused for reduced motion.
  */
 function isReducedMotionPreferred(): boolean {
+    // console.log("reducedMotionAttribute:", document.documentElement.dataset.reducedMotion);
+    const reducedMotion = document.documentElement.dataset.reducedMotion?.split("/")[0];
+    // console.log("reducedMotion:", reducedMotion);
+    const reducedMotionNumber = reducedMotion ? parseInt(reducedMotion) : 0;
+    // console.log("reducedMotionNumber:", reducedMotionNumber);
   return (
-    document.documentElement.dataset.reducedMotion === "yes" ||
+    reducedMotionNumber > 0 ||
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
 }

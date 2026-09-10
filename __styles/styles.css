@@ -340,12 +340,9 @@
   transition: all 0.01s;
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) *:not([data-reduced-motion^=yes]) {
+  html:not([data-reduced-motion^="1"]) *:not([data-reduced-motion^="1"]) {
     transition: all 0.5s;
   }
-}
-*[data-reduced-motion^=no], html[data-reduced-motion^=no] * {
-  transition: all 0.5s;
 }
 
 html {
@@ -566,7 +563,7 @@ header h1 {
   }
 }
 @media (min-width: 40rem) and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) header h1:not([data-reduced-motion^=yes]) {
+  header h1[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] header h1 {
     /* Animation */
   }
   @keyframes windAndWaves {
@@ -577,7 +574,7 @@ header h1 {
       background-size: 100%, 100% 200%, auto;
     }
   }
-  html:not([data-reduced-motion^=yes]) header h1:not([data-reduced-motion^=yes]) {
+  header h1[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] header h1 {
     animation-name: windAndWaves;
     animation-duration: 12s;
     animation-iteration-count: infinite;
@@ -587,25 +584,6 @@ header h1 {
   }
 }
 @media (min-width: 40rem) {
-  header h1[data-reduced-motion^=no], html[data-reduced-motion^=no] header h1 {
-    /* Animation */
-  }
-  @keyframes windAndWaves {
-    from {
-      background-size: 100%, 100% 100%, auto;
-    }
-    to {
-      background-size: 100%, 100% 200%, auto;
-    }
-  }
-  header h1[data-reduced-motion^=no], html[data-reduced-motion^=no] header h1 {
-    animation-name: windAndWaves;
-    animation-duration: 12s;
-    animation-iteration-count: infinite;
-    animation-direction: normal;
-    /* Custom animation timing function aiming to make loop look seamless */
-    animation-timing-function: cubic-bezier(0, 0, 1, 0.75);
-  }
   header h1::before {
     width: 3em;
     height: 3em;
@@ -774,12 +752,9 @@ header nav > ul {
   /* Effects */
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) header nav > ul:not([data-reduced-motion^=yes]) {
+  html:not([data-reduced-motion^="1"]) header nav > ul:not([data-reduced-motion^="1"]) {
     transition: all 0.25s;
   }
-}
-header nav > ul[data-reduced-motion^=no], html[data-reduced-motion^=no] header nav > ul {
-  transition: all 0.25s;
 }
 header nav > ul {
   will-change: height, padding-top, padding-bottom, row-gap;
@@ -873,12 +848,9 @@ header nav > ul li a {
   /* Skeuomorphisms on all interaction*/
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) header nav > ul li a:not([data-reduced-motion^=yes]) {
+  html:not([data-reduced-motion^="1"]) header nav > ul li a:not([data-reduced-motion^="1"]) {
     transition: all 1s;
   }
-}
-header nav > ul li a[data-reduced-motion^=no], html[data-reduced-motion^=no] header nav > ul li a {
-  transition: all 1s;
 }
 header nav > ul li a:hover, header nav > ul li a:focus, header nav > ul li a:active {
   box-shadow: 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade), 0 0 0 1pt transparent inset;
@@ -1074,7 +1046,7 @@ main {
   line-height: 1.5;
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main:not([data-reduced-motion^=yes]) {
+  main[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] main {
     /* Animation */
   }
   @keyframes mainLighting {
@@ -1085,31 +1057,13 @@ main {
       background-size: 400% 200%;
     }
   }
-  html:not([data-reduced-motion^=yes]) main:not([data-reduced-motion^=yes]) {
+  main[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] main {
     animation-name: mainLighting;
     animation-duration: 44s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
     transition-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
   }
-}
-main[data-reduced-motion^=no], html[data-reduced-motion^=no] main {
-  /* Animation */
-}
-@keyframes mainLighting {
-  from {
-    background-size: 100% 100%;
-  }
-  to {
-    background-size: 400% 200%;
-  }
-}
-main[data-reduced-motion^=no], html[data-reduced-motion^=no] main {
-  animation-name: mainLighting;
-  animation-duration: 44s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  transition-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
 }
 main {
   /* Direct children layout */
@@ -1124,14 +1078,10 @@ main * {
   --dur: 0.01s;
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main *:not([data-reduced-motion^=yes]) {
+  html:not([data-reduced-motion^="1"]) main *:not([data-reduced-motion^="1"]) {
     transition: all var(--dur), opacity var(--dur) linear, transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75) calc(var(--delA) + var(--delB));
     --dur: 0.25s;
   }
-}
-main *[data-reduced-motion^=no], html[data-reduced-motion^=no] main * {
-  transition: all var(--dur), opacity var(--dur) linear, transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75) calc(var(--delA) + var(--delB));
-  --dur: 0.25s;
 }
 main * {
   --delA: 0s;
@@ -1154,13 +1104,7 @@ main * {
   /* Styles for off-screen elements to transition back in from when they enter */
 }
 @media only screen and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main *.off-screen:not([data-reduced-motion^=yes]) {
-    opacity: 0;
-    transform: rotateY(0.25turn);
-  }
-}
-@media only screen {
-  main *.off-screen[data-reduced-motion^=no], html[data-reduced-motion^=no] main *.off-screen {
+  html:not([data-reduced-motion^="1"]) main *.off-screen:not([data-reduced-motion^="1"]) {
     opacity: 0;
     transform: rotateY(0.25turn);
   }
@@ -1450,47 +1394,29 @@ main section {
   /* Effects */
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) {
+  html:not([data-reduced-motion^="1"]) main section:not([data-reduced-motion^="1"]) {
     transition: all 0.5s;
   }
-}
-main section[data-reduced-motion^=no], html[data-reduced-motion^=no] main section {
-  transition: all 0.5s;
 }
 main section {
   /* Deeper nested subsections transition more slowly */
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) {
+  html:not([data-reduced-motion^="1"]) main section:not([data-reduced-motion^="1"]) {
     --dur: 0.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section {
+  html:not([data-reduced-motion^="1"]) main section:not([data-reduced-motion^="1"]) section {
     --dur: 0.25s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section {
+  html:not([data-reduced-motion^="1"]) main section:not([data-reduced-motion^="1"]) section section {
     --dur: 0.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section {
+  html:not([data-reduced-motion^="1"]) main section:not([data-reduced-motion^="1"]) section section section {
     --dur: 0.75s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section section {
+  html:not([data-reduced-motion^="1"]) main section:not([data-reduced-motion^="1"]) section section section section {
     --dur: 1s;
   }
-}
-main section[data-reduced-motion^=no], html[data-reduced-motion^=no] main section {
-  --dur: 0.5s;
-}
-main section[data-reduced-motion^=no] section, html[data-reduced-motion^=no] main section section {
-  --dur: 0.25s;
-}
-main section[data-reduced-motion^=no] section section, html[data-reduced-motion^=no] main section section section {
-  --dur: 0.5s;
-}
-main section[data-reduced-motion^=no] section section section, html[data-reduced-motion^=no] main section section section section {
-  --dur: 0.75s;
-}
-main section[data-reduced-motion^=no] section section section section, html[data-reduced-motion^=no] main section section section section section {
-  --dur: 1s;
 }
 main section {
   /* Clear fix so floating figures don't extend beyond their sections */
@@ -1514,7 +1440,7 @@ main section {
   /* Styles for section animations */
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) {
+  main section[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] main section {
     animation-name: mainLighting;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -1525,245 +1451,120 @@ main section {
     /* First level (5s loop over 10 sections) */
     animation-duration: 5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 1) {
+  main section[data-reduced-motion^="-1"]:nth-of-type(10n + 1), html[data-reduced-motion^="-1"] main section:nth-of-type(10n + 1) {
     animation-delay: 0s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 2) {
+  main section[data-reduced-motion^="-1"]:nth-of-type(10n + 2), html[data-reduced-motion^="-1"] main section:nth-of-type(10n + 2) {
     animation-delay: 0.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 3) {
+  main section[data-reduced-motion^="-1"]:nth-of-type(10n + 3), html[data-reduced-motion^="-1"] main section:nth-of-type(10n + 3) {
     animation-delay: 1s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 4) {
+  main section[data-reduced-motion^="-1"]:nth-of-type(10n + 4), html[data-reduced-motion^="-1"] main section:nth-of-type(10n + 4) {
     animation-delay: 1.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 5) {
+  main section[data-reduced-motion^="-1"]:nth-of-type(10n + 5), html[data-reduced-motion^="-1"] main section:nth-of-type(10n + 5) {
     animation-delay: 2s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 6) {
+  main section[data-reduced-motion^="-1"]:nth-of-type(10n + 6), html[data-reduced-motion^="-1"] main section:nth-of-type(10n + 6) {
     animation-delay: 2.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 7) {
+  main section[data-reduced-motion^="-1"]:nth-of-type(10n + 7), html[data-reduced-motion^="-1"] main section:nth-of-type(10n + 7) {
     animation-delay: 3s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 8) {
+  main section[data-reduced-motion^="-1"]:nth-of-type(10n + 8), html[data-reduced-motion^="-1"] main section:nth-of-type(10n + 8) {
     animation-delay: 3.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 9) {
+  main section[data-reduced-motion^="-1"]:nth-of-type(10n + 9), html[data-reduced-motion^="-1"] main section:nth-of-type(10n + 9) {
     animation-delay: 4s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]):nth-of-type(10n + 0) {
+  main section[data-reduced-motion^="-1"]:nth-of-type(10n + 0), html[data-reduced-motion^="-1"] main section:nth-of-type(10n + 0) {
     animation-delay: 4.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) {
+  main section[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] main section {
     /* Second level (4s loop over 8 sections) */
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section {
+  main section[data-reduced-motion^="-1"] section, html[data-reduced-motion^="-1"] main section section {
     animation-duration: 4s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 1) {
+  main section[data-reduced-motion^="-1"] section:nth-of-type(8n + 1), html[data-reduced-motion^="-1"] main section section:nth-of-type(8n + 1) {
     animation-delay: 0s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 2) {
+  main section[data-reduced-motion^="-1"] section:nth-of-type(8n + 2), html[data-reduced-motion^="-1"] main section section:nth-of-type(8n + 2) {
     animation-delay: 0.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 3) {
+  main section[data-reduced-motion^="-1"] section:nth-of-type(8n + 3), html[data-reduced-motion^="-1"] main section section:nth-of-type(8n + 3) {
     animation-delay: 1s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 4) {
+  main section[data-reduced-motion^="-1"] section:nth-of-type(8n + 4), html[data-reduced-motion^="-1"] main section section:nth-of-type(8n + 4) {
     animation-delay: 1.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 5) {
+  main section[data-reduced-motion^="-1"] section:nth-of-type(8n + 5), html[data-reduced-motion^="-1"] main section section:nth-of-type(8n + 5) {
     animation-delay: 2s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 6) {
+  main section[data-reduced-motion^="-1"] section:nth-of-type(8n + 6), html[data-reduced-motion^="-1"] main section section:nth-of-type(8n + 6) {
     animation-delay: 2.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 7) {
+  main section[data-reduced-motion^="-1"] section:nth-of-type(8n + 7), html[data-reduced-motion^="-1"] main section section:nth-of-type(8n + 7) {
     animation-delay: 3s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section:nth-of-type(8n + 0) {
+  main section[data-reduced-motion^="-1"] section:nth-of-type(8n + 0), html[data-reduced-motion^="-1"] main section section:nth-of-type(8n + 0) {
     animation-delay: 3.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section {
+  main section[data-reduced-motion^="-1"] section, html[data-reduced-motion^="-1"] main section section {
     /* Third level (3s loop over 6 sections) */
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section {
+  main section[data-reduced-motion^="-1"] section section, html[data-reduced-motion^="-1"] main section section section {
     animation-duration: 3s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 1) {
+  main section[data-reduced-motion^="-1"] section section:nth-of-type(6n + 1), html[data-reduced-motion^="-1"] main section section section:nth-of-type(6n + 1) {
     animation-delay: 0s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 2) {
+  main section[data-reduced-motion^="-1"] section section:nth-of-type(6n + 2), html[data-reduced-motion^="-1"] main section section section:nth-of-type(6n + 2) {
     animation-delay: 1.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 3) {
+  main section[data-reduced-motion^="-1"] section section:nth-of-type(6n + 3), html[data-reduced-motion^="-1"] main section section section:nth-of-type(6n + 3) {
     animation-delay: 1s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 4) {
+  main section[data-reduced-motion^="-1"] section section:nth-of-type(6n + 4), html[data-reduced-motion^="-1"] main section section section:nth-of-type(6n + 4) {
     animation-delay: 1.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 5) {
+  main section[data-reduced-motion^="-1"] section section:nth-of-type(6n + 5), html[data-reduced-motion^="-1"] main section section section:nth-of-type(6n + 5) {
     animation-delay: 2s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section:nth-of-type(6n + 0) {
+  main section[data-reduced-motion^="-1"] section section:nth-of-type(6n + 0), html[data-reduced-motion^="-1"] main section section section:nth-of-type(6n + 0) {
     animation-delay: 2.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section {
+  main section[data-reduced-motion^="-1"] section section, html[data-reduced-motion^="-1"] main section section section {
     /* Fourth level (2s loop over 4 sections) */
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section {
+  main section[data-reduced-motion^="-1"] section section section, html[data-reduced-motion^="-1"] main section section section section {
     animation-duration: 2s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section:nth-of-type(4n + 1) {
+  main section[data-reduced-motion^="-1"] section section section:nth-of-type(4n + 1), html[data-reduced-motion^="-1"] main section section section section:nth-of-type(4n + 1) {
     animation-delay: 0s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section:nth-of-type(4n + 2) {
+  main section[data-reduced-motion^="-1"] section section section:nth-of-type(4n + 2), html[data-reduced-motion^="-1"] main section section section section:nth-of-type(4n + 2) {
     animation-delay: 0.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section:nth-of-type(4n + 3) {
+  main section[data-reduced-motion^="-1"] section section section:nth-of-type(4n + 3), html[data-reduced-motion^="-1"] main section section section section:nth-of-type(4n + 3) {
     animation-delay: 1s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section:nth-of-type(4n + 0) {
+  main section[data-reduced-motion^="-1"] section section section:nth-of-type(4n + 0), html[data-reduced-motion^="-1"] main section section section section:nth-of-type(4n + 0) {
     animation-delay: 1.5s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section {
+  main section[data-reduced-motion^="-1"] section section section, html[data-reduced-motion^="-1"] main section section section section {
     /* Fifth level (1s loop over 2 sections) */
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section section {
+  main section[data-reduced-motion^="-1"] section section section section, html[data-reduced-motion^="-1"] main section section section section section {
     animation-duration: 1s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section section:nth-of-type(2n + 1) {
+  main section[data-reduced-motion^="-1"] section section section section:nth-of-type(2n + 1), html[data-reduced-motion^="-1"] main section section section section section:nth-of-type(2n + 1) {
     animation-delay: 0s;
   }
-  html:not([data-reduced-motion^=yes]) main section:not([data-reduced-motion^=yes]) section section section section:nth-of-type(2n + 2) {
+  main section[data-reduced-motion^="-1"] section section section section:nth-of-type(2n + 2), html[data-reduced-motion^="-1"] main section section section section section:nth-of-type(2n + 2) {
     animation-delay: 0.5s;
   }
-}
-main section[data-reduced-motion^=no], html[data-reduced-motion^=no] main section {
-  animation-name: mainLighting;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  animation-timing-function: cubic-bezier(0.666, 2, 0.333, -1);
-  /* Different delays for different level of section nesting,
-  faster and shorter cycles at deeper nesting levels,
-  to make the animation look more varied */
-  /* First level (5s loop over 10 sections) */
-  animation-duration: 5s;
-}
-main section[data-reduced-motion^=no]:nth-of-type(10n + 1), html[data-reduced-motion^=no] main section:nth-of-type(10n + 1) {
-  animation-delay: 0s;
-}
-main section[data-reduced-motion^=no]:nth-of-type(10n + 2), html[data-reduced-motion^=no] main section:nth-of-type(10n + 2) {
-  animation-delay: 0.5s;
-}
-main section[data-reduced-motion^=no]:nth-of-type(10n + 3), html[data-reduced-motion^=no] main section:nth-of-type(10n + 3) {
-  animation-delay: 1s;
-}
-main section[data-reduced-motion^=no]:nth-of-type(10n + 4), html[data-reduced-motion^=no] main section:nth-of-type(10n + 4) {
-  animation-delay: 1.5s;
-}
-main section[data-reduced-motion^=no]:nth-of-type(10n + 5), html[data-reduced-motion^=no] main section:nth-of-type(10n + 5) {
-  animation-delay: 2s;
-}
-main section[data-reduced-motion^=no]:nth-of-type(10n + 6), html[data-reduced-motion^=no] main section:nth-of-type(10n + 6) {
-  animation-delay: 2.5s;
-}
-main section[data-reduced-motion^=no]:nth-of-type(10n + 7), html[data-reduced-motion^=no] main section:nth-of-type(10n + 7) {
-  animation-delay: 3s;
-}
-main section[data-reduced-motion^=no]:nth-of-type(10n + 8), html[data-reduced-motion^=no] main section:nth-of-type(10n + 8) {
-  animation-delay: 3.5s;
-}
-main section[data-reduced-motion^=no]:nth-of-type(10n + 9), html[data-reduced-motion^=no] main section:nth-of-type(10n + 9) {
-  animation-delay: 4s;
-}
-main section[data-reduced-motion^=no]:nth-of-type(10n + 0), html[data-reduced-motion^=no] main section:nth-of-type(10n + 0) {
-  animation-delay: 4.5s;
-}
-main section[data-reduced-motion^=no], html[data-reduced-motion^=no] main section {
-  /* Second level (4s loop over 8 sections) */
-}
-main section[data-reduced-motion^=no] section, html[data-reduced-motion^=no] main section section {
-  animation-duration: 4s;
-}
-main section[data-reduced-motion^=no] section:nth-of-type(8n + 1), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 1) {
-  animation-delay: 0s;
-}
-main section[data-reduced-motion^=no] section:nth-of-type(8n + 2), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 2) {
-  animation-delay: 0.5s;
-}
-main section[data-reduced-motion^=no] section:nth-of-type(8n + 3), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 3) {
-  animation-delay: 1s;
-}
-main section[data-reduced-motion^=no] section:nth-of-type(8n + 4), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 4) {
-  animation-delay: 1.5s;
-}
-main section[data-reduced-motion^=no] section:nth-of-type(8n + 5), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 5) {
-  animation-delay: 2s;
-}
-main section[data-reduced-motion^=no] section:nth-of-type(8n + 6), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 6) {
-  animation-delay: 2.5s;
-}
-main section[data-reduced-motion^=no] section:nth-of-type(8n + 7), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 7) {
-  animation-delay: 3s;
-}
-main section[data-reduced-motion^=no] section:nth-of-type(8n + 0), html[data-reduced-motion^=no] main section section:nth-of-type(8n + 0) {
-  animation-delay: 3.5s;
-}
-main section[data-reduced-motion^=no] section, html[data-reduced-motion^=no] main section section {
-  /* Third level (3s loop over 6 sections) */
-}
-main section[data-reduced-motion^=no] section section, html[data-reduced-motion^=no] main section section section {
-  animation-duration: 3s;
-}
-main section[data-reduced-motion^=no] section section:nth-of-type(6n + 1), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 1) {
-  animation-delay: 0s;
-}
-main section[data-reduced-motion^=no] section section:nth-of-type(6n + 2), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 2) {
-  animation-delay: 1.5s;
-}
-main section[data-reduced-motion^=no] section section:nth-of-type(6n + 3), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 3) {
-  animation-delay: 1s;
-}
-main section[data-reduced-motion^=no] section section:nth-of-type(6n + 4), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 4) {
-  animation-delay: 1.5s;
-}
-main section[data-reduced-motion^=no] section section:nth-of-type(6n + 5), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 5) {
-  animation-delay: 2s;
-}
-main section[data-reduced-motion^=no] section section:nth-of-type(6n + 0), html[data-reduced-motion^=no] main section section section:nth-of-type(6n + 0) {
-  animation-delay: 2.5s;
-}
-main section[data-reduced-motion^=no] section section, html[data-reduced-motion^=no] main section section section {
-  /* Fourth level (2s loop over 4 sections) */
-}
-main section[data-reduced-motion^=no] section section section, html[data-reduced-motion^=no] main section section section section {
-  animation-duration: 2s;
-}
-main section[data-reduced-motion^=no] section section section:nth-of-type(4n + 1), html[data-reduced-motion^=no] main section section section section:nth-of-type(4n + 1) {
-  animation-delay: 0s;
-}
-main section[data-reduced-motion^=no] section section section:nth-of-type(4n + 2), html[data-reduced-motion^=no] main section section section section:nth-of-type(4n + 2) {
-  animation-delay: 0.5s;
-}
-main section[data-reduced-motion^=no] section section section:nth-of-type(4n + 3), html[data-reduced-motion^=no] main section section section section:nth-of-type(4n + 3) {
-  animation-delay: 1s;
-}
-main section[data-reduced-motion^=no] section section section:nth-of-type(4n + 0), html[data-reduced-motion^=no] main section section section section:nth-of-type(4n + 0) {
-  animation-delay: 1.5s;
-}
-main section[data-reduced-motion^=no] section section section, html[data-reduced-motion^=no] main section section section section {
-  /* Fifth level (1s loop over 2 sections) */
-}
-main section[data-reduced-motion^=no] section section section section, html[data-reduced-motion^=no] main section section section section section {
-  animation-duration: 1s;
-}
-main section[data-reduced-motion^=no] section section section section:nth-of-type(2n + 1), html[data-reduced-motion^=no] main section section section section section:nth-of-type(2n + 1) {
-  animation-delay: 0s;
-}
-main section[data-reduced-motion^=no] section section section section:nth-of-type(2n + 2), html[data-reduced-motion^=no] main section section section section section:nth-of-type(2n + 2) {
-  animation-delay: 0.5s;
 }
 main section {
   /* Styles for sections that can be toggled */
@@ -1807,28 +1608,18 @@ main section.toggleable {
   }
 }
 @media only screen and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main section.toggleable > h2::before:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h2::after:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h3::before:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h3::after:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h4::before:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h4::after:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h5::before:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h5::after:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h6::before:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section.toggleable > h6::after:not([data-reduced-motion^=yes]) {
-    --dur: 1s;
-    transition: all var(--dur), opacity var(--dur) var(--dur);
-  }
-}
-@media only screen {
-  main section.toggleable > h2::before[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h2::before, main section.toggleable > h2::after[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h2::after, main section.toggleable > h3::before[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h3::before, main section.toggleable > h3::after[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h3::after, main section.toggleable > h4::before[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h4::before, main section.toggleable > h4::after[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h4::after, main section.toggleable > h5::before[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h5::before, main section.toggleable > h5::after[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h5::after, main section.toggleable > h6::before[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h6::before, main section.toggleable > h6::after[data-reduced-motion^=no], html[data-reduced-motion^=no] main section.toggleable > h6::after {
+  html:not([data-reduced-motion^="1"]) main section.toggleable > h2::before:not([data-reduced-motion^="1"]), html:not([data-reduced-motion^="1"]) main section.toggleable > h2::after:not([data-reduced-motion^="1"]), html:not([data-reduced-motion^="1"]) main section.toggleable > h3::before:not([data-reduced-motion^="1"]), html:not([data-reduced-motion^="1"]) main section.toggleable > h3::after:not([data-reduced-motion^="1"]), html:not([data-reduced-motion^="1"]) main section.toggleable > h4::before:not([data-reduced-motion^="1"]), html:not([data-reduced-motion^="1"]) main section.toggleable > h4::after:not([data-reduced-motion^="1"]), html:not([data-reduced-motion^="1"]) main section.toggleable > h5::before:not([data-reduced-motion^="1"]), html:not([data-reduced-motion^="1"]) main section.toggleable > h5::after:not([data-reduced-motion^="1"]), html:not([data-reduced-motion^="1"]) main section.toggleable > h6::before:not([data-reduced-motion^="1"]), html:not([data-reduced-motion^="1"]) main section.toggleable > h6::after:not([data-reduced-motion^="1"]) {
     --dur: 1s;
     transition: all var(--dur), opacity var(--dur) var(--dur);
   }
 }
 @media only screen and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main section.toggleable > h2.off-screen:not([data-reduced-motion^=yes])::before, html:not([data-reduced-motion^=yes]) main section.toggleable > h2.off-screen:not([data-reduced-motion^=yes])::after, html:not([data-reduced-motion^=yes]) main section.toggleable > h3.off-screen:not([data-reduced-motion^=yes])::before, html:not([data-reduced-motion^=yes]) main section.toggleable > h3.off-screen:not([data-reduced-motion^=yes])::after, html:not([data-reduced-motion^=yes]) main section.toggleable > h4.off-screen:not([data-reduced-motion^=yes])::before, html:not([data-reduced-motion^=yes]) main section.toggleable > h4.off-screen:not([data-reduced-motion^=yes])::after, html:not([data-reduced-motion^=yes]) main section.toggleable > h5.off-screen:not([data-reduced-motion^=yes])::before, html:not([data-reduced-motion^=yes]) main section.toggleable > h5.off-screen:not([data-reduced-motion^=yes])::after, html:not([data-reduced-motion^=yes]) main section.toggleable > h6.off-screen:not([data-reduced-motion^=yes])::before, html:not([data-reduced-motion^=yes]) main section.toggleable > h6.off-screen:not([data-reduced-motion^=yes])::after {
+  html:not([data-reduced-motion^="1"]) main section.toggleable > h2.off-screen:not([data-reduced-motion^="1"])::before, html:not([data-reduced-motion^="1"]) main section.toggleable > h2.off-screen:not([data-reduced-motion^="1"])::after, html:not([data-reduced-motion^="1"]) main section.toggleable > h3.off-screen:not([data-reduced-motion^="1"])::before, html:not([data-reduced-motion^="1"]) main section.toggleable > h3.off-screen:not([data-reduced-motion^="1"])::after, html:not([data-reduced-motion^="1"]) main section.toggleable > h4.off-screen:not([data-reduced-motion^="1"])::before, html:not([data-reduced-motion^="1"]) main section.toggleable > h4.off-screen:not([data-reduced-motion^="1"])::after, html:not([data-reduced-motion^="1"]) main section.toggleable > h5.off-screen:not([data-reduced-motion^="1"])::before, html:not([data-reduced-motion^="1"]) main section.toggleable > h5.off-screen:not([data-reduced-motion^="1"])::after, html:not([data-reduced-motion^="1"]) main section.toggleable > h6.off-screen:not([data-reduced-motion^="1"])::before, html:not([data-reduced-motion^="1"]) main section.toggleable > h6.off-screen:not([data-reduced-motion^="1"])::after {
     opacity: 0;
     transition-delay: 0s;
   }
 }
 @media only screen {
-  main section.toggleable > h2.off-screen[data-reduced-motion^=no]::before, main section.toggleable > h2.off-screen[data-reduced-motion^=no]::after, html[data-reduced-motion^=no] main section.toggleable > h2.off-screen::before, html[data-reduced-motion^=no] main section.toggleable > h2.off-screen::after, main section.toggleable > h3.off-screen[data-reduced-motion^=no]::before, main section.toggleable > h3.off-screen[data-reduced-motion^=no]::after, html[data-reduced-motion^=no] main section.toggleable > h3.off-screen::before, html[data-reduced-motion^=no] main section.toggleable > h3.off-screen::after, main section.toggleable > h4.off-screen[data-reduced-motion^=no]::before, main section.toggleable > h4.off-screen[data-reduced-motion^=no]::after, html[data-reduced-motion^=no] main section.toggleable > h4.off-screen::before, html[data-reduced-motion^=no] main section.toggleable > h4.off-screen::after, main section.toggleable > h5.off-screen[data-reduced-motion^=no]::before, main section.toggleable > h5.off-screen[data-reduced-motion^=no]::after, html[data-reduced-motion^=no] main section.toggleable > h5.off-screen::before, html[data-reduced-motion^=no] main section.toggleable > h5.off-screen::after, main section.toggleable > h6.off-screen[data-reduced-motion^=no]::before, main section.toggleable > h6.off-screen[data-reduced-motion^=no]::after, html[data-reduced-motion^=no] main section.toggleable > h6.off-screen::before, html[data-reduced-motion^=no] main section.toggleable > h6.off-screen::after {
-    opacity: 0;
-    transition-delay: 0s;
-  }
   main section.toggleable > h2:hover::before, main section.toggleable > h2:hover::after, main section.toggleable > h3:hover::before, main section.toggleable > h3:hover::after, main section.toggleable > h4:hover::before, main section.toggleable > h4:hover::after, main section.toggleable > h5:hover::before, main section.toggleable > h5:hover::after, main section.toggleable > h6:hover::before, main section.toggleable > h6:hover::after {
     opacity: 0.25;
   }
@@ -1868,12 +1659,9 @@ main section figure {
   margin: var(--spacing) auto;
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main section figure:not([data-reduced-motion^=yes]) {
+  html:not([data-reduced-motion^="1"]) main section figure:not([data-reduced-motion^="1"]) {
     --dur: 0.5s;
   }
-}
-main section figure[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure {
-  --dur: 0.5s;
 }
 main section figure {
   /* Figure images */
@@ -1890,12 +1678,7 @@ main section figure.off-screen {
   /* But only on screen so as not to mess up printing */
 }
 @media only screen and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main section figure.off-screen:not([data-reduced-motion^=yes]) img {
-    transform: scale(0);
-  }
-}
-@media only screen {
-  main section figure.off-screen[data-reduced-motion^=no] img, html[data-reduced-motion^=no] main section figure.off-screen img {
+  html:not([data-reduced-motion^="1"]) main section figure.off-screen:not([data-reduced-motion^="1"]) img {
     transform: scale(0);
   }
 }
@@ -2083,7 +1866,7 @@ main section figure {
   }
 }
 @media (min-width: 60rem) and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main section figure.solo:not([data-reduced-motion^=yes]) {
+  html:not([data-reduced-motion^="1"]) main section figure.solo:not([data-reduced-motion^="1"]) {
     transition-duration: calc(2 * var(--dur));
   }
 }
@@ -2100,28 +1883,18 @@ main section figure {
   }
 }
 @media (min-width: 60rem) and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main section figure:not([data-reduced-motion^=yes]), html:not([data-reduced-motion^=yes]) main section figure.contained:not([data-reduced-motion^=yes]) {
-    animation-name: mainLighting;
-    animation-duration: 5s;
-  }
-}
-@media (min-width: 60rem) {
-  main section figure[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure, main section figure.contained[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure.contained {
+  main section figure[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] main section figure, main section figure.contained[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] main section figure.contained {
     animation-name: mainLighting;
     animation-duration: 5s;
   }
 }
 @media (min-width: 60rem) and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main section figure:not([data-reduced-motion^=yes]) {
+  html:not([data-reduced-motion^="1"]) main section figure:not([data-reduced-motion^="1"]) {
     transition-duration: calc(4 * var(--dur)), 0.5s;
     transition-property: transform, all;
   }
 }
 @media (min-width: 60rem) {
-  main section figure[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure {
-    transition-duration: calc(4 * var(--dur)), 0.5s;
-    transition-property: transform, all;
-  }
   main section figure img {
     /* Images transition in immediately with their figures now */
     transition-duration: 0s;
@@ -2189,16 +1962,11 @@ main section .gallery {
   box-shadow: none;
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main section .gallery:not([data-reduced-motion^=yes]) {
+  main section .gallery[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] main section .gallery {
     /* Animation */
     animation-name: mainLighting;
     animation-duration: 5s;
   }
-}
-main section .gallery[data-reduced-motion^=no], html[data-reduced-motion^=no] main section .gallery {
-  /* Animation */
-  animation-name: mainLighting;
-  animation-duration: 5s;
 }
 main section .gallery {
   /* Gallery item fitting*/
@@ -2288,12 +2056,9 @@ main section .gallery .item img {
   outline: 0.125em solid white;
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main section .gallery .item img:not([data-reduced-motion^=yes]) {
+  html:not([data-reduced-motion^="1"]) main section .gallery .item img:not([data-reduced-motion^="1"]) {
     transition: all var(--dur) calc(var(--delA) + var(--delB));
   }
-}
-main section .gallery .item img[data-reduced-motion^=no], html[data-reduced-motion^=no] main section .gallery .item img {
-  transition: all var(--dur) calc(var(--delA) + var(--delB));
 }
 main section .gallery .item {
   /* Styles for when the images are off-screen waiting to transition in */
@@ -2302,14 +2067,7 @@ main section .gallery .item.off-screen {
   /* Only apply these on screens, so that printing doesn't get messsed up */
 }
 @media only screen and (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main section .gallery .item.off-screen:not([data-reduced-motion^=yes]) img {
-    transform: scale(0);
-    border-radius: 100%;
-    transition-delay: 0s;
-  }
-}
-@media only screen {
-  main section .gallery .item.off-screen[data-reduced-motion^=no] img, html[data-reduced-motion^=no] main section .gallery .item.off-screen img {
+  html:not([data-reduced-motion^="1"]) main section .gallery .item.off-screen:not([data-reduced-motion^="1"]) img {
     transform: scale(0);
     border-radius: 100%;
     transition-delay: 0s;
@@ -2583,12 +2341,9 @@ main .toggleAllControls {
   gap: var(--spacing);
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) main .toggleAllControls:not([data-reduced-motion^=yes]) {
+  html:not([data-reduced-motion^="1"]) main .toggleAllControls:not([data-reduced-motion^="1"]) {
     --dur: 0.5s;
   }
-}
-main .toggleAllControls[data-reduced-motion^=no], html[data-reduced-motion^=no] main .toggleAllControls {
-  --dur: 0.5s;
 }
 main .toggleAllControls {
   /* The individual buttons */
@@ -2748,7 +2503,7 @@ footer {
   background-position: center, top, center;
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) footer:not([data-reduced-motion^=yes]) {
+  footer[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] footer {
     /* Animation */
   }
   @keyframes waves {
@@ -2759,31 +2514,13 @@ footer {
       background-size: 100%, 100% 200%, auto;
     }
   }
-  html:not([data-reduced-motion^=yes]) footer:not([data-reduced-motion^=yes]) {
+  footer[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] footer {
     animation-name: waves;
     animation-duration: 4s;
     animation-iteration-count: infinite;
     animation-direction: normal;
     animation-timing-function: linear;
   }
-}
-footer[data-reduced-motion^=no], html[data-reduced-motion^=no] footer {
-  /* Animation */
-}
-@keyframes waves {
-  from {
-    background-size: 100%, 100% 100%, auto;
-  }
-  to {
-    background-size: 100%, 100% 200%, auto;
-  }
-}
-footer[data-reduced-motion^=no], html[data-reduced-motion^=no] footer {
-  animation-name: waves;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
-  animation-direction: normal;
-  animation-timing-function: linear;
 }
 footer {
   /* Typography */
@@ -2841,12 +2578,9 @@ footer {
   gap: var(--spacing);
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) .color-scheme-switcher:not([data-reduced-motion^=yes]) {
+  html:not([data-reduced-motion^="1"]) .color-scheme-switcher:not([data-reduced-motion^="1"]) {
     --dur: 0.5s;
   }
-}
-.color-scheme-switcher[data-reduced-motion^=no], html[data-reduced-motion^=no] .color-scheme-switcher {
-  --dur: 0.5s;
 }
 .color-scheme-switcher {
   /* The individual buttons */
@@ -2938,12 +2672,9 @@ html[data-theme=alien] .color-scheme-switcher a.alien-theme {
   gap: var(--spacing);
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-reduced-motion^=yes]) .reduced-motion-switcher:not([data-reduced-motion^=yes]) {
+  html:not([data-reduced-motion^="1"]) .reduced-motion-switcher:not([data-reduced-motion^="1"]) {
     --dur: 0.5s;
   }
-}
-.reduced-motion-switcher[data-reduced-motion^=no], html[data-reduced-motion^=no] .reduced-motion-switcher {
-  --dur: 0.5s;
 }
 .reduced-motion-switcher {
   /* The individual buttons */
@@ -2971,7 +2702,7 @@ html[data-theme=alien] .color-scheme-switcher a.alien-theme {
   letter-spacing: 0.125ch;
   /* Reduced motion switchers */
 }
-html[data-reduced-motion^=no] .reduced-motion-switcher a.moreMotion {
+html[data-reduced-motion^="-1"] .reduced-motion-switcher a.moreMotion {
   opacity: 1;
   outline: 1px solid var(--black);
 }
@@ -2981,7 +2712,7 @@ html:not([data-reduced-motion]) .reduced-motion-switcher a.autoMotion, html[data
   outline: 1px solid var(--black);
 }
 
-html[data-reduced-motion^=yes] .reduced-motion-switcher a.lessMotion {
+html[data-reduced-motion^="1"] .reduced-motion-switcher a.lessMotion {
   opacity: 1;
   outline: 1px solid var(--black);
 }
