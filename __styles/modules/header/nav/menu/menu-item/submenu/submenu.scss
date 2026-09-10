@@ -15,7 +15,7 @@
     position: static;
     display: none;
     z-index: -1;
-    top: 0;
+    top: calc(0.5 * var(--rounding));
     left: 0.5em;
     overflow-y: auto;
 
@@ -56,7 +56,7 @@
       box-sizing: border-box;
       max-height: calc(100vh - 10em);
       margin: 0 -0.5em;
-      padding: 2em 0 0;
+      padding: calc(2em - 0.5 * var(--rounding)) 0 0;
     }
 
     /* Submenu items */
