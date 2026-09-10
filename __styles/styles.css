@@ -1873,9 +1873,6 @@ main section figure {
   }
 }
 @media (min-width: 60rem) {
-  main section figure.solo[data-reduced-motion^=no], html[data-reduced-motion^=no] main section figure.solo {
-    transition-duration: calc(2 * var(--dur));
-  }
   main section figure:hover, main section figure:focus, main section figure:active {
     box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
   }
