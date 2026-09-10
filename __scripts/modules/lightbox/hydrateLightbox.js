@@ -41,7 +41,7 @@ export const hydrateLightbox = () => {
                         // Wait until the fade in is complete
                         fadeIn(lightbox, slideDuration()),
                         // Wait for the image to load and decode
-                        delayForEvent(lightboxImage, "load"),
+                        delayForEvent(lightboxImage, "load", () => true, 30000),
                         lightboxImage.decode().catch(() => { }),
                     ]);
                     // Stop loading spinner animation

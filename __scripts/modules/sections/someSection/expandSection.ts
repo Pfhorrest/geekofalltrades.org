@@ -1,4 +1,5 @@
 import { fadeIn, getDuration } from "../../effects/effects";
+import { delayForEvent } from "../../effects/helpers/helpers";
 import { toggleToggleButtons } from "../allSections/toggleButtons/toggleToggleButtons";
 
 /**
@@ -29,7 +30,7 @@ export const expandSection = (element: HTMLElement): void => {
   );
   // console.log("sections:", sections);
   // Loop through all the ancestor sections
-  sections.forEach((section) => {
+  sections.forEach(async (section) => {
     // console.log(`expanding section #${section.id}`);
     // Give the section appropriate class and title
     section.classList.remove("collapsed");
@@ -66,22 +67,24 @@ export const expandSection = (element: HTMLElement): void => {
           "display",
           child.getAttribute("data-collapsed-display-value"),
         );
-        child.removeAttribute("data-collapsed-display-value");
+        // child.removeAttribute("data-collapsed-display-value");
       }
     });
     // Set the min-height of the section to the inherent height
     section.style.setProperty("min-height", `${inherentHeight}px`);
-    // Get the duration for the animation
-    let duration = getDuration(section);
-    // console.log(`duration:`, duration);
     // Wait for the section to expand, then fade in all its children
-    setTimeout(() => {
-      children.forEach((child) => {
-        fadeIn(child, duration);
-      });
-      // Toggle the state of the toggle buttons
-      toggleToggleButtons();
-    }, duration);
+    await delayForEvent(
+      section,
+      "transitionend",
+      (e) => e.propertyName === "min-height",
+    );
+    // console.log(`section #${section.id} expanded, fading in children`);
+    children.forEach((child) => {
+      // console.log(`fading in child`, child);
+      fadeIn(child, getDuration(section));
+    });
+    // Toggle the state of the toggle buttons
+    toggleToggleButtons();
   });
   // console.groupEnd();
 };

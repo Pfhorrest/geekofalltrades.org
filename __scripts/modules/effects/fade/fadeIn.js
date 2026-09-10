@@ -47,11 +47,11 @@ export const fadeIn = (element_1, ...args_1) => __awaiter(void 0, [element_1, ..
         }
     }
     // Force a reflow, then set the element's opacity to its initial value
-    void element.style.display;
-    // console.log("fadeIn resetting opacity");
+    void element.style.opacity;
     element.style.opacity = `${initialOpacity}`;
+    // console.log(`fadeIn engaging for element`, element);
     yield delayForEvent(element, "transitionend", (e) => e.propertyName === "opacity");
-    // console.log("fadeIn completed with opacity:", initialOpacity);
+    // console.log(`fadeIn completed for element`, element);
     // console.groupEnd();
     return new Promise((resolve) => {
         resolve();

@@ -1,4 +1,14 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { fadeOut, getDuration } from "../../effects/effects";
+import { delayForEvent } from "../../effects/helpers/helpers";
 import { toggleToggleButtons } from "../allSections/toggleButtons/toggleToggleButtons";
 /**
  * Collapses a section from one of its elements
@@ -7,7 +17,7 @@ import { toggleToggleButtons } from "../allSections/toggleButtons/toggleToggleBu
  *
  * @returns {void}
  */
-export const collapseSection = (element) => {
+export const collapseSection = (element) => __awaiter(void 0, void 0, void 0, function* () {
     // console.groupCollapsed("collapseSection called with", element);
     // Get the section containing the element
     const section = element.closest("section");
@@ -32,22 +42,20 @@ export const collapseSection = (element) => {
     // console.log("fixing section min-height to", inherentHeight);
     section.style.minHeight = `${inherentHeight}px`;
     // Fade out all the applicable children of the section
-    children.forEach((child) => {
+    const promisedFadeOuts = children.map((child) => __awaiter(void 0, void 0, void 0, function* () {
         // console.log("fading out", child);
-        fadeOut(child, duration);
-    });
-    // After the fade out is complete, set the min-height of the section to 0,
+        return fadeOut(child, duration);
+    }));
+    // After the fade outs are complete, set the min-height of the section to 0,
     // and remove the min-height property after the animation is complete
-    setTimeout(() => {
-        // console.log("setting section min-height to 0");
-        section.style.minHeight = "0px";
-        setTimeout(() => {
-            // console.log("removing section min-height property");
-            section.style.removeProperty("min-height");
-        }, duration);
-        // Toggle the state of the toggle buttons
-        toggleToggleButtons();
-    }, duration);
+    yield Promise.all(promisedFadeOuts);
+    // console.log("setting section min-height to 0");
+    section.style.minHeight = "0px";
+    yield delayForEvent(section, "transitionend", (e) => e.propertyName === "min-height");
+    // console.log("removing section min-height property");
+    section.style.removeProperty("min-height");
+    // Toggle the state of the toggle buttons
+    toggleToggleButtons();
     // console.groupEnd();
-};
+});
 //# sourceMappingURL=collapseSection.js.map

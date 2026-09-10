@@ -1,3 +1,4 @@
+import { getDuration } from "../effects";
 /**
  * Waits for the given number of milliseconds.
  *
@@ -17,7 +18,7 @@ export function delay(milliseconds) {
  *
  * @returns A promise that resolves when the event is emitted and the condition (if provided) is fulfilled.
  */
-export function delayForEvent(element, eventName, condition) {
+export function delayForEvent(element, eventName, condition, timeout) {
     // console.log(`Waiting for ${eventName} event on`, element);
     return new Promise((resolve) => {
         function handler(event) {
@@ -30,6 +31,11 @@ export function delayForEvent(element, eventName, condition) {
         }
         // console.log(`Adding event listener for ${eventName} on`, element);
         element.addEventListener(eventName, handler);
+        // Safety timeout to prevent hanging indefinitely
+        setTimeout(() => {
+            element.removeEventListener(eventName, handler);
+            resolve();
+        }, timeout || 2 * getDuration(element));
     });
 }
 //# sourceMappingURL=delay.js.map

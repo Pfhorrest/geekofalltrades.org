@@ -1,3 +1,5 @@
+import { getDuration } from "../effects";
+
 /**
  * Waits for the given number of milliseconds.
  *
@@ -22,6 +24,7 @@ export function delayForEvent<K extends keyof HTMLElementEventMap>(
   element: HTMLElement,
   eventName: K,
   condition?: (theEvent: HTMLElementEventMap[K]) => boolean,
+  timeout?: number
 ): Promise<void> {
   // console.log(`Waiting for ${eventName} event on`, element);
   return new Promise((resolve) => {
@@ -35,5 +38,13 @@ export function delayForEvent<K extends keyof HTMLElementEventMap>(
     }
     // console.log(`Adding event listener for ${eventName} on`, element);
     element.addEventListener(eventName, handler as EventListener);
+    // Safety timeout to prevent hanging indefinitely
+    setTimeout(
+      () => {
+        element.removeEventListener(eventName, handler as EventListener);
+        resolve();
+      },
+      timeout || 2*getDuration(element)
+    );
   });
 }

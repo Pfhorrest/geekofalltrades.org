@@ -1,14 +1,15 @@
 import { fadeOut, getDuration } from "../../effects/effects";
+import { delayForEvent } from "../../effects/helpers/helpers";
 import { toggleToggleButtons } from "../allSections/toggleButtons/toggleToggleButtons";
 
 /**
  * Collapses a section from one of its elements
  *
  * @param {HTMLElement} element - An element inside the section to collapse
- * 
+ *
  * @returns {void}
  */
-export const collapseSection = (element: HTMLElement): void => {
+export const collapseSection = async (element: HTMLElement): Promise<void> => {
   // console.groupCollapsed("collapseSection called with", element);
   // Get the section containing the element
   const section = element.closest<HTMLElement>("section");
@@ -32,7 +33,7 @@ export const collapseSection = (element: HTMLElement): void => {
       !(
         ["h2", "h3", "h4", "h5", "h6"].includes(child.tagName.toLowerCase()) ||
         child.classList.contains("description")
-      )
+      ),
   );
 
   // Set the min-height of the section to its current height,
@@ -42,23 +43,27 @@ export const collapseSection = (element: HTMLElement): void => {
   section.style.minHeight = `${inherentHeight}px`;
 
   // Fade out all the applicable children of the section
-  children.forEach((child) => {
+  const promisedFadeOuts = children.map(async (child) => {
     // console.log("fading out", child);
-    fadeOut(child, duration);
+    return fadeOut(child, duration);
   });
 
-  // After the fade out is complete, set the min-height of the section to 0,
+  // After the fade outs are complete, set the min-height of the section to 0,
   // and remove the min-height property after the animation is complete
-  setTimeout(() => {
-    // console.log("setting section min-height to 0");
-    section.style.minHeight = "0px";
-    setTimeout(() => {
-      // console.log("removing section min-height property");
-      section.style.removeProperty("min-height");
-    }, duration);
-    // Toggle the state of the toggle buttons
-    toggleToggleButtons();
-  }, duration);
+  await Promise.all(promisedFadeOuts);
+  // console.log("setting section min-height to 0");
+
+  section.style.minHeight = "0px";
+  await delayForEvent(
+    section,
+    "transitionend",
+    (e) => e.propertyName === "min-height",
+  );
+
+  // console.log("removing section min-height property");
+  section.style.removeProperty("min-height");
+  // Toggle the state of the toggle buttons
+  toggleToggleButtons();
 
   // console.groupEnd();
 };

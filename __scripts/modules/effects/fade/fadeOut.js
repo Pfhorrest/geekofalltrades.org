@@ -35,17 +35,18 @@ export const fadeOut = (element_1, ...args_1) => __awaiter(void 0, [element_1, .
     element.style.transitionDuration = `${duration}ms`;
     // Set the element's opacity to 0
     element.style.opacity = "0";
+    // console.log(`fadeOut engaging for element`, element);
     yield delayForEvent(element, "transitionend", (e) => e.propertyName === "opacity");
+    // console.log(`fadeOut completed for element`, element);
     if (manageDisplay) {
         // Force a reflow, then set the element's display to none
         void element.style.display;
         // console.log("fadeOut setting display to none");
         element.style.display = "none";
     }
+    // console.groupEnd();
     return new Promise((resolve) => {
         resolve();
     });
-    // console.log("fadeOut completed");
-    // console.groupEnd();
 });
 //# sourceMappingURL=fadeOut.js.map
