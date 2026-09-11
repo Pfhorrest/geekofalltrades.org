@@ -16,7 +16,7 @@ describe("fadeToggle", () => {
 
     const fadeOutSpy = vi
       .spyOn(fadeOutModule, "fadeOut")
-      .mockImplementation(() => {});
+      .mockImplementation(async () => {});
 
     fadeToggle(el, 250);
 
@@ -28,7 +28,7 @@ describe("fadeToggle", () => {
 
     const fadeInSpy = vi
       .spyOn(fadeInModule, "fadeIn")
-      .mockImplementation(() => {});
+      .mockImplementation(async () => {});
 
     fadeToggle(el, 400);
 

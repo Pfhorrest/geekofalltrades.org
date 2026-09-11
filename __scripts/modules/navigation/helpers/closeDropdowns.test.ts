@@ -3,10 +3,15 @@ import { closeDropdowns } from "./closeDropdowns";
 import * as effects from "../../effects/effects";
 
 describe("closeDropdowns", () => {
+  let resolveDelay: (value?: any) => void;
+  let delayPromise: Promise<void>;
+
   beforeEach(() => {
-    vi.useFakeTimers();
-    vi.spyOn(effects, "slideUp").mockImplementation(() => {});
-    vi.spyOn(effects, "getDuration").mockReturnValue(100);
+    vi.spyOn(effects, "slideUp").mockImplementation(async () => {});
+     delayPromise = new Promise((resolve) => {
+      resolveDelay = resolve;
+    });
+    vi.spyOn(effects, "delayForEvent").mockReturnValue(delayPromise);
 
     document.body.innerHTML = `
       <header>
@@ -26,29 +31,33 @@ describe("closeDropdowns", () => {
     `;
   });
 
-  it("slides up only visible dropdowns", () => {
-    closeDropdowns();
+  it("slides up only visible dropdowns", async () => {
+    resolveDelay();
+    await closeDropdowns();
 
     const dropdowns = document.querySelectorAll("ul ul");
     expect(effects.slideUp).toHaveBeenCalledTimes(1);
     expect(effects.slideUp).toHaveBeenCalledWith(dropdowns[0]);
   });
 
-  it("removes active class after animation duration", () => {
+  it("removes active class after animation duration", async () => {
     const item = document.querySelector("li.active")!;
 
-    closeDropdowns();
+    const execution = closeDropdowns();
     expect(item.classList.contains("active")).toBe(true);
 
-    vi.advanceTimersByTime(100);
+    resolveDelay();
+    await execution;
+
     expect(item.classList.contains("active")).toBe(false);
   });
 
-  it("resets title and ariaExpanded on menu links", () => {
+  it("resets title and ariaExpanded on menu links", async () => {
     const link: HTMLElement = document.querySelector("li.active a")!;
 
-    closeDropdowns();
-    vi.advanceTimersByTime(100);
+    const execution = closeDropdowns();
+    resolveDelay();
+    await execution;
 
     expect(link.title).toBe("Expand submenu");
     expect(link.ariaExpanded).toBe("false");

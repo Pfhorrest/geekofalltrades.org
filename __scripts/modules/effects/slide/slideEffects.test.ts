@@ -14,10 +14,10 @@ describe("slideToggle", () => {
   });
 
   it("calls slideUp when element is visible", () => {
-    const upSpy = vi.spyOn(slideUpModule, "slideUp").mockImplementation(() => {});
+    const upSpy = vi.spyOn(slideUpModule, "slideUp").mockImplementation(async () => {});
     const downSpy = vi
       .spyOn(slideDownModule, "slideDown")
-      .mockImplementation(() => {});
+      .mockImplementation(async () => {});
 
     slideToggle(el, 300);
 
@@ -29,10 +29,10 @@ describe("slideToggle", () => {
   it("calls slideDown when element is hidden", () => {
     el.style.display = "none";
 
-    const upSpy = vi.spyOn(slideUpModule, "slideUp").mockImplementation(() => {});
+    const upSpy = vi.spyOn(slideUpModule, "slideUp").mockImplementation(async () => {});
     const downSpy = vi
       .spyOn(slideDownModule, "slideDown")
-      .mockImplementation(() => {});
+      .mockImplementation(async () => {});
 
     slideToggle(el, 300);
 
@@ -44,10 +44,10 @@ describe("slideToggle", () => {
   it("uses getDuration when no duration is provided", () => {
     el.style.display = "none";
 
-    const upSpy = vi.spyOn(slideUpModule, "slideUp").mockImplementation(() => {});
+    const upSpy = vi.spyOn(slideUpModule, "slideUp").mockImplementation(async () => {});
     const downSpy = vi
       .spyOn(slideDownModule, "slideDown")
-      .mockImplementation(() => {});
+      .mockImplementation(async () => {});
     const durationSpy = vi
       .spyOn(durationModule, "getDuration")
       .mockReturnValue(250);
