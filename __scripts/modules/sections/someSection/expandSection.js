@@ -7,8 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { fadeIn, getDuration } from "../../effects/effects";
-import { delayForEvent } from "../../effects/helpers/helpers";
+import { fadeIn, getDuration, delayForEvent } from "../../effects/effects";
 import { toggleToggleButtons } from "../allSections/toggleButtons/toggleToggleButtons";
 /**
  * Expands a section (and all parent sections) from one of its elements

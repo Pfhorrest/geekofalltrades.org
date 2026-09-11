@@ -1,5 +1,4 @@
-import { getDuration } from "../helpers/getDuration";
-import { delayForEvent } from "../helpers/helpers";
+import { getDuration, delayForEvent } from "../helpers/helpers";
 
 /**
  * Fades out the specified element over the specified duration.

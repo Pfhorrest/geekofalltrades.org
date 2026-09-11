@@ -1,8 +1,7 @@
-import { fadeIn, fadeOut } from "../effects/effects";
+import { fadeIn, fadeOut, delayForEvent } from "../effects/effects";
 import { setSlide } from "./setSlide";
 import { incrementSlide } from "./incrementSlide";
 import { slides, slideDuration } from "./lightboxState";
-import { delayForEvent } from "../effects/helpers/helpers";
 
 /**
  * Sets up the structure of the lightbox (all hidden by default)

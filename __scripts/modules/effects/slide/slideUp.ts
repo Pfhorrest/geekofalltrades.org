@@ -1,5 +1,4 @@
-import { getDuration } from "../helpers/getDuration";
-import { delayForEvent } from "../helpers/helpers";
+import { getDuration, delayForEvent } from "../helpers/helpers";
 
 /**
  * Slides the specified element up out of view over the specified duration.

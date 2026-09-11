@@ -1,5 +1,4 @@
-import { slideUp, getDuration } from "../../effects/effects";
-import { delayForEvent } from "../../effects/helpers/helpers";
+import { slideUp, delayForEvent } from "../../effects/effects";
 
 /**
  * Closes all dropdown menus.

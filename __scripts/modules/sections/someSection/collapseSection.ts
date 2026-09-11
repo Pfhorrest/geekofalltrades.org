@@ -1,5 +1,4 @@
-import { fadeOut, getDuration } from "../../effects/effects";
-import { delayForEvent } from "../../effects/helpers/helpers";
+import { fadeOut, getDuration, delayForEvent } from "../../effects/effects";
 import { toggleToggleButtons } from "../allSections/toggleButtons/toggleToggleButtons";
 
 /**

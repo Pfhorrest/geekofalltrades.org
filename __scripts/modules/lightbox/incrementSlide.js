@@ -7,10 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { fadeOut, fadeIn } from "../effects/effects";
+import { fadeOut, fadeIn, delayForEvent } from "../effects/effects";
 import { showSlide } from "./showSlide";
 import { slideDuration, slideIndex } from "./lightboxState";
-import { delayForEvent } from "../effects/helpers/helpers";
 /**
  * Steps forward through the slideshow (or backward if negative)
  *

@@ -7,8 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { getDuration } from "../helpers/getDuration";
-import { delayForEvent } from "../helpers/helpers";
+import { getDuration, delayForEvent } from "../helpers/helpers";
 /**
  * Slides the specified element down into view over the specified duration.
  *

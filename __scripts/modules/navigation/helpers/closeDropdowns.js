@@ -7,8 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { slideUp } from "../../effects/effects";
-import { delayForEvent } from "../../effects/helpers/helpers";
+import { slideUp, delayForEvent } from "../../effects/effects";
 /**
  * Closes all dropdown menus.
  */

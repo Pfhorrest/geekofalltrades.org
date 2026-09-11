@@ -7,11 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { fadeIn, fadeOut } from "../effects/effects";
+import { fadeIn, fadeOut, delayForEvent } from "../effects/effects";
 import { setSlide } from "./setSlide";
 import { incrementSlide } from "./incrementSlide";
 import { slides, slideDuration } from "./lightboxState";
-import { delayForEvent } from "../effects/helpers/helpers";
 /**
  * Sets up the structure of the lightbox (all hidden by default)
  * and the events listeners to open and close it
