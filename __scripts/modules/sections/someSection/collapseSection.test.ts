@@ -5,6 +5,7 @@ import { collapseSection } from "./collapseSection";
 vi.mock("../../effects/effects", () => ({
   fadeOut: vi.fn(),
   getDuration: vi.fn(),
+  delayForEvent: vi.fn(),
 }));
 
 vi.mock("../allSections/toggleButtons/toggleToggleButtons", () => ({
@@ -23,7 +24,6 @@ describe("collapseSection", () => {
   let trigger: HTMLElement;
 
   beforeEach(() => {
-    vi.useFakeTimers();
     vi.clearAllMocks();
 
     document.body.innerHTML = "";
@@ -60,7 +60,7 @@ describe("collapseSection", () => {
     (getDuration as MockedFunction<typeof getDuration>).mockReturnValue(200);
   });
 
-  it("does nothing if element is not inside a section", () => {
+  it("does nothing if element is not inside a section", async () => {
     const orphan = document.createElement("div");
 
     collapseSection(orphan);
@@ -69,7 +69,7 @@ describe("collapseSection", () => {
     expect(toggleToggleButtons).not.toHaveBeenCalled();
   });
 
-  it("marks the section as collapsed and updates trigger attributes", () => {
+  it("marks the section as collapsed and updates trigger attributes", async () => {
     collapseSection(trigger);
 
     expect(section.classList.contains("collapsed")).toBe(true);
@@ -77,13 +77,13 @@ describe("collapseSection", () => {
     expect(trigger.ariaExpanded).toBe("false");
   });
 
-  it("sets section min-height to its current height before collapsing", () => {
+  it("sets section min-height to its current height before collapsing", async () => {
     collapseSection(trigger);
-
     expect(section.style.minHeight).toBe("300px");
+
   });
 
-  it("fades out non-heading, non-description children", () => {
+  it("fades out non-heading, non-description children", async () => {
     collapseSection(trigger);
 
     expect(fadeOut).toHaveBeenCalledTimes(3);
@@ -95,27 +95,26 @@ describe("collapseSection", () => {
     expect(fadeOut).not.toHaveBeenCalledWith(description, expect.anything());
   });
 
-  it("collapses section min-height after duration", () => {
+  it("collapses section min-height after duration", async () => {
     collapseSection(trigger);
-
-    vi.advanceTimersByTime(200);
+    await Promise.resolve();
+    await Promise.resolve();
 
     expect(section.style.minHeight).toBe("0px");
   });
 
-  it("removes min-height property after collapse completes", () => {
-    collapseSection(trigger);
-
-    vi.advanceTimersByTime(200); // collapse
-    vi.advanceTimersByTime(200); // cleanup
+  it("removes min-height property after collapse completes", async () => {
+    const execution = collapseSection(trigger);
+    await Promise.resolve();
+    await execution;
 
     expect(section.style.minHeight).toBe("");
   });
 
-  it("toggles toggle buttons after collapsing", () => {
-    collapseSection(trigger);
-
-    vi.advanceTimersByTime(200);
+  it("toggles toggle buttons after collapsing", async () => {
+    const execution = collapseSection(trigger);
+    await Promise.resolve();
+    await execution;
 
     expect(toggleToggleButtons).toHaveBeenCalledOnce();
   });

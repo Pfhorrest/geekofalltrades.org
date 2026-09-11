@@ -1,10 +1,18 @@
-import { describe, it, expect, beforeEach, vi, type MockedFunction } from "vitest";
+import {
+  describe,
+  it,
+  expect,
+  beforeEach,
+  vi,
+  type MockedFunction,
+} from "vitest";
 import { expandSection } from "./expandSection";
 
 // Mock dependencies
 vi.mock("../../effects/effects", () => ({
   fadeIn: vi.fn(),
   getDuration: vi.fn(),
+  delayForEvent: vi.fn(),
 }));
 
 vi.mock("../allSections/toggleButtons/toggleToggleButtons", () => ({
@@ -24,7 +32,6 @@ describe("expandSection", () => {
   let trigger: HTMLElement;
 
   beforeEach(() => {
-    vi.useFakeTimers();
     vi.clearAllMocks();
 
     document.body.innerHTML = "";
@@ -100,10 +107,9 @@ describe("expandSection", () => {
     expect(outerSection.style.minHeight).toBe("300px");
   });
 
-  it("fades in non-heading, non-description children after duration", () => {
+  it("fades in non-heading, non-description children after duration", async () => {
     expandSection(trigger);
-
-    vi.advanceTimersByTime(200);
+    await Promise.resolve();
 
     expect(fadeIn).toHaveBeenCalledTimes(4);
 
@@ -122,15 +128,14 @@ describe("expandSection", () => {
     expandSection(trigger);
 
     expect(innerContent.style.display).toBe("inline-block");
-    expect(
-      innerContent.hasAttribute("data-collapsed-display-value")
-    ).toBe(false);
+    expect(innerContent.hasAttribute("data-collapsed-display-value")).toBe(
+      false,
+    );
   });
 
-  it("toggles toggle buttons after expansion completes", () => {
+  it("toggles toggle buttons after expansion completes", async () => {
     expandSection(trigger);
-
-    vi.advanceTimersByTime(200);
+    await Promise.resolve();
 
     expect(toggleToggleButtons).toHaveBeenCalledTimes(2);
   });

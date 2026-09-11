@@ -61,7 +61,7 @@ export const expandSection = (element) => {
         children.forEach((child) => {
             if (child.hasAttribute("data-collapsed-display-value")) {
                 child.style.setProperty("display", child.getAttribute("data-collapsed-display-value"));
-                // child.removeAttribute("data-collapsed-display-value");
+                child.removeAttribute("data-collapsed-display-value");
             }
         });
         // Set the min-height of the section to the inherent height

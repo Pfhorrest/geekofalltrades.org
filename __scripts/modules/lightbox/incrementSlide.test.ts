@@ -7,6 +7,7 @@ import * as state from "./lightboxState";
 vi.mock("../effects/effects", () => ({
   fadeOut: vi.fn(),
   fadeIn: vi.fn(),
+  delayForEvent: vi.fn(),
 }));
 
 vi.mock("./showSlide", () => ({
@@ -15,27 +16,28 @@ vi.mock("./showSlide", () => ({
 
 describe("incrementSlide", () => {
   beforeEach(() => {
-    vi.useFakeTimers();
+    document.body.innerHTML = `<div id="lightbox"><img id="lightboxImage"></div>`;
 
-    document.body.innerHTML = `<img id="lightboxImage" />`;
+    HTMLImageElement.prototype.decode = vi.fn().mockResolvedValue(undefined);
 
-    vi.spyOn(state, "slideIndex")
-      .mockImplementation((n?: number) => (n != null ? n : 0));
+    vi.spyOn(state, "slideIndex").mockImplementation((n?: number) =>
+      n != null ? n : 0,
+    );
 
     vi.spyOn(state, "slideDuration").mockReturnValue(500);
   });
 
-  it("fades out, advances slide, fades in", () => {
-    incrementSlide(1);
+  it("fades out, advances slide, fades in", async () => {
+    const execution = incrementSlide(1);
 
     expect(effects.fadeOut).toHaveBeenCalled();
 
-    vi.advanceTimersByTime(500);
+    await Promise.resolve();
 
     expect(show.showSlide).toHaveBeenCalledWith(1);
+    expect(effects.fadeIn).not.toHaveBeenCalled();
 
-    const img = document.getElementById("lightboxImage")!;
-    img.dispatchEvent(new Event("load"));
+    await execution;
 
     expect(effects.fadeIn).toHaveBeenCalled();
   });

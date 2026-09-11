@@ -66,7 +66,7 @@ export const expandSection = (element: HTMLElement): void => {
           "display",
           child.getAttribute("data-collapsed-display-value"),
         );
-        // child.removeAttribute("data-collapsed-display-value");
+        child.removeAttribute("data-collapsed-display-value");
       }
     });
     // Set the min-height of the section to the inherent height
