@@ -24,27 +24,33 @@ describe("hydrateMotionSwitcher", () => {
         expect(document.querySelector("#motionSwitcher")).toBeTruthy();
     });
     it("switches to less motion", () => {
+        var _a;
         hydrateMotionSwitcher();
         document
             .querySelector(".lessMotion")
             .dispatchEvent(new MouseEvent("click"));
-        expect(document.documentElement.getAttribute("data-reduced-motion")).toBe("yes");
-        expect(setPreference).toHaveBeenCalledWith("reduced-motion", "yes");
+        expect(parseInt(((_a = document.documentElement
+            .getAttribute("data-reduced-motion")) === null || _a === void 0 ? void 0 : _a.split("/")[0]) || "0")).toBeGreaterThan(0);
+        expect(setPreference).toHaveBeenCalledWith("reduced-motion", "1");
     });
     it("switches to more motion", () => {
+        var _a;
         hydrateMotionSwitcher();
         document
             .querySelector(".moreMotion")
             .dispatchEvent(new MouseEvent("click"));
-        expect(document.documentElement.getAttribute("data-reduced-motion")).toBe("no");
-        expect(setPreference).toHaveBeenCalledWith("reduced-motion", "no");
+        expect(parseInt(((_a = document.documentElement
+            .getAttribute("data-reduced-motion")) === null || _a === void 0 ? void 0 : _a.split("/")[0]) || "0")).toBeLessThan(0);
+        expect(setPreference).toHaveBeenCalledWith("reduced-motion", "-1");
     });
     it("reverts to auto motion", () => {
+        var _a;
         hydrateMotionSwitcher();
         document
             .querySelector(".autoMotion")
             .dispatchEvent(new MouseEvent("click"));
-        expect(document.documentElement.hasAttribute("data-reduced-motion")).toBe(false);
+        expect(parseInt(((_a = document.documentElement
+            .getAttribute("data-reduced-motion")) === null || _a === void 0 ? void 0 : _a.split("/")[0]) || "0")).toBe(0);
         expect(deletePreference).toHaveBeenCalledWith("reduced-motion");
     });
 });
