@@ -1,4 +1,13 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+import { describe, it, expect, beforeEach, vi, } from "vitest";
 import { collapseSections } from "./collapseSections";
 // Mocks
 vi.mock("../../effects/effects", () => ({
@@ -9,13 +18,13 @@ vi.mock("../someSection/collapseSection", () => ({
 }));
 import { getDuration } from "../../effects/effects";
 import { collapseSection } from "../someSection/collapseSection";
+HTMLElement.prototype.scrollIntoView = vi.fn().mockResolvedValue(undefined);
 describe("collapseSections", () => {
     let sectionA;
     let sectionB;
     let headingA;
     let headingB;
     beforeEach(() => {
-        vi.useFakeTimers();
         vi.clearAllMocks();
         document.body.innerHTML = "";
         sectionA = document.createElement("section");
@@ -43,17 +52,17 @@ describe("collapseSections", () => {
         expect(collapseSection).toHaveBeenCalledWith(headingB);
         expect(collapseSection).not.toHaveBeenCalledWith(headingA);
     });
-    it("scrolls to the anchor after duration", () => {
+    it("scrolls to the anchor after duration", () => __awaiter(void 0, void 0, void 0, function* () {
         sectionA.scrollIntoView = vi.fn();
         const scrollSpy = vi.spyOn(sectionA, "scrollIntoView");
-        collapseSections("a");
-        vi.advanceTimersByTime(200);
+        const execution = collapseSections("a");
+        yield execution;
         expect(location.hash).toBe("#a");
         expect(scrollSpy).toHaveBeenCalledWith({
             behavior: "smooth",
             block: "center",
             inline: "center",
         });
-    });
+    }));
 });
 //# sourceMappingURL=collapseSections.test.js.map

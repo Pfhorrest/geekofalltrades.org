@@ -1,4 +1,13 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+import { describe, it, expect, beforeEach, vi, } from "vitest";
 import { expandSections } from "./expandSections";
 // Mocks
 vi.mock("../../effects/effects", () => ({
@@ -14,8 +23,8 @@ describe("expandSections", () => {
     let sectionB;
     let headingA;
     let headingB;
+    HTMLElement.prototype.scrollIntoView = vi.fn().mockResolvedValue(undefined);
     beforeEach(() => {
-        vi.useFakeTimers();
         vi.clearAllMocks();
         document.body.innerHTML = "";
         sectionA = document.createElement("section");
@@ -42,17 +51,17 @@ describe("expandSections", () => {
         expect(expandSectionMock[0][0]).toBe(headingA);
         expect(expandSectionMock.some(([arg]) => arg === headingB)).toBe(false);
     });
-    it("scrolls to the anchor after duration", () => {
+    it("scrolls to the anchor after duration", () => __awaiter(void 0, void 0, void 0, function* () {
         sectionA.scrollIntoView = vi.fn();
         const scrollSpy = vi.spyOn(sectionA, "scrollIntoView");
-        expandSections("a");
-        vi.advanceTimersByTime(200);
+        const execution = expandSections("a");
+        yield execution;
         expect(location.hash).toBe("#a");
         expect(scrollSpy).toHaveBeenCalledWith({
             behavior: "smooth",
             block: "center",
             inline: "center",
         });
-    });
+    }));
 });
 //# sourceMappingURL=expandSections.test.js.map

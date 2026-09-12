@@ -1,4 +1,11 @@
-import { describe, it, expect, beforeEach, vi, type MockedFunction } from "vitest";
+import {
+  describe,
+  it,
+  expect,
+  beforeEach,
+  vi,
+  type MockedFunction,
+} from "vitest";
 import { collapseSections } from "./collapseSections";
 
 // Mocks
@@ -13,6 +20,8 @@ vi.mock("../someSection/collapseSection", () => ({
 import { getDuration } from "../../effects/effects";
 import { collapseSection } from "../someSection/collapseSection";
 
+HTMLElement.prototype.scrollIntoView = vi.fn().mockResolvedValue(undefined);
+
 describe("collapseSections", () => {
   let sectionA: HTMLElement;
   let sectionB: HTMLElement;
@@ -20,7 +29,6 @@ describe("collapseSections", () => {
   let headingB: HTMLElement;
 
   beforeEach(() => {
-    vi.useFakeTimers();
     vi.clearAllMocks();
     document.body.innerHTML = "";
 
@@ -57,12 +65,12 @@ describe("collapseSections", () => {
     expect(collapseSection).not.toHaveBeenCalledWith(headingA);
   });
 
-  it("scrolls to the anchor after duration", () => {
+  it("scrolls to the anchor after duration", async () => {
     (sectionA as HTMLElement).scrollIntoView = vi.fn();
     const scrollSpy = vi.spyOn(sectionA, "scrollIntoView");
 
-    collapseSections("a");
-    vi.advanceTimersByTime(200);
+    const execution = collapseSections("a");
+    await execution;
 
     expect(location.hash).toBe("#a");
     expect(scrollSpy).toHaveBeenCalledWith({

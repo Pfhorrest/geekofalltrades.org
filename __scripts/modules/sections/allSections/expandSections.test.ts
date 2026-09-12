@@ -1,4 +1,11 @@
-import { describe, it, expect, beforeEach, vi, type MockedFunction } from "vitest";
+import {
+  describe,
+  it,
+  expect,
+  beforeEach,
+  vi,
+  type MockedFunction,
+} from "vitest";
 import { expandSections } from "./expandSections";
 
 // Mocks
@@ -19,8 +26,9 @@ describe("expandSections", () => {
   let headingA: HTMLElement;
   let headingB: HTMLElement;
 
+  HTMLElement.prototype.scrollIntoView = vi.fn().mockResolvedValue(undefined);
+
   beforeEach(() => {
-    vi.useFakeTimers();
     vi.clearAllMocks();
     document.body.innerHTML = "";
 
@@ -50,19 +58,21 @@ describe("expandSections", () => {
   it("only expands sections containing the anchor when id is provided", () => {
     expandSections("a");
 
-    const expandSectionMock = (expandSection as MockedFunction<typeof expandSection>).mock.calls;
+    const expandSectionMock = (
+      expandSection as MockedFunction<typeof expandSection>
+    ).mock.calls;
 
     expect(expandSectionMock).toHaveLength(1);
     expect(expandSectionMock[0][0]).toBe(headingA);
     expect(expandSectionMock.some(([arg]) => arg === headingB)).toBe(false);
   });
 
-  it("scrolls to the anchor after duration", () => {
+  it("scrolls to the anchor after duration", async () => {
     (sectionA as HTMLElement).scrollIntoView = vi.fn();
     const scrollSpy = vi.spyOn(sectionA, "scrollIntoView");
 
-    expandSections("a");
-    vi.advanceTimersByTime(200);
+    const execution = expandSections("a");
+    await execution;
 
     expect(location.hash).toBe("#a");
     expect(scrollSpy).toHaveBeenCalledWith({
