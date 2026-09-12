@@ -3,8 +3,6 @@ import { hydrateDropdowns } from "./hydrateDropdowns";
 import { slideDown, slideUp, getDuration } from "../../effects/effects";
 import { closeDropdowns } from "../helpers/closeDropdowns";
 
-vi.useFakeTimers();
-
 vi.mock("../../effects/effects", () => ({
   slideDown: vi.fn(),
   slideUp: vi.fn(),
@@ -56,17 +54,17 @@ describe("hydrateDropdowns", () => {
     expect(firstToggle.tagName.toLowerCase()).toBe("button");
   });
 
-  it("opens submenu on toggle click", () => {
+  it("opens submenu on toggle click", async () => {
     const toggle = link.querySelector(".submenu-toggle")!;
     toggle.dispatchEvent(new MouseEvent("click", { bubbles: true }));
 
-    vi.runAllTimers();
+    await Promise.resolve();
 
     expect(menuItem.classList.contains("active")).toBe(true);
     expect(slideDown).toHaveBeenCalledWith(submenu);
   });
 
-  it("closes submenu if already open", () => {
+  it("closes submenu if already open", async () => {
     menuItem.classList.add("active");
 
     const toggle = link.querySelector(".submenu-toggle")!;
@@ -74,7 +72,7 @@ describe("hydrateDropdowns", () => {
 
     expect(slideUp).toHaveBeenCalledWith(submenu);
 
-    vi.advanceTimersByTime(100);
+    await Promise.resolve();
 
     expect(menuItem.classList.contains("active")).toBe(false);
   });

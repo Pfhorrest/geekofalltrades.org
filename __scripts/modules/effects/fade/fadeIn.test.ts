@@ -1,5 +1,10 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import { fadeIn } from "./fadeIn";
+import { fadeOut } from "./fadeOut";
+
+vi.mock("../../effects/helpers/helpers", () => ({
+  delayForEvent: vi.fn().mockResolvedValue(undefined),
+}));
 
 describe("fadeIn", () => {
   let el: HTMLElement;
@@ -17,12 +22,17 @@ describe("fadeIn", () => {
     expect(el.style.transitionDuration).toBe("300ms");
   });
 
-  it("sets opacity to 0 then restores it", () => {
+  it("restores opacity saved by fadeOut", async () => {
     el.style.opacity = "0.5";
+
+    fadeOut(el, 200);
+
+    await Promise.resolve();
 
     fadeIn(el, 200);
 
-    // Final state after synchronous execution
+    await Promise.resolve();
+
     expect(el.style.opacity).toBe("0.5");
   });
 

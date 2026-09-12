@@ -9,6 +9,7 @@ vi.mock("./incrementSlide", () => ({ incrementSlide: vi.fn() }));
 vi.mock("../effects/effects", () => ({
   fadeIn: vi.fn(),
   fadeOut: vi.fn(),
+  delayForEvent: vi.fn().mockResolvedValue(undefined),
 }));
 
 vi.stubGlobal(
@@ -29,14 +30,18 @@ vi.stubGlobal(
 
 function flushPromises() {
   return new Promise((resolve) => setTimeout(resolve, 0));
-  // In some environments, setImmediate might be used instead of setTimeout(resolve, 0)
 }
 describe("hydrateLightbox", () => {
   beforeEach(() => {
+    HTMLImageElement.prototype.decode = vi.fn().mockResolvedValue(undefined);
+
     document.body.innerHTML = `
       <main>
         <div class="gallery">
           <a href="?display=img.jpg"></a>
+        </div>
+        <div id="lightbox">
+          <img id="lightboxImage" />
         </div>
       </main>
     `;
@@ -44,7 +49,7 @@ describe("hydrateLightbox", () => {
 
   it("binds slide click to open lightbox", async () => {
     hydrateLightbox();
-    await flushPromises();
+    await Promise.resolve();
 
     const link = document.querySelector("a")!;
     link.click();

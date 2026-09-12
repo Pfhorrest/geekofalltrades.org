@@ -1,5 +1,9 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import { fadeOut } from "./fadeOut";
+
+vi.mock("../../effects/helpers/helpers", () => ({
+  delayForEvent: vi.fn().mockResolvedValue(undefined),
+}));
 
 describe("fadeOut", () => {
   let el: HTMLElement;
@@ -22,8 +26,9 @@ describe("fadeOut", () => {
     expect(el.style.opacity).toBe("0");
   });
 
-  it("sets display to none", () => {
+  it("sets display to none", async () => {
     fadeOut(el, 200);
+    await Promise.resolve();
     expect(el.style.display).toBe("none");
   });
 });
