@@ -3,8 +3,8 @@ import {
   slideDown,
   getDuration,
   getBreakpoint,
+  delay,
 } from "../../effects/effects";
-import { delay } from "../../effects/helpers/helpers";
 
 /**
  * Adds event listeners to show parent breadcrumbs' subnavs on hover.
@@ -34,7 +34,7 @@ export const hydrateBreadcrumbs = (): void => {
   // Resuable function to switch subnavs
   let switchSubnav = async (targetSubnav: HTMLElement) => {
     // Slide up any open subnavs
-    const promisedSlideUp = Array.from(
+    const promisedSlideUps = Array.from(
       document.querySelectorAll<HTMLElement>("header > nav > a + ul"),
     )
       .filter((subnav) => subnav != targetSubnav)
@@ -47,7 +47,7 @@ export const hydrateBreadcrumbs = (): void => {
         return slideUp(subnav);
       });
     // Wait the transition duration and then show the target subnav
-    await Promise.all(promisedSlideUp);
+    await Promise.all(promisedSlideUps);
     // const targetSubnavLink =
     //   targetSubnav.previousElementSibling as HTMLAnchorElement;
     // console.log(

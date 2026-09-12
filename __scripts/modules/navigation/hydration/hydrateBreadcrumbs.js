@@ -7,8 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { slideUp, slideDown, getDuration, getBreakpoint, } from "../../effects/effects";
-import { delay } from "../../effects/helpers/helpers";
+import { slideUp, slideDown, getDuration, getBreakpoint, delay, } from "../../effects/effects";
 /**
  * Adds event listeners to show parent breadcrumbs' subnavs on hover.
  *
@@ -31,7 +30,7 @@ export const hydrateBreadcrumbs = () => {
     // Resuable function to switch subnavs
     let switchSubnav = (targetSubnav) => __awaiter(void 0, void 0, void 0, function* () {
         // Slide up any open subnavs
-        const promisedSlideUp = Array.from(document.querySelectorAll("header > nav > a + ul"))
+        const promisedSlideUps = Array.from(document.querySelectorAll("header > nav > a + ul"))
             .filter((subnav) => subnav != targetSubnav)
             .map((subnav) => {
             // const subnavLink = subnav.previousElementSibling as HTMLAnchorElement;
@@ -42,7 +41,7 @@ export const hydrateBreadcrumbs = () => {
             return slideUp(subnav);
         });
         // Wait the transition duration and then show the target subnav
-        yield Promise.all(promisedSlideUp);
+        yield Promise.all(promisedSlideUps);
         // const targetSubnavLink =
         //   targetSubnav.previousElementSibling as HTMLAnchorElement;
         // console.log(
