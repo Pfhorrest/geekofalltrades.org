@@ -58,29 +58,29 @@ describe("expandSection", () => {
         });
         getDuration.mockReturnValue(200);
     });
-    it("does nothing if element is not inside a section", () => __awaiter(void 0, void 0, void 0, function* () {
+    it("does nothing if element is not inside a section", () => {
         const orphan = document.createElement("div");
         expandSection(orphan);
         expect(fadeIn).not.toHaveBeenCalled();
         expect(toggleToggleButtons).not.toHaveBeenCalled();
-    }));
-    it("removes collapsed class from the section and its toggleable ancestors", () => __awaiter(void 0, void 0, void 0, function* () {
+    });
+    it("removes collapsed class from the section and its toggleable ancestors", () => {
         expandSection(trigger);
         expect(innerSection.classList.contains("collapsed")).toBe(false);
         expect(outerSection.classList.contains("collapsed")).toBe(false);
-    }));
-    it("updates heading title and aria-expanded on expanded sections", () => __awaiter(void 0, void 0, void 0, function* () {
+    });
+    it("updates heading title and aria-expanded on expanded sections", () => {
         expandSection(trigger);
         expect(innerHeading.title).toBe("Collapse section");
         expect(innerHeading.ariaExpanded).toBe("true");
         expect(outerHeading.title).toBe("Collapse section");
         expect(outerHeading.ariaExpanded).toBe("true");
-    }));
-    it("sets min-height to 0px before expansion and then to inherent height", () => __awaiter(void 0, void 0, void 0, function* () {
+    });
+    it("sets min-height to 0px before expansion and then to inherent height", () => {
         expandSection(trigger);
         expect(innerSection.style.minHeight).toBe("150px");
         expect(outerSection.style.minHeight).toBe("300px");
-    }));
+    });
     it("fades in non-heading, non-description children after duration", () => __awaiter(void 0, void 0, void 0, function* () {
         expandSection(trigger);
         yield Promise.resolve();
@@ -92,12 +92,12 @@ describe("expandSection", () => {
         expect(fadeIn).not.toHaveBeenCalledWith(innerHeading, expect.anything());
         expect(fadeIn).not.toHaveBeenCalledWith(outerHeading, expect.anything());
     }));
-    it("restores child display styles after measuring height", () => __awaiter(void 0, void 0, void 0, function* () {
+    it("restores child display styles after measuring height", () => {
         innerContent.style.display = "inline-block";
         expandSection(trigger);
         expect(innerContent.style.display).toBe("inline-block");
         expect(innerContent.hasAttribute("data-collapsed-display-value")).toBe(false);
-    }));
+    });
     it("toggles toggle buttons after expansion completes", () => __awaiter(void 0, void 0, void 0, function* () {
         expandSection(trigger);
         yield Promise.resolve();
