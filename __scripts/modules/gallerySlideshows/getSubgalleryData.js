@@ -68,7 +68,7 @@ function linksToADifferentPage(link) {
  *
  * @returns The anchor to fetch the subgallery from, or null if the item has neither a usable `.more` link nor a cover link that leads anywhere new.
  */
-function findSubgalleryLink(item) {
+export function findSubgalleryLink(item) {
     const moreLink = item.querySelector(":scope > .more > a");
     if (moreLink) {
         return moreLink;
@@ -112,7 +112,7 @@ function fetchSubgalleryEntries(item) {
  *
  * @returns The parsed subgallery entries, in document order.
  */
-function parseSubgalleryEntries(html, baseUrl) {
+export function parseSubgalleryEntries(html, baseUrl) {
     // Belt and suspenders: ensure a trailing slash here too, in case this
     // function is ever called with a baseUrl from somewhere else.
     const directoryUrl = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
@@ -144,8 +144,8 @@ function parseSubgalleryEntries(html, baseUrl) {
             : "";
         const coverTitle = (_h = coverParams === null || coverParams === void 0 ? void 0 : coverParams.get("title")) !== null && _h !== void 0 ? _h : "";
         return {
-            // innerHTML, not textContent: a title like `Bee <span class="maybe">
-            // (probably)</span>` needs that span to survive so it keeps its
+            // innerHTML, not textContent: a title like `Untitled <span class="maybe">
+            // Bee</span>` needs that span to survive so it keeps its
             // styling. This document was never rendered, so innerText (which
             // depends on layout) isn't an option either way.
             title: (_j = (_b = (_a = subItem.querySelector(":scope > .title")) === null || _a === void 0 ? void 0 : _a.innerHTML) === null || _b === void 0 ? void 0 : _b.trim()) !== null && _j !== void 0 ? _j : "",
