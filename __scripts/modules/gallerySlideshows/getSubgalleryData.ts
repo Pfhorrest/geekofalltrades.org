@@ -96,7 +96,9 @@ function linksToADifferentPage(link: HTMLAnchorElement): boolean {
  *
  * @returns The anchor to fetch the subgallery from, or null if the item has neither a usable `.more` link nor a cover link that leads anywhere new.
  */
-function findSubgalleryLink(item: HTMLElement): HTMLAnchorElement | null {
+export function findSubgalleryLink(
+  item: HTMLElement,
+): HTMLAnchorElement | null {
   const moreLink = item.querySelector<HTMLAnchorElement>(":scope > .more > a");
   if (moreLink) {
     return moreLink;
@@ -148,7 +150,7 @@ async function fetchSubgalleryEntries(
  *
  * @returns The parsed subgallery entries, in document order.
  */
-function parseSubgalleryEntries(
+export function parseSubgalleryEntries(
   html: string,
   baseUrl: string,
 ): SubgalleryEntry[] {

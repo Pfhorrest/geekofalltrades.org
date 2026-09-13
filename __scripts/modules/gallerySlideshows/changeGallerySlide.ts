@@ -35,7 +35,7 @@ function preloadImage(src: string): Promise<void> {
  *
  * @returns The encoded value, ready to appear after a `=` in a query string.
  */
-function encodeCoverQueryValue(value: string): string {
+export function encodeCoverQueryValue(value: string): string {
   return encodeURIComponent(value).replace(/%2F/g, "/").replace(/%20/g, "+");
 }
 
@@ -58,7 +58,7 @@ interface ItemElements {
  *
  * @returns The item's image, title, description, and cover elements. Title, description, and cover are `null` for items with no `.more` link, or if genuinely absent.
  */
-function findItemElements(item: HTMLElement): ItemElements {
+export function findItemElements(item: HTMLElement): ItemElements {
   const hasMoreLink = item.querySelector(":scope > .more > a") !== null;
   return {
     img: item.querySelector<HTMLImageElement>(":scope > img"),
