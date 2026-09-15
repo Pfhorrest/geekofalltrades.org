@@ -357,7 +357,7 @@
     background-size: 100%, 100% 100%, auto;
     background-position: center, center, center;
 
-    @include optional-motion() {
+    @include optional-motion(-1) {
       /* Animation */
       @keyframes windAndWaves {
         from {
@@ -828,7 +828,9 @@
     content: &quot;▼&quot;;
     position: absolute;
     display: inline-block;
-    top: 0.5em;
+    top: 0;
+    height: 100%;
+    padding: 0 0.5em;
     opacity: 0.25;
     vertical-align: middle;
     background: none;
@@ -895,7 +897,7 @@
     position: static;
     display: none;
     z-index: -1;
-    top: 0;
+    top: calc(0.5 * var(--rounding));
     left: 0.5em;
     overflow-y: auto;
 
@@ -936,7 +938,7 @@
       box-sizing: border-box;
       max-height: calc(100vh - 10em);
       margin: 0 -0.5em;
-      padding: 2em 0 0;
+      padding: calc(2em - 0.5 * var(--rounding)) 0 0;
     }
 
     /* Submenu items */
@@ -1256,7 +1258,7 @@
 
       /* Reduced motion switchers */
       &amp;.moreMotion {
-        @at-root html[data-reduced-motion^=&quot;no&quot;] &amp; {
+        @at-root html[data-reduced-motion^=&quot;-1&quot;] &amp; {
           opacity: 1;
           outline: 1px solid var(--black);
         }
@@ -1269,7 +1271,7 @@
         }
       }
       &amp;.lessMotion {
-        @at-root html[data-reduced-motion^=&quot;yes&quot;] &amp; {
+        @at-root html[data-reduced-motion^=&quot;1&quot;] &amp; {
           opacity: 1;
           outline: 1px solid var(--black);
         }
@@ -1484,7 +1486,7 @@
     font-size: rfs(1rem, $bp1, $mfs, $bp4);
     line-height: 1.5;
 
-    @include optional-motion() {
+    @include optional-motion(-1) {
       /* Animation */
       @keyframes mainLighting {
         from {
@@ -1512,19 +1514,19 @@
         transition: all var(--dur), opacity var(--dur) linear,
           transform var(--dur) cubic-bezier(0, 2, 0.5, 0.75)
             calc(var(--delA) + var(--delB));
-        --dur: 1s; // Transition duration
+        --dur: 0.25s; // Transition duration
       }
       --delA: 0s; // Primary transition delay (varies by nesting)
       --delB: 0s; // Secondary transition delay (varies by column)
       /* Children of children have longer delays so they transition in in sequence */
       &amp;.off-screen &gt; * {
-        --delA: calc(1s / 32);
+        --delA: calc(var(--dur) * 1 / 32);
         &amp;.off-screen &gt; * {
-          --delA: calc(2s / 32);
+          --delA: calc(var(--dur) * 2 / 32);
           &amp;.off-screen &gt; * {
-            --delA: calc(3s / 32);
+            --delA: calc(var(--dur) * 3 / 32);
             &amp;.off-screen &gt; * {
-              --delA: calc(4s / 32);
+              --delA: calc(var(--dur) * 4 / 32);
             }
           }
         }
@@ -1744,7 +1746,7 @@
       &amp;.contained {
         border: none;
         background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
-        @include optional-motion() {
+        @include optional-motion(-1) {
           animation-name: mainLighting;
           animation-duration: 5s;
         }
@@ -1843,25 +1845,25 @@
         &amp;:nth-of-type(4n + 1) {
           &amp;,
           &amp; * {
-            --delB: calc(1s / 4);
+            --delB: calc(var(--dur) * 1 / 4);
           }
         }
         &amp;:nth-of-type(4n + 2) {
           &amp;,
           &amp; * {
-            --delB: calc(2s / 4);
+            --delB: calc(var(--dur) * 2 / 4);
           }
         }
         &amp;:nth-of-type(4n + 3) {
           &amp;,
           &amp; * {
-            --delB: calc(3s / 4);
+            --delB: calc(var(--dur) * 3 / 4);
           }
         }
         &amp;:nth-of-type(4n + 0) {
           &amp;,
           &amp; * {
-            --delB: calc(4s / 4);
+            --delB: calc(var(--dur) * 4 / 4);
           }
         }
         /* Make five-column gallery items transition in with appropriate timing */
@@ -1869,31 +1871,31 @@
           &amp;:nth-of-type(5n + 1) {
             &amp;,
             &amp; * {
-              --delB: calc(1s / 5);
+              --delB: calc(var(--dur) * 1 / 5);
             }
           }
           &amp;:nth-of-type(5n + 2) {
             &amp;,
             &amp; * {
-              --delB: calc(2s / 5);
+              --delB: calc(var(--dur) * 2 / 5);
             }
           }
           &amp;:nth-of-type(5n + 3) {
             &amp;,
             &amp; * {
-              --delB: calc(3s / 5);
+              --delB: calc(var(--dur) * 3 / 5);
             }
           }
           &amp;:nth-of-type(5n + 4) {
             &amp;,
             &amp; * {
-              --delB: calc(4s / 5);
+              --delB: calc(var(--dur) * 5 / 5);
             }
           }
           &amp;:nth-of-type(5n + 0) {
             &amp;,
             &amp; * {
-              --delB: calc(5s / 5);
+              --delB: calc(var(--dur) * 5 / 5);
             }
           }
         }
@@ -1902,37 +1904,37 @@
           &amp;:nth-of-type(6n + 1) {
             &amp;,
             &amp; * {
-              --delB: calc(1s / 6);
+              --delB: calc(var(--dur) * 1 / 6);
             }
           }
           &amp;:nth-of-type(6n + 2) {
             &amp;,
             &amp; * {
-              --delB: calc(2s / 6);
+              --delB: calc(var(--dur) * 2 / 6);
             }
           }
           &amp;:nth-of-type(6n + 3) {
             &amp;,
             &amp; * {
-              --delB: calc(3s / 6);
+              --delB: calc(var(--dur) * 3 / 6);
             }
           }
           &amp;:nth-of-type(6n + 4) {
             &amp;,
             &amp; * {
-              --delB: calc(4s / 6);
+              --delB: calc(var(--dur) * 4 / 6);
             }
           }
           &amp;:nth-of-type(6n + 5) {
             &amp;,
             &amp; * {
-              --delB: calc(5s / 6);
+              --delB: calc(var(--dur) * 5 / 6);
             }
           }
           &amp;:nth-of-type(6n + 0) {
             &amp;,
             &amp; * {
-              --delB: calc(6s / 6);
+              --delB: calc(var(--dur) * 6 / 6);
             }
           }
         }
@@ -1941,43 +1943,43 @@
           &amp;:nth-of-type(7n + 1) {
             &amp;,
             &amp; * {
-              --delB: calc(1s / 7);
+              --delB: calc(var(--dur) * 1 / 7);
             }
           }
           &amp;:nth-of-type(7n + 2) {
             &amp;,
             &amp; * {
-              --delB: calc(2s / 7);
+              --delB: calc(var(--dur) * 2 / 7);
             }
           }
           &amp;:nth-of-type(7n + 3) {
             &amp;,
             &amp; * {
-              --delB: calc(3s / 7);
+              --delB: calc(var(--dur) * 3 / 7);
             }
           }
           &amp;:nth-of-type(7n + 4) {
             &amp;,
             &amp; * {
-              --delB: calc(4s / 7);
+              --delB: calc(var(--dur) * 4 / 7);
             }
           }
           &amp;:nth-of-type(7n + 5) {
             &amp;,
             &amp; * {
-              --delB: calc(5s / 7);
+              --delB: calc(var(--dur) * 5 / 7);
             }
           }
           &amp;:nth-of-type(7n + 6) {
             &amp;,
             &amp; * {
-              --delB: calc(6s / 7);
+              --delB: calc(var(--dur) * 6 / 7);
             }
           }
           &amp;:nth-of-type(7n + 0) {
             &amp;,
             &amp; * {
-              --delB: calc(7s / 7);
+              --delB: calc(var(--dur) * 7 / 7);
             }
           }
         }
@@ -1986,49 +1988,49 @@
           &amp;:nth-of-type(8n + 1) {
             &amp;,
             &amp; * {
-              --delB: calc(1s / 8);
+              --delB: calc(var(--dur) * 1 / 8);
             }
           }
           &amp;:nth-of-type(8n + 2) {
             &amp;,
             &amp; * {
-              --delB: calc(2s / 8);
+              --delB: calc(var(--dur) * 2 / 8);
             }
           }
           &amp;:nth-of-type(8n + 3) {
             &amp;,
             &amp; * {
-              --delB: calc(3s / 8);
+              --delB: calc(var(--dur) * 3 / 8);
             }
           }
           &amp;:nth-of-type(8n + 4) {
             &amp;,
             &amp; * {
-              --delB: calc(4s / 8);
+              --delB: calc(var(--dur) * 4 / 8);
             }
           }
           &amp;:nth-of-type(8n + 5) {
             &amp;,
             &amp; * {
-              --delB: calc(5s / 8);
+              --delB: calc(var(--dur) * 5 / 8);
             }
           }
           &amp;:nth-of-type(8n + 6) {
             &amp;,
             &amp; * {
-              --delB: calc(6s / 8);
+              --delB: calc(var(--dur) * 6 / 8);
             }
           }
           &amp;:nth-of-type(8n + 7) {
             &amp;,
             &amp; * {
-              --delB: calc(7s / 8);
+              --delB: calc(var(--dur) * 7 / 8);
             }
           }
           &amp;:nth-of-type(8n + 0) {
             &amp;,
             &amp; * {
-              --delB: calc(8s / 8);
+              --delB: calc(var(--dur) * 8 / 8);
             }
           }
         }
@@ -2037,55 +2039,55 @@
           &amp;:nth-of-type(9n + 1) {
             &amp;,
             &amp; * {
-              --delB: calc(1s / 9);
+              --delB: calc(var(--dur) * 1 / 9);
             }
           }
           &amp;:nth-of-type(9n + 2) {
             &amp;,
             &amp; * {
-              --delB: calc(2s / 9);
+              --delB: calc(var(--dur) * 2 / 9);
             }
           }
           &amp;:nth-of-type(9n + 3) {
             &amp;,
             &amp; * {
-              --delB: calc(3s / 9);
+              --delB: calc(var(--dur) * 3 / 9);
             }
           }
           &amp;:nth-of-type(9n + 4) {
             &amp;,
             &amp; * {
-              --delB: calc(4s / 9);
+              --delB: calc(var(--dur) * 4 / 9);
             }
           }
           &amp;:nth-of-type(9n + 5) {
             &amp;,
             &amp; * {
-              --delB: calc(5s / 9);
+              --delB: calc(var(--dur) * 5 / 9);
             }
           }
           &amp;:nth-of-type(9n + 6) {
             &amp;,
             &amp; * {
-              --delB: calc(6s / 9);
+              --delB: calc(var(--dur) * 6 / 9);
             }
           }
           &amp;:nth-of-type(9n + 7) {
             &amp;,
             &amp; * {
-              --delB: calc(7s / 9);
+              --delB: calc(var(--dur) * 7 / 9);
             }
           }
           &amp;:nth-of-type(9n + 8) {
             &amp;,
             &amp; * {
-              --delB: calc(8s / 9);
+              --delB: calc(var(--dur) * 8 / 9);
             }
           }
           &amp;:nth-of-type(9n + 0) {
             &amp;,
             &amp; * {
-              --delB: calc(9s / 9);
+              --delB: calc(var(--dur) * 9 / 9);
             }
           }
         }
@@ -2270,7 +2272,7 @@
     text-align: center;
     box-shadow: none;
 
-    @include optional-motion() {
+    @include optional-motion(-1) {
       /* Animation */
       animation-name: mainLighting;
       animation-duration: 5s;
@@ -2340,7 +2342,7 @@
     @include gallery-expansive;
   }
  }" data-collapsed="@mixin gallery() { ... }"><code>@mixin gallery() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for galleries</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-gallery-item"><code>gallery-item</code></a> &mdash; Styles for gallery items</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-gallery-expansive"><code>gallery-expansive</code></a> &mdash; Styles for galleries that expand beyond the main section width</li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-optional-motion"><code>optional-motion</code></a> &mdash; DRY optional motion helper</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section"><code>section</code></a></li></ul><h3 class="item__sub-heading">See</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section"><code>section</code></a></li></ul></section><section class="main__item container item" id="main--mixin-section-animation"><h3 class="item__heading"><a class="item__name" href="#main-mixin-section-animation">section-animation</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin section-animation() { 
-  @include optional-motion() {
+  @include optional-motion(-1) {
     animation-name: mainLighting;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -2873,7 +2875,7 @@
     background-size: 100% 100%, auto;
     background-position: center, top, center;
 
-    @include optional-motion() {
+    @include optional-motion(-1) {
       /* Animation */
       @keyframes waves {
         from {
@@ -2950,6 +2952,135 @@
     /* Background */
     background: radial-gradient(black, hsla(0deg 0% 0% / 93.75%));
 
+    /* Loading spinner */
+    &amp;::after {
+      content: &quot;&quot;;
+      position: absolute;
+      width: 5rem;
+      height: 5rem;
+      border: 0.5rem dashed transparent;
+      border-bottom-color: rgba(255, 255, 255, 0.5);
+      border-right-color: rgba(255, 255, 255, 0.375);
+      border-top-color: rgba(255, 255, 255, 0.25);
+      border-left-color: rgba(255, 255, 255, 0.125);
+      border-radius: 50%;
+      background:
+        radial-gradient(black 0, black 0.75rem, transparent 1.5rem),
+        linear-gradient(
+            -45deg,
+            transparent calc(50% - 2px),
+            rgb(255, 255, 255) 50%,
+            transparent calc(50% + 2px)
+          )
+          no-repeat,
+        linear-gradient(
+            -90deg,
+            transparent calc(50% - 2px),
+            rgba(255, 255, 255, 0.875) 50%,
+            transparent calc(50% + 2px)
+          )
+          no-repeat,
+        linear-gradient(
+            -135deg,
+            transparent calc(50% - 2px),
+            rgba(255, 255, 255, 0.75) 50%,
+            transparent calc(50% + 2px)
+          )
+          no-repeat,
+        linear-gradient(
+            -180deg,
+            transparent calc(50% - 2px),
+            rgba(255, 255, 255, 0.625) 50%,
+            transparent calc(50% + 2px)
+          )
+          no-repeat,
+        linear-gradient(
+            -225deg,
+            transparent calc(50% - 2px),
+            rgba(255, 255, 255, 0.5) 50%,
+            transparent calc(50% + 2px)
+          )
+          no-repeat,
+        linear-gradient(
+            -270deg,
+            transparent calc(50% - 2px),
+            rgba(255, 255, 255, 0.375) 50%,
+            transparent calc(50% + 2px)
+          )
+          no-repeat,
+        linear-gradient(
+            -315deg,
+            transparent calc(50% - 2px),
+            rgba(255, 255, 255, 0.25) 50%,
+            transparent calc(50% + 2px)
+          )
+          no-repeat,
+        linear-gradient(
+            -360deg,
+            transparent calc(50% - 2px),
+            rgba(255, 255, 255, 0.125) 50%,
+            transparent calc(50% + 2px)
+          )
+          no-repeat;
+      background-size:
+        100%,
+        50% 50%,
+        50% 50%,
+        50% 50%,
+        50% 50%,
+        50% 50%,
+        50% 50%,
+        50% 50%,
+        50% 50%;
+      background-position-x:
+        center, left, center, right, right, right, center, left, left;
+      background-position-y:
+        center, bottom, bottom, bottom, center, top, top, top, center;
+      box-shadow: inset 0 0 0 0.375rem black;
+      outline: 0.25rem dashed rgb(255, 255, 255, 0.125);
+      outline-offset: 0.5rem;
+      opacity: 0.5;
+      animation: spin-and-pulse 4s linear infinite;
+      z-index: -1;
+    }
+    @keyframes spin-and-pulse {
+      0% {
+        transform: rotate(0deg) scale(1);
+        outline-offset: 0;
+        outline-color: rgba(255, 255, 255, 0);
+        outline-width: 0;
+      }
+      25% {
+        transform: rotate(180deg) scale(0.75);
+        outline-offset: 0.25rem;
+        outline-color: rgba(255, 255, 255, 0.125);
+        outline-width: 1rem;
+      }
+      50% {
+        transform: rotate(360deg) scale(1);
+        outline-offset: calc(sqrt(2 * 25 * 25) * 1vmax);
+        outline-color: rgba(255, 255, 255, 0.03125);
+        outline-width: 0.2rem;
+        outline-style: dotted;
+      }
+      75% {
+        transform: rotate(540deg) scale(1.25);
+        outline-offset: calc(sqrt(2 * 50 * 50) * 1vmax);
+        outline-color: rgba(255, 255, 255, 0);
+        outline-width: 0;
+      }
+      100% {
+        transform: rotate(720deg) scale(1);
+        outline-offset: 0;
+        outline-color: rgba(255, 255, 255, 0);
+        outline-width: 0;
+        outline-style: dashed;
+      }
+    }
+    &amp;.loaded::after {
+      display: none;
+    }
+
     /* Typography */
     color: grey;
     font-size: calc(1rem + 1vmin);
@@ -2999,6 +3130,13 @@
     #caption {
       span {
         white-space: normal;
+        max-height: 2em;
+        padding: 0.5em 0;
+        overflow: hidden;
+        // Special styles for multi-line ellipsis
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
         .maybe {
           display: block;
           font-size: 0.5em;
@@ -3018,6 +3156,12 @@
         display: inline-block;
         width: 1em;
         margin: 0 1em;
+        &amp;:first-child {
+          margin-left: 0;
+        }
+        &amp;:last-child {
+          margin-right: 0;
+        }
         padding: 0;
         border-radius: var(--rounding);
         background: none;
@@ -3041,14 +3185,27 @@
     }
   }
  }" data-collapsed="@mixin lightbox() { ... }"><code>@mixin lightbox() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles for lightbox</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p></section><section class="main__item container item" id="colors--mixin-optional-motion"><h3 class="item__heading"><a class="item__name" href="#undefined-mixin-optional-motion">optional-motion</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin optional-motion() { 
-  @media (prefers-reduced-motion: no-preference) {
-    html:not([data-reduced-motion^=yes]) &amp;:not([data-reduced-motion^=yes]) {
+  @if $threshold &gt; 0 {
+    @media (prefers-reduced-motion: reduce) {
       @content;
     }
-  }
-  &amp;[data-reduced-motion^=no],
-  html[data-reduced-motion^=no] &amp; {
-    @content;
+    &amp;[data-reduced-motion^=&quot;1&quot;],
+    html[data-reduced-motion^=&quot;1&quot;] &amp; {
+      @content;
+    }
+  } @else if $threshold == 0 {
+    @media (prefers-reduced-motion: no-preference) {
+      html:not([data-reduced-motion^=&quot;1&quot;]) &amp;:not([data-reduced-motion^=&quot;1&quot;]) {
+        @content;
+      }
+    }
+  } @else if $threshold &lt; 0 {
+    @media (prefers-reduced-motion: no-preference) {
+      &amp;[data-reduced-motion^=&quot;-1&quot;],
+      html[data-reduced-motion^=&quot;-1&quot;] &amp; {
+        @content;
+      }
+    }
   }
  }" data-collapsed="@mixin optional-motion() { ... }"><code>@mixin optional-motion() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Helper mixin that sets animations and transitions to apply only when the browser is not set to reduced motion and the data-reduced-motion attribute is not set to yes in either the html or the element, but always when the data-reduced-motion attribute is set to no in either the html or the element regardless of browser preference, without having to duplicate code.</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#layout-variable-bp2"><code>bp2</code></a> &mdash; Second breakpoint value</li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-h1-large"><code>h1-large</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu-item"><code>menu-item</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#header-mixin-menu"><code>menu</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-color-scheme-switcher"><code>color-scheme-switcher</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-reduced-motion-switcher"><code>reduced-motion-switcher</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-main"><code>main</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-figure"><code>figure</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-gallery-item"><code>gallery-item</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-gallery"><code>gallery</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section-animation"><code>section-animation</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section-toggleable"><code>section-toggleable</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-section"><code>section</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#main-mixin-toggle-all-sections-controls"><code>toggle-all-sections-controls</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-footer"><code>footer</code></a></li></ul></section><section class="main__item container item" id="colors--mixin-root"><h3 class="item__heading"><a class="item__name" href="#undefined-mixin-root">root</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin root() { 
   :root {
