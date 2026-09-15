@@ -53,7 +53,7 @@ export function encodeCoverQueryValue(value) {
  *
  * @param item - The `.gallery > .item` element to inspect.
  *
- * @returns The item's image, title, description, and cover elements. Title, description, and cover are `null` for items with no `.more` link, or if genuinely absent.
+ * @returns {ItemElements} The item's image, title, description, and cover elements. Title, description, and cover are `null` for items with no `.more` link, or if genuinely absent.
  */
 export function findItemElements(item) {
     const hasMoreLink = item.querySelector(":scope > .more > a") !== null;

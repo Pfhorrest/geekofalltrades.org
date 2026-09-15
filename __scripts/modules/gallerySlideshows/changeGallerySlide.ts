@@ -38,8 +38,12 @@ function preloadImage(src: string): Promise<void> {
 export function encodeCoverQueryValue(value: string): string {
   return encodeURIComponent(value).replace(/%2F/g, "/").replace(/%20/g, "+");
 }
-
-interface ItemElements {
+/**
+ * A collection of item's image, title, description, and cover elements.
+ *
+ * @see findItemElements
+ */
+export interface ItemElements {
   img: HTMLImageElement | null;
   title: HTMLElement | null;
   description: HTMLElement | null;
@@ -56,7 +60,7 @@ interface ItemElements {
  *
  * @param item - The `.gallery > .item` element to inspect.
  *
- * @returns The item's image, title, description, and cover elements. Title, description, and cover are `null` for items with no `.more` link, or if genuinely absent.
+ * @returns {ItemElements} The item's image, title, description, and cover elements. Title, description, and cover are `null` for items with no `.more` link, or if genuinely absent.
  */
 export function findItemElements(item: HTMLElement): ItemElements {
   const hasMoreLink = item.querySelector(":scope > .more > a") !== null;
