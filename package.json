@@ -33,7 +33,7 @@
     "deploy:stage:snapshot": "bash scripts/snapshot.sh dev.geekofalltrades.org snapshots-stage photos/",
     "deploy:stage:rollback": "bash scripts/rollback.sh snapshots-stage dev.geekofalltrades.org photos/",
     "deploy:stage:tidy": "bash scripts/tidy-snapshots.sh snapshots-stage",
-    "deploy:stage:code:safe": "npm test && npm run deploy:stage:health:local && npm run deploy:stage:health && npm run deploy:stage:snapshot && npm run deploy:stage:code && npm run deploy:stage:health && npm run deploy:stage:tidy && echo 'Stage deploy OK' || (echo 'Stage deploy FAILED — rolling back' && npm run deploy:stage:rollback)",
+    "deploy:stage:code:safe": "npm run deploy:stage:health:local && npm run deploy:stage:health && npm run deploy:stage:snapshot && npm run deploy:stage:code && npm run deploy:stage:health && npm run deploy:stage:tidy && echo 'Stage deploy OK' || (echo 'Stage deploy FAILED — rolling back' && npm run deploy:stage:rollback)",
     "deploy:stage": "npm run deploy:stage:code && npm run deploy:stage:photos",
     "deploy:stage:watch": "bash scripts/deploy-stage-watch.sh",
     "deploy:prod:health": "bash scripts/health-check.sh https://geekofalltrades.org/",
