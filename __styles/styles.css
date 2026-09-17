@@ -907,6 +907,7 @@ header nav > ul li:has(ul):not(.submenu) > a::after, header nav > ul li:has(ul).
   background: none;
   border: none;
   transform: rotate(0deg);
+  cursor: context-menu;
 }
 header nav > ul li:has(ul):not(.submenu) > a:hover::after, header nav > ul li:has(ul).submenu > a > .submenu-toggle:hover:last-child, header nav > ul li:has(ul):not(.submenu) > a:hover::before, header nav > ul li:has(ul).submenu > a > .submenu-toggle:hover:first-child {
   opacity: 1;
