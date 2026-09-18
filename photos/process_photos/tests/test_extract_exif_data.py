@@ -4,7 +4,7 @@ from PIL import Image
 import piexif
 
 from process_photos.extract_exif_data import extract_exif_data
-from process_photos import extract_exif_data as module_under_test
+from process_photos import config # For base_dir
 
 
 # ------------------------------------------------------------
@@ -30,19 +30,15 @@ def create_image_with_exif(path: Path, exif_dict=None):
 # Tests
 # ------------------------------------------------------------
 
-def test_raises_if_file_missing(tmp_path, monkeypatch):
-    monkeypatch.setattr(module_under_test, "base_dir", tmp_path)
-
-    missing = tmp_path / "missing.jpg"
+def test_raises_if_file_missing(isolated_base_dir):
+    missing = isolated_base_dir / "missing.jpg"
 
     with pytest.raises(FileNotFoundError):
         extract_exif_data(missing)
 
 
-def test_image_with_no_exif(tmp_path, monkeypatch):
-    monkeypatch.setattr(module_under_test, "base_dir", tmp_path)
-
-    img_path = tmp_path / "no_exif.jpg"
+def test_image_with_no_exif(isolated_base_dir):
+    img_path = isolated_base_dir / "no_exif.jpg"
     create_image_with_exif(img_path)
 
     result = extract_exif_data(img_path)
@@ -60,10 +56,8 @@ def test_image_with_no_exif(tmp_path, monkeypatch):
     }
 
 
-def test_extracts_camera_and_date(tmp_path, monkeypatch):
-    monkeypatch.setattr(module_under_test, "base_dir", tmp_path)
-
-    img_path = tmp_path / "camera_date.jpg"
+def test_extracts_camera_and_date(isolated_base_dir):
+    img_path = isolated_base_dir / "camera_date.jpg"
 
     exif_dict = {
         "0th": {
@@ -82,10 +76,8 @@ def test_extracts_camera_and_date(tmp_path, monkeypatch):
     assert result["gps"] is None
 
 
-def test_extracts_gps_coordinates(tmp_path, monkeypatch):
-    monkeypatch.setattr(module_under_test, "base_dir", tmp_path)
-
-    img_path = tmp_path / "gps.jpg"
+def test_extracts_gps_coordinates(isolated_base_dir):
+    img_path = isolated_base_dir / "gps.jpg"
 
     exif_dict = {
         "GPS": {
@@ -103,10 +95,8 @@ def test_extracts_gps_coordinates(tmp_path, monkeypatch):
     assert result["gps"] == (34.5, -120.0)
 
 
-def test_invalid_date_is_handled_gracefully(tmp_path, monkeypatch):
-    monkeypatch.setattr(module_under_test, "base_dir", tmp_path)
-
-    img_path = tmp_path / "bad_date.jpg"
+def test_invalid_date_is_handled_gracefully(isolated_base_dir):
+    img_path = isolated_base_dir / "bad_date.jpg"
 
     exif_dict = {
         "0th": {
@@ -122,14 +112,13 @@ def test_invalid_date_is_handled_gracefully(tmp_path, monkeypatch):
     assert result["timestamp"] is None
 
 
-def test_exception_returns_empty_dict(tmp_path, monkeypatch):
+def test_exception_returns_empty_dict(isolated_base_dir):
     """
     Force an exception during Image.open to ensure
     the function fails safely.
     """
-    monkeypatch.setattr(module_under_test, "base_dir", tmp_path)
 
-    img_path = tmp_path / "broken.jpg"
+    img_path = isolated_base_dir / "broken.jpg"
     img_path.write_text("not an image")
 
     result = extract_exif_data(img_path)

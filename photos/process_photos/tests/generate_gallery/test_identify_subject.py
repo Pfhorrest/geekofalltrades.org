@@ -40,7 +40,6 @@ def fake_load_model_factory(label):
 
 @patch("process_photos.generate_gallery.identify_subject.identify_subject.Image.open")
 @patch("process_photos.generate_gallery.identify_subject.identify_subject_local.load_model")
-@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.base_dir", Path("."))
 def test_single_model_single_label(mock_load_model, mock_image_open):
     mock_image_open.return_value.convert.return_value = Mock()
 
@@ -53,7 +52,6 @@ def test_single_model_single_label(mock_load_model, mock_image_open):
 
 @patch("process_photos.generate_gallery.identify_subject.identify_subject.Image.open")
 @patch("process_photos.generate_gallery.identify_subject.identify_subject_local.load_model")
-@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.base_dir", Path("."))
 def test_multiple_models_aggregate_labels(mock_load_model, mock_image_open):
     mock_image_open.return_value.convert.return_value = Mock()
 
@@ -71,7 +69,6 @@ def test_multiple_models_aggregate_labels(mock_load_model, mock_image_open):
 
 @patch("process_photos.generate_gallery.identify_subject.identify_subject.Image.open")
 @patch("process_photos.generate_gallery.identify_subject.identify_subject_local.load_model")
-@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.base_dir", Path("."))
 def test_duplicate_labels_deduplicated(mock_load_model, mock_image_open):
     mock_image_open.return_value.convert.return_value = Mock()
 
@@ -89,7 +86,6 @@ def test_duplicate_labels_deduplicated(mock_load_model, mock_image_open):
 
 @patch("process_photos.generate_gallery.identify_subject.identify_subject.Image.open")
 @patch("process_photos.generate_gallery.identify_subject.identify_subject_local.load_model")
-@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.base_dir", Path("."))
 def test_model_failure_is_skipped(mock_load_model, mock_image_open):
     mock_image_open.return_value.convert.return_value = Mock()
 
@@ -109,7 +105,6 @@ def test_model_failure_is_skipped(mock_load_model, mock_image_open):
 
 @patch("process_photos.generate_gallery.identify_subject.identify_subject.Image.open")
 @patch("process_photos.generate_gallery.identify_subject.identify_subject_local.load_model")
-@patch("process_photos.generate_gallery.identify_subject.identify_subject_local.base_dir", Path("."))
 def test_all_models_fail_returns_empty_string(mock_load_model, mock_image_open):
     mock_image_open.return_value.convert.return_value = Mock()
 

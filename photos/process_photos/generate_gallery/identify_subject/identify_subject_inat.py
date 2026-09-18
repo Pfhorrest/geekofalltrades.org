@@ -5,7 +5,7 @@ import io
 from pathlib import Path
 from tqdm import tqdm
 import browser_cookie3
-from ...config import INAT_TOKEN_CACHE_FILE
+from ... import config # For INAT_TOKEN_CACHE_FILE
 
 INAT_TOKEN = None
 
@@ -48,7 +48,7 @@ def get_inat_token():
             tqdm.write("[WARN] iNat token response missing api_token")
             return None
 
-        INAT_TOKEN_CACHE_FILE.write_text(json.dumps({
+        config.INAT_TOKEN_CACHE_FILE.write_text(json.dumps({
             "token": token,
             "timestamp": time.time()
         }))
@@ -71,9 +71,9 @@ def identify_subject_inat(image):
     """
     global INAT_TOKEN
     if not INAT_TOKEN:
-        if INAT_TOKEN_CACHE_FILE.exists():
+        if config.INAT_TOKEN_CACHE_FILE.exists():
             try:
-                cache = json.loads(INAT_TOKEN_CACHE_FILE.read_text())
+                cache = json.loads(config.INAT_TOKEN_CACHE_FILE.read_text())
                 age = time.time() - cache.get("timestamp", 0)
                 if age < 23 * 3600:
                     # tqdm.write(f"Using cached iNat token (age {age/3600:.1f}h)")

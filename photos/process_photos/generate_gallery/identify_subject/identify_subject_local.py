@@ -1,5 +1,4 @@
 from tqdm import tqdm
-from ...config import base_dir
 from transformers import AutoImageProcessor, AutoModelForImageClassification
 import torch
 from collections import Counter

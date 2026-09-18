@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from time import sleep
 from tqdm import tqdm
-from ..config import image_extensions, THUMB_SUFFIX
+from .. import config # For image_extensions, THUMB_SUFFIX
 from ..extract_exif_data import extract_exif_data
 from .identify_subject import identify_subject
 from .identify_location import identify_location
@@ -22,11 +22,11 @@ def generate_gallery(path):
             continue
 
         # Skip thumbnails
-        if filepath.stem.endswith(f"-{THUMB_SUFFIX}"):
+        if filepath.stem.endswith(f"-{config.THUMB_SUFFIX}"):
             continue
 
         # Skip non-images
-        if filepath.suffix.lower() not in image_extensions:
+        if filepath.suffix.lower() not in config.image_extensions:
             continue
 
         try:
@@ -239,7 +239,7 @@ def generate_gallery(path):
     )
 
     # REMOVE _sort_timestamp before returning
-    for img in images:
-        img.pop("_sort_timestamp", None)
+    # for img in images:
+    #     img.pop("_sort_timestamp", None)
 
     return images if images else None

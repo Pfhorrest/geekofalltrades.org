@@ -7,10 +7,26 @@ from pathlib import Path
 from datetime import datetime
 from PIL import Image
 from tqdm import tqdm
-from .config import image_extensions, THUMB_SUFFIX, THUMB_SIZE, base_dir, package_dir, subimage_threshold
+from . import config # For image_extensions, THUMB_SUFFIX, THUMB_SIZE, base_dir, package_dir, subimage_threshold
 from .parse_images_from_php import parse_images_from_php
 from .generate_gallery import generate_gallery
 from .extract_exif_data import extract_exif_data
+
+
+def _find_matching_paren(text, open_index):
+    """Return the index of the ')' that matches the '(' at open_index in
+    text, accounting for nesting. Returns None if unbalanced.
+    """
+    depth = 0
+    for i in range(open_index, len(text)):
+        if text[i] == '(':
+            depth += 1
+        elif text[i] == ')':
+            depth -= 1
+            if depth == 0:
+                return i
+    return None
+
 
 def process_photos():
     """Process photos in the base directory, generating thumbnails and galleries.
@@ -21,9 +37,9 @@ def process_photos():
     # Gather (dirpath, dirs, filenames) from os.walk
     walk_data = [
         (d, dirs, files)
-        for d, dirs, files in os.walk(base_dir)
+        for d, dirs, files in os.walk(config.base_dir)
         # Skip the folder containing this code
-        if not Path(d).resolve().is_relative_to(package_dir.resolve())
+        if not Path(d).resolve().is_relative_to(config.package_dir.resolve())
     ]
 
     # Sort by depth (deepest first)
@@ -31,21 +47,21 @@ def process_photos():
 
     for dirpath, _, filenames in tqdm(walk_data, desc="Processing folders", unit="folder"):
         dirpath = Path(dirpath)
-        relpath = dirpath.relative_to(base_dir)
+        relpath = dirpath.relative_to(config.base_dir)
 
         # -- MAKE THUMBNAILS --
         for filename in tqdm(filenames, desc=f"Thumbnails in {relpath}", unit="file", leave=False):
             filename = Path(filename)
             filepath = dirpath / filename
-            relfile = filepath.relative_to(base_dir)
+            relfile = filepath.relative_to(config.base_dir)
             name = filename.stem
             ext = filename.suffix
 
-            if ext.lower() not in image_extensions:
+            if ext.lower() not in config.image_extensions:
                 continue
 
             # Delete malformed thumbnails
-            if f"_{THUMB_SUFFIX}" in name or name.replace('_', '-').split('-').count(THUMB_SUFFIX) > 1:
+            if f"_{config.THUMB_SUFFIX}" in name or name.replace('_', '-').split('-').count(config.THUMB_SUFFIX) > 1:
                 tqdm.write(f"Deleting malformed thumbnail: {relfile}")
                 try:
                     os.remove(filepath)
@@ -54,7 +70,7 @@ def process_photos():
                 continue
 
             # Delete thumbnails with no originals
-            original_filename = (name[:-len(f"-{THUMB_SUFFIX}")] + ext if name.endswith(f"-{THUMB_SUFFIX}") else None)
+            original_filename = (name[:-len(f"-{config.THUMB_SUFFIX}")] + ext if name.endswith(f"-{config.THUMB_SUFFIX}") else None)
             original_path = dirpath / original_filename if original_filename else None
 
             if original_path and not original_path.exists():
@@ -66,19 +82,19 @@ def process_photos():
                 continue
 
             # Skip remaining existing thumbnails
-            if filename.stem.endswith(f"-{THUMB_SUFFIX}"):
+            if filename.stem.endswith(f"-{config.THUMB_SUFFIX}"):
                 continue
     
             # Skip if thumbnail exists and is valid size
-            thumb_filename = f"{name}-{THUMB_SUFFIX}{ext}"
+            thumb_filename = f"{name}-{config.THUMB_SUFFIX}{ext}"
             thumb_path = dirpath / thumb_filename
-            relthumb = thumb_path.relative_to(base_dir)
+            relthumb = thumb_path.relative_to(config.base_dir)
 
             if thumb_path.exists():
                 try:
                     with Image.open(thumb_path) as thumb_img:
                         w, h = thumb_img.size
-                        if not (w >= THUMB_SIZE or h >= THUMB_SIZE):
+                        if not (w >= config.THUMB_SIZE or h >= config.THUMB_SIZE):
                             tqdm.write(f"Deleting undersized existing thumbnail: {relthumb}")
                             os.remove(thumb_path)
                         else:
@@ -89,7 +105,7 @@ def process_photos():
             # Create thumbnail
             try:
                 with Image.open(filepath) as img:
-                    img.thumbnail((THUMB_SIZE, THUMB_SIZE))
+                    img.thumbnail((config.THUMB_SIZE, config.THUMB_SIZE))
                     img.save(thumb_path)
                     tqdm.write(f"Created thumbnail: {relthumb}")
             except Exception as e:
@@ -159,11 +175,11 @@ def process_photos():
                 head_content = f'<?php $title = "{title_text}" ?>\n'
                 with open(head_path, 'w') as f:
                     f.write(head_content)
-            # Make __main.php if necessary
-                tqdm.write(f"Created: {head_path.relative_to(base_dir)}")
+                tqdm.write(f"Created: {head_path.relative_to(config.base_dir)}")
 
+            # Make __main.php if necessary
             main_path = dirpath / "__main.php"
-            relmain = main_path.relative_to(base_dir)
+            relmain = main_path.relative_to(config.base_dir)
             if not main_path.exists():
                 needs_images = True
             else:
@@ -193,7 +209,7 @@ def process_photos():
                             continue
                         sub_main = sub / "__main.php"
                         if sub_main.exists():
-                            tqdm.write(f"  Found child __main.php: {sub_main.relative_to(base_dir)}")
+                            tqdm.write(f"  Found child __main.php: {sub_main.relative_to(config.base_dir)}")
                             child_images = parse_images_from_php(sub_main)
                             tqdm.write(f"    Parsed child images: {child_images}")
                             if child_images:
@@ -203,7 +219,7 @@ def process_photos():
                                     first_img['filename'] = f"{sub.name}/{first_img['filename']}"
 
                                 # Add morelink/moretext if this child gallery has enough images
-                                if len(child_images) >= subimage_threshold:
+                                if len(child_images) >= config.subimage_threshold:
                                     first_img['morelink'] = sub.name
                                     if date_granularity == "month":
                                         day_num = int(sub.name)
@@ -217,7 +233,7 @@ def process_photos():
 
                                 # If the gallery has fewer than threshold images, include them all
                                 # Otherwise, just include the first image (with "more" link)
-                                if len(child_images) < subimage_threshold:
+                                if len(child_images) < config.subimage_threshold:
                                     for n in range(1, len(child_images)):
                                         next_img = child_images[n].copy()
                                         if 'filename' in next_img:
@@ -307,6 +323,20 @@ def process_photos():
                             if m:
                                 ts = m.group(0)
 
+                        # Cache the timestamp on the image itself. A photo's EXIF
+                        # capture date never changes, so once this is written back
+                        # into the PHP array, the next run finds it via
+                        # img.get("_sort_timestamp") above and never has to touch
+                        # extract_exif_data (or the file itself) again for this
+                        # image. Rebinding img to a NEW dict (rather than mutating
+                        # it in place) matters: images/existing_images below and
+                        # sorted_images share the same dict objects, so an in-place
+                        # mutation would show up on both sides of the
+                        # sorted_images != existing_images check and the write
+                        # would never trigger, even the first time.
+                        if ts:
+                            img = {**img, "_sort_timestamp": ts}
+
                         # Normalize timestamp
                         if ts:
                             try:
@@ -332,21 +362,53 @@ def process_photos():
                 if existing_images:
                     sorted_images = resort_images(existing_images)
                     if sorted_images != existing_images:
-                        php_array_str = "$images = array(\n"
-                        for img in tqdm(sorted_images, desc=f"Writing sorted images for {relmain}", unit="img", leave=False):
-                            php_array_str += "\t\t\tarray(\n"
-                            for key, val in img.items():
-                                php_array_str += f"\t\t\t\t'{key}' => '{php_escape(val)}',\n"
-                            php_array_str += "\t\t\t),\n"
-                        php_array_str += "\t\t);\n\n"
+                        # Independent sanity check: existing_images came from
+                        # parse_images_from_php(main_path), which is exactly what
+                        # a bad test mock replaced before — comparing against it
+                        # wouldn't have caught that, since resort_images only ever
+                        # permutes its input and so can never come out shorter
+                        # than whatever (real or fake) list it was given. Counting
+                        # entries in the raw file text instead is independent of
+                        # that whole path. process_photos should only ever create
+                        # or resort this array, never shrink it.
+                        on_disk_count = existing_content.count("'filename' =>")
+                        if len(sorted_images) < on_disk_count:
+                            tqdm.write(
+                                f"Refusing to update {relmain}: about to write "
+                                f"{len(sorted_images)} images but the file on disk "
+                                f"has {on_disk_count} — this looks like it would "
+                                f"delete data, not resort it."
+                            )
+                        else:
+                            php_array_str = "$images = array(\n"
+                            for img in tqdm(sorted_images, desc=f"Writing sorted images for {relmain}", unit="img", leave=False):
+                                php_array_str += "\t\t\tarray(\n"
+                                for key, val in img.items():
+                                    php_array_str += f"\t\t\t\t'{key}' => '{php_escape(val)}',\n"
+                                php_array_str += "\t\t\t),\n"
+                            php_array_str += "\t\t)"
 
-                        updated_content = re.sub(
-                            r'\$images\s*=\s*array\s*\(.*?\);\s*',
-                            lambda m: php_array_str,
-                            existing_content,
-                            flags=re.DOTALL
-                        )
+                            # Replace only through the array's OWN matching closing
+                            # paren, not past it. The old approach
+                            # (re.sub(r'...array\(.*?\);', ...)) matched up to the
+                            # FIRST literal "');'" it found — but this array is
+                            # nested inside render_gallery($images = array(...));,
+                            # so the array's own single ')' is immediately followed
+                            # by ANOTHER ')' (render_gallery's) before the ';'. The
+                            # old regex swallowed that second paren as if it were
+                            # part of the array, and never put it back — that's the
+                            # dropped closing paren / syntax error.
+                            match = re.search(r'\$images\s*=\s*array\s*\(', existing_content)
+                            close_index = _find_matching_paren(existing_content, match.end() - 1) if match else None
 
-                        with open(main_path, 'w', encoding="utf-8") as f:
-                            f.write(updated_content)
-                        tqdm.write(f"Updated: {relmain} (re-sorted)")
+                            if match and close_index is not None:
+                                updated_content = (
+                                    existing_content[:match.start()]
+                                    + php_array_str
+                                    + existing_content[close_index + 1:]
+                                )
+                                with open(main_path, 'w', encoding="utf-8") as f:
+                                    f.write(updated_content)
+                                tqdm.write(f"Updated: {relmain} (re-sorted)")
+                            else:
+                                tqdm.write(f"Could not locate a matching closing paren for $images in {relmain}; leaving it untouched.")

@@ -3,7 +3,7 @@ from pathlib import Path
 from PIL import Image
 from datetime import datetime
 from tqdm import tqdm
-from .config import base_dir
+from . import config # For base_dir
 
 def extract_exif_data(image_path):
     """Extract EXIF data from an image file.
@@ -25,7 +25,7 @@ def extract_exif_data(image_path):
     if not image_path.is_file():
         raise FileNotFoundError(f"File does not exist or is not a file: {image_path}")
 
-    relpath = image_path.relative_to(base_dir)
+    relpath = image_path.relative_to(config.base_dir)
     strpath = str(image_path)
 
     try:

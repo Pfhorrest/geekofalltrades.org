@@ -1,13 +1,13 @@
 from unittest.mock import patch
 from unittest.mock import MagicMock
 from process_photos.process_photos import process_photos
-from process_photos.config import image_extensions, THUMB_SUFFIX, THUMB_SIZE, base_dir, package_dir, subimage_threshold
+from process_photos import config # For package_dir
 
 
 @patch("process_photos.process_photos.os.walk")
 def test_skips_package_dir(mock_walk):
     mock_walk.return_value = [
-        (str(package_dir), [], ["a.jpg"]),
+        (str(config.package_dir), [], ["a.jpg"]),
     ]
 
     process_photos()  # should do nothing, no crash
@@ -15,9 +15,11 @@ def test_skips_package_dir(mock_walk):
 
 @patch("process_photos.process_photos.Image.open")
 @patch("process_photos.process_photos.os.walk")
-def test_thumbnail_created(mock_walk, mock_image):
+def test_thumbnail_created(mock_walk, mock_image, isolated_base_dir):
+    year_dir = isolated_base_dir / "2024"
+    year_dir.mkdir()
     mock_walk.return_value = [
-        (str(base_dir / "2024"), [], ["a.jpg"]),
+        (str(year_dir), [], ["a.jpg"]),
     ]
 
     img = MagicMock()
@@ -32,40 +34,38 @@ def test_thumbnail_created(mock_walk, mock_image):
 @patch("process_photos.process_photos.Image.open")
 @patch("process_photos.process_photos.generate_gallery")
 @patch("process_photos.process_photos.os.walk")
-def test_generate_gallery_called(mock_walk, mock_gallery, mock_image, tmp_path):
-    # Fake base_dir
-    fake_base = tmp_path / "photos"
-    gallery_dir = fake_base / "2024" / "01"
+def test_generate_gallery_called(mock_walk, mock_gallery, mock_image, isolated_base_dir):
+    gallery_dir = isolated_base_dir  / "2024" / "01"
     gallery_dir.mkdir(parents=True)
+    print(f"gallery_dir: {gallery_dir}")
 
-    # Patch base_dir in the module under test
-    with patch("process_photos.process_photos.base_dir", fake_base):
-        mock_walk.return_value = [
-            (str(gallery_dir), [], ["a.jpg"]),
-        ]
+    mock_walk.return_value = [
+        (str(gallery_dir), [], ["a.jpg"]),
+    ]
 
-        # Neutralize PIL
-        mock_img = MagicMock()
-        mock_img.size = (4000, 3000)
-        mock_image.return_value.__enter__.return_value = mock_img
+    # Neutralize PIL
+    mock_img = MagicMock()
+    mock_img.size = (4000, 3000)
+    mock_image.return_value.__enter__.return_value = mock_img
 
-        mock_gallery.return_value = [{"filename": "a.jpg"}]
+    mock_gallery.return_value = [{"filename": "a.jpg"}]
 
-        process_photos()
+    process_photos()
 
-        mock_gallery.assert_called_once_with(gallery_dir)
+    mock_gallery.assert_called_once_with(gallery_dir)
 
 
 @patch("process_photos.process_photos.parse_images_from_php")
 @patch("process_photos.process_photos.generate_gallery")
 @patch("process_photos.process_photos.os.walk")
-def test_build_gallery_from_children(mock_walk, mock_gen, mock_parse):
-    year_dir = base_dir / "2024"
-    day_dir = year_dir / "01"
+def test_build_gallery_from_children(mock_walk, mock_gen, mock_parse, isolated_base_dir):
+    year_dir = isolated_base_dir / "2024"
+    month_dir = year_dir / "01"
+    month_dir.mkdir(parents=True)
 
     mock_walk.return_value = [
         (str(year_dir), ["01"], []),
-        (str(day_dir), [], []),
+        (str(month_dir), [], []),
     ]
 
     mock_gen.return_value = None
@@ -80,9 +80,17 @@ def test_build_gallery_from_children(mock_walk, mock_gen, mock_parse):
 @patch("process_photos.process_photos.parse_images_from_php")
 @patch("process_photos.process_photos.extract_exif_data")
 @patch("process_photos.process_photos.os.walk")
-def test_existing_images_resorted(mock_walk, mock_exif, mock_parse):
+def test_existing_images_resorted(mock_walk, mock_exif, mock_parse, isolated_base_dir):
+    year_dir = isolated_base_dir / "2024"
+    year_dir.mkdir()
+
+    # Existing __main.php with an $images array causes the code
+    # to take the existing-images/resorting path.
+    main_path = year_dir / "__main.php"
+    main_path.write_text('<?php $images = array(); ?>\n')
+
     mock_walk.return_value = [
-        (str(base_dir / "2024"), [], ["__main.php"]),
+        (str(year_dir), [], ["__main.php"]),
     ]
 
     mock_parse.return_value = [

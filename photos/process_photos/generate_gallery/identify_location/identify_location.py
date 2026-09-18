@@ -2,7 +2,6 @@ import json
 import time
 import requests
 from tqdm import tqdm
-from ...config import LOCATION_CACHE_FILE
 from .identify_pois import identify_pois
 
 NOMINATIM_ADDRESS_FIELDS = [
