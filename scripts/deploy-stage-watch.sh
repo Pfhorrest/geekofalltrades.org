@@ -23,7 +23,8 @@ banner() {
   printf '%s================================================%s\n\n' "$1" "$RESET"
 }
 
-echo "Watching origin/main — Ctrl+C to stop."
+WATCHING_MSG="Watching origin/main (${POLL_INTERVAL}s interval) — Ctrl+C to stop"
+echo "$WATCHING_MSG"
 
 # Polls what's actually been pushed to origin, not local HEAD — a commit
 # isn't a real trigger until it's pushed. Only re-runs the safe deploy when
@@ -41,6 +42,7 @@ while true; do
     else
       banner "$RED" "STAGE DEPLOY FAILED — rolled back — ${current_sha:0:7}"
     fi
+    echo "$WATCHING_MSG"
     last_seen_sha="$current_sha"
   fi
   sleep "$POLL_INTERVAL"
