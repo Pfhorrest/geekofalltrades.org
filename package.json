@@ -13,6 +13,7 @@
   "scripts": {
     "process:photos:setup": "cd photos/process_photos && rm -rf .venv && python3.11 -m venv .venv && . .venv/bin/activate && pip install --upgrade pip && pip install -r ./requirements.txt && echo '✅ Setup complete! venv recreated with Python 3.11 and dependencies installed.' && cd ../..",
     "process:photos": "cd photos && . process_photos/.venv/bin/activate && python3 -m process_photos && deactivate && cd ..",
+    "process:photos:watch": "bash scripts/process-photos-watch.sh",
     "dev:sass-watch": "sass --watch __styles/styles.scss:__styles/styles.css",
     "dev:ts-watch": "tsc --watch",
     "dev:php-server": "php -S geekofalltrades.local:8000 -t . ___structure/http.php",

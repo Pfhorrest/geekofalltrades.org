@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # deploy-stage-watch.sh
 #
-# Watches origin/main for new pushes and photos/ for new files, and
-# deploys each to staging automatically. Prod is never touched here —
-# run `npm run deploy:prod` yourself once staging looks good.
+# Watches origin/main for new pushes and deploys each to staging
+# automatically. Prod is never touched here — run `npm run deploy:prod`
+# yourself once staging looks good.
 #
 # Run via `npm run deploy:stage:watch`.
 
@@ -23,35 +23,8 @@ banner() {
   printf '%s================================================%s\n\n' "$1" "$RESET"
 }
 
-# --- photos branch -------------------------------------------------------
-# Its own loop, running in the background, so a long wait for a photo
-# change never delays checking for new pushes. Same fswatch -1-in-a-loop
-# pattern as dev:load-tab, just pointed at photos/. The short sleep after
-# each event lets a batch of near-simultaneous file drops settle into one
-# rsync instead of firing once per file.
-(
-  while true; do
-    fswatch -1 photos/ >/dev/null 2>&1
-    sleep 3
-    echo "Photo change detected — syncing to stage..."
-    if npm run deploy:stage:photos; then
-      echo "Photos synced to stage."
-    else
-      banner "$RED" "PHOTO SYNC FAILED"
-    fi
-  done
-) &
-photos_pid=$!
+echo "Watching origin/main — Ctrl+C to stop."
 
-cleanup() {
-  kill "$photos_pid" 2>/dev/null
-}
-trap cleanup EXIT
-trap 'cleanup; exit 130' INT TERM
-
-echo "Watching origin/main and photos/ — Ctrl+C to stop."
-
-# --- code branch -----------------------------------------------------------
 # Polls what's actually been pushed to origin, not local HEAD — a commit
 # isn't a real trigger until it's pushed. Only re-runs the safe deploy when
 # the pushed SHA changes, so idle polling never re-runs the test suite for
