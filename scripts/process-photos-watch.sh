@@ -25,7 +25,11 @@ cleanup() {
 trap cleanup EXIT
 trap 'cleanup; exit 130' INT TERM
 
-echo "Watching photos/ (${QUIET_PERIOD}s quiet period) — Ctrl+C to stop."
+watching_message() {
+    echo "Watching photos/ (${QUIET_PERIOD}s quiet period) — Ctrl+C to stop."
+}
+
+watching_message
 
 # Background job's only responsibility: record WHEN the most recent
 # change happened. It doesn't decide anything or run process_photos
@@ -58,5 +62,6 @@ while true; do
             echo "process_photos exited with an error — skipping the staging sync, still watching for the next batch." >&2
         fi
         last_processed="$last_event"
+        watching_message
     fi
 done
