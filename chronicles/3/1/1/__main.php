@@ -66,5 +66,3 @@
 	</ol>
 
 </section>
-	
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/footer-global.php" ?>
