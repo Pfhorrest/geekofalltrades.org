@@ -1,6 +1,7 @@
 import { getDuration, delay } from "../effects/helpers/helpers";
 import { fadeOut, fadeIn } from "../effects/fade/fadeEffects";
 import type { SubgalleryEntry } from "./getSubgalleryData";
+import { slideDuration } from "../lightbox/lightboxState";
 
 // Which subgallery entry each item most recently displayed, so the next
 // call knows which entry comes next. A WeakMap means an item removed from
@@ -126,7 +127,9 @@ export default async function changeGallerySlide(
   }
 
   const nextEntry = getNextEntry(item, subgalleryEntries);
-  const duration = getDuration(item);
+  // Use the designated slideDuration(), or the first item's --dur or
+  // transition-duration, whichever is longer
+  const duration = Math.max(slideDuration(), getDuration(item));
 
   if (img && nextEntry.imgSrc) {
     await preloadImage(nextEntry.imgSrc);

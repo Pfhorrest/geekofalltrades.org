@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { getDuration, delay } from "../effects/helpers/helpers";
 import getSubgalleryData from "./getSubgalleryData";
 import changeGallerySlide from "./changeGallerySlide";
+import { slideDuration } from "../lightbox/lightboxState";
 /**
  * Checks whether reduced motion should currently be honored, either because
  * the page has explicitly flagged it or because the browser reports the
@@ -39,7 +40,11 @@ function isReducedMotionPreferred() {
 function waitForNextStep(firstItem) {
     return __awaiter(this, void 0, void 0, function* () {
         do {
-            yield delay(getDuration(firstItem) * 4);
+            // Use the designated slideDuration(), or the first item's --dur or
+            // transition-duration -- whichever is longer -- multiplied by 2 for
+            // fadein/fadeout, then by 2 again so the delay between slides is
+            // longer than the fadein/fadeout time for each item.
+            yield delay(Math.max(slideDuration(), getDuration(firstItem)) * 2 * 2);
         } while (isReducedMotionPreferred());
     });
 }

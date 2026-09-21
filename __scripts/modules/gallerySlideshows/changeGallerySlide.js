@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { getDuration, delay } from "../effects/helpers/helpers";
 import { fadeOut, fadeIn } from "../effects/fade/fadeEffects";
+import { slideDuration } from "../lightbox/lightboxState";
 // Which subgallery entry each item most recently displayed, so the next
 // call knows which entry comes next. A WeakMap means an item removed from
 // the DOM won't keep this state (or itself) alive.
@@ -109,7 +110,9 @@ export default function changeGallerySlide(item, subgalleryEntries) {
             return;
         }
         const nextEntry = getNextEntry(item, subgalleryEntries);
-        const duration = getDuration(item);
+        // Use the designated slideDuration(), or the first item's --dur or
+        // transition-duration, whichever is longer
+        const duration = Math.max(slideDuration(), getDuration(item));
         if (img && nextEntry.imgSrc) {
             yield preloadImage(nextEntry.imgSrc);
         }

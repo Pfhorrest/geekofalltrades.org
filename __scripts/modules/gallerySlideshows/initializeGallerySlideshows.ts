@@ -1,6 +1,7 @@
 import { getDuration, delay } from "../effects/helpers/helpers";
 import getSubgalleryData from "./getSubgalleryData";
 import changeGallerySlide from "./changeGallerySlide";
+import { slideDuration } from "../lightbox/lightboxState";
 
 /**
  * Checks whether reduced motion should currently be honored, either because
@@ -32,7 +33,11 @@ function isReducedMotionPreferred(): boolean {
  */
 async function waitForNextStep(firstItem: HTMLElement): Promise<void> {
   do {
-    await delay(getDuration(firstItem) * 4);
+    // Use the designated slideDuration(), or the first item's --dur or
+    // transition-duration -- whichever is longer -- multiplied by 2 for
+    // fadein/fadeout, then by 2 again so the delay between slides is
+    // longer than the fadein/fadeout time for each item.
+    await delay(Math.max(slideDuration(), getDuration(firstItem)) * 2 * 2);
   } while (isReducedMotionPreferred());
 }
 
