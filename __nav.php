@@ -113,6 +113,5 @@
             <li><a href="/chronicles/3/3/3">Virtuality Immanent</a></li>
         </ul>
     </li>
-    </li>
     <li><a href="/stories">Other Stories</a></li>
 </ul>
