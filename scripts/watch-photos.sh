@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# process-photos-watch.sh
+# watch-photos.sh
 #
 # Watches photos/ and runs process_photos whenever something changes,
 # waiting for a quiet period first so a whole batch export lands before
 # anything runs, rather than reacting to the first file and generating
 # a one-image gallery partway through a big export.
 #
-# Run via `npm run process:photos:watch`.
+# Run via `npm run watch:photos`.
 
 set -u
 QUIET_PERIOD=10  # seconds of no further changes before processing
@@ -37,7 +37,7 @@ watching_message
 # venv, and caches, not photo content. -thumb/__head/__main are its
 # own generated output, so it doesn't see (and re-trigger on) its own
 # writes.
-fswatch --exclude 'process_photos/' --exclude '.*-thumb.*' --exclude '.*__head.*' --exclude '.*__main.*' . | while IFS= read -r _; do
+fswatch --exclude 'process_photos/' . | while IFS= read -r _; do
     date +%s > "$last_event_file"
 done &
 
@@ -57,7 +57,7 @@ while true; do
         echo "Batch settled — running process_photos..."
         if python3 -m process_photos; then
             echo "Syncing processed photos to staging..."
-            (cd "$REPO_ROOT" && npm run deploy:stage:photos) || echo "Sync to staging failed — will retry on the next batch." >&2
+            (cd "$REPO_ROOT" && npm run stage:photos) || echo "Sync to staging failed — will retry on the next batch." >&2
         else
             echo "process_photos exited with an error — skipping the staging sync, still watching for the next batch." >&2
         fi

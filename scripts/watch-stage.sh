@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# deploy-stage-watch.sh
+# watch-stage.sh
 #
 # Watches origin/main for new pushes and deploys each to staging
 # automatically. Prod is never touched here — run `npm run deploy:prod`
 # yourself once staging looks good.
 #
-# Run via `npm run deploy:stage:watch`.
+# Run via `npm run watch:stage`.
 
 set -uo pipefail
 cd "$(git rev-parse --show-toplevel)"
@@ -40,7 +40,7 @@ while true; do
   current_sha="$(git ls-remote origin refs/heads/main 2>/dev/null | cut -f1)"
   if [[ -n "$current_sha" && "$current_sha" != "$last_seen_sha" ]]; then
     echo "New push detected (${current_sha:0:7}) — running safe stage deploy..."
-    if npm run deploy:stage:code:safe; then
+    if npm run stage:code:safe; then
       banner "$GREEN" "STAGE DEPLOY OK — ${current_sha:0:7}"
     else
       banner "$RED" "STAGE DEPLOY FAILED — rolled back — ${current_sha:0:7}"

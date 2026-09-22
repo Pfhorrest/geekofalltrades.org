@@ -234,7 +234,7 @@ The project includes npm scripts for deploying to both staging and production en
 ### Deploy to Staging
 
 ```bash
-npm run deploy:stage
+npm run stage
 ```
 
 This runs two sub-commands that SSH to `dev.geekofalltrades.org` and `git pull`, then rsync the photos directory (photos are not in git due to size).
@@ -307,7 +307,7 @@ pip install -r ./requirements.txt
 ```
 or for short
 ```bash
-npm run process:photos:setup
+npm run setup:photos
 ```
 
 ## Key Modules
@@ -650,13 +650,13 @@ def test_my_function():
 ## npm Scripts Reference
 
 ```bash
-npm run process:photos:setup           # Sets up venv and dependencies for photo-processing script
+npm run setup:photos           # Sets up venv and dependencies for photo-processing script
 npm run process:photos                 # Run photo-processing script in a venv in /photos
 
 
 npm run dev:sass-watch                 # Watch and compile SCSS only
 npm run dev:ts-watch                   # Watch and compile TypeScript only
-npm run dev:php-server                 # Start PHP development server only
+npm run serve:php                 # Start PHP development server only
 
 npm run dev                            # Start all development watchers and open browser
 
@@ -675,20 +675,20 @@ npm run document:ts                    # Generate TypeScript documentation
 npm run document                       # Generate all documentation
 
 
-npm run deploy:stage:code              # Deploy code to staging server via git
-npm run deploy:stage:photos            # Deploy photos to staging server via rsync
+npm run stage:code              # Deploy code to staging server via git
+npm run stage:photos            # Deploy photos to staging server via rsync
 
-npm run deploy:stage                   # Deploy all to staging server via prior scripts
+npm run stage                   # Deploy all to staging server via prior scripts
 
 
-npm run deploy:prod:health             # Check health of production deployment via curl and grep
-npm run deploy:prod:snapshot           # Create snapshot of production deployment vis ssh rsync
-npm run deploy:prod:rollback           # Restore production deployment to latest snapshot via ssh rsync 
-npm run deploy:prod:clean              # Overwrite production deployment with staging via ssh rsync
-npm run deploy:prod:update:structure   # Overwrite core structure of production from staging via ssh rsync
-npm run deploy:prod:update:content     # Update non-core content of production deployment from staging via ssh rsync
-npm run deploy:prod:update             # Safely update production deployment from staging via previous two scripts
-npm run deploy:prod:legacy             # Safely repopulate production deployment from legacy archive via ssh rsync
+npm run health:prod             # Check health of production deployment via curl and grep
+npm run snapshot:prod           # Create snapshot of production deployment vis ssh rsync
+npm run rollback:prod           # Restore production deployment to latest snapshot via ssh rsync 
+npm run deploy:clean              # Overwrite production deployment with staging via ssh rsync
+npm run deploy:update:structure   # Overwrite core structure of production from staging via ssh rsync
+npm run deploy:update:content     # Update non-core content of production deployment from staging via ssh rsync
+npm run deploy:update             # Safely update production deployment from staging via previous two scripts
+npm run deploy:legacy             # Safely repopulate production deployment from legacy archive via ssh rsync
 
 npm run deploy:prod                    # Run snapshot, update, and legacy, between health checks; rollback if fail
 ```
