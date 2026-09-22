@@ -370,7 +370,8 @@
 			to interact with AEM.
 		</p>
 		<p>
-			You can see the finished product at <a href="https://www.accenture.com/us-en/insights/communications-media/media-entertainment-spotlight" rel="external">www.accenture.com</a>.
+			<!-- You can see the finished product at <a href="https://www.accenture.com/us-en/insights/communications-media/media-entertainment-spotlight" rel="external">www.accenture.com</a>. -->
+			This page is no longer online.
 		</p>
 	</section>
 
@@ -541,7 +542,8 @@
 			with ongoing updates and maintenance over time.
 		</p>
 		<p>
-			You can see the finished product at <a href="https://www.accenture.com/us-en/services/technology/delivery-centers" rel="external">www.accenture.com</a>.
+			<!-- You can see the finished product at <a href="https://www.accenture.com/us-en/services/technology/delivery-centers" rel="external">www.accenture.com</a>. -->
+			This page is no longer online.
 		</p>
 	</section>
 
@@ -710,7 +712,8 @@
 			vanilla ES6) and simple CSS animations.
 		</p>
 		<p>
-			You can see the finished product at <a href="https://www.accenture.com/gb-en/insights/sustainability/building-sustainable-futures" rel="external">www.accenture.com</a>.
+			<!-- You can see the finished product at <a href="https://www.accenture.com/gb-en/insights/sustainability/building-sustainable-futures" rel="external">www.accenture.com</a>. -->
+			This page is no longer online.
 		</p>
 		
 	</section>
@@ -732,7 +735,8 @@
 			with ongoing updates and maintenance over time.
 		</p>
 		<p>
-			You can see the finished product at <a href="https://www.accenture.com/us-en/services/technology/liquid-studios#anchor2" rel="external">www.accenture.com</a>.
+			<!-- You can see the finished product at <a href="https://www.accenture.com/us-en/services/technology/liquid-studios#anchor2" rel="external">www.accenture.com</a>. -->
+			This page is no longer online.
 		</p>
 	</section>
 
@@ -776,7 +780,8 @@
 			expense of less up-front time efficiency.
 		</p>
 		<p>
-			You can see the finished product at <a href="https://www.blueworx.app" rel="external">www.blueworx.app</a>.
+			<!-- You can see the finished product at <a href="https://www.blueworx.app" rel="external">www.blueworx.app</a>. -->
+			This site is no longer online.
 		</p>
 	</section>
 
