@@ -15,23 +15,24 @@ This website represents decades of evolution while maintaining core web principl
 ### Styles
 - Fusion of modern flat design (default) and playful skeuomorphic design (on interaction)
 - Mobile-first, responsive up to UHD displays
-- Pure SCSS with progressive enhancement (compiled to CSS)
+- Modular vanilla SCSS with progressive enhancement (compiled to CSS)
 - Complete separation of presentation from structure
 - No JavaScript required for styling (but progressive enhancements with it)
 
 ### Scripts
 - Works completely without JavaScript (ensures searchability and accessibility)
 - Progressive enhancement for enabled JavaScript users
-- Vanilla TypeScript (compiled to ES6) - no heavy frameworks
+- Modular vanilla TypeScript (compiled to ES6) - no heavy frameworks
 - Snappy performance on client and server
 
 ## Features
 
 - **Modular Gallery System**: PHP gallery module that generates HTML image galleries from arrays
+- **Gallery Slideshows**: Thumbnails of subgalleries cycle between thumbnails of subgallery items
 - **Lightbox Component**: Interactive image viewing with keyboard navigation
 - **Collapsible Sections**: JavaScript-enhanced expandable/collapsible content sections
 - **Color Scheme Switcher**: User-selectable color themes with localStorage persistence
-- **Motion Preferences**: Respects and allows toggling of reduced motion preferences
+- **Motion Preferences**: Respects and allows toggling of reduced and enhanced motion preferences
 - **Lazy Loading**: Performance-optimized image loading
 - **Scroll Animations**: Smooth reveal animations as content enters viewport
 - **Breadcrumb Navigation**: Dynamic breadcrumb generation based on URL structure
@@ -73,6 +74,8 @@ geekofalltrades.org/
 ├── _media/                # Media assets
 │   └── images/            # Image files
 ├── photos/                # Photo galleries (not in git, deployed via rsync)
+│   └── process_photos/    # Automated gallery generation tool (its own venv, tests)
+├── scripts/               # Shell scripts backing the watch:*/health:*/snapshot:* etc. npm scripts
 ├── [content-dirs]/        # Content directories (e.g., /stories, /essays, etc.)
 │   ├── __head.php         # Page metadata (title, description)
 │   ├── __header.php       # Header content (optional)
@@ -113,11 +116,18 @@ geekofalltrades.org/
    npm run dev
    ```
 
-   This command concurrently runs four processes with color-coded output:
-   - **SASS** (magenta): `sass --watch` - Compiles SCSS to CSS on change
-   - **TS** (yellow): `tsc --watch` - Compiles TypeScript to JavaScript on change
-   - **PHP** (blue): PHP built-in server on `geekofalltrades.local:8000`
-   - **LOAD** (green): Opens browser and watches for file changes to reload
+   This concurrently runs eight processes with color-coded output, each watching for a different kind of change and reacting only to that:
+
+   - **PHP** (white): PHP built-in server on `geekofalltrades.local:8000`
+   - **NPM** (gray): Runs `npm update` at startup, then once a day for as long as `dev` keeps running
+   - **CODE** (blue): Watches `___structure` and any `__scripts`/`__styles` folders (root-level or per-content-directory). Once things go quiet for a couple of seconds, runs whichever of `test:ts`/`test:php` apply to what changed; only if those pass, compiles whichever of TypeScript/Sass need it (single-pass, not watch mode); then checks the local home page
+   - **PAGE** (cyan): Watches `__head.php`, `__main.php`, `__nav.php`, `__header.php`, and `__footer.php` anywhere on the site — these live outside CODE's folders, so the two never overlap. Health-checks the specific page that changed, using that page's own source file so a real PHP error can't be confused with ordinary page content, and validates its HTML with `vnu` if it's installed
+   - **PPP** (green): Watches `photos/process_photos`'s own source (not its venv, caches, or the photos themselves) and runs `test:py` after a couple of seconds of quiet
+   - **DOCS** (yellow): Watches for new local commits and runs whichever of `document:ts`/`document:sass`/`document:php` match the file types that commit actually touched
+   - **STAGE** (red): Watches for new pushes to `origin/main` and runs the full staging deploy automatically (see Deployment below)
+   - **PHOTOS** (magenta): Watches `photos/` for new or changed images. Waits for a whole batch export to finish landing (a longer quiet period than CODE/PAGE/PPP, since exports can take a while), then runs the photo processor and syncs the result to staging
+
+   Compilers no longer run in continuous watch mode — CODE triggers a single-pass compile only when something that actually needs it changed.
 
 4. **Access the site**
    
@@ -229,23 +239,26 @@ This ensures identical behavior between development and production.
 
 ## Deployment
 
-The project includes npm scripts for deploying to both staging and production environments on Dreamhost.
+Staging deploys are entirely automatic once `npm run dev` (or just `npm run watch:stage` on its own) is running. Every new push to `origin/main` triggers `stage:code:safe`, which:
 
-### Deploy to Staging
+1. Health-checks the local dev server
+2. Health-checks staging
+3. Snapshots staging (hardlink-based — unchanged files cost no extra disk space)
+4. Pulls the new code onto staging via git
+5. Health-checks staging again
+6. Either tidies up old snapshots (success) or restores staging from the snapshot (failure)
 
-```bash
-npm run stage
-```
+`npm test` is not part of this chain — `watch:code` and `watch:ppp` already run the relevant tests continuously while you work, so by the time something reaches a push it's expected to already have been exercised. Language types you haven't touched in the current `dev` session won't have been re-verified immediately before that particular push, which is worth keeping in mind.
 
-This runs two sub-commands that SSH to `dev.geekofalltrades.org` and `git pull`, then rsync the photos directory (photos are not in git due to size).
+Photos are handled separately and don't go through this chain: `npm run watch:photos` watches `photos/`, waits for a whole batch to finish landing, processes it, and syncs the result to staging itself.
 
 ### Deploy to Production
 
 ```bash
-npm run deploy:prod
+npm run deploy:safe
 ```
 
-This runs several sub-commands in sequence to generate a snapshot of the production site, safely update `geekofalltrades.org` from `dev.geekofalltrades.org` via two further sub-commands, and safely repopulate scattered files from a legacy archive, with health checks at each stage, rolling back to the snapshot upon failure.
+Production is never touched automatically — this is a deliberate, manual step, run once staging looks good. It health-checks staging and production, snapshots production, updates it from staging (core structure and everything else, as two separate rsync passes), health-checks again, and either tidies up on success or restores production from the snapshot on failure.
 
 ## Photo Processing System
 
@@ -263,7 +276,7 @@ The `/photos/` directory includes an automated photo gallery generation system (
 - Extracts EXIF metadata (timestamp, location, camera info)
 - Uses HuggingFace image recognition models for auto-descriptions
 - Queries OpenStreetMap API for location names
-- Sorts images reverse-chronologically by EXIF timestamp
+- Sorts images reverse-chronologically by EXIF timestamp, caching each image's resolved timestamp so unchanged photos skip re-extracting EXIF on later runs
 
 **Gallery Organization:**
 - Date-based galleries automatically titled (e.g., "15th of March 2024 Photography")
@@ -281,13 +294,14 @@ or for short
 npm run process:photos
 ```
 
+For automatic processing, `npm run watch:photos` (included in `npm run dev`) watches `photos/`, waits for a batch of changes to settle, runs the processor, and syncs the result to staging.
 
 The script:
 1. Creates thumbnails for all images (configurable size)
 2. Extracts EXIF data and generates descriptions
 3. Creates or updates `__main.php` with image arrays
 4. Organizes galleries hierarchically with "more" links
-5. Resorts existing galleries by timestamp
+5. Resorts existing galleries by timestamp, only writing back to a file when something actually changed, and never writing an array smaller than what's already on disk
 
 **Configuration** (`config.py`):
 - `THUMB_SIZE`: Thumbnail dimensions
@@ -521,6 +535,8 @@ npm run document
 
 The generated documentation will be created in the `_docs/` directory and can be viewed by opening the `index.html` file in each subdirectory.
 
+`npm run watch:docs` (included in `npm run dev`) runs these automatically whenever you commit, scoped to whichever of PHP/SCSS/TypeScript that commit actually touched.
+
 ## Testing Setup
 
 This project includes testing setups for **PHP**, **JavaScript**, and **Python**.
@@ -571,14 +587,14 @@ describe('dummy test suite', () => {
 Run JS/TS tests:
 
 ```bash
-npm run test:js
+npm run test:ts
 ```
 
 Ensure the `package.json` script uses non-watch mode:
 
 ```json
 "scripts": {
-  "test:js": "vitest --run"
+  "test:ts": "vitest --run"
 }
 ```
 
@@ -605,6 +621,8 @@ npm run test:py
 ```
 
 This ensures the test runner exits immediately, even without real tests.
+
+**Test isolation:** `process_photos/tests/conftest.py` defines an `autouse` fixture that patches `base_dir` to a fresh temporary directory for every test, automatically. This exists because a test that mocks part of the photo-processing pipeline but not all of it can end up running real logic against a real directory path — which, once, actually overwrote real gallery files with test data. Any new test that needs to hand a directory listing to a mocked `os.walk()` should build that listing from the fixture's own return value, not from `base_dir` imported directly at the top of the file — that import is bound before the fixture ever runs, so it still points at the real directory.
 
 ### How to Add New Tests
 
@@ -650,15 +668,22 @@ def test_my_function():
 ## npm Scripts Reference
 
 ```bash
-npm run setup:photos           # Sets up venv and dependencies for photo-processing script
+npm run setup:photos                   # Sets up venv and dependencies for photo-processing script
 npm run process:photos                 # Run photo-processing script in a venv in /photos
+npm run watch:photos                   # Watch photos/, process new batches, sync the result to staging
 
+npm run process:sass                   # One-shot compile SCSS to CSS
+npm run process:ts                     # One-shot compile TypeScript to JavaScript
+npm run serve:php                      # Start PHP development server only
 
-npm run dev:sass-watch                 # Watch and compile SCSS only
-npm run dev:ts-watch                   # Watch and compile TypeScript only
-npm run serve:php                 # Start PHP development server only
+npm run watch:code                     # Watch ___structure/__scripts/__styles: test, compile, local health check
+npm run watch:pages                    # Watch page content files: health-check + HTML-validate the page that changed
+npm run watch:ppp                      # Watch photos/process_photos's own source, run test:py
+npm run watch:docs                     # Watch for new commits, run autodoc for whatever file types changed
+npm run watch:npm                      # Run npm update at startup and once a day thereafter
+npm run watch:stage                    # Watch for new pushes to origin/main, run the safe staging deploy
 
-npm run dev                            # Start all development watchers and open browser
+npm run dev                            # Start all of the above watchers and php server concurrently
 
 
 npm run test:php                       # Run PHP tests with PHPUnit
@@ -669,28 +694,36 @@ npm run test                           # Run all tests
 
 
 npm run document:php                   # Generate PHP documentation
-npm run document:sass                  # Gemerate SASS documentation
+npm run document:sass                  # Generate SASS documentation
 npm run document:ts                    # Generate TypeScript documentation
 
 npm run document                       # Generate all documentation
 
 
-npm run stage:code              # Deploy code to staging server via git
-npm run stage:photos            # Deploy photos to staging server via rsync
-
-npm run stage                   # Deploy all to staging server via prior scripts
+npm run check:links                    # Recursively crawl the local site for broken links/images
 
 
-npm run health:prod             # Check health of production deployment via curl and grep
-npm run snapshot:prod           # Create snapshot of production deployment vis ssh rsync
-npm run rollback:prod           # Restore production deployment to latest snapshot via ssh rsync 
-npm run deploy:clean              # Overwrite production deployment with staging via ssh rsync
-npm run deploy:update:structure   # Overwrite core structure of production from staging via ssh rsync
-npm run deploy:update:content     # Update non-core content of production deployment from staging via ssh rsync
-npm run deploy:update             # Safely update production deployment from staging via previous two scripts
-npm run deploy:legacy             # Safely repopulate production deployment from legacy archive via ssh rsync
+npm run health:local                   # Check health of the local dev server
+npm run health:stage                   # Check health of the staging deployment
+npm run snapshot:stage                 # Create a snapshot of the staging deployment
+npm run rollback:stage                 # Restore staging to its latest snapshot
+npm run tidy:stage                     # Clean up old staging snapshots
+npm run stage:code                     # Pull the latest code onto staging via git
+npm run stage:photos                   # Sync photos to staging via rsync
+npm run stage:code:safe                # Safely deploy code to staging, between health checks; roll back on failure
 
-npm run deploy:prod                    # Run snapshot, update, and legacy, between health checks; rollback if fail
+
+npm run health:prod                    # Check health of the production deployment
+npm run snapshot:prod                  # Create snapshot of the production deployment
+npm run rollback:prod                  # Restore production to its latest snapshot
+npm run deploy:clean                   # Overwrite production deployment with staging
+npm run deploy:update:structure        # Overwrite core structure of production from staging
+npm run deploy:update:content          # Update non-core content of production deployment from staging
+npm run deploy:update                  # Safely update production deployment from the previous two scripts
+npm run deploy:legacy                  # Safely repopulate production deployment from legacy archive
+npm run tidy:prod                      # Clean up old production snapshots
+
+npm run deploy:safe                    # Safely deploy to production, between health checks; roll back on failure
 ```
 
 ## Contact
