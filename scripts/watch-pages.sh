@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # page-watch.sh
 #
-# Watches for changes to __head.php/__main.php anywhere on the site —
-# these are hand-edited often (including ones process_photos generates)
-# and live outside ___structure/__scripts/__styles, so code-watch.sh
+# Watches for changes to head, main, nav, header, and footer anywhere on the
+# site — these are hand-edited often (including ones process_photos generates)
+# and live outside ___structure / __scripts / __styles, so code-watch.sh
 # never sees them. For each changed page: a health check that knows the
 # exact source file (so it can catch a PHP error with zero false-positive
-# risk from page content), an HTML validation pass via `vnu` if it's on
-# PATH, and a non-recursive broken-link/image check via linkinator.
+# risk from page content), and an HTML validation pass via `vnu`.
+# # and a non-recursive broken-link/image check via linkinator.
 #
 # Run via `npm run dev:page-watch` (folded into `npm run dev`).
 
@@ -31,7 +31,7 @@ trap cleanup EXIT
 trap 'cleanup; exit 130' INT TERM
 
 watching_message() {
-    echo "Watching __head.php / __main.php (${QUIET_PERIOD}s quiet period)..."
+    echo "Watching page content files (${QUIET_PERIOD}s quiet period)..."
 }
 watching_message
 
@@ -43,7 +43,7 @@ fi
 
 fswatch --exclude 'photos/' --exclude 'node_modules/' --exclude '\.git/' . | while IFS= read -r changed_path; do
     case "$changed_path" in
-        */__head.php|*/__main.php)
+        */__head.php|*/__main.php|*/__nav.php|*/__header.php|*/__footer.php)
             date +%s > "$last_event_file"
             echo "$changed_path" >> "$changed_paths_file"
             ;;
