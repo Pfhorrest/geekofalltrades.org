@@ -202,7 +202,7 @@
       span {
         white-space: normal;
         max-height: 2em;
-        padding: 0.5em 0;
+        padding: 0.125em 0; // Tiny extra padding to not clip descenders
         overflow: hidden;
         // Special styles for multi-line ellipsis
         display: -webkit-box;
