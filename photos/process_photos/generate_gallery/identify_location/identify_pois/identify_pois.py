@@ -26,7 +26,9 @@ def overpass_request(query, max_retries=5):
         "User-Agent": "geekofalltrades-photo-gallery/1.0",
         "Accept": "application/json"
     }
-    delay = 2  # initial delay in seconds
+    delay = 6  # initial delay in seconds
+    # service-mandated 2s per request
+    # times 3 for node + way + relation
 
     for attempt in range(max_retries):
         try:
