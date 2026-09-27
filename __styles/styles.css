@@ -2018,6 +2018,31 @@ main section .gallery .item {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
+}
+.gallery:has(.item img) .item {
+  display: grid;
+  justify-content: center;
+  grid-template-rows: calc(var(--gim) - 2 * var(--spacing));
+}
+.gallery:has(.item img):has(.item .title) .item {
+  grid-template-rows: 1fr calc(var(--gim) - 2 * var(--spacing));
+}
+.gallery:has(.item img):has(.item .title):has(.item .description) .item {
+  grid-template-rows: 1fr calc(var(--gim) - 2 * var(--spacing)) minmax(1em, auto);
+}
+.gallery:has(.item img):has(.item .title):has(.item .description) .item .description {
+  align-self: center;
+  line-height: 1.25;
+}
+.gallery:has(.item img):has(.item .title):has(.item .description):has(.item .more) .item {
+  grid-template-rows: 1fr calc(var(--gim) - 2 * var(--spacing)) minmax(1em, auto) minmax(1em, auto);
+}
+.gallery:has(.item img):has(.item .title):has(.item .description):has(.item .more) .item .more {
+  align-self: center;
+  line-height: 1.25;
+}
+
+main section .gallery .item {
   /* Sizing */
   max-width: 80ch;
   overflow: hidden;
