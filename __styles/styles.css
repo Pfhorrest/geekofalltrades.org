@@ -1936,6 +1936,8 @@ main section .gallery {
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: stretch;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--gim), 1fr));
   /* Sizing */
   max-width: 100%;
   /* Spacing */
@@ -1970,10 +1972,8 @@ main section .gallery {
 }
 main section .gallery {
   /* Gallery item fitting*/
-}
-main section .gallery > .item {
   /* Gallery item number (how many columns should there be)
-    assuming the gallery is within an 80ch wide section */
+  assuming the gallery is within an 80ch wide section */
   --gin: 3;
   /* Gallery item measurement (to make them fit those columns) */
   --gim: calc(
@@ -1982,6 +1982,38 @@ main section .gallery > .item {
           1pt - 1pt
       ) / var(--gin)
   );
+  --gImg: calc(var(--gim) - 2 * var(--spacing));
+}
+main section .gallery:has(.item img) .item {
+  display: grid;
+  justify-content: center;
+  grid-template-rows: subgrid;
+  grid-row: span 1;
+  grid-auto-rows: max-content;
+}
+main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)) .item {
+  grid-row: span 2;
+}
+main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)) .item .title {
+  grid-row: 1;
+}
+main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)) .item img {
+  grid-row: 2;
+}
+main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)):has(.item .description):has(> :nth-child(3)) .item {
+  grid-row: span 3;
+}
+main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)):has(.item .description):has(> :nth-child(3)) .item .description {
+  grid-row: 3;
+}
+main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)):has(.item .description):has(> :nth-child(3)):has(.item .more):has(> :nth-child(4)) .item {
+  grid-row: span 4;
+}
+main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)):has(.item .description):has(> :nth-child(3)):has(.item .more):has(> :nth-child(4)) .item .more {
+  grid-row: 4;
+  align-self: end;
+}
+main section .gallery > .item {
   /* Assuming one column by default at smallest viewport widths */
   flex: 1 0 var(--gim);
   box-sizing: border-box;
@@ -2018,31 +2050,6 @@ main section .gallery .item {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-}
-.gallery:has(.item img) .item {
-  display: grid;
-  justify-content: center;
-  grid-template-rows: calc(var(--gim) - 2 * var(--spacing));
-}
-.gallery:has(.item img):has(.item .title) .item {
-  grid-template-rows: 1fr calc(var(--gim) - 2 * var(--spacing));
-}
-.gallery:has(.item img):has(.item .title):has(.item .description) .item {
-  grid-template-rows: 1fr calc(var(--gim) - 2 * var(--spacing)) minmax(1em, auto);
-}
-.gallery:has(.item img):has(.item .title):has(.item .description) .item .description {
-  align-self: center;
-  line-height: 1.25;
-}
-.gallery:has(.item img):has(.item .title):has(.item .description):has(.item .more) .item {
-  grid-template-rows: 1fr calc(var(--gim) - 2 * var(--spacing)) minmax(1em, auto) minmax(1em, auto);
-}
-.gallery:has(.item img):has(.item .title):has(.item .description):has(.item .more) .item .more {
-  align-self: center;
-  line-height: 1.25;
-}
-
-main section .gallery .item {
   /* Sizing */
   max-width: 80ch;
   overflow: hidden;
@@ -2074,8 +2081,8 @@ main section .gallery .item {
 }
 main section .gallery .item img {
   display: inline-block;
-  max-width: calc(var(--gim) - 2 * var(--spacing));
-  max-height: calc(var(--gim) - 2 * var(--spacing));
+  max-width: var(--gImg);
+  max-height: var(--gImg);
   margin: auto;
   background: white;
   outline: 0.125em solid white;
@@ -2190,7 +2197,8 @@ main section .gallery.expansive {
   main section .gallery.expansive {
     /* Background */
     background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
-    /* Gallery item max-width sides multiple, used in max-width below */
+    /* Gallery item max-width sides multiple, used in max-width below
+    (two times nested sections depth spacing, to subtract from max-width) */
     --gimwsm: 2;
   }
   main section .gallery.expansive section {

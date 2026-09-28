@@ -18,39 +18,6 @@
     flex-flow: column nowrap;
     justify-content: space-between;
 
-    $image-size: calc(var(--gim) - 2 * var(--spacing));
-
-    @at-root .gallery:has(.item img) {
-      .item {
-        display: grid;
-        justify-content: center;
-        grid-template-rows: $image-size;
-      }
-      &:has(.item .title) {
-        .item {
-          grid-template-rows: 1fr $image-size;
-        }
-        &:has(.item .description) {
-          .item {
-            grid-template-rows: 1fr $image-size minmax(1em, auto);
-            .description {
-              align-self: center;
-              line-height: 1.25;
-            }
-          }
-          &:has(.item .more) {
-            .item {
-              grid-template-rows: 1fr $image-size minmax(1em, auto) minmax(1em, auto);
-              .more {
-                align-self: center;
-                line-height: 1.25;
-              }
-            }
-          }
-        }
-      }
-    }
-
     /* Sizing */
     max-width: 80ch;
     overflow: hidden;
@@ -93,8 +60,8 @@
     /* Images */
     img {
       display: inline-block;
-      max-width: $image-size;
-      max-height: $image-size;
+      max-width: var(--gImg);
+      max-height: var(--gImg);
       margin: auto;
       background: white;
       outline: 0.125em solid white;

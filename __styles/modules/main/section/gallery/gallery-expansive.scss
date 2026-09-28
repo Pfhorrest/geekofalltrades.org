@@ -39,7 +39,8 @@
       /* Background */
       background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
 
-      /* Gallery item max-width sides multiple, used in max-width below */
+      /* Gallery item max-width sides multiple, used in max-width below
+      (two times nested sections depth spacing, to subtract from max-width) */
       --gimwsm: 2;
       section {
         --gimwsm: 4;

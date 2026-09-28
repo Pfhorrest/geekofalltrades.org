@@ -54,19 +54,19 @@
 		<div class="item">
 			<p class="title">Web Development</p>
 			<img src="/web/_media/images/goat-thumb.jpg" alt="" />
-			<p>Examples of my work in web development &amp; design.</p>
+			<p class="description">Examples of my work in web development &amp; design.</p>
 			<a class="cover" href="web">View web development portfolio</a>
 		</div>
 		<div class="item">
 			<p class="title">Graphic Design</p>
 			<img src="/graphics/logos/_media/images/forrest-logo-thumb.png" alt="" />
-			<p>Examples of my work in various subfields of graphic design.</p>
+			<p class="description">Examples of my work in various subfields of graphic design.</p>
 			<a class="cover" href="graphics">View graphic design portfolio</a>
 		</div>
 		<div class="item">
 			<p class="title">Photography</p>
 			<img src="/photos/2026/02/14/IMG_6845-thumb.jpeg" alt="" />
-			<p>Examples of my photography, mostly of natural landscapes.</p>
+			<p class="description">Examples of my photography, mostly of natural landscapes.</p>
 			<a class="cover" href="photos">View photography portfolio</a>
 		</div>
 	</div>
