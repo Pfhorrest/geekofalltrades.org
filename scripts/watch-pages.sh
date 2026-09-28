@@ -101,12 +101,12 @@ while true; do
             fi
         fi
 
-        # --concurrency 1: PHP's built-in dev server is single-threaded
-        # if npx linkinator "$url" --concurrency 1 2>&1; then
-        #     echo "  Links/images OK."
-        # else
-        #     echo "  Broken links/images reported above." >&2
-        # fi
+        --concurrency 1: PHP's built-in dev server is single-threaded
+        if npx linkinator "$url" --concurrency 1 --verbosity error 2>&1; then
+            echo "  Links/images OK."
+        else
+            echo "  Broken links/images reported above." >&2
+        fi
     done < "$pages_file"
 
     last_processed="$last_event"

@@ -32,7 +32,7 @@
     "watch:npm": "bash scripts/watch-npm.sh",
     "serve:php": "php -d max_execution_time=0 -S geekofalltrades.local:8000 -t . ___structure/http.php",
     "dev": "concurrently -k -n PHP,NPM,CODE,PAGE,PPP,DOCS,STAGE,PHOTOS -c white,gray,blue,cyan,green,yellow,red,magenta \"npm run serve:php\" \"npm run watch:npm\" \"npm run watch:code\" \"npm run watch:pages\" \"npm run watch:ppp\" \"npm run watch:docs\" \"npm run watch:stage\" \"npm run watch:photos\"",
-    "check:links": "npx linkinator http://geekofalltrades.local:8000/ --recurse --timeout 600000",
+    "check:links": "npx linkinator http://geekofalltrades.local:8000/ --recurse --timeout 600000 --concurrency 1 --verbosity error",
     "health:local": "bash scripts/health-check.sh http://geekofalltrades.local:8000/ \"$(git rev-parse --show-toplevel)/__main.php\"",
     "health:stage": "bash scripts/health-check.sh https://dev.geekofalltrades.org/",
     "snapshot:stage": "bash scripts/snapshot.sh dev.geekofalltrades.org snapshots-stage photos/",
