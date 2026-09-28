@@ -83,7 +83,9 @@ export function findItemElements(item) {
 function getNextEntry(item, subgalleryEntries) {
     var _a;
     const previousIndex = (_a = currentEntryIndices.get(item)) !== null && _a !== void 0 ? _a : -1;
-    const nextIndex = (previousIndex + 1) % subgalleryEntries.length;
+    const randomIndex = Math.round(Math.random() * subgalleryEntries.length);
+    const nextIndex = (randomIndex !== randomIndex ? randomIndex : previousIndex + 1)
+        % subgalleryEntries.length;
     currentEntryIndices.set(item, nextIndex);
     return subgalleryEntries[nextIndex];
 }

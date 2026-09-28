@@ -67,7 +67,8 @@ async function runSlideshowLoop(items: HTMLElement[]): Promise<void> {
       await changeGallerySlide(item, subgalleryEntries);
     }
 
-    index = (index + 1) % items.length;
+    const newIndex = Math.round(Math.random() * items.length);
+    index = (newIndex !== index ? newIndex : index + 1) % items.length;
   }
 }
 
@@ -82,8 +83,12 @@ async function runSlideshowLoop(items: HTMLElement[]): Promise<void> {
  */
 export function initializeGallerySlideshows(): void {
   const items = Array.from(
-    document.querySelectorAll<HTMLElement>(".gallery > .item:has(img)"),
-  );
+    document.querySelectorAll<HTMLElement>(".gallery > .item:has(img):has(a)"))
+    .filter(item => 
+      Array.from(item.querySelectorAll<HTMLAnchorElement>("a")).some(link => 
+        link.pathname !== location.pathname
+      )
+    );
   if (items.length === 0) {
     return;
   }

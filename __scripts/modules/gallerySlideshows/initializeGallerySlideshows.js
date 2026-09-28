@@ -71,7 +71,8 @@ function runSlideshowLoop(items) {
             if (subgalleryEntries.length > 0) {
                 yield changeGallerySlide(item, subgalleryEntries);
             }
-            index = (index + 1) % items.length;
+            const newIndex = Math.round(Math.random() * items.length);
+            index = (newIndex !== index ? newIndex : index + 1) % items.length;
         }
     });
 }
@@ -85,7 +86,8 @@ function runSlideshowLoop(items) {
  * @returns Nothing. The slideshow loop runs indefinitely in the background once started.
  */
 export function initializeGallerySlideshows() {
-    const items = Array.from(document.querySelectorAll(".gallery > .item:has(img)"));
+    const items = Array.from(document.querySelectorAll(".gallery > .item:has(img):has(a)"))
+        .filter(item => Array.from(item.querySelectorAll("a")).some(link => link.pathname !== location.pathname));
     if (items.length === 0) {
         return;
     }
