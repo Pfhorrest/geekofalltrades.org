@@ -2573,6 +2573,12 @@ footer p {
   paint-order: stroke fill;
   text-shadow: 0.0125em 0.0125em 0.0125em #000, 0.025em 0.025em 0.025em rgba(0, 0, 0, 0.5333333333), 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2666666667), 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.1333333333);
 }
+footer p#email {
+  order: -1;
+}
+footer p#donate {
+  order: 1;
+}
 footer {
   /* Links */
 }
