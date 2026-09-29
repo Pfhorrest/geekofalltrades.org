@@ -2871,6 +2871,7 @@
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    z-index: 10;
 
     /* Spacing */
     margin: 0;
@@ -2886,11 +2887,8 @@
     /* Background */
     --seaShadow: hsla(from var(--seaColor1) h 100% 0% / 100%);
     background:
-    /* Shadow the foreground */ linear-gradient(
-        to bottom,
-        transparent,
-        var(--seaShadow)
-      ),
+    /* Shadow the foreground */
+      linear-gradient(to bottom, transparent, var(--seaShadow)),
       /* Swells in the sea */
         linear-gradient(
           to bottom,
@@ -2919,17 +2917,25 @@
           var(--seaColor2) 50%,
           var(--seaColor3) 100%
         );
-    background-size: 100% 100%, auto;
+    background-size:
+      100% 100%,
+      auto;
     background-position: center, top, center;
 
     @include optional-motion(-1) {
       /* Animation */
       @keyframes waves {
         from {
-          background-size: 100%, 100% 100%, auto;
+          background-size:
+            100%,
+            100% 100%,
+            auto;
         }
         to {
-          background-size: 100%, 100% 200%, auto;
+          background-size:
+            100%,
+            100% 200%,
+            auto;
         }
       }
       animation-name: waves;
@@ -2954,8 +2960,10 @@
       -webkit-text-fill-color: white;
       -webkit-text-stroke: calc(1em / 16) black;
       paint-order: stroke fill;
-      text-shadow: 0.0125em 0.0125em 0.0125em #000,
-        0.025em 0.025em 0.025em #0008, 0.05em 0.05em 0.05em #0004,
+      text-shadow:
+        0.0125em 0.0125em 0.0125em #000,
+        0.025em 0.025em 0.025em #0008,
+        0.05em 0.05em 0.05em #0004,
         0.1em 0.1em 0.1em #0002;
 
       &amp;#email {
@@ -2972,9 +2980,35 @@
       text-shadow: inherit;
     }
 
-    /* Hide whoel footer on print */
+    /* Hide whole footer on print */
     @media only print {
       display: none;
+    }
+
+    position: sticky;
+    --footerHeight: 0;
+    --footerAnchorHeight: 0;
+    bottom: calc(
+      -1 * var(--footerHeight) + var(--footerAnchorHeight) + var(--spacing)
+    );
+
+    #footer-anchor {
+      order: -100;
+      display: block;
+      margin-top: calc(-2 * var(--spacing));
+      margin-bottom: calc(-1 * var(--spacing));
+      padding: var(--spacing);
+      border-radius: 0 0 var(--rounding) var(--rounding);
+      border: 1pt solid var(--gloss);
+      background: var(--white);
+      color: var(--cm);
+      text-transform: uppercase;
+      opacity: 0.875;
+      cursor: pointer;
+
+      span {
+        margin: 0 var(--spacing);
+      }
     }
   }
 
