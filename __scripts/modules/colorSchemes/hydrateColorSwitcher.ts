@@ -53,10 +53,6 @@ export const hydrateColorSwitcher = () => {
     // console.log("created darkMode:", darkMode);
 
     // Add event listeners
-    const oneYearFromNow = new Date(
-      new Date().setFullYear(new Date().getFullYear() + 1)
-    ).toUTCString();
-
     document.querySelectorAll(".lightMode").forEach((control) => {
       // console.log("Setting up event listener on", control);
       control.addEventListener("click", () => {
