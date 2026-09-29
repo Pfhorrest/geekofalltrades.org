@@ -2520,6 +2520,7 @@ footer {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  z-index: 10;
   /* Spacing */
   margin: 0;
   padding: calc(2 * var(--spacing));
@@ -2587,12 +2588,35 @@ footer a {
   text-shadow: inherit;
 }
 footer {
-  /* Hide whoel footer on print */
+  /* Hide whole footer on print */
 }
 @media only print {
   footer {
     display: none;
   }
+}
+footer {
+  position: sticky;
+  --footerHeight: 0;
+  --footerAnchorHeight: 0;
+  bottom: calc(-1 * var(--footerHeight) + var(--footerAnchorHeight) + var(--spacing));
+}
+footer #footer-anchor {
+  order: -100;
+  display: block;
+  margin-top: calc(-2 * var(--spacing));
+  margin-bottom: calc(-1 * var(--spacing));
+  padding: var(--spacing);
+  border-radius: 0 0 var(--rounding) var(--rounding);
+  border: 1pt solid var(--gloss);
+  background: var(--white);
+  color: var(--cm);
+  text-transform: uppercase;
+  opacity: 0.875;
+  cursor: pointer;
+}
+footer #footer-anchor span {
+  margin: 0 var(--spacing);
 }
 
 /* Color scheme switcher */
