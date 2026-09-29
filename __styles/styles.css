@@ -2603,10 +2603,13 @@ footer {
 }
 footer #footer-anchor {
   order: -100;
-  display: block;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: var(--spacing);
   margin-top: calc(-2 * var(--spacing));
   margin-bottom: calc(-1 * var(--spacing));
-  padding: var(--spacing);
+  padding: calc(0.5 * var(--spacing)) var(--spacing);
   border-radius: 0 0 var(--rounding) var(--rounding);
   border: 1pt solid var(--gloss);
   background: var(--white);
@@ -2614,9 +2617,6 @@ footer #footer-anchor {
   text-transform: uppercase;
   opacity: 0.875;
   cursor: pointer;
-}
-footer #footer-anchor span {
-  margin: 0 var(--spacing);
 }
 
 /* Color scheme switcher */
