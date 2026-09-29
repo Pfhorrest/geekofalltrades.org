@@ -932,13 +932,14 @@
 		<p>
 			Of course the website got many updates along the way too, and I even swung
 			around now and again long after I left them for greener pastures to help with
-			little touch-ups as needed. For the most part I haven't touched the site for
+			little touch-ups as needed.
+			<!-- For the most part I haven't touched the site for
 			years though, and it seems that other people have, so its current appearance
 			and content is only loosely based on my work, which you can see more
-			accurately represented in the old screenshot above.
+			accurately represented in the old screenshot above. -->
 		</p>
 		<p>
-			You can see the current version at <a href="https://www.castellinotraining.com" rel="external">www.castellinotraining.com</a>.
+			My version of this site is no longer online.
 		</p>
 	</section>
 
