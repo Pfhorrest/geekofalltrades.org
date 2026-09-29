@@ -101,7 +101,6 @@ while true; do
             fi
         fi
 
-        --concurrency 1: PHP's built-in dev server is single-threaded
         if npx linkinator "$url" --concurrency 1 --verbosity error 2>&1; then
             echo "  Links/images OK."
         else
