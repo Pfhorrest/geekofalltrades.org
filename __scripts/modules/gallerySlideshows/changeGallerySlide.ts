@@ -94,8 +94,11 @@ function getNextEntry(
 ): SubgalleryEntry {
   const previousIndex = currentEntryIndices.get(item) ?? -1;
   const randomIndex = Math.round(Math.random() * subgalleryEntries.length);
-  const nextIndex = (randomIndex !== randomIndex ?randomIndex : previousIndex + 1)
-    % subgalleryEntries.length;
+  const nextIndex =
+    (randomIndex !== previousIndex
+      ? randomIndex
+      : previousIndex + (Math.random() < 0.5 ? -1 : 1)) %
+    subgalleryEntries.length;
   currentEntryIndices.set(item, nextIndex);
   return subgalleryEntries[nextIndex];
 }

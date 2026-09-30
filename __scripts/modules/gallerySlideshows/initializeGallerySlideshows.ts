@@ -11,11 +11,12 @@ import { slideDuration } from "../lightbox/lightboxState";
  * @returns True if the slideshow should be paused for reduced motion.
  */
 function isReducedMotionPreferred(): boolean {
-    // console.log("reducedMotionAttribute:", document.documentElement.dataset.reducedMotion);
-    const reducedMotion = document.documentElement.dataset.reducedMotion?.split("/")[0];
-    // console.log("reducedMotion:", reducedMotion);
-    const reducedMotionNumber = reducedMotion ? parseInt(reducedMotion) : 0;
-    // console.log("reducedMotionNumber:", reducedMotionNumber);
+  // console.log("reducedMotionAttribute:", document.documentElement.dataset.reducedMotion);
+  const reducedMotion =
+    document.documentElement.dataset.reducedMotion?.split("/")[0];
+  // console.log("reducedMotion:", reducedMotion);
+  const reducedMotionNumber = reducedMotion ? parseInt(reducedMotion) : 0;
+  // console.log("reducedMotionNumber:", reducedMotionNumber);
   return (
     reducedMotionNumber > 0 ||
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -68,7 +69,9 @@ async function runSlideshowLoop(items: HTMLElement[]): Promise<void> {
     }
 
     const newIndex = Math.round(Math.random() * items.length);
-    index = (newIndex !== index ? newIndex : index + 1) % items.length;
+    index =
+      (newIndex !== index ? newIndex : index + (Math.random() < 0.5 ? -1 : 1)) %
+      items.length;
   }
 }
 
@@ -83,12 +86,12 @@ async function runSlideshowLoop(items: HTMLElement[]): Promise<void> {
  */
 export function initializeGallerySlideshows(): void {
   const items = Array.from(
-    document.querySelectorAll<HTMLElement>(".gallery > .item:has(img):has(a)"))
-    .filter(item => 
-      Array.from(item.querySelectorAll<HTMLAnchorElement>("a")).some(link => 
-        link.pathname !== location.pathname
-      )
-    );
+    document.querySelectorAll<HTMLElement>(".gallery > .item:has(img):has(a)"),
+  ).filter((item) =>
+    Array.from(item.querySelectorAll<HTMLAnchorElement>("a")).some(
+      (link) => link.pathname !== location.pathname,
+    ),
+  );
   if (items.length === 0) {
     return;
   }
