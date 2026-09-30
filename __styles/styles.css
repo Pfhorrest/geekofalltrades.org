@@ -2601,7 +2601,7 @@ footer {
   --footerAnchorHeight: 0;
   bottom: calc(-1 * var(--footerHeight) + var(--footerAnchorHeight) + var(--spacing));
 }
-footer #footer-anchor {
+footer #footerAnchor {
   order: -100;
   display: flex;
   flex-flow: row nowrap;

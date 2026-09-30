@@ -18,7 +18,7 @@ export const hydrateFooterAnchor = () => __awaiter(void 0, void 0, void 0, funct
     // Only run if it exists
     if (footer) {
         const anchor = footer.appendChild(document.createElement("a"));
-        anchor.id = "footer-anchor";
+        anchor.id = "footerAnchor";
         anchor.innerHTML =
             "<span>Contact</span>" +
                 " | " +
