@@ -546,7 +546,7 @@
     /* Layout */
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 11;
     display: flex;
     flex-flow: column;
 
@@ -2308,8 +2308,8 @@
         grid-row: span 1;
         grid-auto-rows: max-content
       }
-      &amp;:has(.item .title):has(&gt; :nth-child(2)) {
-        .item {
+      &amp;:has(.item .title) {
+        .item:has(&gt; :nth-child(2)) {
           grid-row: span 2;
           .title {
             grid-row: 1;
@@ -2318,15 +2318,15 @@
             grid-row: 2;
           }
         }
-        &amp;:has(.item .description):has(&gt; :nth-child(3)) {
-          .item {
+        &amp;:has(.item .description) {
+          .item:has(&gt; :nth-child(3)) {
             grid-row: span 3;
             .description {
               grid-row: 3;
             }
           }
-          &amp;:has(.item .more):has(&gt; :nth-child(4)) {
-            .item {
+          &amp;:has(.item .more) {
+            .item:has(&gt; :nth-child(4)) {
               grid-row: span 4;
               .more {
                 grid-row: 4;
