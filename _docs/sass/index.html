@@ -3008,6 +3008,13 @@
       text-transform: uppercase;
       opacity: 0.875;
       cursor: pointer;
+
+      .decor {
+        transform: scale(2);
+        &amp;::after {
+          content: &quot;↓&quot;;
+        }
+      }
     }
   }
 
