@@ -83,6 +83,19 @@
     border: 0;
     outline: 0;
     filter: drop-shadow(0 2pt 1pt var(--shade));
+
+    @at-root html[data-theme="warmer"] & {
+      filter: hue-rotate(-75deg) drop-shadow(0 2pt 1pt var(--shade));
+    }
+    @at-root html[data-theme="cooler"] & {
+      filter: hue-rotate(75deg) drop-shadow(0 2pt 1pt var(--shade));
+    }
+    @at-root html[data-theme="alien"] & {
+      filter: invert(1) drop-shadow(0 2pt 1pt var(--shade));
+    }
+    @at-root html[data-theme="grays"] & {
+      filter: grayscale(1) drop-shadow(0 2pt 1pt var(--shade));
+    }
   }
 
   /* Tables */

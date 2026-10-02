@@ -155,12 +155,15 @@
       color: var(--cm);
       text-transform: uppercase;
       opacity: 0.875;
+      box-shadow: 0pt 1pt 1pt var(--shade);
       cursor: pointer;
 
       .decor {
         transform: scale(2);
+        text-shadow: 0 0.5pt 0.5pt var(--shade);
         &::after {
           content: "⤓";
+          color: var(--black);
         }
       }
     }

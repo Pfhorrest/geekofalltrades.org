@@ -1310,6 +1310,22 @@ main hr {
   outline: 0;
   filter: drop-shadow(0 2pt 1pt var(--shade));
 }
+html[data-theme=warmer] main hr {
+  filter: hue-rotate(-75deg) drop-shadow(0 2pt 1pt var(--shade));
+}
+
+html[data-theme=cooler] main hr {
+  filter: hue-rotate(75deg) drop-shadow(0 2pt 1pt var(--shade));
+}
+
+html[data-theme=alien] main hr {
+  filter: invert(1) drop-shadow(0 2pt 1pt var(--shade));
+}
+
+html[data-theme=grays] main hr {
+  filter: grayscale(1) drop-shadow(0 2pt 1pt var(--shade));
+}
+
 main {
   /* Tables */
 }
@@ -2616,13 +2632,16 @@ footer #footerAnchor {
   color: var(--cm);
   text-transform: uppercase;
   opacity: 0.875;
+  box-shadow: 0pt 1pt 1pt var(--shade);
   cursor: pointer;
 }
 footer #footerAnchor .decor {
   transform: scale(2);
+  text-shadow: 0 0.5pt 0.5pt var(--shade);
 }
 footer #footerAnchor .decor::after {
   content: "⤓";
+  color: var(--black);
 }
 
 /* Color scheme switcher */
