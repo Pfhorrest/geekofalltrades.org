@@ -30,7 +30,7 @@ def generate_gallery(path):
             continue
 
         try:
-            sleep(5) # Minimum 5 second delay between all requests
+            # sleep(5) # Minimum 5 second delay between all requests
 
             exif = extract_exif_data(filepath)
 
