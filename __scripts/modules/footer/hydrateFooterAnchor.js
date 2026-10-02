@@ -20,11 +20,11 @@ export const hydrateFooterAnchor = () => __awaiter(void 0, void 0, void 0, funct
         const anchor = footer.appendChild(document.createElement("a"));
         anchor.id = "footerAnchor";
         anchor.innerHTML =
-            "<span>Contact</span>" +
-                " | " +
-                "<span>Control</span>" +
-                " | " +
-                "<span>Contrib</span>";
+            "<span class='text'>Contact</span>" +
+                "<span class='decor'></span>" +
+                "<span class='text'>Control</span>" +
+                "<span class='decor'></span>" +
+                "<span class='text'>Contrib</span>";
         // To keep scrolling until we really reach the bottom
         const checkAndScroll = () => {
             if (!(Math.abs(

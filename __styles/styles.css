@@ -2618,6 +2618,12 @@ footer #footerAnchor {
   opacity: 0.875;
   cursor: pointer;
 }
+footer #footerAnchor .decor {
+  transform: scale(2);
+}
+footer #footerAnchor .decor::after {
+  content: "↓";
+}
 
 /* Color scheme switcher */
 .color-scheme-switcher {
