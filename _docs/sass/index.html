@@ -1429,6 +1429,19 @@
     border: 0;
     outline: 0;
     filter: drop-shadow(0 2pt 1pt var(--shade));
+
+    @at-root html[data-theme=&quot;warmer&quot;] &amp; {
+      filter: hue-rotate(-75deg) drop-shadow(0 2pt 1pt var(--shade));
+    }
+    @at-root html[data-theme=&quot;cooler&quot;] &amp; {
+      filter: hue-rotate(75deg) drop-shadow(0 2pt 1pt var(--shade));
+    }
+    @at-root html[data-theme=&quot;alien&quot;] &amp; {
+      filter: invert(1) drop-shadow(0 2pt 1pt var(--shade));
+    }
+    @at-root html[data-theme=&quot;grays&quot;] &amp; {
+      filter: grayscale(1) drop-shadow(0 2pt 1pt var(--shade));
+    }
   }
 
   /* Tables */
@@ -3007,12 +3020,15 @@
       color: var(--cm);
       text-transform: uppercase;
       opacity: 0.875;
+      box-shadow: 0pt 1pt 1pt var(--shade);
       cursor: pointer;
 
       .decor {
         transform: scale(2);
+        text-shadow: 0 0.5pt 0.5pt var(--shade);
         &amp;::after {
           content: &quot;⤓&quot;;
+          color: var(--black);
         }
       }
     }
