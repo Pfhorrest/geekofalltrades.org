@@ -86,8 +86,8 @@
         grid-row: span 1;
         grid-auto-rows: max-content
       }
-      &:has(.item .title):has(> :nth-child(2)) {
-        .item {
+      &:has(.item .title) {
+        .item:has(> :nth-child(2)) {
           grid-row: span 2;
           .title {
             grid-row: 1;
@@ -96,15 +96,15 @@
             grid-row: 2;
           }
         }
-        &:has(.item .description):has(> :nth-child(3)) {
-          .item {
+        &:has(.item .description) {
+          .item:has(> :nth-child(3)) {
             grid-row: span 3;
             .description {
               grid-row: 3;
             }
           }
-          &:has(.item .more):has(> :nth-child(4)) {
-            .item {
+          &:has(.item .more) {
+            .item:has(> :nth-child(4)) {
               grid-row: span 4;
               .more {
                 grid-row: 4;

@@ -397,7 +397,7 @@ header {
   /* Layout */
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 11;
   display: flex;
   flex-flow: column;
   /* Sizing */
@@ -1991,25 +1991,25 @@ main section .gallery:has(.item img) .item {
   grid-row: span 1;
   grid-auto-rows: max-content;
 }
-main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)) .item {
+main section .gallery:has(.item img):has(.item .title) .item:has(> :nth-child(2)) {
   grid-row: span 2;
 }
-main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)) .item .title {
+main section .gallery:has(.item img):has(.item .title) .item:has(> :nth-child(2)) .title {
   grid-row: 1;
 }
-main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)) .item img {
+main section .gallery:has(.item img):has(.item .title) .item:has(> :nth-child(2)) img {
   grid-row: 2;
 }
-main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)):has(.item .description):has(> :nth-child(3)) .item {
+main section .gallery:has(.item img):has(.item .title):has(.item .description) .item:has(> :nth-child(3)) {
   grid-row: span 3;
 }
-main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)):has(.item .description):has(> :nth-child(3)) .item .description {
+main section .gallery:has(.item img):has(.item .title):has(.item .description) .item:has(> :nth-child(3)) .description {
   grid-row: 3;
 }
-main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)):has(.item .description):has(> :nth-child(3)):has(.item .more):has(> :nth-child(4)) .item {
+main section .gallery:has(.item img):has(.item .title):has(.item .description):has(.item .more) .item:has(> :nth-child(4)) {
   grid-row: span 4;
 }
-main section .gallery:has(.item img):has(.item .title):has(> :nth-child(2)):has(.item .description):has(> :nth-child(3)):has(.item .more):has(> :nth-child(4)) .item .more {
+main section .gallery:has(.item img):has(.item .title):has(.item .description):has(.item .more) .item:has(> :nth-child(4)) .more {
   grid-row: 4;
   align-self: end;
 }
