@@ -2612,6 +2612,8 @@ footer {
   }
 }
 footer {
+  /* Stick footer anchor */
+  /* (Sticks to bottom of viewport and scrolls to footer when clicked) */
   position: sticky;
   --footerHeight: 0;
   --footerAnchorHeight: 0;

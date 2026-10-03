@@ -11,7 +11,7 @@ export const hydrateFooterAnchor = async (): Promise<void> => {
   const footer = document.querySelector("footer");
   // Only run if it exists
   if (footer) {
-    const anchor = footer.appendChild(document.createElement("a"));
+    const anchor = footer.appendChild(document.createElement("button"));
     anchor.id = "footerAnchor";
     anchor.innerHTML =
       "<span class='text'>Contact</span>" +
@@ -19,6 +19,7 @@ export const hydrateFooterAnchor = async (): Promise<void> => {
       "<span class='text'>Control</span>" +
       "<span class='decor'></span>" +
       "<span class='text'>Contrib</span>";
+    anchor.title = "Scroll to footer for contact information, site controls, and contribution options";
 
     // To keep scrolling until we really reach the bottom
     const checkAndScroll = () => {
