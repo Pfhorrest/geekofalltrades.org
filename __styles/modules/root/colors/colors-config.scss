@@ -21,26 +21,38 @@
     --lmo: 75%; // Main lightness offset; contrast from background
   }
 
-  &[data-theme="grays"] {
+    &[data-theme="grays"] {
     // Saturation
     --sm: 0%; // Main saturation
+    hr {
+      filter: grayscale(1) drop-shadow(0 2pt 1pt var(--shade));
+    }
   }
 
   &[data-theme="warmer"] {
     // Hue
     --hm: 45; // Main hue
     --hs: 15; // Hue separation
+    hr {
+      filter: hue-rotate(-75deg) drop-shadow(0 2pt 1pt var(--shade));
+    }
   }
 
   &[data-theme="cooler"] {
     // Hue
     --hm: 195; // Main hue
     --hs: 15; // Hue separation
+    hr {
+      filter: hue-rotate(75deg) drop-shadow(0 2pt 1pt var(--shade));
+    }
   }
 
   &[data-theme="alien"] {
     // Hue
     --hm: 300; // Main hue
     --hs: -60; // Hue separation
+    hr {
+      filter: invert(1) drop-shadow(0 2pt 1pt var(--shade));
+    }
   }
 }

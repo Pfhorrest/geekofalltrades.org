@@ -13,17 +13,29 @@
 :root[data-theme=grays] {
   --sm: 0%;
 }
+:root[data-theme=grays] hr {
+  filter: grayscale(1) drop-shadow(0 2pt 1pt var(--shade));
+}
 :root[data-theme=warmer] {
   --hm: 45;
   --hs: 15;
+}
+:root[data-theme=warmer] hr {
+  filter: hue-rotate(-75deg) drop-shadow(0 2pt 1pt var(--shade));
 }
 :root[data-theme=cooler] {
   --hm: 195;
   --hs: 15;
 }
+:root[data-theme=cooler] hr {
+  filter: hue-rotate(75deg) drop-shadow(0 2pt 1pt var(--shade));
+}
 :root[data-theme=alien] {
   --hm: 300;
   --hs: -60;
+}
+:root[data-theme=alien] hr {
+  filter: invert(1) drop-shadow(0 2pt 1pt var(--shade));
 }
 :root {
   --hc: calc(var(--hm) + var(--hs));
@@ -1310,22 +1322,6 @@ main hr {
   outline: 0;
   filter: drop-shadow(0 2pt 1pt var(--shade));
 }
-html[data-theme=warmer] main hr {
-  filter: hue-rotate(-75deg) drop-shadow(0 2pt 1pt var(--shade));
-}
-
-html[data-theme=cooler] main hr {
-  filter: hue-rotate(75deg) drop-shadow(0 2pt 1pt var(--shade));
-}
-
-html[data-theme=alien] main hr {
-  filter: invert(1) drop-shadow(0 2pt 1pt var(--shade));
-}
-
-html[data-theme=grays] main hr {
-  filter: grayscale(1) drop-shadow(0 2pt 1pt var(--shade));
-}
-
 main {
   /* Tables */
 }
