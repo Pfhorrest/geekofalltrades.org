@@ -160,27 +160,39 @@
     --lmo: 75%; // Main lightness offset; contrast from background
   }
 
-  &amp;[data-theme=&quot;grays&quot;] {
+    &amp;[data-theme=&quot;grays&quot;] {
     // Saturation
     --sm: 0%; // Main saturation
+    hr {
+      filter: grayscale(1) drop-shadow(0 2pt 1pt var(--shade));
+    }
   }
 
   &amp;[data-theme=&quot;warmer&quot;] {
     // Hue
     --hm: 45; // Main hue
     --hs: 15; // Hue separation
+    hr {
+      filter: hue-rotate(-75deg) drop-shadow(0 2pt 1pt var(--shade));
+    }
   }
 
   &amp;[data-theme=&quot;cooler&quot;] {
     // Hue
     --hm: 195; // Main hue
     --hs: 15; // Hue separation
+    hr {
+      filter: hue-rotate(75deg) drop-shadow(0 2pt 1pt var(--shade));
+    }
   }
 
   &amp;[data-theme=&quot;alien&quot;] {
     // Hue
     --hm: 300; // Main hue
     --hs: -60; // Hue separation
+    hr {
+      filter: invert(1) drop-shadow(0 2pt 1pt var(--shade));
+    }
   }
  }" data-collapsed="@mixin colors-config() { ... }"><code>@mixin colors-config() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Configurable primary color variables</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-colors-calc"><code>colors-calc</code></a></li></ul><h3 class="item__sub-heading">See</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-colors-calc"><code>colors-calc</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-colors-header-footer"><code>colors-header-footer</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#colors-mixin-colors"><code>colors</code></a></li></ul></section><section class="main__item container item" id="colors--mixin-colors-header-footer"><h3 class="item__heading"><a class="item__name" href="#colors-mixin-colors-header-footer">colors-header-footer</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin colors-header-footer() { 
   --skyHue3: 0;
@@ -1429,19 +1441,6 @@
     border: 0;
     outline: 0;
     filter: drop-shadow(0 2pt 1pt var(--shade));
-
-    @at-root html[data-theme=&quot;warmer&quot;] &amp; {
-      filter: hue-rotate(-75deg) drop-shadow(0 2pt 1pt var(--shade));
-    }
-    @at-root html[data-theme=&quot;cooler&quot;] &amp; {
-      filter: hue-rotate(75deg) drop-shadow(0 2pt 1pt var(--shade));
-    }
-    @at-root html[data-theme=&quot;alien&quot;] &amp; {
-      filter: invert(1) drop-shadow(0 2pt 1pt var(--shade));
-    }
-    @at-root html[data-theme=&quot;grays&quot;] &amp; {
-      filter: grayscale(1) drop-shadow(0 2pt 1pt var(--shade));
-    }
   }
 
   /* Tables */
