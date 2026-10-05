@@ -2638,7 +2638,6 @@ footer #footerAnchor {
 }
 footer #footerAnchor .decor {
   transform: scale(2);
-  text-shadow: 0 0.5pt 0.5pt var(--shade);
 }
 footer #footerAnchor .decor::after {
   content: "⤓";
