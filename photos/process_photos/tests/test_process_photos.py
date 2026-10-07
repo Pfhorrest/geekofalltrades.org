@@ -52,7 +52,7 @@ def test_generate_gallery_called(mock_walk, mock_gallery, mock_image, isolated_b
 
     process_photos()
 
-    mock_gallery.assert_called_once_with(gallery_dir)
+    mock_gallery.assert_called_once_with(gallery_dir, {"delay": 1})
 
 
 @patch("process_photos.process_photos.parse_images_from_php")

@@ -5,7 +5,7 @@ from tqdm import tqdm
 from .haversine import haversine
 from .safe_polygon_from_coords import safe_polygon_from_coords
 
-def overpass_request(query, max_retries=5):
+def overpass_request(query, state={"delay": 1}, max_retries=5):
     """Submit a query to the Overpass API with adaptive retry on failure.
 
     Retries on 429 (rate limit), 502 (bad gateway), and other transient
@@ -23,16 +23,13 @@ def overpass_request(query, max_retries=5):
     """
     overpass_url = "https://overpass-api.de/api/interpreter"
     headers = {
-        "User-Agent": "geekofalltrades-photo-gallery/1.0",
+        "User-Agent": "Photo Metadata Script (forrest@geekofalltrades.org)",
         "Accept": "application/json"
     }
-    delay = 6  # initial delay in seconds
-    # service-mandated 2s per request
-    # times 3 for node + way + relation
 
     for attempt in range(max_retries):
         try:
-            time.sleep(delay)
+            time.sleep(state["delay"])
             response = requests.post(
                 overpass_url,
                 data={"data": query},
@@ -41,26 +38,31 @@ def overpass_request(query, max_retries=5):
             )
             if response.status_code == 429:
                 # If rate limited, back off significantly to let the slot clear
-                tqdm.write(f"[OSM] Rate limited (429). Sleeping 60s before retry...")
-                time.sleep(60)
-                delay = max(delay * 2, 30)
+                state["delay"] = max(state["delay"] * 2, 60)
+                tqdm.write(f"[OSM] Overpass Rate limited (429). Sleeping {state['delay']}s before retry...")
+                # Sleep at least a minute if actually getting rate limited
+                time.sleep(state["delay"])
                 continue
             if response.status_code in (502, 503, 504):
-                tqdm.write(f"[OSM] Server error ({response.status_code}), retrying in {delay}s...")
-                delay *= 2
+                tqdm.write(f"[OSM] Overpass server error ({response.status_code}), retrying in {state['delay']}s...")
+                state["delay"] *= 2
                 continue
+            if response.status_code == 200:
+                state["delay"] = max(6, state["delay"] * 0.75)
+                # reaccelerate more softly than we decelerate
+                # min 6 = service-mandated 2s per request times 3 for node + way + relation
             response.raise_for_status()
             return response.json()
         except requests.exceptions.Timeout:
-            tqdm.write(f"[OSM] Timeout on attempt {attempt + 1}, retrying in {delay}s...")
-            delay *= 2
+            tqdm.write(f"[OSM] Overpass timeout on attempt {attempt + 1}, retrying in {state['delay']}s...")
+            state["delay"] *= 2
         except Exception as e:
             tqdm.write(f"[OSM] Overpass error on attempt {attempt + 1}: {e}")
-            delay *= 2
+            state["delay"] *= 2
 
     raise RuntimeError(f"Overpass API failed after {max_retries} attempts")
 
-def identify_pois(lat, lon):
+def identify_pois(lat, lon, state={"delay": 1}):
     """Identify points of interest (POIs) near given GPS coordinates.
 
     Returns all named POIs found within the search radius, ordered by:
@@ -90,7 +92,7 @@ def identify_pois(lat, lon):
     """
 
     try:
-        data = overpass_request(query)
+        data = overpass_request(query, state)
     except RuntimeError as e:
         tqdm.write(f"[OSM] OVERPASS ERROR: {e}")
         return []

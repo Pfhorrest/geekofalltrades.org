@@ -16,7 +16,7 @@ NOMINATIM_ADDRESS_FIELDS = [
     ("country", "in"),
 ]
 
-def identify_location(lat, lon):
+def identify_location(lat, lon, state={"delay": 1}):
     """Identify a list of prefixed location strings for given GPS coordinates.
 
     Combines POIs from Overpass (prefixed "at" or "near") with the full
@@ -39,7 +39,8 @@ def identify_location(lat, lon):
     nominatim_locations = []
     nominatim_url = "https://nominatim.openstreetmap.org/reverse"
     try:
-        time.sleep(2)
+        state["delay"] = max(1, state["delay"])
+        time.sleep(state["delay"])
         r = requests.get(nominatim_url, params={
             "format": "json",
             "lat": lat,
@@ -59,7 +60,7 @@ def identify_location(lat, lon):
         tqdm.write(f"[OSM] NOMINATIM ERROR: {e}")
 
     # Step 2: Overpass POIs
-    pois = identify_pois(lat, lon)
+    pois = identify_pois(lat, lon, state)
 
     # Combine: POIs first, then Nominatim hierarchy
     result = pois + nominatim_locations

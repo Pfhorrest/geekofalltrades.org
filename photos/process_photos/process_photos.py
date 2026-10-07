@@ -34,6 +34,12 @@ def process_photos():
     Returns:
         None
     """
+
+    # Persistent state across all items
+    state = {
+        "delay": 1,
+    }
+
     # Gather (dirpath, dirs, filenames) from os.walk
     walk_data = [
         (d, dirs, files)
@@ -199,7 +205,7 @@ def process_photos():
                 return json.dumps(s)[1:-1].replace('"', '\\"').replace("'", "\\'")
 
             if needs_images:
-                images = generate_gallery(dirpath)
+                images = generate_gallery(dirpath, state)
                 if not images:
                     # Try to build from children if month/year folder
                     subimages = []

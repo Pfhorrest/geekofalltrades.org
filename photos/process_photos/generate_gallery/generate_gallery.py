@@ -6,7 +6,7 @@ from ..extract_exif_data import extract_exif_data
 from .identify_subject import identify_subject
 from .identify_location import identify_location
 
-def generate_gallery(path):
+def generate_gallery(path, state={"delay": 1}):
     """Generate a gallery of images from a directory.
 
     Args:
@@ -30,8 +30,6 @@ def generate_gallery(path):
             continue
 
         try:
-            # sleep(5) # Minimum 5 second delay between all requests
-
             exif = extract_exif_data(filepath)
 
             # Get subject name
@@ -42,7 +40,7 @@ def generate_gallery(path):
             location = None
             locations = []
             if exif.get("gps"):
-                locations = identify_location(*exif["gps"])
+                locations = identify_location(*exif["gps"], state)
                 first_location = locations[0] if locations else None
                 first_in = next((l for l in locations if l.startswith("in ")), None)
 
