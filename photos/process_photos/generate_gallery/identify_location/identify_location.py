@@ -1,4 +1,4 @@
-import json
+from colorist import BrightColor
 import time
 import requests
 from tqdm import tqdm
@@ -57,7 +57,7 @@ def identify_location(lat, lon, state={"delay": 1}):
                     value = value.split("(", 1)[1].split(")", 1)[0].strip()
                 nominatim_locations.append(f"{prefix} {value}")
     except Exception as e:
-        tqdm.write(f"[OSM] NOMINATIM ERROR: {e}")
+        tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} NOMINATIM ERROR: {e}")
 
     # Step 2: Overpass POIs
     pois = identify_pois(lat, lon, state)
@@ -65,6 +65,6 @@ def identify_location(lat, lon, state={"delay": 1}):
     # Combine: POIs first, then Nominatim hierarchy
     result = pois + nominatim_locations
 
-    tqdm.write(f"Locations: {', '.join(result) if result else 'None'}")
+    tqdm.write(f"{BrightColor.CYAN}LOCATIONS{BrightColor.OFF}: {', '.join(result) if result else 'None'}")
 
     return result

@@ -1,9 +1,67 @@
+from colorist import BrightColor
+from datetime import datetime, timezone
+import math
+import re
 import time
 import requests
 from shapely import Point
 from tqdm import tqdm
 from .haversine import haversine
 from .safe_polygon_from_coords import safe_polygon_from_coords
+
+def fetch_overpass_wait_time(headers, state={"delay": 1}):
+    """Queries the Overpass status endpoint and returns the required wait time in seconds.
+
+    Args:
+        state (dict, optional): A dictionary containing the current delay state. Defaults to {"delay": 1}.
+
+    Returns:
+        float: The required wait time in seconds.
+    
+    Raises:
+        requests.exceptions.RequestException: If the request fails.
+        ValueError: If the required wait time is less than the minimum delay.
+    """
+    status_url = "https://overpass-api.de/api/status"
+
+    try:
+        response = requests.get(status_url, headers=headers, timeout=10)
+        response.raise_for_status()
+        status_text = response.text
+
+        # Look for "Slot available after: 2026-10-07T17:08:15Z"
+        match = re.search(
+            r"Slot available after:\s*([\d\-TZ:]+)", status_text
+        )
+
+        if match:
+            # Extract timestamp string
+            timestamp_str = match.group(1)
+
+            # Parse ISO 8601 string to a UTC-aware datetime object
+            # Note: '%Y-%m-%dT%H:%M:%SZ' requires standard ISO format
+            available_time = datetime.strptime(
+                timestamp_str, "%Y-%m-%dT%H:%M:%SZ"
+            ).replace(tzinfo=timezone.utc)
+            now = datetime.now(timezone.utc)
+
+            # Calculate seconds remaining
+            time_remaining = math.ceil(max(1, (available_time - now).total_seconds()))
+
+            # Return calculated delay, but never drop below your baseline minimum
+            tqdm.write(f"{BrightColor.MAGENTA}[OSM]{BrightColor.OFF} Overpass says to wait {time_remaining} seconds before next request.")
+            return time_remaining
+
+    except Exception as e:
+        # Fallback if the status endpoint itself times out or fails
+        tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Overpass could not check status ({e}). Doubling delay for safety.")
+        state["delay"] = max(1,state["delay"] * 2)
+        return state["delay"]
+
+    # No "Slot available after" string found means a slot is free right now
+    tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Overpass gives no wait time!")
+    return 0
+    return 0
 
 def overpass_request(query, state={"delay": 1}, max_retries=5):
     """Submit a query to the Overpass API with adaptive retry on failure.
@@ -29,6 +87,8 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
 
     for attempt in range(max_retries):
         try:
+            state["delay"] = fetch_overpass_wait_time(headers, state)
+            tqdm.write(f"{BrightColor.MAGENTA}[OSM]{BrightColor.OFF} Overpass attempt {attempt+1}/{max_retries} @ {datetime.now().time().replace(microsecond=0)} {('waiting ' + state['delay'] + 's before query...') if state['delay'] > 0 else 'running immediately...'}")
             time.sleep(state["delay"])
             response = requests.post(
                 overpass_url,
@@ -36,31 +96,17 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
                 headers=headers,
                 timeout=30
             )
-            if response.status_code == 429:
-                # If rate limited, back off significantly to let the slot clear
-                state["delay"] = max(state["delay"] * 2, 60)
-                tqdm.write(f"[OSM] Overpass Rate limited (429). Sleeping {state['delay']}s before retry...")
-                # Sleep at least a minute if actually getting rate limited
-                time.sleep(state["delay"])
+            if response.status_code is int and response.status_code != 200:
+                tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Overpass server error ({response.status_code}), retrying after delay...")
                 continue
-            if response.status_code in (502, 503, 504):
-                tqdm.write(f"[OSM] Overpass server error ({response.status_code}), retrying in {state['delay']}s...")
-                state["delay"] *= 2
-                continue
-            if response.status_code == 200:
-                state["delay"] = max(6, state["delay"] * 0.75)
-                # reaccelerate more softly than we decelerate
-                # min 6 = service-mandated 2s per request times 3 for node + way + relation
             response.raise_for_status()
             return response.json()
         except requests.exceptions.Timeout:
-            tqdm.write(f"[OSM] Overpass timeout on attempt {attempt + 1}, retrying in {state['delay']}s...")
-            state["delay"] *= 2
+            tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Overpass timeout on attempt {attempt + 1}, retrying after delay...")
         except Exception as e:
-            tqdm.write(f"[OSM] Overpass error on attempt {attempt + 1}: {e}")
-            state["delay"] *= 2
+            tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Overpass error on attempt {attempt + 1}: {e}")
 
-    raise RuntimeError(f"Overpass API failed after {max_retries} attempts")
+    raise RuntimeError(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Overpass API failed after {max_retries} attempts")
 
 def identify_pois(lat, lon, state={"delay": 1}):
     """Identify points of interest (POIs) near given GPS coordinates.
@@ -78,15 +124,19 @@ def identify_pois(lat, lon, state={"delay": 1}):
         list of str: Prefixed location strings e.g. ["at Surfrider Beach",
             "near Malibu Pier"], or empty list if none found or on error.
     """
-    features = "education|geological|historic|leisure|man_made|military|natural|tourism"
     radius = 100  # meters
+
+    features = ['education', 'geological', 'historic', 'leisure', 'man_made', 'military', 'natural', 'tourism']
+    query_lines = []
+    for feature in features:
+        line = f'  nwr["{feature}"]["name"](around:{radius},{lat},{lon});'
+        query_lines.append(line)
+    inner_block = "\n".join(query_lines)
     
     query = f"""
-    [out:json][timeout:25];
+    [out:json][timeout:45];
     (
-        node[~"^({features})$"~"."]["name"](around:{radius},{lat},{lon});
-        way[~"^({features})$"~"."]["name"](around:{radius},{lat},{lon});
-        relation[~"^({features})$"~"."]["name"](around:{radius},{lat},{lon});
+        {inner_block}
     );
     out body geom;
     """
@@ -94,7 +144,7 @@ def identify_pois(lat, lon, state={"delay": 1}):
     try:
         data = overpass_request(query, state)
     except RuntimeError as e:
-        tqdm.write(f"[OSM] OVERPASS ERROR: {e}")
+        tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} OVERPASS ERROR: {e}")
         return []
 
     elements = data.get("elements", [])

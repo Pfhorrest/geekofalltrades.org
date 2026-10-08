@@ -1,3 +1,4 @@
+from colorist import BrightColor
 from PIL import Image
 from tqdm import tqdm
 from ... import config # For base_dir
@@ -22,5 +23,5 @@ def identify_subject(image_path):
     local_labels = identify_subject_local(image)
     output = ", ".join(inat_labels + local_labels)
 
-    tqdm.write(f"Subjects for {image_path.relative_to(config.base_dir) if image_path.is_relative_to(config.base_dir) else image_path}: {output}")
+    tqdm.write(f"{BrightColor.MAGENTA}SUBJECTS{BrightColor.OFF} for {image_path.relative_to(config.base_dir) if image_path.is_relative_to(config.base_dir) else image_path}: {output}")
     return output
