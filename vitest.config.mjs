@@ -6,6 +6,8 @@ export default defineConfig({
     include: ['__scripts/**/*.test.ts'],
     coverage: {
       reporter: ['text', 'html'],
+      reportsDirectory: './ts-coverage',
     },
   },
 });
+
