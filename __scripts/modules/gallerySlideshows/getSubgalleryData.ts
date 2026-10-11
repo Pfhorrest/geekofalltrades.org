@@ -49,7 +49,11 @@ const subgalleryState = new WeakMap<HTMLElement, SubgalleryState>();
 export default async function getSubgalleryData(
   item: HTMLElement,
 ): Promise<SubgalleryEntry[]> {
-  const state = subgalleryState.get(item);
+  const currentItem = item;
+  if (!currentItem) {
+    return [];
+  }
+  const state = subgalleryState.get(currentItem);
 
   if (state && state.status === "loaded") {
     return state.entries;

@@ -24,7 +24,11 @@ const subgalleryState = new WeakMap();
  */
 export default function getSubgalleryData(item) {
     return __awaiter(this, void 0, void 0, function* () {
-        const state = subgalleryState.get(item);
+        const currentItem = item;
+        if (!currentItem) {
+            return [];
+        }
+        const state = subgalleryState.get(currentItem);
         if (state && state.status === "loaded") {
             return state.entries;
         }
