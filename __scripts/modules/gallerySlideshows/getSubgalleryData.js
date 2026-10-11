@@ -26,6 +26,7 @@ export default function getSubgalleryData(item) {
     return __awaiter(this, void 0, void 0, function* () {
         const currentItem = item;
         if (!currentItem) {
+            console.error("Gallery slideshow: item is ", typeof currentItem);
             return [];
         }
         const state = subgalleryState.get(currentItem);

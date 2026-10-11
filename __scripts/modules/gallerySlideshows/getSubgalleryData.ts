@@ -51,6 +51,7 @@ export default async function getSubgalleryData(
 ): Promise<SubgalleryEntry[]> {
   const currentItem = item;
   if (!currentItem) {
+    console.error("Gallery slideshow: item is ", typeof currentItem);
     return [];
   }
   const state = subgalleryState.get(currentItem);
