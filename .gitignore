@@ -13,3 +13,4 @@ photos/process_photos/_caches/
 /.phpdoc
 photos/process_photos/.env
 /ts-coverage
+/_docs
