@@ -50,15 +50,23 @@
 
     /* Figures that can be inverted with light and dark mode */
     &.invertible {
-      @include prefers-color-scheme("light") {
-        img {
-          filter: none;
-        }
+      img {
+        filter: invert(var(--darkInvert))
+          hue-rotate(calc(var(--darkHueShift) * 1deg));
       }
-      @include prefers-color-scheme("dark") {
-        img {
-          filter: invert(1) hue-rotate(0.5turn);
-        }
+    }
+    /* Figures that can be hue or saturation adjusted with themes */
+    &.themable {
+      img {
+        filter: hue-rotate(calc((var(--hm) - 120) * 1deg)) saturate((var(--sm)));
+      }
+    }
+    /* Figures that can fully adjusted with modes and themes */
+    &.invertible.themable {
+      img {
+        filter: invert(var(--darkInvert))
+          hue-rotate(calc((var(--hm) - 120 + var(--darkHueShift)) * 1deg))
+          saturate((var(--sm)));
       }
     }
 
@@ -68,14 +76,20 @@
       overflow: hidden;
       border: 1pt solid var(--cw75);
       border-radius: var(--rounding);
-      box-shadow: 2pt 2pt 1pt transparent, -2pt -2pt 2pt transparent,
-        1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+      box-shadow:
+        2pt 2pt 1pt transparent,
+        -2pt -2pt 2pt transparent,
+        1pt 1pt 0pt transparent inset,
+        -1pt -1pt 0pt transparent inset,
         0 0 0 1pt var(--shade) inset;
       &:hover,
       &:focus,
       &:active {
-        box-shadow: 2pt 2pt 1pt var(--shade), -2pt -2pt 2pt var(--gloss),
-          1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+        box-shadow:
+          2pt 2pt 1pt var(--shade),
+          -2pt -2pt 2pt var(--gloss),
+          1pt 1pt 0pt var(--gloss) inset,
+          -1pt -1pt 0pt var(--shade) inset,
           0 0 0 1pt transparent inset;
       }
       background: var(--cw75);
@@ -162,14 +176,20 @@
       /* They need a section-like padding, borders and backgrounds to look nice */
       padding: var(--spacing);
       border-radius: calc(2 * var(--spacing));
-      box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent,
-        1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
+      box-shadow:
+        2pt 2pt 2pt transparent,
+        -2pt -2pt 2pt transparent,
+        1pt 1pt 0pt transparent inset,
+        -1pt -1pt 0pt transparent inset,
         0 0 0 1pt var(--shade) inset;
       &:hover,
       &:focus,
       &:active {
-        box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss),
-          1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset,
+        box-shadow:
+          2pt 2pt 2pt var(--shade),
+          -2pt -2pt 2pt var(--gloss),
+          1pt 1pt 0pt var(--gloss) inset,
+          -1pt -1pt 0pt var(--shade) inset,
           0 0 0 1pt transparent inset;
       }
       &,
@@ -235,4 +255,3 @@
     transform-origin: left;
   }
 }
-

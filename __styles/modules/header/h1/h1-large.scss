@@ -19,11 +19,13 @@
   @media (min-width: $bp2) {
     /* Wind and waves background */
     background:
-      /* Mist in the distance creating depth */ linear-gradient(
-        transparent calc(50% - 1em),
-        var(--skyMist) 50%,
-        var(--seaMist) 50%,
-        transparent calc(50% + 1em)
+      /* Mist in the distance creating depth */
+      linear-gradient(
+        transparent calc(50% - 0.25em),
+        /* var(--skyMist) 50%, */
+        var(--white) 50%,
+        /* var(--seaMist) 50%, */
+        transparent calc(50% + 0.25em)
       ),
       /* Clouds in the sky and swells in the sea */
         linear-gradient(
@@ -91,6 +93,8 @@
           var(--swellColor) calc(50% + 1.75 * 50% / 2),
           transparent 100%
         ),
+      /* Raster waves and clouds */
+        url(/_media/images/banner-background.jpg),
       /* Basic colors of sky and sea */
         linear-gradient(
           to bottom,
@@ -103,17 +107,37 @@
           var(--seaColor2) 62.5%,
           var(--seaColor3) 100%
         );
-    background-size: 100%, 100% 100%, auto;
-    background-position: center, center, center;
+    background-size:
+      100%,
+      100% 100%,
+      100% 100%,
+      auto;
+    background-position: center, center, center, center;
+    background-blend-mode: hard-light, color-dodge, overlay, normal;
 
     @include optional-motion(-1) {
       /* Animation */
       @keyframes windAndWaves {
-        from {
-          background-size: 100%, 100% 100%, auto;
+        0% {
+          background-size:
+            100%,
+            100% 100%,
+            100% 100%,
+            auto;
         }
-        to {
-          background-size: 100%, 100% 200%, auto;
+        50% {
+          background-size:
+            100%,
+            100% 150%,
+            105% 105%,
+            auto;
+        }
+        100% {
+          background-size:
+            100%,
+            100% 200%,
+            100% 100%,
+            auto;
         }
       }
       animation-name: windAndWaves;
@@ -127,7 +151,9 @@
     padding: 1vw;
     border: 0.5rem solid black;
     border-radius: 6.25vw 6.25vw 0 0;
-    box-shadow: inset 0 0 0.5vw 0 #0008, inset 0 0 0 0.5vw #000c;
+    box-shadow:
+      inset 0 0 0.5vw 0 #0008,
+      inset 0 0 0 0.5vw #000c;
 
     /* Scale up the logo (previously set in this ::before pseudo-element) */
     &::before {

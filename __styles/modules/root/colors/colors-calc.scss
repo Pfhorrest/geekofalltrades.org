@@ -32,6 +32,8 @@
     --lsi: calc((0% - var(--lm)) / 10); // Lightness shade increment
     --black: black; // Variable black to invert for dark mode
     --white: white; // Variable white to invert for dark mode
+    --darkInvert: 0;
+    --darkHueShift: 0;
   }
   @include prefers-color-scheme("dark") {
     // Inverted for dark mode
@@ -40,6 +42,8 @@
     --lsi: calc((100% - var(--lm)) / 10); // Lightness "tint" increment
     --black: white; // Variable black inverted for dark mode
     --white: black; // Variable white inverted for dark mode
+    --darkInvert: 1;
+    --darkHueShift: 180;
   }
 
   --lt9: calc(var(--lm) + (var(--lti) * 9)); // Lightness tint 9

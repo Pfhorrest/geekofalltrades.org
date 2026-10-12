@@ -19,8 +19,14 @@
     display: inline-block;
     width: 1.5em;
     height: 1.5em;
-    background: center / contain no-repeat url(/_media/images/logo.png);
+    background:
+      center / contain no-repeat url(/_media/images/logo-main.png),
+      radial-gradient(circle closest-side, white 0%, transparent 80%);
+    background-blend-mode: normal, hard-light;
     flex-shrink: 0;
+    filter: invert(var(--darkInvert))
+      hue-rotate(calc((var(--hm) - 120 + var(--darkHueShift)) * 1deg))
+      saturate((var(--sm)));
   }
 
   /* Places a hamburger menu in an ::after pseudo-element */

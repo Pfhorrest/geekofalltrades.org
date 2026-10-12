@@ -52,6 +52,8 @@
     --lsi: calc((0% - var(--lm)) / 10);
     --black: black;
     --white: white;
+    --darkInvert: 0;
+    --darkHueShift: 0;
   }
 }
 :root[data-color-scheme=light], html[data-color-scheme=light] :root {
@@ -60,6 +62,8 @@
   --lsi: calc((0% - var(--lm)) / 10);
   --black: black;
   --white: white;
+  --darkInvert: 0;
+  --darkHueShift: 0;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -68,6 +72,8 @@
     --lsi: calc((100% - var(--lm)) / 10);
     --black: white;
     --white: black;
+    --darkInvert: 1;
+    --darkHueShift: 180;
   }
 }
 :root[data-color-scheme=dark], html[data-color-scheme=dark] :root {
@@ -76,6 +82,8 @@
   --lsi: calc((100% - var(--lm)) / 10);
   --black: white;
   --white: black;
+  --darkInvert: 1;
+  --darkHueShift: 180;
 }
 :root {
   --lt9: calc(var(--lm) + (var(--lti) * 9));
@@ -489,8 +497,10 @@ header h1::before {
   display: inline-block;
   width: 1.5em;
   height: 1.5em;
-  background: center/contain no-repeat url(/_media/images/logo.png);
+  background: center/contain no-repeat url(/_media/images/logo-main.png), radial-gradient(circle closest-side, white 0%, transparent 80%);
+  background-blend-mode: normal, hard-light;
   flex-shrink: 0;
+  filter: invert(var(--darkInvert)) hue-rotate(calc((var(--hm) - 120 + var(--darkHueShift)) * 1deg)) saturate(var(--sm));
 }
 header h1 {
   /* Places a hamburger menu in an ::after pseudo-element */
@@ -560,9 +570,10 @@ header h1 {
 @media (min-width: 40rem) {
   header h1 {
     /* Wind and waves background */
-    background: linear-gradient(transparent calc(50% - 1em), var(--skyMist) 50%, var(--seaMist) 50%, transparent calc(50% + 1em)), linear-gradient(to bottom, transparent 0%, var(--cloudColor) 18.75%, var(--cloudLight) 21.875%, transparent 25%, var(--cloudColor) 34.375%, var(--cloudLight) 35.9375%, transparent 37.5%, var(--cloudColor) 42.1875%, var(--cloudLight) 42.96875%, transparent 43.75%, var(--cloudColor) 46.09375%, var(--cloudLight) 46.484375%, transparent 46.875%, var(--cloudColor) 48.046875%, var(--cloudLight) 48.2421875%, transparent 48.4375%, var(--cloudColor) 49.0234375%, var(--cloudLight) 49.12109375%, transparent 49.21875%, var(--cloudColor) 49.51171875%, var(--cloudLight) 49.560546875%, transparent 49.609375%, var(--cloudColor) 49.755859375%, var(--cloudLight) 49.7802734375%, transparent 49.8046875%, var(--cloudColor) 49.8779296875%, var(--cloudLight) 49.8901367188%, transparent 49.90234375%, var(--cloudColor) 49.9389648438%, var(--cloudLight) 49.9450683594%, transparent 49.951171875%, transparent 50.048828125%, var(--swellLight) 50.0793457031%, var(--swellColor) 50.0854492188%, transparent 50.09765625%, var(--swellLight) 50.1586914063%, var(--swellColor) 50.1708984375%, transparent 50.1953125%, var(--swellLight) 50.3173828125%, var(--swellColor) 50.341796875%, transparent 50.390625%, var(--swellLight) 50.634765625%, var(--swellColor) 50.68359375%, transparent 50.78125%, var(--swellLight) 51.26953125%, var(--swellColor) 51.3671875%, transparent 51.5625%, var(--swellLight) 52.5390625%, var(--swellColor) 52.734375%, transparent 53.125%, var(--swellLight) 55.078125%, var(--swellColor) 55.46875%, transparent 56.25%, var(--swellLight) 60.15625%, var(--swellColor) 60.9375%, transparent 62.5%, var(--swellLight) 70.3125%, var(--swellColor) 71.875%, transparent 75%, var(--swellLight) 90.625%, var(--swellColor) 93.75%, transparent 100%), linear-gradient(to bottom, var(--skyColor3) 0%, var(--skyColor2) 37.5%, var(--skyColor1) 48%, var(--skyMist) 50%, var(--seaMist) 50%, var(--seaColor1) 52%, var(--seaColor2) 62.5%, var(--seaColor3) 100%);
-    background-size: 100%, 100% 100%, auto;
-    background-position: center, center, center;
+    background: linear-gradient(transparent calc(50% - 0.25em), var(--white) 50%, transparent calc(50% + 0.25em)), linear-gradient(to bottom, transparent 0%, var(--cloudColor) 18.75%, var(--cloudLight) 21.875%, transparent 25%, var(--cloudColor) 34.375%, var(--cloudLight) 35.9375%, transparent 37.5%, var(--cloudColor) 42.1875%, var(--cloudLight) 42.96875%, transparent 43.75%, var(--cloudColor) 46.09375%, var(--cloudLight) 46.484375%, transparent 46.875%, var(--cloudColor) 48.046875%, var(--cloudLight) 48.2421875%, transparent 48.4375%, var(--cloudColor) 49.0234375%, var(--cloudLight) 49.12109375%, transparent 49.21875%, var(--cloudColor) 49.51171875%, var(--cloudLight) 49.560546875%, transparent 49.609375%, var(--cloudColor) 49.755859375%, var(--cloudLight) 49.7802734375%, transparent 49.8046875%, var(--cloudColor) 49.8779296875%, var(--cloudLight) 49.8901367188%, transparent 49.90234375%, var(--cloudColor) 49.9389648438%, var(--cloudLight) 49.9450683594%, transparent 49.951171875%, transparent 50.048828125%, var(--swellLight) 50.0793457031%, var(--swellColor) 50.0854492188%, transparent 50.09765625%, var(--swellLight) 50.1586914063%, var(--swellColor) 50.1708984375%, transparent 50.1953125%, var(--swellLight) 50.3173828125%, var(--swellColor) 50.341796875%, transparent 50.390625%, var(--swellLight) 50.634765625%, var(--swellColor) 50.68359375%, transparent 50.78125%, var(--swellLight) 51.26953125%, var(--swellColor) 51.3671875%, transparent 51.5625%, var(--swellLight) 52.5390625%, var(--swellColor) 52.734375%, transparent 53.125%, var(--swellLight) 55.078125%, var(--swellColor) 55.46875%, transparent 56.25%, var(--swellLight) 60.15625%, var(--swellColor) 60.9375%, transparent 62.5%, var(--swellLight) 70.3125%, var(--swellColor) 71.875%, transparent 75%, var(--swellLight) 90.625%, var(--swellColor) 93.75%, transparent 100%), url(/_media/images/banner-background.jpg), linear-gradient(to bottom, var(--skyColor3) 0%, var(--skyColor2) 37.5%, var(--skyColor1) 48%, var(--skyMist) 50%, var(--seaMist) 50%, var(--seaColor1) 52%, var(--seaColor2) 62.5%, var(--seaColor3) 100%);
+    background-size: 100%, 100% 100%, 100% 100%, auto;
+    background-position: center, center, center, center;
+    background-blend-mode: hard-light, color-dodge, overlay, normal;
     /* Borders and shadows to create windowframe effect */
     padding: 1vw;
     border: 0.5rem solid black;
@@ -579,11 +590,14 @@ header h1 {
     /* Animation */
   }
   @keyframes windAndWaves {
-    from {
-      background-size: 100%, 100% 100%, auto;
+    0% {
+      background-size: 100%, 100% 100%, 100% 100%, auto;
     }
-    to {
-      background-size: 100%, 100% 200%, auto;
+    50% {
+      background-size: 100%, 100% 150%, 105% 105%, auto;
+    }
+    100% {
+      background-size: 100%, 100% 200%, 100% 100%, auto;
     }
   }
   header h1[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] header h1 {
@@ -1700,21 +1714,20 @@ main section figure.off-screen {
 main section figure {
   /* Figures that can be inverted with light and dark mode */
 }
-@media (prefers-color-scheme: light) {
-  main section figure.invertible img {
-    filter: none;
-  }
+main section figure.invertible img {
+  filter: invert(var(--darkInvert)) hue-rotate(calc(var(--darkHueShift) * 1deg));
 }
-main section figure.invertible[data-color-scheme=light] img, html[data-color-scheme=light] main section figure.invertible img {
-  filter: none;
+main section figure {
+  /* Figures that can be hue or saturation adjusted with themes */
 }
-@media (prefers-color-scheme: dark) {
-  main section figure.invertible img {
-    filter: invert(1) hue-rotate(0.5turn);
-  }
+main section figure.themable img {
+  filter: hue-rotate(calc((var(--hm) - 120) * 1deg)) saturate(var(--sm));
 }
-main section figure.invertible[data-color-scheme=dark] img, html[data-color-scheme=dark] main section figure.invertible img {
-  filter: invert(1) hue-rotate(0.5turn);
+main section figure {
+  /* Figures that can fully adjusted with modes and themes */
+}
+main section figure.invertible.themable img {
+  filter: invert(var(--darkInvert)) hue-rotate(calc((var(--hm) - 120 + var(--darkHueShift)) * 1deg)) saturate(var(--sm));
 }
 main section figure {
   /* Figures that aren't freeform within sections but rather 
