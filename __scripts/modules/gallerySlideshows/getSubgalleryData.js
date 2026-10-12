@@ -26,7 +26,7 @@ export default function getSubgalleryData(item) {
     return __awaiter(this, void 0, void 0, function* () {
         const currentItem = item;
         if (!currentItem) {
-            console.error("Gallery slideshow: item is ", typeof currentItem);
+            // console.error("Gallery slideshow: item is ", typeof currentItem);
             return [];
         }
         const state = subgalleryState.get(currentItem);
@@ -46,7 +46,7 @@ export default function getSubgalleryData(item) {
             const previousSkip = state && state.status === "pending" ? state.skip : 0;
             const skip = Math.max(1, previousSkip * 2);
             subgalleryState.set(item, { status: "pending", skip, skipped: 0 });
-            console.error("Gallery slideshow: couldn't load a subgallery.", error);
+            // console.error("Gallery slideshow: couldn't load a subgallery.", error);
             return [];
         }
     });

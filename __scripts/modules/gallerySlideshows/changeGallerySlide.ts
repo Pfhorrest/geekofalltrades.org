@@ -147,6 +147,10 @@ export default async function changeGallerySlide(
   }
   await delay(duration);
 
+  if (!nextEntry) {
+    // console.error('No next entry found for gallery item.');
+    return;
+  }
   if (img) {
     img.src = nextEntry.imgSrc;
     img.alt = nextEntry.imgAlt;

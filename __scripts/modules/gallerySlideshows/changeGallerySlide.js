@@ -126,6 +126,10 @@ export default function changeGallerySlide(item, subgalleryEntries) {
             fadeOut(el, duration, false);
         }
         yield delay(duration);
+        if (!nextEntry) {
+            // console.error('No next entry found for gallery item.');
+            return;
+        }
         if (img) {
             img.src = nextEntry.imgSrc;
             img.alt = nextEntry.imgAlt;
