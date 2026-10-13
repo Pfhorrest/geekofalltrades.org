@@ -17,8 +17,18 @@
 
 @mixin h1-large {
   @media (min-width: $bp2) {
+    --flame-scale: 2.25em;
     /* Wind and waves background */
     background:
+      /* Innermost flames */
+      url(/_media/images/flames-smaller.svg) no-repeat,
+      url(/_media/images/flames-larger.svg) no-repeat,
+      /* Middle flames */
+      url(/_media/images/flames-smaller.svg) no-repeat,
+      url(/_media/images/flames-larger.svg) no-repeat,
+      /* Outermost flames */
+      url(/_media/images/flames-smaller.svg) no-repeat,
+      url(/_media/images/flames-larger.svg) no-repeat,
       /* Mist in the distance creating depth */
       linear-gradient(
         transparent calc(50% - 0.25em),
@@ -108,18 +118,30 @@
           var(--seaColor3) 100%
         );
     background-size:
+      var(--flame-scale),
+      var(--flame-scale),
+      calc(var(--flame-scale) * 3),
+      calc(var(--flame-scale) * 3),
+      calc(var(--flame-scale) * 3 * 3),
+      calc(var(--flame-scale) * 3 * 3),
       100%,
       100% 100%,
       100% 100%,
       auto;
-    background-position: center, center, center, center;
-    background-blend-mode: hard-light, color-dodge, overlay, normal;
+    background-position: center, center, center, center, center, center;
+    background-blend-mode: hard-light, hard-light, hard-light, color-dodge, overlay, normal;
 
     @include optional-motion(-1) {
       /* Animation */
       @keyframes windAndWaves {
         0% {
           background-size:
+            var(--flame-scale),
+            var(--flame-scale),
+            calc(var(--flame-scale) * 3),
+            calc(var(--flame-scale) * 3),
+            calc(var(--flame-scale) * 3 * 3),
+            calc(var(--flame-scale) * 3 * 3),
             100%,
             100% 100%,
             100% 100%,
@@ -127,6 +149,12 @@
         }
         50% {
           background-size:
+            calc(var(--flame-scale) + 0.25em),
+            calc(var(--flame-scale) - 0.25em),
+            calc((var(--flame-scale) + 0.25em) * 3),
+            calc((var(--flame-scale) - 0.25em) * 3),
+            calc((var(--flame-scale) + 0.25em) * 3 * 3),
+            calc((var(--flame-scale) - 0.25em) * 3 * 3),
             100%,
             100% 150%,
             105% 105%,
@@ -134,6 +162,12 @@
         }
         100% {
           background-size:
+            var(--flame-scale),
+            var(--flame-scale),
+            calc(var(--flame-scale) * 3),
+            calc(var(--flame-scale) * 3),
+            calc(var(--flame-scale) * 3 * 3),
+            calc(var(--flame-scale) * 3 * 3),
             100%,
             100% 200%,
             100% 100%,

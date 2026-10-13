@@ -56,8 +56,8 @@
     paint-order: stroke fill;
     /* Basic color fill and text-shadow to fake strokes otherwise */
     color: var(--cm);
-    --sW: calc(1em / 32); // stroke width
-    --sC: hsl(from var(--white) h s l / 50%); // stroke color
+    --sW: calc(1em / 48); // stroke width
+    --sC: hsl(from var(--white) h s l / 33%); // stroke color
     /* Text shadow also adds a softer touch even when proper stroke is supported */
     text-shadow:
       // Four layers from thin and dark to slightly wider and lighter:
