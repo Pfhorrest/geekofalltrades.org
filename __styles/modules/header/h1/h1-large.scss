@@ -26,17 +26,16 @@
       /* Middle flames */
       url(/_media/images/flames-smaller.svg) no-repeat,
       url(/_media/images/flames-larger.svg) no-repeat,
-      /* Outermost flames */
+      /* Outermost flames*/
       url(/_media/images/flames-smaller.svg) no-repeat,
       url(/_media/images/flames-larger.svg) no-repeat,
       /* Mist in the distance creating depth */
-      linear-gradient(
-        transparent calc(50% - 0.25em),
-        /* var(--skyMist) 50%, */
-        var(--white) 50%,
-        /* var(--seaMist) 50%, */
-        transparent calc(50% + 0.25em)
-      ),
+        linear-gradient(
+          transparent calc(50% - 1em),
+          hsl(from var(--skyMist) h s l / 1.0) 50%,
+          hsl(from var(--seaMist) h s l / 1.0) 50%,
+          transparent calc(50% + 1em)
+        ),
       /* Clouds in the sky and swells in the sea */
         linear-gradient(
           to bottom,
@@ -104,16 +103,14 @@
           transparent 100%
         ),
       /* Raster waves and clouds */
-        url(/_media/images/banner-background.jpg),
+      url(/_media/images/header-background.jpg),
       /* Basic colors of sky and sea */
         linear-gradient(
           to bottom,
           var(--skyColor3) 0%,
           var(--skyColor2) 37.5%,
-          var(--skyColor1) 48%,
-          var(--skyMist) 50%,
-          var(--seaMist) 50%,
-          var(--seaColor1) 52%,
+          var(--skyColor1) 50%,
+          var(--seaColor1) 50%,
           var(--seaColor2) 62.5%,
           var(--seaColor3) 100%
         );
@@ -128,8 +125,10 @@
       100% 100%,
       100% 100%,
       auto;
-    background-position: center, center, center, center, center, center;
-    background-blend-mode: hard-light, hard-light, hard-light, color-dodge, overlay, normal;
+    background-position: center;
+    background-blend-mode:
+      overlay, overlay, overlay, overlay, overlay, overlay,
+      hard-light, color-dodge, overlay, normal;
 
     @include optional-motion(-1) {
       /* Animation */
@@ -200,11 +199,51 @@
       display: none;
     }
 
+    > span {
     /* Display the first line of text, now that there's room;
        and sort it before the logo */
-    > span:first-of-type {
-      display: inline;
-      order: -1;
+      &:first-of-type {
+        display: inline;
+        order: -1;
+      }
+      /* Custom script decorations above and below them */
+      position: relative;
+      &::before, &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 0.75em;
+        flex-shrink: 0;
+        mix-blend-mode: color-dodge;
+        right: calc(var(--spacing) * 2);
+        left: calc(var(--spacing) * 2);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        opacity: 0.5;
+      }
+      --script-translate: calc(2*100%/3);
+      &:first-of-type::before {
+        background-image: url(/_media/images/script-goat.svg);
+        top: 0;
+        transform: translateY(calc(var(--script-translate) * -1));
+      }
+      &:first-of-type::after {
+        background-image: url(/_media/images/script-fc.svg);
+        bottom: 0;
+        transform: translateY(calc(var(--script-translate) * 1));
+      }
+      &:last-of-type::before {
+        background-image: url(/_media/images/script-fc.svg);
+        top: 0;
+        transform: translateY(calc(var(--script-translate) * -1));
+      }
+      &:last-of-type::after {
+        background-image: url(/_media/images/script-goat.svg);
+        bottom: 0;
+        transform: translateY(calc(var(--script-translate) * 1));
+      }
     }
   }
 }

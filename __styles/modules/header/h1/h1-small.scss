@@ -22,7 +22,7 @@
     background:
       center / contain no-repeat url(/_media/images/logo-main.png),
       radial-gradient(circle closest-side, white 0%, transparent 80%);
-    background-blend-mode: normal, hard-light;
+    background-blend-mode: normal, overlay;
     flex-shrink: 0;
     filter: invert(var(--darkInvert))
       hue-rotate(calc((var(--hm) - 120 + var(--darkHueShift)) * 1deg))
