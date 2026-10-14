@@ -49,11 +49,18 @@
     }
 
     /* Styles for current menu item links */
-    &.current > a, &.active > ul > .current > a{
-      background: radial-gradient(transparent, var(--cwg)),
+    &.current > a,
+    &.active > ul > .current > a {
+      background:
+        radial-gradient(transparent, var(--cwg)),
         linear-gradient(to var(--curve), var(--cw95) 0%, var(--cw75) 100%);
       background-size: 1000% 1000%;
-      background-position-y: 50%;
+      background-position-y: 100%;
+      &:hover,
+      &:focus,
+      &:active {
+        background-size: 100% 100%;
+      }
     }
 
     /* Menu item link */
@@ -70,7 +77,8 @@
       padding: 0.5em 2em;
 
       /* Background */
-      background: radial-gradient(transparent, var(--ccg)),
+      background:
+        radial-gradient(transparent, var(--ccg)),
         linear-gradient(to var(--curve), var(--cc95) 0%, var(--cc75) 100%);
       /* Background is scaled up and centered to create illusory flatness
          that can then be scaled back down to animate in skeuomorphism */
@@ -80,8 +88,11 @@
       /* Borders */
       border: none;
       border-radius: calc(0.5 * var(--rounding));
-      box-shadow: 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset,
-        1pt 1pt 1pt transparent, 0 0 0 1pt var(--shade) inset;
+      box-shadow:
+        1pt 1pt 0pt transparent inset,
+        -1pt -1pt 0pt transparent inset,
+        1pt 1pt 1pt transparent,
+        0 0 0 1pt var(--shade) inset;
 
       /* Typography */
       font-weight: normal;
@@ -106,13 +117,15 @@
 
       /* Skeuomorphisms on all interaction*/
       @include optional-motion() {
-        transition: all 1s;
+        transition: all 0.1s;
       }
       &:hover,
       &:focus,
       &:active {
-        box-shadow: 1pt 1pt 0pt var(--gloss) inset,
-          -1pt -1pt 0pt var(--shade) inset, 1pt 1pt 1pt var(--shade),
+        box-shadow:
+          1pt 1pt 0pt var(--gloss) inset,
+          -1pt -1pt 0pt var(--shade) inset,
+          1pt 1pt 1pt var(--shade),
           0 0 0 1pt transparent inset;
         /* Scale background back to normal to animate in gradient */
         background-size: 100% 100%;
@@ -120,11 +133,13 @@
 
       /* Different colors for hover and active states */
       &:hover {
-        background: radial-gradient(transparent, var(--cmg)),
+        background:
+          radial-gradient(transparent, var(--cmg)),
           linear-gradient(to var(--curve), var(--cm95), var(--cm75));
       }
       &:active {
-        background: radial-gradient(transparent, var(--cwg)),
+        background:
+          radial-gradient(transparent, var(--cwg)),
           linear-gradient(to var(--curve), var(--cw95), var(--cw75));
       }
     }

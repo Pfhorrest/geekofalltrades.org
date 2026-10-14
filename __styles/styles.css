@@ -836,7 +836,10 @@ header nav > ul li {
 header nav > ul li.current > a, header nav > ul li.active > ul > .current > a {
   background: radial-gradient(transparent, var(--cwg)), linear-gradient(to var(--curve), var(--cw95) 0%, var(--cw75) 100%);
   background-size: 1000% 1000%;
-  background-position-y: 50%;
+  background-position-y: 100%;
+}
+header nav > ul li.current > a:hover, header nav > ul li.current > a:focus, header nav > ul li.current > a:active, header nav > ul li.active > ul > .current > a:hover, header nav > ul li.active > ul > .current > a:focus, header nav > ul li.active > ul > .current > a:active {
+  background-size: 100% 100%;
 }
 header nav > ul li {
   /* Menu item link */
@@ -876,7 +879,7 @@ header nav > ul li a {
 }
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-reduced-motion^="1"]) header nav > ul li a:not([data-reduced-motion^="1"]) {
-    transition: all 1s;
+    transition: all 0.1s;
   }
 }
 header nav > ul li a:hover, header nav > ul li a:focus, header nav > ul li a:active {
