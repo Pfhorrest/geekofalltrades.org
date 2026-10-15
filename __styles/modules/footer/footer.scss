@@ -39,7 +39,7 @@
       linear-gradient(to bottom, transparent, var(--seaShadow)),
       /* Swells in the sea */
         linear-gradient(
-          to bottom,
+          to top,
           transparent 0%,
           transparent calc(1 * 100% / 32),
           var(--swellLight) calc(1.25 * 100% / 32),
@@ -62,7 +62,7 @@
       url(/_media/images/footer-background.jpg),
       /* Basic colors of sea */
         linear-gradient(
-          to bottom,
+          to top,
           var(--seaColor1) 0%,
           var(--seaColor2) 50%,
           var(--seaColor3) 100%
@@ -72,7 +72,7 @@
       100% 100%,
       100% 100%,
       auto;
-    background-position: center, top, center, center;
+    background-position: center, bottom, center, center;
     background-blend-mode: hard-light, color-dodge, overlay, normal;
 
     @include optional-motion(-1) {
