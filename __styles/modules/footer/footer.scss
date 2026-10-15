@@ -73,7 +73,7 @@
       100% 100%,
       auto;
     background-position: center, bottom, center, center;
-    background-blend-mode: hard-light, color-dodge, overlay, normal;
+    background-blend-mode: color-burn, color-dodge, overlay, normal;
 
     @include optional-motion(-1) {
       /* Animation */
@@ -81,7 +81,7 @@
         0% {
           background-size:
             auto,
-            100% 100%,
+            100% 200%,
             100% 100%,
             auto;
         }
@@ -95,7 +95,7 @@
         100% {
           background-size:
             auto,
-            100% 200%,
+            100% 100%,
             100% 100%,
             auto;
         }

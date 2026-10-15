@@ -2608,7 +2608,7 @@ footer {
   background: linear-gradient(to bottom, transparent, var(--seaShadow)), linear-gradient(to top, transparent 0%, transparent 3.125%, var(--swellLight) 3.90625%, var(--swellColor) 4.6875%, transparent 6.25%, var(--swellLight) 7.8125%, var(--swellColor) 9.375%, transparent 12.5%, var(--swellLight) 15.625%, var(--swellColor) 18.75%, transparent 25%, var(--swellLight) 31.25%, var(--swellColor) 37.5%, transparent 50%, var(--swellLight) 62.5%, var(--swellColor) 75%, transparent 100%), url(/_media/images/footer-background.jpg), linear-gradient(to top, var(--seaColor1) 0%, var(--seaColor2) 50%, var(--seaColor3) 100%);
   background-size: auto, 100% 100%, 100% 100%, auto;
   background-position: center, bottom, center, center;
-  background-blend-mode: hard-light, color-dodge, overlay, normal;
+  background-blend-mode: color-burn, color-dodge, overlay, normal;
 }
 @media (prefers-reduced-motion: no-preference) {
   footer[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] footer {
@@ -2616,13 +2616,13 @@ footer {
   }
   @keyframes waves {
     0% {
-      background-size: auto, 100% 100%, 100% 100%, auto;
+      background-size: auto, 100% 200%, 100% 100%, auto;
     }
     50% {
       background-size: auto, 100% 150%, 100% 105%, auto;
     }
     100% {
-      background-size: auto, 100% 200%, 100% 100%, auto;
+      background-size: auto, 100% 100%, 100% 100%, auto;
     }
   }
   footer[data-reduced-motion^="-1"], html[data-reduced-motion^="-1"] footer {
