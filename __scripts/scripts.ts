@@ -7,7 +7,7 @@ import { hydrateLightbox } from "./modules/lightbox/hydrateLightbox";
 import { hydrateFooterAnchor } from "./modules/footer/hydrateFooterAnchor";
 import { hydrateColorSwitcher } from "./modules/colorSchemes/hydrateColorSwitcher";
 import { hydrateMotionSwitcher } from "./modules/effects/hydrateMotionSwitcher";
-import { initializeGallerySlideshows } from "./modules/gallerySlideshows/initializeGallerySlideshows";
+import { initGallerySlideshows } from "./modules/gallerySlideshows/initGallerySlideshows";
 
 const onReady = (fn: () => void) => {
   if (document.readyState === "loading") {
@@ -27,5 +27,5 @@ onReady(() => {
   hydrateColorSwitcher();
   hydrateMotionSwitcher();
   hydrateFooterAnchor();
-  initializeGallerySlideshows();
+  initGallerySlideshows();
 });

@@ -1,5 +1,5 @@
 /**
- * Balances the items in the given container by distributing them evenly across rows.
+ * Balances the items in the given flex container by distributing them evenly across rows.
  * @param {HTMLElement} container - The container element to balance.
  *
  * @returns {void}
@@ -14,15 +14,15 @@ const balanceFlexRows = (container) => {
     });
     const containerWidth = container.clientWidth;
     const avgItemWidth = items.reduce((sum, item) => sum + item.offsetWidth, 0) / items.length;
-    let rowCount = Math.max(1, Math.round((avgItemWidth * items.length) / containerWidth));
+    const rowCount = Math.max(1, Math.round((avgItemWidth * items.length) / containerWidth));
     if (rowCount <= 1)
         return;
     // Calculate balanced distribution
-    const perRow = Math.ceil(items.length / rowCount) + 0.5; // +0.5 to account for gaps
-    // console.log(`Balancing ${items.length} items into ${rowCount} rows of up to ${perRow - 1} items each.`);
+    const colCount = Math.ceil(items.length / rowCount) + 0.5; // +0.5 to account for gaps
+    // console.log(`Balancing ${items.length} items into ${rowCount} rows of up to ${colCount - 1} items each.`);
     // Set min-width to enforce distribution
     items.forEach((item) => {
-        item.style.minWidth = `${100 / perRow}%`;
+        item.style.minWidth = `${100 / colCount}%`;
     });
 };
 /**

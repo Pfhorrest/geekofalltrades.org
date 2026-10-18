@@ -2124,6 +2124,7 @@ main section .gallery .item {
   flex-flow: column nowrap;
   justify-content: space-between;
   /* Sizing */
+  min-width: var(--gim);
   max-width: 80ch;
   overflow: hidden;
   /* Spacing */

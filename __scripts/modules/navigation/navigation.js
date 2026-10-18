@@ -1,6 +1,6 @@
 import { hydrateBreadcrumbs } from "./hydration/hydrateBreadcrumbs";
 import { hydrateDropdowns } from "./hydration/hydrateDropdowns";
-import { enableFlexBalancing } from "../flexBalance/flexBalance";
+import { enableFlexBalancing } from "../layout/flexBalance";
 import { highlightCurrent } from "./highlightCurrent";
 import { hydrateH1 } from "./hydration/hydrateH1";
 export const hydrateNavigation = () => {

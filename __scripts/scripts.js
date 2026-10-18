@@ -7,7 +7,7 @@ import { hydrateLightbox } from "./modules/lightbox/hydrateLightbox";
 import { hydrateFooterAnchor } from "./modules/footer/hydrateFooterAnchor";
 import { hydrateColorSwitcher } from "./modules/colorSchemes/hydrateColorSwitcher";
 import { hydrateMotionSwitcher } from "./modules/effects/hydrateMotionSwitcher";
-import { initializeGallerySlideshows } from "./modules/gallerySlideshows/initializeGallerySlideshows";
+import { initGallerySlideshows } from "./modules/gallerySlideshows/initGallerySlideshows";
 const onReady = (fn) => {
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", fn);
@@ -26,6 +26,6 @@ onReady(() => {
     hydrateColorSwitcher();
     hydrateMotionSwitcher();
     hydrateFooterAnchor();
-    initializeGallerySlideshows();
+    initGallerySlideshows();
 });
 //# sourceMappingURL=scripts.js.map

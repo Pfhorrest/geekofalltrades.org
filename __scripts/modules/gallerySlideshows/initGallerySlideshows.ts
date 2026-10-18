@@ -84,7 +84,7 @@ async function runSlideshowLoop(items: HTMLElement[]): Promise<void> {
  *
  * @returns Nothing. The slideshow loop runs indefinitely in the background once started.
  */
-export function initializeGallerySlideshows(): void {
+export function initGallerySlideshows(): void {
   const items = Array.from(
     document.querySelectorAll<HTMLElement>(".gallery > .item:has(img):has(a)"),
   ).filter((item) =>

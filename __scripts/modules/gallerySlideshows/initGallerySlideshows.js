@@ -87,11 +87,11 @@ function runSlideshowLoop(items) {
  *
  * @returns Nothing. The slideshow loop runs indefinitely in the background once started.
  */
-export function initializeGallerySlideshows() {
+export function initGallerySlideshows() {
     const items = Array.from(document.querySelectorAll(".gallery > .item:has(img):has(a)")).filter((item) => Array.from(item.querySelectorAll("a")).some((link) => link.pathname !== location.pathname));
     if (items.length === 0) {
         return;
     }
     void runSlideshowLoop(items);
 }
-//# sourceMappingURL=initializeGallerySlideshows.js.map
+//# sourceMappingURL=initGallerySlideshows.js.map
