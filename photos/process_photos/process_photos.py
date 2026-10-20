@@ -1,3 +1,4 @@
+import sys
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 import os
@@ -27,6 +28,8 @@ def _find_matching_paren(text, open_index):
                 return i
     return None
 
+# Force stdout to be line-buffered
+sys.stdout.reconfigure(line_buffering=True)
 
 def process_photos():
     """Process photos in the base directory, generating thumbnails and galleries.
@@ -394,16 +397,6 @@ def process_photos():
                                 php_array_str += "\t\t\t),\n"
                             php_array_str += "\t\t)"
 
-                            # Replace only through the array's OWN matching closing
-                            # paren, not past it. The old approach
-                            # (re.sub(r'...array\(.*?\);', ...)) matched up to the
-                            # FIRST literal "');'" it found — but this array is
-                            # nested inside render_gallery($images = array(...));,
-                            # so the array's own single ')' is immediately followed
-                            # by ANOTHER ')' (render_gallery's) before the ';'. The
-                            # old regex swallowed that second paren as if it were
-                            # part of the array, and never put it back — that's the
-                            # dropped closing paren / syntax error.
                             match = re.search(r'\$images\s*=\s*array\s*\(', existing_content)
                             close_index = _find_matching_paren(existing_content, match.end() - 1) if match else None
 
