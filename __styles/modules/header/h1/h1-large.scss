@@ -18,6 +18,10 @@
 @mixin h1-large {
   @media (min-width: $bp2) {
     --flame-scale: 2.25em;
+    --h1-background-flames-larger-radial-gradient-start-stop-color: var(--white);
+    --h1-background-flames-larger-radial-gradient-end-stop-color: var(--skyMist);
+    --h1-background-flames-smaller-radial-gradient-start-stop-color: var(--white);
+    --h1-background-flames-smaller-radial-gradient-end-stop-color: var(--skyMist);
     /* Wind and waves background */
     background:
       /* Innermost flames */

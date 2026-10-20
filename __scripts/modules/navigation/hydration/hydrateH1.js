@@ -1,3 +1,4 @@
+import { themeCssSvg } from "../../colorSchemes/themeCssSvg";
 import { slideToggle } from "../../effects/effects";
 /**
  *  Adds event listener to toggle the nav when the h1 is clicked
@@ -14,6 +15,7 @@ export const hydrateH1 = () => {
             });
         });
         h1.style.cursor = "pointer";
+        themeCssSvg(h1, "background");
     }
 };
 //# sourceMappingURL=hydrateH1.js.map

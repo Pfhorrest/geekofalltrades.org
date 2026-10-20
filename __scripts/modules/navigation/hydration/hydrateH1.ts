@@ -1,3 +1,4 @@
+import { themeCssSvg } from "../../colorSchemes/themeCssSvg";
 import { slideToggle } from "../../effects/effects";
 
 /**
@@ -14,5 +15,6 @@ export const hydrateH1 = (): void => {
       });
     });
     h1.style.cursor = "pointer";
+    themeCssSvg(h1, "background");
   }
 };
