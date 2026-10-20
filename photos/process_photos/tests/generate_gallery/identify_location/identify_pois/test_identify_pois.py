@@ -24,13 +24,17 @@ def test_empty_response_returns_empty_list(mock_post, _):
 
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.time.sleep")
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.requests.post")
-def test_containing_way_prefixed_at(mock_post, _):
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.fetch_overpass_wait_time")
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.is_server_alive")
+def test_containing_way_prefixed_at(mock_is_server_alive, mock_fetch_overpass_wait_time, mock_post, _):
     geometry = [
         {"lat": -0.001, "lon": -0.001},
         {"lat": -0.001, "lon":  0.001},
         {"lat":  0.001, "lon":  0.001},
         {"lat":  0.001, "lon": -0.001},
     ]
+    mock_is_server_alive.return_value = True
+    mock_fetch_overpass_wait_time.return_value = 0
     mock_post.return_value = mock_post_with({
         "elements": [{"type": "way", "tags": {"name": "Test Park"}, "geometry": geometry}]
     })
@@ -39,13 +43,17 @@ def test_containing_way_prefixed_at(mock_post, _):
 
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.time.sleep")
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.requests.post")
-def test_non_containing_way_prefixed_near(mock_post, _):
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.fetch_overpass_wait_time")
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.is_server_alive")
+def test_non_containing_way_prefixed_near(mock_is_server_alive, mock_fetch_overpass_wait_time, mock_post, _):
     geometry = [
         {"lat": 0.01, "lon": 0.01},
         {"lat": 0.01, "lon": 0.02},
         {"lat": 0.02, "lon": 0.02},
         {"lat": 0.02, "lon": 0.01},
     ]
+    mock_is_server_alive.return_value = True
+    mock_fetch_overpass_wait_time.return_value = 0
     mock_post.return_value = mock_post_with({
         "elements": [{"type": "way", "tags": {"name": "Distant Park"}, "geometry": geometry}]
     })
@@ -55,7 +63,9 @@ def test_non_containing_way_prefixed_near(mock_post, _):
 
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.time.sleep")
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.requests.post")
-def test_containing_before_non_containing(mock_post, _):
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.fetch_overpass_wait_time")
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.is_server_alive")
+def test_containing_before_non_containing(mock_is_server_alive, mock_fetch_overpass_wait_time, mock_post, _):
     containing_geometry = [
         {"lat": -0.001, "lon": -0.001},
         {"lat": -0.001, "lon":  0.001},
@@ -68,6 +78,8 @@ def test_containing_before_non_containing(mock_post, _):
         {"lat": 0.02, "lon": 0.02},
         {"lat": 0.02, "lon": 0.01},
     ]
+    mock_is_server_alive.return_value = True
+    mock_fetch_overpass_wait_time.return_value = 0
     mock_post.return_value = mock_post_with({
         "elements": [
             {"type": "way", "tags": {"name": "Nearby Park"}, "geometry": nearby_geometry},
@@ -80,7 +92,9 @@ def test_containing_before_non_containing(mock_post, _):
 
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.time.sleep")
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.requests.post")
-def test_containing_sorted_smallest_first(mock_post, _):
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.fetch_overpass_wait_time")
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.is_server_alive")
+def test_containing_sorted_smallest_first(mock_is_server_alive, mock_fetch_overpass_wait_time, mock_post, _):
     small = [
         {"lat": -0.001, "lon": -0.001},
         {"lat": -0.001, "lon":  0.001},
@@ -93,6 +107,8 @@ def test_containing_sorted_smallest_first(mock_post, _):
         {"lat":  0.01, "lon":  0.01},
         {"lat":  0.01, "lon": -0.01},
     ]
+    mock_is_server_alive.return_value = True
+    mock_fetch_overpass_wait_time.return_value = 0
     mock_post.return_value = mock_post_with({
         "elements": [
             {"type": "way", "tags": {"name": "Large Park"}, "geometry": large},
@@ -105,7 +121,9 @@ def test_containing_sorted_smallest_first(mock_post, _):
 
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.time.sleep")
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.requests.post")
-def test_non_containing_sorted_nearest_first(mock_post, _):
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.fetch_overpass_wait_time")
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.is_server_alive")
+def test_non_containing_sorted_nearest_first(mock_is_server_alive, mock_fetch_overpass_wait_time, mock_post, _):
     near_geometry = [
         {"lat": 0.005, "lon": 0.005},
         {"lat": 0.005, "lon": 0.006},
@@ -118,6 +136,8 @@ def test_non_containing_sorted_nearest_first(mock_post, _):
         {"lat": 0.06, "lon": 0.06},
         {"lat": 0.06, "lon": 0.05},
     ]
+    mock_is_server_alive.return_value = True
+    mock_fetch_overpass_wait_time.return_value = 0
     mock_post.return_value = mock_post_with({
         "elements": [
             {"type": "way", "tags": {"name": "Far Park"}, "geometry": far_geometry},
@@ -130,7 +150,9 @@ def test_non_containing_sorted_nearest_first(mock_post, _):
 
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.time.sleep")
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.requests.post")
-def test_relation_containment_excludes_inner_hole(mock_post, _):
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.fetch_overpass_wait_time")
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.is_server_alive")
+def test_relation_containment_excludes_inner_hole(mock_is_server_alive, mock_fetch_overpass_wait_time, mock_post, _):
     outer = [
         {"lat": -0.01, "lon": -0.01},
         {"lat": -0.01, "lon":  0.01},
@@ -143,6 +165,8 @@ def test_relation_containment_excludes_inner_hole(mock_post, _):
         {"lat":  0.001, "lon":  0.001},
         {"lat":  0.001, "lon": -0.001},
     ]
+    mock_is_server_alive.return_value = True
+    mock_fetch_overpass_wait_time.return_value = 0
     mock_post.return_value = mock_post_with({
         "elements": [{
             "type": "relation",
@@ -159,7 +183,11 @@ def test_relation_containment_excludes_inner_hole(mock_post, _):
 
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.time.sleep")
 @patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.requests.post")
-def test_node_prefixed_near(mock_post, _):
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.fetch_overpass_wait_time")
+@patch("process_photos.generate_gallery.identify_location.identify_pois.identify_pois.is_server_alive")
+def test_node_prefixed_near(mock_is_server_alive, mock_fetch_overpass_wait_time, mock_post, _):
+    mock_is_server_alive.return_value = True
+    mock_fetch_overpass_wait_time.return_value = 0
     mock_post.return_value = mock_post_with({
         "elements": [{
             "type": "node",
