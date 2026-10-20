@@ -1,3 +1,6 @@
+from asyncio import subprocess
+from sys import platform
+
 from colorist import BrightColor
 from datetime import datetime, timezone
 import math
@@ -9,7 +12,34 @@ from tqdm import tqdm
 from .haversine import haversine
 from .safe_polygon_from_coords import safe_polygon_from_coords
 
-def fetch_overpass_wait_time(headers, state={"delay": 1}):
+overpass_roots = ["https://overpass-api.de/api/", "https://maps.mail.ru/osm/tools/overpass/api/", "https://overpass.private.coffee/api/"]
+overpass_headers = {
+    "User-Agent": "Photo Metadata Script (forrest@geekofalltrades.org)",
+    "Accept": "application/json"
+}
+
+def is_server_alive(base_url):
+    """Checks if a server is alive by sending a HEAD request.
+
+    Args:
+        base_url (str): The base URL of the server to check.
+        headers (dict): The headers to include in the request.
+
+    Returns:
+        bool: True if the server is alive, False otherwise.
+    """
+    try:
+        response = requests.head(f"{base_url}interpreter", headers=overpass_headers, timeout=3.0)
+        if response.status_code != 200:
+                tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} {base_url} responds with status {response.status_code}")
+                return False
+        tqdm.write(f"{BrightColor.GREEN}[OSM]{BrightColor.OFF} {base_url} responds with status {response.status_code}")
+        return True
+    except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
+        tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} {base_url} is not responding within 3 seconds.")
+        return False
+
+def fetch_overpass_wait_time(overpass_root, state={"delay": 1}):
     """Queries the Overpass status endpoint and returns the required wait time in seconds.
 
     Args:
@@ -22,10 +52,10 @@ def fetch_overpass_wait_time(headers, state={"delay": 1}):
         requests.exceptions.RequestException: If the request fails.
         ValueError: If the required wait time is less than the minimum delay.
     """
-    status_url = "https://overpass-api.de/api/status"
+    status_url = f"{overpass_root}status"
 
     try:
-        response = requests.get(status_url, headers=headers, timeout=10)
+        response = requests.get(status_url, headers=overpass_headers, timeout=10)
         response.raise_for_status()
         status_text = response.text
 
@@ -49,18 +79,15 @@ def fetch_overpass_wait_time(headers, state={"delay": 1}):
             time_remaining = math.ceil(max(1, (available_time - now).total_seconds()))
 
             # Return calculated delay, but never drop below your baseline minimum
-            tqdm.write(f"{BrightColor.MAGENTA}[OSM]{BrightColor.OFF} Overpass says to wait {time_remaining} seconds before next request.")
+            tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Overpass says to wait {time_remaining} seconds before next request.")
             return time_remaining
 
     except Exception as e:
         # Fallback if the status endpoint itself times out or fails
-        tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Overpass could not check status ({e}). Doubling delay for safety.")
-        state["delay"] = max(1,state["delay"] * 2)
-        return state["delay"]
+        raise RuntimeError(f"Could not check Overpass status: {e}")
 
     # No "Slot available after" string found means a slot is free right now
-    tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Overpass gives no wait time!")
-    return 0
+    tqdm.write(f"{BrightColor.GREEN}[OSM]{BrightColor.OFF} Overpass gives no wait time!")
     return 0
 
 def overpass_request(query, state={"delay": 1}, max_retries=5):
@@ -79,21 +106,23 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
     Raises:
         RuntimeError: If all retries are exhausted.
     """
-    overpass_url = "https://overpass-api.de/api/interpreter"
-    headers = {
-        "User-Agent": "Photo Metadata Script (forrest@geekofalltrades.org)",
-        "Accept": "application/json"
-    }
-
+    overpass_root = None
+    for root in overpass_roots:
+        if is_server_alive(root):
+            tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Using Overpass server: {root}")
+            overpass_root = root
+            break
+    if not overpass_root:
+        raise RuntimeError("No available Overpass server found.")
     for attempt in range(max_retries):
         try:
-            state["delay"] = fetch_overpass_wait_time(headers, state)
-            tqdm.write(f"{BrightColor.MAGENTA}[OSM]{BrightColor.OFF} Overpass attempt {attempt+1}/{max_retries} @ {datetime.now().time().replace(microsecond=0)} {('waiting ' + state['delay'] + 's before query...') if state['delay'] > 0 else 'running immediately...'}")
+            state["delay"] = fetch_overpass_wait_time(overpass_root, state)
+            tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Overpass attempt {attempt+1}/{max_retries} @ {datetime.now().time().replace(microsecond=0)} {('waiting ' + str(state['delay']) + 's before query...') if state['delay'] > 0 else 'running immediately...'}")
             time.sleep(state["delay"])
             response = requests.post(
-                overpass_url,
+                f"{overpass_root}interpreter",
                 data={"data": query},
-                headers=headers,
+                headers=overpass_headers,
                 timeout=30
             )
             if response.status_code is int and response.status_code != 200:
@@ -106,7 +135,7 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
         except Exception as e:
             tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Overpass error on attempt {attempt + 1}: {e}")
 
-    raise RuntimeError(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Overpass API failed after {max_retries} attempts")
+    raise RuntimeError(f"Overpass failed after {max_retries} attempts")
 
 def identify_pois(lat, lon, state={"delay": 1}):
     """Identify points of interest (POIs) near given GPS coordinates.
@@ -142,9 +171,9 @@ def identify_pois(lat, lon, state={"delay": 1}):
     """
 
     try:
-        data = overpass_request(query, state)
+        data = overpass_request(query, state, 1)
     except RuntimeError as e:
-        tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} OVERPASS ERROR: {e}")
+        tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} {e}")
         return []
 
     elements = data.get("elements", [])
