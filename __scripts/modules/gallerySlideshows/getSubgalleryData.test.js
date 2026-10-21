@@ -1,4 +1,14 @@
-import { describe, expect, it } from "vitest";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import getSubgalleryData from "./getSubgalleryData";
 import { findSubgalleryLink, parseSubgalleryEntries, } from "./getSubgalleryData";
 function createItemFixture(html) {
     const container = document.createElement("div");
@@ -112,5 +122,113 @@ describe("findSubgalleryLink", () => {
         const item = createItemFixture(`<div class="item"><p class="title">No links here</p></div>`);
         expect(findSubgalleryLink(item)).toBeNull();
     });
+});
+describe("getSubgalleryData", () => {
+    let fetchMock;
+    beforeEach(() => {
+        document.body.innerHTML = "";
+        fetchMock = vi.fn();
+        vi.stubGlobal("fetch", fetchMock);
+    });
+    afterEach(() => {
+        vi.unstubAllGlobals();
+    });
+    function createLinkedItem() {
+        return createItemFixture(`
+      <div class="item">
+        <p class="more"><a href="/photos/2026/09/04">More</a></p>
+        <a class="cover" href="?display=current.jpeg&title=Current">Cover</a>
+      </div>
+    `);
+    }
+    function successfulResponse(html) {
+        return {
+            ok: true,
+            status: 200,
+            statusText: "OK",
+            text: vi.fn().mockResolvedValue(html),
+        };
+    }
+    it("fetches a linked subgallery with a trailing slash and caches parsed entries", () => __awaiter(void 0, void 0, void 0, function* () {
+        const html = `
+      <div class="gallery"><div class="item">
+        <p class="title">A bird</p>
+        <img src="thumb.jpeg" alt="Bird">
+        <a class="cover" href="?display=full.jpeg&title=A+bird">View</a>
+      </div></div>
+    `;
+        fetchMock.mockResolvedValue(successfulResponse(html));
+        const item = createLinkedItem();
+        const firstResult = yield getSubgalleryData(item);
+        const secondResult = yield getSubgalleryData(item);
+        expect(fetchMock).toHaveBeenCalledOnce();
+        expect(fetchMock).toHaveBeenCalledWith("http://localhost:3000/photos/2026/09/04/");
+        expect(firstResult).toEqual([{
+                title: "A bird",
+                description: "",
+                imgSrc: "http://localhost:3000/photos/2026/09/04/thumb.jpeg",
+                imgAlt: "Bird",
+                fullImageSrc: "http://localhost:3000/photos/2026/09/04/full.jpeg",
+                coverTitle: "A bird",
+            }]);
+        expect(secondResult).toEqual(firstResult);
+    }));
+    it("caches a successful empty subgallery rather than fetching it again", () => __awaiter(void 0, void 0, void 0, function* () {
+        fetchMock.mockResolvedValue(successfulResponse("<main><p>No gallery items</p></main>"));
+        const item = createLinkedItem();
+        yield expect(getSubgalleryData(item)).resolves.toEqual([]);
+        yield expect(getSubgalleryData(item)).resolves.toEqual([]);
+        expect(fetchMock).toHaveBeenCalledOnce();
+    }));
+    it("skips one retry cycle after a transient failure, then caches the recovery", () => __awaiter(void 0, void 0, void 0, function* () {
+        const html = `<div class="gallery"><div class="item"><img src="ok.jpeg" alt="OK"></div></div>`;
+        fetchMock
+            .mockRejectedValueOnce(new Error("network unavailable"))
+            .mockResolvedValueOnce(successfulResponse(html));
+        const item = createLinkedItem();
+        // Initial failure: next call is skipped once.
+        yield expect(getSubgalleryData(item)).resolves.toEqual([]);
+        yield expect(getSubgalleryData(item)).resolves.toEqual([]);
+        expect(fetchMock).toHaveBeenCalledTimes(1);
+        // Retry succeeds and caches the result, so the later call does not fetch.
+        yield expect(getSubgalleryData(item)).resolves.toHaveLength(1);
+        yield expect(getSubgalleryData(item)).resolves.toHaveLength(1);
+        expect(fetchMock).toHaveBeenCalledTimes(2);
+    }));
+    it("increases the backoff after a second failed attempt", () => __awaiter(void 0, void 0, void 0, function* () {
+        fetchMock
+            .mockRejectedValueOnce(new Error("first failure"))
+            .mockRejectedValueOnce(new Error("second failure"))
+            .mockResolvedValueOnce(successfulResponse(`<div class="gallery"><div class="item"><img src="ok.jpeg"></div></div>`));
+        const item = createLinkedItem();
+        yield getSubgalleryData(item); // Fail; skip one call.
+        yield getSubgalleryData(item); // Skipped.
+        yield getSubgalleryData(item); // Fail again; skip two calls.
+        yield getSubgalleryData(item); // Skipped.
+        yield getSubgalleryData(item); // Skipped.
+        const result = yield getSubgalleryData(item); // Retry.
+        expect(fetchMock).toHaveBeenCalledTimes(3);
+        expect(result).toHaveLength(1);
+    }));
+    it("returns and caches an empty result when no subgallery link is usable", () => __awaiter(void 0, void 0, void 0, function* () {
+        const item = createItemFixture(`
+      <div class="item"><a class="cover" href="?display=photo.jpeg&title=Photo">View</a></div>
+    `);
+        yield expect(getSubgalleryData(item)).resolves.toEqual([]);
+        yield expect(getSubgalleryData(item)).resolves.toEqual([]);
+        expect(fetchMock).not.toHaveBeenCalled();
+    }));
+    it("treats a non-OK HTTP response as a failed fetch and applies backoff", () => __awaiter(void 0, void 0, void 0, function* () {
+        fetchMock.mockResolvedValueOnce({
+            ok: false,
+            status: 404,
+            statusText: "Not Found",
+            text: vi.fn(),
+        });
+        const item = createLinkedItem();
+        yield expect(getSubgalleryData(item)).resolves.toEqual([]);
+        yield expect(getSubgalleryData(item)).resolves.toEqual([]);
+        expect(fetchMock).toHaveBeenCalledOnce();
+    }));
 });
 //# sourceMappingURL=getSubgalleryData.test.js.map

@@ -149,3 +149,125 @@ describe("hydrateBreadcrumbs", () => {
     expect(slideDown).not.toHaveBeenCalled();
   });
 });
+
+async function flushMicrotasks(): Promise<void> {
+  for (let i = 0; i < 8; i += 1) await Promise.resolve();
+}
+
+describe("hydrateBreadcrumbs hover transitions", () => {
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <header><nav>
+        <a class="current">One</a><ul></ul>
+        <a>Two</a><ul></ul>
+      </nav></header>
+    `;
+    vi.clearAllMocks();
+    (getBreakpoint as MockedFunction<typeof getBreakpoint>).mockReturnValue(
+      768,
+    );
+    (getDuration as MockedFunction<typeof getDuration>).mockReturnValue(100);
+    Object.defineProperty(window, "innerWidth", {
+      value: 1024,
+      configurable: true,
+    });
+  });
+
+  it("does not change breadcrumb state below the breakpoint", () => {
+    Object.defineProperty(window, "innerWidth", {
+      value: 500,
+      configurable: true,
+    });
+
+    const breadcrumbs = document.querySelectorAll("header > nav > a");
+    const first = breadcrumbs[0];
+    const second = breadcrumbs[1];
+
+    hydrateBreadcrumbs();
+    second.dispatchEvent(new MouseEvent("mouseenter"));
+
+    // Hovering below the breakpoint must not change either breadcrumb.
+    expect(first.classList.contains("current")).toBe(true);
+    expect(second.classList.contains("current")).toBe(false);
+
+    expect(delay).not.toHaveBeenCalled();
+    expect(slideUp).not.toHaveBeenCalled();
+    expect(slideDown).not.toHaveBeenCalled();
+  });
+
+  it("does not switch subnavs when the pointer enters a breadcrumb from its own subnav", async () => {
+    const breadcrumbs = document.querySelectorAll("header > nav > a");
+    const first = breadcrumbs[0];
+    const firstSubnav = first.nextElementSibling as HTMLElement;
+    firstSubnav.style.display = "none";
+
+    hydrateBreadcrumbs();
+    first.dispatchEvent(
+      new MouseEvent("mouseenter", { relatedTarget: firstSubnav }),
+    );
+    await flushMicrotasks();
+
+    expect(slideUp).not.toHaveBeenCalled();
+    expect(slideDown).not.toHaveBeenCalled();
+  });
+
+  it("returns to the last subnav when the pointer leaves a breadcrumb and no dropdown is active", async () => {
+    const breadcrumbs = document.querySelectorAll("header > nav > a");
+    const first = breadcrumbs[0];
+    const firstSubnav = first.nextElementSibling as HTMLElement;
+    const lastSubnav = breadcrumbs[1].nextElementSibling as HTMLElement;
+    lastSubnav.style.display = "none";
+
+    hydrateBreadcrumbs();
+    const outside = document.createElement("div");
+    first.dispatchEvent(
+      new MouseEvent("mouseleave", { relatedTarget: outside }),
+    );
+    await flushMicrotasks();
+
+    expect(first.classList.contains("current")).toBe(false);
+    expect(slideUp).toHaveBeenCalledWith(firstSubnav);
+    expect(slideDown).toHaveBeenCalledWith(lastSubnav);
+  });
+
+  it("keeps the current breadcrumb when a dropdown is active", async () => {
+    const nav = document.querySelector("header > nav")!;
+    nav.insertAdjacentHTML("beforeend", '<ul><li class="active"></li></ul>');
+    const breadcrumbs = document.querySelectorAll("header > nav > a");
+    const first = breadcrumbs[0];
+    const lastSubnav = breadcrumbs[1].nextElementSibling as HTMLElement;
+    lastSubnav.style.display = "none";
+
+    hydrateBreadcrumbs();
+    first.dispatchEvent(
+      new MouseEvent("mouseleave", {
+        relatedTarget: document.createElement("div"),
+      }),
+    );
+    await flushMicrotasks();
+
+    expect(first.classList.contains("current")).toBe(true);
+    expect(slideDown).not.toHaveBeenCalledWith(lastSubnav);
+  });
+
+  it("returns to the last subnav when the pointer leaves a subnav itself", async () => {
+    const breadcrumbs = document.querySelectorAll("header > nav > a");
+    const first = breadcrumbs[0];
+    const firstSubnav = first.nextElementSibling as HTMLElement;
+    const lastSubnav = breadcrumbs[1].nextElementSibling as HTMLElement;
+    lastSubnav.style.display = "none";
+
+    hydrateBreadcrumbs();
+    first.classList.add("current");
+    firstSubnav.dispatchEvent(
+      new MouseEvent("mouseleave", {
+        relatedTarget: document.createElement("div"),
+      }),
+    );
+    await flushMicrotasks();
+
+    expect(first.classList.contains("current")).toBe(false);
+    expect(slideUp).toHaveBeenCalledWith(firstSubnav);
+    expect(slideDown).toHaveBeenCalledWith(lastSubnav);
+  });
+});

@@ -84,9 +84,11 @@ function getNextEntry(item, subgalleryEntries) {
     var _a;
     const previousIndex = (_a = currentEntryIndices.get(item)) !== null && _a !== void 0 ? _a : -1;
     const randomIndex = Math.round(Math.random() * subgalleryEntries.length);
-    const nextIndex = (randomIndex !== previousIndex
+    const candidateIndex = randomIndex !== previousIndex
         ? randomIndex
-        : previousIndex + (Math.random() < 0.5 ? -1 : 1)) %
+        : previousIndex + (Math.random() < 0.5 ? -1 : 1);
+    // JavaScript's remainder can be negative, so normalize after wrapping.
+    const nextIndex = ((candidateIndex % subgalleryEntries.length) + subgalleryEntries.length) %
         subgalleryEntries.length;
     currentEntryIndices.set(item, nextIndex);
     return subgalleryEntries[nextIndex];

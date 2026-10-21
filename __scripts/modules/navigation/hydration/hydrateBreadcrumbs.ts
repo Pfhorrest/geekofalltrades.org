@@ -71,6 +71,10 @@ export const hydrateBreadcrumbs = (): void => {
       const thisSubnav = nextSibling as MousyHTMLElement;
       // Listen for when the mouse enters the breadcrumb
       breadcrumb.addEventListener("mouseenter", async (e: MouseEvent) => {
+        // Breadcrumb hover behavior is only active above the breakpoint.
+        if (window.innerWidth < breakpoint) {
+          return;
+        }
         // Mark that the mouse is in the breadcrumb
         breadcrumb.mouseIn = true;
         // Add 'current' class to this breadcrumb
@@ -82,15 +86,13 @@ export const hydrateBreadcrumbs = (): void => {
           }
         });
         // console.log(`Mouse entered breadcrumb '${breadcrumb.innerText}'`);
-        if (window.innerWidth >= breakpoint) {
-          // If we're above the breakpoint, wait the hover delay then...
-          await delay(hoverDelayDuration);
-          // If the mouse is still in the breadcrumb,
-          // and didn't just come in from its subnav...
-          if (e.relatedTarget != thisSubnav && breadcrumb.mouseIn) {
-            // console.log(`switching to '${breadcrumb.innerText}' subnav`);
-            switchSubnav(thisSubnav);
-          }
+        // Wait the hover delay, then...
+        await delay(hoverDelayDuration);
+        // If the mouse is still in the breadcrumb,
+        // and didn't just come in from its subnav...
+        if (e.relatedTarget != thisSubnav && breadcrumb.mouseIn) {
+          // console.log(`switching to '${breadcrumb.innerText}' subnav`);
+          switchSubnav(thisSubnav);
         }
       });
       // Listen for when the mouse leaves the breadcrumb

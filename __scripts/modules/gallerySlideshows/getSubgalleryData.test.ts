@@ -1,4 +1,5 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import getSubgalleryData from "./getSubgalleryData";
 import {
   findSubgalleryLink,
   parseSubgalleryEntries,
@@ -166,5 +167,137 @@ describe("findSubgalleryLink", () => {
     );
 
     expect(findSubgalleryLink(item)).toBeNull();
+  });
+});
+
+
+describe("getSubgalleryData", () => {
+  let fetchMock: ReturnType<typeof vi.fn>;
+
+  beforeEach(() => {
+    document.body.innerHTML = "";
+    fetchMock = vi.fn();
+    vi.stubGlobal("fetch", fetchMock);
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  function createLinkedItem(): HTMLElement {
+    return createItemFixture(`
+      <div class="item">
+        <p class="more"><a href="/photos/2026/09/04">More</a></p>
+        <a class="cover" href="?display=current.jpeg&title=Current">Cover</a>
+      </div>
+    `);
+  }
+
+  function successfulResponse(html: string) {
+    return {
+      ok: true,
+      status: 200,
+      statusText: "OK",
+      text: vi.fn().mockResolvedValue(html),
+    };
+  }
+
+  it("fetches a linked subgallery with a trailing slash and caches parsed entries", async () => {
+    const html = `
+      <div class="gallery"><div class="item">
+        <p class="title">A bird</p>
+        <img src="thumb.jpeg" alt="Bird">
+        <a class="cover" href="?display=full.jpeg&title=A+bird">View</a>
+      </div></div>
+    `;
+    fetchMock.mockResolvedValue(successfulResponse(html));
+    const item = createLinkedItem();
+
+    const firstResult = await getSubgalleryData(item);
+    const secondResult = await getSubgalleryData(item);
+
+    expect(fetchMock).toHaveBeenCalledOnce();
+    expect(fetchMock).toHaveBeenCalledWith("http://localhost:3000/photos/2026/09/04/");
+    expect(firstResult).toEqual([{
+      title: "A bird",
+      description: "",
+      imgSrc: "http://localhost:3000/photos/2026/09/04/thumb.jpeg",
+      imgAlt: "Bird",
+      fullImageSrc: "http://localhost:3000/photos/2026/09/04/full.jpeg",
+      coverTitle: "A bird",
+    }]);
+    expect(secondResult).toEqual(firstResult);
+  });
+
+  it("caches a successful empty subgallery rather than fetching it again", async () => {
+    fetchMock.mockResolvedValue(successfulResponse("<main><p>No gallery items</p></main>"));
+    const item = createLinkedItem();
+
+    await expect(getSubgalleryData(item)).resolves.toEqual([]);
+    await expect(getSubgalleryData(item)).resolves.toEqual([]);
+
+    expect(fetchMock).toHaveBeenCalledOnce();
+  });
+
+  it("skips one retry cycle after a transient failure, then caches the recovery", async () => {
+    const html = `<div class="gallery"><div class="item"><img src="ok.jpeg" alt="OK"></div></div>`;
+    fetchMock
+      .mockRejectedValueOnce(new Error("network unavailable"))
+      .mockResolvedValueOnce(successfulResponse(html));
+    const item = createLinkedItem();
+
+    // Initial failure: next call is skipped once.
+    await expect(getSubgalleryData(item)).resolves.toEqual([]);
+    await expect(getSubgalleryData(item)).resolves.toEqual([]);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+
+    // Retry succeeds and caches the result, so the later call does not fetch.
+    await expect(getSubgalleryData(item)).resolves.toHaveLength(1);
+    await expect(getSubgalleryData(item)).resolves.toHaveLength(1);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it("increases the backoff after a second failed attempt", async () => {
+    fetchMock
+      .mockRejectedValueOnce(new Error("first failure"))
+      .mockRejectedValueOnce(new Error("second failure"))
+      .mockResolvedValueOnce(successfulResponse(`<div class="gallery"><div class="item"><img src="ok.jpeg"></div></div>`));
+    const item = createLinkedItem();
+
+    await getSubgalleryData(item); // Fail; skip one call.
+    await getSubgalleryData(item); // Skipped.
+    await getSubgalleryData(item); // Fail again; skip two calls.
+    await getSubgalleryData(item); // Skipped.
+    await getSubgalleryData(item); // Skipped.
+    const result = await getSubgalleryData(item); // Retry.
+
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(result).toHaveLength(1);
+  });
+
+  it("returns and caches an empty result when no subgallery link is usable", async () => {
+    const item = createItemFixture(`
+      <div class="item"><a class="cover" href="?display=photo.jpeg&title=Photo">View</a></div>
+    `);
+
+    await expect(getSubgalleryData(item)).resolves.toEqual([]);
+    await expect(getSubgalleryData(item)).resolves.toEqual([]);
+
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("treats a non-OK HTTP response as a failed fetch and applies backoff", async () => {
+    fetchMock.mockResolvedValueOnce({
+      ok: false,
+      status: 404,
+      statusText: "Not Found",
+      text: vi.fn(),
+    });
+    const item = createLinkedItem();
+
+    await expect(getSubgalleryData(item)).resolves.toEqual([]);
+    await expect(getSubgalleryData(item)).resolves.toEqual([]);
+
+    expect(fetchMock).toHaveBeenCalledOnce();
   });
 });

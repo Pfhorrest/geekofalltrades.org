@@ -223,6 +223,62 @@ describe("themeCssSvg", () => {
     );
   });
 
+  it("rebuilds registered SVGs when the preferred color scheme changes", async () => {
+    const changeListeners: EventListener[] = [];
+    const originalMatchMediaDescriptor = Object.getOwnPropertyDescriptor(window, "matchMedia");
+
+    Object.defineProperty(window, "matchMedia", {
+      configurable: true,
+      value: vi.fn(() => ({
+        addEventListener: (_eventName: string, listener: EventListener) => {
+          changeListeners.push(listener);
+        },
+      })),
+    });
+    vi.stubGlobal("requestAnimationFrame", (callback: FrameRequestCallback): number => {
+      callback(0);
+      return 1;
+    });
+
+    try {
+      const element = addTarget("h1");
+      const variable = "--h1-background-flames-smaller-radial-gradient-end-stop-color";
+      const { themeCssSvg } = await importThemeCssSvg();
+
+      themeCssSvg(element, "background");
+      await waitForDataUrl(element);
+
+      const originalDataUrl = getDataUrl(element);
+      expect(
+        parseDataUrlSvg(originalDataUrl)
+          .querySelector("#radial-gradient-end")
+          ?.getAttribute("stop-color")
+      ).toBe("#663300");
+
+      // A theme change should re-resolve the already-registered SVG against the
+      // consuming element's current custom property value.
+      element.style.setProperty(variable, "#abcdef");
+      expect(changeListeners).toHaveLength(1);
+      changeListeners[0](new Event("change"));
+
+      await vi.waitFor(() => {
+        const refreshedDataUrl = getDataUrl(element);
+        expect(refreshedDataUrl).not.toBe(originalDataUrl);
+        expect(
+          parseDataUrlSvg(refreshedDataUrl)
+            .querySelector("#radial-gradient-end")
+            ?.getAttribute("stop-color")
+        ).toBe("#abcdef");
+      });
+    } finally {
+      if (originalMatchMediaDescriptor) {
+        Object.defineProperty(window, "matchMedia", originalMatchMediaDescriptor);
+      } else {
+        Reflect.deleteProperty(window, "matchMedia");
+      }
+    }
+  });
+
   it("fetches a shared SVG only once when used by multiple targets", async () => {
     const heading = addTarget("h1");
     const paragraph = addTarget("p");
