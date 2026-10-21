@@ -16,7 +16,7 @@
     "stage:photos": "rsync -azh --progress --partial --delete --exclude 'process_photos/' photos/ goat:~/dev.geekofalltrades.org/photos/ && echo 'Photos synced to stage.'",
     "watch:photos": "bash scripts/watch-photos.sh",
     "test:php": "php vendor/bin/phpunit --display-warnings --display-notices",
-    "test:ts": "vitest --run",
+    "test:ts": "vitest --run --coverage",
     "test:py": "cd photos && . process_photos/.venv/bin/activate && PYTHONPATH=. pytest process_photos/tests",
     "test": "npx npm-run-all --parallel test:*",
     "process:sass": "sass __styles/styles.scss:__styles/styles.css",
