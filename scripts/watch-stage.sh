@@ -36,7 +36,9 @@ watching_message
 # script restarts, the next check just runs one deploy pass against
 # whatever's current, which is a harmless no-op if nothing's actually new.
 last_seen_sha=""
+
 while true; do
+  sleep "$POLL_INTERVAL"
   current_sha="$(git ls-remote origin refs/heads/main 2>/dev/null | cut -f1)"
   if [[ -n "$current_sha" && "$current_sha" != "$last_seen_sha" ]]; then
     echo "New push detected (${current_sha:0:7}) — running safe stage deploy..."
@@ -48,5 +50,4 @@ while true; do
     watching_message
     last_seen_sha="$current_sha"
   fi
-  sleep "$POLL_INTERVAL"
 done
