@@ -1,4 +1,5 @@
-from .process_photos import process_photos
+from .process_photos import process_photos, parse_arguments
 
 if __name__ == "__main__":
-    process_photos()
+    cli_args = parse_arguments()
+    process_photos(cli_args)

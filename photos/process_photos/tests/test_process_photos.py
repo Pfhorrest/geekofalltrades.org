@@ -1,6 +1,6 @@
 from unittest.mock import patch
 from unittest.mock import MagicMock
-from process_photos.process_photos import process_photos
+from process_photos.process_photos import process_photos, parse_arguments
 from process_photos import config # For package_dir
 
 
@@ -26,7 +26,7 @@ def test_thumbnail_created(mock_walk, mock_image, isolated_base_dir):
     img.size = (4000, 3000)
     mock_image.return_value.__enter__.return_value = img
 
-    process_photos()
+    process_photos(parse_arguments(["--retroactive"]))
 
     assert img.thumbnail.called
 
@@ -50,7 +50,7 @@ def test_generate_gallery_called(mock_walk, mock_gallery, mock_image, isolated_b
 
     mock_gallery.return_value = [{"filename": "a.jpg"}]
 
-    process_photos()
+    process_photos(parse_arguments(["--retroactive"]))
 
     mock_gallery.assert_called_once_with(gallery_dir, {"delay": 1})
 
@@ -100,7 +100,7 @@ def test_existing_images_resorted(mock_walk, mock_exif, mock_parse, isolated_bas
 
     mock_exif.return_value = {"timestamp": None}
 
-    process_photos()
+    process_photos(parse_arguments(["--retroactive"]))
 
     # If it got here without crashing, sorting logic worked
 
