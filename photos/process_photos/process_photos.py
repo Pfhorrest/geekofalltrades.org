@@ -45,12 +45,12 @@ def process_photos(args=None):
     # Sort by depth (deepest first)
     walk_data.sort(key=lambda x: len(Path(x[0]).parts), reverse=True)
 
-    for dirpath, _, filenames in tqdm(walk_data, desc="Processing folders", unit="folder"):
+    for dirpath, _, filenames in tqdm(walk_data, desc="Processing folders", unit="folder", file=sys.stdout):
         dirpath = Path(dirpath)
         relpath = dirpath.relative_to(config.base_dir)
 
         # -- MAKE THUMBNAILS --
-        for filename in tqdm(filenames, desc=f"Thumbnails in {relpath}", unit="file", leave=False):
+        for filename in tqdm(filenames, desc=f"Thumbnails in {relpath}", unit="file", leave=False, file=sys.stdout):
             filename = Path(filename)
             filepath = dirpath / filename
             relfile = filepath.relative_to(config.base_dir)
@@ -214,7 +214,7 @@ def process_photos(args=None):
                         # Try to build from children if month/year folder
                         subimages = []
                         tqdm.write(f"Building gallery from children of {relpath}:")
-                        for sub in tqdm(sorted(dirpath.iterdir(), reverse=True), desc=f"Child folders in {relpath}", unit="folder", leave=False):
+                        for sub in tqdm(sorted(dirpath.iterdir(), reverse=True), desc=f"Child folders in {relpath}", unit="folder", leave=False, file=sys.stdout):
                             if not sub.is_dir() or not sub.name.isdigit():
                                 continue
                             sub_main = sub / "__main.php"
@@ -256,7 +256,7 @@ def process_photos(args=None):
                     php_array_str = ""
                     if images:
                         php_array_str = "$images = array(\n"
-                        for img in tqdm(images, desc=f"Writing images array for {relmain}", unit="img", leave=False):
+                        for img in tqdm(images, desc=f"Writing images array for {relmain}", unit="img", leave=False, file=sys.stdout):
                             php_array_str += "\t\t\tarray(\n"
                             for key, val in img.items():
                                 php_array_str += f"\t\t\t\t'{key}' => '{php_escape(val)}',\n"
@@ -308,7 +308,7 @@ def process_photos(args=None):
                             list: Sorted list of image dictionaries.
                         """
                         sort_data = []
-                        for img in tqdm(images, desc=f"Resorting images in {relpath}", unit="img", leave=False):
+                        for img in tqdm(images, desc=f"Resorting images in {relpath}", unit="img", leave=False, file=sys.stdout):
                             fn = img.get("filename", "")
                             path_parts = fn.split("/")
                             path_key = []
@@ -392,7 +392,7 @@ def process_photos(args=None):
                                 )
                             else:
                                 php_array_str = "$images = array(\n"
-                                for img in tqdm(sorted_images, desc=f"Writing sorted images for {relmain}", unit="img", leave=False):
+                                for img in tqdm(sorted_images, desc=f"Writing sorted images for {relmain}", unit="img", leave=False, file=sys.stdout):
                                     php_array_str += "\t\t\tarray(\n"
                                     for key, val in img.items():
                                         php_array_str += f"\t\t\t\t'{key}' => '{php_escape(val)}',\n"
