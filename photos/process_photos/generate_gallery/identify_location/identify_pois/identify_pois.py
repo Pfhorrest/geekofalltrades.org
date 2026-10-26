@@ -12,32 +12,11 @@ from tqdm import tqdm
 from .haversine import haversine
 from .safe_polygon_from_coords import safe_polygon_from_coords
 
-overpass_roots = ["https://overpass-api.de/api/", "https://maps.mail.ru/osm/tools/overpass/api/", "https://overpass.private.coffee/api/"]
+overpass_roots = ["http://localhost:23456/api/", "https://overpass-api.de/api/", "https://maps.mail.ru/osm/tools/overpass/api/", "https://overpass.private.coffee/api/"]
 overpass_headers = {
     "User-Agent": "Photo Metadata Script (forrest@geekofalltrades.org)",
     "Accept": "application/json"
 }
-
-def is_server_alive(base_url):
-    """Checks if a server is alive by sending a HEAD request.
-
-    Args:
-        base_url (str): The base URL of the server to check.
-        headers (dict): The headers to include in the request.
-
-    Returns:
-        bool: True if the server is alive, False otherwise.
-    """
-    try:
-        response = requests.head(f"{base_url}interpreter", headers=overpass_headers, timeout=3.0)
-        if response.status_code != 200:
-                tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} {base_url} responds with status {response.status_code}")
-                return False
-        tqdm.write(f"{BrightColor.GREEN}[OSM]{BrightColor.OFF} {base_url} responds with status {response.status_code}")
-        return True
-    except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
-        tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} {base_url} is not responding within 3 seconds.")
-        return False
 
 def fetch_overpass_wait_time(overpass_root, state={"delay": 1}):
     """Queries the Overpass status endpoint and returns the required wait time in seconds.
@@ -78,7 +57,7 @@ def fetch_overpass_wait_time(overpass_root, state={"delay": 1}):
             # Calculate seconds remaining
             time_remaining = math.ceil(max(1, (available_time - now).total_seconds()))
 
-            # Return calculated delay, but never drop below your baseline minimum
+            # Return calculated delay, but never drop below baseline minimum
             tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Overpass says to wait {time_remaining} seconds before next request.")
             return time_remaining
 
@@ -87,7 +66,7 @@ def fetch_overpass_wait_time(overpass_root, state={"delay": 1}):
         raise RuntimeError(f"Could not check Overpass status: {e}")
 
     # No "Slot available after" string found means a slot is free right now
-    tqdm.write(f"{BrightColor.GREEN}[OSM]{BrightColor.OFF} Overpass gives no wait time!")
+    tqdm.write(f"{BrightColor.GREEN}[OSM]{BrightColor.OFF} Overpass server {overpass_root} gives no wait time!")
     return 0
 
 def overpass_request(query, state={"delay": 1}, max_retries=5):
@@ -108,15 +87,17 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
     """
     overpass_root = None
     for root in overpass_roots:
-        if is_server_alive(root):
+        try:
+            state["delay"] = fetch_overpass_wait_time(root, state)
             tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Using Overpass server: {root}")
             overpass_root = root
             break
+        except Exception as e:
+            tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Error checking {root}status: {e}")
     if not overpass_root:
         raise RuntimeError("No available Overpass server found.")
     for attempt in range(max_retries):
         try:
-            state["delay"] = fetch_overpass_wait_time(overpass_root, state)
             tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Overpass attempt {attempt+1}/{max_retries} @ {datetime.now().time().replace(microsecond=0)} {('waiting ' + str(state['delay']) + 's before query...') if state['delay'] > 0 else 'running immediately...'}")
             time.sleep(state["delay"])
             response = requests.post(
@@ -125,7 +106,7 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
                 headers=overpass_headers,
                 timeout=30
             )
-            if response.status_code is int and response.status_code != 200:
+            if isinstance(response.status_code, int) and response.status_code != 200:
                 tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Overpass server error ({response.status_code}), retrying after delay...")
                 continue
             response.raise_for_status()
