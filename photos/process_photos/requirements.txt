@@ -8,6 +8,7 @@ requests
 astral
 timezonefinder
 colorist
+tldextract
 browser_cookie3
 
 # Use 4.40.2 globally to ensure compatibility with Torch 2.2.2 on Intel Macs
