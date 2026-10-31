@@ -68,7 +68,7 @@ def fetch_overpass_wait_time(overpass_root):
         raise RuntimeError(f"{e}")
 
     # No "Slot available after" string found means a slot is free right now
-    tqdm.write(f"{BrightColor.GREEN}[OSM]{BrightColor.OFF} Overpass server {root_domain} gives no wait time!")
+    tqdm.write(f"{BrightColor.GREEN}[OSM]{BrightColor.OFF} Overpass server at {root_domain} gives no wait time!")
     return 0
 
 def overpass_request(query, state={"delay": 1}, max_retries=5):
@@ -97,7 +97,7 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
                     overpass_root = root
                     root_extract = tldextract.extract(overpass_root)
                     root_domain = root_extract.top_domain_under_public_suffix or root_extract.domain
-                    tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Trying {root_domain} Overpass {('in ' + str(state['delay']) + 's...') if state['delay'] > 0 else 'immediately...'}")
+                    tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Trying Overpass at {root_domain} {('in ' + str(state['delay']) + 's...') if state['delay'] > 0 else 'immediately...'}")
                     time.sleep(state["delay"])
                     response = requests.post(
                         f"{overpass_root}interpreter",
@@ -111,13 +111,15 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
                     data = response.json()
                     elements = data.get("elements", [])
                     if len(elements) == 0:
-                        raise RuntimeError(f"No elements found on {root_domain} Overpass")
+                        raise RuntimeError(f"No elements found on Overpass at {root_domain}")
                     return elements
                 except requests.exceptions.Timeout:
-                    tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Timeout on {root_domain} Overpass, trying next server...")
+                    tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Timeout on Overpass at {root_domain}")
+                    tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Checking next server...")
                     continue
                 except Exception as e:
-                    tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} {e}; trying next server...")
+                    tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} {e}")
+                    tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Checking next server...")
                     continue
             if not overpass_root:
                 raise RuntimeError("No available Overpass server found.")
