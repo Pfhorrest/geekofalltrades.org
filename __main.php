@@ -65,7 +65,7 @@
 		</div>
 		<div class="item">
 			<p class="title">Photography</p>
-			<img src="/photos/2026/02/14/IMG_6845-thumb.jpeg" alt="" />
+			<img src="/photos/2026/10/29/IMG_4795-thumb.jpeg" alt="" />
 			<p class="description">Examples of my photography, mostly of natural landscapes.</p>
 			<a class="cover" href="photos">View photography portfolio</a>
 		</div>
