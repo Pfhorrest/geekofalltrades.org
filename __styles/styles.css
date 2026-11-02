@@ -2258,6 +2258,7 @@ main section .gallery.expansive {
   main section .gallery.expansive {
     /* Layout */
     justify-content: center;
+    justify-items: center;
     /* Sizing */
     box-sizing: border-box;
     width: 100vw;
