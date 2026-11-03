@@ -8,12 +8,11 @@
 ///  - General styles for galleries
 
 @mixin gallery-expansive {
-  &.expansive {
+  &.expansive:has(> :nth-child(4)) {
     /* Only applies at larger viewport widths */
     @media (min-width: $bp3) {
       /* Layout */
       justify-content: center;
-      justify-items: center;
 
       /* Sizing */
       box-sizing: border-box;

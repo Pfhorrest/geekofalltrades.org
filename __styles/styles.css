@@ -2251,14 +2251,13 @@ main section .gallery .item a.cover, main section .gallery .item a.cover:hover, 
 main section .gallery {
   /* Styles for galleries that expand beyond the main section width */
 }
-main section .gallery.expansive {
+main section .gallery.expansive:has(> :nth-child(4)) {
   /* Only applies at larger viewport widths */
 }
 @media (min-width: 60rem) {
-  main section .gallery.expansive {
+  main section .gallery.expansive:has(> :nth-child(4)) {
     /* Layout */
     justify-content: center;
-    justify-items: center;
     /* Sizing */
     box-sizing: border-box;
     width: 100vw;
@@ -2270,46 +2269,46 @@ main section .gallery.expansive {
     border-radius: calc(2 * var(--rounding));
     box-shadow: 2pt 2pt 2pt transparent, -2pt -2pt 2pt transparent, 1pt 1pt 0pt transparent inset, -1pt -1pt 0pt transparent inset, 0 0 0 1pt var(--shade) inset;
   }
-  main section .gallery.expansive:hover, main section .gallery.expansive:focus, main section .gallery.expansive:active {
+  main section .gallery.expansive:has(> :nth-child(4)):hover, main section .gallery.expansive:has(> :nth-child(4)):focus, main section .gallery.expansive:has(> :nth-child(4)):active {
     box-shadow: 2pt 2pt 2pt var(--shade), -2pt -2pt 2pt var(--gloss), 1pt 1pt 0pt var(--gloss) inset, -1pt -1pt 0pt var(--shade) inset, 0 0 0 1pt transparent inset;
   }
-  main section .gallery.expansive {
+  main section .gallery.expansive:has(> :nth-child(4)) {
     /* Background */
     background: radial-gradient(farthest-corner, var(--cbi), var(--cbo));
     /* Gallery item max-width sides multiple, used in max-width below
     (two times nested sections depth spacing, to subtract from max-width) */
     --gimwsm: 2;
   }
-  main section .gallery.expansive section {
+  main section .gallery.expansive:has(> :nth-child(4)) section {
     --gimwsm: 4;
   }
-  main section .gallery.expansive section section {
+  main section .gallery.expansive:has(> :nth-child(4)) section section {
     --gimwsm: 6;
   }
-  main section .gallery.expansive section section section {
+  main section .gallery.expansive:has(> :nth-child(4)) section section section {
     --gimwsm: 8;
   }
-  main section .gallery.expansive section section section section {
+  main section .gallery.expansive:has(> :nth-child(4)) section section section section {
     --gimwsm: 10;
   }
-  main section .gallery.expansive > .item {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item {
     /* Make the last item in a gallery looks contained in the parent section */
     max-width: calc(80ch - var(--gimwsm) * var(--spacing));
     /* Make four-column gallery items transition in with appropriate timing */
   }
-  main section .gallery.expansive > .item:nth-of-type(4n + 1), main section .gallery.expansive > .item:nth-of-type(4n + 1) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(4n + 1), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(4n + 1) * {
     --delB: calc(var(--dur) * 1 / 4);
   }
-  main section .gallery.expansive > .item:nth-of-type(4n + 2), main section .gallery.expansive > .item:nth-of-type(4n + 2) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(4n + 2), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(4n + 2) * {
     --delB: calc(var(--dur) * 2 / 4);
   }
-  main section .gallery.expansive > .item:nth-of-type(4n + 3), main section .gallery.expansive > .item:nth-of-type(4n + 3) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(4n + 3), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(4n + 3) * {
     --delB: calc(var(--dur) * 3 / 4);
   }
-  main section .gallery.expansive > .item:nth-of-type(4n + 0), main section .gallery.expansive > .item:nth-of-type(4n + 0) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(4n + 0), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(4n + 0) * {
     --delB: calc(var(--dur) * 4 / 4);
   }
-  main section .gallery.expansive > .item {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item {
     /* Make five-column gallery items transition in with appropriate timing */
     /* Make six-column gallery items transition in with appropriate timing */
     /* Make seven-column gallery items transition in with appropriate timing */
@@ -2318,117 +2317,117 @@ main section .gallery.expansive {
   }
 }
 @media (min-width: 60rem) and (min-width: 91rem) {
-  main section .gallery.expansive > .item:nth-of-type(5n + 1), main section .gallery.expansive > .item:nth-of-type(5n + 1) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(5n + 1), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(5n + 1) * {
     --delB: calc(var(--dur) * 1 / 5);
   }
-  main section .gallery.expansive > .item:nth-of-type(5n + 2), main section .gallery.expansive > .item:nth-of-type(5n + 2) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(5n + 2), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(5n + 2) * {
     --delB: calc(var(--dur) * 2 / 5);
   }
-  main section .gallery.expansive > .item:nth-of-type(5n + 3), main section .gallery.expansive > .item:nth-of-type(5n + 3) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(5n + 3), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(5n + 3) * {
     --delB: calc(var(--dur) * 3 / 5);
   }
-  main section .gallery.expansive > .item:nth-of-type(5n + 4), main section .gallery.expansive > .item:nth-of-type(5n + 4) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(5n + 4), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(5n + 4) * {
     --delB: calc(var(--dur) * 5 / 5);
   }
-  main section .gallery.expansive > .item:nth-of-type(5n + 0), main section .gallery.expansive > .item:nth-of-type(5n + 0) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(5n + 0), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(5n + 0) * {
     --delB: calc(var(--dur) * 5 / 5);
   }
 }
 @media (min-width: 60rem) and (min-width: 106rem) {
-  main section .gallery.expansive > .item:nth-of-type(6n + 1), main section .gallery.expansive > .item:nth-of-type(6n + 1) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(6n + 1), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(6n + 1) * {
     --delB: calc(var(--dur) * 1 / 6);
   }
-  main section .gallery.expansive > .item:nth-of-type(6n + 2), main section .gallery.expansive > .item:nth-of-type(6n + 2) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(6n + 2), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(6n + 2) * {
     --delB: calc(var(--dur) * 2 / 6);
   }
-  main section .gallery.expansive > .item:nth-of-type(6n + 3), main section .gallery.expansive > .item:nth-of-type(6n + 3) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(6n + 3), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(6n + 3) * {
     --delB: calc(var(--dur) * 3 / 6);
   }
-  main section .gallery.expansive > .item:nth-of-type(6n + 4), main section .gallery.expansive > .item:nth-of-type(6n + 4) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(6n + 4), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(6n + 4) * {
     --delB: calc(var(--dur) * 4 / 6);
   }
-  main section .gallery.expansive > .item:nth-of-type(6n + 5), main section .gallery.expansive > .item:nth-of-type(6n + 5) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(6n + 5), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(6n + 5) * {
     --delB: calc(var(--dur) * 5 / 6);
   }
-  main section .gallery.expansive > .item:nth-of-type(6n + 0), main section .gallery.expansive > .item:nth-of-type(6n + 0) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(6n + 0), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(6n + 0) * {
     --delB: calc(var(--dur) * 6 / 6);
   }
 }
 @media (min-width: 60rem) and (min-width: 120rem) {
-  main section .gallery.expansive > .item:nth-of-type(7n + 1), main section .gallery.expansive > .item:nth-of-type(7n + 1) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 1), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 1) * {
     --delB: calc(var(--dur) * 1 / 7);
   }
-  main section .gallery.expansive > .item:nth-of-type(7n + 2), main section .gallery.expansive > .item:nth-of-type(7n + 2) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 2), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 2) * {
     --delB: calc(var(--dur) * 2 / 7);
   }
-  main section .gallery.expansive > .item:nth-of-type(7n + 3), main section .gallery.expansive > .item:nth-of-type(7n + 3) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 3), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 3) * {
     --delB: calc(var(--dur) * 3 / 7);
   }
-  main section .gallery.expansive > .item:nth-of-type(7n + 4), main section .gallery.expansive > .item:nth-of-type(7n + 4) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 4), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 4) * {
     --delB: calc(var(--dur) * 4 / 7);
   }
-  main section .gallery.expansive > .item:nth-of-type(7n + 5), main section .gallery.expansive > .item:nth-of-type(7n + 5) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 5), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 5) * {
     --delB: calc(var(--dur) * 5 / 7);
   }
-  main section .gallery.expansive > .item:nth-of-type(7n + 6), main section .gallery.expansive > .item:nth-of-type(7n + 6) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 6), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 6) * {
     --delB: calc(var(--dur) * 6 / 7);
   }
-  main section .gallery.expansive > .item:nth-of-type(7n + 0), main section .gallery.expansive > .item:nth-of-type(7n + 0) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 0), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(7n + 0) * {
     --delB: calc(var(--dur) * 7 / 7);
   }
 }
 @media (min-width: 60rem) and (min-width: 137rem) {
-  main section .gallery.expansive > .item:nth-of-type(8n + 1), main section .gallery.expansive > .item:nth-of-type(8n + 1) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 1), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 1) * {
     --delB: calc(var(--dur) * 1 / 8);
   }
-  main section .gallery.expansive > .item:nth-of-type(8n + 2), main section .gallery.expansive > .item:nth-of-type(8n + 2) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 2), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 2) * {
     --delB: calc(var(--dur) * 2 / 8);
   }
-  main section .gallery.expansive > .item:nth-of-type(8n + 3), main section .gallery.expansive > .item:nth-of-type(8n + 3) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 3), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 3) * {
     --delB: calc(var(--dur) * 3 / 8);
   }
-  main section .gallery.expansive > .item:nth-of-type(8n + 4), main section .gallery.expansive > .item:nth-of-type(8n + 4) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 4), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 4) * {
     --delB: calc(var(--dur) * 4 / 8);
   }
-  main section .gallery.expansive > .item:nth-of-type(8n + 5), main section .gallery.expansive > .item:nth-of-type(8n + 5) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 5), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 5) * {
     --delB: calc(var(--dur) * 5 / 8);
   }
-  main section .gallery.expansive > .item:nth-of-type(8n + 6), main section .gallery.expansive > .item:nth-of-type(8n + 6) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 6), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 6) * {
     --delB: calc(var(--dur) * 6 / 8);
   }
-  main section .gallery.expansive > .item:nth-of-type(8n + 7), main section .gallery.expansive > .item:nth-of-type(8n + 7) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 7), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 7) * {
     --delB: calc(var(--dur) * 7 / 8);
   }
-  main section .gallery.expansive > .item:nth-of-type(8n + 0), main section .gallery.expansive > .item:nth-of-type(8n + 0) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 0), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(8n + 0) * {
     --delB: calc(var(--dur) * 8 / 8);
   }
 }
 @media (min-width: 60rem) and (min-width: 152rem) {
-  main section .gallery.expansive > .item:nth-of-type(9n + 1), main section .gallery.expansive > .item:nth-of-type(9n + 1) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 1), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 1) * {
     --delB: calc(var(--dur) * 1 / 9);
   }
-  main section .gallery.expansive > .item:nth-of-type(9n + 2), main section .gallery.expansive > .item:nth-of-type(9n + 2) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 2), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 2) * {
     --delB: calc(var(--dur) * 2 / 9);
   }
-  main section .gallery.expansive > .item:nth-of-type(9n + 3), main section .gallery.expansive > .item:nth-of-type(9n + 3) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 3), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 3) * {
     --delB: calc(var(--dur) * 3 / 9);
   }
-  main section .gallery.expansive > .item:nth-of-type(9n + 4), main section .gallery.expansive > .item:nth-of-type(9n + 4) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 4), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 4) * {
     --delB: calc(var(--dur) * 4 / 9);
   }
-  main section .gallery.expansive > .item:nth-of-type(9n + 5), main section .gallery.expansive > .item:nth-of-type(9n + 5) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 5), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 5) * {
     --delB: calc(var(--dur) * 5 / 9);
   }
-  main section .gallery.expansive > .item:nth-of-type(9n + 6), main section .gallery.expansive > .item:nth-of-type(9n + 6) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 6), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 6) * {
     --delB: calc(var(--dur) * 6 / 9);
   }
-  main section .gallery.expansive > .item:nth-of-type(9n + 7), main section .gallery.expansive > .item:nth-of-type(9n + 7) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 7), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 7) * {
     --delB: calc(var(--dur) * 7 / 9);
   }
-  main section .gallery.expansive > .item:nth-of-type(9n + 8), main section .gallery.expansive > .item:nth-of-type(9n + 8) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 8), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 8) * {
     --delB: calc(var(--dur) * 8 / 9);
   }
-  main section .gallery.expansive > .item:nth-of-type(9n + 0), main section .gallery.expansive > .item:nth-of-type(9n + 0) * {
+  main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 0), main section .gallery.expansive:has(> :nth-child(4)) > .item:nth-of-type(9n + 0) * {
     --delB: calc(var(--dur) * 9 / 9);
   }
 }
