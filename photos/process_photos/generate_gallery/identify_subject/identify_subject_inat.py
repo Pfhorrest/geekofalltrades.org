@@ -4,6 +4,7 @@ import requests
 import io
 from pathlib import Path
 from tqdm import tqdm
+from colorist import BrightColor
 import browser_cookie3
 from ... import config # For INAT_TOKEN_CACHE_FILE
 
@@ -19,7 +20,7 @@ def get_inat_token():
     Returns:
         str: A JWT API token, or None if the token could not be obtained.
     """
-    tqdm.write(f"[NOTICE] Retrieving new iNat token")
+    tqdm.write(f"{BrightColor.BLUE}[NOTICE]{BrightColor.OFF} Retrieving new iNat token")
     cookies = None
     for loader in [browser_cookie3.firefox, browser_cookie3.safari, browser_cookie3.chrome]:
         try:

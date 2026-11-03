@@ -59,7 +59,7 @@ def fetch_overpass_wait_time(overpass_root):
             # Calculate seconds remaining
             time_remaining = math.ceil(max(1, (available_time - now).total_seconds()))
 
-            # Return calculated delay, but never drop below baseline minimum
+            # Return calculated delay
             tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Overpass at {root_domain} says to wait {time_remaining} seconds before next request.")
             return time_remaining
 
@@ -89,7 +89,8 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
     """
     overpass_root = None
     for attempt in range(max_retries):
-        tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Overpass attempt {attempt+1}/{max_retries}")
+        if (max_retries > 1):
+            tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Overpass attempt {attempt+1}/{max_retries}")
         try:
             for root in overpass_roots:
                 try:
@@ -97,7 +98,7 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
                     overpass_root = root
                     root_extract = tldextract.extract(overpass_root)
                     root_domain = root_extract.top_domain_under_public_suffix or root_extract.domain
-                    tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Trying Overpass at {root_domain} {('in ' + str(state['delay']) + 's...') if state['delay'] > 0 else 'immediately...'}")
+                    # tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Trying Overpass at {root_domain} {('in ' + str(state['delay']) + 's...') if state['delay'] > 0 else 'immediately...'}")
                     time.sleep(state["delay"])
                     response = requests.post(
                         f"{overpass_root}interpreter",
@@ -115,18 +116,21 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
                     return elements
                 except requests.exceptions.Timeout:
                     tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Timeout on Overpass at {root_domain}")
-                    tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Checking next server...")
+                    # tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Checking next server...")
                     continue
                 except Exception as e:
                     tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} {e}")
-                    tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Checking next server...")
+                    # tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Checking next server...")
                     continue
             if not overpass_root:
                 raise RuntimeError("No available Overpass server found.")
         except Exception as e:
             tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Attempt {attempt + 1} failed: {e}")
             continue
-    raise RuntimeError(f"Overpass failed after {max_retries} attempts")
+    if (max_retries > 1):
+        raise RuntimeError(f"Overpass failed after {max_retries} attempts")
+    else:
+        raise RuntimeError(f"Overpass failed")
 
 def identify_pois(lat, lon, state={"delay": 1}):
     """Identify points of interest (POIs) near given GPS coordinates.
