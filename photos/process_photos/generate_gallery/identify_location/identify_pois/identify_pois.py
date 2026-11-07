@@ -68,7 +68,7 @@ def fetch_overpass_wait_time(overpass_root):
         raise RuntimeError(f"{e}")
 
     # No "Slot available after" string found means a slot is free right now
-    tqdm.write(f"{BrightColor.GREEN}[OSM]{BrightColor.OFF} Overpass server at {root_domain} gives no wait time!")
+    # tqdm.write(f"{BrightColor.GREEN}[OSM]{BrightColor.OFF} Overpass server at {root_domain} gives no wait time!")
     return 0
 
 def overpass_request(query, state={"delay": 1}, max_retries=5):
