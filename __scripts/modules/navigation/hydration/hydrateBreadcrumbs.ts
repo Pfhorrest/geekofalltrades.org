@@ -26,7 +26,7 @@ export const hydrateBreadcrumbs = (): void => {
   // Get the transition duration of the last subnav
   const transitionDuration = getDuration(lastSubnav);
   // Set the hover delay to twice that
-  const hoverDelayDuration = Math.max(2 * transitionDuration, 100);
+  const hoverDelayDuration = Math.max(2 * transitionDuration, 1000);
   // Extend HTMLElement to add the mouseIn property
   interface MousyHTMLElement extends HTMLElement {
     mouseIn?: boolean;
@@ -110,13 +110,13 @@ export const hydrateBreadcrumbs = (): void => {
           const anOpenDropdown = document.querySelector<HTMLElement>(
             "header > nav > ul > li.active",
           );
-          await delay(hoverDelayDuration);
           if (!breadcrumb.mouseIn && !thisSubnav.mouseIn && !anOpenDropdown) {
             // console.log(
             //   "removing 'current' class from breadcrumb",
             //   `'${breadcrumb.innerText}'`
             // );
             breadcrumb.classList.remove("current");
+            await delay(hoverDelayDuration);
             // And if the mouse isn't in any breadcrumb now, revert to last subnav
             if (
               !Array.from(

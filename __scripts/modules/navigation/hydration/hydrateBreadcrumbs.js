@@ -26,7 +26,7 @@ export const hydrateBreadcrumbs = () => {
     // Get the transition duration of the last subnav
     const transitionDuration = getDuration(lastSubnav);
     // Set the hover delay to twice that
-    const hoverDelayDuration = Math.max(2 * transitionDuration, 100);
+    const hoverDelayDuration = Math.max(2 * transitionDuration, 1000);
     // Resuable function to switch subnavs
     let switchSubnav = (targetSubnav) => __awaiter(void 0, void 0, void 0, function* () {
         // Slide up any open subnavs
@@ -97,13 +97,13 @@ export const hydrateBreadcrumbs = () => {
                     // console.log("...into something other than its subnav, so....");
                     // Check if any dropdowns are open
                     const anOpenDropdown = document.querySelector("header > nav > ul > li.active");
-                    yield delay(hoverDelayDuration);
                     if (!breadcrumb.mouseIn && !thisSubnav.mouseIn && !anOpenDropdown) {
                         // console.log(
                         //   "removing 'current' class from breadcrumb",
                         //   `'${breadcrumb.innerText}'`
                         // );
                         breadcrumb.classList.remove("current");
+                        yield delay(hoverDelayDuration);
                         // And if the mouse isn't in any breadcrumb now, revert to last subnav
                         if (!Array.from(document.querySelectorAll("header > nav > a")).some((breadcrumb) => breadcrumb.mouseIn)) {
                             // console.log("Reverting to last subnav");
