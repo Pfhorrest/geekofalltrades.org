@@ -18,6 +18,22 @@ overpass_headers = {
     "Accept": "application/json"
 }
 
+LOCAL_BBOX = [32.32, -121.94, 35.82, -114.04]
+
+def coords_are_local(lat, lon):
+    """Checks whether the given coordinates are within the local bounding box.
+
+    Args:
+        lat (float): The latitude coordinate.
+        lon (float): The longitude coordinate.
+
+    Returns:
+        bool: True if the coordinates are within the local bounding box, False otherwise.
+    """
+    min_lat, min_lon, max_lat, max_lon = LOCAL_BBOX
+    return True
+    return (min_lat <= lat <= max_lat) and (min_lon <= lon <= max_lon)
+
 def fetch_overpass_wait_time(overpass_root):
     """Queries the Overpass status endpoint and returns the required wait time in seconds.
 
@@ -92,12 +108,16 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
         if (max_retries > 1):
             tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Overpass attempt {attempt+1}/{max_retries}")
         try:
-            for root in overpass_roots:
+            for overpass_root in overpass_roots:
+                root_extract = tldextract.extract(overpass_root)
+                root_domain = root_extract.top_domain_under_public_suffix or root_extract.domain
+                query_extract = re.compile(r"\(around:\s*\d+(?:\.\d*)?,\s*([+-]?\d+\.?\d*),\s*([+-]?\d+\.?\d*)\)").search(query)
+                lat = float(query_extract.group(1)) if query_extract else 0
+                lon = float(query_extract.group(2)) if query_extract else 0
+                if not (coords_are_local(lat,lon) == (root_domain == "localhost")):
+                    continue
                 try:
-                    state["delay"] = fetch_overpass_wait_time(root)
-                    overpass_root = root
-                    root_extract = tldextract.extract(overpass_root)
-                    root_domain = root_extract.top_domain_under_public_suffix or root_extract.domain
+                    state["delay"] = fetch_overpass_wait_time(overpass_root)
                     # tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Trying Overpass at {root_domain} {('in ' + str(state['delay']) + 's...') if state['delay'] > 0 else 'immediately...'}")
                     time.sleep(state["delay"])
                     response = requests.post(
