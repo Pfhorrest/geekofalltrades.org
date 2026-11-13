@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from pathlib import Path
 import re
-from time import sleep
+import time
 from tqdm import tqdm
 from .. import config  # For image_extensions, THUMB_SUFFIX
 from ..extract_exif_data import extract_exif_data
@@ -345,6 +345,7 @@ def generate_gallery(path, state=None, retroactive=False):
                     if filename:
                         filepath = path.parent / Path(filename)
                         if filepath.is_file():
+                            time.sleep(state.get("delay", 1))  # Delay for API requests
                             generated = generate_image(filepath, state, existing=image)
                             if generated:
                                 for key, value in generated.items():

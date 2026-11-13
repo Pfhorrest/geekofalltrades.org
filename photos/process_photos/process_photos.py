@@ -158,7 +158,7 @@ def process_photos(args=None):
         # Existing galleries are maintained from their own entries. New galleries
         # are generated from files, with parent galleries assembled from children.
         if main_path.exists():
-            if args.retroactive:
+            if args.retroactive and date_granularity == "day":
                 result = generate_gallery(dirpath, state, retroactive=True)
                 # If no $images array existed, retroactive generation returns
                 # fresh entries; the gallery module owns inserting them.

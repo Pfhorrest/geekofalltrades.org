@@ -80,20 +80,65 @@ def test_build_gallery_from_children(mock_walk, mock_gen, mock_parse, isolated_b
 def test_existing_gallery_delegates_retroactive_maintenance(
     mock_walk, mock_generate, isolated_base_dir
 ):
-    year_dir = isolated_base_dir / "2024"
-    year_dir.mkdir()
+    gallery_dir = isolated_base_dir / "2024" / "01" / "02"
+    gallery_dir.mkdir(parents=True)
 
     # Existing galleries are maintained by generate_gallery now; the
     # process module should delegate rather than parse/sort/write the array.
-    main_path = year_dir / "__main.php"
+    main_path = gallery_dir / "__main.php"
     main_path.write_text("<?php $images = array(); ?>\\n", encoding="utf-8")
 
     mock_walk.return_value = [
-        (str(year_dir), [], ["__main.php"]),
+        (str(gallery_dir), [], ["__main.php"]),
     ]
 
     process_photos(parse_arguments(["--retroactive"]))
 
     mock_generate.assert_called_once_with(
-        year_dir, {"delay": 15}, retroactive=True
+        gallery_dir, {"delay": 15}, retroactive=True
     )
+
+@patch("process_photos.process_photos.generate_gallery")
+@patch("process_photos.process_photos.os.walk")
+def test_existing_month_gallery_skips_retroactive_enrichment(
+    mock_walk, mock_generate, isolated_base_dir
+):
+    gallery_dir = isolated_base_dir / "2024" / "01"
+    gallery_dir.mkdir(parents=True)
+
+    main_path = gallery_dir / "__main.php"
+    main_path.write_text(
+        "<?php $images = array(); ?>\n",
+        encoding="utf-8",
+    )
+
+    mock_walk.return_value = [
+        (str(gallery_dir), [], ["__main.php"]),
+    ]
+
+    process_photos(parse_arguments(["--retroactive"]))
+
+    mock_generate.assert_not_called()
+
+
+@patch("process_photos.process_photos.generate_gallery")
+@patch("process_photos.process_photos.os.walk")
+def test_existing_year_gallery_skips_retroactive_enrichment(
+    mock_walk, mock_generate, isolated_base_dir
+):
+    gallery_dir = isolated_base_dir / "2024"
+    gallery_dir.mkdir(parents=True)
+
+    main_path = gallery_dir / "__main.php"
+    main_path.write_text(
+        "<?php $images = array(); ?>\n",
+        encoding="utf-8",
+    )
+
+    mock_walk.return_value = [
+        (str(gallery_dir), [], ["__main.php"]),
+    ]
+
+    process_photos(parse_arguments(["--retroactive"]))
+
+    mock_generate.assert_not_called()

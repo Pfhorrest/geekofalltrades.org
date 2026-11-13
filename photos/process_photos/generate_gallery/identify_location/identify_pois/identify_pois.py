@@ -38,7 +38,7 @@ def fetch_overpass_wait_time(overpass_root):
     """Queries the Overpass status endpoint and returns the required wait time in seconds.
 
     Args:
-        state (dict, optional): A dictionary containing the current delay state. Defaults to {"delay": 1}.
+        overpass_root (str): The base URL of the Overpass API server.
 
     Returns:
         float: The required wait time in seconds.
@@ -87,7 +87,7 @@ def fetch_overpass_wait_time(overpass_root):
     # tqdm.write(f"{BrightColor.GREEN}[OSM]{BrightColor.OFF} Overpass server at {root_domain} gives no wait time!")
     return 0
 
-def overpass_request(query, state={"delay": 1}, max_retries=5):
+def overpass_request(query, max_retries=5):
     """Submit a query to the Overpass API with adaptive retry on failure.
 
     Retries on 429 (rate limit), 502 (bad gateway), and other transient
@@ -118,7 +118,7 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
                     continue
                 try:
                     delay = fetch_overpass_wait_time(overpass_root)
-                    # tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Trying Overpass at {root_domain} {('in ' + str(state['delay']) + 's...') if state['delay'] > 0 else 'immediately...'}")
+                    # tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Trying Overpass at {root_domain} {('in ' + delay) + 's...') if delay > 0 else 'immediately...'}")
                     time.sleep(delay)
                     response = requests.post(
                         f"{overpass_root}interpreter",
@@ -152,7 +152,7 @@ def overpass_request(query, state={"delay": 1}, max_retries=5):
     else:
         raise RuntimeError(f"Overpass failed")
 
-def identify_pois(lat, lon, state={"delay": 1}):
+def identify_pois(lat, lon):
     """Identify points of interest (POIs) near given GPS coordinates.
 
     Returns all named POIs found within the search radius, ordered by:
@@ -188,7 +188,7 @@ def identify_pois(lat, lon, state={"delay": 1}):
     elements = []
 
     try:
-        elements = overpass_request(query, state, 1)
+        elements = overpass_request(query, 1)
     except RuntimeError as e:
         tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} {e}")
         return []
