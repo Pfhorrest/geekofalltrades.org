@@ -39,7 +39,6 @@ def identify_location(lat, lon, state={"delay": 1}):
     nominatim_locations = []
     nominatim_url = "https://nominatim.openstreetmap.org/reverse"
     try:
-        state["delay"] = max(1, state["delay"])
         time.sleep(state["delay"])
         r = requests.get(nominatim_url, params={
             "format": "json",

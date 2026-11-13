@@ -1,5 +1,50 @@
 import re
 from tqdm import tqdm
+from .find_images_array import find_images_array
+
+def split_php_array_elements(array_content):
+    """Split PHP array contents into top-level elements.
+    Respects nested parentheses and quoted strings.
+
+    Args:
+        array_content (str): The content of a PHP array.
+
+    Returns:
+        list: The array elements.
+    """
+    elements = []
+    start = 0
+    depth = 0
+    quote = None
+    escaped = False
+
+    for index, char in enumerate(array_content):
+        if quote:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == quote:
+                quote = None
+            continue
+
+        if char in ("'", '"'):
+            quote = char
+        elif char == "(":
+            depth += 1
+        elif char == ")":
+            depth -= 1
+        elif char == "," and depth == 0:
+            element = array_content[start:index].strip()
+            if element:
+                elements.append(element)
+            start = index + 1
+
+    element = array_content[start:].strip()
+    if element:
+        elements.append(element)
+
+    return elements
 
 def parse_images_from_php(main_php_path):
     """Parse image metadata from a PHP file defining an array of images.
@@ -15,16 +60,15 @@ def parse_images_from_php(main_php_path):
         with open(main_php_path, 'r', encoding='utf-8') as f:
             content = f.read()
 
-        # Use regex with DOTALL to capture everything inside the array(...)
-        match = re.search(r'\$images\s*=\s*array\s*\((.*?)\);\s*', content, re.DOTALL)
-        if not match:
+        bounds = find_images_array(content)
+        if not bounds:
             return images
 
-        array_content = match.group(1)
+        start, end = bounds
+        open_index = content.index("(", start, end)
+        array_content = content[open_index + 1:end - 1]
 
-        # Split by "array(" to get individual image blocks
-        # Each image array starts with 'array(' and ends with '),'
-        image_blocks = re.findall(r'array\s*\((.*?)\),', array_content, re.DOTALL)
+        image_blocks = split_php_array_elements(array_content)
         
         for block in image_blocks:
             img = {}

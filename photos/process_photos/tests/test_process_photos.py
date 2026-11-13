@@ -1,7 +1,7 @@
-from unittest.mock import patch
-from unittest.mock import MagicMock
-from process_photos.process_photos import process_photos, parse_arguments
-from process_photos import config # For package_dir
+from unittest.mock import MagicMock, patch
+
+from process_photos import config  # For package_dir
+from process_photos.process_photos import parse_arguments, process_photos
 
 
 @patch("process_photos.process_photos.os.walk")
@@ -35,10 +35,8 @@ def test_thumbnail_created(mock_walk, mock_image, isolated_base_dir):
 @patch("process_photos.process_photos.generate_gallery")
 @patch("process_photos.process_photos.os.walk")
 def test_generate_gallery_called(mock_walk, mock_gallery, mock_image, isolated_base_dir):
-    gallery_dir = isolated_base_dir  / "2024" / "01"
+    gallery_dir = isolated_base_dir / "2024" / "01"
     gallery_dir.mkdir(parents=True)
-    print(f"gallery_dir: {gallery_dir}")
-
     mock_walk.return_value = [
         (str(gallery_dir), [], ["a.jpg"]),
     ]
@@ -52,7 +50,7 @@ def test_generate_gallery_called(mock_walk, mock_gallery, mock_image, isolated_b
 
     process_photos(parse_arguments(["--retroactive"]))
 
-    mock_gallery.assert_called_once_with(gallery_dir, {"delay": 1})
+    mock_gallery.assert_called_once_with(gallery_dir, {"delay": 15})
 
 
 @patch("process_photos.process_photos.parse_images_from_php")
@@ -77,31 +75,25 @@ def test_build_gallery_from_children(mock_walk, mock_gen, mock_parse, isolated_b
     process_photos()
 
 
-@patch("process_photos.process_photos.parse_images_from_php")
-@patch("process_photos.process_photos.extract_exif_data")
+@patch("process_photos.process_photos.generate_gallery")
 @patch("process_photos.process_photos.os.walk")
-def test_existing_images_resorted(mock_walk, mock_exif, mock_parse, isolated_base_dir):
+def test_existing_gallery_delegates_retroactive_maintenance(
+    mock_walk, mock_generate, isolated_base_dir
+):
     year_dir = isolated_base_dir / "2024"
     year_dir.mkdir()
 
-    # Existing __main.php with an $images array causes the code
-    # to take the existing-images/resorting path.
+    # Existing galleries are maintained by generate_gallery now; the
+    # process module should delegate rather than parse/sort/write the array.
     main_path = year_dir / "__main.php"
-    main_path.write_text('<?php $images = array(); ?>\n')
+    main_path.write_text("<?php $images = array(); ?>\\n", encoding="utf-8")
 
     mock_walk.return_value = [
         (str(year_dir), [], ["__main.php"]),
     ]
 
-    mock_parse.return_value = [
-        {"filename": "b.jpg", "description": "2023-01-01"},
-        {"filename": "a.jpg", "description": "2024-01-01"},
-    ]
-
-    mock_exif.return_value = {"timestamp": None}
-
     process_photos(parse_arguments(["--retroactive"]))
 
-    # If it got here without crashing, sorting logic worked
-
-    mock_parse.assert_called()
+    mock_generate.assert_called_once_with(
+        year_dir, {"delay": 15}, retroactive=True
+    )

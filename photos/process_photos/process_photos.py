@@ -2,8 +2,6 @@ import sys
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 import os
-import re
-import json
 import argparse
 from pathlib import Path
 from datetime import datetime
@@ -12,7 +10,7 @@ from tqdm import tqdm
 from . import config # For image_extensions, THUMB_SUFFIX, THUMB_SIZE, base_dir, package_dir, subimage_threshold
 from .parse_images_from_php import parse_images_from_php
 from .generate_gallery import generate_gallery
-from .extract_exif_data import extract_exif_data
+from .write_gallery import write_gallery
 
 # Force stdout to be line-buffered
 sys.stdout.reconfigure(line_buffering=True)
@@ -31,7 +29,7 @@ def process_photos(args=None):
 
     # Persistent state across all items
     state = {
-        "delay": 1,
+        "delay": 15 if args and args.retroactive else 1,  # Delay for API requests
     }
 
     # Gather (dirpath, dirs, filenames) from os.walk
@@ -120,311 +118,105 @@ def process_photos(args=None):
                 tqdm.write(f"Error creating thumbnail for {relfile}: {e}")
 
         # -- MAKE GALLERIES --
-    
-        # Generate title of gallery
+
         def extract_date_text(path: Path):
-            """Extract a human-readable date text from a path.
-                Only allows:
-                    base_dir/YYYY/
-                    base_dir/YYYY/MM/
-                    base_dir/YYYY/MM/DD/
-
-            Args:
-                path (Path): Path object representing the directory.
-
-            Returns:
-                tuple: A tuple containing the human-readable date text and its granularity.
-            """            
-
+            """Return the display date and granularity for YYYY[/MM[/DD]] paths."""
             parts = path.parts
-            if not parts:
+            if not parts or any(not part.isdigit() for part in parts):
                 return None, "whatever"
-            for p in parts:
-                if not p.isdigit():
-                    return None, "whatever"
             nums = list(map(int, parts))
-            if len(nums) == 1:
-                year = nums[0]
-                if 1000 <= year <= 9999:
-                    return f"{year}", "year"
-            elif len(nums) == 2:
-                year, month = nums
-                if 1 <= month <= 12:
-                    date = datetime(year, month, 1)
-                    return f"{date.strftime('%B')} {year}", "month"
-            elif len(nums) == 3:
-                year, month, day = nums
+            if len(nums) == 1 and 1000 <= nums[0] <= 9999:
+                return str(nums[0]), "year"
+            if len(nums) == 2 and 1 <= nums[1] <= 12:
+                date = datetime(nums[0], nums[1], 1)
+                return f"{date.strftime('%B')} {nums[0]}", "month"
+            if len(nums) == 3:
                 try:
-                    date = datetime(year, month, day)
+                    date = datetime(*nums)
                 except ValueError:
                     return None, "whatever"
-
-                def ordinal(n):
-                    """Convert a number to an ordinal string.
-
-                    Args:
-                        n (int): The number to convert.
-
-                    Returns:
-                        str: The ordinal string representation of the number.
-                    """
-                    return f"{n}{'th' if 11 <= n % 100 <= 13 else {1:'st',2:'nd',3:'rd'}.get(n%10,'th')}"
-                return f"{ordinal(day)} of {date.strftime('%B')} {year}", "day"
+                day = nums[2]
+                suffix = 'th' if 11 <= day % 100 <= 13 else {1: 'st', 2: 'nd', 3: 'rd'}.get(day % 10, 'th')
+                return f"{day}{suffix} of {date.strftime('%B')} {nums[0]}", "day"
             return None, "whatever"
 
         head_path = dirpath / "__head.php"
         main_path = dirpath / "__main.php"
-        if not head_path.exists() or not main_path.exists():
-            date_text, date_granularity = extract_date_text(relpath)
-            title_text = f"{date_text + ' ' if date_text else ''}Photography"
+        date_text, date_granularity = extract_date_text(relpath)
+        if date_granularity == "whatever":
+            continue
+        if not (args and args.retroactive) and head_path.exists() and main_path.exists():
+            continue
 
-            if date_granularity != "whatever":
-    
-                # Make __head.php if necessary
-                if not head_path.exists():
-                    head_content = f'<?php $title = "{title_text}" ?>\n'
-                    with open(head_path, 'w') as f:
-                        f.write(head_content)
-                    tqdm.write(f"Created: {head_path.relative_to(config.base_dir)}")
+        title_text = f"{date_text + ' ' if date_text else ''}Photography"
 
-                # Make __main.php if necessary
-                relmain = main_path.relative_to(config.base_dir)
-                if not main_path.exists():
-                    needs_images = True
-                elif args.retroactive:
-                    #In retroactive mode, check if existing __main.php has an $images array too
-                    with open(main_path, "r", encoding="utf-8") as f:
-                        existing_content = f.read()
-                    needs_images = not re.search(r'\$images\s*=\s*array\s*\(', existing_content)
+        # Make __head.php if necessary
+        if not head_path.exists():
+            head_path.write_text(f'<?php $title = "{title_text}" ?>\n', encoding="utf-8")
+            tqdm.write(f"Created: {head_path.relative_to(config.base_dir)}")
 
-                def php_escape(s):
-                    """Escape a string for use in a PHP string.
+        # Existing galleries are maintained from their own entries. New galleries
+        # are generated from files, with parent galleries assembled from children.
+        if main_path.exists():
+            if args.retroactive:
+                result = generate_gallery(dirpath, state, retroactive=True)
+                # If no $images array existed, retroactive generation returns
+                # fresh entries; the gallery module owns inserting them.
+                if isinstance(result, list) and result:
+                    write_gallery(main_path, result)
+            continue
 
-                    Args:
-                        s (str): The string to escape.
+        images = generate_gallery(dirpath, state)
+        if not images:
+            # Try to build from children if month/year folder
+            subimages = []
+            tqdm.write(f"Building gallery from children of {relpath}:")
+            for sub in tqdm(sorted(dirpath.iterdir(), reverse=True), desc=f"Child folders in {relpath}", unit="folder", leave=False, file=sys.stdout):
+                if not sub.is_dir() or not sub.name.isdigit():
+                    continue
+                sub_main = sub / "__main.php"
+                if not sub_main.exists():
+                    continue
+                child_images = parse_images_from_php(sub_main)
+                if not child_images:
+                    continue
 
-                    Returns:
-                        str: The escaped string.
-                    """
-                    return json.dumps(s)[1:-1].replace('"', '\\"').replace("'", "\\'")
+                # Always include the first image
+                first_img = child_images[0].copy()
+                if 'filename' in first_img:
+                    first_img['filename'] = f"{sub.name}/{first_img['filename']}"
 
-                if needs_images:
-                    images = generate_gallery(dirpath, state)
-                    if not images:
-                        # Try to build from children if month/year folder
-                        subimages = []
-                        tqdm.write(f"Building gallery from children of {relpath}:")
-                        for sub in tqdm(sorted(dirpath.iterdir(), reverse=True), desc=f"Child folders in {relpath}", unit="folder", leave=False, file=sys.stdout):
-                            if not sub.is_dir() or not sub.name.isdigit():
-                                continue
-                            sub_main = sub / "__main.php"
-                            if sub_main.exists():
-                                tqdm.write(f"  Found child __main.php: {sub_main.relative_to(config.base_dir)}")
-                                child_images = parse_images_from_php(sub_main)
-                                tqdm.write(f"    Parsed child images: {child_images}")
-                                if child_images:
-                                    # Always include the first image
-                                    first_img = child_images[0].copy()
-                                    if 'filename' in first_img:
-                                        first_img['filename'] = f"{sub.name}/{first_img['filename']}"
+                # Add morelink/moretext if this child gallery has enough images
+                if len(child_images) >= config.subimage_threshold:
+                    first_img['morelink'] = sub.name
+                    if date_granularity == "month":
+                        day_num = int(sub.name)
+                        suffix = 'th' if 11 <= day_num % 100 <= 13 else {1: 'st', 2: 'nd', 3: 'rd'}.get(day_num % 10, 'th')
+                        first_img['moretext'] = f"the {day_num}{suffix}"
+                    elif date_granularity == "year":
+                        first_img['moretext'] = datetime(2000, int(sub.name), 1).strftime('%B')
+                subimages.append(first_img)
 
-                                    # Add morelink/moretext if this child gallery has enough images
-                                    if len(child_images) >= config.subimage_threshold:
-                                        first_img['morelink'] = sub.name
-                                        if date_granularity == "month":
-                                            day_num = int(sub.name)
-                                            suffix = 'th' if 11<=day_num%100<=13 else {1:'st',2:'nd',3:'rd'}.get(day_num%10, 'th')
-                                            first_img['moretext'] = f"the {day_num}{suffix}"
-                                        elif date_granularity == "year":
-                                            month_name = datetime(2000, int(sub.name), 1).strftime('%B')
-                                            first_img['moretext'] = f"{month_name}"
-                                    subimages.append(first_img)
-                                    tqdm.write(f"    Using first image: {child_images[0]}")
+                # If the gallery has fewer than threshold images, just include them all
+                if len(child_images) < config.subimage_threshold:
+                    for child_image in child_images[1:]:
+                        next_image = child_image.copy()
+                        if 'filename' in next_image:
+                            next_image['filename'] = f"{sub.name}/{next_image['filename']}"
+                        subimages.append(next_image)
+            images = subimages or None
 
-                                    # If the gallery has fewer than threshold images, include them all
-                                    # Otherwise, just include the first image (with "more" link)
-                                    if len(child_images) < config.subimage_threshold:
-                                        for n in range(1, len(child_images)):
-                                            next_img = child_images[n].copy()
-                                            if 'filename' in next_img:
-                                                next_img['filename'] = f"{sub.name}/{next_img['filename']}"
-                                            subimages.append(next_img)
-                                            tqdm.write(f"     And image {n+1}: {child_images[n]}")
-                        if subimages:
-                            images = subimages
-
-                    php_array_str = ""
-                    if images:
-                        php_array_str = "$images = array(\n"
-                        for img in tqdm(images, desc=f"Writing images array for {relmain}", unit="img", leave=False, file=sys.stdout):
-                            php_array_str += "\t\t\tarray(\n"
-                            for key, val in img.items():
-                                php_array_str += f"\t\t\t\t'{key}' => '{php_escape(val)}',\n"
-                            php_array_str += "\t\t\t),\n"
-                        php_array_str += "\t\t)\n\n"
-
-                    if not main_path.exists():
-                        main_content = f"""\
-                            <section>
-                            \t<h2>{title_text}</h2>
-                            \t<p class="description">
-                            \t\tBest of the {date_granularity}
-                            \t</p>
-                            \t<?php
-                            \t\techo render_gallery({php_array_str.rstrip()});
-                            \t?>
-                            </section>
-                        """
-                        main_content = "\n".join(line.lstrip(" ") for line in main_content.splitlines())
-                        with open(main_path, 'w', encoding="utf-8") as f:
-                            f.write(main_content)
-                        tqdm.write(f"Created: {relmain}")
-                    else:
-                        lines = existing_content.splitlines()
-                        new_lines = []
-                        inserted = False
-                        for line in lines:
-                            if not inserted and 'render_gallery' in line:
-                                if php_array_str:
-                                    new_lines.append("\t\t" + php_array_str.rstrip())
-                                inserted = True
-                            new_lines.append(line)
-                        updated_content = "\n".join(new_lines)
-                        with open(main_path, 'w', encoding="utf-8") as f:
-                            f.write(updated_content)
-                        tqdm.write(f"Updated: {relmain} with $images array")
-
-                elif args.retroactive:
-                    # In retroactive mode, if $images array already exists,
-                    # ensure it is sorted reverse-chronologically
-
-                    def resort_images(images):
-                        """Sort images in reverse-chronological order.
-
-                        Args:
-                            images (list): List of image dictionaries.
-
-                        Returns:
-                            list: Sorted list of image dictionaries.
-                        """
-                        sort_data = []
-                        for img in tqdm(images, desc=f"Resorting images in {relpath}", unit="img", leave=False, file=sys.stdout):
-                            fn = img.get("filename", "")
-                            path_parts = fn.split("/")
-                            path_key = []
-                            for part in path_parts:
-                                try:
-                                    path_key.append((0, int(part)))
-                                except ValueError:
-
-                            # Compute or fetch timestamp
-                                    path_key.append((1, part))
-                            ts = img.get("_sort_timestamp")
-                            if not ts:
-                                filepath = dirpath / Path(fn)
-                                if filepath.is_file():
-                                    try:
-                                        exif = extract_exif_data(filepath)
-                                        ts = exif.get("timestamp")
-                                    except Exception as e:
-                                        tqdm.write(f"Warning: could not extract EXIF from {fn}: {e}")
-                            if not ts:
-                                desc = img.get("description", "")
-                                m = re.search(r"\d{4}-\d{2}-\d{2}", desc)
-                                if m:
-                                    ts = m.group(0)
-
-                            # Cache the timestamp on the image itself. A photo's EXIF
-                            # capture date never changes, so once this is written back
-                            # into the PHP array, the next run finds it via
-                            # img.get("_sort_timestamp") above and never has to touch
-                            # extract_exif_data (or the file itself) again for this
-                            # image. Rebinding img to a NEW dict (rather than mutating
-                            # it in place) matters: images/existing_images below and
-                            # sorted_images share the same dict objects, so an in-place
-                            # mutation would show up on both sides of the
-                            # sorted_images != existing_images check and the write
-                            # would never trigger, even the first time.
-                            if ts:
-                                img = {**img, "_sort_timestamp": ts}
-
-                            # Normalize timestamp
-                            if ts:
-                                try:
-                                    dt = datetime.fromisoformat(ts)
-                                except ValueError:
-                                    try:
-                                        dt = datetime.strptime(ts, "%Y-%m-%d")
-                                    except ValueError:
-                                        dt = datetime.min
-                            else:
-                                dt = datetime.min
-                            sort_data.append((path_key, dt, img))
-                        sorted_images = [
-                            img for path_key, dt, img in sorted(
-                                sort_data,
-                                key=lambda x: (x[0], x[1]),
-                                reverse=True
-                            )
-                        ]
-                        return sorted_images
-
-                    existing_images = parse_images_from_php(main_path)
-                    if existing_images:
-                        sorted_images = resort_images(existing_images)
-                        if sorted_images != existing_images:
-                            # Independent sanity check: existing_images came from
-                            # parse_images_from_php(main_path), which is exactly what
-                            # a bad test mock replaced before — comparing against it
-                            # wouldn't have caught that, since resort_images only ever
-                            # permutes its input and so can never come out shorter
-                            # than whatever (real or fake) list it was given. Counting
-                            # entries in the raw file text instead is independent of
-                            # that whole path. process_photos should only ever create
-                            # or resort this array, never shrink it.
-                            on_disk_count = existing_content.count("'filename' =>")
-                            if len(sorted_images) < on_disk_count:
-                                tqdm.write(
-                                    f"Refusing to update {relmain}: about to write "
-                                    f"{len(sorted_images)} images but the file on disk "
-                                    f"has {on_disk_count} — this looks like it would "
-                                    f"delete data, not resort it."
-                                )
-                            else:
-                                php_array_str = "$images = array(\n"
-                                for img in tqdm(sorted_images, desc=f"Writing sorted images for {relmain}", unit="img", leave=False, file=sys.stdout):
-                                    php_array_str += "\t\t\tarray(\n"
-                                    for key, val in img.items():
-                                        php_array_str += f"\t\t\t\t'{key}' => '{php_escape(val)}',\n"
-                                    php_array_str += "\t\t\t),\n"
-                                php_array_str += "\t\t)"
-
-                                match = re.search(r'\$images\s*=\s*array\s*\(', existing_content)
-
-                                def find_matching_paren(text, open_index):
-                                    """Return the index of the ')' that matches the '(' at open_index in
-                                    text, accounting for nesting. Returns None if unbalanced.
-                                    """
-                                    depth = 0
-                                    for i in range(open_index, len(text)):
-                                        if text[i] == '(':
-                                            depth += 1
-                                        elif text[i] == ')':
-                                            depth -= 1
-                                            if depth == 0:
-                                                return i
-                                    return None
-
-                                close_index = find_matching_paren(existing_content, match.end() - 1) if match else None
-
-                                if match and close_index is not None:
-                                    updated_content = (
-                                        existing_content[:match.start()]
-                                        + php_array_str
-                                        + existing_content[close_index + 1:]
-                                    )
-                                    with open(main_path, 'w', encoding="utf-8") as f:
-                                        f.write(updated_content)
-                                    tqdm.write(f"Updated: {relmain} (re-sorted)")
-                                else:
-                                    tqdm.write(f"Could not locate a matching closing paren for $images in {relmain}; leaving it untouched.")
+        main_content = f"""\
+            <section>
+            \t<h2>{title_text}</h2>
+            \t<p class="description">
+            \t\tBest of the {date_granularity}
+            \t</p>
+            \t<?php
+            \t\techo render_gallery();
+            \t?>
+            </section>
+        """
+        main_content = "\n".join(line.lstrip(" ") for line in main_content.splitlines())
+        write_gallery(main_path, images or [], content=main_content)
+        tqdm.write(f"Created: {main_path.relative_to(config.base_dir)}")
