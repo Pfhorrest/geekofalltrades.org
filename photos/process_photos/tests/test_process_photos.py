@@ -1,3 +1,4 @@
+
 from unittest.mock import MagicMock, patch
 
 from process_photos import config  # For package_dir
@@ -34,7 +35,7 @@ def test_thumbnail_created(mock_walk, mock_image, isolated_base_dir):
 @patch("process_photos.process_photos.Image.open")
 @patch("process_photos.process_photos.generate_gallery")
 @patch("process_photos.process_photos.os.walk")
-def test_generate_gallery_called(mock_walk, mock_gallery, mock_image, isolated_base_dir):
+def test_generate_gallery_called(mock_walk, mock_generate, mock_image, isolated_base_dir):
     gallery_dir = isolated_base_dir / "2024" / "01"
     gallery_dir.mkdir(parents=True)
     mock_walk.return_value = [
@@ -46,12 +47,15 @@ def test_generate_gallery_called(mock_walk, mock_gallery, mock_image, isolated_b
     mock_img.size = (4000, 3000)
     mock_image.return_value.__enter__.return_value = mock_img
 
-    mock_gallery.return_value = [{"filename": "a.jpg"}]
+    mock_generate.return_value = [{"filename": "a.jpg"}]
 
     process_photos(parse_arguments(["--retroactive"]))
 
-    mock_gallery.assert_called_once_with(gallery_dir, {"delay": 15})
+    mock_generate.assert_called_once()
+    args, kwargs = mock_generate.call_args
 
+    assert args[0] == gallery_dir
+    assert getattr(args[1].get("args"), "retroactive", False) is True
 
 @patch("process_photos.process_photos.parse_images_from_php")
 @patch("process_photos.process_photos.generate_gallery")
@@ -94,9 +98,11 @@ def test_existing_gallery_delegates_retroactive_maintenance(
 
     process_photos(parse_arguments(["--retroactive"]))
 
-    mock_generate.assert_called_once_with(
-        gallery_dir, {"delay": 15}, retroactive=True
-    )
+    mock_generate.assert_called_once()
+    args, kwargs = mock_generate.call_args
+
+    assert args[0] == gallery_dir
+    assert getattr(args[1].get("args"), "retroactive", False) is True
 
 @patch("process_photos.process_photos.generate_gallery")
 @patch("process_photos.process_photos.os.walk")

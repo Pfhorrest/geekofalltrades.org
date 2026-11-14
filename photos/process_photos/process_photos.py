@@ -2,6 +2,7 @@ import sys
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 import os
+import time
 import argparse
 from pathlib import Path
 from datetime import datetime
@@ -29,7 +30,12 @@ def process_photos(args=None):
 
     # Persistent state across all items
     state = {
-        "delay": 15 if args and args.retroactive else 1,  # Delay for API requests
+        "args": args,
+        "last_run": {
+            "inat": time.monotonic(),
+            "nominatim": time.monotonic(),
+            "overpass": time.monotonic(),
+        },
     }
 
     # Gather (dirpath, dirs, filenames) from os.walk
@@ -59,7 +65,7 @@ def process_photos(args=None):
                 continue
 
             # If in retroactive mode...
-            if args.retroactive:
+            if getattr(args, "retroactive", False):
 
                 # Delete malformed thumbnails
                 if f"_{config.THUMB_SUFFIX}" in name or name.replace('_', '-').split('-').count(config.THUMB_SUFFIX) > 1:
@@ -93,7 +99,7 @@ def process_photos(args=None):
 
             if thumb_path.exists():
                 # If retroactive mode is enabled, check thumbnail size too
-                if args.retroactive:
+                if getattr(args, "retroactive", False):
                     try:
                         with Image.open(thumb_path) as thumb_img:
                             w, h = thumb_img.size
@@ -145,7 +151,7 @@ def process_photos(args=None):
         date_text, date_granularity = extract_date_text(relpath)
         if date_granularity == "whatever":
             continue
-        if not (args and args.retroactive) and head_path.exists() and main_path.exists():
+        if not (getattr(args, "retroactive", False)) and head_path.exists() and main_path.exists():
             continue
 
         title_text = f"{date_text + ' ' if date_text else ''}Photography"
@@ -158,8 +164,8 @@ def process_photos(args=None):
         # Existing galleries are maintained from their own entries. New galleries
         # are generated from files, with parent galleries assembled from children.
         if main_path.exists():
-            if args.retroactive and date_granularity == "day":
-                result = generate_gallery(dirpath, state, retroactive=True)
+            if getattr(args, "retroactive", False) and date_granularity == "day":
+                result = generate_gallery(dirpath, state)
                 # If no $images array existed, retroactive generation returns
                 # fresh entries; the gallery module owns inserting them.
                 if isinstance(result, list) and result:

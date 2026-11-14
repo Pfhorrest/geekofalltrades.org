@@ -60,11 +60,12 @@ def get_inat_token():
         tqdm.write(f"[WARN] iNat token retrieval error: {e}")
         return None
 
-def identify_subject_inat(image):
+def identify_subject_inat(image, state={}):
     """Identify the subject of an image using the iNaturalist computer vision API.
 
     Args:
         image (PIL.Image): The image to identify.
+        state (dict, optional): A dictionary containing persistent state across all images. Defaults to {}.
 
     Returns:
         str: A comma-separated string of identified subject labels, or empty
@@ -93,12 +94,20 @@ def identify_subject_inat(image):
         image.save(buffer, format="JPEG")
         buffer.seek(0)
 
+        # Rate limit: 10k requests/day
+        delay = (60*60*24/10000) if getattr(state.get("args"), "retroactive", False) else 1
+        time.sleep(max(0.0, delay - (time.monotonic() - getattr(state.get("last_run"), "inat", time.monotonic()))))
+
         response = requests.post(
             "https://api.inaturalist.org/v1/computervision/score_image",
             headers={"Authorization": f"Bearer {INAT_TOKEN}"},
             files={"image": ("image.jpg", buffer, "image/jpeg")},
             params={"locale": "en"}
         )
+
+        # Update last run time for iNat API
+        state.setdefault("last_run", {})["inat"] = time.monotonic()
+
         if not response.ok:
             tqdm.write(f"[WARN] iNat API failed: {response.status_code}")
             return []

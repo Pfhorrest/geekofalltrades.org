@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 from pathlib import Path
 import re
-import time
 from tqdm import tqdm
 from .. import config  # For image_extensions, THUMB_SUFFIX
 from ..extract_exif_data import extract_exif_data
@@ -11,7 +10,7 @@ from ..write_gallery import write_gallery
 from .identify_subject import identify_subject
 from .identify_location import identify_location
 
-def generate_gallery(path, state=None, retroactive=False):
+def generate_gallery(path, state={}):
     """Generate image metadata, or maintain an existing gallery retroactively.
 
     In retroactive mode an existing `$images` array is the source of truth: its
@@ -21,15 +20,14 @@ def generate_gallery(path, state=None, retroactive=False):
 
     Args:
         path (Path): Path to the directory containing images or the PHP file.
-        state (dict, optional): A dictionary containing persistent state across all images. Defaults to None.
-        retroactive (bool, optional): Whether to maintain an existing gallery retroactively. Defaults to False.
+        state (dict, optional): A dictionary containing persistent state across all images. Defaults to {}.
     
     Returns:
         list: A list of dictionaries containing image metadata. None if no images were found.
     """
     path = Path(path)
     state = state if state is not None else {"delay": 1}
-    def generate_image(filepath, state, existing=None):
+    def generate_image(filepath, state={}, existing=None):
         """Generate only the metadata fields missing from an existing entry.
 
         With ``existing=None``, generate the complete metadata record used for a
@@ -38,7 +36,7 @@ def generate_gallery(path, state=None, retroactive=False):
         
         Args:
             filepath (Path): The path to the image file.
-            state (dict): A dictionary containing persistent state across all images.
+            state (dict, optional): A dictionary containing persistent state across all images. Defaults to {}.
             existing (dict, optional): An existing metadata record to update. Defaults to None.
 
         Returns:
@@ -67,7 +65,7 @@ def generate_gallery(path, state=None, retroactive=False):
             exif = extract_exif_data(filepath) if needs_exif else {}
 
             # Get subject name
-            subjects = identify_subject(filepath) if needs_subjects else existing.get("subjects")
+            subjects = identify_subject(filepath, state) if needs_subjects else existing.get("subjects")
             subject = subjects.split(",")[0].strip() if subjects else None # Most likely subject
 
             # Get location name
@@ -289,7 +287,7 @@ def generate_gallery(path, state=None, retroactive=False):
         except Exception as e:
             tqdm.write(f"Warning: Skipping file {filepath} due to error: {e}")
             return None
-    if retroactive:
+    if getattr(state.get("args"), "retroactive", False):
         main_path = path / "__main.php"
         def has_images_array(path_or_text):
             """Return whether a PHP file or source string contains an images array.
@@ -333,7 +331,7 @@ def generate_gallery(path, state=None, retroactive=False):
                 on_disk_count = original_text.count("'filename' =>")
                 if len(existing_images) < on_disk_count:
                     tqdm.write(
-                        f"Refusing to update {path}: parsed {len(existing_images)} images, "
+                        f"Refusing to update {path.relative_to(config.base_dir)}: parsed {len(existing_images)} images, "
                         f"but the PHP source contains {on_disk_count} filename entries."
                     )
                     return False
@@ -345,7 +343,6 @@ def generate_gallery(path, state=None, retroactive=False):
                     if filename:
                         filepath = path.parent / Path(filename)
                         if filepath.is_file():
-                            time.sleep(state.get("delay", 1))  # Delay for API requests
                             generated = generate_image(filepath, state, existing=image)
                             if generated:
                                 for key, value in generated.items():
@@ -405,10 +402,10 @@ def generate_gallery(path, state=None, retroactive=False):
 
                 # Independent guard: never serialize fewer records than the source contains.
                 if len(sorted_images) < on_disk_count:
-                    tqdm.write(f"Refusing to update {path}: sorted image count would shrink the gallery.")
+                    tqdm.write(f"Refusing to update {path.relative_to(config.base_dir)}: sorted image count would shrink the gallery.")
                     return False
                 write_gallery(path, sorted_images)
-                tqdm.write(f"Updated: {path} (metadata enriched / sorted)")
+                tqdm.write(f"Updated: {path.relative_to(config.base_dir)} (metadata enriched / sorted)")
                 return True
 
             return maintain_existing_gallery(main_path, state)

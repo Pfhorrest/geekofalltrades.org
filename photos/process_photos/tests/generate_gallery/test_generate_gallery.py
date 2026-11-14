@@ -1,3 +1,5 @@
+from argparse import Namespace
+
 import pytest
 from pathlib import Path
 from unittest.mock import patch
@@ -179,7 +181,7 @@ echo render_gallery($images);
     mock_subject.return_value = "oak tree"
     mock_location.return_value = []
 
-    result = generate_gallery(tmp_path, retroactive=True)
+    result = generate_gallery(tmp_path, {'args': Namespace(retroactive=True)})
 
     assert result is True
     mock_parse.assert_called_once_with(main_path)
@@ -211,7 +213,7 @@ echo render_gallery($images);
     main_path.write_text(original_php, encoding="utf-8")
     mock_parse.return_value = [{"filename": "first.jpg"}]
 
-    result = generate_gallery(tmp_path, retroactive=True)
+    result = generate_gallery(tmp_path, {'args': Namespace(retroactive=True)})
 
     assert result is False
     assert main_path.read_text(encoding="utf-8") == original_php
@@ -237,7 +239,7 @@ echo render_gallery();
         {"filename": "manually-added.jpg", "custom": "retain"},
     ]
 
-    result = generate_gallery(tmp_path, retroactive=True)
+    result = generate_gallery(tmp_path, {'args': Namespace(retroactive=True)})
 
     # No metadata or ordering changed, so there is no reason to rewrite the file.
     assert result is False
@@ -276,7 +278,7 @@ echo render_gallery($images);
         "_sort_timestamp": "2024-06-21T06:30:00",
     }]
 
-    result = generate_gallery(tmp_path, retroactive=True)
+    result = generate_gallery(tmp_path, {'args': Namespace(retroactive=True)})
 
     assert result is False
     mock_exif.assert_not_called()
@@ -310,10 +312,10 @@ def test_retroactive_enrichment_generates_only_missing_subjects(
     }]
     mock_subject.return_value = "new subject"
 
-    result = generate_gallery(tmp_path, retroactive=True)
+    result = generate_gallery(tmp_path, {'args': Namespace(retroactive=True)})
 
     assert result is True
-    mock_subject.assert_called_once_with(photo)
+    mock_subject.assert_called_once_with(photo, {'args': Namespace(retroactive=True)})
     mock_exif.assert_not_called()
     mock_location.assert_not_called()
     assert "'subjects' => 'new subject'" in main_path.read_text(encoding="utf-8")
@@ -348,7 +350,7 @@ def test_retroactive_enrichment_generates_only_missing_exif_metadata(
         "timestamp": "2024-06-21T06:30:00",
     }
 
-    result = generate_gallery(tmp_path, retroactive=True)
+    result = generate_gallery(tmp_path, {'args': Namespace(retroactive=True)})
 
     assert result is True
     mock_exif.assert_called_once_with(photo)

@@ -16,7 +16,7 @@ NOMINATIM_ADDRESS_FIELDS = [
     ("country", "in"),
 ]
 
-def identify_location(lat, lon):
+def identify_location(lat, lon, state={}):
     """Identify a list of prefixed location strings for given GPS coordinates.
 
     Combines POIs from Overpass (prefixed "at" or "near") with the full
@@ -26,6 +26,7 @@ def identify_location(lat, lon):
     Args:
         lat (float): Latitude of the location.
         lon (float): Longitude of the location.
+        state (dict, optional): A dictionary containing persistent state across all images. Defaults to {}.
 
     Returns:
         list of str: Prefixed location strings e.g. ["at Surfrider Beach",
@@ -38,6 +39,11 @@ def identify_location(lat, lon):
     # Step 1: Nominatim reverse geocode — collect full address hierarchy
     nominatim_locations = []
     nominatim_url = "https://nominatim.openstreetmap.org/reverse"
+
+    # Rate limit: 4 requests/minute (1 request every 15 seconds)
+    delay = (60/4) if getattr(state.get("args"), "retroactive", False) else 1
+    time.sleep(max(0.0, delay - (time.monotonic() - getattr(state.get("last_run"), "nominatim", time.monotonic()))))
+
     try:
         r = requests.get(nominatim_url, params={
             "format": "json",
@@ -56,6 +62,9 @@ def identify_location(lat, lon):
                 nominatim_locations.append(f"{prefix} {value}")
     except Exception as e:
         tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} NOMINATIM ERROR: {e}")
+
+    # Update last run time for Nominatim API
+    state.setdefault("last_run", {})["nominatim"] = time.monotonic()
 
     # Step 2: Overpass POIs
     pois = identify_pois(lat, lon)

@@ -117,8 +117,8 @@ def overpass_request(query, max_retries=5):
                 if not (coords_are_local(lat,lon) == (root_domain == "localhost")):
                     continue
                 try:
+                    # Rate limit: Check Overpass status endpoint for required wait time
                     delay = fetch_overpass_wait_time(overpass_root)
-                    # tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Trying Overpass at {root_domain} {('in ' + delay) + 's...') if delay > 0 else 'immediately...'}")
                     time.sleep(delay)
                     response = requests.post(
                         f"{overpass_root}interpreter",
