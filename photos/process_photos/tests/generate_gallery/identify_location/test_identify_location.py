@@ -79,3 +79,38 @@ def test_nominatim_address_hierarchy_order(mock_get, mock_poi):
     assert names.index("Montecito") < names.index("Santa Barbara")
     assert names.index("Santa Barbara") < names.index("Santa Barbara County")
     assert names.index("Santa Barbara County") < names.index("California")
+
+
+# ------------------------
+# RATE-LIMIT TESTS
+# ------------------------
+
+@pytest.mark.parametrize(
+    ("retroactive", "last_run", "now", "expected_sleep"),
+    [
+        (False, 99.5, 100.0, 0.5),  # Normal interval, partially elapsed
+        (False, 98.0, 100.0, 0.0),  # Normal interval, fully elapsed
+        (True, 90.0, 100.0, 5.0),   # Retroactive interval: 15s, 10s elapsed
+    ],
+)
+@patch("process_photos.generate_gallery.identify_location.identify_location.time.sleep")
+@patch("process_photos.generate_gallery.identify_location.identify_location.time.monotonic")
+@patch("process_photos.generate_gallery.identify_location.identify_location.identify_pois")
+@patch("process_photos.generate_gallery.identify_location.identify_location.requests.get")
+def test_nominatim_rate_limit(
+    mock_get, mock_poi, mock_monotonic, mock_sleep,
+    retroactive, last_run, now, expected_sleep
+):
+    mock_get.return_value = mock_nominatim_response({"city": "Santa Barbara"})
+    mock_poi.return_value = []
+    mock_monotonic.return_value = now
+
+    state = {
+        "args": Mock(retroactive=retroactive),
+        "last_run": {"nominatim": last_run},
+    }
+
+    il.identify_location(34.4, -119.7, state)
+
+    mock_sleep.assert_called_once()
+    assert mock_sleep.call_args.args[0] == pytest.approx(expected_sleep)

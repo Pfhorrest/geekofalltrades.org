@@ -5,6 +5,7 @@ from pathlib import Path
 
 import process_photos.generate_gallery.identify_subject as isub
 import process_photos.generate_gallery.identify_subject.identify_subject_local as isub_local
+import process_photos.generate_gallery.identify_subject.identify_subject_inat as isub_inat
 
 
 # ------------------------
@@ -115,3 +116,35 @@ def test_all_models_fail_returns_empty_string(mock_load_model, mock_image_open):
     result = isub.identify_subject(Path("fake.jpg"))
 
     assert result == ""
+
+@pytest.mark.parametrize(
+    ("retroactive", "last_run", "now", "expected_sleep"),
+    [
+        (False, 99.5, 100.0, 0.5),   # Normal interval, partially elapsed
+        (False, 98.0, 100.0, 0.0),   # Normal interval, fully elapsed
+        (True, 90.0, 100.0, 0.0),    # Retroactive interval: 8.64s, 10s elapsed
+        (True, 95.0, 100.0, 3.64),   # Retroactive interval, 5s elapsed
+    ],
+)
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_inat.time.sleep")
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_inat.time.monotonic")
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_inat.requests.post")
+@patch("process_photos.generate_gallery.identify_subject.identify_subject_inat.INAT_TOKEN", "test-token")
+def test_inat_rate_limit(
+    mock_post, mock_monotonic, mock_sleep,
+    retroactive, last_run, now, expected_sleep
+):
+    mock_post.return_value = Mock(ok=True)
+    mock_post.return_value.json.return_value = {"results": []}
+    mock_monotonic.return_value = now
+
+    state = {
+        "args": Mock(retroactive=retroactive),
+        "last_run": {"inat": last_run},
+    }
+
+    image = Mock()
+    isub_inat.identify_subject_inat(image, state)
+
+    mock_sleep.assert_called_once()
+    assert mock_sleep.call_args.args[0] == pytest.approx(expected_sleep)
