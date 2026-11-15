@@ -349,7 +349,7 @@ def generate_gallery(path, state=None):
                     return False
 
                 enriched_images = []
-                for existing in tqdm(existing_images, desc=f"Enriching images in {path.parent.relative_to(config.base_dir)}", unit="img", leave=False):
+                for existing in tqdm(existing_images, desc=f"Enriching metadata for {path.parent.relative_to(config.base_dir)}", unit="img", leave=False):
                     image = dict(existing)
                     filename = image.get("filename")
                     if filename:
