@@ -274,6 +274,7 @@ echo render_gallery($images);
         "subjects": "existing subject",
         "locations": "at Existing Place",
         "times": "summer",
+        "weather": "Clear",
         "technicals": "Existing camera details",
         "_sort_timestamp": "2024-06-21T06:30:00",
     }]
@@ -306,6 +307,7 @@ def test_retroactive_enrichment_generates_only_missing_subjects(
         "title": "Existing title",
         "description": "Existing description",
         "locations": "at Existing Place",
+        "weather": "Clear",
         "times": "summer",
         "technicals": "Existing camera details",
         "_sort_timestamp": "2024-06-21T06:30:00",

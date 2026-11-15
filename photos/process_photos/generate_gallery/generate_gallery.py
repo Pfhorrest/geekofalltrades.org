@@ -9,6 +9,7 @@ from ..parse_images_from_php import parse_images_from_php
 from ..write_gallery import write_gallery
 from .identify_subject import identify_subject
 from .identify_location import identify_location
+from .identify_weather import identify_weather
 
 def generate_gallery(path, state={}):
     """Generate image metadata, or maintain an existing gallery retroactively.
@@ -52,6 +53,7 @@ def generate_gallery(path, state={}):
             needs_title = needs("title")
             needs_description = needs("description")
             needs_times = needs("times")
+            needs_weather = needs("weather")
             needs_technicals = needs("technicals")
             needs_sort_timestamp = needs("_sort_timestamp")
 
@@ -59,6 +61,7 @@ def generate_gallery(path, state={}):
                 needs_locations,
                 needs_description,
                 needs_times,
+                needs_weather,
                 needs_technicals,
                 needs_sort_timestamp,
             ))
@@ -236,6 +239,12 @@ def generate_gallery(path, state={}):
 
                 times = ", ".join(filter(None, [season, time_of_day]))
 
+            # Generate weather keywords from GPS and timestamp
+            weather = None
+            if needs_weather and exif.get("timestamp") and exif.get("gps"):
+                lat, lon = exif["gps"]
+                weather = identify_weather(lat, lon, exif["timestamp"], state)
+            
             # Generate technicals keywords from EXIF
             technicals = None
             if needs_technicals:
@@ -279,6 +288,8 @@ def generate_gallery(path, state={}):
                 image["locations"] = ", ".join(locations)
             if times:
                 image["times"] = times
+            if needs_weather and weather:
+                image["weather"] = weather
             if technicals:
                 image["technicals"] = technicals
             if needs_sort_timestamp:
