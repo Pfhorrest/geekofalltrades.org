@@ -32,7 +32,7 @@ def get_inat_token():
             continue
 
     if not cookies:
-        tqdm.write("[WARN] No iNaturalist session cookie found in any browser.")
+        tqdm.write(f"{BrightColor.RED}[WARN]{BrightColor.OFF} No iNaturalist session cookie found in any browser.")
         return None
 
     try:
@@ -41,12 +41,12 @@ def get_inat_token():
             cookies=cookies
         )
         if not response.ok:
-            tqdm.write(f"[WARN] iNat token request failed: {response.status_code}")
+            tqdm.write(f"{BrightColor.RED}[WARN]{BrightColor.OFF} iNat token request failed: {response.status_code}")
             return None
 
         token = response.json().get("api_token")
         if not token:
-            tqdm.write("[WARN] iNat token response missing api_token")
+            tqdm.write(f"{BrightColor.RED}[WARN]{BrightColor.OFF} iNat token response missing api_token")
             return None
 
         config.INAT_TOKEN_CACHE_FILE.write_text(json.dumps({
@@ -57,7 +57,7 @@ def get_inat_token():
         return token
 
     except Exception as e:
-        tqdm.write(f"[WARN] iNat token retrieval error: {e}")
+        tqdm.write(f"{BrightColor.RED}[WARN]{BrightColor.OFF} iNat token retrieval error: {e}")
         return None
 
 def identify_subject_inat(image, state=None):
@@ -87,7 +87,7 @@ def identify_subject_inat(image, state=None):
             try:
                 INAT_TOKEN = get_inat_token()
             except Exception:
-                tqdm.write("[WARN] Failed to get iNat token")
+                tqdm.write(f"{BrightColor.RED}[WARN]{BrightColor.OFF} Failed to get iNat token")
                 return []
 
     try:
@@ -110,7 +110,7 @@ def identify_subject_inat(image, state=None):
         state.setdefault("last_run", {})["inat"] = time.monotonic()
 
         if not response.ok:
-            tqdm.write(f"[WARN] iNat API failed: {response.status_code}")
+            tqdm.write(f"{BrightColor.RED}[WARN]{BrightColor.OFF} iNat API failed: {response.status_code}")
             return []
 
         results = response.json().get("results", [])
@@ -128,5 +128,5 @@ def identify_subject_inat(image, state=None):
         return labels
 
     except Exception as e:
-        tqdm.write(f"[WARN] iNat API error: {e}")
+        tqdm.write(f"{BrightColor.RED}[WARN]{BrightColor.OFF} iNat API error: {e}")
         return []

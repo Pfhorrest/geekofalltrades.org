@@ -1,4 +1,5 @@
 from tqdm import tqdm
+from colorist import BrightColor
 from transformers import AutoImageProcessor, AutoModelForImageClassification
 import torch
 from collections import Counter
@@ -69,7 +70,7 @@ def identify_subject_local(image):
                         model_labels.append((surface, model_name))
             per_model_labels.append(model_labels)
         except Exception as e:
-            tqdm.write(f"[WARN] {model_name} failed: {e}")
+            tqdm.write(f"{BrightColor.RED}[WARN]{BrightColor.OFF} {model_name} failed: {e}")
             per_model_labels.append([])
     
     raw_labels = [

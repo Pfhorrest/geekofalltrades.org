@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 import re
 from tqdm import tqdm
+from colorist import BrightColor
 from .. import config  # For image_extensions, THUMB_SUFFIX
 from ..extract_exif_data import extract_exif_data
 from ..find_images_array import find_images_array
@@ -233,7 +234,7 @@ def generate_gallery(path, state=None):
                             time_of_day = "night"
 
                     except Exception as e:
-                        tqdm.write(f"[WARN] astral time-of-day failed: {e}")
+                        tqdm.write(f"{BrightColor.RED}[WARN]{BrightColor.OFF} astral time-of-day failed: {e}")
                         time_of_day = None
                 else:
                     time_of_day = None
