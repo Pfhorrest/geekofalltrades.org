@@ -30,12 +30,7 @@ def process_photos(args=None):
 
     # Persistent state across all items
     state = {
-        "args": args,
-        "last_run": {
-            "inat": time.monotonic(),
-            "nominatim": time.monotonic(),
-            "overpass": time.monotonic(),
-        },
+        "args": args
     }
 
     # Gather (dirpath, dirs, filenames) from os.walk

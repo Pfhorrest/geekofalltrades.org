@@ -16,7 +16,7 @@ NOMINATIM_ADDRESS_FIELDS = [
     ("country", "in"),
 ]
 
-def identify_location(lat, lon, state={}):
+def identify_location(lat, lon, state=None):
     """Identify a list of prefixed location strings for given GPS coordinates.
 
     Combines POIs from Overpass (prefixed "at" or "near") with the full
@@ -34,6 +34,7 @@ def identify_location(lat, lon, state={}):
             "in Los Angeles County", "in California"], or empty list if
             nothing found.
     """
+    state = state if state is not None else {}
     headers = {"User-Agent": "Photo Metadata Script (forrest@geekofalltrades.org)"}
 
     # Step 1: Nominatim reverse geocode — collect full address hierarchy
@@ -42,7 +43,7 @@ def identify_location(lat, lon, state={}):
 
     # Rate limit: 4 requests/minute (1 request every 15 seconds)
     delay = (60/4) if getattr(state.get("args"), "retroactive", False) else 1
-    time.sleep(max(0.0, delay - (time.monotonic() - getattr(state.get("last_run"), "nominatim", time.monotonic()))))
+    time.sleep(max(0.0, delay - (time.monotonic() - state.get("last_run", {}).get("nominatim", time.monotonic()))))
 
     try:
         r = requests.get(nominatim_url, params={

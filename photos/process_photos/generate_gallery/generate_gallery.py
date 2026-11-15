@@ -11,7 +11,7 @@ from .identify_subject import identify_subject
 from .identify_location import identify_location
 from .identify_weather import identify_weather
 
-def generate_gallery(path, state={}):
+def generate_gallery(path, state=None):
     """Generate image metadata, or maintain an existing gallery retroactively.
 
     In retroactive mode an existing `$images` array is the source of truth: its
@@ -27,8 +27,8 @@ def generate_gallery(path, state={}):
         list: A list of dictionaries containing image metadata. None if no images were found.
     """
     path = Path(path)
-    state = state if state is not None else {"delay": 1}
-    def generate_image(filepath, state={}, existing=None):
+    state = state if state is not None else {}
+    def generate_image(filepath, state=None, existing=None):
         """Generate only the metadata fields missing from an existing entry.
 
         With ``existing=None``, generate the complete metadata record used for a
@@ -43,6 +43,7 @@ def generate_gallery(path, state={}):
         Returns:
             dict: A dictionary containing metadata for the image.
         """
+        state = state if state is not None else {}
         try:
             retroactive = existing is not None
             existing = existing or {}

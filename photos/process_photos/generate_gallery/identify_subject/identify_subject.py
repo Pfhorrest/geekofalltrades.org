@@ -5,7 +5,7 @@ from ... import config # For base_dir
 from .identify_subject_inat import identify_subject_inat
 from .identify_subject_local import identify_subject_local
 
-def identify_subject(image_path, state={}):
+def identify_subject(image_path, state=None):
     """Identify the subject of an image using the iNaturalist computer vision API
     or a local ensemble of pre-trained models
 
@@ -19,6 +19,7 @@ def identify_subject(image_path, state={}):
             results filtered to the consensus threshold.
     """
     image = Image.open(image_path).convert("RGB")
+    state = state if state is not None else {}
 
     inat_labels = identify_subject_inat(image, state)
     local_labels = identify_subject_local(image)

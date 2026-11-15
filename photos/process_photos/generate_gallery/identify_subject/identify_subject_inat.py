@@ -60,7 +60,7 @@ def get_inat_token():
         tqdm.write(f"[WARN] iNat token retrieval error: {e}")
         return None
 
-def identify_subject_inat(image, state={}):
+def identify_subject_inat(image, state=None):
     """Identify the subject of an image using the iNaturalist computer vision API.
 
     Args:
@@ -71,6 +71,7 @@ def identify_subject_inat(image, state={}):
         str: A comma-separated string of identified subject labels, or empty
             string if the API call fails or INAT_TOKEN is not set.
     """
+    state = state if state is not None else {}
     global INAT_TOKEN
     if not INAT_TOKEN:
         if config.INAT_TOKEN_CACHE_FILE.exists():
@@ -96,7 +97,7 @@ def identify_subject_inat(image, state={}):
 
         # Rate limit: 10k requests/day
         delay = (60*60*24/10000) if getattr(state.get("args"), "retroactive", False) else 1
-        time.sleep(max(0.0, delay - (time.monotonic() - getattr(state.get("last_run"), "inat", time.monotonic()))))
+        time.sleep(max(0.0, delay - (time.monotonic() - state.get("last_run", {}).get("inat", time.monotonic()))))
 
         response = requests.post(
             "https://api.inaturalist.org/v1/computervision/score_image",
