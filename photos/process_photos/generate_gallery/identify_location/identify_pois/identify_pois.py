@@ -142,15 +142,13 @@ def overpass_request(query, max_retries=5):
                     tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} {e}")
                     # tqdm.write(f"{BrightColor.BLUE}[OSM]{BrightColor.OFF} Checking next server...")
                     continue
-            if not overpass_root:
-                raise RuntimeError("No available Overpass server found.")
         except Exception as e:
             tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Attempt {attempt + 1} failed: {e}")
             continue
     if (max_retries > 1):
         raise RuntimeError(f"Overpass failed after {max_retries} attempts")
     else:
-        raise RuntimeError(f"Overpass failed")
+        raise RuntimeError()
 
 def identify_pois(lat, lon):
     """Identify points of interest (POIs) near given GPS coordinates.
@@ -190,7 +188,8 @@ def identify_pois(lat, lon):
     try:
         elements = overpass_request(query, 1)
     except RuntimeError as e:
-        tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} {e}")
+        if str(e):
+            tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} {e}")
         return []
 
     named_nodes = []
