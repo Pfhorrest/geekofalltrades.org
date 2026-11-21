@@ -131,8 +131,8 @@ def overpass_request(query, max_retries=5):
                     response.raise_for_status()
                     data = response.json()
                     elements = data.get("elements", [])
-                    if len(elements) == 0:
-                        raise RuntimeError(f"No elements found on Overpass at {root_domain}")
+                    # if len(elements) == 0:
+                    #     raise RuntimeError(f"No elements found on Overpass at {root_domain}")
                     return elements
                 except requests.exceptions.Timeout:
                     tqdm.write(f"{BrightColor.RED}[OSM]{BrightColor.OFF} Timeout on Overpass at {root_domain}")
