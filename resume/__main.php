@@ -212,7 +212,7 @@
 		<p class="description"></p>
 		<section id="twisted-rope">
 			<h4>Full-Stack Developer</h4>
-			<p class="description">at Twisted Rope, 2021-present</p>
+			<p class="description">at Twisted Rope, 2021-2024</p>
 			<ul>
 				<li>
 					Delivered 30–40 client websites and applications, ranging from simple static builds to large-scale Next.js and React SPAs.
